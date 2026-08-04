@@ -3,281 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Dashboard | Pharmacology-I Portal</title>
+  <title>Portal Access | Pharmacology-I BSN</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-    body { background: #f1f5f9; color: #0f172a; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; }
+    body { background: #f1f5f9; color: #0f172a; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
 
-    /* Header */
-    header { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15); }
-    .header-title h1 { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.5px; }
-    .header-title p { font-size: 0.8rem; opacity: 0.9; font-weight: 500; }
-    .logout-btn { background: rgba(255, 255, 255, 0.2); color: white; border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: background 0.2s; text-decoration: none; display: flex; align-items: center; gap: 4px; }
-    .logout-btn:hover { background: rgba(255, 255, 255, 0.3); }
+    /* Login Box Container */
+    .login-container { background: white; width: 100%; max-width: 420px; padding: 36px 30px; border-radius: 24px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05); border: 1px solid #e2e8f0; }
+    .login-header { text-align: center; margin-bottom: 28px; }
+    .login-header h1 { font-size: 1.4rem; font-weight: 800; color: #0369a1; letter-spacing: -0.5px; margin-bottom: 6px; }
+    .login-header p { font-size: 0.85rem; color: #64748b; font-weight: 500; }
 
-    /* Dashboard Layout */
-    .container { max-width: 1100px; margin: 24px auto; padding: 0 16px; width: 100%; display: grid; grid-template-columns: 320px 1fr; gap: 20px; }
-    @media(max-width: 768px) { .container { grid-template-columns: 1fr; margin: 16px auto; } }
+    /* Form Styles */
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 6px; }
+    .form-input { width: 100%; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 12px; font-size: 0.9rem; font-weight: 600; outline: none; background: #f8fafc; color: #0f172a; transition: all 0.2s; }
+    .form-input:focus { border-color: #0284c7; background: white; box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12); }
 
-    /* Sidebar Profile Card */
-    .profile-card { background: white; border: 1px solid #e2e8f0; border-radius: 20px; padding: 24px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); height: fit-content; }
-    .avatar-wrapper { position: relative; width: 100px; height: 100px; margin: 0 auto 16px; }
-    .avatar-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid #0284c7; background: #f1f5f9; box-shadow: 0 4px 10px rgba(2, 132, 199, 0.15); }
-    .upload-label { position: absolute; bottom: 0; right: 0; background: #0284c7; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.85rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2); transition: transform 0.2s; }
-    .upload-label:hover { transform: scale(1.1); }
-    #file-input { display: none; }
+    .login-btn { width: 100%; padding: 12px; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 0.95rem; cursor: pointer; margin-top: 6px; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2); transition: opacity 0.2s; }
+    .login-btn:hover { opacity: 0.92; }
 
-    .profile-info h3 { font-size: 1.1rem; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
-    .profile-info p { font-size: 0.82rem; color: #64748b; margin-bottom: 3px; word-break: break-all; }
-    .badge { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-top: 8px; }
-
-    /* Single-Use Access Code Box */
-    .access-box { margin-top: 20px; padding-top: 18px; border-top: 1px solid #e2e8f0; text-align: left; }
-    .access-box label { display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 6px; }
-    .access-input-row { display: flex; gap: 6px; }
-    .access-input { flex: 1; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.85rem; font-weight: 700; outline: none; background: #f8fafc; transition: border-color 0.2s; }
-    .access-input:focus { border-color: #0284c7; background: white; }
-    .verify-btn { background: #0284c7; color: white; border: none; padding: 10px 14px; border-radius: 10px; font-weight: 700; font-size: 0.82rem; cursor: pointer; transition: opacity 0.2s; }
-    .verify-btn:hover { opacity: 0.9; }
-    .access-status { margin-top: 8px; font-size: 0.78rem; font-weight: 700; }
-    .status-locked { color: #dc2626; }
-    .status-unlocked { color: #16a34a; }
-    .whatsapp-mini { display: block; margin-top: 12px; font-size: 0.78rem; color: #25d366; font-weight: 700; text-decoration: none; text-align: center; background: #f0fdf4; padding: 8px; border-radius: 8px; border: 1px solid #bbf7d0; transition: background 0.2s; }
-    .whatsapp-mini:hover { background: #dcfce7; }
-
-    /* Main Content Area */
-    .main-content { display: flex; flex-direction: column; gap: 20px; }
-    .card { background: white; border: 1px solid #e2e8f0; border-radius: 20px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); position: relative; overflow: hidden; }
-    .card h2 { font-size: 1.15rem; font-weight: 800; color: #0369a1; border-left: 4px solid #0284c7; padding-left: 10px; margin-bottom: 14px; }
-    .card p { font-size: 0.9rem; color: #475569; line-height: 1.6; }
-
-    /* Chapters Grid & Lock Overlay */
-    .chapters-wrapper { position: relative; }
-    .chapters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
-    .chapter-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; text-decoration: none; color: inherit; transition: all 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
-    .chapter-box:hover { border-color: #0284c7; transform: translateY(-2px); background: white; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08); }
-    .chapter-box h4 { color: #0284c7; font-size: 0.9rem; font-weight: 800; margin-bottom: 4px; }
-    .chapter-box p { font-size: 0.78rem; color: #475569; margin-bottom: 10px; }
-    .chapter-link-text { font-size: 0.78rem; font-weight: 700; color: #0369a1; }
-
-    /* Lock Curtain */
-    .content-lock-overlay { position: absolute; inset: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(6px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border-radius: 16px; z-index: 10; padding: 20px; }
-    .content-lock-overlay h3 { font-size: 1.1rem; font-weight: 800; color: #dc2626; margin-bottom: 6px; }
-    .content-lock-overlay p { font-size: 0.82rem; color: #475569; margin-bottom: 14px; max-width: 320px; }
-
-    /* Footer */
-    footer { text-align: center; font-size: 0.8rem; color: #64748b; padding: 24px 0; border-top: 1px solid #e2e8f0; background: white; margin-top: 30px; font-weight: 500; }
-    footer span { color: #0284c7; font-weight: 700; }
+    .help-text { text-align: center; margin-top: 20px; font-size: 0.8rem; color: #64748b; }
+    .help-text span { color: #0284c7; font-weight: 700; }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="header-title">
+  <div class="login-container">
+    <div class="login-header">
       <h1>Pharmacology-I Portal</h1>
-      <p>BSN Clinical Learning Hub</p>
-    </div>
-    <a href="index.html" class="logout-btn" onclick="logout()">Log Out</a>
-  </header>
-
-  <!-- Dashboard Container -->
-  <div class="container">
-
-    <!-- Sidebar Profile Section -->
-    <div class="profile-card">
-      <div class="avatar-wrapper">
-        <img id="profile-pic" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250" alt="Student Profile Picture" class="avatar-img">
-        <label for="file-input" class="upload-label" title="Upload Your Picture">📷</label>
-        <input type="file" id="file-input" accept="image/*" onchange="uploadPicture(event)">
-      </div>
-      <div class="profile-info">
-        <h3 id="dash-name">Loading...</h3>
-        <p id="dash-institute">Loading Institute...</p>
-        <p id="dash-email">Loading Email...</p>
-        <span class="badge" id="dash-semester">Semester</span>
-      </div>
-
-      <!-- Single-Use Access Code Box -->
-      <div class="access-box">
-        <label>🔒 Single-Use Access Code</label>
-        <div class="access-input-row">
-          <input type="password" id="sidebarAccessInput" class="access-input" placeholder="Enter code">
-          <button class="verify-btn" onclick="verifySingleUseCode()">Verify</button>
-        </div>
-        <div id="accessStatusText" class="access-status status-locked">Status: Content Locked</div>
-        <a href="https://wa.me/923241064487?text=Hello%20Mudassir,%20I%20have%20paid%20for%20the%20Pharmacology%20portal.%20Kindly%20provide%20my%20single-use%20access%20code." target="_blank" class="whatsapp-mini">
-          💬 Pay via WhatsApp &amp; Get Code
-        </a>
-      </div>
+      <p>Enter your details to access student dashboard</p>
     </div>
 
-    <!-- Main Content Panel -->
-    <div class="main-content">
-      
-      <!-- Welcome Card -->
-      <div class="card">
-        <h2>Welcome to Your Study Portal!</h2>
-        <p>Access your complete Pharmacology-I curriculum, study units, and clinical notes below. Enter your unique single-use payment access code in the sidebar to permanently unlock all study chapters.</p>
+    <form id="loginForm" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="studentName" class="form-input" placeholder="e.g. Mudassir Hussain Khan" required>
       </div>
 
-      <!-- Chapters Portal Links (Locked by Default until single-use code verification) -->
-      <div class="card">
-        <h2>Pharmacology Units &amp; Chapters</h2>
-        <div class="chapters-wrapper">
-          
-          <!-- Lock Overlay -->
-          <div id="lockOverlay" class="content-lock-overlay">
-            <h3>🔒 Chapters Locked</h3>
-            <p>Please enter your verified single-use access code in the sidebar to unlock all chapter resources.</p>
-          </div>
-
-          <!-- Chapters Grid -->
-          <div class="chapters-grid">
-            <a href="chapter1.html" class="chapter-box">
-              <div>
-                <h4>Unit I: Basics</h4>
-                <p>Terminologies, history, sources, &amp; classifications.</p>
-              </div>
-              <span class="chapter-link-text">Read Notes →</span>
-            </a>
-
-            <a href="chapter2.html" class="chapter-box">
-              <div>
-                <h4>Unit II: Infections</h4>
-                <p>Antibiotics, antifungals, antivirals &amp; patient care.</p>
-              </div>
-              <span class="chapter-link-text">Read Notes →</span>
-            </a>
-
-            <a href="chapter3.html" class="chapter-box">
-              <div>
-                <h4>Unit III: GI System</h4>
-                <p>GI symptoms, disorder medications &amp; dosages.</p>
-              </div>
-              <span class="chapter-link-text">Read Notes →</span>
-            </a>
-
-            <a href="chapter4.html" class="chapter-box">
-              <div>
-                <h4>Unit IV: Hematology</h4>
-                <p>Blood disorders, anticoagulants &amp; monitoring.</p>
-              </div>
-              <span class="chapter-link-text">Read Notes →</span>
-            </a>
-
-            <a href="chapter5.html" class="chapter-box">
-              <div>
-                <h4>Unit V: Anti-Neoplastic</h4>
-                <p>Chemotherapy drugs, actions &amp; safety protocols.</p>
-              </div>
-              <span class="chapter-link-text">Read Notes →</span>
-            </a>
-          </div>
-
-        </div>
+      <div class="form-group">
+        <label>Institute Name</label>
+        <input type="text" id="studentInstitute" class="form-input" value="New Life Institute of Nursing" required>
       </div>
 
+      <div class="form-group">
+        <label>Student Email / Roll No</label>
+        <input type="text" id="studentEmail" class="form-input" placeholder="e.g. rollno 002075" required>
+      </div>
+
+      <div class="form-group">
+        <label>Semester</label>
+        <input type="text" id="studentSemester" class="form-input" value="4th Semester" required>
+      </div>
+
+      <button type="submit" class="login-btn">Proceed to Dashboard →</button>
+    </form>
+
+    <div class="help-text">
+      <p>Protected Student Portal • Developed by <span>Mudassir Hussain Khan</span></p>
     </div>
-
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <p>Developed with clinical precision by <span>Mudassir Hussain Khan</span> • BSN Portal</p>
-  </footer>
-
   <script>
-    // Database of Single-Use Access Codes (false = unused, true = already used)
-    let validCodes = JSON.parse(localStorage.getItem('pharmacologyDatabaseCodes')) || {
-      "PHARMA-101": false,
-      "PHARMA-102": false,
-      "PHARMA-103": false,
-      "MUDASSIR-99": false
-    };
-
+    // If user is already logged in, redirect straight to dashboard
     window.onload = function() {
-      // Check user login session
-      const userJSON = localStorage.getItem('pharmacologyUser');
-      if (!userJSON) {
-        alert('Unauthorized access! Please login first.');
-        window.location.href = 'index.html';
-        return;
-      }
-
-      const user = JSON.parse(userJSON);
-      document.getElementById('dash-name').innerText = user.name || 'Mudassir Hussain Khan';
-      document.getElementById('dash-institute').innerText = user.institute || 'New Life Institute of Nursing';
-      document.getElementById('dash-email').innerText = user.email || 'student@nursing.edu';
-      document.getElementById('dash-semester').innerText = user.semester || '3rd Semester';
-
-      // Load profile picture
-      const savedPic = localStorage.getItem('pharmacologyUserPic');
-      if (savedPic) {
-        document.getElementById('profile-pic').src = savedPic;
-      }
-
-      // Check if session is already unlocked
-      if (localStorage.getItem('pharmacologyUnlocked') === 'true') {
-        unlockContentUI();
+      if (localStorage.getItem('pharmacologyLoggedIn') === 'true') {
+        window.location.href = 'dashboard.html';
       }
     };
 
-    // Verify Single-Use Access Code
-    function verifySingleUseCode() {
-      const enteredCode = document.getElementById('sidebarAccessInput').value.trim();
+    function handleLogin(event) {
+      event.preventDefault();
 
-      if (!enteredCode) {
-        alert('Please enter an access code.');
-        return;
-      }
+      const userData = {
+        name: document.getElementById('studentName').value.trim(),
+        institute: document.getElementById('studentInstitute').value.trim(),
+        email: document.getElementById('studentEmail').value.trim(),
+        semester: document.getElementById('studentSemester').value.trim()
+      };
 
-      if (validCodes.hasOwnProperty(enteredCode)) {
-        if (validCodes[enteredCode] === true) {
-          alert('❌ Access Denied: This code has already been used by another student and cannot be reused!');
-        } else {
-          // Mark code as used permanently in database
-          validCodes[enteredCode] = true;
-          localStorage.setItem('pharmacologyDatabaseCodes', JSON.stringify(validCodes));
-          
-          // Unlock session
-          localStorage.setItem('pharmacologyUnlocked', 'true');
-          unlockContentUI();
-          alert('🎉 Success! Code verified. All chapter notes are now unlocked.');
-        }
-      } else {
-        alert('❌ Invalid Access Code! Please check your code or contact admin via WhatsApp (03241064487).');
-      }
-    }
+      // Save session state
+      localStorage.setItem('pharmacologyUser', JSON.stringify(userData));
+      localStorage.setItem('pharmacologyLoggedIn', 'true');
 
-    // Helper to unlock UI
-    function unlockContentUI() {
-      document.getElementById('lockOverlay').style.display = 'none';
-      const statusText = document.getElementById('accessStatusText');
-      statusText.innerText = "Status: Unlocked ✓";
-      statusText.className = "access-status status-unlocked";
-      document.getElementById('sidebarAccessInput').value = "VERIFIED";
-      document.getElementById('sidebarAccessInput').disabled = true;
-    }
-
-    // Upload custom picture
-    function uploadPicture(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const base64Image = e.target.result;
-          document.getElementById('profile-pic').src = base64Image;
-          localStorage.setItem('pharmacologyUserPic', base64Image);
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-
-    // Logout
-    function logout() {
-      localStorage.removeItem('pharmacologyUser');
+      // Redirect to dashboard
+      window.location.href = 'dashboard.html';
     }
   </script>
 
