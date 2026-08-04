@@ -245,16 +245,18 @@
       }
     }
 
-    // Function to send data matching your 5 Google Sheet columns
+    // Adjusted safe fetch function to prevent network blockages during login/register
     function logDataToSheet(payload) {
       if (!GOOGLE_SHEET_URL || GOOGLE_SHEET_URL.includes('YOUR_GOOGLE_APPS_SCRIPT')) return;
       
       fetch(GOOGLE_SHEET_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'text/plain;charset=utf-8' 
+        },
         body: JSON.stringify(payload)
-      }).catch(err => console.log('Sheet Sync Error:', err));
+      }).catch(err => console.log('Sheet Sync Warning:', err));
     }
 
     function openForgotModal() {
@@ -334,7 +336,6 @@
         };
         localStorage.setItem('pharmacologyRegisteredUsers', JSON.stringify(usersDB));
         
-        // Sends registration data in order: Full Name, Institute, Email, Semester
         logDataToSheet({
           fullName: name,
           institute: institute,
@@ -361,7 +362,6 @@
         localStorage.setItem('pharmacologyUser', JSON.stringify(userRecord));
         localStorage.setItem('pharmacologyLoggedIn', 'true');
 
-        // Logs login data as well using the user's stored profile details
         logDataToSheet({
           fullName: userRecord.name || 'N/A',
           institute: userRecord.institute || 'N/A',
