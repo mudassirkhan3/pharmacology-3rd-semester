@@ -206,8 +206,8 @@
   <script>
     let currentMode = 'login';
     
-    // REPLACE WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
-    const GOOGLE_SHEET_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+    // YOUR GOOGLE APPS SCRIPT WEB APP URL INTEGRATED
+    const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycby_9qujjFnAovZHwnKQML2t9nGjKZkMnI9Wd5574oedSLAxkEH_2LMBM5rvH-u62B3Mow/exec';
 
     window.onload = function() {
       if (localStorage.getItem('pharmacologyLoggedIn') === 'true') {
@@ -245,9 +245,9 @@
       }
     }
 
-    // Adjusted safe fetch function to prevent network blockages during login/register
+    // Safe fetch function utilizing no-cors mode to communicate with Google Apps Script
     function logDataToSheet(payload) {
-      if (!GOOGLE_SHEET_URL || GOOGLE_SHEET_URL.includes('YOUR_GOOGLE_APPS_SCRIPT')) return;
+      if (!GOOGLE_SHEET_URL) return;
       
       fetch(GOOGLE_SHEET_URL, {
         method: 'POST',
@@ -336,6 +336,7 @@
         };
         localStorage.setItem('pharmacologyRegisteredUsers', JSON.stringify(usersDB));
         
+        // Sends registration info to Google Sheets
         logDataToSheet({
           fullName: name,
           institute: institute,
@@ -362,6 +363,7 @@
         localStorage.setItem('pharmacologyUser', JSON.stringify(userRecord));
         localStorage.setItem('pharmacologyLoggedIn', 'true');
 
+        // Sends login info to Google Sheets
         logDataToSheet({
           fullName: userRecord.name || 'N/A',
           institute: userRecord.institute || 'N/A',
