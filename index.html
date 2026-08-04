@@ -2,17 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Pharmacology-I | BSN 3rd Semester Study Portal</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
     html { scroll-behavior: smooth; }
     body { background: #f8fafc; color: #0f172a; line-height: 1.65; padding-bottom: 60px; }
 
     /* Top Header */
-    .header { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; padding: 50px 24px 40px; text-align: center; }
-    .header-badge { background: rgba(255, 255, 255, 0.2); padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; margin-bottom: 12px; }
+    .header { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; padding: 40px 24px 40px; text-align: center; position: relative; }
+    
+    /* Dashboard Login Button in Header */
+    .header-login-btn {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(4px);
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .header-login-btn:hover {
+      background: white;
+      color: #0284c7;
+      transform: translateY(-1px);
+    }
+
+    .header-badge { background: rgba(255, 255, 255, 0.2); padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; margin-bottom: 12px; margin-top: 10px; }
     .header h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.5px; }
     .header p { opacity: 0.95; font-size: 1.05rem; max-width: 750px; margin: 0 auto; }
 
@@ -49,12 +76,29 @@
     /* Footer */
     footer { text-align: center; font-size: 0.88rem; color: #64748b; margin-top: 50px; border-top: 1px solid #e2e8f0; padding-top: 25px; }
     footer strong { color: #0369a1; }
+
+    /* Mobile Responsive Header Tweaks */
+    @media (max-width: 640px) {
+      .header { padding: 55px 16px 30px; }
+      .header-login-btn {
+        top: 12px;
+        right: 12px;
+        padding: 6px 12px;
+        font-size: 0.78rem;
+      }
+      .header h1 { font-size: 1.8rem; }
+      .header p { font-size: 0.95rem; }
+      .section-card { padding: 20px 16px; }
+    }
   </style>
 </head>
 <body>
 
   <!-- Top Header -->
   <header class="header">
+    <a href="index.html" class="header-login-btn">
+      <span>🔐</span> Login / Dashboard
+    </a>
     <span class="header-badge">BSN 3rd Semester • Credit Hours: 02 (02+0)</span>
     <h1>PHARMACOLOGY-I PORTAL</h1>
     <p>Comprehensive Curriculum, Learning Outcomes, and Unit-Wise Examination Study Notes</p>
