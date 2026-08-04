@@ -249,6 +249,8 @@
     function logDataToSheet(payload) {
       if (!GOOGLE_SHEET_URL || GOOGLE_SHEET_URL.includes('YOUR_GOOGLE_APPS_SCRIPT')) return;
       
+      payload.formSource = 'Pharmacology-I Portal';
+      
       fetch(GOOGLE_SHEET_URL, {
         method: 'POST',
         mode: 'no-cors',
