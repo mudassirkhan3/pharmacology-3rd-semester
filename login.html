@@ -126,12 +126,12 @@
       <div id="registerFields" class="hidden">
         <div class="form-group">
           <label>Full Name</label>
-          <input type="text" id="studentName" class="form-input" placeholder="e.g. Mudassir Khan">
+          <input type="text" id="studentName" class="form-input" placeholder="e.g. Mudassir Hussain Khan">
         </div>
 
         <div class="form-group">
           <label>Institute Name</label>
-          <input type="text" id="studentInstitute" class="form-input" value="New Life ,mmdc,dhq,etc">
+          <input type="text" id="studentInstitute" class="form-input" value="New Life Institute of Nursing Multan">
         </div>
 
         <div class="form-group">
@@ -142,7 +142,7 @@
         <div class="form-group">
           <label>🔐 Security Recovery Question</label>
           <input type="text" id="studentSecurityAnswer" class="form-input" placeholder="e.g. Your first pet's name or city">
-          <p style="font-size: 0.72rem; color: #64748b; margin-top: 4px;">Remember this answer! It is 100% free, runs locally, and is required if you ever forget your password.</p>
+          <p style="font-size: 0.72rem; color: #64748b; margin-top: 4px;">Remember this answer! It is required if you ever forget your password.</p>
         </div>
       </div>
 
@@ -171,7 +171,7 @@
     </a>
 
     <div class="help-text">
-      <p>Protected Student Portal • Developed by <span>Mudassir Khan</span></p>
+      <p>Protected Student Portal • Developed by <span>Mudassir Hussain Khan</span></p>
     </div>
   </div>
 
@@ -179,7 +179,7 @@
   <div id="forgotModal" class="modal-backdrop">
     <div class="modal-box">
       <h3>Reset Password</h3>
-      <p>Enter your registered account email and your secret security answer to safely reset your password locally without needing a server host.</p>
+      <p>Enter your registered account email and your secret security answer to safely reset your password locally.</p>
       
       <div class="form-group">
         <label>Registered Student Email</label>
@@ -206,7 +206,7 @@
   <script>
     let currentMode = 'login';
     
-    // REPLACE WITH YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL
+    // REPLACE WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
     const GOOGLE_SHEET_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
 
     window.onload = function() {
@@ -245,11 +245,9 @@
       }
     }
 
-    // Function to send data to Google Sheets via Fetch API
+    // Function to send data matching your 5 Google Sheet columns
     function logDataToSheet(payload) {
       if (!GOOGLE_SHEET_URL || GOOGLE_SHEET_URL.includes('YOUR_GOOGLE_APPS_SCRIPT')) return;
-      
-      payload.formSource = 'Pharmacology-I Portal';
       
       fetch(GOOGLE_SHEET_URL, {
         method: 'POST',
@@ -259,7 +257,6 @@
       }).catch(err => console.log('Sheet Sync Error:', err));
     }
 
-    // Modal Control Functions
     function openForgotModal() {
       const typedEmail = document.getElementById('studentEmail').value.trim();
       if(typedEmail) {
@@ -337,13 +334,12 @@
         };
         localStorage.setItem('pharmacologyRegisteredUsers', JSON.stringify(usersDB));
         
-        // Log Registration to Google Sheets
+        // Sends registration data in order: Full Name, Institute, Email, Semester
         logDataToSheet({
-          action: 'REGISTER',
-          name: name,
+          fullName: name,
           institute: institute,
-          semester: semester,
-          email: email
+          email: email,
+          semester: semester
         });
 
         alert('🎉 Registration successful! You can now log in with your email and password.');
@@ -365,13 +361,12 @@
         localStorage.setItem('pharmacologyUser', JSON.stringify(userRecord));
         localStorage.setItem('pharmacologyLoggedIn', 'true');
 
-        // Log Login Event to Google Sheets
+        // Logs login data as well using the user's stored profile details
         logDataToSheet({
-          action: 'LOGIN',
-          name: userRecord.name || 'N/A',
+          fullName: userRecord.name || 'N/A',
           institute: userRecord.institute || 'N/A',
-          semester: userRecord.semester || 'N/A',
-          email: email
+          email: email,
+          semester: userRecord.semester || 'N/A'
         });
 
         window.location.href = 'dashboard.html';
