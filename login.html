@@ -32,13 +32,28 @@
     .profile-info p { font-size: 0.85rem; color: #64748b; margin-bottom: 4px; word-break: break-all; }
     .badge { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-top: 10px; }
 
+    /* Access Code Box inside Sidebar */
+    .access-box { margin-top: 20px; padding-top: 20px; border-top: 1px solid #e2e8f0; text-align: left; }
+    .access-box label { display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 6px; }
+    .access-input-row { display: flex; gap: 6px; }
+    .access-input { flex: 1; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.85rem; font-weight: 700; outline: none; background: #f8fafc; }
+    .access-input:focus { border-color: #0284c7; background: white; }
+    .verify-btn { background: #0284c7; color: white; border: none; padding: 8px 12px; border-radius: 8px; font-weight: 700; font-size: 0.82rem; cursor: pointer; }
+    .verify-btn:hover { background: #0369a1; }
+    .access-status { margin-top: 6px; font-size: 0.78rem; font-weight: 700; }
+    .status-locked { color: #dc2626; }
+    .status-unlocked { color: #16a34a; }
+    .whatsapp-mini { display: block; margin-top: 10px; font-size: 0.78rem; color: #16a34a; font-weight: 700; text-decoration: none; text-align: center; }
+    .whatsapp-mini:hover { text-decoration: underline; }
+
     /* Main Content Area */
     .main-content { display: flex; flex-direction: column; gap: 20px; }
-    .card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+    .card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); position: relative; }
     .card h2 { font-size: 1.2rem; font-weight: 800; color: #0369a1; border-left: 4px solid #0284c7; padding-left: 10px; margin-bottom: 16px; }
     .card p { font-size: 0.95rem; color: #475569; line-height: 1.6; }
 
-    /* Chapters Grid */
+    /* Locked Overlay for Chapters */
+    .chapters-wrapper { position: relative; }
     .chapters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
     .chapter-box { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 16px; text-decoration: none; color: inherit; transition: all 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
     .chapter-box:hover { border-color: #0284c7; transform: translateY(-2px); background: white; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08); }
@@ -46,17 +61,10 @@
     .chapter-box p { font-size: 0.82rem; color: #475569; margin-bottom: 12px; }
     .chapter-link-text { font-size: 0.8rem; font-weight: 700; color: #0369a1; }
 
-    /* Payment Access Modal Overlay */
-    .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
-    .modal-card { background: white; width: 100%; max-width: 420px; padding: 30px; border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2); text-align: center; }
-    .modal-card h3 { color: #0369a1; font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
-    .modal-card p { font-size: 0.9rem; color: #475569; margin-bottom: 20px; line-height: 1.5; }
-    .modal-input { width: 100%; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 1rem; outline: none; text-align: center; font-weight: 700; letter-spacing: 1px; margin-bottom: 14px; background: #f8fafc; }
-    .modal-input:focus { border-color: #0284c7; box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15); background: white; }
-    .modal-btn { width: 100%; padding: 12px; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; border: none; border-radius: 10px; font-weight: 700; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.2); }
-    .modal-btn:hover { opacity: 0.95; }
-    .whatsapp-help-link { display: inline-block; margin-top: 14px; font-size: 0.85rem; color: #16a34a; font-weight: 700; text-decoration: none; }
-    .whatsapp-help-link:hover { text-decoration: underline; }
+    /* Lock Curtain */
+    .content-lock-overlay { position: absolute; inset: 0; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(4px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border-radius: 16px; z-index: 10; padding: 20px; }
+    .content-lock-overlay h3 { font-size: 1.15rem; font-weight: 800; color: #dc2626; margin-bottom: 6px; }
+    .content-lock-overlay p { font-size: 0.85rem; color: #475569; margin-bottom: 12px; }
 
     /* Footer */
     footer { text-align: center; font-size: 0.85rem; color: #64748b; padding: 24px 0; border-top: 1px solid #e2e8f0; background: white; margin-top: 40px; }
@@ -64,20 +72,6 @@
   </style>
 </head>
 <body>
-
-  <!-- Payment / Access Code Verification Modal -->
-  <div id="accessModal" class="modal-overlay">
-    <div class="modal-card">
-      <h3>🔒 Paid Access Required</h3>
-      <p>Please enter your verified payment access code provided by admin to unlock your dashboard.</p>
-      <input type="password" id="accessCodeInput" class="modal-input" placeholder="Enter Access Code">
-      <button class="modal-btn" onclick="verifyAccessCode()">Unlock Dashboard</button>
-      <br>
-      <a href="https://wa.me/923241064487?text=Hello%20Mudassir,%20I%20have%20paid%20for%20the%20Pharmacology%20portal.%20Kindly%20provide%20my%20access%20code." target="_blank" class="whatsapp-help-link">
-        💬 Pay via WhatsApp &amp; Get Code (03241064487)
-      </a>
-    </div>
-  </div>
 
   <!-- Header -->
   <header>
@@ -91,7 +85,7 @@
   <!-- Dashboard Container -->
   <div class="container">
 
-    <!-- Sidebar Profile Section -->
+    <!-- Sidebar Profile Section with Access Code Field -->
     <div class="profile-card">
       <div class="avatar-wrapper">
         <img id="profile-pic" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250" alt="Student Profile Picture" class="avatar-img">
@@ -104,6 +98,19 @@
         <p id="dash-email">Loading Email...</p>
         <span class="badge" id="dash-semester">Semester</span>
       </div>
+
+      <!-- Access Code Input Section -->
+      <div class="access-box">
+        <label>🔒 Payment Access Code</label>
+        <div class="access-input-row">
+          <input type="password" id="sidebarAccessInput" class="access-input" placeholder="Enter code">
+          <button class="verify-btn" onclick="verifySidebarCode()">Verify</button>
+        </div>
+        <div id="accessStatusText" class="access-status status-locked">Status: Content Locked</div>
+        <a href="https://wa.me/923241064487?text=Hello%20Mudassir,%20I%20have%20paid%20for%20the%20Pharmacology%20portal.%20Kindly%20provide%20my%20access%20code." target="_blank" class="whatsapp-mini">
+          💬 Pay via WhatsApp (03241064487)
+        </a>
+      </div>
     </div>
 
     <!-- Main Content Panel -->
@@ -112,53 +119,62 @@
       <!-- Welcome Card -->
       <div class="card">
         <h2>Welcome to Your Study Portal!</h2>
-        <p>Access your complete Pharmacology-I curriculum, chapters, and clinical notes below. Track your study units, review your MCQs/SEQs, and prepare for your nursing assessments effectively.</p>
+        <p>Access your complete Pharmacology-I curriculum, chapters, and clinical notes below. Enter your valid payment access code in the sidebar to unlock all study units and resources.</p>
       </div>
 
-      <!-- Chapters Portal Links -->
+      <!-- Chapters Portal Links (Locked by Default) -->
       <div class="card">
         <h2>Pharmacology Units &amp; Chapters</h2>
-        <div class="chapters-grid">
+        <div class="chapters-wrapper">
           
-          <a href="chapter1.html" class="chapter-box">
-            <div>
-              <h4>Unit I: Basics</h4>
-              <p>Terminologies, history, sources, &amp; drug classifications.</p>
-            </div>
-            <span class="chapter-link-text">Read Notes →</span>
-          </a>
+          <!-- Lock Curtain Overlay -->
+          <div id="lockOverlay" class="content-lock-overlay">
+            <h3>🔒 Chapters Locked</h3>
+            <p>Please enter your verified access code in the sidebar to unlock all chapter notes.</p>
+          </div>
 
-          <a href="chapter2.html" class="chapter-box">
-            <div>
-              <h4>Unit II: Infections</h4>
-              <p>Antibiotics, antifungals, antivirals &amp; patient care.</p>
-            </div>
-            <span class="chapter-link-text">Read Notes →</span>
-          </a>
+          <!-- Chapters Grid -->
+          <div class="chapters-grid">
+            <a href="chapter1.html" class="chapter-box">
+              <div>
+                <h4>Unit I: Basics</h4>
+                <p>Terminologies, history, sources, &amp; drug classifications.</p>
+              </div>
+              <span class="chapter-link-text">Read Notes →</span>
+            </a>
 
-          <a href="chapter3.html" class="chapter-box">
-            <div>
-              <h4>Unit III: Gastrointestinal</h4>
-              <p>GI symptoms, disorder medications &amp; dosages.</p>
-            </div>
-            <span class="chapter-link-text">Read Notes →</span>
-          </a>
+            <a href="chapter2.html" class="chapter-box">
+              <div>
+                <h4>Unit II: Infections</h4>
+                <p>Antibiotics, antifungals, antivirals &amp; patient care.</p>
+              </div>
+              <span class="chapter-link-text">Read Notes →</span>
+            </a>
 
-          <a href="chapter4.html" class="chapter-box">
-            <div>
-              <h4>Unit IV: Hematology</h4>
-              <p>Blood disorders, anticoagulants &amp; monitoring.</p>
-            </div>
-            <span class="chapter-link-text">Read Notes →</span>
-          </a>
+            <a href="chapter3.html" class="chapter-box">
+              <div>
+                <h4>Unit III: Gastrointestinal</h4>
+                <p>GI symptoms, disorder medications &amp; dosages.</p>
+              </div>
+              <span class="chapter-link-text">Read Notes →</span>
+            </a>
 
-          <a href="chapter5.html" class="chapter-box">
-            <div>
-              <h4>Unit V: Anti-Neoplastic</h4>
-              <p>Chemotherapy drugs, actions &amp; safety protocols.</p>
-            </div>
-            <span class="chapter-link-text">Read Notes →</span>
-          </a>
+            <a href="chapter4.html" class="chapter-box">
+              <div>
+                <h4>Unit IV: Hematology</h4>
+                <p>Blood disorders, anticoagulants &amp; monitoring.</p>
+              </div>
+              <span class="chapter-link-text">Read Notes →</span>
+            </a>
+
+            <a href="chapter5.html" class="chapter-box">
+              <div>
+                <h4>Unit V: Anti-Neoplastic</h4>
+                <p>Chemotherapy drugs, actions &amp; safety protocols.</p>
+              </div>
+              <span class="chapter-link-text">Read Notes →</span>
+            </a>
+          </div>
 
         </div>
       </div>
@@ -173,11 +189,11 @@
   </footer>
 
   <script>
-    // Correct Access Code defined by admin (Mudassir)
+    // Admin defined secret access code
     const ADMIN_ACCESS_CODE = "PHARMA2026";
 
-    // Check login and access authorization on load
     window.onload = function() {
+      // Check user login session
       const userJSON = localStorage.getItem('pharmacologyUser');
       if (!userJSON) {
         alert('Unauthorized access! Please login first.');
@@ -191,32 +207,42 @@
       document.getElementById('dash-email').innerText = user.email || 'student@nursing.edu';
       document.getElementById('dash-semester').innerText = user.semester || '3rd Semester';
 
-      // Load saved profile picture if available
+      // Load profile picture
       const savedPic = localStorage.getItem('pharmacologyUserPic');
       if (savedPic) {
         document.getElementById('profile-pic').src = savedPic;
       }
 
-      // Check if user has already entered the correct access code in this browser session
+      // Check if previously unlocked
       if (localStorage.getItem('pharmacologyUnlocked') === 'true') {
-        document.getElementById('accessModal').style.display = 'none';
+        unlockContentUI();
       }
     };
 
-    // Verify Access Code
-    function verifyAccessCode() {
-      const enteredCode = document.getElementById('accessCodeInput').value.trim();
-      
+    // Verify code entered in sidebar
+    function verifySidebarCode() {
+      const enteredCode = document.getElementById('sidebarAccessInput').value.trim();
+
       if (enteredCode === ADMIN_ACCESS_CODE) {
         localStorage.setItem('pharmacologyUnlocked', 'true');
-        document.getElementById('accessModal').style.display = 'none';
-        alert('Access granted! Welcome to your dashboard.');
+        unlockContentUI();
+        alert('Success! All chapters and content unlocked.');
       } else {
-        alert('Incorrect access code! Please contact admin via WhatsApp (03241064487) after payment to get your code.');
+        alert('Incorrect access code! Contact admin via WhatsApp (03241064487) after payment.');
       }
     }
 
-    // Allow student to upload and save their own picture
+    // Helper to unlock UI
+    function unlockContentUI() {
+      document.getElementById('lockOverlay').style.display = 'none';
+      const statusText = document.getElementById('accessStatusText');
+      statusText.innerText = "Status: Unlocked ✓";
+      statusText.className = "access-status status-unlocked";
+      document.getElementById('sidebarAccessInput').value = "********";
+      document.getElementById('sidebarAccessInput').disabled = true;
+    }
+
+    // Upload custom picture
     function uploadPicture(event) {
       const file = event.target.files[0];
       if (file) {
@@ -230,7 +256,7 @@
       }
     }
 
-    // Logout function clears session and lock state
+    // Logout
     function logout() {
       localStorage.removeItem('pharmacologyUser');
       localStorage.removeItem('pharmacologyUnlocked');
