@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal Access | Pharmacology-I BSN</title>
+  <title>Portal Access &amp; Authentication | Pharmacology-I BSN</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -15,7 +15,7 @@
     header p { font-size: 0.9rem; color: #475569; font-weight: 600; }
 
     /* Main Container */
-    .auth-wrapper { width: 100%; max-width: 440px; margin: 0 auto; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(226, 232, 240, 0.8); border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05); overflow: hidden; }
+    .auth-wrapper { width: 100%; max-width: 440px; margin: 0 auto; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(226, 232, 240, 0.8); border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05); overflow: hidden; }
 
     /* Tab Switches */
     .tab-header { display: flex; background: #f1f5f9; border-bottom: 1px solid #e2e8f0; }
@@ -34,19 +34,14 @@
     .submit-btn { width: 100%; padding: 12px; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; border: none; border-radius: 10px; font-weight: 700; font-size: 1rem; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.2); transition: opacity 0.2s; }
     .submit-btn:hover { opacity: 0.95; }
 
-    /* Help Floating/Popup Button */
-    .help-float { position: fixed; bottom: 25px; right: 25px; z-index: 100; }
-    .help-btn { background: #0f172a; color: white; border: none; padding: 12px 20px; border-radius: 30px; font-weight: 700; font-size: 0.85rem; cursor: pointer; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 8px; transition: transform 0.2s, background 0.2s; }
-    .help-btn:hover { background: #0284c7; transform: translateY(-2px); }
+    .switch-prompt { text-align: center; margin-top: 16px; font-size: 0.85rem; color: #64748b; }
+    .switch-prompt a { color: #0284c7; font-weight: 700; text-decoration: none; cursor: pointer; }
+    .switch-prompt a:hover { text-decoration: underline; }
 
-    /* Modal Popup Box */
-    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 101; padding: 20px; }
-    .modal-card { background: white; width: 100%; max-width: 380px; padding: 24px; border-radius: 16px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); text-align: center; animation: popIn 0.25s ease-out; }
-    @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-    .modal-card h3 { color: #0284c7; font-size: 1.2rem; font-weight: 800; margin-bottom: 8px; }
-    .modal-card p { font-size: 0.9rem; color: #475569; margin-bottom: 20px; }
-    .modal-close { background: #e2e8f0; color: #334155; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; }
-    .modal-close:hover { background: #cbd5e1; }
+    /* Help Floating Button */
+    .help-float { position: fixed; bottom: 25px; right: 25px; z-index: 100; }
+    .help-btn { background: #25d366; color: white; border: none; padding: 12px 20px; border-radius: 30px; font-weight: 700; font-size: 0.85rem; cursor: pointer; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 8px; text-decoration: none; transition: transform 0.2s, background 0.2s; }
+    .help-btn:hover { background: #22bf5b; transform: translateY(-2px); }
 
     /* Footer */
     footer { text-align: center; font-size: 0.85rem; color: #64748b; padding: 20px 0; font-weight: 500; }
@@ -58,14 +53,14 @@
   <!-- Header -->
   <header>
     <h1>Pharmacology-I Portal</h1>
-    <p>BSN 3rd Semester Student Secure Access</p>
+    <p>BSN 3rd Semester Secure Authentication</p>
   </header>
 
   <!-- Authentication Box -->
   <div class="auth-wrapper">
     <div class="tab-header">
-      <button class="tab-btn active" onclick="switchTab('login')">Login</button>
-      <button class="tab-btn" onclick="switchTab('register')">Register</button>
+      <button class="tab-btn active" id="btn-login-tab" onclick="switchTab('login')">Login</button>
+      <button class="tab-btn" id="btn-reg-tab" onclick="switchTab('register')">Register</button>
     </div>
 
     <!-- Login Form -->
@@ -73,14 +68,17 @@
       <form onsubmit="handleLogin(event)">
         <div class="input-group">
           <label>Email Address</label>
-          <input type="email" required placeholder="student@nursing.edu">
+          <input type="email" id="login-email" required placeholder="student@nursing.edu">
         </div>
         <div class="input-group">
           <label>Password</label>
-          <input type="password" required placeholder="••••••••">
+          <input type="password" id="login-pass" required placeholder="••••••••">
         </div>
-        <button type="submit" class="submit-btn">Login to Portal</button>
+        <button type="submit" class="submit-btn">Login to Dashboard</button>
       </form>
+      <div class="switch-prompt">
+        Don't have an account? <a onclick="switchTab('register')">Register here</a>
+      </div>
     </div>
 
     <!-- Register Form -->
@@ -88,43 +86,37 @@
       <form onsubmit="handleRegister(event)">
         <div class="input-group">
           <label>Full Name</label>
-          <input type="text" required placeholder="e.g. Mudassir Hussain Khan">
+          <input type="text" id="reg-name" required placeholder="e.g. Mudassir Hussain Khan" value="Mudassir Hussain Khan">
         </div>
         <div class="input-group">
           <label>Institute Name</label>
-          <input type="text" required placeholder="e.g. New Life Institute of Nursing">
+          <input type="text" id="reg-institute" required placeholder="New Life Institute of Nursing" value="New Life Institute of Nursing">
         </div>
         <div class="input-group">
           <label>Email Address</label>
-          <input type="email" required placeholder="student@nursing.edu">
+          <input type="email" id="reg-email" required placeholder="student@nursing.edu" value="mudassir@nursing.edu">
         </div>
         <div class="input-group">
           <label>Current Semester</label>
-          <input type="text" required value="3rd Semester" placeholder="3rd Semester">
+          <input type="text" id="reg-semester" required value="3rd Semester">
         </div>
         <div class="input-group">
           <label>Password</label>
-          <input type="password" required placeholder="Create secure password">
+          <input type="password" id="reg-pass" required placeholder="Create secure password" value="123456">
         </div>
-        <button type="submit" class="submit-btn">Create Account</button>
+        <button type="submit" class="submit-btn">Register &amp; Launch Dashboard</button>
       </form>
+      <div class="switch-prompt">
+        Already registered? <a onclick="switchTab('login')">Login here</a>
+      </div>
     </div>
   </div>
 
-  <!-- Help Pop Button -->
+  <!-- WhatsApp Admin Help Button -->
   <div class="help-float">
-    <button class="help-btn" onclick="openModal()">
-      💬 Need Help? Ask Admin
-    </button>
-  </div>
-
-  <!-- Help Modal Overlay -->
-  <div id="helpModal" class="modal-overlay">
-    <div class="modal-card">
-      <h3>Admin Assistance</h3>
-      <p>Having trouble logging in or need portal access assistance? Contact your portal administrator directly.</p>
-      <button class="modal-close" onclick="closeModal()">Close</button>
-    </div>
+    <a href="https://wa.me/923241064487?text=Hello%20Mudassir,%20I%20need%20help%20with%20my%20Pharmacology%20portal%20access." target="_blank" class="help-btn">
+      💬 Need Help? WhatsApp Admin
+    </a>
   </div>
 
   <!-- Footer -->
@@ -136,37 +128,51 @@
     function switchTab(tab) {
       const loginForm = document.getElementById('login-form');
       const registerForm = document.getElementById('register-form');
-      const buttons = document.querySelectorAll('.tab-btn');
-
-      buttons.forEach(btn => btn.classList.remove('active'));
+      const loginTabBtn = document.getElementById('btn-login-tab');
+      const regTabBtn = document.getElementById('btn-reg-tab');
 
       if (tab === 'login') {
         loginForm.classList.add('active');
         registerForm.classList.remove('active');
-        buttons[0].classList.add('active');
+        loginTabBtn.classList.add('active');
+        regTabBtn.classList.remove('active');
       } else {
         registerForm.classList.add('active');
         loginForm.classList.remove('active');
-        buttons[1].classList.add('active');
+        regTabBtn.classList.add('active');
+        loginTabBtn.classList.remove('active');
       }
     }
 
-    function openModal() {
-      document.getElementById('helpModal').style.display = 'flex';
-    }
-
-    function closeModal() {
-      document.getElementById('helpModal').style.display = 'none';
-    }
-
-    function handleLogin(e) {
-      e.preventDefault();
-      alert('Login successful! Redirecting to your Pharmacology Portal...');
-    }
-
+    // Save profile details to localStorage and redirect to dashboard.html on Register
     function handleRegister(e) {
       e.preventDefault();
-      alert('Account registered successfully! Welcome to the portal.');
+      const userData = {
+        name: document.getElementById('reg-name').value,
+        institute: document.getElementById('reg-institute').value,
+        email: document.getElementById('reg-email').value,
+        semester: document.getElementById('reg-semester').value
+      };
+      localStorage.setItem('pharmacologyUser', JSON.stringify(userData));
+      alert('Registration successful! Launching your dashboard...');
+      window.location.href = 'dashboard.html';
+    }
+
+    // Handle Login and auto-redirect to dashboard.html
+    function handleLogin(e) {
+      e.preventDefault();
+      // If user hasn't registered yet, create a default profile so dashboard displays properly
+      if (!localStorage.getItem('pharmacologyUser')) {
+        const defaultUser = {
+          name: "Mudassir Hussain Khan",
+          institute: "New Life Institute of Nursing",
+          email: document.getElementById('login-email').value || "student@nursing.edu",
+          semester: "3rd Semester"
+        };
+        localStorage.setItem('pharmacologyUser', JSON.stringify(defaultUser));
+      }
+      alert('Login successful! Redirecting to dashboard...');
+      window.location.href = 'dashboard.html';
     }
   </script>
 
