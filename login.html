@@ -38,7 +38,7 @@
     .switch-prompt a { color: #0284c7; font-weight: 700; text-decoration: none; cursor: pointer; }
     .switch-prompt a:hover { text-decoration: underline; }
 
-    /* Help Floating Button */
+    /* WhatsApp Help Floating Button */
     .help-float { position: fixed; bottom: 25px; right: 25px; z-index: 100; }
     .help-btn { background: #25d366; color: white; border: none; padding: 12px 20px; border-radius: 30px; font-weight: 700; font-size: 0.85rem; cursor: pointer; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 8px; text-decoration: none; transition: transform 0.2s, background 0.2s; }
     .help-btn:hover { background: #22bf5b; transform: translateY(-2px); }
@@ -77,7 +77,7 @@
         <button type="submit" class="submit-btn">Login to Dashboard</button>
       </form>
       <div class="switch-prompt">
-        Don't have an account? <a onclick="switchTab('register')">Register here</a>
+        Don't have an account? <a onclick="switchTab('register')">Register first</a>
       </div>
     </div>
 
@@ -86,15 +86,15 @@
       <form onsubmit="handleRegister(event)">
         <div class="input-group">
           <label>Full Name</label>
-          <input type="text" id="reg-name" required placeholder="e.g. Mudassir Hussain Khan" value="Mudassir Hussain Khan">
+          <input type="text" id="reg-name" required placeholder="e.g. Mudassir Hussain Khan">
         </div>
         <div class="input-group">
           <label>Institute Name</label>
-          <input type="text" id="reg-institute" required placeholder="New Life Institute of Nursing" value="New Life Institute of Nursing">
+          <input type="text" id="reg-institute" required placeholder="New Life Institute of Nursing">
         </div>
         <div class="input-group">
           <label>Email Address</label>
-          <input type="email" id="reg-email" required placeholder="student@nursing.edu" value="mudassir@nursing.edu">
+          <input type="email" id="reg-email" required placeholder="student@nursing.edu">
         </div>
         <div class="input-group">
           <label>Current Semester</label>
@@ -102,9 +102,9 @@
         </div>
         <div class="input-group">
           <label>Password</label>
-          <input type="password" id="reg-pass" required placeholder="Create secure password" value="123456">
+          <input type="password" id="reg-pass" required placeholder="Create secure password">
         </div>
-        <button type="submit" class="submit-btn">Register &amp; Launch Dashboard</button>
+        <button type="submit" class="submit-btn">Register Account</button>
       </form>
       <div class="switch-prompt">
         Already registered? <a onclick="switchTab('login')">Login here</a>
@@ -144,35 +144,46 @@
       }
     }
 
-    // Save profile details to localStorage and redirect to dashboard.html on Register
+    // Register User and store credentials strictly
     function handleRegister(e) {
       e.preventDefault();
       const userData = {
-        name: document.getElementById('reg-name').value,
-        institute: document.getElementById('reg-institute').value,
-        email: document.getElementById('reg-email').value,
-        semester: document.getElementById('reg-semester').value
+        name: document.getElementById('reg-name').value.trim(),
+        institute: document.getElementById('reg-institute').value.trim(),
+        email: document.getElementById('reg-email').value.trim().toLowerCase(),
+        semester: document.getElementById('reg-semester').value.trim(),
+        password: document.getElementById('reg-pass').value
       };
-      localStorage.setItem('pharmacologyUser', JSON.stringify(userData));
-      alert('Registration successful! Launching your dashboard...');
-      window.location.href = 'dashboard.html';
+
+      localStorage.setItem('pharmacologyRegisteredUser', JSON.stringify(userData));
+      alert('Registration successful! Please switch to the Login tab and enter your credentials to open your dashboard.');
+      switchTab('login');
     }
 
-    // Handle Login and auto-redirect to dashboard.html
+    // Strict Login verification against registered credentials
     function handleLogin(e) {
       e.preventDefault();
-      // If user hasn't registered yet, create a default profile so dashboard displays properly
-      if (!localStorage.getItem('pharmacologyUser')) {
-        const defaultUser = {
-          name: "Mudassir Hussain Khan",
-          institute: "New Life Institute of Nursing",
-          email: document.getElementById('login-email').value || "student@nursing.edu",
-          semester: "3rd Semester"
-        };
-        localStorage.setItem('pharmacologyUser', JSON.stringify(defaultUser));
+      const inputEmail = document.getElementById('login-email').value.trim().toLowerCase();
+      const inputPass = document.getElementById('login-pass').value;
+
+      const savedUserJSON = localStorage.getItem('pharmacologyRegisteredUser');
+
+      if (!savedUserJSON) {
+        alert('Access Denied: No account found! Please register first before trying to log in.');
+        switchTab('register');
+        return;
       }
-      alert('Login successful! Redirecting to dashboard...');
-      window.location.href = 'dashboard.html';
+
+      const savedUser = JSON.parse(savedUserJSON);
+
+      if (inputEmail === savedUser.email && inputPass === savedUser.password) {
+        // Save active session
+        localStorage.setItem('pharmacologyUser', JSON.stringify(savedUser));
+        alert('Login successful! Redirecting to your dashboard...');
+        window.location.href = 'dashboard.html';
+      } else {
+        alert('Error: Incorrect email or password. Please check your credentials or register if you haven\'t.');
+      }
     }
   </script>
 
