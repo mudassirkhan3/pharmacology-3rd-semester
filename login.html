@@ -205,6 +205,9 @@
 
   <script>
     let currentMode = 'login';
+    
+    // REPLACE WITH YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL
+    const GOOGLE_SHEET_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
 
     window.onload = function() {
       if (localStorage.getItem('pharmacologyLoggedIn') === 'true') {
@@ -242,9 +245,20 @@
       }
     }
 
+    // Function to send data to Google Sheets via Fetch API
+    function logDataToSheet(payload) {
+      if (!GOOGLE_SHEET_URL || GOOGLE_SHEET_URL.includes('YOUR_GOOGLE_APPS_SCRIPT')) return;
+      
+      fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(err => console.log('Sheet Sync Error:', err));
+    }
+
     // Modal Control Functions
     function openForgotModal() {
-      // Pre-fill email if already typed in main form
       const typedEmail = document.getElementById('studentEmail').value.trim();
       if(typedEmail) {
         document.getElementById('recoveryEmail').value = typedEmail;
@@ -258,7 +272,6 @@
       document.getElementById('forgotModal').style.display = 'none';
     }
 
-    // Secure local password reset verification
     function executePasswordReset() {
       const email = document.getElementById('recoveryEmail').value.trim().toLowerCase();
       const answer = document.getElementById('recoveryAnswer').value.trim().toLowerCase();
@@ -278,13 +291,11 @@
 
       const userRecord = usersDB[email];
 
-      // Check if security answer matches (case-insensitive for robust matching)
       if (!userRecord.securityAnswer || userRecord.securityAnswer.toLowerCase() !== answer) {
         alert('❌ Incorrect security answer! Identity verification failed.');
         return;
       }
 
-      // Update password locally
       userRecord.password = newPassword;
       usersDB[email] = userRecord;
       localStorage.setItem('pharmacologyRegisteredUsers', JSON.stringify(usersDB));
@@ -324,6 +335,15 @@
         };
         localStorage.setItem('pharmacologyRegisteredUsers', JSON.stringify(usersDB));
         
+        // Log Registration to Google Sheets
+        logDataToSheet({
+          action: 'REGISTER',
+          name: name,
+          institute: institute,
+          semester: semester,
+          email: email
+        });
+
         alert('🎉 Registration successful! You can now log in with your email and password.');
         switchMode('login');
         document.getElementById('authForm').reset();
@@ -342,6 +362,15 @@
 
         localStorage.setItem('pharmacologyUser', JSON.stringify(userRecord));
         localStorage.setItem('pharmacologyLoggedIn', 'true');
+
+        // Log Login Event to Google Sheets
+        logDataToSheet({
+          action: 'LOGIN',
+          name: userRecord.name || 'N/A',
+          institute: userRecord.institute || 'N/A',
+          semester: userRecord.semester || 'N/A',
+          email: email
+        });
 
         window.location.href = 'dashboard.html';
       }
