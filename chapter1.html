@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Chapter 1: Introduction to Pharmacodynamics and Pharmacokinetics | Clinical Psychopharmacology Portal</title>
+  <title>Chapter 1: Advanced Pharmacodynamics &amp; Pharmacokinetics | Comprehensive Visual Reader</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,6 +23,7 @@
       --shadow: 0 10px 30px -5px rgba(2, 132, 199, 0.08);
       --shadow-lg: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
       --highlight: #fef08a;
+      --highlight-alt: #ccfbf1;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -82,11 +83,19 @@
       padding: 20px 16px; margin-bottom: 22px; box-shadow: var(--shadow);
     }
     .content-card h2 { font-size: 1.1rem; font-weight: 800; color: var(--text-dark); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
-    .content-card h3 { font-size: 0.95rem; font-weight: 800; color: var(--primary-dark); margin: 16px 0 6px 0; }
-    .content-card p { font-size: 0.88rem; color: #334155; line-height: 1.6; margin-bottom: 10px; }
-    .content-card ul { margin-left: 20px; margin-bottom: 10px; font-size: 0.88rem; color: #334155; line-height: 1.6; }
+    .content-card h3 { font-size: 0.95rem; font-weight: 800; color: var(--primary-dark); margin: 18px 0 8px 0; }
+    .content-card p { font-size: 0.88rem; color: #334155; line-height: 1.6; margin-bottom: 12px; }
+    .content-card ul { margin-left: 20px; margin-bottom: 12px; font-size: 0.88rem; color: #334155; line-height: 1.6; }
 
     mark { background-color: var(--highlight); padding: 2px 6px; border-radius: 4px; font-weight: 700; color: #1e293b; box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1); }
+    .mark-alt { background-color: var(--highlight-alt); color: #042f2e; }
+
+    .visual-figure {
+      background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin: 16px 0;
+      text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+    .visual-figure img { width: 100%; max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border); display: block; margin: 0 auto 10px auto; }
+    .figure-caption { font-size: 0.78rem; color: var(--text-muted); font-weight: 700; line-height: 1.4; }
 
     .mnemonic-box {
       background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 100%);
@@ -144,13 +153,13 @@
       <div>
         <a href="#sec-core" class="sidebar-brand">
           <div class="pulse-box">🧠</div>
-          <span>Psychopharmacology Guide</span>
+          <span>Psychopharmacology Reader</span>
         </a>
         <ul class="sidebar-menu">
-          <li><a href="#sec-core" class="active">Core Essence &amp; Overview</a></li>
+          <li><a href="#sec-core" class="active">Core Essence &amp; Paradigm Shift</a></li>
           <li><a href="#sec-pd">1. Pharmacodynamics (PD)</a></li>
           <li><a href="#sec-pk">2. Pharmacokinetics (PK)</a></li>
-          <li><a href="#sec-factors" class="sidebar-sub">↳ Factors Affecting ADME</a></li>
+          <li><a href="#sec-adme" class="sidebar-sub">↳ Detailed ADME &amp; Factors</a></li>
           <li><a href="#sec-cyp">3. Cytochrome P450 &amp; Metabolism</a></li>
           <li><a href="#sec-interactions">4. Drug–Drug Interactions</a></li>
         </ul>
@@ -178,10 +187,10 @@
             <button class="menu-toggle" onclick="toggleMenu()">✕</button>
           </div>
           <ul class="drawer-menu">
-            <li><a href="#sec-core" onclick="toggleMenu()">Core Essence &amp; Overview</a></li>
+            <li><a href="#sec-core" onclick="toggleMenu()">Core Essence &amp; Paradigm Shift</a></li>
             <li><a href="#sec-pd" onclick="toggleMenu()">1. Pharmacodynamics (PD)</a></li>
             <li><a href="#sec-pk" onclick="toggleMenu()">2. Pharmacokinetics (PK)</a></li>
-            <li><a href="#sec-factors" onclick="toggleMenu()">↳ Factors Affecting ADME</a></li>
+            <li><a href="#sec-adme" onclick="toggleMenu()">↳ Detailed ADME &amp; Factors</a></li>
             <li><a href="#sec-cyp" onclick="toggleMenu()">3. Cytochrome P450 &amp; Metabolism</a></li>
             <li><a href="#sec-interactions" onclick="toggleMenu()">4. Drug–Drug Interactions</a></li>
           </ul>
@@ -193,37 +202,47 @@
         <div class="chapter-hero">
           <span class="badge-unit">Handbook of Essential Psychopharmacology • Chapter 1</span>
           <h1>Introduction To Pharmacodynamics And Pharmacokinetics</h1>
-          <p>A streamlined, beautifully formatted breakdown of how psychotropic medications interact with cellular receptors, alter genetic transcription, and undergo complex metabolic pathways in the human body.</p>
+          <p>An in-depth, enhanced visual edition featuring high-yield highlights, comprehensive physiological factor breakdowns, interactive receptor simulations, and medical illustrations optimized for mobile and desktop screens.</p>
         </div>
 
         <!-- CORE ESSENCE -->
         <div id="sec-core" class="content-card">
-          <h2>Core Definitions &amp; Paradigm Shift</h2>
-          <p>In essence, <mark>pharmacodynamics is what a drug does to your body</mark>; <mark>pharmacokinetics is what your body does to a drug</mark>.</p>
-          <p>Understanding how psychotropic medications work is far more complex than once believed. In the past, antidepressants and antipsychotics were described solely by their superficial effects on specific neuronal receptors or biogenic amines. Present evidence shows that fundamental mechanisms operate at the <strong>level of the gene</strong>—specific gene products, rather than surface receptor changes, represent the true "business end" of a medication's clinical efficacy.</p>
+          <h2>Core Definitions &amp; The Modern Paradigm Shift</h2>
+          <p>To master psychopharmacology, one must first master the fundamental dichotomy:</p>
+          <ul>
+            <li><mark>Pharmacodynamics (PD)</mark> = What a drug does to your body (mechanisms of action, receptor binding, and physiological response).</li>
+            <li><mark>Pharmacokinetics (PK)</mark> = What your body does to a drug (absorption, distribution, metabolism, and elimination).</li>
+          </ul>
+          
+          <p>Historically, antidepressants and antipsychotics were understood solely through superficial receptor binding or biogenic amine levels (e.g., serotonin, dopamine, norepinephrine). Modern neuroscience reveals a much deeper reality: <mark class="mark-alt">many psychotropics alter neuronal function directly at the level of the gene</mark>. Specific gene products and neurotrophic growth factors represent the true "business end" of clinical efficacy.</p>
+          
+          <div class="visual-figure">
+            <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=1000&q=80" alt="Cellular receptor binding and signal transduction illustration">
+            <div class="figure-caption">Figure 1.1: Signal transduction cascading from membrane receptors down to nuclear DNA and genetic transcription.</div>
+          </div>
         </div>
 
         <!-- PHARMACODYNAMICS -->
         <div id="sec-pd" class="content-card">
           <h2>1. Pharmacodynamics (PD): Mechanism of Action</h2>
-          <p>Pharmacodynamics governs a drug's mechanism of action (MOA): how it triggers biochemical changes in the brain or peripheral systems to produce clinical effects or side effects (such as dry mouth, orthostatic hypotension, or daytime somnolence).</p>
+          <p>Pharmacodynamics examines how drugs trigger therapeutic or adverse effects (such as dry mouth, sedation, or orthostatic hypotension). While receptor binding initiates the cascade, the ultimate effects run much deeper.</p>
 
-          <h3>Ligands and Receptors</h3>
-          <p>Any molecule that binds to a cellular receptor is called a <strong>ligand</strong>:</p>
+          <h3>Ligands and Receptor Dynamics</h3>
+          <p>Any molecule binding to a cellular receptor is a <strong>ligand</strong>. Ligands are categorized into four functional classes:</p>
           <ul>
-            <li><strong>Agonist:</strong> Enhances intrinsic activity by mimicking or facilitating an endogenous ligand (e.g., Benzodiazepines act at benzodiazepine receptors, facilitating GABA action and chloride ion flow).</li>
-            <li><strong>Antagonist (Neutral):</strong> Possesses zero intrinsic activity but blocks agonists, restoring resting receptor status or preventing activation (e.g., Flumazenil reversing benzodiazepine overdose).</li>
-            <li><strong>Inverse Agonist:</strong> Produces the opposite effect of an agonist, counteracting receptor activity (e.g., beta-carbolines reducing chloride flow and provoking anxiety).</li>
-            <li><strong>Partial Agonist:</strong> Acts as an antagonist when endogenous ligands are in excess, and as an agonist when endogenous ligands are scarce (e.g., Buspirone at 5-HT1A receptors).</li>
+            <li><strong>Agonist:</strong> Enhances receptor activity by mimicking endogenous ligands (e.g., Benzodiazepines act as agonists at GABA receptors, increasing $Cl^-$ ion influx and neural inhibition).</li>
+            <li><strong>Antagonist (Neutral):</strong> Possesses zero intrinsic activity but blocks agonists, restoring baseline receptor resting state (e.g., Flumazenil reversing benzodiazepine overdose).</li>
+            <li><strong>Inverse Agonist:</strong> Produces the opposite pharmacological effect of an agonist, diminishing baseline activity (e.g., beta-carbolines reducing chloride channel flow to provoke anxiety).</li>
+            <li><strong>Partial Agonist:</strong> Acts as an antagonist when endogenous ligands are excessive, and as an agonist when endogenous ligands are scarce (e.g., Buspirone at 5-$HT_{1A}$ receptors).</li>
           </ul>
 
-          <p><strong>Autoreceptors vs. Heteroreceptors:</strong> Autoreceptors reside on neurons that produce their matching endogenous ligand (e.g., serotonergic autoreceptor on a serotonin-producing neuron). Heteroreceptors reside on neurons producing a different neurotransmitter (e.g., serotonin heteroreceptor on a dopaminergic neuron), enabling cross-transmitter regulation (crucial for drugs like mirtazapine).</p>
+          <p><strong>Autoreceptors vs. Heteroreceptors:</strong> Autoreceptors reside on neurons producing their corresponding endogenous ligand (e.g., serotonin autoreceptors on serotonergic neurons). Heteroreceptors reside on neurons producing a different neurotransmitter (e.g., serotonin heteroreceptors on dopaminergic neurons), allowing complex cross-transmitter feedback loops.</p>
 
           <h3>Neurotransmitters &amp; Signal Transduction</h3>
-          <p>Neurotransmitters comprise amino acids, biogenic amines (norepinephrine, serotonin, dopamine, acetylcholine), and peptides. They communicate through two main receptor architectures:</p>
+          <p>Neurotransmitters interact via two primary receptor architectures:</p>
           <ul>
-            <li><strong>Ionotropic Receptors (Ligand-Gated Channels):</strong> Rapidly swinging doors governing instant ion flux. Inhibitory amino acids (GABA, glycine) allow $Cl^-$ influx to hyperpolarize cells. Excitatory amino acids (glutamate, aspartate) allow $Na^+$ or $Ca^{2+}$ influx to depolarize cells and trigger firing.</li>
-            <li><strong>G-Protein–Coupled Receptors (GPCRs):</strong> Slower relay stations utilizing secondary messengers like cAMP and protein kinases. These trigger phosphorylation, altering ion channel function and long-term <strong>genetic transcription</strong> (via tertiary messengers like c-fos and mRNA, leading to growth factors like BDNF).</li>
+            <li><strong>Ionotropic Receptors (Ligand-Gated):</strong> Rapidly swinging doors governing instant ion flux. Inhibitory transmitters (GABA, glycine) allow $Cl^-$ influx to hyperpolarize cells. Excitatory transmitters (glutamate, aspartate) allow $Na^+$ or $Ca^{2+}$ influx to depolarize cells.</li>
+            <li><strong>G-Protein–Coupled Receptors (GPCRs):</strong> Slower relay stations utilizing secondary messengers (cAMP, inositol trisphosphate) and protein kinases to trigger protein phosphorylation and long-term <strong>genetic transcription</strong> (via tertiary messengers like c-fos and mRNA, leading to growth factors like BDNF).</li>
           </ul>
 
           <!-- ANIMATED RECEPTOR SIMULATOR -->
@@ -251,98 +270,101 @@
         <!-- PHARMACOKINETICS -->
         <div id="sec-pk" class="content-card">
           <h2>2. Pharmacokinetics (PK): ADME Principles</h2>
-          <p>Pharmacokinetics encompasses all bodily processes governing drug movement: Absorption, Distribution, Metabolism, and Elimination (ADME).</p>
+          <p>Pharmacokinetics encompasses all bodily processes governing drug movement through the system: <mark>Absorption, Distribution, Metabolism, and Elimination (ADME)</mark>.</p>
+
+          <div class="visual-figure">
+            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1000&q=80" alt="Pharmaceutical tablets and systemic drug delivery concept">
+            <div class="figure-caption">Figure 1.2: Systemic drug absorption and pharmacokinetic profile across body compartments.</div>
+          </div>
 
           <h3>Absorption &amp; Presystemic Elimination</h3>
-          <p>Drug absorption is predominantly a passive process occurring in the small intestine. Key factors influencing systemic entry include minimal effective concentration (MEC), slow-release formulations, food intake (which generally slows absorption), and gastric acidity.</p>
-          <p>Before reaching general circulation, oral drugs undergo <strong>presystemic elimination</strong> via three major barriers:</p>
+          <p>Oral drug absorption is primarily a passive process occurring in the small intestine. Before reaching general circulation, oral drugs undergo <strong>presystemic elimination</strong> via three major physiological filters:</p>
           <ul>
-            <li><strong>Intestinal Epithelium CYP Enzymes:</strong> Localized oxidative metabolism.</li>
-            <li><strong>P-glycoprotein (P-gp):</strong> An efflux transmembrane pump on intestinal cells that extrudes drugs back into the gut lumen.</li>
-            <li><strong>First-Pass Hepatic Extraction:</strong> Portal circulation delivers absorbed drug directly to the liver, where hepatic enzymes metabolize a significant fraction before systemic entry.</li>
+            <li><strong>Intestinal CYP Enzymes:</strong> Localized oxidative metabolism in the gut epithelium.</li>
+            <li><strong>P-glycoprotein (P-gp):</strong> An efflux transmembrane pump that extrudes drugs back into the intestinal lumen.</li>
+            <li><strong>First-Pass Hepatic Extraction:</strong> Portal blood delivers absorbed drug straight to the liver, where enzymes metabolize a significant fraction before systemic entry.</li>
           </ul>
 
           <h3>Distribution &amp; Protein Binding</h3>
-          <p>Distribution speed into the central nervous system (CNS) depends heavily on <strong>lipophilicity</strong> (fat solubility). Highly lipophilic drugs (like diazepam) enter the CNS rapidly but also redistribute quickly into peripheral adipose tissue (thighs, buttocks), governing early onset and offset.</p>
-          <p>Only <strong>free (unbound) drug</strong> can cross membranes and act at target receptors. However, protein binding shifts have minimal clinical impact because the body is an open system that continuously clears unbound drug. Steady-state free drug concentration is determined strictly by <strong>dose/frequency</strong> and <strong>clearance</strong>.</p>
+          <p>CNS distribution speed depends heavily on <strong>lipophilicity</strong> (fat solubility). Highly lipophilic drugs (like diazepam) enter the brain rapidly but quickly redistribute into peripheral adipose tissue. Only <strong>free (unbound) drug</strong> can cross membranes and act at target receptors, though protein-binding shifts have minimal clinical impact because the body is an open system that continuously clears unbound drug.</p>
 
           <h3>Elimination &amp; Steady State</h3>
-          <p>Elimination half-life ($t_{1/2}\beta$) is the time required for plasma concentration to drop by 50%, determined by clearance (CL) and volume of distribution ($V_d$). <strong>Steady state (SS)</strong>—where elimination equals administration rate—is achieved in <strong>4 to 5 half-lives</strong>.</p>
+          <p>Elimination half-life ($t_{1/2}\beta$) is the time required for plasma concentration to drop by half. <strong>Steady state (SS)</strong>—where drug elimination equals administration rate—is achieved in <strong>4 to 5 half-lives</strong>.</p>
+        </div>
 
-          <!-- FACTORS AFFECTING ADME SECTION -->
-          <div id="sec-factors">
-            <h3>Factors Affecting ADME (Absorption, Distribution, Metabolism, Elimination)</h3>
-            <p>A comprehensive overview of physiological, pathological, and pharmacological variables affecting each pharmacokinetic phase:</p>
-            
-            <div class="table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th>ADME Phase</th>
-                    <th>Key Physiological &amp; Clinical Factors</th>
-                    <th>Physiological &amp; Pathological Impact</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>Absorption</strong></td>
-                    <td>
-                      • Gastric pH &amp; motility<br>
-                      • Food intake &amp; co-administered drugs<br>
-                      • Intestinal P-glycoprotein (P-gp) activity<br>
-                      • First-pass gut wall metabolism
-                    </td>
-                    <td>High acidity or food can delay or decrease drug dissolution and mucosal uptake. P-gp overexpression pumps drugs back into the gut, lowering bioavailability.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Distribution</strong></td>
-                    <td>
-                      • Plasma protein binding (Albumin)<br>
-                      • Tissue lipophilicity &amp; blood flow<br>
-                      • Body composition (Fat vs. Water ratio)<br>
-                      • Blood-brain barrier permeability
-                    </td>
-                    <td>Hypoalbuminemia (liver/renal disease) increases free active drug fractions. High lipophilicity increases distribution into adipose tissue, expanding volume of distribution ($V_d$).</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Metabolism</strong></td>
-                    <td>
-                      • Hepatic CYP450 enzyme activity<br>
-                      • Phase II Glucuronidation capacity<br>
-                      • Enzyme induction or inhibition by other drugs<br>
-                      • Age, genetics (poor vs. extensive metabolizers)
-                    </td>
-                    <td>CYP inducers (e.g., carbamazepine) accelerate drug breakdown, dropping efficacy. CYP inhibitors (e.g., fluoxetine) slow breakdown, risking toxicity.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Elimination</strong></td>
-                    <td>
-                      • Renal Glomerular Filtration Rate (GFR)<br>
-                      • Renal tubular secretion<br>
-                      • Biliary excretion / enterohepatic recycling<br>
-                      • Aging &amp; renal/hepatic pathology
-                    </td>
-                    <td>Renal impairment or aging reduces GFR and clearance, dramatically prolonging drug half-life ($t_{1/2}\beta$) and causing systemic drug accumulation.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+        <!-- DETAILED ADME FACTORS -->
+        <div id="sec-adme" class="content-card">
+          <h2>Detailed Factors Affecting ADME</h2>
+          <p>To fully understand patient variability in drug response, clinicians must evaluate the specific physiological, pathological, and biochemical factors influencing each stage of ADME:</p>
+          
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ADME Phase</th>
+                  <th>Core Physiological &amp; Clinical Variables</th>
+                  <th>Clinical Impact &amp; Pathological Mechanisms</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Absorption (A)</strong></td>
+                  <td>
+                    • Gastric pH &amp; emptying rate<br>
+                    • Co-administered food &amp; antacids<br>
+                    • Intestinal P-glycoprotein activity<br>
+                    • Gut-wall first-pass metabolism
+                  </td>
+                  <td>Food intake generally slows gastric emptying and absorption rates. High gut P-gp expression actively pumps drugs back out, reducing overall systemic bioavailability.</td>
+                </tr>
+                <tr>
+                  <td><strong>Distribution (D)</strong></td>
+                  <td>
+                    • Plasma protein binding (Albumin &amp; AAG)<br>
+                    • Tissue lipophilicity &amp; regional blood flow<br>
+                    • Total body fat vs. water ratio<br>
+                    • Blood-brain barrier (BBB) integrity
+                  </td>
+                  <td>Hypoalbuminemia increases free active drug fractions. High lipophilicity expands volume of distribution ($V_d$) into adipose tissue, delaying systemic elimination.</td>
+                </tr>
+                <tr>
+                  <td><strong>Metabolism (M)</strong></td>
+                  <td>
+                    • Hepatic CYP450 enzyme genetic polymorphism<br>
+                    • Phase II Glucuronidation capacity<br>
+                    • Enzyme induction (e.g., smoking, carbamazepine)<br>
+                    • Enzyme inhibition (e.g., SSRIs, grapefruit juice)
+                  </td>
+                  <td>CYP inducers accelerate metabolism, dropping drug plasma levels and therapeutic efficacy. CYP inhibitors slow metabolism, causing drug accumulation and toxicity.</td>
+                </tr>
+                <tr>
+                  <td><strong>Elimination (E)</strong></td>
+                  <td>
+                    • Renal Glomerular Filtration Rate (GFR)<br>
+                    • Active tubular secretion &amp; reabsorption<br>
+                    • Biliary excretion &amp; enterohepatic recycling<br>
+                    • Patient age &amp; renal/hepatic health status
+                  </td>
+                  <td>Renal impairment or normal physiological aging reduces GFR and clearance, dramatically lengthening half-life ($t_{1/2}\beta$) and risking severe cumulative toxicity.</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <!-- METABOLISM & CYP -->
         <div id="sec-cyp" class="content-card">
           <h2>3. Drug Metabolism: Cytochrome P450 &amp; Glucuronidation</h2>
-          <p>Metabolism involves two primary phases:</p>
+          <p>Metabolism relies on two principal biochemical pathways:</p>
           <ul>
-            <li><strong>Phase I Reactions:</strong> Oxidative, reductive, and hydrolytic processes (largely hepatic via the <strong>Cytochrome P450 (CYP)</strong> heme-containing enzyme system) yielding polar, water-soluble molecules.</li>
-            <li><strong>Phase II Reactions (Conjugation):</strong> Glucuronidation occurring in the liver, kidneys, intestine, lungs, and brain. Glucuronidation is far less affected by aging than Phase I CYP systems, making drugs eliminated solely via glucuronidation (e.g., lorazepam, oxazepam) safer in elderly patients.</li>
+            <li><strong>Phase I Reactions:</strong> Oxidative, reductive, and hydrolytic processes (primarily hepatic via the <strong>Cytochrome P450 (CYP)</strong> heme-containing enzyme system) yielding water-soluble polar molecules.</li>
+            <li><strong>Phase II Reactions (Conjugation):</strong> Glucuronidation occurring across the liver, kidneys, intestines, lungs, and brain. Crucially, glucuronidation is far less impacted by aging than Phase I CYP systems, making drugs eliminated strictly via glucuronidation (e.g., lorazepam, oxazepam) much safer in geriatric patients.</li>
           </ul>
 
-          <h3>Major CYP Families</h3>
+          <h3>Major CYP Families &amp; Clinical Substrates</h3>
           <ul>
-            <li><strong>CYP 3A4/5:</strong> The largest component (~50% of oxidative metabolism). Metabolizes tertiary tricyclics, triazolo-benzodiazepines, sertraline, quetiapine, and risperidone. Inhibited by grapefruit juice.</li>
-            <li><strong>CYP 2D6:</strong> Accounts for ~30% of oxidative metabolism. Responsible for hydroxylating all tricyclic antidepressants (TCAs) along with several SSRIs and antipsychotics.</li>
+            <li><strong>CYP 3A4/5:</strong> The largest family (~50% of oxidative drug metabolism). Metabolizes tricyclics, triazolo-benzodiazepines, sertraline, quetiapine, and risperidone. Strongly inhibited by grapefruit juice.</li>
+            <li><strong>CYP 2D6:</strong> Accounts for ~30% of oxidative metabolism. Responsible for hydroxylating all tricyclic antidepressants (TCAs), select SSRIs, and antipsychotics.</li>
             <li><strong>CYP 1A2:</strong> Metabolizes TCAs, mirtazapine, clozapine, olanzapine, and caffeine.</li>
             <li><strong>CYP 2C (2C9/2C19):</strong> Metabolizes citalopram, diazepam, barbiturates, and phenytoin.</li>
           </ul>
@@ -351,18 +373,18 @@
         <!-- DRUG-DRUG INTERACTIONS -->
         <div id="sec-interactions" class="content-card">
           <h2>4. Clinical Considerations &amp; Drug–Drug Interactions</h2>
-          <p>Clinicians must remain vigilant regarding pharmacokinetic drug-drug interactions, particularly in high-risk scenarios:</p>
+          <p>Clinicians must maintain constant vigilance regarding pharmacokinetic interactions, especially in high-risk patient contexts:</p>
           <ul>
-            <li>Elderly or medically ill patients with reduced hepatic/renal function.</li>
-            <li>Patients taking agents near toxic therapeutic ranges.</li>
-            <li>Co-prescription of two or more inhibitors of the same CYP pathway (risking exaggerated side effects).</li>
-            <li>Stopping a CYP inhibitor (leads to drop in substrate drug levels and potential loss of efficacy).</li>
-            <li>Stopping a CYP inducer (leads to rising substrate drug levels and new-onset toxicity).</li>
+            <li>Elderly or medically compromised patients with diminished hepatic or renal function.</li>
+            <li>Patients maintained on high-dose regimens approaching toxic thresholds.</li>
+            <li>Co-prescription of two or more inhibitors sharing the same CYP metabolic pathway.</li>
+            <li>Abrupt cessation of a CYP inhibitor (leading to rapid substrate level drops and loss of efficacy).</li>
+            <li>Abrupt cessation of a CYP inducer (leading to dangerous substrate accumulation and toxicity).</li>
           </ul>
           
           <div class="mnemonic-box">
-            <h4>💡 Clinical Rule of Thumb</h4>
-            <p><strong>Induction takes time</strong> (requires protein synthesis over days/weeks). <strong>Inhibition is rapid</strong> (often occurring within days of adding an inhibitor drug).</p>
+            <h4>💡 High-Yield Clinical Rule of Thumb</h4>
+            <p><strong>Enzyme Induction takes time</strong> (requires new protein synthesis over days to weeks). <strong>Enzyme Inhibition is rapid</strong> (often manifesting within days of introducing the inhibiting agent).</p>
           </div>
         </div>
 
