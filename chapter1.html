@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Chapter 1: Advanced Pharmacodynamics &amp; Pharmacokinetics | Comprehensive Visual Reader</title>
+  <title>Mastering Advanced Pharmacodynamics &amp; Pharmacokinetics | The Definitive Illustrated Reader</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,7 @@
       --text-dark: #0f172a;
       --text-muted: #64748b;
       --border: #e2e8f0;
-      --radius: 16px;
+      --radius: 20px;
       --shadow: 0 10px 30px -5px rgba(2, 132, 199, 0.08);
       --shadow-lg: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
       --highlight: #fef08a;
@@ -32,116 +32,130 @@
 
     .app-layout { display: flex; min-height: 100vh; width: 100%; position: relative; }
     
+    /* PC Sidebar */
     .pc-sidebar {
       display: none; width: 320px; background: #ffffff; border-right: 1px solid var(--border);
-      position: fixed; top: 0; left: 0; height: 100vh; z-index: 50; padding: 24px 16px;
+      position: fixed; top: 0; left: 0; height: 100vh; z-index: 50; padding: 28px 20px;
       flex-direction: column; justify-content: space-between; overflow-y: auto;
     }
-    .sidebar-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-dark); font-weight: 800; font-size: 1.02rem; margin-bottom: 20px; }
-    .pulse-box { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3); flex-shrink: 0; }
+    .sidebar-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-dark); font-weight: 800; font-size: 1.05rem; margin-bottom: 24px; }
+    .pulse-box { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3); flex-shrink: 0; }
     
-    .sidebar-menu { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .sidebar-menu { list-style: none; display: flex; flex-direction: column; gap: 6px; }
     .sidebar-menu a {
-      text-decoration: none; color: var(--text-muted); font-weight: 700; font-size: 0.8rem;
-      display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 8px; transition: all 0.2s ease;
+      text-decoration: none; color: var(--text-muted); font-weight: 700; font-size: 0.82rem;
+      display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; transition: all 0.2s ease;
     }
     .sidebar-menu a:hover, .sidebar-menu a.active { background: #f0f9ff; color: var(--primary-dark); }
-    .sidebar-sub { padding-left: 18px; font-size: 0.75rem !important; }
+    .sidebar-sub { padding-left: 20px; font-size: 0.78rem !important; }
 
+    /* Improved Mobile Interface */
     .mobile-navbar { 
       display: flex; position: sticky; top: 0; z-index: 100; 
-      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(14px); 
-      border-bottom: 1px solid var(--border); padding: 12px 16px; width: 100%;
-      justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px); 
+      border-bottom: 1px solid var(--border); padding: 14px 18px; width: 100%;
+      justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06);
     }
     .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-dark); font-weight: 800; font-size: 0.95rem; }
-    .menu-toggle { background: #f1f5f9; border: 1px solid var(--border); padding: 8px 12px; border-radius: 10px; font-size: 1.2rem; cursor: pointer; color: var(--primary-dark); }
+    .menu-toggle { 
+      background: #f1f5f9; border: 1px solid var(--border); padding: 10px 14px; 
+      border-radius: 12px; font-size: 1.1rem; cursor: pointer; color: var(--primary-dark);
+      display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
 
     .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(4px); z-index: 200; display: none; opacity: 0; transition: opacity 0.3s ease; }
-    .drawer { position: fixed; top: 0; right: -300px; width: 280px; height: 100%; background: #ffffff; z-index: 201; transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1); padding: 24px 18px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: -10px 0 30px rgba(0,0,0,0.1); overflow-y: auto; }
+    .drawer { position: fixed; top: 0; right: -320px; width: 300px; height: 100%; background: #ffffff; z-index: 201; transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1); padding: 28px 20px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: -15px 0 35px rgba(0,0,0,0.15); overflow-y: auto; }
     .drawer.open { right: 0; }
     .drawer-overlay.open { display: block; opacity: 1; }
-    .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
-    .drawer-menu { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-    .drawer-menu a { text-decoration: none; color: var(--text-dark); font-weight: 700; font-size: 0.82rem; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; }
+    .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
+    .drawer-menu { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .drawer-menu a { text-decoration: none; color: var(--text-dark); font-weight: 700; font-size: 0.88rem; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; background: #f8fafc; }
     .drawer-menu a:hover, .drawer-menu a.active { background: #f0f9ff; color: var(--primary-dark); }
 
     .main-content-area { flex: 1; width: 100%; display: flex; flex-direction: column; }
-    .main-wrapper { max-width: 980px; margin: 0 auto; padding: 16px 14px; width: 100%; flex: 1; }
+    .main-wrapper { max-width: 1020px; margin: 0 auto; padding: 20px 16px; width: 100%; flex: 1; }
 
+    /* Hero Section */
     .chapter-hero {
       background: linear-gradient(135deg, #0f172a 0%, #0369a1 100%);
-      color: white; border-radius: var(--radius); padding: 26px 20px; margin-bottom: 22px;
+      color: white; border-radius: var(--radius); padding: 32px 22px; margin-bottom: 26px;
       box-shadow: var(--shadow-lg); position: relative; overflow: hidden;
     }
-    .chapter-hero h1 { font-size: 1.3rem; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
-    .chapter-hero p { color: #bae6fd; font-size: 0.85rem; line-height: 1.5; }
-    .badge-unit { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(6px); padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.2); }
+    .chapter-hero h1 { font-size: 1.45rem; font-weight: 800; line-height: 1.35; margin-bottom: 10px; }
+    .chapter-hero p { color: #bae6fd; font-size: 0.9rem; line-height: 1.6; }
+    .badge-unit { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(6px); padding: 6px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.6px; border: 1px solid rgba(255,255,255,0.2); }
 
+    /* Content Cards */
     .content-card {
       background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 20px 16px; margin-bottom: 22px; box-shadow: var(--shadow);
+      padding: 24px 18px; margin-bottom: 26px; box-shadow: var(--shadow);
     }
-    .content-card h2 { font-size: 1.1rem; font-weight: 800; color: var(--text-dark); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
-    .content-card h3 { font-size: 0.95rem; font-weight: 800; color: var(--primary-dark); margin: 18px 0 8px 0; }
-    .content-card p { font-size: 0.88rem; color: #334155; line-height: 1.6; margin-bottom: 12px; }
-    .content-card ul { margin-left: 20px; margin-bottom: 12px; font-size: 0.88rem; color: #334155; line-height: 1.6; }
+    .content-card h2 { font-size: 1.2rem; font-weight: 800; color: var(--text-dark); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #f1f5f9; padding-bottom: 12px; }
+    .content-card h3 { font-size: 1.02rem; font-weight: 800; color: var(--primary-dark); margin: 20px 0 10px 0; }
+    .content-card p { font-size: 0.92rem; color: #334155; line-height: 1.7; margin-bottom: 14px; }
+    .content-card ul { margin-left: 22px; margin-bottom: 14px; font-size: 0.92rem; color: #334155; line-height: 1.7; }
+    .content-card li { margin-bottom: 6px; }
 
     mark { background-color: var(--highlight); padding: 2px 6px; border-radius: 4px; font-weight: 700; color: #1e293b; box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1); }
     .mark-alt { background-color: var(--highlight-alt); color: #042f2e; }
 
+    /* Visual Figures */
     .visual-figure {
-      background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin: 16px 0;
-      text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      background: #f8fafc; border: 1px solid var(--border); border-radius: 16px; padding: 16px; margin: 20px 0;
+      text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.03);
     }
-    .visual-figure img { width: 100%; max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border); display: block; margin: 0 auto 10px auto; }
-    .figure-caption { font-size: 0.78rem; color: var(--text-muted); font-weight: 700; line-height: 1.4; }
+    .visual-figure img { width: 100%; max-width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border); display: block; margin: 0 auto 12px auto; }
+    .figure-caption { font-size: 0.82rem; color: var(--text-muted); font-weight: 700; line-height: 1.5; }
 
+    /* Mnemonic Box */
     .mnemonic-box {
       background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 100%);
-      border: 1px solid #99f6e4; border-left: 5px solid var(--accent);
-      border-radius: 12px; padding: 16px; margin: 16px 0;
+      border: 1px solid #99f6e4; border-left: 6px solid var(--accent);
+      border-radius: 16px; padding: 20px; margin: 20px 0; box-shadow: 0 4px 15px rgba(13, 148, 136, 0.05);
     }
-    .mnemonic-box h4 { font-size: 0.88rem; font-weight: 800; color: #0f766e; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
-    .mnemonic-box p { font-size: 0.84rem; color: #134e4a; margin-bottom: 0; line-height: 1.5; }
+    .mnemonic-box h4 { font-size: 0.95rem; font-weight: 800; color: #0f766e; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .mnemonic-box p { font-size: 0.88rem; color: #134e4a; margin-bottom: 0; line-height: 1.6; }
 
-    .table-container { width: 100%; overflow-x: auto; margin: 14px 0; border-radius: 12px; border: 1px solid var(--border); -webkit-overflow-scrolling: touch; }
-    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.82rem; min-width: 500px; }
-    th { background: #f1f5f9; color: var(--text-dark); font-weight: 800; padding: 10px 12px; border-bottom: 2px solid var(--border); white-space: nowrap; }
-    td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: #334155; }
+    /* Tables */
+    .table-container { width: 100%; overflow-x: auto; margin: 18px 0; border-radius: 16px; border: 1px solid var(--border); -webkit-overflow-scrolling: touch; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; min-width: 600px; }
+    th { background: #f1f5f9; color: var(--text-dark); font-weight: 800; padding: 14px 16px; border-bottom: 2px solid var(--border); white-space: nowrap; }
+    td { padding: 14px 16px; border-bottom: 1px solid var(--border); color: #334155; line-height: 1.6; }
     tr:last-child td { border-bottom: none; }
     tr:nth-child(even) { background: #f8fafc; }
 
+    /* Interactive Simulator */
     .sim-container {
-      background: #0f172a; color: white; border-radius: var(--radius); padding: 18px 14px; margin: 18px 0;
+      background: #0f172a; color: white; border-radius: var(--radius); padding: 22px 16px; margin: 22px 0;
       box-shadow: var(--shadow-lg);
     }
-    .sim-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
-    .sim-header h3 { font-size: 0.92rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 6px; }
-    .sim-controls { display: flex; gap: 6px; flex-wrap: wrap; width: 100%; }
+    .sim-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
+    .sim-header h3 { font-size: 1rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 8px; }
+    .sim-controls { display: flex; gap: 8px; flex-wrap: wrap; width: 100%; }
     .sim-btn {
-      background: var(--primary); color: white; border: none; padding: 8px 12px; border-radius: 8px;
-      font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: background 0.2s; flex: 1; text-align: center;
+      background: var(--primary); color: white; border: none; padding: 10px 14px; border-radius: 10px;
+      font-size: 0.78rem; font-weight: 700; cursor: pointer; transition: background 0.2s; flex: 1; text-align: center;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
     }
     .sim-btn:hover { background: var(--primary-dark); }
-    .sim-btn.secondary { background: #334155; }
+    .sim-btn.secondary { background: #334155; box-shadow: none; }
     .sim-btn.secondary:hover { background: #475569; }
 
     .animation-screen {
-      background: #1e293b; border-radius: 12px; height: 180px; position: relative; overflow: hidden;
-      display: flex; align-items: center; justify-content: center; border: 1px solid #334155; margin-bottom: 10px;
+      background: #1e293b; border-radius: 14px; height: 200px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center; border: 1px solid #334155; margin-bottom: 14px;
     }
-    .sim-status { font-family: monospace; font-size: 0.78rem; color: #cbd5e1; background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; text-align: center; line-height: 1.4; }
+    .sim-status { font-family: monospace; font-size: 0.82rem; color: #cbd5e1; background: rgba(0,0,0,0.5); padding: 14px; border-radius: 10px; text-align: center; line-height: 1.5; border: 1px solid rgba(255,255,255,0.05); }
 
     @media (min-width: 900px) {
       .mobile-navbar { display: none; }
       .pc-sidebar { display: flex; }
       .main-content-area { margin-left: 320px; }
-      .main-wrapper { padding: 36px 40px; max-width: 1080px; }
+      .main-wrapper { padding: 40px 48px; max-width: 1140px; }
       .sim-controls { width: auto; flex: unset; }
       .sim-btn { flex: unset; }
-      .content-card { padding: 24px 22px; }
-      .chapter-hero { padding: 32px 24px; }
+      .content-card { padding: 32px 28px; }
+      .chapter-hero { padding: 40px 32px; }
     }
   </style>
 </head>
@@ -149,6 +163,7 @@
 
   <div class="app-layout">
 
+    <!-- PC Sidebar Navigation -->
     <aside class="pc-sidebar">
       <div>
         <a href="#sec-core" class="sidebar-brand">
@@ -161,30 +176,38 @@
           <li><a href="#sec-pk">2. Pharmacokinetics (PK)</a></li>
           <li><a href="#sec-adme" class="sidebar-sub">↳ Detailed ADME &amp; Factors</a></li>
           <li><a href="#sec-cyp">3. Cytochrome P450 &amp; Metabolism</a></li>
-          <li><a href="#sec-interactions">4. Drug–Drug Interactions</a></li>
+          <li><a href="#sec-interactions">4. Drug Interactions &amp; Safety</a></li>
+          <li><a href="#sec-clinical">5. Advanced Clinical Pearls</a></li>
         </ul>
+      </div>
+      <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; border-top: 1px solid var(--border); padding-top: 14px;">
+        Enhanced Clinical Edition • 2026
       </div>
     </aside>
 
     <main class="main-content-area">
 
+      <!-- Enhanced Mobile Header Navbar -->
       <header class="mobile-navbar">
         <a href="#sec-core" class="brand">
           <div class="pulse-box">🧠</div>
-          <span>Handbook of Psychopharmacology</span>
+          <span>Psychopharmacology</span>
         </a>
-        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Open Menu">☰</button>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Open Navigation Menu">
+          <span>Menu ☰</span>
+        </button>
       </header>
 
+      <!-- Drawer Overlay & Navigation Drawer for Mobile -->
       <div id="drawerOverlay" class="drawer-overlay" onclick="toggleMenu()"></div>
       <div id="drawer" class="drawer">
         <div>
           <div class="drawer-header">
             <div class="brand">
               <div class="pulse-box">🧠</div>
-              <span>Chapter Menu</span>
+              <span>Chapter Index</span>
             </div>
-            <button class="menu-toggle" onclick="toggleMenu()">✕</button>
+            <button class="menu-toggle" onclick="toggleMenu()" style="padding: 6px 10px; font-size: 0.9rem;">✕ Close</button>
           </div>
           <ul class="drawer-menu">
             <li><a href="#sec-core" onclick="toggleMenu()">Core Essence &amp; Paradigm Shift</a></li>
@@ -192,117 +215,124 @@
             <li><a href="#sec-pk" onclick="toggleMenu()">2. Pharmacokinetics (PK)</a></li>
             <li><a href="#sec-adme" onclick="toggleMenu()">↳ Detailed ADME &amp; Factors</a></li>
             <li><a href="#sec-cyp" onclick="toggleMenu()">3. Cytochrome P450 &amp; Metabolism</a></li>
-            <li><a href="#sec-interactions" onclick="toggleMenu()">4. Drug–Drug Interactions</a></li>
+            <li><a href="#sec-interactions" onclick="toggleMenu()">4. Drug Interactions &amp; Safety</a></li>
+            <li><a href="#sec-clinical" onclick="toggleMenu()">5. Advanced Clinical Pearls</a></li>
           </ul>
+        </div>
+        <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; padding-top: 14px; border-top: 1px solid var(--border);">
+          Optimized Reading Experience
         </div>
       </div>
 
       <main class="main-wrapper">
         
+        <!-- Chapter Hero Header -->
         <div class="chapter-hero">
-          <span class="badge-unit">Handbook of Essential Psychopharmacology • Chapter 1</span>
-          <h1>Introduction To Pharmacodynamics And Pharmacokinetics</h1>
-          <p>An in-depth, enhanced visual edition featuring high-yield highlights, comprehensive physiological factor breakdowns, interactive receptor simulations, and medical illustrations optimized for mobile and desktop screens.</p>
+          <span class="badge-unit">Comprehensive Clinical Handbook • Chapter 1</span>
+          <h1>Advanced Pharmacodynamics And Pharmacokinetics In Modern Therapeutics</h1>
+          <p>An immersive, richly detailed masterclass designed for healthcare professionals and dedicated students. Explore deep cellular signaling pathways, genetic transcription triggers, comprehensive pharmacokinetic profiles, and interactive receptor simulations.</p>
         </div>
 
-        <!-- CORE ESSENCE -->
+        <!-- CORE ESSENCE SECTION -->
         <div id="sec-core" class="content-card">
           <h2>Core Definitions &amp; The Modern Paradigm Shift</h2>
-          <p>To master psychopharmacology, one must first master the fundamental dichotomy:</p>
+          <p>The foundation of pharmacology rests upon two distinct yet intimately intertwined pillars that dictate how therapeutic agents behave within the human organism:</p>
           <ul>
-            <li><mark>Pharmacodynamics (PD)</mark> = What a drug does to your body (mechanisms of action, receptor binding, and physiological response).</li>
-            <li><mark>Pharmacokinetics (PK)</mark> = What your body does to a drug (absorption, distribution, metabolism, and elimination).</li>
+            <li><mark>Pharmacodynamics (PD)</mark> describes what a drug does to your body, encompassing receptor binding affinity, intrinsic activity, signal transduction cascades, and ultimate physiological outcomes.</li>
+            <li><mark>Pharmacokinetics (PK)</mark> describes what your body does to a drug, tracking its journey through absorption, systemic distribution, enzymatic biotransformation, and renal or biliary excretion.</li>
           </ul>
           
-          <p>Historically, antidepressants and antipsychotics were understood solely through superficial receptor binding or biogenic amine levels (e.g., serotonin, dopamine, norepinephrine). Modern neuroscience reveals a much deeper reality: <mark class="mark-alt">many psychotropics alter neuronal function directly at the level of the gene</mark>. Specific gene products and neurotrophic growth factors represent the true "business end" of clinical efficacy.</p>
+          <p>Historically, early psychopharmacology relied entirely on superficial neurotransmitter hypotheses—such as simply raising serotonin or dopamine levels in synaptic clefts. Modern neurobiology unveils a much more profound mechanism: <mark class="mark-alt">many psychotropic medications exert their true therapeutic benefits by directly altering genetic transcription and upregulating neurotrophic growth factors</mark> deep within the neuronal nucleus.</p>
           
           <div class="visual-figure">
-            <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=1000&q=80" alt="Cellular receptor binding and signal transduction illustration">
-            <div class="figure-caption">Figure 1.1: Signal transduction cascading from membrane receptors down to nuclear DNA and genetic transcription.</div>
+            <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=1200&q=80" alt="Cellular receptor binding and signal transduction illustration">
+            <div class="figure-caption">Figure 1.1: Multi-stage cellular signal transduction cascading from surface membrane receptors down to nuclear gene expression.</div>
           </div>
+
+          <p>Understanding this transition from acute receptor occupancy to chronic neuroplastic remodeling explains why clinical antidepressants typically require two to four weeks of continuous administration before noticeable therapeutic efficacy manifests in patients.</p>
         </div>
 
-        <!-- PHARMACODYNAMICS -->
+        <!-- PHARMACODYNAMICS SECTION -->
         <div id="sec-pd" class="content-card">
-          <h2>1. Pharmacodynamics (PD): Mechanism of Action</h2>
-          <p>Pharmacodynamics examines how drugs trigger therapeutic or adverse effects (such as dry mouth, sedation, or orthostatic hypotension). While receptor binding initiates the cascade, the ultimate effects run much deeper.</p>
+          <h2>1. Pharmacodynamics (PD): Mechanism of Action &amp; Receptor Physics</h2>
+          <p>Pharmacodynamics governs the relationship between drug concentration and pharmacological effect. When a drug molecule successfully interacts with a specialized biological target—such as a G-protein coupled receptor, an ion channel, an enzyme, or a transport protein—it triggers a cascade of intracellular events.</p>
 
-          <h3>Ligands and Receptor Dynamics</h3>
-          <p>Any molecule binding to a cellular receptor is a <strong>ligand</strong>. Ligands are categorized into four functional classes:</p>
+          <h3>Ligands, Affinities, and Functional Classes</h3>
+          <p>Any chemical messenger that binds to a receptor site is termed a <strong>ligand</strong>. Based on their functional consequences upon binding, ligands are classified into four distinct categories:</p>
           <ul>
-            <li><strong>Agonist:</strong> Enhances receptor activity by mimicking endogenous ligands (e.g., Benzodiazepines act as agonists at GABA receptors, increasing $Cl^-$ ion influx and neural inhibition).</li>
-            <li><strong>Antagonist (Neutral):</strong> Possesses zero intrinsic activity but blocks agonists, restoring baseline receptor resting state (e.g., Flumazenil reversing benzodiazepine overdose).</li>
-            <li><strong>Inverse Agonist:</strong> Produces the opposite pharmacological effect of an agonist, diminishing baseline activity (e.g., beta-carbolines reducing chloride channel flow to provoke anxiety).</li>
-            <li><strong>Partial Agonist:</strong> Acts as an antagonist when endogenous ligands are excessive, and as an agonist when endogenous ligands are scarce (e.g., Buspirone at 5-$HT_{1A}$ receptors).</li>
+            <li><strong>Full Agonist:</strong> Binds to the receptor and triggers maximum biological response, mimicking or surpassing endogenous neurotransmitters (e.g., direct-acting opioid analgesics or classical benzodiazepines enhancing chloride channel opening).</li>
+            <li><strong>Neutral Antagonist:</strong> Binds tightly to the receptor with high affinity but possesses zero intrinsic activity. It blocks endogenous agonists or therapeutic drugs from binding, thereby maintaining baseline physiological resting state without stimulating the cell.</li>
+            <li><strong>Inverse Agonist:</strong> Binds to the identical receptor site as an agonist but provokes the exact opposite pharmacological response, actively reducing constitutive receptor signaling below baseline levels.</li>
+            <li><strong>Partial Agonist:</strong> Produces sub-maximal biological responses regardless of concentration. In the presence of high levels of a full agonist, it acts functionally as an antagonist by competing for sites, whereas in neurotransmitter deficiency, it provides mild agonist stimulation (e.g., aripiprazole or buspirone).</li>
           </ul>
 
-          <p><strong>Autoreceptors vs. Heteroreceptors:</strong> Autoreceptors reside on neurons producing their corresponding endogenous ligand (e.g., serotonin autoreceptors on serotonergic neurons). Heteroreceptors reside on neurons producing a different neurotransmitter (e.g., serotonin heteroreceptors on dopaminergic neurons), allowing complex cross-transmitter feedback loops.</p>
+          <p><strong>Autoreceptors versus Heteroreceptors:</strong> Neuronal feedback is heavily regulated by membrane receptors. <em>Autoreceptors</em> are located on the presynaptic membrane of a neuron and respond to the very neurotransmitter that neuron releases, serving as a negative feedback brake to halt further release when synaptic concentrations are high. <em>Heteroreceptors</em> are located on presynaptic terminals of adjacent neurons utilizing a different neurotransmitter, allowing cross-talk and complex multineuronal modulation.</p>
 
-          <h3>Neurotransmitters &amp; Signal Transduction</h3>
-          <p>Neurotransmitters interact via two primary receptor architectures:</p>
+          <h3>Ionotropic vs. Metabotropic Signal Transduction</h3>
+          <p>Neurotransmitter receptors operate via two vastly different structural speeds:</p>
           <ul>
-            <li><strong>Ionotropic Receptors (Ligand-Gated):</strong> Rapidly swinging doors governing instant ion flux. Inhibitory transmitters (GABA, glycine) allow $Cl^-$ influx to hyperpolarize cells. Excitatory transmitters (glutamate, aspartate) allow $Na^+$ or $Ca^{2+}$ influx to depolarize cells.</li>
-            <li><strong>G-Protein–Coupled Receptors (GPCRs):</strong> Slower relay stations utilizing secondary messengers (cAMP, inositol trisphosphate) and protein kinases to trigger protein phosphorylation and long-term <strong>genetic transcription</strong> (via tertiary messengers like c-fos and mRNA, leading to growth factors like BDNF).</li>
+            <li><strong>Ionotropic Receptors:</strong> Ligand-gated ion channels featuring lightning-fast response times measured in milliseconds. Inhibitory channels (such as GABA-A receptors) permit chloride ion influx to hyperpolarize and silence the neuron. Excitatory channels (such as NMDA or AMPA glutamate receptors) permit sodium and calcium influx to depolarize and fire the neuron.</li>
+            <li><strong>Metabotropic (GPCR) Receptors:</strong> G-protein coupled receptors operating over seconds to hours. When activated, they dissociate intracellular G-proteins, stimulating secondary messengers like cyclic AMP (cAMP) or inositol trisphosphate (IP3). These activate protein kinases that phosphorylate target proteins and eventually reach the nucleus to alter gene transcription.</li>
           </ul>
 
-          <!-- ANIMATED RECEPTOR SIMULATOR -->
+          <!-- INTERACTIVE RECEPTOR SIMULATOR -->
           <div class="sim-container">
             <div class="sim-header">
               <h3>🎬 Interactive Receptor Binding Simulator</h3>
               <div class="sim-controls">
-                <button class="sim-btn" onclick="runRxSim('agonist')">Agonist</button>
-                <button class="sim-btn secondary" onclick="runRxSim('partial')">Partial</button>
+                <button class="sim-btn" onclick="runRxSim('agonist')">Full Agonist</button>
+                <button class="sim-btn secondary" onclick="runRxSim('partial')">Partial Agonist</button>
                 <button class="sim-btn secondary" onclick="runRxSim('antagonist')">Antagonist</button>
-                <button class="sim-btn secondary" onclick="resetRxSim()">Reset</button>
+                <button class="sim-btn secondary" onclick="resetRxSim()">Reset Site</button>
               </div>
             </div>
-            <div class="animation-screen" style="position: relative;">
-              <div style="position: absolute; top: 10px; left: 14px; font-size: 0.7rem; color: #94a3b8;">NEURONAL RECEPTOR SITE</div>
-              <div id="rxParticle" style="width:26px; height:26px; background:#38bdf8; border-radius:50%; position:absolute; left:16px; top:85px; box-shadow:0 0 12px #38bdf8; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:800; color:#0f172a; transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);">Rx</div>
-              <div style="width:58px; height:58px; border:3px dashed #14b8a6; border-radius:50%; position:absolute; right:40px; top:66px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; color:#14b8a6; font-weight:700; text-align:center;">Receptor</div>
+            <div class="animation-screen">
+              <div style="position: absolute; top: 12px; left: 16px; font-size: 0.72rem; color: #94a3b8; font-weight: 700; letter-spacing: 0.5px;">SYNAPTIC MEMBRANE RECEPTOR SITE</div>
+              <div id="rxParticle" style="width:28px; height:28px; background:#38bdf8; border-radius:50%; position:absolute; left:20px; top:95px; box-shadow:0 0 14px #38bdf8; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:800; color:#0f172a; transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);">Rx</div>
+              <div style="width:64px; height:64px; border:3px dashed #14b8a6; border-radius:50%; position:absolute; right:45px; top:70px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:#14b8a6; font-weight:700; text-align:center; background:rgba(20, 184, 166, 0.05);">Target Site</div>
             </div>
             <div class="sim-status" id="rxStatusMsg">
-              Select a ligand type above to observe binding affinity and cellular activation output.
+              Select a ligand type above to observe binding affinity dynamics and cellular activation output.
             </div>
           </div>
         </div>
 
-        <!-- PHARMACOKINETICS -->
+        <!-- PHARMACOKINETICS SECTION -->
         <div id="sec-pk" class="content-card">
-          <h2>2. Pharmacokinetics (PK): ADME Principles</h2>
-          <p>Pharmacokinetics encompasses all bodily processes governing drug movement through the system: <mark>Absorption, Distribution, Metabolism, and Elimination (ADME)</mark>.</p>
+          <h2>2. Pharmacokinetics (PK): The Complete ADME Framework</h2>
+          <p>Pharmacokinetics details the biological fate of a pharmaceutical agent from the moment of ingestion until complete expulsion from the body. This is universally categorized into four major stages: <mark>Absorption, Distribution, Metabolism, and Elimination (ADME)</mark>.</p>
 
           <div class="visual-figure">
-            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1000&q=80" alt="Pharmaceutical tablets and systemic drug delivery concept">
-            <div class="figure-caption">Figure 1.2: Systemic drug absorption and pharmacokinetic profile across body compartments.</div>
+            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1200&q=80" alt="Pharmaceutical tablets and systemic drug delivery concept">
+            <div class="figure-caption">Figure 1.2: Systemic drug absorption, plasma concentration curves, and pharmacokinetic distribution across bodily compartments.</div>
           </div>
 
-          <h3>Absorption &amp; Presystemic Elimination</h3>
-          <p>Oral drug absorption is primarily a passive process occurring in the small intestine. Before reaching general circulation, oral drugs undergo <strong>presystemic elimination</strong> via three major physiological filters:</p>
+          <h3>Absorption &amp; Presystemic Clearance</h3>
+          <p>Oral administration remains the most common route, relying on passive diffusion across the gastrointestinal mucosal epithelium. However, before entering systemic circulation, oral drugs face stringent presystemic barriers:</p>
           <ul>
-            <li><strong>Intestinal CYP Enzymes:</strong> Localized oxidative metabolism in the gut epithelium.</li>
-            <li><strong>P-glycoprotein (P-gp):</strong> An efflux transmembrane pump that extrudes drugs back into the intestinal lumen.</li>
-            <li><strong>First-Pass Hepatic Extraction:</strong> Portal blood delivers absorbed drug straight to the liver, where enzymes metabolize a significant fraction before systemic entry.</li>
+            <li><strong>Intestinal Wall Metabolism:</strong> Localized enzymes within mucosal enterocytes metabolize a fraction of the drug.</li>
+            <li><strong>P-glycoprotein Efflux Pumps:</strong> Transmembrane efflux pumps actively push absorbed drug molecules right back out into the intestinal lumen, lowering net bioavailability.</li>
+            <li><strong>Hepatic First-Pass Extraction:</strong> Mesenteric venous blood drains directly via the portal vein into the liver. Hepatic enzymes metabolize significant portions of many psychotropics before they ever reach the heart and brain.</li>
           </ul>
 
-          <h3>Distribution &amp; Protein Binding</h3>
-          <p>CNS distribution speed depends heavily on <strong>lipophilicity</strong> (fat solubility). Highly lipophilic drugs (like diazepam) enter the brain rapidly but quickly redistribute into peripheral adipose tissue. Only <strong>free (unbound) drug</strong> can cross membranes and act at target receptors, though protein-binding shifts have minimal clinical impact because the body is an open system that continuously clears unbound drug.</p>
+          <h3>Distribution, Protein Binding, and Volume</h3>
+          <p>Once in the bloodstream, drugs bind to plasma proteins like albumin and alpha-1-acid glycoprotein. Only the <strong>free, unbound fraction</strong> of the drug can cross capillary walls and the blood-brain barrier to bind receptors. Volume of distribution describes how extensively a drug disperses into body tissues relative to plasma.</p>
 
-          <h3>Elimination &amp; Steady State</h3>
-          <p>Elimination half-life ($t_{1/2}\beta$) is the time required for plasma concentration to drop by half. <strong>Steady state (SS)</strong>—where drug elimination equals administration rate—is achieved in <strong>4 to 5 half-lives</strong>.</p>
+          <h3>Elimination Kinetics &amp; Steady State</h3>
+          <p>Elimination half-life dictates how quickly plasma levels fall. Achieving a stable <strong>steady state concentration</strong>—where drug intake matches elimination rate—consistently requires <strong>4 to 5 half-lives</strong> of continuous dosing regardless of dose size.</p>
         </div>
 
         <!-- DETAILED ADME FACTORS -->
         <div id="sec-adme" class="content-card">
-          <h2>Detailed Factors Affecting ADME</h2>
-          <p>To fully understand patient variability in drug response, clinicians must evaluate the specific physiological, pathological, and biochemical factors influencing each stage of ADME:</p>
+          <h2>Detailed Physiological Factors Affecting ADME</h2>
+          <p>Patient variability is immense. Clinicians must analyze the underlying physiological and pathological variables influencing each stage of ADME:</p>
           
           <div class="table-container">
             <table>
               <thead>
                 <tr>
                   <th>ADME Phase</th>
-                  <th>Core Physiological &amp; Clinical Variables</th>
+                  <th>Core Physiological Variables</th>
                   <th>Clinical Impact &amp; Pathological Mechanisms</th>
                 </tr>
               </thead>
@@ -310,82 +340,92 @@
                 <tr>
                   <td><strong>Absorption (A)</strong></td>
                   <td>
-                    • Gastric pH &amp; emptying rate<br>
-                    • Co-administered food &amp; antacids<br>
+                    • Gastric pH &amp; motility speed<br>
+                    • Concomitant food or antacid intake<br>
                     • Intestinal P-glycoprotein activity<br>
-                    • Gut-wall first-pass metabolism
+                    • First-pass gut wall extraction
                   </td>
-                  <td>Food intake generally slows gastric emptying and absorption rates. High gut P-gp expression actively pumps drugs back out, reducing overall systemic bioavailability.</td>
+                  <td>Food intake can delay gastric emptying and peak plasma times. High P-glycoprotein expression actively reduces net bioavailability by pumping drug molecules back into the gut lumen.</td>
                 </tr>
                 <tr>
                   <td><strong>Distribution (D)</strong></td>
                   <td>
-                    • Plasma protein binding (Albumin &amp; AAG)<br>
-                    • Tissue lipophilicity &amp; regional blood flow<br>
-                    • Total body fat vs. water ratio<br>
-                    • Blood-brain barrier (BBB) integrity
+                    • Plasma protein binding levels (Albumin)<br>
+                    • Tissue lipophilicity &amp; regional perfusion<br>
+                    • Body composition (adipose vs. water)<br>
+                    • Blood-brain barrier permeability
                   </td>
-                  <td>Hypoalbuminemia increases free active drug fractions. High lipophilicity expands volume of distribution ($V_d$) into adipose tissue, delaying systemic elimination.</td>
+                  <td>Hypoalbuminemia increases free active drug fractions. High lipophilicity increases the volume of distribution, causing drugs to sequester in fat tissue and prolonging terminal elimination.</td>
                 </tr>
                 <tr>
                   <td><strong>Metabolism (M)</strong></td>
                   <td>
-                    • Hepatic CYP450 enzyme genetic polymorphism<br>
+                    • Hepatic Cytochrome P450 polymorphism<br>
                     • Phase II Glucuronidation capacity<br>
-                    • Enzyme induction (e.g., smoking, carbamazepine)<br>
-                    • Enzyme inhibition (e.g., SSRIs, grapefruit juice)
+                    • Enzyme induction (smoking, carbamazepine)<br>
+                    • Enzyme inhibition (SSRIs, grapefruit juice)
                   </td>
-                  <td>CYP inducers accelerate metabolism, dropping drug plasma levels and therapeutic efficacy. CYP inhibitors slow metabolism, causing drug accumulation and toxicity.</td>
+                  <td>CYP inducers speed up drug breakdown, dropping plasma levels below therapeutic thresholds. CYP inhibitors slow clearance, leading to toxic drug accumulation.</td>
                 </tr>
                 <tr>
                   <td><strong>Elimination (E)</strong></td>
                   <td>
                     • Renal Glomerular Filtration Rate (GFR)<br>
-                    • Active tubular secretion &amp; reabsorption<br>
+                    • Tubular secretion &amp; reabsorption rates<br>
                     • Biliary excretion &amp; enterohepatic recycling<br>
-                    • Patient age &amp; renal/hepatic health status
+                    • Advanced age &amp; renal/hepatic health status
                   </td>
-                  <td>Renal impairment or normal physiological aging reduces GFR and clearance, dramatically lengthening half-life ($t_{1/2}\beta$) and risking severe cumulative toxicity.</td>
+                  <td>Renal failure or age-related GFR decline severely reduces drug clearance, lengthening half-life and drastically increasing cumulative toxicity risk.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
 
-        <!-- METABOLISM & CYP -->
+        <!-- CYP METABOLISM SECTION -->
         <div id="sec-cyp" class="content-card">
-          <h2>3. Drug Metabolism: Cytochrome P450 &amp; Glucuronidation</h2>
-          <p>Metabolism relies on two principal biochemical pathways:</p>
+          <h2>3. Drug Biotransformation: Cytochrome P450 &amp; Conjugation</h2>
+          <p>Metabolic conversion transforms lipophilic, membrane-permeable drugs into polar, water-soluble compounds that kidneys can easily excrete. This occurs across two primary phases:</p>
           <ul>
-            <li><strong>Phase I Reactions:</strong> Oxidative, reductive, and hydrolytic processes (primarily hepatic via the <strong>Cytochrome P450 (CYP)</strong> heme-containing enzyme system) yielding water-soluble polar molecules.</li>
-            <li><strong>Phase II Reactions (Conjugation):</strong> Glucuronidation occurring across the liver, kidneys, intestines, lungs, and brain. Crucially, glucuronidation is far less impacted by aging than Phase I CYP systems, making drugs eliminated strictly via glucuronidation (e.g., lorazepam, oxazepam) much safer in geriatric patients.</li>
+            <li><strong>Phase I Reactions:</strong> Oxidation, reduction, and hydrolysis managed principally by the hepatic <strong>Cytochrome P450 (CYP)</strong> enzyme system. These enzymes introduce active polar groups onto drug molecules.</li>
+            <li><strong>Phase II Reactions (Conjugation):</strong> Attaching bulky polar molecules (like glucuronic acid) to drugs. Crucially, Phase II glucuronidation is far less affected by normal aging than Phase I oxidation, making drugs cleared via glucuronidation much safer in elderly populations.</li>
           </ul>
 
-          <h3>Major CYP Families &amp; Clinical Substrates</h3>
+          <h3>Major CYP Isoenzymes in Psychopharmacology</h3>
           <ul>
-            <li><strong>CYP 3A4/5:</strong> The largest family (~50% of oxidative drug metabolism). Metabolizes tricyclics, triazolo-benzodiazepines, sertraline, quetiapine, and risperidone. Strongly inhibited by grapefruit juice.</li>
-            <li><strong>CYP 2D6:</strong> Accounts for ~30% of oxidative metabolism. Responsible for hydroxylating all tricyclic antidepressants (TCAs), select SSRIs, and antipsychotics.</li>
-            <li><strong>CYP 1A2:</strong> Metabolizes TCAs, mirtazapine, clozapine, olanzapine, and caffeine.</li>
-            <li><strong>CYP 2C (2C9/2C19):</strong> Metabolizes citalopram, diazepam, barbiturates, and phenytoin.</li>
+            <li><strong>CYP 3A4/5:</strong> Handles nearly half of all therapeutic drug oxidation. It metabolizes tricyclic antidepressants, various benzodiazepines, and atypical antipsychotics. Strongly inhibited by furanocoumarins in grapefruit juice.</li>
+            <li><strong>CYP 2D6:</strong> Accounts for about 30% of hepatic oxidation, hydroxylating tricyclics, selective serotonin reuptake inhibitors, and antipsychotic agents. Exhibits significant genetic polymorphism (poor vs. ultra-rapid metabolizers).</li>
+            <li><strong>CYP 1A2:</strong> Metabolizes tricyclic antidepressants, mirtazapine, clozapine, and olanzapine. Induced heavily by polycyclic aromatic hydrocarbons found in tobacco smoke.</li>
+            <li><strong>CYP 2C19 / 2C9:</strong> Metabolizes citalopram, diazepam, and various mood stabilizers.</li>
           </ul>
         </div>
 
-        <!-- DRUG-DRUG INTERACTIONS -->
+        <!-- DRUG INTERACTIONS & SAFETY SECTION -->
         <div id="sec-interactions" class="content-card">
-          <h2>4. Clinical Considerations &amp; Drug–Drug Interactions</h2>
-          <p>Clinicians must maintain constant vigilance regarding pharmacokinetic interactions, especially in high-risk patient contexts:</p>
+          <h2>4. Drug Interactions &amp; Patient Safety Protocols</h2>
+          <p>Pharmacokinetic drug-drug interactions represent one of the most common preventable causes of adverse clinical events in psychiatric and medical practice. Clinicians must maintain heightened vigilance when managing complex regimens:</p>
           <ul>
-            <li>Elderly or medically compromised patients with diminished hepatic or renal function.</li>
-            <li>Patients maintained on high-dose regimens approaching toxic thresholds.</li>
-            <li>Co-prescription of two or more inhibitors sharing the same CYP metabolic pathway.</li>
-            <li>Abrupt cessation of a CYP inhibitor (leading to rapid substrate level drops and loss of efficacy).</li>
-            <li>Abrupt cessation of a CYP inducer (leading to dangerous substrate accumulation and toxicity).</li>
+            <li>Co-prescribing multiple medications that compete for the exact same CYP isoenzyme pathway, leading to competitive inhibition and dangerous serum spikes.</li>
+            <li>Adding a potent enzyme inhibitor (such as fluoxetine or fluvoxamine) to a patient stabilized on a narrow therapeutic index medication.</li>
+            <li>Abruptly discontinuing a CYP enzyme inducer while maintaining the substrate dose, resulting in massive drug accumulation and severe toxicity.</li>
+            <li>Managing polypharmacy in geriatric patients with compromised renal clearance and reduced hepatic blood flow.</li>
           </ul>
           
           <div class="mnemonic-box">
             <h4>💡 High-Yield Clinical Rule of Thumb</h4>
-            <p><strong>Enzyme Induction takes time</strong> (requires new protein synthesis over days to weeks). <strong>Enzyme Inhibition is rapid</strong> (often manifesting within days of introducing the inhibiting agent).</p>
+            <p><strong>Enzyme Induction is sluggish</strong>, requiring days to weeks of consistent exposure for new protein synthesis to occur. Conversely, <strong>Enzyme Inhibition is rapid</strong>, often manifesting clinical toxicity within 24 to 72 hours of introducing the inhibiting agent.</p>
           </div>
+        </div>
+
+        <!-- ADVANCED CLINICAL PEARLS -->
+        <div id="sec-clinical" class="content-card">
+          <h2>5. Advanced Clinical Pearls for Healthcare Practice</h2>
+          <p>Mastering the bridge between textbook pharmacology and bedside application requires recognizing several advanced clinical nuances:</p>
+          <ul>
+            <li><strong>Enzyme Saturation (Zero-Order Kinetics):</strong> At high therapeutic or toxic doses, metabolic enzymes become completely saturated. Clearance shifts from first-order (constant percentage cleared per hour) to zero-order (constant absolute amount cleared per hour), risking sudden exponential toxicity spikes.</li>
+            <li><strong>Pharmacogenomic Testing:</strong> Testing patients for CYP2D6 and CYP2C19 genetic variants prevents adverse reactions by identifying ultra-rapid metabolizers (who clear drugs too fast to respond) and poor metabolizers (who accumulate toxic blood levels at standard doses).</li>
+            <li><strong>Chronopharmacology:</strong> Recognizing circadian rhythms in receptor sensitivity and hepatic blood flow can optimize dosing schedules, maximizing therapeutic efficacy while minimizing adverse side effects like daytime sedation or nocturnal insomnia.</li>
+          </ul>
         </div>
 
       </main>
@@ -405,22 +445,22 @@
       const status = document.getElementById('rxStatusMsg');
 
       particle.style.transition = 'all 1.2s cubic-bezier(0.25, 1, 0.5, 1)';
-      particle.style.left = 'calc(100% - 100px)';
-      particle.style.top = '85px';
+      particle.style.left = 'calc(100% - 110px)';
+      particle.style.top = '95px';
 
       setTimeout(() => {
         if (type === 'agonist') {
           particle.style.background = '#10b981';
-          particle.style.boxShadow = '0 0 16px #10b981';
-          status.innerHTML = "🟢 <strong>Agonist Bound:</strong> High intrinsic activity. Receptor facilitated; normal channel response activated.";
+          particle.style.boxShadow = '0 0 18px #10b981';
+          status.innerHTML = "🟢 <strong>Full Agonist Bound:</strong> Maximum biological response triggered. Receptor fully activated; optimal cellular signaling cascade initiated.";
         } else if (type === 'partial') {
           particle.style.background = '#f59e0b';
-          particle.style.boxShadow = '0 0 16px #f59e0b';
-          status.innerHTML = "🟡 <strong>Partial Agonist Bound:</strong> Intermediate activity. Sub-maximal cellular response generated based on environment.";
+          particle.style.boxShadow = '0 0 18px #f59e0b';
+          status.innerHTML = "🟡 <strong>Partial Agonist Bound:</strong> Intermediate sub-maximal response generated. Modulates activity depending on endogenous ligand presence.";
         } else {
           particle.style.background = '#ef4444';
-          particle.style.boxShadow = '0 0 16px #ef4444';
-          status.innerHTML = "🔴 <strong>Antagonist Bound:</strong> Zero intrinsic activity. Receptor blocked; resting status maintained.";
+          particle.style.boxShadow = '0 0 18px #ef4444';
+          status.innerHTML = "🔴 <strong>Neutral Antagonist Bound:</strong> Zero intrinsic activity. Receptor site blocked; baseline resting state maintained securely.";
         }
       }, 1200);
     }
@@ -428,11 +468,11 @@
     function resetRxSim() {
       const particle = document.getElementById('rxParticle');
       particle.style.transition = 'all 0.5s ease';
-      particle.style.left = '16px';
-      particle.style.top = '85px';
+      particle.style.left = '20px';
+      particle.style.top = '95px';
       particle.style.background = '#38bdf8';
-      particle.style.boxShadow = '0 0 12px #38bdf8';
-      document.getElementById('rxStatusMsg').innerText = "Select a ligand type above to observe binding affinity and cellular activation output.";
+      particle.style.boxShadow = '0 0 14px #38bdf8';
+      document.getElementById('rxStatusMsg').innerText = "Select a ligand type above to observe binding affinity dynamics and cellular activation output.";
     }
   </script>
 </body>
