@@ -182,7 +182,7 @@
           <li><a href="#sec-bioavailability" class="sidebar-sub">↳ Deep Dive: Bioavailability</a></li>
           <li><a href="#sec-plasma" class="sidebar-sub">↳ Plasma Concentration Graphs</a></li>
           <li><a href="#sec-kinetics" class="sidebar-sub">↳ Zero, First &amp; Second Order</a></li>
-          <li><a href="#sec-cyp">3. Hepatic Metabolism &amp; CYP450</a></li>
+          <li><a href="#sec-cyp" class="sidebar-sub">↳ Detailed Biotransformation (Phase I & II)</a></li>
           <li><a href="#sec-interactions">4. Drug Interactions &amp; Safety</a></li>
         </ul>
       </div>
@@ -223,7 +223,7 @@
             <li><a href="#sec-bioavailability" onclick="toggleMenu()">↳ Deep Dive: Bioavailability</a></li>
             <li><a href="#sec-plasma" onclick="toggleMenu()">↳ Plasma Concentration Graphs</a></li>
             <li><a href="#sec-kinetics" onclick="toggleMenu()">↳ Zero, First &amp; Second Order</a></li>
-            <li><a href="#sec-cyp" onclick="toggleMenu()">3. Hepatic Metabolism &amp; CYP450</a></li>
+            <li><a href="#sec-cyp" onclick="toggleMenu()">↳ Detailed Biotransformation (Phase I & II)</a></li>
             <li><a href="#sec-interactions" onclick="toggleMenu()">4. Drug Interactions &amp; Safety</a></li>
           </ul>
         </div>
@@ -407,14 +407,32 @@
           </div>
         </div>
 
-        <!-- CYP METABOLISM SECTION -->
+        <!-- DETAILED BIOTRANSFORMATION & CYP METABOLISM SECTION -->
         <div id="sec-cyp" class="content-card">
-          <h2>3. Hepatic Biotransformation: Cytochrome P450 System</h2>
-          <p>Metabolic conversion transforms lipophilic drugs into water-soluble compounds for renal excretion through two primary phases:</p>
+          <h2>3. Detailed Hepatic Biotransformation: Phase I, Phase II, and CYP450 Systems</h2>
+          <p>Biotransformation (drug metabolism) is the chemical alteration of xenobiotics within the body to convert lipid-soluble (lipophilic) compounds into water-soluble (hydrophilic) polar metabolites that can be readily excreted by the kidneys or biliary tract. This crucial process unfolds across distinct enzymatic phases.</p>
+
+          <h3>Phase I Reactions: Functionalization</h3>
+          <p>Phase I metabolism introduces or uncovers a polar functional group (such as $-\text{OH}$, $-\text{NH}_2$, or $-\text{SH}$) on the drug molecule. This slightly increases water solubility and prepares the molecule for Phase II conjugation. Key mechanisms include:</p>
           <ul>
-            <li><strong>Phase I Reactions:</strong> Oxidation, reduction, and hydrolysis managed primarily by the hepatic <strong>Cytochrome P450 (CYP)</strong> enzyme family (such as CYP3A4, CYP2D6, and CYP1A2).</li>
-            <li><strong>Phase II Reactions (Conjugation):</strong> Attaching bulky polar groups (like glucuronic acid). Phase II glucuronidation is remarkably resilient against normal aging, making drugs cleared via conjugation safer in geriatric populations.</li>
+            <li><strong>Oxidation:</strong> Catalyzed predominantly by the hepatic <strong>Cytochrome P450 (CYP450)</strong> enzyme superfamily located in the smooth endoplasmic reticulum (endoplasmic reticulum microsomes). Major isoforms include <strong>CYP3A4/5</strong>, <strong>CYP2D6</strong>, <strong>CYP2C9/19</strong>, and <strong>CYP1A2</strong>.</li>
+            <li><strong>Reduction:</strong> Conversion of functional groups through electron addition, commonly occurring for nitro or azo compounds.</li>
+            <li><strong>Hydrolysis:</strong> Splitting of ester or amide bonds by plasma and tissue esterases.</li>
           </ul>
+
+          <h3>Phase II Reactions: Synthetic Conjugation</h3>
+          <p>If Phase I metabolites remain sufficiently lipid-soluble to cross cellular membranes, they undergo Phase II conjugation. These synthetic reactions attach large, highly polar, endogenous molecules to the drug metabolite, ensuring complete inactivation and rapid renal or biliary clearance:</p>
+          <ul>
+            <li><strong>Glucuronidation:</strong> Catalyzed by UDP-glucuronosyltransferases (UGTs), attaching glucuronic acid. This is the most common Phase II pathway and remains notably resilient against normal aging.</li>
+            <li><strong>Sulfation:</strong> Catalyzed by sulfotransferases (SSTs) using a 3'-phosphoadenosine-5'-phosphosulfate (PAPS) donor.</li>
+            <li><strong>Acetylation and Methylation:</strong> Transfer of acetyl or methyl groups, which can modify drug activity and toxicity profiles depending on slow vs. fast acetylator phenotypes.</li>
+            <li><strong>Glutathione Conjugation:</strong> Attaching glutathione via glutathione S-transferases (GSTs) to neutralize reactive toxic intermediates (e.g., NAPQI detoxification following paracetamol/acetaminophen overdose).</li>
+          </ul>
+
+          <div class="callout-box">
+            <h4>🔬 Prodrug Activation vs. Inactivation</h4>
+            <p>While biotransformation typically converts active drugs into inactive metabolites for excretion, some medications are administered as inactive precursors called <strong>prodrugs</strong> (e.g., clopidogrel, enalapril). These agents rely entirely on hepatic biotransformation during first-pass metabolism or systemic circulation to be converted into their active therapeutic forms.</p>
+          </div>
         </div>
 
         <!-- DRUG INTERACTIONS & SAFETY -->
@@ -463,7 +481,6 @@
 
       heights.forEach((h, index) => {
         const bar = document.createElement('div');
-        bar.style.width = '12%_';
         bar.style.width = '32px';
         bar.style.height = h + '%';
         bar.style.background = 'linear-gradient(180deg, #38bdf8 0%, #0284c7 100%)';
