@@ -124,7 +124,7 @@
     tr:last-child td { border-bottom: none; }
     tr:nth-child(even) { background: #f8fafc; }
 
-    /* Interactive Simulator */
+    /* Interactive Graph Simulation */
     .sim-container {
       background: #0f172a; color: white; border-radius: var(--radius); padding: 22px 16px; margin: 22px 0;
       box-shadow: var(--shadow-lg);
@@ -141,10 +141,14 @@
     .sim-btn.secondary { background: #334155; box-shadow: none; }
     .sim-btn.secondary:hover { background: #475569; }
 
-    .animation-screen {
-      background: #1e293b; border-radius: 14px; height: 200px; position: relative; overflow: hidden;
-      display: flex; align-items: center; justify-content: center; border: 1px solid #334155; margin-bottom: 14px;
+    .graph-screen {
+      background: #1e293b; border-radius: 14px; height: 220px; position: relative; overflow: hidden;
+      display: flex; align-items: flex-end; padding: 20px; border: 1px solid #334155; margin-bottom: 14px;
     }
+    .graph-axis-y { position: absolute; left: 15px; top: 15px; bottom: 35px; width: 2px; background: #475569; display: flex; flex-direction: column; justify-content: space-between; font-size: 0.65rem; color: #94a3b8; }
+    .graph-axis-x { position: absolute; left: 30px; right: 20px; bottom: 20px; height: 2px; background: #475569; display: flex; justify-content: space-between; font-size: 0.65rem; color: #94a3b8; padding-top: 6px; }
+    .graph-curve { width: 100%; height: 100%; position: relative; margin-left: 15px; }
+    
     .sim-status { font-family: monospace; font-size: 0.82rem; color: #cbd5e1; background: rgba(0,0,0,0.5); padding: 14px; border-radius: 10px; text-align: center; line-height: 1.5; border: 1px solid rgba(255,255,255,0.05); }
 
     @media (min-width: 900px) {
@@ -167,17 +171,18 @@
     <aside class="pc-sidebar">
       <div>
         <a href="#sec-core" class="sidebar-brand">
-          <div class="pulse-box">🧠</div>
+          <div class="pulse-box">🔬</div>
           <span>Clinical Pharmacology</span>
         </a>
         <ul class="sidebar-menu">
-          <li><a href="#sec-core" class="active">Core Essence &amp; Paradigm Shift</a></li>
+          <li><a href="#sec-core" class="active">Core Essence &amp; Foundations</a></li>
           <li><a href="#sec-pd">1. Pharmacodynamics (PD)</a></li>
           <li><a href="#sec-pk">2. Pharmacokinetics &amp; ADME</a></li>
+          <li><a href="#sec-adme-factors" class="sidebar-sub">↳ Factors Affecting ADME</a></li>
           <li><a href="#sec-bioavailability" class="sidebar-sub">↳ Deep Dive: Bioavailability</a></li>
-          <li><a href="#sec-plasma" class="sidebar-sub">↳ Deep Dive: Plasma Concentration</a></li>
-          <li><a href="#sec-kinetics" class="sidebar-sub">↳ Deep Dive: Zero, First &amp; Second Order</a></li>
-          <li><a href="#sec-cyp">3. CYP Metabolism &amp; Enzymes</a></li>
+          <li><a href="#sec-plasma" class="sidebar-sub">↳ Plasma Concentration Graphs</a></li>
+          <li><a href="#sec-kinetics" class="sidebar-sub">↳ Zero, First &amp; Second Order</a></li>
+          <li><a href="#sec-cyp">3. Hepatic Metabolism &amp; CYP450</a></li>
           <li><a href="#sec-interactions">4. Drug Interactions &amp; Safety</a></li>
         </ul>
       </div>
@@ -191,7 +196,7 @@
       <!-- Polished Mobile Navbar -->
       <header class="mobile-navbar">
         <a href="#sec-core" class="brand">
-          <div class="pulse-box">🧠</div>
+          <div class="pulse-box">🔬</div>
           <span>Pharmacology Guide</span>
         </a>
         <button class="menu-toggle" onclick="toggleMenu()" aria-label="Open Navigation Menu">
@@ -205,19 +210,20 @@
         <div>
           <div class="drawer-header">
             <div class="brand">
-              <div class="pulse-box">🧠</div>
+              <div class="pulse-box">🔬</div>
               <span>Chapter Index</span>
             </div>
             <button class="menu-toggle" onclick="toggleMenu()" style="padding: 6px 10px; font-size: 0.8rem;">✕ Close</button>
           </div>
           <ul class="drawer-menu">
-            <li><a href="#sec-core" onclick="toggleMenu()">Core Essence &amp; Paradigm Shift</a></li>
+            <li><a href="#sec-core" onclick="toggleMenu()">Core Essence &amp; Foundations</a></li>
             <li><a href="#sec-pd" onclick="toggleMenu()">1. Pharmacodynamics (PD)</a></li>
             <li><a href="#sec-pk" onclick="toggleMenu()">2. Pharmacokinetics &amp; ADME</a></li>
+            <li><a href="#sec-adme-factors" onclick="toggleMenu()">↳ Factors Affecting ADME</a></li>
             <li><a href="#sec-bioavailability" onclick="toggleMenu()">↳ Deep Dive: Bioavailability</a></li>
-            <li><a href="#sec-plasma" onclick="toggleMenu()">↳ Deep Dive: Plasma Concentration</a></li>
-            <li><a href="#sec-kinetics" onclick="toggleMenu()">↳ Deep Dive: Zero, First &amp; Second Order</a></li>
-            <li><a href="#sec-cyp" onclick="toggleMenu()">3. CYP Metabolism &amp; Enzymes</a></li>
+            <li><a href="#sec-plasma" onclick="toggleMenu()">↳ Plasma Concentration Graphs</a></li>
+            <li><a href="#sec-kinetics" onclick="toggleMenu()">↳ Zero, First &amp; Second Order</a></li>
+            <li><a href="#sec-cyp" onclick="toggleMenu()">3. Hepatic Metabolism &amp; CYP450</a></li>
             <li><a href="#sec-interactions" onclick="toggleMenu()">4. Drug Interactions &amp; Safety</a></li>
           </ul>
         </div>
@@ -232,124 +238,140 @@
         <div class="chapter-hero">
           <span class="badge-unit">The Comprehensive Clinical Masterclass • Chapter 1</span>
           <h1>Advanced Pharmacodynamics &amp; Pharmacokinetics Unveiled</h1>
-          <p>Welcome to an immersive, highly engaging journey through the science of medications. Discover how drugs interact with cellular receptors, how your body processes and eliminates them, and master complex kinetic principles explained through crystal-clear prose and interactive tools.</p>
+          <p>Welcome to an immersive, highly engaging journey through the science of medications. Discover how drugs interact with cellular receptors, how your body processes and eliminates them across physiological barriers, and master complex kinetic principles explained through crystal-clear prose and interactive graphs.</p>
         </div>
 
         <!-- CORE ESSENCE SECTION -->
         <div id="sec-core" class="content-card">
-          <h2>Core Definitions &amp; The Modern Paradigm Shift</h2>
-          <p>Imagine pharmacology as a two-part play where your body and a drug engage in a sophisticated conversation. To understand this dialogue, medical scientists divide pharmacology into two core halves:</p>
+          <h2>Core Definitions &amp; The Fundamental Division</h2>
+          <p>Imagine pharmacology as a sophisticated dialogue between the human body and an administered therapeutic agent. To study this interaction systematically, medical science divides pharmacology into two primary branches:</p>
           <ul>
-            <li><mark>Pharmacodynamics (PD)</mark> asks: <strong>What does the drug do to your body?</strong> It studies the molecular locks and keys, receptor binding, cellular stimulation, and ultimate biological results.</li>
-            <li><mark>Pharmacokinetics (PK)</mark> asks: <strong>What does your body do to the drug?</strong> It tracks the drug's voyage from the moment it enters your system, through absorption and distribution, to metabolic breakdown and excretion.</li>
+            <li><mark>Pharmacodynamics (PD)</mark> asks: <strong>What does the drug do to your body?</strong> It examines molecular receptor binding, signal transduction cascades, cellular responses, and therapeutic outcomes.</li>
+            <li><mark>Pharmacokinetics (PK)</mark> asks: <strong>What does your body do to the drug?</strong> It tracks the drug's journey through the biological system, following absorption, distribution across fluid compartments, metabolic breakdown, and ultimate elimination.</li>
           </ul>
           
-          <p>Historically, early medical theory assumed drugs worked solely through quick chemical fixes, like adjusting baseline neurotransmitter levels in the brain. Modern neuroscience reveals a much more breathtaking reality: <mark class="mark-alt">many powerful medications trigger long-term genetic remodeling, activating cellular DNA and manufacturing vital neurotrophic growth factors</mark> that physically reshape neural connections over weeks of therapy.</p>
-          
           <div class="callout-box">
-            <h4>🌟 The Reader's Golden Insight</h4>
-            <p>This explains why psychiatric medications like antidepressants do not make a patient feel better instantly on day one. Even though the drug reaches the brain within hours, the true therapeutic magic takes weeks because it requires deep cellular transcription and neuroplastic growth.</p>
+            <h4>🌟 The Reader's Core Takeaway</h4>
+            <p>While pharmacodynamics determines <em>how potent and effective</em> a drug is at its target site, pharmacokinetics determines <em>how much drug concentration reaches that site</em> and how long it stays active before being cleared away.</p>
           </div>
         </div>
 
         <!-- PHARMACODYNAMICS SECTION -->
         <div id="sec-pd" class="content-card">
-          <h2>1. Pharmacodynamics (PD): Mechanisms of Action &amp; Receptor Physics</h2>
-          <p>Pharmacodynamics examines the exact relationship between drug concentration at a receptor site and the resulting clinical effect. When a drug molecule successfully docks into a cellular receptor, it acts like a key entering a lock, triggering a cascade of intracellular activity.</p>
+          <h2>1. Pharmacodynamics (PD): Mechanism of Action &amp; Receptor Physics</h2>
+          <p>Pharmacodynamics explores the biochemical and physiological effects of drugs on the body. When a drug molecule successfully binds to a specialized biological target—such as a G-protein coupled receptor, an enzyme, or an ion channel—it initiates a chain reaction of cellular events.</p>
 
           <h3>Ligands, Affinities, and Functional Classes</h3>
-          <p>Any chemical molecule that binds to a receptor is called a <strong>ligand</strong>. Depending on what happens after docking, ligands fall into distinct operational categories:</p>
+          <p>Any molecule that attaches to a receptor is called a <strong>ligand</strong>. Based on their functional outcomes upon binding, ligands are categorized into distinct groups:</p>
           <ul>
-            <li><strong>Full Agonist:</strong> The ultimate key. It binds to the receptor and triggers maximum biological stimulation, perfectly mimicking or even exceeding natural body chemicals (e.g., classical benzodiazepines boosting calming chloride channel openings).</li>
-            <li><strong>Neutral Antagonist:</strong> The gatekeeper. It possesses high affinity and fits tightly into the lock, but has zero intrinsic activity. It simply blocks agonists from entering, maintaining normal baseline cell resting state.</li>
-            <li><strong>Inverse Agonist:</strong> The spoiler. It binds to the exact same receptor site as an agonist but provokes the exact opposite biological action, actively driving baseline activity downward.</li>
-            <li><strong>Partial Agonist:</strong> The intelligent balancer. It produces sub-maximal responses. If natural chemical levels are sky-high, it acts as a blocker; if natural levels are deficient, it provides mild stimulation.</li>
+            <li><strong>Full Agonist:</strong> Binds to the receptor and triggers maximum biological response, mimicking or amplifying endogenous chemical messengers.</li>
+            <li><strong>Neutral Antagonist:</strong> Binds tightly to the receptor with high affinity but possesses zero intrinsic activity. It blocks endogenous agonists or therapeutic drugs from occupying the site, maintaining normal baseline cell function.</li>
+            <li><strong>Inverse Agonist:</strong> Binds to the exact same receptor site as an agonist but drives the physiological response in the opposite direction, actively reducing baseline constitutive receptor activity.</li>
+            <li><strong>Partial Agonist:</strong> Generates sub-maximal biological responses regardless of dose concentration. In the presence of a strong full agonist, it acts functionally as an inhibitor; in the absence of normal chemical stimulation, it provides mild activation.</li>
           </ul>
 
-          <p><strong>Autoreceptors versus Heteroreceptors:</strong> Think of autoreceptors as self-regulating thermostats located on the sending neuron's own membrane, telling it to stop releasing neurotransmitters when the synaptic cleft is full. Heteroreceptors sit on neighboring neurons of entirely different chemical types, allowing cross-talk and complex neurological modulation.</p>
-
-          <h3>Ionotropic vs. Metabotropic Receptors</h3>
-          <p>Receptor structures operate at radically different speeds:</p>
-          <ul>
-            <li><strong>Ionotropic Receptors (Ligand-Gated Channels):</strong> Lightning-fast gateways operating in milliseconds. Inhibitory channels (like GABA) let negative chloride ions rush in to quiet the neuron. Excitatory channels (like NMDA) let positive sodium and calcium ions rush in to fire the neuron.</li>
-            <li><strong>Metabotropic Receptors (GPCRs):</strong> Sophisticated relay stations operating over seconds to hours. Activation releases intracellular G-proteins, triggering secondary messengers (like cyclic AMP) that eventually reach the nucleus to alter gene expression.</li>
-          </ul>
-
-          <!-- INTERACTIVE RECEPTOR SIMULATOR -->
-          <div class="sim-container">
-            <div class="sim-header">
-              <h3>🎬 Interactive Receptor Binding Simulator</h3>
-              <div class="sim-controls">
-                <button class="sim-btn" onclick="runRxSim('agonist')">Full Agonist</button>
-                <button class="sim-btn secondary" onclick="runRxSim('partial')">Partial Agonist</button>
-                <button class="sim-btn secondary" onclick="runRxSim('antagonist')">Antagonist</button>
-                <button class="sim-btn secondary" onclick="resetRxSim()">Reset Site</button>
-              </div>
-            </div>
-            <div class="animation-screen">
-              <div style="position: absolute; top: 12px; left: 16px; font-size: 0.72rem; color: #94a3b8; font-weight: 700; letter-spacing: 0.5px;">SYNAPTIC MEMBRANE RECEPTOR SITE</div>
-              <div id="rxParticle" style="width:28px; height:28px; background:#38bdf8; border-radius:50%; position:absolute; left:20px; top:95px; box-shadow:0 0 14px #38bdf8; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:800; color:#0f172a; transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);">Rx</div>
-              <div style="width:64px; height:64px; border:3px dashed #14b8a6; border-radius:50%; position:absolute; right:45px; top:70px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:#14b8a6; font-weight:700; text-align:center; background:rgba(20, 184, 166, 0.05);">Target Site</div>
-            </div>
-            <div class="sim-status" id="rxStatusMsg">
-              Select a ligand type above to observe binding affinity dynamics and cellular activation output.
-            </div>
-          </div>
+          <p><strong>Autoreceptors versus Heteroreceptors:</strong> Autoreceptors act as self-regulating feedback sensors on the membrane of sending cells, signaling when local chemical concentrations are sufficient. Heteroreceptors sit on adjacent cells of different types, allowing cross-system regulatory control.</p>
         </div>
 
         <!-- PHARMACOKINETICS & ADME -->
         <div id="sec-pk" class="content-card">
           <h2>2. Pharmacokinetics: The Complete ADME Framework</h2>
-          <p>Pharmacokinetics tracks the entire lifespan of a drug inside the human body. Medical science categorizes this voyage into four major pillars: <mark>Absorption, Distribution, Metabolism, and Elimination (ADME)</mark>.</p>
+          <p>Pharmacokinetics maps the physical lifespan of a drug inside the human body. This voyage is organized into four sequential stages: <mark>Absorption, Distribution, Metabolism, and Elimination (ADME)</mark>.</p>
+          <p>Every medication administered orally must dissolve in bodily fluids, cross epithelial barriers, withstand local enzymatic degradation, and survive hepatic first-pass extraction before ever entering general systemic circulation to reach target tissues.</p>
+        </div>
 
-          <p>When you swallow a pill, it does not magically appear in your brain instantly. First, it must dissolve in stomach and intestinal fluids, cross mucosal barriers, survive local enzymatic degradation, dodge active cellular efflux pumps (like P-glycoprotein), and pass through the liver via the portal vein before ever reaching general systemic circulation.</p>
+        <!-- DETAILED FACTORS AFFECTING ADME -->
+        <div id="sec-adme-factors" class="content-card">
+          <h2>Detailed Factors Affecting ADME Across the Human Body</h2>
+          <p>No two human bodies process medications identically. A vast matrix of physiological, pathological, and environmental variables constantly alters every phase of ADME:</p>
+
+          <h3>A. Factors Affecting Absorption</h3>
+          <ul>
+            <li><strong>Surface Area and Epithelial Thickness:</strong> The small intestine provides a massive absorptive surface area covered by microvilli, allowing rapid drug uptake compared to the stomach or skin.</li>
+            <li><strong>Gastric pH and Motility:</strong> Highly acidic gastric environments can degrade acid-labile drugs before absorption. Rapid gastric emptying pushes drugs into the intestine faster, while delayed motility slows peak absorption times.</li>
+            <li><strong>Food and Drug Concomitant Intake:</strong> Dietary fats can delay gastric emptying and enhance the absorption of highly lipophilic medications. Conversely, calcium or iron supplements can bind certain drugs in the gut lumen, preventing absorption entirely.</li>
+            <li><strong>Efflux Transporters:</strong> Intestinal P-glycoprotein acts as an active cellular pump, pushing absorbed drug molecules right back out into the gut lumen, drastically lowering net absorption.</li>
+          </ul>
+
+          <h3>B. Factors Affecting Distribution</h3>
+          <ul>
+            <li><strong>Plasma Protein Binding:</strong> Drugs circulate bound to plasma proteins (primarily albumin). <mark>Only the unbound (free) fraction of a drug</mark> can cross capillary walls and cellular membranes to exert therapeutic effects. Hypoalbuminemia (low blood protein) leaves more free drug in circulation, risking toxicity.</li>
+            <li><strong>Tissue Lipophilicity &amp; Blood Flow:</strong> Highly lipid-soluble drugs easily cross cell membranes and accumulate rapidly in adipose (fat) tissue and highly perfused organs like the brain, heart, and liver.</li>
+            <li><strong>Specialized Biological Barriers:</strong> Tight endothelial junctions in cerebral capillaries form the blood-brain barrier, restricting water-soluble polar molecules while permitting lipophilic compounds to enter the central nervous system.</li>
+          </ul>
+
+          <h3>C. Factors Affecting Metabolism</h3>
+          <ul>
+            <li><strong>Genetic Polymorphisms:</strong> Inherited variations in hepatic enzyme genes mean some individuals break down drugs sluggishly (poor metabolizers) while others eliminate them rapidly (ultra-rapid metabolizers).</li>
+            <li><strong>Enzyme Induction and Inhibition:</strong> Certain substances stimulate the liver to synthesize more metabolizing enzymes (induction), speeding up drug clearance. Other drugs block enzyme activity (inhibition), causing drug accumulation and toxicity.</li>
+            <li><strong>Age and Organ Health:</strong> Hepatic blood flow and enzyme efficiency decline gradually with advanced age or severe liver disease, slowing biotransformation and prolonging drug presence.</li>
+          </ul>
+
+          <h3>D. Factors Affecting Elimination</h3>
+          <ul>
+            <li><strong>Renal Glomerular Filtration Rate (GFR):</strong> The kidneys filter water-soluble metabolites out of the blood. Conditions impairing renal blood flow or GFR drastically slow elimination, increasing half-life and cumulative drug toxicity risk.</li>
+            <li><strong>Urinary pH:</strong> Altering urinary pH can trap polar drug molecules in the renal tubules (ion trapping), accelerating their excretion out of the body.</li>
+            <li><strong>Biliary Excretion:</strong> Some high-molecular-weight metabolites are excreted into bile, entering the gut where they may undergo enterohepatic recycling, reabsorbing back into the bloodstream.</li>
+          </ul>
         </div>
 
         <!-- DEEP DIVE: BIOAVAILABILITY -->
         <div id="sec-bioavailability" class="content-card">
           <h2>Deep Dive: Understanding Bioavailability</h2>
-          <p><strong>Bioavailability (represented by the symbol F)</strong> is one of the most critical concepts in clinical pharmacology. It measures the <mark>exact fraction of an administered drug dose that reaches systemic blood circulation in an unchanged, active form</mark>.</p>
-          
-          <p>If you administer an intravenous (IV) dose of medication, 100 percent of the drug enters the bloodstream instantly. Therefore, IV administration has a bioavailability of 1.0 (or 100%). However, when a drug is taken orally, it must navigate the grueling obstacles of the digestive tract and hepatic first-pass metabolism.</p>
-          
-          <ul>
-            <li><strong>High Bioavailability:</strong> Drugs like oral metronidazole or alcohol boast bioavailability rates close to 90 to 100%, meaning nearly everything you swallow enters the bloodstream.</li>
-            <li><strong>Low Bioavailability:</strong> Drugs with extensive first-pass hepatic extraction (such as certain opioids or sublingual versus oral formulations) may have bioavailability rates as low as 10 to 20%, requiring much higher oral doses to achieve the same therapeutic plasma concentration as a tiny IV dose.</li>
-          </ul>
-
-          <div class="mnemonic-box">
-            <h4>💡 Clinical Pearl on Bioavailability</h4>
-            <p>When switching a patient from an intravenous medication to an oral tablet, clinicians must often adjust the dose upward significantly if the drug's oral bioavailability is low, ensuring the patient maintains therapeutic plasma levels.</p>
-          </div>
+          <p><strong>Bioavailability (denoted by F)</strong> represents the <mark>exact fraction of an administered drug dose that reaches systemic circulation in an active, unchanged form</mark>.</p>
+          <p>An intravenous (IV) injection delivers 100 percent of the drug straight into the vein, establishing a bioavailability of 1.0 (or 100%). In contrast, oral medications must survive gut wall enzymes and hepatic first-pass metabolism, meaning oral bioavailability is often significantly lower than 100%.</p>
         </div>
 
         <!-- DEEP DIVE: PLASMA CONCENTRATION -->
         <div id="sec-plasma" class="content-card">
-          <h2>Deep Dive: Plasma Concentration &amp; Therapeutic Windows</h2>
-          <p>Monitoring a drug's concentration in blood plasma is like navigating a ship between two treacherous hazards: sub-therapeutic failure on one side and toxic overdose on the other. This safe zone is known as the <mark>Therapeutic Window</mark>.</p>
+          <h2>Deep Dive: Plasma Concentration Curves &amp; Therapeutic Windows</h2>
+          <p>Tracking drug concentration in blood plasma helps clinicians keep patients safely within the <strong>Therapeutic Window</strong>—avoiding treatment failure below the minimum effective concentration while preventing dangerous toxicity above the toxic threshold.</p>
 
-          <p>When a drug is absorbed, its plasma concentration rises, peaks (known as the peak plasma concentration or $C_{max}$), and then gradually declines as metabolism and elimination outpace absorption. Pharmacologists track several vital plasma milestones:</p>
-          <ul>
-            <li><strong>Minimum Effective Concentration (MEC):</strong> The baseline plasma threshold required for the drug to produce any noticeable therapeutic benefit.</li>
-            <li><strong>Toxic Concentration:</strong> The threshold above which adverse side effects and dangerous organ toxicity begin to manifest.</li>
-            <li><strong>Steady State Concentration:</strong> The equilibrium point where the amount of drug entering the body matches the amount being cleared during repeated dosing. This stability is universally achieved after <strong>4 to 5 half-lives</strong> of regular dosing.</li>
-          </ul>
+          <!-- INTERACTIVE GRAPH SIMULATION -->
+          <div class="sim-container">
+            <div class="sim-header">
+              <h3>📈 Interactive Plasma Concentration Graph</h3>
+              <div class="sim-controls">
+                <button class="sim-btn" onclick="updateGraph('iv')">IV Bolus Curve</button>
+                <button class="sim-btn secondary" onclick="updateGraph('oral')">Oral Administration Curve</button>
+                <button class="sim-btn secondary" onclick="updateGraph('steady')">Steady State Accumulation</button>
+              </div>
+            </div>
+            <div class="graph-screen">
+              <div class="graph-axis-y">
+                <span>Toxic Level</span>
+                <span>Therapeutic Range</span>
+                <span>MEC</span>
+                <span>0</span>
+              </div>
+              <div class="graph-curve" id="graphCanvas" style="display:flex; align-items:flex-end; justify-content:space-around; height:100%; position:relative; padding-bottom:10px;">
+                <!-- Dynamic SVG or Bars rendered via JS -->
+              </div>
+              <div class="graph-axis-x">
+                <span>0h</span>
+                <span>2h</span>
+                <span>4h</span>
+                <span>8h</span>
+                <span>12h</span>
+                <span>24h</span>
+              </div>
+            </div>
+            <div class="sim-status" id="graphStatusMsg">
+              Click buttons above to simulate plasma concentration curves across different routes of administration.
+            </div>
+          </div>
         </div>
 
         <!-- DEEP DIVE: KINETICS -->
         <div id="sec-kinetics" class="content-card">
           <h2>Deep Dive: Zero-Order, First-Order, and Second-Order Kinetics</h2>
-          <p>How do drugs leave your body over time? The mathematical rate at which metabolism and elimination occur is classified into distinct kinetic orders. Understanding these is vital to preventing accidental drug overdoses.</p>
+          <p>The mathematical rate at which the body clears a drug is classified into specific kinetic orders:</p>
 
-          <h3>1. First-Order Kinetics (The Linear Standard)</h3>
-          <p>In first-order kinetics, <mark>a constant percentage of the drug is eliminated per unit of time</mark>. If you have 100mg of a drug in your plasma and its half-life is 2 hours, 50mg is cleared in the first 2 hours, leaving 50mg. In the next 2 hours, 50% of the remaining amount (25mg) is cleared, leaving 25mg. The rate of elimination rises and falls directly in proportion to how much drug is present in the plasma.</p>
-
-          <h3>2. Zero-Order Kinetics (The Saturation Danger)</h3>
-          <p>In zero-order kinetics, <mark>a constant absolute amount of drug is eliminated per unit of time, regardless of how high the plasma concentration climbs</mark>. This happens when metabolic enzymes become completely saturated. Imagine a toll booth that can only process 5 cars per minute. If 10 cars arrive, it still only processes 5 per minute, causing a massive backup.</p>
-          <p>Classic examples include <strong>phenytoin, ethanol (alcohol), and high-dose aspirin</strong>. Because elimination is maxed out, doubling the dose does not double the clearance rate—it can cause plasma concentrations to skyrocket exponentially, plunging the patient into sudden, severe toxicity.</p>
-
-          <h3>3. Second-Order Kinetics (Complex Bimolecular Interactions)</h3>
-          <p>Second-order kinetics occurs when the elimination or reaction rate depends on the interaction of two separate molecules (or two molecules of the same drug meeting). While rare in simple elimination clearance, second-order rate equations govern complex chemical binding interactions and enzyme-substrate complex formations at the molecular level.</p>
+          <ul>
+            <li><strong>First-Order Kinetics (Linear Standard):</strong> <mark>A constant percentage of the drug is cleared per unit of time.</mark> Clearance speed rises and falls directly alongside plasma concentration. Most drugs follow this predictable pattern.</li>
+            <li><strong>Zero-Order Kinetics (Saturation Danger):</strong> <mark>A constant absolute amount of the drug is cleared per unit of time, regardless of how high plasma concentration climbs.</mark> This occurs when metabolic enzymes become fully saturated (maxed out). Examples include alcohol and high-dose phenytoin. Small dose increases can cause exponential, dangerous toxicity spikes.</li>
+            <li><strong>Second-Order Kinetics:</strong> Governs complex bimolecular collision and binding rates between molecules at the microscopic receptor level.</li>
+          </ul>
 
           <div class="table-container">
             <table>
@@ -365,20 +387,20 @@
                 <tr>
                   <td><strong>First-Order</strong></td>
                   <td>Constant percentage cleared per unit time</td>
-                  <td>Enzymes unsaturated (plenty of capacity)</td>
-                  <td>Standard for most drugs; predictable half-life and steady state.</td>
+                  <td>Enzymes unsaturated (ample capacity)</td>
+                  <td>Standard predictable clearance; constant half-life.</td>
                 </tr>
                 <tr>
                   <td><strong>Zero-Order</strong></td>
                   <td>Constant absolute amount cleared per unit time</td>
                   <td>Enzymes fully saturated (maxed out)</td>
-                  <td>Dangerous! Small dose increases cause disproportionate toxic spikes (e.g., alcohol, phenytoin).</td>
+                  <td>High toxicity risk; small dose bumps cause massive plasma surges.</td>
                 </tr>
                 <tr>
                   <td><strong>Second-Order</strong></td>
-                  <td>Rate depends on collision/interaction of two reactants</td>
+                  <td>Rate depends on interaction of two reactants</td>
                   <td>Bimolecular binding phase</td>
-                  <td>Advanced molecular receptor kinetics and complex enzymatic binding models.</td>
+                  <td>Advanced molecular receptor dynamics and enzyme-substrate kinetics.</td>
                 </tr>
               </tbody>
             </table>
@@ -387,33 +409,26 @@
 
         <!-- CYP METABOLISM SECTION -->
         <div id="sec-cyp" class="content-card">
-          <h2>3. Drug Biotransformation: Cytochrome P450 &amp; Conjugation</h2>
-          <p>Once distributed, lipophilic drugs must be biotransformed into water-soluble molecules for easy renal excretion. This happens across two main phases:</p>
+          <h2>3. Hepatic Biotransformation: Cytochrome P450 System</h2>
+          <p>Metabolic conversion transforms lipophilic drugs into water-soluble compounds for renal excretion through two primary phases:</p>
           <ul>
-            <li><strong>Phase I Reactions:</strong> Oxidation, reduction, and hydrolysis handled primarily by the hepatic <strong>Cytochrome P450 (CYP)</strong> enzyme family.</li>
-            <li><strong>Phase II Reactions (Conjugation):</strong> Attaching bulky polar groups (like glucuronic acid). Phase II glucuronidation is remarkably resilient against normal aging, making drugs cleared via glucuronidation (such as lorazepam) much safer in geriatric patients.</li>
-          </ul>
-
-          <h3>Major CYP Isoenzymes</h3>
-          <ul>
-            <li><strong>CYP 3A4/5:</strong> The heavy lifter handling ~50% of drug oxidation. Strongly inhibited by furanocoumarins in grapefruit juice.</li>
-            <li><strong>CYP 2D6:</strong> Metabolizes ~30% of psychotropics, including antidepressants and antipsychotics. Features high genetic variation among human populations.</li>
-            <li><strong>CYP 1A2:</strong> Metabolizes tricyclics and clozapine; heavily induced by tobacco smoke hydrocarbons.</li>
+            <li><strong>Phase I Reactions:</strong> Oxidation, reduction, and hydrolysis managed primarily by the hepatic <strong>Cytochrome P450 (CYP)</strong> enzyme family (such as CYP3A4, CYP2D6, and CYP1A2).</li>
+            <li><strong>Phase II Reactions (Conjugation):</strong> Attaching bulky polar groups (like glucuronic acid). Phase II glucuronidation is remarkably resilient against normal aging, making drugs cleared via conjugation safer in geriatric populations.</li>
           </ul>
         </div>
 
         <!-- DRUG INTERACTIONS & SAFETY -->
         <div id="sec-interactions" class="content-card">
           <h2>4. Drug Interactions &amp; Patient Safety Protocols</h2>
-          <p>Pharmacokinetic drug interactions represent one of the most common preventable causes of adverse events in healthcare:</p>
+          <p>Understanding pharmacokinetic principles prevents adverse clinical events resulting from drug interactions:</p>
           <ul>
-            <li><strong>Competitive Inhibition:</strong> Co-prescribing two drugs utilizing the same CYP pathway causes one to block the other, leading to dangerous serum accumulation.</li>
-            <li><strong>Enzyme Induction vs. Inhibition:</strong> Remember that <mark>enzyme induction takes days to weeks</mark> (requiring new protein synthesis), whereas <mark>enzyme inhibition is rapid</mark> (manifesting toxicity within 24 to 72 hours).</li>
+            <li><strong>Competitive Inhibition:</strong> Co-prescribing medications that utilize the same CYP enzyme pathway leads to competition, blocking metabolism and causing dangerous drug accumulation.</li>
+            <li><strong>Induction vs. Inhibition:</strong> <mark>Enzyme induction takes days to weeks</mark> (requiring new protein synthesis), whereas <mark>enzyme inhibition is rapid</mark> (manifesting toxicity within 24 to 72 hours).</li>
           </ul>
 
           <div class="mnemonic-box">
-            <h4>💡 High-Yield Safety Rule</h4>
-            <p>Always review a patient's concurrent medications, herbal supplements, and dietary habits (like grapefruit juice or tobacco use) before initiating drugs with a narrow therapeutic index.</p>
+            <h4>💡 High-Yield Clinical Rule</h4>
+            <p>Always evaluate renal function (GFR), hepatic health, and concurrent dietary or herbal supplement use before calculating dosing regimens for drugs with a narrow therapeutic index.</p>
           </div>
         </div>
 
@@ -429,40 +444,39 @@
       overlay.classList.toggle('open');
     }
 
-    function runRxSim(type) {
-      const particle = document.getElementById('rxParticle');
-      const status = document.getElementById('rxStatusMsg');
+    function updateGraph(type) {
+      const canvas = document.getElementById('graphCanvas');
+      const status = document.getElementById('graphStatusMsg');
+      canvas.innerHTML = '';
 
-      particle.style.transition = 'all 1.2s cubic-bezier(0.25, 1, 0.5, 1)';
-      particle.style.left = 'calc(100% - 110px)';
-      particle.style.top = '95px';
+      let heights = [];
+      if (type === 'iv') {
+        heights = [95, 75, 55, 35, 20, 10];
+        status.innerHTML = "⚡ <strong>IV Bolus Curve:</strong> Plasma concentration starts at maximum peak instantly at 0h, then declines smoothly in a first-order elimination curve.";
+      } else if (type === 'oral') {
+        heights = [10, 45, 85, 60, 35, 15];
+        status.innerHTML = "💊 <strong>Oral Administration Curve:</strong> Concentration starts at zero, rises gradually during absorption to reach peak plasma concentration ($C_{max}$), then declines.";
+      } else {
+        heights = [30, 60, 50, 75, 65, 80];
+        status.innerHTML = "🔄 <strong>Steady State Accumulation:</strong> Repeated dosing builds cumulative plasma levels until peaks and troughs stabilize at a consistent therapeutic plateau.";
+      }
 
-      setTimeout(() => {
-        if (type === 'agonist') {
-          particle.style.background = '#10b981';
-          particle.style.boxShadow = '0 0 18px #10b981';
-          status.innerHTML = "🟢 <strong>Full Agonist Bound:</strong> Maximum biological response triggered. Receptor fully activated; optimal cellular signaling cascade initiated.";
-        } else if (type === 'partial') {
-          particle.style.background = '#f59e0b';
-          particle.style.boxShadow = '0 0 18px #f59e0b';
-          status.innerHTML = "🟡 <strong>Partial Agonist Bound:</strong> Intermediate sub-maximal response generated. Modulates activity depending on endogenous ligand presence.";
-        } else {
-          particle.style.background = '#ef4444';
-          particle.style.boxShadow = '0 0 18px #ef4444';
-          status.innerHTML = "🔴 <strong>Neutral Antagonist Bound:</strong> Zero intrinsic activity. Receptor site blocked; baseline resting state maintained securely.";
-        }
-      }, 1200);
+      heights.forEach((h, index) => {
+        const bar = document.createElement('div');
+        bar.style.width = '12%_';
+        bar.style.width = '32px';
+        bar.style.height = h + '%';
+        bar.style.background = 'linear-gradient(180deg, #38bdf8 0%, #0284c7 100%)';
+        bar.style.borderRadius = '6px 6px 0 0';
+        bar.style.transition = 'height 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
+        canvas.appendChild(bar);
+      });
     }
 
-    function resetRxSim() {
-      const particle = document.getElementById('rxParticle');
-      particle.style.transition = 'all 0.5s ease';
-      particle.style.left = '20px';
-      particle.style.top = '95px';
-      particle.style.background = '#38bdf8';
-      particle.style.boxShadow = '0 0 14px #38bdf8';
-      document.getElementById('rxStatusMsg').innerText = "Select a ligand type above to observe binding affinity dynamics and cellular activation output.";
-    }
+    // Initialize default graph
+    window.onload = function() {
+      updateGraph('iv');
+    };
   </script>
 </body>
 </html>
