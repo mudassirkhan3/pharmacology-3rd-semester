@@ -245,9 +245,10 @@
           <li><a href="#sec-protein" class="sidebar-sub">↳ Protein Binding &amp; Albumin</a></li>
           <li><a href="#sec-metabolism">3. Metabolism &amp; CYP450</a></li>
           <li><a href="#sec-excretion">4. Excretion &amp; Clearance</a></li>
-          <li><a href="#sec-kinetics">5. Drug Kinetics &amp; Half-Life</a></li>
+          <li><a href="#sec-kinetics">5. Drug Kinetics, Half-Life &amp; Orders</a></li>
           <li><a href="#sec-pd">6. Pharmacodynamics (PD) &amp; Receptors</a></li>
-          <li><a href="#sec-affinity" class="sidebar-sub">↳ Affinity, Efficacy &amp; Therapeutic Index</a></li>
+          <li><a href="#sec-affinity" class="sidebar-sub">↳ Agonists, Antagonists &amp; Intrinsic Activity</a></li>
+          <li><a href="#sec-ti" class="sidebar-sub">↳ Therapeutic Index &amp; Safety Margin</a></li>
           <li><a href="#sec-clinical">7. Clinical Significance &amp; Teamwork</a></li>
         </ul>
       </div>
@@ -289,9 +290,10 @@
             <li><a href="#sec-protein" onclick="toggleMenu()">↳ Protein Binding &amp; Albumin</a></li>
             <li><a href="#sec-metabolism" onclick="toggleMenu()">3. Metabolism &amp; CYP450</a></li>
             <li><a href="#sec-excretion" onclick="toggleMenu()">4. Excretion &amp; Clearance</a></li>
-            <li><a href="#sec-kinetics" onclick="toggleMenu()">5. Drug Kinetics &amp; Half-Life</a></li>
+            <li><a href="#sec-kinetics" onclick="toggleMenu()">5. Drug Kinetics, Half-Life &amp; Orders</a></li>
             <li><a href="#sec-pd" onclick="toggleMenu()">6. Pharmacodynamics (PD) &amp; Receptors</a></li>
-            <li><a href="#sec-affinity" onclick="toggleMenu()">↳ Affinity, Efficacy &amp; Therapeutic Index</a></li>
+            <li><a href="#sec-affinity" onclick="toggleMenu()">↳ Agonists, Antagonists &amp; Intrinsic Activity</a></li>
+            <li><a href="#sec-ti" onclick="toggleMenu()">↳ Therapeutic Index &amp; Safety Margin</a></li>
             <li><a href="#sec-clinical" onclick="toggleMenu()">7. Clinical Significance &amp; Teamwork</a></li>
           </ul>
         </div>
@@ -471,23 +473,59 @@
 
         <!-- KINETICS & HALF LIFE -->
         <div id="sec-kinetics" class="content-card">
-          <h2>5. Drug Kinetics, Half-Life, and Steady State</h2>
-          <p>Drug elimination follows specific kinetic models:</p>
-          <ul>
-            <li><strong>First-Order Kinetics:</strong> Constant fraction eliminated per unit time (exponential half-life). Used by most drugs.</li>
-            <li><strong>Zero-Order Kinetics:</strong> Constant amount eliminated per hour due to enzyme saturation (e.g., alcohol, high-dose phenytoin).</li>
-          </ul>
+          <h2>5. Drug Kinetics: First-Order vs. Zero-Order Elimination &amp; Half-Life</h2>
+          <p>Understanding how drugs are eliminated from the body is essential for calculating dosing schedules and avoiding toxicity. Elimination kinetics are primarily categorized into two types:</p>
+
+          <h3>First-Order Elimination Kinetics</h3>
+          <p>In <mark>first-order kinetics</mark>, a constant <em>fraction</em> (percentage) of the drug is eliminated per unit of time. The rate of elimination is directly proportional to the drug concentration remaining in the body. Because of this exponential decline, the drug has a constant <mark>half-life ($t_{1/2}$)</mark> regardless of how high the starting dose is. The vast majority of therapeutic drugs follow first-order kinetics at clinical doses.</p>
+          
+          <h3>Zero-Order Elimination Kinetics</h3>
+          <p>In <mark>zero-order kinetics</mark>, a constant <em>amount</em> of drug is eliminated per unit of time, regardless of how high the plasma concentration is. This occurs when elimination pathways (such as hepatic enzymes or renal transporters) become completely saturated. Examples of drugs that exhibit zero-order kinetics at high or therapeutic doses include <strong>ethanol, high-dose phenytoin, and aspirin (salicylate overdose)</strong>.</p>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Kinetic Property</th>
+                  <th>First-Order Kinetics</th>
+                  <th>Zero-Order Kinetics</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Elimination Rate</strong></td>
+                  <td>Proportional to drug concentration (constant fraction/%).</td>
+                  <td>Constant amount per hour (independent of concentration).</td>
+                </tr>
+                <tr>
+                  <td><strong>Half-Life ($t_{1/2}$)</strong></td>
+                  <td>Constant half-life time across different doses.</td>
+                  <td>No true constant half-life (elimination time lengthens as dose increases).</td>
+                </tr>
+                <tr>
+                  <td><strong>Enzyme Status</strong></td>
+                  <td>Enzymes are <em>not</em> saturated; plenty of binding capacity.</td>
+                  <td>Enzymes are <strong>fully saturated</strong> ($V_{max}$ reached).</td>
+                </tr>
+                <tr>
+                  <td><strong>Clinical Risk</strong></td>
+                  <td>Predictable clearing; easy to titrate maintenance dosing.</td>
+                  <td>High risk of sudden toxicity because a small extra dose can cause disproportionate accumulation.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
           <p>Half-life ($t_{1/2}$) formula: $$t_{1/2} = \frac{0.693 \times Vd}{Clearance}$$</p>
-          <p>Therapeutic steady state and complete elimination are both achieved after <mark>4 to 5 half-lives</mark>.</p>
+          <p>Therapeutic steady state and complete elimination are both achieved after <mark>4 to 5 half-lives</mark> under regular first-order dosing regimens.</p>
 
           <!-- INTERACTIVE GRAPH SIMULATION -->
           <div class="sim-container">
             <div class="sim-header">
               <h3>📈 Interactive Plasma Concentration &amp; Elimination Graph</h3>
               <div class="sim-controls">
-                <button class="sim-btn" onclick="updateGraph('iv')">IV Bolus Curve</button>
-                <button class="sim-btn secondary" onclick="updateGraph('oral')">Oral Absorption</button>
+                <button class="sim-btn" onclick="updateGraph('iv')">IV Bolus (First-Order)</button>
+                <button class="sim-btn secondary" onclick="updateGraph('zero')">Zero-Order Saturation</button>
                 <button class="sim-btn secondary" onclick="updateGraph('steady')">Steady State (4-5 $t_{1/2}$)</button>
               </div>
             </div>
@@ -545,10 +583,10 @@
           <p><strong>Immediate effects</strong> occur within seconds (e.g., succinylcholine depolarizing neuromuscular junctions), whereas <strong>delayed effects</strong> require biological turnover time (e.g., chemotherapy bone marrow suppression).</p>
         </div>
 
-        <!-- AFFINITY, EFFICACY, INTRINSIC ACTIVITY & THERAPEUTIC INDEX -->
+        <!-- AGONISTS, ANTAGONISTS, INTRINSIC ACTIVITY & POTENCY -->
         <div id="sec-affinity" class="content-card">
-          <h2>Receptor Pharmacology: Affinity, Intrinsic Activity, Agonists, &amp; Therapeutic Index</h2>
-          <p>Receptor interactions define drug potency, efficacy, and safety margins:</p>
+          <h2>Receptor Pharmacology: Affinity, Intrinsic Activity, Agonists, &amp; Antagonists</h2>
+          <p>Receptor interactions define drug potency, efficacy, and cellular response profiles:</p>
 
           <div class="table-container">
             <table>
@@ -564,35 +602,68 @@
                   <td>How tightly a drug binds to its receptor ($K_d = k_{off}/k_{on}$). A <em>lower</em> $K_d$ value indicates higher binding affinity (e.g., albuterol).</td>
                 </tr>
                 <tr>
-                  <td><strong>Intrinsic Activity &amp; Efficacy</strong></td>
-                  <td>The measure of a drug's ability to activate a receptor and produce a physiological response once bound. Full agonists have high efficacy; antagonists have zero intrinsic activity.</td>
+                  <td><strong>Intrinsic Activity ($\alpha$)</strong></td>
+                  <td>The measure of a drug's ability to activate a receptor and produce a physiological response once bound. Full agonists have $\alpha = 1$; antagonists have $\alpha = 0$.</td>
                 </tr>
                 <tr>
                   <td><strong>Full Agonist</strong></td>
-                  <td>Binds to receptors and produces maximum biological response (Intrinsic activity = 1).</td>
+                  <td>Binds to receptors and produces maximum biological response (Intrinsic activity = 1.0).</td>
                 </tr>
                 <tr>
                   <td><strong>Partial Agonist</strong></td>
-                  <td>Binds to receptors but produces a submaximal response even at 100% occupancy (Intrinsic activity between 0 and 1).</td>
+                  <td>Binds to receptors but produces a submaximal response even at 100% occupancy (Intrinsic activity between 0 and 1.0). Can act as an antagonist in the presence of a full agonist.</td>
                 </tr>
                 <tr>
                   <td><strong>Competitive Antagonist</strong></td>
-                  <td>Binds reversibly to the active site, shifting the agonist dose-response curve to the <em>right</em> without lowering $E_{max}$.</td>
+                  <td>Binds reversibly to the active site. It shifts the agonist dose-response curve to the <em>right</em> without lowering the maximum efficacy ($E_{max}$), because high agonist concentrations can outcompete it.</td>
                 </tr>
                 <tr>
                   <td><strong>Non-Competitive Antagonist</strong></td>
-                  <td>Binds irreversibly (or to an allosteric site), lowering the total available $E_{max}$.</td>
+                  <td>Binds irreversibly (or to an allosteric site), permanently reducing the total available functional receptors and depressing the total $E_{max}$.</td>
                 </tr>
                 <tr>
                   <td><strong>Potency vs. Efficacy</strong></td>
                   <td><strong>Potency</strong> refers to the amount of drug needed for a given effect ($EC_{50}$). <strong>Efficacy</strong> refers to the maximum effect ($E_{max}$) a drug can produce. Clinically, efficacy is far more important than potency.</td>
                 </tr>
-                <tr>
-                  <td><strong>Therapeutic Index (TI)</strong></td>
-                  <td>Ratio of the toxic dose to the effective dose ($TD_{50} / ED_{50}$). A narrow therapeutic index means small dosing changes can lead to severe toxicity (e.g., warfarin, digoxin).</td>
-                </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+
+        <!-- THERAPEUTIC INDEX SECTION & GRAPH -->
+        <div id="sec-ti" class="content-card">
+          <h2>Therapeutic Index (TI) &amp; Safety Margins</h2>
+          <p>The <strong>Therapeutic Index (TI)</strong> is a quantitative measurement of the relative safety of a drug. It compares the dose that produces toxicity in 50% of populations ($TD_{50}$) or lethal dose ($LD_{50}$) to the dose that produces the desired therapeutic effect in 50% of populations ($ED_{50}$):</p>
+          
+          <p style="text-align: center; font-weight: 800; font-family: monospace; background: #f1f5f9; padding: 12px; border-radius: 10px; margin: 14px 0;">Therapeutic Index (TI) = $TD_{50}$ / $ED_{50}$ (or $LD_{50}$ / $ED_{50}$)</p>
+
+          <p>Drugs with a <mark>narrow therapeutic index</mark> (e.g., <strong>warfarin, digoxin, lithium, theophylline, gentamicin</strong>) require strict therapeutic drug monitoring (TDM) because small increases in concentration can easily transition from a therapeutic effect into severe toxicity or death.</p>
+
+          <!-- THERAPEUTIC INDEX VISUALIZER CONTAINER -->
+          <div class="sim-container">
+            <div class="sim-header">
+              <h3>📊 Therapeutic Index &amp; Safety Margin Visualizer</h3>
+              <div class="sim-controls">
+                <button class="sim-btn" onclick="updateTI('narrow')">Narrow TI Drug (e.g., Digoxin)</button>
+                <button class="sim-btn secondary" onclick="updateTI('wide')">Wide TI Drug (e.g., Penicillin)</button>
+              </div>
+            </div>
+            
+            <div class="graph-screen" style="flex-direction: column; justify-content: flex-end; padding-bottom: 30px;">
+              <div style="display: flex; justify-content: space-between; width: 100%; height: 100%; align-items: flex-end; padding: 0 10px;" id="tiBarsCanvas">
+                <!-- Dynamically rendered TI bars -->
+              </div>
+              <div class="graph-axis-x" style="position: relative; left: 0; right: 0; bottom: 0; margin-top: 10px;">
+                <span>Low Dose (0mg)</span>
+                <span>$ED_{50}$ (Therapeutic)</span>
+                <span>$TD_{50}$ (Toxic)</span>
+                <span>High Dose</span>
+              </div>
+            </div>
+
+            <div class="sim-status" id="tiStatusMsg">
+              Select a drug profile above to compare safety margins between narrow and wide therapeutic index agents.
+            </div>
           </div>
 
           <h3>Receptor Occupancy, Up- &amp; Downregulation, and Tolerance</h3>
@@ -669,10 +740,10 @@
       let heights = [];
       if (type === 'iv') {
         heights = [95, 48, 24, 12, 6, 3];
-        status.innerHTML = "⚡ <strong>IV Bolus Kinetics:</strong> Concentration starts at 100% peak and halves every $t_{1/2}$, achieving 97% elimination by 5 half-lives.";
-      } else if (type === 'oral') {
-        heights = [15, 65, 90, 55, 30, 15];
-        status.innerHTML = "💊 <strong>Oral Absorption Curve:</strong> Concentration rises as the drug is absorbed from the gut, peaks ($C_{max}$), and then declines following first-order elimination.";
+        status.innerHTML = "⚡ <strong>IV Bolus First-Order Kinetics:</strong> Concentration starts at 100% peak and halves every $t_{1/2}$, achieving 97% elimination by 5 half-lives.";
+      } else if (type === 'zero') {
+        heights = [90, 80, 70, 60, 50, 40];
+        status.innerHTML = "🛑 <strong>Zero-Order Saturation Kinetics:</strong> Elimination rate is constant per hour regardless of concentration (linear decline due to enzyme saturation).";
       } else {
         heights = [30, 55, 70, 85, 90, 90];
         status.innerHTML = "🔄 <strong>Steady State:</strong> Regular scheduled dosing accumulates drug levels until input equals clearance, stabilizing after 4 to 5 half-lives.";
@@ -686,9 +757,59 @@
       });
     }
 
+    function updateTI(type) {
+      const canvas = document.getElementById('tiBarsCanvas');
+      const status = document.getElementById('tiStatusMsg');
+      canvas.innerHTML = '';
+
+      let barHeights = [];
+      if (type === 'narrow') {
+        barHeights = [
+          { label: 'ED50 (Eff)', h: '40%', color: '#38bdf8' },
+          { label: 'TD50 (Tox)', h: '55%', color: '#f87171' }
+        ];
+        status.innerHTML = "⚠️ <strong>Narrow Therapeutic Index (e.g., Digoxin):</strong> Notice how close the effective dose ($ED_{50}$) is to the toxic dose ($TD_{50}$). Very tight safety margin requires blood monitoring!";
+      } else {
+        barHeights = [
+          { label: 'ED50 (Eff)', h: '30%', color: '#38bdf8' },
+          { label: 'TD50 (Tox)', h: '95%', color: '#4ade80' }
+        ];
+        status.innerHTML = "🛡️ <strong>Wide Therapeutic Index (e.g., Penicillin):</strong> There is a massive safety margin between the dose that cures and the dose that causes toxicity. Extremely safe to administer.";
+      }
+
+      barHeights.forEach((item) => {
+        const wrapper = document.createElement('div');
+        wrapper.style.display = 'flex';
+        wrapper.style.flexDirection = 'column';
+        wrapper.style.alignItems = 'center';
+        wrapper.style.flex = '1';
+        wrapper.style.height = '100%';
+        wrapper.style.justifyContent = 'flex-end';
+        wrapper.style.padding = '0 15px';
+
+        const bar = document.createElement('div');
+        bar.className = 'sim-bar';
+        bar.style.height = item.h;
+        bar.style.background = item.color;
+        bar.style.width = '60px';
+
+        const lbl = document.createElement('div');
+        lbl.style.fontSize = '0.72rem';
+        lbl.style.color = '#cbd5e1';
+        lbl.style.marginTop = '8px';
+        lbl.style.fontWeight = '700';
+        lbl.innerText = item.label;
+
+        wrapper.appendChild(bar);
+        wrapper.appendChild(lbl);
+        canvas.appendChild(wrapper);
+      });
+    }
+
     window.onload = function() {
       updateGraph('iv');
       runAdme('absorption');
+      updateTI('narrow');
     };
   </script>
 </body>
