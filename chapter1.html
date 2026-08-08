@@ -49,6 +49,12 @@
     .sidebar-menu a:hover, .sidebar-menu a.active { background: #f0f9ff; color: var(--primary-dark); transform: translateX(2px); }
     .sidebar-sub { padding-left: 16px; font-size: 0.74rem !important; }
 
+    @media(min-width: 1024px) {
+      .pc-sidebar { display: flex; }
+      .mobile-navbar { display: none !important; }
+      .main-content-area { margin-left: 280px; }
+    }
+
     /* Polished Mobile Navbar */
     .mobile-navbar { 
       display: flex; position: sticky; top: 0; z-index: 100; 
@@ -149,3 +155,80 @@
       background: #1e293b; border-radius: 10px; height: 180px; position: relative; overflow: hidden;
       display: flex; align-items: center; justify-content: space-around; padding: 10px; border: 1px solid #334155; margin-bottom: 10px;
     }
+  </style>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar for PC -->
+    <aside class="pc-sidebar">
+      <div>
+        <a href="#" class="sidebar-brand">
+          <div class="pulse-box">💊</div>
+          <span>Pharmacology 3rd Sem</span>
+        </a>
+        <ul class="sidebar-menu">
+          <li><a href="chapter1.html" class="active">📖 Chapter 1: Intro</a></li>
+          <li><a href="chapter2.html">📖 Chapter 2: Pharmacokinetics</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Mobile Header -->
+    <div class="main-content-area">
+      <header class="mobile-navbar">
+        <a href="#" class="brand">
+          <div class="pulse-box" style="width: 28px; height: 28px; font-size: 0.8rem; border-radius: 6px;">💊</div>
+          <span>Chapter 1: Intro</span>
+        </a>
+        <button class="menu-toggle" onclick="toggleDrawer()">Menu ☰</button>
+      </header>
+
+      <!-- Main Wrapper -->
+      <main class="main-wrapper">
+        <section class="chapter-hero">
+          <span class="badge-unit">Unit 1</span>
+          <h1>Introduction to Pharmacology</h1>
+          <p>Explore the fundamental definitions, branches, drug nomenclature, and core pharmacological principles.</p>
+        </section>
+
+        <section class="content-card">
+          <h2>1. Definition & Core Branches</h2>
+          <p><strong>Pharmacology</strong> is the comprehensive study of drugs, their sources, chemical properties, biological effects, and therapeutic uses in living systems.</p>
+          
+          <h3>Key Sub-Branches</h3>
+          <ul>
+            <li><strong>Pharmacokinetics (PK):</strong> What the <mark>body does to the drug</mark> (Absorption, Distribution, Metabolism, Excretion - ADME).</li>
+            <li><strong>Pharmacodynamics (PD):</strong> What the <mark>drug does to the body</mark> (Mechanisms of action, receptor binding, therapeutic vs. adverse effects).</li>
+            <li><strong>Pharmacotherapeutics:</strong> The clinical application of drugs to prevent, diagnose, or treat diseases.</li>
+            <li><strong>Toxicology:</strong> The study of poisons, adverse drug effects, and drug toxicities.</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Overlay -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
+  <div class="drawer" id="mobileDrawer">
+    <div>
+      <div class="drawer-header">
+        <strong>Navigation Menu</strong>
+        <button onclick="toggleDrawer()" style="background:none; border:none; font-size:1.1rem; cursor:pointer;">✕</button>
+      </div>
+      <ul class="drawer-menu">
+        <li><a href="chapter1.html" class="active">📖 Chapter 1: Intro</a></li>
+        <li><a href="chapter2.html">📖 Chapter 2: Pharmacokinetics</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function toggleDrawer() {
+      const drawer = document.getElementById('mobileDrawer');
+      const overlay = document.getElementById('drawerOverlay');
+      drawer.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
