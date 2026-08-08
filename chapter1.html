@@ -24,6 +24,9 @@
       --shadow-lg: 0 10px 30px -5px rgba(15, 23, 42, 0.1);
       --highlight: #fef08a;
       --highlight-alt: #ccfbf1;
+      --graph-line-1: #38bdf8; /* Sky 400 */
+      --graph-line-2: #f59e0b; /* Amber 500 */
+      --graph-grid: #334155;   /* Slate 700 */
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -48,12 +51,6 @@
     }
     .sidebar-menu a:hover, .sidebar-menu a.active { background: #f0f9ff; color: var(--primary-dark); transform: translateX(2px); }
     .sidebar-sub { padding-left: 16px; font-size: 0.74rem !important; }
-
-    @media(min-width: 1024px) {
-      .pc-sidebar { display: flex; }
-      .mobile-navbar { display: none !important; }
-      .main-content-area { margin-left: 280px; }
-    }
 
     /* Polished Mobile Navbar */
     .mobile-navbar { 
@@ -92,7 +89,7 @@
     .chapter-hero p { color: #bae6fd; font-size: 0.82rem; line-height: 1.55; }
     .badge-unit { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(4px); padding: 4px 10px; border-radius: 20px; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.2); }
 
-    /* Content Cards */
+    /* Content Cards optimized for mobile alignment */
     .content-card {
       background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 16px 12px; margin-bottom: 16px; box-shadow: var(--shadow); width: 100%; word-break: break-word; overflow-wrap: break-word;
@@ -137,7 +134,7 @@
     tr:last-child td { border-bottom: none; }
     tr:nth-child(even) { background: #f8fafc; }
 
-    /* Interactive ADME Simulation with Animated Drug Tag */
+    /* Interactive ADME Animation Simulation */
     .adme-sim-container {
       background: #0f172a; color: white; border-radius: var(--radius); padding: 16px 10px; margin: 16px 0;
       border: 1px solid #1e293b;
@@ -145,258 +142,11 @@
     .adme-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
     .adme-header h3 { font-size: 0.9rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 4px; }
     .adme-controls { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; width: 100%; }
-    @media(min-width: 640px) { .adme-controls { grid-template-columns: repeat(4, 1fr); } }
     .adme-btn {
       background: var(--primary); color: white; border: none; padding: 8px 10px; border-radius: 8px;
-      font-size: 0.72rem; font-weight: 700; cursor: pointer; text-align: center; transition: background 0.3s;
+      font-size: 0.72rem; font-weight: 700; cursor: pointer; text-align: center;
     }
     .adme-btn.active-stage { background: #0d9488; }
 
     .body-canvas {
-      background: #1e293b; border-radius: 10px; height: 160px; position: relative; overflow: hidden;
-      display: flex; align-items: center; justify-content: space-around; padding: 10px; border: 1px solid #334155; margin: 12px 0;
-    }
-    .organ-node {
-      background: rgba(255, 255, 255, 0.05); border: 1px dashed rgba(255, 255, 255, 0.2);
-      border-radius: 8px; padding: 8px; text-align: center; font-size: 0.7rem; width: 22%; color: #94a3b8;
-    }
-    .organ-node.active { border-color: #38bdf8; color: #38bdf8; background: rgba(56, 189, 248, 0.1); }
-    
-    /* Animated Drug Tag */
-    .animated-drug-tag {
-      position: absolute; top: 50%; left: 10px; transform: translateY(-50%);
-      background: linear-gradient(135deg, #f59e0b, #d97706); color: white;
-      padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 800;
-      box-shadow: 0 0 12px rgba(245, 158, 11, 0.6); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 10;
-    }
-    .adme-desc { font-size: 0.8rem; color: #cbd5e1; text-align: center; margin-top: 8px; min-height: 36px; }
-
-    /* Graph Styling */
-    .sim-graph-box { background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin: 12px 0; }
-    .sim-graph-box h4 { font-size: 0.88rem; font-weight: 800; color: var(--text-dark); margin-bottom: 8px; }
-    .graph-svg { width: 100%; height: 140px; overflow: visible; }
-  </style>
-</head>
-<body>
-
-  <div class="app-layout">
-    <!-- PC Sidebar -->
-    <aside class="pc-sidebar">
-      <div>
-        <a href="#" class="sidebar-brand">
-          <div class="pulse-box">💊</div>
-          <span>PharmLab Nursing</span>
-        </a>
-        <ul class="sidebar-menu">
-          <li><a href="#intro" class="active">1. Intro to Pharmacology</a></li>
-          <li><a href="#adme" class="sidebar-sub">ADME Kinetics & Animated Drug</a></li>
-          <li><a href="#dose-response" class="sidebar-sub">Dose-Response Curve</a></li>
-          <li><a href="#potency-efficacy" class="sidebar-sub">Potency & Efficacy</a></li>
-          <li><a href="#therapeutic-index" class="sidebar-sub">Therapeutic Index (TI)</a></li>
-        </ul>
-      </div>
-    </aside>
-
-    <!-- Mobile Header -->
-    <div class="mobile-navbar">
-      <a href="#" class="brand">
-        <div class="pulse-box" style="width: 30px; height: 30px; font-size: 0.9rem;">💊</div>
-        <span>Pharmacology Unit 1</span>
-      </a>
-      <button class="menu-toggle" onclick="toggleMenu()">Menu ☰</button>
-    </div>
-
-    <!-- Mobile Drawer Overlay & Nav -->
-    <div class="drawer-overlay" id="drawerOverlay" onclick="toggleMenu()"></div>
-    <div class="drawer" id="mobileDrawer">
-      <div>
-        <div class="drawer-header">
-          <span style="font-weight: 800; font-size: 0.9rem;">Quick Navigation</span>
-          <button onclick="toggleMenu()" style="background:none; border:none; font-size:1rem; cursor:pointer;">✕</button>
-        </div>
-        <ul class="drawer-menu">
-          <li><a href="#intro" onclick="toggleMenu()">1. Introduction</a></li>
-          <li><a href="#adme" onclick="toggleMenu()">2. ADME & Animated Drug Tag</a></li>
-          <li><a href="#dose-response" onclick="toggleMenu()">3. Dose-Response Relationship</a></li>
-          <li><a href="#potency-efficacy" onclick="toggleMenu()">4. Potency & Efficacy</a></li>
-          <li><a href="#therapeutic-index" onclick="toggleMenu()">5. Therapeutic Index (TI)</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Main Content Area -->
-    <div class="main-content-area">
-      <div class="main-wrapper">
-        
-        <!-- Hero Section -->
-        <header class="chapter-hero" id="intro">
-          <span class="badge-unit">BS Nursing • Pharmacology Unit 1</span>
-          <h1>Fundamental Principles of Pharmacology & Pharmacodynamics</h1>
-          <p>Master drug movement, dose relationships, potency, efficacy, and clinical safety margins essential for safe nursing administration.</p>
-        </header>
-
-        <!-- ADME Section with Animated Drug Tag -->
-        <section class="content-card" id="adme">
-          <h2>1. Pharmacokinetics & Animated Drug Tag</h2>
-          <p>Pharmacokinetics describes how the body handles a drug through four key stages: <strong>Absorption, Distribution, Metabolism, and Excretion (ADME)</strong>.</p>
-          
-          <div class="adme-sim-container">
-            <div class="adme-header">
-              <h3>⚡ Live Animated Drug Journey</h3>
-              <span style="font-size: 0.72rem; color: #94a3b8;">Click stages to track drug tag movement</span>
-            </div>
-            
-            <div class="body-canvas" id="bodyCanvas">
-              <!-- Animated Drug Tag -->
-              <div class="animated-drug-tag" id="drugTag">💊 Drug</div>
-              
-              <div class="organ-node active" id="node-0">1. Absorption</div>
-              <div class="organ-node" id="node-1">2. Distribution</div>
-              <div class="organ-node" id="node-2">3. Metabolism</div>
-              <div class="organ-node" id="node-3">4. Excretion</div>
-            </div>
-
-            <div class="adme-controls">
-              <button class="adme-btn active-stage" onclick="setAdmeStage(0)">Absorption</button>
-              <button class="adme-btn" onclick="setAdmeStage(1)">Distribution</button>
-              <button class="adme-btn" onclick="setAdmeStage(2)">Metabolism</button>
-              <button class="adme-btn" onclick="setAdmeStage(3)">Excretion</button>
-            </div>
-            
-            <div class="adme-desc" id="admeDesc">
-              <strong>Absorption:</strong> Drug enters bloodstream from administration site (GI tract, muscle, or skin).
-            </div>
-          </div>
-        </section>
-
-        <!-- Dose-Response Relationship Graph -->
-        <section class="content-card" id="dose-response">
-          <h2>2. Drug Dose-Response Relationship</h2>
-          <p>As the dose of a drug increases, the magnitude of its pharmacological response also increases until all receptors become fully saturated (ceiling effect).</p>
-          
-          <div class="sim-graph-box">
-            <h4>📈 Dose vs. Response Curve</h4>
-            <svg class="graph-svg" viewBox="0 0 300 120">
-              <!-- Grid lines -->
-              <line x1="30" y1="100" x2="280" y2="100" stroke="#cbd5e1" stroke-width="2"/>
-              <line x1="30" y1="10" x2="30" y2="100" stroke="#cbd5e1" stroke-width="2"/>
-              
-              <!-- Curve -->
-              <path d="M 30 95 Q 120 90, 160 50 T 270 25" fill="none" stroke="#0284c7" stroke-width="3"/>
-              
-              <!-- Labels -->
-              <text x="140" y="115" font-size="9" fill="#64748b" text-anchor="middle">Drug Dose (Concentration)</text>
-              <text x="15" y="60" font-size="9" fill="#64748b" text-anchor="middle" transform="rotate(-90 15 60)">Response (%)</text>
-              <circle cx="160" cy="50" r="4" fill="#0d9488"/>
-              <text x="165" y="45" font-size="8" fill="#0d9488">EC50 (50% Max Effect)</text>
-            </svg>
-            <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 8px;">
-              <strong>Key Detail:</strong> <mark>EC50</mark> is the dose required to produce 50% of the maximum possible therapeutic response.
-            </p>
-          </div>
-        </section>
-
-        <!-- Potency and Efficacy Concepts -->
-        <section class="content-card" id="potency-efficacy">
-          <h2>3. Potency vs. Efficacy Concepts</h2>
-          <p>Understanding the difference between potency and efficacy is critical when evaluating therapeutic drug options.</p>
-          
-          <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
-            <div class="callout-box" style="margin: 0;">
-              <h4>⚡ Potency</h4>
-              <p>Refers to the <strong>amount of drug</strong> needed to produce a specific biological effect. A more potent drug requires a smaller dose (shifts curve to the left).</p>
-            </div>
-            <div class="example-box" style="margin: 0;">
-              <h4>🌟 Efficacy</h4>
-              <p>Refers to the <strong>maximum therapeutic effect</strong> a drug can produce regardless of dosage. Higher efficacy means a higher maximal response ceiling.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- Therapeutic Index with Formula & Graph -->
-        <section class="content-card" id="therapeutic-index">
-          <h2>4. Therapeutic Index (TI) & Safety Margin</h2>
-          <p>The Therapeutic Index measures a drug's safety margin by comparing the dose that causes toxicity to the dose that produces the desired therapeutic effect.</p>
-          
-          <div class="callout-box">
-            <h4>📐 Therapeutic Index Formula</h4>
-            <p style="font-size: 0.9rem; font-weight: 700; text-align: center; margin: 6px 0;">
-              $$TI = \\frac{TD_{50}}{ED_{50}}$$
-            </p>
-            <p style="font-size: 0.78rem;">
-              Where <strong>TD50</strong> is the Toxic Dose for 50% of the population, and <strong>ED50</strong> is the Effective Dose for 50% of the population. A wider margin indicates a safer drug.
-            </p>
-          </div>
-
-          <div class="sim-graph-box">
-            <h4>📊 Therapeutic Window Curve (ED50 vs TD50)</h4>
-            <svg class="graph-svg" viewBox="0 0 300 120">
-              <line x1="30" y1="100" x2="280" y2="100" stroke="#cbd5e1" stroke-width="2"/>
-              <!-- Therapeutic Curve -->
-              <path d="M 30 95 Q 100 90, 130 30 T 250 20" fill="none" stroke="#0d9488" stroke-width="2.5"/>
-              <text x="110" y="65" font-size="8" fill="#0d9488" font-weight="bold">ED50 (Therapeutic)</text>
-              
-              <!-- Toxic Curve -->
-              <path d="M 90 100 Q 170 95, 200 30 T 280 20" fill="none" stroke="#ef4444" stroke-width="2.5"/>
-              <text x="190" y="65" font-size="8" fill="#ef4444" font-weight="bold">TD50 (Toxic)</text>
-              
-              <text x="140" y="115" font-size="9" fill="#64748b" text-anchor="middle">Log Dose</text>
-            </svg>
-            <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 8px;">
-              <strong>Clinical Significance:</strong> Drugs with a <em>narrow</em> therapeutic index (e.g., Digoxin, Warfarin) require strict therapeutic drug monitoring (TDM) to prevent lethal toxicity.
-            </p>
-          </div>
-        </section>
-
-      </div>
-    </div>
-  </div>
-
-  <script>
-    function toggleMenu() {
-      const drawer = document.getElementById('mobileDrawer');
-      const overlay = document.getElementById('drawerOverlay');
-      drawer.classList.toggle('open');
-      overlay.classList.toggle('open');
-    }
-
-    function setAdmeStage(stageIndex) {
-      // Update buttons
-      const buttons = document.querySelectorAll('.adme-btn');
-      buttons.forEach((btn, idx) => {
-        if (idx === stageIndex) {
-          btn.classList.add('active-stage');
-        } else {
-          btn.classList.remove('active-stage');
-        }
-      });
-
-      // Update organ nodes
-      const nodes = document.querySelectorAll('.organ-node');
-      nodes.forEach((node, idx) => {
-        if (idx === stageIndex) {
-          node.classList.add('active');
-        } else {
-          node.classList.remove('active');
-        }
-      });
-
-      // Move Animated Drug Tag
-      const drugTag = document.getElementById('drugTag');
-      const positions = ['12%', '37%', '62%', '87%'];
-      drugTag.style.left = positions[stageIndex];
-
-      // Update description text
-      const descBox = document.getElementById('admeDesc');
-      const descriptions = [
-        "<strong>Absorption:</strong> Drug enters systemic circulation from administration site (GI tract, muscle, or sublingual mucosa).",
-        "<strong>Distribution:</strong> Blood carries the drug through systemic circulation to target receptor tissues and organs.",
-        "<strong>Metabolism (Biotransformation):</strong> The liver modifies active drug molecules into inactive or active metabolites.",
-        "<strong>Excretion:</strong> Kidneys, lungs, or biliary system eliminate drug waste products from the body."
-      ];
-      descBox.innerHTML = descriptions[stageIndex];
-    }
-  </script>
-</body>
-</html>
+      background: #1e293b; border-radius: 10px; height
