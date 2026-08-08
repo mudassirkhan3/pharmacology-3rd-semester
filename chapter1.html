@@ -243,7 +243,7 @@
           <li><a href="#sec-bioavailability" class="sidebar-sub">↳ Bioavailability &amp; AUC</a></li>
           <li><a href="#sec-distribution">2. Distribution &amp; Vd</a></li>
           <li><a href="#sec-protein" class="sidebar-sub">↳ Protein Binding &amp; Albumin</a></li>
-          <li><a href="#sec-metabolism">3. Metabolism &amp; CYP450</a></li>
+          <li><a href="#sec-metabolism">3. Metabolism &amp; CYP450 Phases</a></li>
           <li><a href="#sec-excretion">4. Excretion &amp; Clearance</a></li>
           <li><a href="#sec-kinetics">5. Drug Kinetics, Half-Life &amp; Orders</a></li>
           <li><a href="#sec-pd">6. Pharmacodynamics (PD) &amp; Receptors</a></li>
@@ -288,7 +288,7 @@
             <li><a href="#sec-bioavailability" onclick="toggleMenu()">↳ Bioavailability &amp; AUC</a></li>
             <li><a href="#sec-distribution" onclick="toggleMenu()">2. Distribution &amp; Vd</a></li>
             <li><a href="#sec-protein" onclick="toggleMenu()">↳ Protein Binding &amp; Albumin</a></li>
-            <li><a href="#sec-metabolism" onclick="toggleMenu()">3. Metabolism &amp; CYP450</a></li>
+            <li><a href="#sec-metabolism" onclick="toggleMenu()">3. Metabolism &amp; CYP450 Phases</a></li>
             <li><a href="#sec-excretion" onclick="toggleMenu()">4. Excretion &amp; Clearance</a></li>
             <li><a href="#sec-kinetics" onclick="toggleMenu()">5. Drug Kinetics, Half-Life &amp; Orders</a></li>
             <li><a href="#sec-pd" onclick="toggleMenu()">6. Pharmacodynamics (PD) &amp; Receptors</a></li>
@@ -454,13 +454,29 @@
           </div>
         </div>
 
-        <!-- METABOLISM SECTION -->
+        <!-- METABOLISM DETAILED SECTION -->
         <div id="sec-metabolism" class="content-card">
-          <h2>3. Metabolism &amp; The Liver</h2>
-          <p><strong>Metabolism</strong> converts lipophilic drugs into water-soluble metabolites for renal clearance, or activates prodrugs (e.g., codeine).</p>
+          <h2>3. Metabolism (Biotransformation): Phase I and Phase II Reactions</h2>
+          <p><strong>Metabolism</strong> (or biotransformation) is the chemical alteration of a drug within the body, primarily occurring in the <strong>liver</strong>, but also in the gut wall, kidneys, and lungs. The ultimate goal of metabolism is to convert active, lipid-soluble (lipophilic) drug compounds into inactive, water-soluble (hydrophilic) metabolites so they can be easily excreted by the kidneys through urine or via bile into feces.</p>
+          
+          <div class="callout-box">
+            <h4>🎯 Prodrug Activation</h4>
+            <p>While metabolism generally inactivates drugs, some medications are administered as inactive precursors called <strong>prodrugs</strong> (e.g., codeine or clopidogrel). Metabolism converts these prodrugs into their active therapeutic forms within the body.</p>
+          </div>
+
+          <h3>Phase I Reactions: Non-Synthetic Modification</h3>
+          <p>Phase I metabolism involves <strong>oxidation, reduction, or hydrolysis</strong>. These chemical reactions introduce or unmask a polar functional group (such as -OH, -NH2, or -SH) on the drug molecule. This slightly increases water solubility and prepares the drug for Phase II conjugation.</p>
           <ul>
-            <li><strong>Phase I (CYP450):</strong> Oxidation reactions creating polar intermediates.</li>
-            <li><strong>Phase II (UGT):</strong> Conjugation reactions ensuring complete water solubility for excretion.</li>
+            <li><strong>The Cytochrome P450 (CYP450) System:</strong> The primary drivers of Phase I oxidation are the hepatic microsomal enzymes, most notably the CYP450 superfamily (e.g., CYP3A4, CYP2D6, CYP2C9).</li>
+            <li><strong>Enzyme Induction:</strong> Certain drugs (like rifampin, carbamazepine, or St. John's wort) increase the synthesis of CYP enzymes, causing other drugs to be metabolized faster and lose therapeutic efficacy.</li>
+            <li><strong>Enzyme Inhibition:</strong> Other drugs (like ketoconazole, erythromycin, or grapefruit juice) block CYP enzymes, slowing down the metabolism of companion drugs and causing toxic accumulation.</li>
+          </ul>
+
+          <h3>Phase II Reactions: Synthetic Conjugation</h3>
+          <p>If Phase I metabolites are still not sufficiently water-soluble to be excreted, they enter <strong>Phase II metabolism</strong>. Phase II reactions involve <strong>conjugation</strong> (attachment) of a large, highly polar, endogenous chemical group to the drug molecule.</p>
+          <ul>
+            <li><strong>Common Conjugation Pathways:</strong> Glucuronidation (via UDP-glucuronosyltransferases or UGT), sulfation, acetylation, methylation, and glutathione conjugation.</li>
+            <li><strong>Outcome:</strong> This creates bulky, highly water-soluble polar conjugates that are virtually inactive pharmacologically and ready for immediate elimination via renal or biliary clearance.</li>
           </ul>
         </div>
 
@@ -477,7 +493,7 @@
           <p>Understanding how drugs are eliminated from the body is essential for calculating dosing schedules and avoiding toxicity. Elimination kinetics are primarily categorized into two types:</p>
 
           <h3>First-Order Elimination Kinetics</h3>
-          <p>In <mark>first-order kinetics</mark>, a constant <em>fraction</em> (percentage) of the drug is eliminated per unit of time. The rate of elimination is directly proportional to the drug concentration remaining in the body. Because of this exponential decline, the drug has a constant <mark>half-life ($t_{1/2}$)</mark> regardless of how high the starting dose is. The vast majority of therapeutic drugs follow first-order kinetics at clinical doses.</p>
+          <p>In <mark>first-order kinetics</mark>, a constant <em>fraction</em> (percentage) of the drug is eliminated per unit of time. The rate of elimination is directly proportional to the drug concentration remaining in the body. Because of this exponential decline, the drug has a constant <mark>half-life (t1/2)</mark> regardless of how high the starting dose is. The vast majority of therapeutic drugs follow first-order kinetics at clinical doses.</p>
           
           <h3>Zero-Order Elimination Kinetics</h3>
           <p>In <mark>zero-order kinetics</mark>, a constant <em>amount</em> of drug is eliminated per unit of time, regardless of how high the plasma concentration is. This occurs when elimination pathways (such as hepatic enzymes or renal transporters) become completely saturated. Examples of drugs that exhibit zero-order kinetics at high or therapeutic doses include <strong>ethanol, high-dose phenytoin, and aspirin (salicylate overdose)</strong>.</p>
@@ -494,18 +510,18 @@
               <tbody>
                 <tr>
                   <td><strong>Elimination Rate</strong></td>
-                  <td>Proportional to drug concentration (constant fraction/%).</td>
+                  <td>Proportional to drug concentration (constant fraction/percentage).</td>
                   <td>Constant amount per hour (independent of concentration).</td>
                 </tr>
                 <tr>
-                  <td><strong>Half-Life ($t_{1/2}$)</strong></td>
+                  <td><strong>Half-Life (t1/2)</strong></td>
                   <td>Constant half-life time across different doses.</td>
                   <td>No true constant half-life (elimination time lengthens as dose increases).</td>
                 </tr>
                 <tr>
                   <td><strong>Enzyme Status</strong></td>
                   <td>Enzymes are <em>not</em> saturated; plenty of binding capacity.</td>
-                  <td>Enzymes are <strong>fully saturated</strong> ($V_{max}$ reached).</td>
+                  <td>Enzymes are <strong>fully saturated</strong> (Vmax reached).</td>
                 </tr>
                 <tr>
                   <td><strong>Clinical Risk</strong></td>
@@ -516,7 +532,7 @@
             </table>
           </div>
 
-          <p>Half-life ($t_{1/2}$) formula: $$t_{1/2} = \frac{0.693 \times Vd}{Clearance}$$</p>
+          <p>Half-life (t1/2) formula: t1/2 = (0.693 × Vd) / Clearance</p>
           <p>Therapeutic steady state and complete elimination are both achieved after <mark>4 to 5 half-lives</mark> under regular first-order dosing regimens.</p>
 
           <!-- INTERACTIVE GRAPH SIMULATION -->
@@ -526,7 +542,7 @@
               <div class="sim-controls">
                 <button class="sim-btn" onclick="updateGraph('iv')">IV Bolus (First-Order)</button>
                 <button class="sim-btn secondary" onclick="updateGraph('zero')">Zero-Order Saturation</button>
-                <button class="sim-btn secondary" onclick="updateGraph('steady')">Steady State (4-5 $t_{1/2}$)</button>
+                <button class="sim-btn secondary" onclick="updateGraph('steady')">Steady State (4-5 t1/2)</button>
               </div>
             </div>
             <div class="graph-screen">
@@ -539,11 +555,11 @@
               <div class="graph-curve" id="graphCanvas"></div>
               <div class="graph-axis-x">
                 <span>0h</span>
-                <span>1t½</span>
-                <span>2t½</span>
-                <span>3t½</span>
-                <span>4t½</span>
-                <span>5t½</span>
+                <span>1t1/2</span>
+                <span>2t1/2</span>
+                <span>3t1/2</span>
+                <span>4t1/2</span>
+                <span>5t1/2</span>
               </div>
             </div>
             <div class="sim-status" id="graphStatusMsg">
@@ -575,7 +591,7 @@
           <ul>
             <li><mark>Emax:</mark> The maximal possible therapeutic effect of a drug.</li>
             <li><mark>EC50:</mark> The drug concentration producing 50% of the maximum effect.</li>
-            <li><mark>Hill Coefficient:</mark> Slope measuring concentration-effect steepness. Values >3 indicate an almost instantaneous "all-or-none" effect.</li>
+            <li><mark>Hill Coefficient:</mark> Slope measuring concentration-effect steepness. Values greater than 3 indicate an almost instantaneous "all-or-none" effect.</li>
           </ul>
 
           <h3>Direct vs. Indirect &amp; Immediate vs. Delayed Effects</h3>
@@ -598,12 +614,12 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>Affinity ($K_d$)</strong></td>
-                  <td>How tightly a drug binds to its receptor ($K_d = k_{off}/k_{on}$). A <em>lower</em> $K_d$ value indicates higher binding affinity (e.g., albuterol).</td>
+                  <td><strong>Affinity (Kd)</strong></td>
+                  <td>How tightly a drug binds to its receptor (Kd = koff/kon). A <em>lower</em> Kd value indicates higher binding affinity (e.g., albuterol).</td>
                 </tr>
                 <tr>
-                  <td><strong>Intrinsic Activity ($\alpha$)</strong></td>
-                  <td>The measure of a drug's ability to activate a receptor and produce a physiological response once bound. Full agonists have $\alpha = 1$; antagonists have $\alpha = 0$.</td>
+                  <td><strong>Intrinsic Activity (alpha)</strong></td>
+                  <td>The measure of a drug's ability to activate a receptor and produce a physiological response once bound. Full agonists have alpha = 1; antagonists have alpha = 0.</td>
                 </tr>
                 <tr>
                   <td><strong>Full Agonist</strong></td>
@@ -615,15 +631,15 @@
                 </tr>
                 <tr>
                   <td><strong>Competitive Antagonist</strong></td>
-                  <td>Binds reversibly to the active site. It shifts the agonist dose-response curve to the <em>right</em> without lowering the maximum efficacy ($E_{max}$), because high agonist concentrations can outcompete it.</td>
+                  <td>Binds reversibly to the active site. It shifts the agonist dose-response curve to the <em>right</em> without lowering the maximum efficacy (Emax), because high agonist concentrations can outcompete it.</td>
                 </tr>
                 <tr>
                   <td><strong>Non-Competitive Antagonist</strong></td>
-                  <td>Binds irreversibly (or to an allosteric site), permanently reducing the total available functional receptors and depressing the total $E_{max}$.</td>
+                  <td>Binds irreversibly (or to an allosteric site), permanently reducing the total available functional receptors and depressing the total Emax.</td>
                 </tr>
                 <tr>
                   <td><strong>Potency vs. Efficacy</strong></td>
-                  <td><strong>Potency</strong> refers to the amount of drug needed for a given effect ($EC_{50}$). <strong>Efficacy</strong> refers to the maximum effect ($E_{max}$) a drug can produce. Clinically, efficacy is far more important than potency.</td>
+                  <td><strong>Potency</strong> refers to the amount of drug needed for a given effect (EC50). <strong>Efficacy</strong> refers to the maximum effect (Emax) a drug can produce. Clinically, efficacy is far more important than potency.</td>
                 </tr>
               </tbody>
             </table>
@@ -633,9 +649,9 @@
         <!-- THERAPEUTIC INDEX SECTION & GRAPH -->
         <div id="sec-ti" class="content-card">
           <h2>Therapeutic Index (TI) &amp; Safety Margins</h2>
-          <p>The <strong>Therapeutic Index (TI)</strong> is a quantitative measurement of the relative safety of a drug. It compares the dose that produces toxicity in 50% of populations ($TD_{50}$) or lethal dose ($LD_{50}$) to the dose that produces the desired therapeutic effect in 50% of populations ($ED_{50}$):</p>
+          <p>The <strong>Therapeutic Index (TI)</strong> is a quantitative measurement of the relative safety of a drug. It compares the dose that produces toxicity in 50% of populations (TD50) or lethal dose (LD50) to the dose that produces the desired therapeutic effect in 50% of populations (ED50):</p>
           
-          <p style="text-align: center; font-weight: 800; font-family: monospace; background: #f1f5f9; padding: 12px; border-radius: 10px; margin: 14px 0;">Therapeutic Index (TI) = $TD_{50}$ / $ED_{50}$ (or $LD_{50}$ / $ED_{50}$)</p>
+          <p style="text-align: center; font-weight: 800; font-family: monospace; background: #f1f5f9; padding: 12px; border-radius: 10px; margin: 14px 0;">Therapeutic Index (TI) = TD50 / ED50 (or LD50 / ED50)</p>
 
           <p>Drugs with a <mark>narrow therapeutic index</mark> (e.g., <strong>warfarin, digoxin, lithium, theophylline, gentamicin</strong>) require strict therapeutic drug monitoring (TDM) because small increases in concentration can easily transition from a therapeutic effect into severe toxicity or death.</p>
 
@@ -655,8 +671,8 @@
               </div>
               <div class="graph-axis-x" style="position: relative; left: 0; right: 0; bottom: 0; margin-top: 10px;">
                 <span>Low Dose (0mg)</span>
-                <span>$ED_{50}$ (Therapeutic)</span>
-                <span>$TD_{50}$ (Toxic)</span>
+                <span>ED50 (Therapeutic)</span>
+                <span>TD50 (Toxic)</span>
                 <span>High Dose</span>
               </div>
             </div>
@@ -667,7 +683,7 @@
           </div>
 
           <h3>Receptor Occupancy, Up- &amp; Downregulation, and Tolerance</h3>
-          <p>According to the <strong>law of mass action</strong>, greater receptor occupancy increases pharmacodynamic response, though many systems feature <em>spare receptors</em> yielding maximal effects at <100% occupancy.</p>
+          <p>According to the <strong>law of mass action</strong>, greater receptor occupancy increases pharmacodynamic response, though many systems feature <em>spare receptors</em> yielding maximal effects at less than 100% occupancy.</p>
           <ul>
             <li><strong>Downregulation:</strong> Chronic agonist exposure decreases receptor density via internalization (e.g., insulin receptors).</li>
             <li><strong>Upregulation:</strong> Chronic antagonist exposure increases receptor density. An exception is nicotine receptors, which upregulate despite being agonists, driving addiction.</li>
@@ -740,7 +756,7 @@
       let heights = [];
       if (type === 'iv') {
         heights = [95, 48, 24, 12, 6, 3];
-        status.innerHTML = "⚡ <strong>IV Bolus First-Order Kinetics:</strong> Concentration starts at 100% peak and halves every $t_{1/2}$, achieving 97% elimination by 5 half-lives.";
+        status.innerHTML = "⚡ <strong>IV Bolus First-Order Kinetics:</strong> Concentration starts at 100% peak and halves every t1/2, achieving 97% elimination by 5 half-lives.";
       } else if (type === 'zero') {
         heights = [90, 80, 70, 60, 50, 40];
         status.innerHTML = "🛑 <strong>Zero-Order Saturation Kinetics:</strong> Elimination rate is constant per hour regardless of concentration (linear decline due to enzyme saturation).";
@@ -768,7 +784,7 @@
           { label: 'ED50 (Eff)', h: '40%', color: '#38bdf8' },
           { label: 'TD50 (Tox)', h: '55%', color: '#f87171' }
         ];
-        status.innerHTML = "⚠️ <strong>Narrow Therapeutic Index (e.g., Digoxin):</strong> Notice how close the effective dose ($ED_{50}$) is to the toxic dose ($TD_{50}$). Very tight safety margin requires blood monitoring!";
+        status.innerHTML = "⚠️ <strong>Narrow Therapeutic Index (e.g., Digoxin):</strong> Notice how close the effective dose (ED50) is to the toxic dose (TD50). Very tight safety margin requires blood monitoring!";
       } else {
         barHeights = [
           { label: 'ED50 (Eff)', h: '30%', color: '#38bdf8' },
