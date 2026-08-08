@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Mastering Pharmacokinetics: ADME, Clearance, &amp; Clinical Kinetics | Ultimate Edition</title>
+  <title>Mastering Pharmacokinetics &amp; Pharmacodynamics | Ultimate Edition</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -107,6 +107,12 @@
     mark { background-color: var(--highlight); padding: 2px 6px; border-radius: 4px; font-weight: 700; color: #1e293b; box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1); }
     .mark-alt { background-color: var(--highlight-alt); color: #042f2e; }
 
+    blockquote {
+      background: #f1f5f9; border-left: 5px solid var(--primary); padding: 16px 20px; border-radius: 0 12px 12px 0;
+      margin: 20px 0; font-style: italic; color: #334155; font-size: 0.92rem; line-height: 1.7;
+    }
+    blockquote cite { display: block; margin-top: 8px; font-weight: 700; font-style: normal; color: var(--primary-dark); font-size: 0.82rem; }
+
     /* Real-Life Example Box */
     .example-box {
       background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
@@ -165,7 +171,6 @@
     .body-station.active .station-icon { background: linear-gradient(135deg, var(--primary), var(--accent)); border-color: #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
     .station-label { font-size: 0.75rem; font-weight: 700; color: #cbd5e1; text-align: center; }
 
-    /* Moving Drug Particle Animation */
     #drugParticle {
       position: absolute; width: 22px; height: 22px; background: #fef08a; border-radius: 50%;
       box-shadow: 0 0 15px #fef08a; z-index: 10; top: 120px; left: 40px;
@@ -229,7 +234,7 @@
       <div>
         <a href="#sec-intro" class="sidebar-brand">
           <div class="pulse-box">🔬</div>
-          <span>Pharmacokinetics Guide</span>
+          <span>Pharmacology Masterclass</span>
         </a>
         <ul class="sidebar-menu">
           <li><a href="#sec-intro" class="active">Introduction &amp; Grogan &amp; Preuss Core</a></li>
@@ -241,11 +246,13 @@
           <li><a href="#sec-metabolism">3. Metabolism &amp; CYP450</a></li>
           <li><a href="#sec-excretion">4. Excretion &amp; Clearance</a></li>
           <li><a href="#sec-kinetics">5. Drug Kinetics &amp; Half-Life</a></li>
-          <li><a href="#sec-clinical">6. Clinical Significance &amp; Teamwork</a></li>
+          <li><a href="#sec-pd">6. Pharmacodynamics (PD) &amp; Receptors</a></li>
+          <li><a href="#sec-affinity" class="sidebar-sub">↳ Affinity, Efficacy &amp; Therapeutic Index</a></li>
+          <li><a href="#sec-clinical">7. Clinical Significance &amp; Teamwork</a></li>
         </ul>
       </div>
       <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; border-top: 1px solid var(--border); padding-top: 14px;">
-        Based on Sean Grogan &amp; Charles V. Preuss • 2026
+        Based on Grogan, Preuss &amp; Locke • 2026
       </div>
     </aside>
 
@@ -255,7 +262,7 @@
       <header class="mobile-navbar">
         <a href="#sec-intro" class="brand">
           <div class="pulse-box">🔬</div>
-          <span>PK Masterclass</span>
+          <span>PK/PD Masterclass</span>
         </a>
         <button class="menu-toggle" onclick="toggleMenu()" aria-label="Open Navigation Menu">
           Menu ☰
@@ -283,7 +290,9 @@
             <li><a href="#sec-metabolism" onclick="toggleMenu()">3. Metabolism &amp; CYP450</a></li>
             <li><a href="#sec-excretion" onclick="toggleMenu()">4. Excretion &amp; Clearance</a></li>
             <li><a href="#sec-kinetics" onclick="toggleMenu()">5. Drug Kinetics &amp; Half-Life</a></li>
-            <li><a href="#sec-clinical" onclick="toggleMenu()">6. Clinical Significance &amp; Teamwork</a></li>
+            <li><a href="#sec-pd" onclick="toggleMenu()">6. Pharmacodynamics (PD) &amp; Receptors</a></li>
+            <li><a href="#sec-affinity" onclick="toggleMenu()">↳ Affinity, Efficacy &amp; Therapeutic Index</a></li>
+            <li><a href="#sec-clinical" onclick="toggleMenu()">7. Clinical Significance &amp; Teamwork</a></li>
           </ul>
         </div>
         <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; padding-top: 14px; border-top: 1px solid var(--border);">
@@ -296,28 +305,25 @@
         <!-- Hero Header -->
         <div class="chapter-hero">
           <span class="badge-unit">Complete Clinical Masterclass</span>
-          <h1>Pharmacokinetics (PK): What Your Body Does to Medication</h1>
-          <p>Based on the foundational work by Sean Grogan and Charles V. Preuss. Explore how drugs travel, adapt, get metabolized, and exit the human body through simple explanations, real-life examples, and interactive ADME animations.</p>
+          <h1>Pharmacokinetics &amp; Pharmacodynamics: The Complete Science of Drugs</h1>
+          <p>Based on foundational works by Sean Grogan, Charles V. Preuss, and John Locke. Master how drugs move through the body (PK) and what drugs do to the body at the molecular and physiological level (PD).</p>
         </div>
 
         <!-- INTRODUCTION SECTION -->
         <div id="sec-intro" class="content-card">
           <h2>Definition &amp; Introduction</h2>
-          <p><mark>Pharmacokinetics (PK)</mark> is the study of how the human body interacts with administered substances throughout their entire duration of exposure. In simple terms: <strong>PK is what your body does to the drug.</strong></p>
-          <p>This is closely related to, but distinct from, <strong>pharmacodynamics (PD)</strong>, which examines what the drug does to your body (its biological effects and receptor interactions).</p>
+          
+          <blockquote>
+            "Did we but know the mechanical affections of the particles of rhubarb, hemlock, opium, and a man...we should be able to tell beforehand that rhubarb will purge, hemlock kill, and opium make a man sleepy..."
+            <cite>— John Locke, Essay Concerning Human Understanding</cite>
+          </blockquote>
+
+          <p><mark>Pharmacokinetics (PK)</mark> is the study of how the body interacts with administered substances throughout their entire duration of exposure (what the body does to the drug). Conversely, <mark>Pharmacodynamics (PD)</mark> examines the drug’s molecular, biochemical, and physiological effect on the body (what the drug does to the body).</p>
           
           <div class="callout-box">
-            <h4>🎯 Why This Matters for Clinicians and Nurses</h4>
-            <p>Understanding PK allows healthcare practitioners to prescribe and administer medications that provide the <mark>greatest benefit at the lowest risk</mark>, making precise dosage adjustments based on individual patient physiology and lifestyle.</p>
+            <h4>🎯 Core Distinction</h4>
+            <p>Pharmacodynamics studies drug action on the organism, while pharmacokinetics studies how the organism processes the drug. Both make up the two fundamental branches of pharmacology.</p>
           </div>
-          
-          <p>Pharmacokinetics generally examines these four main parameters, famously known as <mark>ADME</mark>:</p>
-          <ul>
-            <li><strong>A</strong>bsorption</li>
-            <li><strong>D</strong>istribution</li>
-            <li><strong>M</strong>etabolism</li>
-            <li><strong>E</strong>xcretion</li>
-          </ul>
         </div>
 
         <!-- LIVE ADME ANIMATION SECTION -->
@@ -369,26 +375,24 @@
         <!-- ABSORPTION SECTION -->
         <div id="sec-absorption" class="content-card">
           <h2>1. Absorption &amp; Liberation</h2>
-          <p><strong>Absorption</strong> is the process that brings a drug from its administration point (such as a tablet or capsule) into your <mark>systemic blood circulation</mark>. It dictates how fast and in what concentration a drug arrives at its target destination.</p>
+          <p><strong>Absorption</strong> is the process that brings a drug from its administration point into your <mark>systemic blood circulation</mark>.</p>
           
           <h3>Methods of Drug Administration</h3>
-          <p>Drugs can enter the body through many routes, each with unique advantages and absorption speeds:</p>
           <ul>
             <li>Oral, intravenous (IV), intramuscular, intrathecal, subcutaneous</li>
-            <li>Buccal, rectal, vaginal, ocular, otic</li>
-            <li>Inhaled, nebulized, and transdermal (skin patches)</li>
+            <li>Buccal, rectal, vaginal, ocular, otic, inhaled, nebulized, and transdermal</li>
           </ul>
 
           <div class="example-box">
             <h4>💡 The Role of Liberation in Oral Medications</h4>
-            <p>Before an oral pill can be absorbed, it undergoes <strong>liberation</strong>—the process where the drug is released from its solid dosage form. If an oral pill gets stuck in the esophagus for hours, it can delay healing or even cause local mucosal damage. Once in the stomach, acidic fluids can chemically react with the drug before it ever reaches the bloodstream.</p>
+            <p>Before absorption, oral drugs undergo <strong>liberation</strong> (release from their dosage form). If delayed in the esophagus, it can cause mucosal irritation. Stomach acid can also chemically degrade active ingredients prematurely.</p>
           </div>
         </div>
 
         <!-- BIOAVAILABILITY & AUC -->
         <div id="sec-bioavailability" class="content-card">
           <h2>Bioavailability &amp; The Area Under the Curve (AUC)</h2>
-          <p><strong>Bioavailability (F)</strong> is the fraction of the originally administered drug dose that successfully arrives in systemic circulation in an active form. It is a direct reflection of absorption efficiency.</p>
+          <p><strong>Bioavailability (F)</strong> is the fraction of administered drug that reaches systemic circulation intact. Intravenous administration is the gold standard with <mark>100% bioavailability</mark>.</p>
 
           <div class="table-container">
             <table>
@@ -396,106 +400,86 @@
                 <tr>
                   <th>Route</th>
                   <th>Bioavailability</th>
-                  <th>Clinical Reason</th>
+                  <th>Mechanism</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><strong>Intravenous (IV)</strong></td>
-                  <td>100% (Gold Standard)</td>
-                  <td>Injected directly into the vein, bypassing digestive breakdown and liver filtering entirely.</td>
+                  <td>100%</td>
+                  <td>Bypasses gut and liver filtering instantly.</td>
                 </tr>
                 <tr>
                   <td><strong>Oral Tablets</strong></td>
-                  <td>Varies (often lower)</td>
-                  <td>Must survive stomach acid, digestive enzymes, and hepatic first-pass metabolism.</td>
+                  <td>Varies (Lower)</td>
+                  <td>Subject to stomach acid and hepatic first-pass metabolism.</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <h3>What is First-Pass Metabolism?</h3>
-          <p>When you swallow an oral medication, it is absorbed by gut transporters and routed straight to the liver via the portal vein. The liver and gut wall process large quantities of the drug before it reaches the rest of the body. This <mark>first-pass metabolism</mark> significantly lowers the final amount of active drug entering general circulation.</p>
-
-          <h3>Understanding AUC (Area Under the Curve)</h3>
-          <p>For drugs given orally, intramuscularly, or transdermally, absorption happens over time rather than all at once. Clinicians use the <mark>Area Under the Curve (AUC)</mark> on a graph measuring plasma concentration over time to calculate total drug bioavailability compared to a 100% IV baseline.</p>
+          <h3>First-Pass Metabolism &amp; AUC</h3>
+          <p>Orally absorbed drugs pass through gut wall enzymes and the liver via the portal vein before reaching general circulation (<mark>first-pass metabolism</mark>). The <mark>Area Under the Curve (AUC)</mark> calculates total systemic bioavailability over a given time frame.</p>
         </div>
 
         <!-- DISTRIBUTION SECTION -->
         <div id="sec-distribution" class="content-card">
           <h2>2. Distribution &amp; Volume of Distribution (Vd)</h2>
-          <p><strong>Distribution</strong> describes how a substance spreads throughout the body's tissues. In the simplest sense, distribution is driven by two main physical forces: <mark>diffusion and convection</mark>.</p>
-          <p>Distribution is heavily influenced by drug polarity, molecular size, tissue binding abilities, patient hydration status, protein levels, and total body fat (habitus).</p>
-          <p>The ultimate goal of distribution is achieving the <mark>effective drug concentration</mark>—the exact concentration needed at the receptor site to create a therapeutic response.</p>
+          <p><strong>Distribution</strong> describes how a drug spreads through body fluids and tissues via <mark>diffusion and convection</mark>, striving to achieve effective drug concentration at receptor sites.</p>
 
           <h3>Volume of Distribution (Vd)</h3>
-          <p>The <strong>Volume of Distribution (Vd)</strong> is a mathematical metric describing how widely a drug disperses throughout the body's theoretical fluid compartments:</p>
-          <p style="text-align: center; font-weight: 800; font-family: monospace; background: #f1f5f9; padding: 12px; border-radius: 10px; margin: 14px 0;">Vd = Total Amount of Drug in Body / Plasma Drug Concentration</p>
-
+          <p>Vd relates the total amount of drug in the body to its plasma concentration:</p>
+          <p style="text-align: center; font-weight: 800; font-family: monospace; background: #f1f5f9; padding: 12px; border-radius: 10px; margin: 14px 0;">Vd = Amount of Drug in Body / Plasma Drug Concentration</p>
           <ul>
-            <li><strong>Low Vd (Intravascular):</strong> Large, electrically charged, or heavily protein-bound molecules (like cetrorelix, Vd = 0.39 L/kg) stay trapped inside blood vessels.</li>
-            <li><strong>Medium Vd (Extracellular):</strong> Small, hydrophilic molecules distribute through blood and extracellular fluids.</li>
-            <li><strong>Very High Vd (Tissues/Fat):</strong> Small, lipophilic (fat-soluble) molecules (like chloroquine, Vd = 140 L/kg) diffuse deep into body cells and adipose tissue.</li>
+            <li><strong>Low Vd:</strong> Intravascular confinement (large/protein-bound molecules like cetrorelix).</li>
+            <li><strong>High Vd:</strong> Extensive tissue/adipose penetration (small lipophilic molecules like chloroquine).</li>
           </ul>
 
           <div class="callout-box">
-            <h4>💡 Why Vd Matters: Loading Doses</h4>
-            <p>Knowing Vd is vital for calculating correct <mark>loading doses</mark>. For example, a patient with a severe infection may need an initial loading dose of vancomycin so drug concentrations rapidly reach therapeutic levels without waiting for slow accumulation. Loading dose is calculated as: <br><em>Vd × Desired Plasma Concentration / Bioavailability</em>.</p>
+            <h4>💡 Clinical Application: Loading Doses</h4>
+            <p>Loading doses rapidly achieve therapeutic plasma levels based directly on Vd: <br><em>Loading Dose = Vd × Desired Concentration / Bioavailability</em>.</p>
           </div>
         </div>
 
         <!-- PROTEIN BINDING SECTION -->
         <div id="sec-protein" class="content-card">
           <h2>Protein Binding &amp; The Free Drug Rule</h2>
-          <p>Inside the bloodstream, drugs can exist in two states: <mark>protein-bound</mark> or <mark>free (unbound)</mark>.</p>
-          <p><strong>Only free drug can act at pharmacological receptor sites</strong>, cross fluid barriers, or be eliminated by organs. The primary blood proteins responsible for binding medications are <mark>albumin</mark> and <mark>alpha-1-acid glycoprotein</mark>.</p>
+          <p>Drugs circulate either <mark>protein-bound</mark> (to albumin or alpha-1-acid glycoprotein) or as <mark>free active drug</mark>. <mark>Only free drug can bind receptors</mark> or be eliminated.</p>
 
           <div class="example-box">
-            <h4>💡 Clinical Example: Renal Failure &amp; Toxicity</h4>
-            <p>In patients with kidney failure, uremia decreases the ability of acidic drugs (like diazepam) to bind to serum proteins. Even though the standard dose is given, there is far more <mark>free drug</mark> circulating in the active space. This sharply increases medication potency and the risk of severe toxicity, such as respiratory depression.</p>
+            <h4>💡 Clinical Example: Renal Failure</h4>
+            <p>In renal failure, uremia decreases serum protein binding for acidic drugs like diazepam. This increases the active free fraction, dramatically heightening the risk of toxicity (e.g., respiratory depression).</p>
           </div>
         </div>
 
         <!-- METABOLISM SECTION -->
         <div id="sec-metabolism" class="content-card">
           <h2>3. Metabolism &amp; The Liver</h2>
-          <p><strong>Metabolism</strong> is the biochemical processing of a drug by the body into subsequent compounds. Its primary goal is converting fat-soluble (lipophilic) drugs into <mark>water-soluble (hydrophilic) substances</mark> so the kidneys can filter and clear them.</p>
-          <p>For prodrugs (like codeine), metabolism is required to convert an inactive substance into its active metabolite.</p>
-
-          <h3>Phase I and Phase II Liver Reactions</h3>
-          <p>While metabolism can occur in the gut, skin, lungs, and kidneys, the vast majority happens in the liver through two key phases:</p>
+          <p><strong>Metabolism</strong> converts lipophilic drugs into water-soluble metabolites for renal clearance, or activates prodrugs (e.g., codeine).</p>
           <ul>
-            <li><strong>Phase I Reactions (CYP450 enzymes):</strong> Transform substances into polar metabolites via oxidation, preparing them for Phase II.</li>
-            <li><strong>Phase II Reactions (UGT enzymes):</strong> Conjugate large molecules onto the drug to make it fully water-soluble for excretion in urine or bile.</li>
+            <li><strong>Phase I (CYP450):</strong> Oxidation reactions creating polar intermediates.</li>
+            <li><strong>Phase II (UGT):</strong> Conjugation reactions ensuring complete water solubility for excretion.</li>
           </ul>
         </div>
 
         <!-- EXCRETION SECTION -->
         <div id="sec-excretion" class="content-card">
           <h2>4. Excretion &amp; Clearance</h2>
-          <p><strong>Excretion</strong> is the process by which drug waste is permanently eliminated from the body. While the <mark>kidneys</mark> handle the vast majority of excretion via glomerular filtration and tubular secretion, some drugs leave via the lungs, skin, or gastrointestinal tract.</p>
-
-          <h3>Clearance and Maintenance Dosing</h3>
-          <p><strong>Clearance</strong> is the ratio of a drug's elimination rate to its plasma drug concentration. It depends heavily on organ blood flow and kidney status.</p>
-          <p>Understanding clearance allows practitioners to calculate accurate <mark>maintenance doses</mark>—doses designed to steadily replace the exact amount of drug eliminated since the last administration. <br><em>Maintenance Dose = Clearance × Desired Plasma Concentration / Bioavailability</em>.</p>
+          <p><strong>Excretion</strong> eliminates drug waste primarily via the kidneys (glomerular filtration and tubular secretion), or via lungs, skin, and GI tract.</p>
+          <p><strong>Clearance</strong> measures the organ's efficiency in removing drug from blood plasma, guiding maintenance dosing calculations: <br><em>Maintenance Dose = Clearance × Desired Concentration / Bioavailability</em>.</p>
         </div>
 
         <!-- KINETICS & HALF LIFE -->
         <div id="sec-kinetics" class="content-card">
           <h2>5. Drug Kinetics, Half-Life, and Steady State</h2>
-          <p>Drug kinetics tracks how plasma concentrations change over time as metabolism and elimination take place. The two major kinetic models are:</p>
+          <p>Drug elimination follows specific kinetic models:</p>
           <ul>
-            <li><strong>First-Order Kinetics:</strong> The body eliminates a <mark>constant proportion</mark> (percentage) of the drug per unit of time. The half-life is constant, and clearance decreases as concentration drops. This applies to most medications.</li>
-            <li><strong>Zero-Order Kinetics:</strong> The body eliminates a <mark>constant fixed amount</mark> per hour because metabolic enzymes are fully saturated. <br><em>Example: Alcohol and high-dose salicylates or phenytoin.</em></li>
+            <li><strong>First-Order Kinetics:</strong> Constant fraction eliminated per unit time (exponential half-life). Used by most drugs.</li>
+            <li><strong>Zero-Order Kinetics:</strong> Constant amount eliminated per hour due to enzyme saturation (e.g., alcohol, high-dose phenytoin).</li>
           </ul>
 
-          <h3>Half-Life ($t_{1/2}$) and Steady State</h3>
-          <p>The <mark>half-life</mark> is the time required for serum drug concentrations to decrease by 50%. It is directly proportional to Vd and inversely proportional to clearance: <br>$$t_{1/2} = \frac{0.693 \times Vd}{Clearance}$$</p>
-
-          <ul>
-            <li><strong>Reaching Steady State:</strong> When continuous drug infusion equals clearance, a stable steady-state plasma concentration is reached after <mark>4 to 5 half-lives</mark>.</li>
-            <li><strong>Complete Elimination:</strong> A drug is considered completely eliminated from the system after <mark>4 to 5 half-lives</mark> (94% to 97% cleared).</li>
-          </ul>
+          <p>Half-life ($t_{1/2}$) formula: $$t_{1/2} = \frac{0.693 \times Vd}{Clearance}$$</p>
+          <p>Therapeutic steady state and complete elimination are both achieved after <mark>4 to 5 half-lives</mark>.</p>
 
           <!-- INTERACTIVE GRAPH SIMULATION -->
           <div class="sim-container">
@@ -530,16 +514,106 @@
           </div>
         </div>
 
+        <!-- PHARMACODYNAMICS SECTION -->
+        <div id="sec-pd" class="content-card">
+          <h2>6. Pharmacodynamics (PD): Molecular Mechanisms &amp; Receptors</h2>
+          <p><strong>Pharmacodynamics (PD)</strong> studies a drug's molecular, biochemical, and physiological effects. Drugs interact with biological targets (receptors, enzymes, carrier proteins) via:</p>
+          <ul>
+            <li><strong>Receptor Binding &amp; Post-Receptor Effects:</strong> Direct molecular engagement altering cellular function.</li>
+            <li><strong>Enzyme Inhibition:</strong> Blockade of catalytic active sites.</li>
+            <li><strong>Chemical Interactions:</strong> Neutralization or direct binding (e.g., tumor necrosis factor binders).</li>
+          </ul>
+
+          <h3>Types of Pharmacodynamic Actions</h3>
+          <ul>
+            <li><strong>Stimulation:</strong> Directly increasing cellular activity via receptor agonism.</li>
+            <li><strong>Depression:</strong> Decreasing cellular activity via receptor inhibition.</li>
+            <li><strong>Antagonism / Blocking:</strong> Binding a receptor without activating it, preventing endogenous ligands from binding.</li>
+            <li><strong>Stabilization:</strong> Maintaining resting membrane state without direct agonism or antagonism.</li>
+            <li><strong>Direct Chemical Reactions:</strong> Neutralization or chelation in bodily fluids.</li>
+          </ul>
+
+          <h3>Key PD Concepts: Emax, EC50, &amp; Hill Coefficient</h3>
+          <ul>
+            <li><mark>Emax:</mark> The maximal possible therapeutic effect of a drug.</li>
+            <li><mark>EC50:</mark> The drug concentration producing 50% of the maximum effect.</li>
+            <li><mark>Hill Coefficient:</mark> Slope measuring concentration-effect steepness. Values >3 indicate an almost instantaneous "all-or-none" effect.</li>
+          </ul>
+
+          <h3>Direct vs. Indirect &amp; Immediate vs. Delayed Effects</h3>
+          <p><strong>Direct effects</strong> stem from immediate receptor/enzyme interaction (e.g., beta-blockers modifying cAMP). <strong>Indirect effects</strong> occur via upstream or downstream biological signaling cascades (e.g., corticosteroids binding nuclear transcription factors to suppress inflammatory mRNA).</p>
+          <p><strong>Immediate effects</strong> occur within seconds (e.g., succinylcholine depolarizing neuromuscular junctions), whereas <strong>delayed effects</strong> require biological turnover time (e.g., chemotherapy bone marrow suppression).</p>
+        </div>
+
+        <!-- AFFINITY, EFFICACY, INTRINSIC ACTIVITY & THERAPEUTIC INDEX -->
+        <div id="sec-affinity" class="content-card">
+          <h2>Receptor Pharmacology: Affinity, Intrinsic Activity, Agonists, &amp; Therapeutic Index</h2>
+          <p>Receptor interactions define drug potency, efficacy, and safety margins:</p>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Pharmacologic Term</th>
+                  <th>Definition &amp; Clinical Meaning</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Affinity ($K_d$)</strong></td>
+                  <td>How tightly a drug binds to its receptor ($K_d = k_{off}/k_{on}$). A <em>lower</em> $K_d$ value indicates higher binding affinity (e.g., albuterol).</td>
+                </tr>
+                <tr>
+                  <td><strong>Intrinsic Activity &amp; Efficacy</strong></td>
+                  <td>The measure of a drug's ability to activate a receptor and produce a physiological response once bound. Full agonists have high efficacy; antagonists have zero intrinsic activity.</td>
+                </tr>
+                <tr>
+                  <td><strong>Full Agonist</strong></td>
+                  <td>Binds to receptors and produces maximum biological response (Intrinsic activity = 1).</td>
+                </tr>
+                <tr>
+                  <td><strong>Partial Agonist</strong></td>
+                  <td>Binds to receptors but produces a submaximal response even at 100% occupancy (Intrinsic activity between 0 and 1).</td>
+                </tr>
+                <tr>
+                  <td><strong>Competitive Antagonist</strong></td>
+                  <td>Binds reversibly to the active site, shifting the agonist dose-response curve to the <em>right</em> without lowering $E_{max}$.</td>
+                </tr>
+                <tr>
+                  <td><strong>Non-Competitive Antagonist</strong></td>
+                  <td>Binds irreversibly (or to an allosteric site), lowering the total available $E_{max}$.</td>
+                </tr>
+                <tr>
+                  <td><strong>Potency vs. Efficacy</strong></td>
+                  <td><strong>Potency</strong> refers to the amount of drug needed for a given effect ($EC_{50}$). <strong>Efficacy</strong> refers to the maximum effect ($E_{max}$) a drug can produce. Clinically, efficacy is far more important than potency.</td>
+                </tr>
+                <tr>
+                  <td><strong>Therapeutic Index (TI)</strong></td>
+                  <td>Ratio of the toxic dose to the effective dose ($TD_{50} / ED_{50}$). A narrow therapeutic index means small dosing changes can lead to severe toxicity (e.g., warfarin, digoxin).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Receptor Occupancy, Up- &amp; Downregulation, and Tolerance</h3>
+          <p>According to the <strong>law of mass action</strong>, greater receptor occupancy increases pharmacodynamic response, though many systems feature <em>spare receptors</em> yielding maximal effects at <100% occupancy.</p>
+          <ul>
+            <li><strong>Downregulation:</strong> Chronic agonist exposure decreases receptor density via internalization (e.g., insulin receptors).</li>
+            <li><strong>Upregulation:</strong> Chronic antagonist exposure increases receptor density. An exception is nicotine receptors, which upregulate despite being agonists, driving addiction.</li>
+            <li><strong>Tolerance:</strong> Diminishing response over time, often driven by intracellular proteins like <em>arrestins</em> that uncouple G-protein receptors and trigger endocytosis (e.g., opioid tolerance).</li>
+          </ul>
+        </div>
+
         <!-- CLINICAL SIGNIFICANCE & TEAMWORK -->
         <div id="sec-clinical" class="content-card">
-          <h2>6. Clinical Significance &amp; Interprofessional Teamwork</h2>
-          <p>When a healthcare provider prescribes medication, the ultimate goal is achieving a <mark>positive therapeutic outcome while minimizing adverse reactions</mark>. A thorough understanding of pharmacokinetics is essential for building safe, effective treatment plans.</p>
+          <h2>7. Clinical Significance &amp; Interprofessional Teamwork</h2>
+          <p>Healthcare practitioners must <mark>treat the patient, not just the lab value or symptom</mark>. For instance, drugs like aspirin and ACE inhibitors are administered not merely to lower platelets or blood pressure, but to prevent catastrophic long-term endpoints like myocardial infarction, stroke, and renal failure.</p>
 
-          <h3>Nursing, Allied Health, and Interprofessional Roles</h3>
+          <h3>Interprofessional Care Team Roles</h3>
           <ul>
-            <li><strong>Physicians, Nurses, and Pharmacists:</strong> Educate patients on correct self-administration, storage, and adherence to minimize toxicity.</li>
-            <li><strong>Pharmacists:</strong> Verify dosing calculations, perform drug-interaction checks, and track plasma concentrations for narrow therapeutic index drugs (e.g., gentamicin).</li>
-            <li><strong>Nurses:</strong> Monitor adverse events, assess treatment effectiveness on follow-up visits, verify medication adherence, and maintain open communication with the interprofessional care team.</li>
+            <li><strong>Physicians &amp; Nurse Practitioners:</strong> Formulate evidence-based pharmacological treatment plans considering both PK and PD parameters.</li>
+            <li><strong>Pharmacists:</strong> Monitor therapeutic indexes, calculate clearance adjustments, and check for narrow therapeutic window toxicities (e.g., gentamicin, digoxin).</li>
+            <li><strong>Nurses:</strong> Monitor adverse drug events, assess therapeutic efficacy during clinical follow-ups, verify patient adherence, and maintain open communication with the care team.</li>
           </ul>
         </div>
 
