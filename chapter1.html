@@ -146,7 +146,7 @@
     }
     .adme-status { font-family: monospace; font-size: 0.72rem; color: #cbd5e1; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 8px; text-align: center; line-height: 1.4; }
 
-    /* Interactive Receptor Animation Simulation */
+    /* Interactive Receptor & Functional Antagonist Animation Simulation */
     .receptor-sim-container {
       background: #0f172a; color: white; border-radius: var(--radius); padding: 16px 10px; margin: 16px 0;
       border: 1px solid #1e293b;
@@ -161,7 +161,7 @@
     .receptor-btn.active-receptor { background: #0d9488; }
 
     .receptor-canvas {
-      background: #1e293b; border-radius: 10px; height: 180px; position: relative; overflow: hidden;
+      background: #1e293b; border-radius: 10px; height: 210px; position: relative; overflow: hidden;
       display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; border: 1px solid #334155; margin-bottom: 10px;
     }
     .cell-membrane { width: 100%; height: 14px; background: #334155; border-radius: 7px; position: relative; display: flex; align-items: center; justify-content: center; margin: 25px 0; border: 1px solid #475569; }
@@ -216,6 +216,7 @@
           <li><a href="#sec-animation" class="sidebar-sub">Live ADME Body Animation</a></li>
           <li><a href="#sec-pd">PHARMACODYNAMICS</a></li>
           <li><a href="#sec-intrinsic" class="sidebar-sub">Intrinsic Activity &amp; Agonist Types</a></li>
+          <li><a href="#sec-functional-antagonist" class="sidebar-sub">Functional Antagonist</a></li>
           <li><a href="#sec-receptors" class="sidebar-sub">Receptor Superfamilies</a></li>
           <li><a href="#sec-therapeutic-index" class="sidebar-sub">Therapeutic Index &amp; DRC</a></li>
           <li><a href="#sec-clinical">Clinical Significance</a></li>
@@ -269,6 +270,7 @@
             <li><a href="#sec-animation" onclick="toggleMenu()">ADME Animation</a></li>
             <li><a href="#sec-pd" onclick="toggleMenu()">PHARMACODYNAMICS</a></li>
             <li><a href="#sec-intrinsic" onclick="toggleMenu()">Intrinsic Activity &amp; Agonist Types</a></li>
+            <li><a href="#sec-functional-antagonist" onclick="toggleMenu()">Functional Antagonist</a></li>
             <li><a href="#sec-receptors" onclick="toggleMenu()">Receptor Superfamilies</a></li>
             <li><a href="#sec-therapeutic-index" onclick="toggleMenu()">Therapeutic Index &amp; DRC</a></li>
             <li><a href="#sec-clinical" onclick="toggleMenu()">Clinical Significance</a></li>
@@ -297,7 +299,7 @@
           <ul>
             <li><strong>Pharmacology:</strong> The comprehensive science of drugs, covering their origin, chemical composition, pharmacokinetics, pharmacodynamics, therapeutic uses, and toxicology.</li>
             <li><strong>Drug:</strong> Any chemical substance that alters biological function through molecular interactions when introduced into a living organism.</li>
-            <li><strong>Medication:</strong> A substance administered for the diagnosis, cure, mitigation, treatment, or prevention of disease.</li>
+            <li><strong>Medication:</strong> <mark>A substance administered for the diagnosis, cure, mitigation, treatment, or prevention of disease.</mark></li>
             <li><strong>Generic Name:</strong> The official, non-proprietary international name of a drug assigned by the USAN (e.g., paracetamol).</li>
             <li><strong>Trade / Brand Name:</strong> The proprietary trademarked name given by the pharmaceutical manufacturer (e.g., Tylenol, Panadol).</li>
             <li><strong>Adverse Drug Reaction (ADR) / Side Effect:</strong> An unintended, noxious, or hazardous response occurring at normal therapeutic doses.</li>
@@ -307,7 +309,7 @@
           <p>Pharmacology transitioned from ancient folklore and herbal remedies into an empirical molecular science:</p>
           <ul>
             <li><strong>Ancient Era:</strong> Reliance on plants, minerals, and animal products documented in historical texts like the Ebers Papyrus (Egypt) and ancient Ayurvedic treatises.</li>
-            <li><strong>19th Century Emergence:</strong> The isolation of active chemical compounds from crude drugs (e.g., isolation of morphine from opium by Friedrich Sertürner in 1805, digitalis from foxglove).</li>
+            <li><strong>19th Century Emergence:</strong> <mark>The isolation of active chemical compounds from crude drugs (e.g., isolation of morphine from opium by Friedrich Sertürner in 1805, digitalis from foxglove).</mark></li>
             <li><strong>Modern Era:</strong> Breakthroughs in synthetic chemistry, molecular biology, genomics, and monoclonal antibodies, establishing rigorous clinical trials and regulatory frameworks.</li>
           </ul>
 
@@ -315,7 +317,7 @@
           <p>Medications serve several core healthcare functions:</p>
           <ul>
             <li><strong>Diagnostic:</strong> Agents used to identify diseases (e.g., radiopaque contrast media for CT scans, barium sulfate).</li>
-            <li><strong>Curative:</strong> Agents that eliminate pathogens or cure disease states (e.g., antibiotics curing bacterial pneumonia).</li>
+            <li><strong>Curative:</strong> <mark>Agents that eliminate pathogens or cure disease states (e.g., antibiotics curing bacterial pneumonia).</mark></li>
             <li><strong>Palliative:</strong> Agents that relieve symptoms and improve quality of life without curing the underlying disease (e.g., analgesics in terminal cancer care).</li>
             <li><strong>Prophylactic (Preventive):</strong> Agents given to prevent illnesses before they occur (e.g., vaccines, prophylactic antibiotics prior to surgical incision).</li>
             <li><strong>Replacement:</strong> Agents that supplement missing physiological body chemicals (e.g., insulin for type 1 diabetes mellitus, levothyroxine for hypothyroidism).</li>
@@ -355,7 +357,7 @@
           <p>Drugs are categorized based on multiple standardized systems:</p>
           <ul>
             <li><strong>Therapeutic Classification:</strong> Categorized by what clinical condition they treat (e.g., antihypertensives, antidepressants, antihyperglycemics).</li>
-            <li><strong>Pharmacological Classification:</strong> Categorized by how they act at the molecular or systemic level (e.g., beta-blockers, ACE inhibitors, calcium channel blockers).</li>
+            <li><strong>Pharmacological Classification:</strong> <mark>Categorized by how they act at the molecular or systemic level (e.g., beta-blockers, ACE inhibitors, calcium channel blockers).</mark></li>
             <li><strong>Body System Classification:</strong> Grouped according to the physiological system they affect (e.g., cardiovascular drugs, respiratory agents, central nervous system drugs).</li>
           </ul>
 
@@ -364,7 +366,7 @@
           <ul>
             <li><strong>Floor Stock System:</strong> Bulk supplies of common medications are kept on nursing units. Nurses dispense directly from floor stock; highly vulnerable to medication errors and inventory discrepancies.</li>
             <li><strong>Individual Prescription Order System:</strong> Medications are dispensed from the pharmacy specifically for an individual patient in a designated supply drawer for a 24-to-72-hour period.</li>
-            <li><strong>Unit-Dose System:</strong> The gold standard safety system. Medications are dispensed by the pharmacy in single-unit, pre-packaged, pre-labeled doses ready to administer directly to the specific patient, reducing preparation errors.</li>
+            <li><strong>Unit-Dose System:</strong> <mark>The gold standard safety system. Medications are dispensed by the pharmacy in single-unit, pre-packaged, pre-labeled doses ready to administer directly to the specific patient, reducing preparation errors.</mark></li>
           </ul>
 
           <h3 id="sec-t7">7. Discuss the drugs standards and legislation</h3>
@@ -404,7 +406,7 @@
           
           <h4>Factors Affecting Drug Absorption:</h4>
           <ul>
-            <li><strong>Route of Administration:</strong> Intravenous (IV) bypasses absorption entirely (100% bioavailability). Oral (PO) drugs must traverse gastrointestinal mucosal barriers.</li>
+            <li><strong>Route of Administration:</strong> <mark>Intravenous (IV) bypasses absorption entirely (100% bioavailability). Oral (PO) drugs must traverse gastrointestinal mucosal barriers.</mark></li>
             <li><strong>Surface Area &amp; Blood Flow:</strong> Larger absorbing surfaces (e.g., small intestinal microvilli) and high regional blood perfusion accelerate absorption rates.</li>
             <li><strong>Lipid Solubility &amp; Ionization (pH):</strong> Un-ionized, lipophilic drugs diffuse across cell membranes easily. Gastric pH affects weak acids/bases ionization states.</li>
             <li><strong>First-Pass Metabolism:</strong> High hepatic clearance of orally administered drugs significantly reduces systemic bioavailability before reaching general circulation.</li>
@@ -417,7 +419,7 @@
 
           <h4>Factors Affecting Drug Distribution:</h4>
           <ul>
-            <li><strong>Plasma Protein Binding:</strong> Drugs reversibly bind to plasma proteins (primarily albumin). Only the free, unbound fraction is pharmacologically active and able to diffuse to target receptors.</li>
+            <li><strong>Plasma Protein Binding:</strong> <mark>Drugs reversibly bind to plasma proteins (primarily albumin). Only the free, unbound fraction is pharmacologically active and able to diffuse to target receptors.</mark></li>
             <li><strong>Tissue Perfusion &amp; Blood Flow:</strong> Highly vascularized organs (brain, heart, liver, kidneys) receive rapid initial distribution, whereas adipose tissue and bone receive slower distribution.</li>
             <li><strong>Membrane Permeability:</strong> Specialized barriers like the blood-brain barrier restrict passage of hydrophilic compounds, requiring high lipophilicity to enter the central nervous system.</li>
           </ul>
@@ -428,111 +430,181 @@
           <h4>Factors Affecting Drug Metabolism:</h4>
           <ul>
             <li><strong>Enzyme Induction &amp; Inhibition:</strong> Certain drugs induce hepatic enzymes (increasing breakdown rates of other drugs), while others inhibit enzymes (causing drug accumulation and toxicity).</li>
-            <li><strong>Age &amp; Genetic Variations:</strong> Neonates and elderly patients have reduced hepatic enzymatic capacities. Genetic polymorphisms affect drug-metabolizing enzyme speeds.</li>
-            <li><strong>Liver Disease:</strong> Cirrhosis, hepatitis, and liver failure impair metabolic capacity, dramatically extending drug half-lives.</li>
+            <li><strong>Age &amp; Genetic Variations:</strong> Neonates and elderly adults have reduced metabolic capacity. Genetic polymorphisms in CYP450 enzymes lead to poor or ultra-rapid metabolizer phenotypes.</li>
           </ul>
 
           <h3 id="sec-excretion">Excretion &amp; Factors Affecting Excretion</h3>
-          <p><mark>Excretion</mark> is the permanent removal of drugs and their metabolites from the body. The primary route is renal excretion through urine, followed by biliary excretion through feces, pulmonary elimination of volatile anesthetics, and minor elimination via breast milk or sweat.</p>
+          <p><mark>Excretion</mark> is the irreversible removal of drugs and their metabolites from the body, primarily executed by the kidneys via glomerular filtration, active tubular secretion, and passive tubular reabsorption.</p>
 
-          <h4>Factors Affecting Excretion:</h4>
+          <h4>Factors Affecting Drug Excretion:</h4>
           <ul>
-            <li><strong>Renal Function (GFR):</strong> Glomerular filtration rate determines how quickly drugs are filtered from blood. Renal impairment causes drug accumulation.</li>
-            <li><strong>Urinary pH:</strong> Altering urine pH can ionize specific drugs, preventing passive reabsorption across renal tubular cells and enhancing elimination (ion trapping).</li>
+            <li><strong>Renal Function (GFR):</strong> Impaired renal function (measured via creatinine clearance or serum creatinine) prolongs drug half-life and increases toxicity risks.</li>
+            <li><strong>Urinary pH:</strong> Altering urinary pH can ionize weak drugs, trapping them in the renal tubular lumen and accelerating their excretion (e.g., alkaline diuresis for weak acid toxicities).</li>
           </ul>
-        </div>
 
-        <!-- Live ADME Body Animation Section -->
-        <div id="sec-animation" class="adme-sim-container">
-          <div class="adme-header">
-            <h3>🔬 Interactive ADME Body Simulation</h3>
-            <div class="adme-status" id="admeStatus">Status: Ready to simulate drug journey.</div>
-          </div>
-          <div class="body-canvas">
-            <div id="drugParticle"></div>
-            <div class="body-station" id="stationA">
-              <div class="station-icon">💊</div>
-              <div class="station-label">Absorption<br>(GI Tract)</div>
+          <!-- Live ADME Body Animation Section -->
+          <div id="sec-animation" class="adme-sim-container">
+            <div class="adme-header">
+              <h3>🔬 Live ADME Body Animation Simulator</h3>
+              <div class="adme-controls">
+                <button class="adme-btn active-stage" onclick="runADME('absorption')">1. Absorption</button>
+                <button class="adme-btn" onclick="runADME('distribution')">2. Distribution</button>
+                <button class="adme-btn" onclick="runADME('metabolism')">3. Metabolism</button>
+                <button class="adme-btn" onclick="runADME('excretion')">4. Excretion</button>
+              </div>
             </div>
-            <div class="body-station" id="stationD">
-              <div class="station-icon">❤️</div>
-              <div class="station-label">Distribution<br>(Blood/Tissues)</div>
+
+            <div class="body-canvas">
+              <div id="drugParticle"></div>
+              <div class="body-station active" id="st-abs">
+                <div class="station-icon">💊</div>
+                <div class="station-label">GI Tract<br>(Absorption)</div>
+              </div>
+              <div class="body-station" id="st-dist">
+                <div class="station-icon">❤️</div>
+                <div class="station-label">Blood &amp; Tissues<br>(Distribution)</div>
+              </div>
+              <div class="body-station" id="st-meta">
+                <div class="station-icon">🧪</div>
+                <div class="station-label">Liver<br>(Metabolism)</div>
+              </div>
+              <div class="body-station" id="st-excr">
+                <div class="station-icon">🚻</div>
+                <div class="station-label">Kidneys<br>(Excretion)</div>
+              </div>
             </div>
-            <div class="body-station" id="stationM">
-              <div class="station-icon">🧪</div>
-              <div class="station-label">Metabolism<br>(Liver - CYP450)</div>
+
+            <div class="adme-status" id="admeStatusText">
+              Status: Drug administered orally. Ready for absorption across mucosal barrier into systemic circulation.
             </div>
-            <div class="body-station" id="stationE">
-              <div class="station-icon">🚰</div>
-              <div class="station-label">Excretion<br>(Kidneys/Urine)</div>
-            </div>
-          </div>
-          <div class="adme-controls">
-            <button class="adme-btn" onclick="runAdmeStep('A')">1. Absorption</button>
-            <button class="adme-btn" onclick="runAdmeStep('D')">2. Distribution</button>
-            <button class="adme-btn" onclick="runAdmeStep('M')">3. Metabolism</button>
-            <button class="adme-btn" onclick="runAdmeStep('E')">4. Excretion</button>
           </div>
         </div>
 
         <!-- MAIN HEADING: PHARMACODYNAMICS -->
         <div id="sec-pd" class="content-card">
           <h2>PHARMACODYNAMICS (What the Drug Does to the Body)</h2>
-          <p>Pharmacodynamics explores the biochemical and physiological effects of drugs on the body and their mechanisms of action at the cellular and molecular levels.</p>
+          <p>Pharmacodynamics explores the biochemical and physiological effects of drugs and their mechanisms of action at the cellular and molecular level.</p>
 
           <h3 id="sec-intrinsic">Intrinsic Activity &amp; Agonist Types</h3>
-          <p><mark>Intrinsic Activity</mark> is the measure of a drug's ability, once bound to a receptor, to generate a physiological response. Based on this, drugs are classified as:</p>
+          <p><mark>Intrinsic Activity</mark> is the ability of a drug-receptor complex to initiate a maximal functional response or signal transduction cascade inside a cell.</p>
           <ul>
-            <li><strong>Full Agonists:</strong> Possess maximum intrinsic activity (value = 1). They bind receptors and fully activate cellular signaling pathways to produce a maximal physiological response.</li>
-            <li><strong>Partial Agonists:</strong> Possess submaximal intrinsic activity (greater than 0 but less than 1). They produce a weaker response even when 100% of receptors are occupied, and can act as competitive antagonists in the presence of a full agonist.</li>
-            <li><strong>Inverse Agonists:</strong> Bind to receptors and produce a pharmacological response opposite to that of an agonist, suppressing baseline constitutive receptor activity.</li>
+            <li><strong>Full Agonist:</strong> Possesses high receptor affinity and maximal intrinsic activity (efficacy = 1.0), triggering 100% cellular response.</li>
+            <li><strong>Partial Agonist:</strong> Binds to receptors but produces sub-maximal intrinsic activity (efficacy between 0 and 1.0) even when all receptors are occupied.</li>
+            <li><strong>Competitive Antagonist:</strong> Binds reversibly to the same receptor site as an agonist without activating it, blocking agonist binding. Can be overcome by increasing agonist concentration.</li>
+            <li><strong>Non-Competitive Antagonist:</strong> Binds irreversibly or to an allosteric site, permanently suppressing maximum agonist response regardless of agonist concentration.</li>
           </ul>
 
-          <h3 id="sec-receptors">Receptor Superfamilies</h3>
-          <p>Receptors are specialized cellular macromolecules that interact with drugs. They are grouped into four primary superfamilies:</p>
+          <!-- NEW SECTION: Functional Antagonist -->
+          <h3 id="sec-functional-antagonist">Functional Antagonist (Physiological Antagonism)</h3>
+          <p><mark>A functional antagonist (also known as physiological antagonist) occurs when two drugs act through different independent receptor systems on the same physiological function, producing opposing effects that cancel each other out.</mark></p>
+          <p>Unlike receptor antagonists that compete for the exact same molecular binding site, functional antagonists work via separate cellular mechanisms to neutralize clinical manifestations. For example:</p>
           <ul>
-            <li><strong>Ligand-Gated Ion Channels:</strong> Fast acting channels that open or close instantly upon drug binding, altering transmembrane ion flux (e.g., nicotinic receptors).</li>
-            <li><strong>G Protein-Coupled Receptors (GPCRs):</strong> Seven-transmembrane spanning receptors linked to intracellular G proteins that activate second messenger systems like cAMP or calcium.</li>
-            <li><strong>Enzyme-Linked Receptors:</strong> Receptors with intrinsic enzymatic activity on their intracellular domain that trigger protein phosphorylation cascades upon ligand binding (e.g., insulin receptors).</li>
-            <li><strong>Intracellular Receptors:</strong> Located inside the cell cytoplasm or nucleus; lipophilic ligands cross the cell membrane to bind and regulate gene transcription (e.g., steroid hormone receptors).</li>
+            <li><strong>Clinical Prototype:</strong> Epinephrine acts as a functional antagonist to histamine during anaphylactic shock. Histamine binds to $H_1$ receptors to cause severe vasodilation, capillary leakage, and bronchoconstriction. Epinephrine binds to $\beta_2$-adrenergic receptors (causing bronchodilation) and $\alpha_1$-adrenergic receptors (causing vasoconstriction), completely reversing histamine's life-threatening systemic effects without ever blocking the histamine receptor itself.</li>
           </ul>
 
-          <h3 id="sec-therapeutic-index" class="content-card" style="border:none; box-shadow:none; padding:0; margin:0;">
-            <h3>Therapeutic Index &amp; Dose-Response Curves</h3>
-            <p>The <mark>Therapeutic Index (TI)</mark> is a quantitative measurement of drug safety comparing the lethal dose in 50 percent of a population (LD50) to the effective dose in 50 percent of a population (ED50):</p>
-            <p><strong>Therapeutic Index = LD50 / ED50</strong></p>
-            <p>A narrow therapeutic index means small dosage variations can lead to severe toxicity or therapeutic failure, requiring rigorous therapeutic drug monitoring (TDM) for drugs like digoxin, warfarin, and lithium.</p>
-          </h3>
-        </div>
+          <!-- Interactive Receptor & Functional Antagonist Simulation -->
+          <div id="sec-receptor-sim" class="receptor-sim-container">
+            <div class="receptor-header">
+              <h3>🧬 Receptor Binding &amp; Functional Antagonism Simulator</h3>
+              <div class="receptor-controls">
+                <button class="receptor-btn active-receptor" onclick="setReceptorMode('agonist')">Full Agonist</button>
+                <button class="receptor-btn" onclick="setReceptorMode('competitive')">Competitive</button>
+                <button class="receptor-btn" onclick="setReceptorMode('noncompetitive')">Non-Competitive</button>
+                <button class="receptor-btn" onclick="setReceptorMode('functional')">Functional Antagonist</button>
+              </div>
+            </div>
 
-        <!-- Live Receptor Binding Simulation Section -->
-        <div id="sec-receptors-sim" class="receptor-sim-container">
-          <div class="receptor-header">
-            <h3>⚡ Interactive Drug-Receptor Binding Simulation</h3>
-            <div class="receptor-status" id="receptorStatus">Status: Select a drug type to test receptor binding.</div>
-          </div>
-          <div class="receptor-canvas">
-            <div id="ligandParticle">Drug</div>
-            <div class="cell-membrane">
-              <div class="receptor-pore" id="receptorPore">Receptor Site</div>
+            <div class="receptor-canvas">
+              <div id="ligandParticle">Ag</div>
+              <div class="cell-membrane">
+                <div class="receptor-pore" id="receptorPoreBox">Receptor Site</div>
+              </div>
+            </div>
+
+            <div class="receptor-status" id="receptorStatusText">
+              Mode: Full Agonist. Drug binds with high affinity and maximal intrinsic activity (Efficacy = 100%). Cellular signal activated.
             </div>
           </div>
-          <div class="receptor-controls">
-            <button class="receptor-btn" onclick="runReceptorTest('agonist')">Full Agonist</button>
-            <button class="receptor-btn" onclick="runReceptorTest('partial')">Partial Agonist</button>
-            <button class="receptor-btn" onclick="runReceptorTest('antagonist')">Antagonist</button>
-            <button class="receptor-btn" onclick="runReceptorTest('reset')">Reset</button>
+
+          <h3 id="sec-receptors">Receptor Superfamilies</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Receptor Superfamily</th>
+                  <th>Mechanism &amp; Speed</th>
+                  <th>Clinical Examples</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Ligand-Gated Ion Channels</strong></td>
+                  <td>Fast ion flux across cell membranes (milliseconds).</td>
+                  <td>Nicotinic acetylcholine receptors, GABA_A receptors.</td>
+                </tr>
+                <tr>
+                  <td><strong>G-Protein Coupled Receptors (GPCRs)</strong></td>
+                  <td>G-protein second messenger activation (seconds).</td>
+                  <td>Muscarinic receptors, adrenergic receptors ($\alpha$ and $\beta$).</td>
+                </tr>
+                <tr>
+                  <td><strong>Enzyme-Linked Receptors</strong></td>
+                  <td>Intracellular enzymatic phosphorylation (hours).</td>
+                  <td>Insulin receptors, growth factor receptors.</td>
+                </tr>
+                <tr>
+                  <td><strong>Intracellular Receptors</strong></td>
+                  <td>Gene transcription and protein synthesis (hours to days).</td>
+                  <td>Corticosteroid receptors, thyroid hormone receptors.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- ENHANCED SECTION: Therapeutic Index & DRC with Formula and Graph -->
+          <h3 id="sec-therapeutic-index">Therapeutic Index (TI) &amp; Dose-Response Curve (DRC)</h3>
+          <p><mark>The Therapeutic Index (TI) is a quantitative measurement reflecting the relative safety margin of a drug, evaluated by comparing the lethal dose in 50% of populations to the effective therapeutic dose in 50% of populations.</mark></p>
+
+          <p><strong>Therapeutic Index Formula:</strong></p>
+          <div class="table-container" style="text-align: center; padding: 12px; font-weight: bold; background: #f0f9ff; color: var(--primary-dark);">
+            $$TI = \frac{LD_{50}}{ED_{50}}$$
+          </div>
+          <p>Where:</p>
+          <ul>
+            <li><strong>$ED_{50}$ (Median Effective Dose):</strong> The dose required to produce a therapeutic clinical response in 50% of the population.</li>
+            <li><strong>$LD_{50}$ (Median Lethal Dose):</strong> The dose that is lethal in 50% of animal test populations (in human clinical trials, the toxic dose $TD_{50}$ is used: $TI = TD_{50} / ED_{50}$).</li>
+          </ul>
+          <p><mark>A high therapeutic index indicates a wide margin of safety (e.g., penicillin), whereas a low therapeutic index demands rigorous therapeutic drug monitoring (TDM) to prevent fatal toxicities (e.g., digoxin, warfarin, lithium).</mark></p>
+
+          <h4>Dose-Response Curve (DRC) &amp; Safety Margin Visualization:</h4>
+          <p>The dose-response curve plots clinical effect or percentage population response against the logarithm of drug dose. It visually illustrates two critical pharmacological concepts:</p>
+          <ul>
+            <li><strong>Potency:</strong> The amount of drug needed to produce a specific biological effect ($ED_{50}$). Drugs with lower $ED_{50}$ values have higher potency.</li>
+            <li><strong>Efficacy:</strong> The maximum physiological response a drug can produce regardless of dose increase ($E_{max}$).</li>
+          </ul>
+
+          <!-- Text-Based Graphical Representation of DRC & TI Margin -->
+          <div class="table-container" style="padding: 14px; background: #0f172a; color: #38bdf8; font-family: monospace; font-size: 0.75rem; line-height: 1.5; text-align: left;">
+            <div style="font-weight: bold; color: #fef08a; margin-bottom: 6px;">[DRUG DOSE-RESPONSE &amp; SAFETY MARGIN GRAPH]</div>
+            Response (%)<br>
+            100% |                  /------------------ (Maximum Efficacy / Emax)<br>
+                 |                /<br>
+             50% |--------------/--------- [ED50: Therapeutic Window]<br>
+                 |            /<br>
+              0% +--------------------------------------------------&gt; Log Dose<br>
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Low Dose] &nbsp;&nbsp;&nbsp;&nbsp; [High Dose / Toxicity Range (LD50)]<br>
+            <span style="color: #cbd5e1; font-size: 0.7rem;">*Note: A narrow distance between ED50 and LD50 curves represents a low Therapeutic Index requiring strict clinical oversight.</span>
           </div>
         </div>
 
-        <!-- Clinical Significance Section -->
+        <!-- CLINICAL SIGNIFICANCE -->
         <div id="sec-clinical" class="content-card">
-          <h2>Clinical Significance for Nursing Practice</h2>
-          <p>Mastering pharmacokinetics and pharmacodynamics enables nurses to anticipate drug responses, manage side effects, perform accurate dosage calculations, and protect patient safety across diverse clinical environments.</p>
+          <h2>Clinical Significance for Nurses</h2>
+          <p>Understanding pharmacokinetics, pharmacodynamics, intrinsic activity, functional antagonism, and therapeutic index directly impacts patient safety during medication administration:</p>
           <ul>
-            <li><strong>Pre-Administration Assessment:</strong> Evaluate baseline vital signs, organ function labs (renal and hepatic panels), and allergy history.</li>
-            <li><strong>Monitoring Peak &amp; Trough Levels:</strong> Essential for medications with narrow therapeutic windows to prevent toxicity and ensure therapeutic efficacy.</li>
-            <li><strong>Patient Education:</strong> Clear instruction on administration timing, food restrictions, expected side effects, and signs of adverse reactions.</li>
+            <li><strong>Monitoring Peak &amp; Trough Levels:</strong> Essential for drugs with narrow therapeutic indexes (e.g., aminoglycosides, vancomycin) to maintain efficacy while avoiding nephrotoxicity and ototoxicity.</li>
+            <li><strong>Anticipating Drug Interactions:</strong> Recognizing enzyme inhibitors and inducers prevents unexpected drug toxicity or therapeutic failure.</li>
+            <li><strong>Emergency Intervention:</strong> Utilizing functional antagonists like epinephrine during anaphylaxis saves lives by reversing physiological symptoms across different organ systems.</li>
           </ul>
         </div>
 
@@ -548,60 +620,88 @@
       overlay.classList.toggle('open');
     }
 
-    function runAdmeStep(step) {
-      const particle = document.getElementById('drugParticle');
-      const status = document.getElementById('admeStatus');
+    // ADME Animation Logic
+    function runADME(stage) {
+      const btns = document.querySelectorAll('.adme-btn');
+      btns.forEach(b => b.classList.remove('active-stage'));
       
-      document.querySelectorAll('.body-station').forEach(el => el.classList.remove('active'));
+      const stations = document.querySelectorAll('.body-station');
+      stations.forEach(s => s.classList.remove('active'));
 
-      if (step === 'A') {
-        particle.style.left = '18%';
+      const particle = document.getElementById('drugParticle');
+      const statusText = document.getElementById('admeStatusText');
+
+      if(stage === 'absorption') {
+        event.target.classList.add('active-stage');
+        document.getElementById('st-abs').classList.add('active');
+        particle.style.left = '15px';
         particle.style.top = '80px';
-        document.getElementById('stationA').classList.add('active');
-        status.innerText = "Absorption: Drug released from dosage form and enters systemic circulation across GI mucosa.";
-      } else if (step === 'D') {
-        particle.style.left = '42%';
+        statusText.innerHTML = "Status: <strong>Absorption Phase</strong>. Drug moves from GI mucosal barrier into portal and systemic blood circulation.";
+      } else if(stage === 'distribution') {
+        event.target.classList.add('active-stage');
+        document.getElementById('st-dist').classList.add('active');
+        particle.style.left = '285px';
         particle.style.top = '80px';
-        document.getElementById('stationD').classList.add('active');
-        status.innerText = "Distribution: Drug reversibly transfers from bloodstream into interstitial and tissue fluids.";
-      } else if (step === 'M') {
-        particle.style.left = '66%';
+        statusText.innerHTML = "Status: <strong>Distribution Phase</strong>. Unbound free drug molecules distribute rapidly into well-perfused target tissues and organs.";
+      } else if(stage === 'metabolism') {
+        event.target.classList.add('active-stage');
+        document.getElementById('st-meta').classList.add('active');
+        particle.style.left = '555px';
         particle.style.top = '80px';
-        document.getElementById('stationM').classList.add('active');
-        status.innerText = "Metabolism: Hepatic enzymes (CYP450) chemically alter the drug into water-soluble metabolites.";
-      } else if (step === 'E') {
-        particle.style.left = '88%';
+        statusText.innerHTML = "Status: <strong>Metabolism Phase</strong>. Hepatic CYP450 enzymes biotransform active lipophilic drugs into water-soluble metabolites.";
+      } else if(stage === 'excretion') {
+        event.target.classList.add('active-stage');
+        document.getElementById('st-excr').classList.add('active');
+        particle.style.left = '825px';
         particle.style.top = '80px';
-        document.getElementById('stationE').classList.add('active');
-        status.innerText = "Excretion: Kidneys and urine eliminate drug metabolites permanently from the body.";
+        statusText.innerHTML = "Status: <strong>Excretion Phase</strong>. Renal filtration and tubular secretion eliminate waste metabolites from the body via urine.";
       }
     }
 
-    function runReceptorTest(type) {
-      const ligand = document.getElementById('ligandParticle');
-      const pore = document.getElementById('receptorPore');
-      const status = document.getElementById('receptorStatus');
+    // Receptor & Functional Antagonist Simulation Logic
+    function setReceptorMode(mode) {
+      const btns = document.querySelectorAll('.receptor-btn');
+      btns.forEach(b => b.classList.remove('active-receptor'));
+      event.target.classList.add('active-receptor');
 
-      if (type === 'agonist') {
-        ligand.style.top = '72px';
-        pore.style.borderColor = '#10b981';
-        pore.style.background = 'rgba(16, 185, 129, 0.2)';
-        status.innerText = "Full Agonist: Binds receptor, triggers maximal cellular response and signal transduction.";
-      } else if (type === 'partial') {
-        ligand.style.top = '72px';
-        pore.style.borderColor = '#f59e0b';
-        pore.style.background = 'rgba(245, 158, 11, 0.2)';
-        status.innerText = "Partial Agonist: Binds receptor, triggers submaximal cellular response.";
-      } else if (type === 'antagonist') {
-        ligand.style.top = '72px';
-        pore.style.borderColor = '#ef4444';
-        pore.style.background = 'rgba(239, 68, 68, 0.2)';
-        status.innerText = "Antagonist: Binds receptor with zero intrinsic activity, blocking agonist actions.";
-      } else {
-        ligand.style.top = '12px';
-        pore.style.borderColor = '#38bdf8';
-        pore.style.background = 'transparent';
-        status.innerText = "Status: Select a drug type to test receptor binding.";
+      const ligand = document.getElementById('ligandParticle');
+      const poreBox = document.getElementById('receptorPoreBox');
+      const statusText = document.getElementById('receptorStatusText');
+
+      if(mode === 'agonist') {
+        ligand.innerText = "Ag";
+        ligand.style.background = "#fef08a";
+        ligand.style.boxShadow = "0 0 10px #fef08a";
+        ligand.style.top = "65px";
+        poreBox.style.borderColor = "#38bdf8";
+        poreBox.style.background = "rgba(56, 189, 248, 0.2)";
+        statusText.innerHTML = "Mode: <strong>Full Agonist</strong>. Binds to receptor site, triggers 100% maximal intrinsic activity and downstream cellular response.";
+      } else if(mode === 'competitive') {
+        ligand.innerText = "Ant";
+        ligand.style.background = "#f43f5e";
+        ligand.style.boxShadow = "0 0 10px #f43f5e";
+        ligand.style.top = "65px";
+        poreBox.style.borderColor = "#f43f5e";
+        poreBox.style.background = "rgba(244, 63, 94, 0.2)";
+        statusText.innerHTML = "Mode: <strong>Competitive Antagonist</strong>. Binds reversibly to the active site, blocking agonist binding. Overcome by higher agonist concentration.";
+      } else if(mode === 'noncompetitive') {
+        ligand.innerText = "All";
+        ligand.style.background = "#a855f7";
+        ligand.style.boxShadow = "0 0 10px #a855f7";
+        ligand.style.top = "20px";
+        ligand.style.left = "35%";
+        poreBox.style.borderColor = "#a855f7";
+        poreBox.style.background = "rgba(168, 85, 247, 0.2)";
+        statusText.innerHTML = "Mode: <strong>Non-Competitive / Allosteric Antagonist</strong>. Binds to an alternate site, altering receptor shape and permanently suppressing maximum response.";
+      } else if(mode === 'functional') {
+        ligand.innerText = "Func";
+        ligand.style.background = "#10b981";
+        ligand.style.boxShadow = "0 0 10px #10b981";
+        ligand.style.top = "85px";
+        ligand.style.left = "65%";
+        poreBox.style.borderColor = "#10b981";
+        poreBox.style.background = "rgba(16, 185, 129, 0.2)";
+        statusText.innerHTML = "Mode: <strong>Functional Antagonist (Physiological)</strong>. Acts on a separate receptor system to produce opposing physiological effects (e.g., Epinephrine vs. Histamine).";
       }
     }
   </script>
