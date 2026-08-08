@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Mastering Pharmacokinetics, Pharmacodynamics &amp; Unit I Nursing Fundamentals | Ultimate Edition</title>
+  <title>Mastering Pharmacodynamics, Receptor Families &amp; Dose-Response | Ultimate Mobile Edition</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,171 +57,128 @@
     /* Polished Mobile Navbar */
     .mobile-navbar { 
       display: flex; position: sticky; top: 0; z-index: 100; 
-      background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border); padding: 14px 18px; width: 100%;
+      background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border); padding: 12px 16px; width: 100%;
       justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06);
     }
-    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-dark); font-weight: 800; font-size: 0.95rem; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-dark); font-weight: 800; font-size: 0.92rem; }
     .menu-toggle { 
-      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); border: 1px solid var(--border); padding: 10px 14px; 
-      border-radius: 12px; font-size: 0.85rem; font-weight: 800; cursor: pointer; color: var(--primary-dark);
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); border: 1px solid var(--border); padding: 8px 12px; 
+      border-radius: 12px; font-size: 0.82rem; font-weight: 800; cursor: pointer; color: var(--primary-dark);
       display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
       transition: transform 0.2s ease;
     }
     .menu-toggle:active { transform: scale(0.95); }
 
     .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); z-index: 200; display: none; opacity: 0; transition: opacity 0.35s ease; }
-    .drawer { position: fixed; top: 0; right: -320px; width: 300px; height: 100%; background: #ffffff; z-index: 201; transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); padding: 28px 20px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: -15px 0 35px rgba(0,0,0,0.15); overflow-y: auto; }
+    .drawer { position: fixed; top: 0; right: -320px; width: 300px; height: 100%; background: #ffffff; z-index: 201; transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); padding: 24px 18px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: -15px 0 35px rgba(0,0,0,0.15); overflow-y: auto; }
     .drawer.open { right: 0; }
     .drawer-overlay.open { display: block; opacity: 1; }
-    .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
-    .drawer-menu { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .drawer-menu a { text-decoration: none; color: var(--text-dark); font-weight: 700; font-size: 0.88rem; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; background: #f8fafc; transition: background 0.2s; }
+    .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .drawer-menu { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .drawer-menu a { text-decoration: none; color: var(--text-dark); font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; background: #f8fafc; transition: background 0.2s; }
     .drawer-menu a:hover, .drawer-menu a.active { background: #f0f9ff; color: var(--primary-dark); }
 
-    .main-content-area { flex: 1; width: 100%; display: flex; flex-direction: column; }
-    .main-wrapper { max-width: 1020px; margin: 0 auto; padding: 20px 16px; width: 100%; flex: 1; }
+    .main-content-area { flex: 1; width: 100%; display: flex; flex-direction: column; min-width: 0; }
+    .main-wrapper { max-width: 100%; margin: 0 auto; padding: 16px 12px; width: 100%; flex: 1; overflow-x: hidden; }
 
     /* Hero Section */
     .chapter-hero {
       background: linear-gradient(135deg, #0f172a 0%, #0284c7 50%, #0d9488 100%);
-      color: white; border-radius: var(--radius); padding: 36px 22px; margin-bottom: 28px;
+      color: white; border-radius: var(--radius); padding: 28px 18px; margin-bottom: 22px;
       box-shadow: var(--shadow-lg); position: relative; overflow: hidden;
     }
-    .chapter-hero h1 { font-size: 1.5rem; font-weight: 800; line-height: 1.35; margin-bottom: 12px; }
-    .chapter-hero p { color: #bae6fd; font-size: 0.92rem; line-height: 1.65; }
-    .badge-unit { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(6px); padding: 6px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; margin-bottom: 14px; letter-spacing: 0.8px; border: 1px solid rgba(255,255,255,0.25); }
+    .chapter-hero h1 { font-size: 1.35rem; font-weight: 800; line-height: 1.35; margin-bottom: 10px; }
+    .chapter-hero p { color: #bae6fd; font-size: 0.88rem; line-height: 1.6; }
+    .badge-unit { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(6px); padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.8px; border: 1px solid rgba(255,255,255,0.25); }
 
     /* Content Cards */
     .content-card {
       background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 26px 20px; margin-bottom: 28px; box-shadow: var(--shadow);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 20px 16px; margin-bottom: 22px; box-shadow: var(--shadow);
+      word-break: break-word; overflow-wrap: break-word;
     }
-    .content-card h2 { font-size: 1.25rem; font-weight: 800; color: var(--text-dark); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #f1f5f9; padding-bottom: 12px; }
-    .content-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--primary-dark); margin: 24px 0 10px 0; }
-    .content-card p { font-size: 0.94rem; color: #334155; line-height: 1.75; margin-bottom: 14px; }
-    .content-card ul { margin-left: 22px; margin-bottom: 16px; font-size: 0.94rem; color: #334155; line-height: 1.75; }
-    .content-card li { margin-bottom: 10px; }
+    .content-card h2 { font-size: 1.15rem; font-weight: 800; color: var(--text-dark); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+    .content-card h3 { font-size: 1rem; font-weight: 800; color: var(--primary-dark); margin: 20px 0 8px 0; }
+    .content-card p { font-size: 0.9rem; color: #334155; line-height: 1.7; margin-bottom: 12px; }
+    .content-card ul { margin-left: 18px; margin-bottom: 14px; font-size: 0.9rem; color: #334155; line-height: 1.7; }
+    .content-card li { margin-bottom: 8px; }
 
-    mark { background-color: var(--highlight); padding: 2px 6px; border-radius: 4px; font-weight: 700; color: #1e293b; box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1); }
+    mark { background-color: var(--highlight); padding: 2px 5px; border-radius: 4px; font-weight: 700; color: #1e293b; box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1); }
     .mark-alt { background-color: var(--highlight-alt); color: #042f2e; }
 
     blockquote {
-      background: #f1f5f9; border-left: 5px solid var(--primary); padding: 16px 20px; border-radius: 0 12px 12px 0;
-      margin: 20px 0; font-style: italic; color: #334155; font-size: 0.92rem; line-height: 1.7;
+      background: #f1f5f9; border-left: 4px solid var(--primary); padding: 14px 16px; border-radius: 0 10px 10px 0;
+      margin: 16px 0; font-style: italic; color: #334155; font-size: 0.88rem; line-height: 1.65;
     }
-    blockquote cite { display: block; margin-top: 8px; font-weight: 700; font-style: normal; color: var(--primary-dark); font-size: 0.82rem; }
+    blockquote cite { display: block; margin-top: 6px; font-weight: 700; font-style: normal; color: var(--primary-dark); font-size: 0.78rem; }
 
     /* Real-Life Example Box */
     .example-box {
       background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-      border: 1px solid #fde68a; border-left: 6px solid #d97706;
-      border-radius: 16px; padding: 22px; margin: 20px 0; box-shadow: 0 4px 15px rgba(217, 119, 6, 0.05);
+      border: 1px solid #fde68a; border-left: 5px solid #d97706;
+      border-radius: 14px; padding: 18px 16px; margin: 16px 0; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.05);
     }
-    .example-box h4 { font-size: 0.98rem; font-weight: 800; color: #b45309; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-    .example-box p { font-size: 0.9rem; color: #78350f; margin-bottom: 0; line-height: 1.65; }
+    .example-box h4 { font-size: 0.92rem; font-weight: 800; color: #b45309; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .example-box p { font-size: 0.86rem; color: #78350f; margin-bottom: 0; line-height: 1.6; }
 
     .callout-box {
       background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-      border: 1px solid #bae6fd; border-left: 6px solid var(--primary);
-      border-radius: 16px; padding: 22px; margin: 22px 0; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.05);
+      border: 1px solid #bae6fd; border-left: 5px solid var(--primary);
+      border-radius: 14px; padding: 18px 16px; margin: 16px 0; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.05);
     }
-    .callout-box h4 { font-size: 0.98rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-    .callout-box p { font-size: 0.9rem; color: #0369a1; margin-bottom: 0; line-height: 1.65; }
+    .callout-box h4 { font-size: 0.92rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .callout-box p { font-size: 0.86rem; color: #0369a1; margin-bottom: 0; line-height: 1.6; }
 
     /* Tables */
-    .table-container { width: 100%; overflow-x: auto; margin: 20px 0; border-radius: 16px; border: 1px solid var(--border); -webkit-overflow-scrolling: touch; box-shadow: 0 4px 15px rgba(0,0,0,0.02); background: white; }
-    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem; min-width: 650px; }
-    th { background: #f1f5f9; color: var(--text-dark); font-weight: 800; padding: 14px 18px; border-bottom: 2px solid var(--border); white-space: nowrap; }
-    td { padding: 14px 18px; border-bottom: 1px solid var(--border); color: #334155; line-height: 1.65; }
+    .table-container { width: 100%; overflow-x: auto; margin: 16px 0; border-radius: 14px; border: 1px solid var(--border); -webkit-overflow-scrolling: touch; box-shadow: 0 4px 12px rgba(0,0,0,0.02); background: white; }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.84rem; min-width: 550px; }
+    th { background: #f1f5f9; color: var(--text-dark); font-weight: 800; padding: 12px 14px; border-bottom: 2px solid var(--border); white-space: nowrap; }
+    td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: #334155; line-height: 1.6; }
     tr:last-child td { border-bottom: none; }
     tr:nth-child(even) { background: #f8fafc; }
 
-    /* Interactive ADME Animation Simulation */
-    .adme-sim-container {
-      background: #0f172a; color: white; border-radius: var(--radius); padding: 24px 18px; margin: 24px 0;
-      box-shadow: var(--shadow-lg); border: 1px solid #1e293b;
-    }
-    .adme-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 14px; }
-    .adme-header h3 { font-size: 1.05rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 8px; }
-    .adme-controls { display: flex; gap: 8px; flex-wrap: wrap; width: 100%; }
-    .adme-btn {
-      background: var(--primary); color: white; border: none; padding: 10px 14px; border-radius: 10px;
-      font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.25s ease; flex: 1; text-align: center;
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
-    }
-    .adme-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
-    .adme-btn.active-stage { background: #0d9488; box-shadow: 0 0 15px rgba(13, 148, 136, 0.5); }
-
-    .body-canvas {
-      background: #1e293b; border-radius: 14px; height: 260px; position: relative; overflow: hidden;
-      display: flex; align-items: center; justify-content: space-around; padding: 20px; border: 1px solid #334155; margin-bottom: 16px;
-    }
-
-    .body-station {
-      display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; z-index: 2;
-      opacity: 0.4; transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    .body-station.active { opacity: 1; transform: scale(1.08); }
-    .station-icon {
-      width: 54px; height: 54px; border-radius: 14px; background: #334155; display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; border: 2px solid #475569; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-    .body-station.active .station-icon { background: linear-gradient(135deg, var(--primary), var(--accent)); border-color: #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
-    .station-label { font-size: 0.75rem; font-weight: 700; color: #cbd5e1; text-align: center; }
-
-    #drugParticle {
-      position: absolute; width: 22px; height: 22px; background: #fef08a; border-radius: 50%;
-      box-shadow: 0 0 15px #fef08a; z-index: 10; top: 120px; left: 40px;
-      transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    .adme-status { font-family: monospace; font-size: 0.85rem; color: #cbd5e1; background: rgba(0,0,0,0.5); padding: 14px; border-radius: 10px; text-align: center; line-height: 1.6; border: 1px solid rgba(255,255,255,0.06); }
-
-    /* Interactive Graph Simulation */
+    /* Interactive Simulation Containers */
     .sim-container {
-      background: #0f172a; color: white; border-radius: var(--radius); padding: 24px 18px; margin: 24px 0;
+      background: #0f172a; color: white; border-radius: var(--radius); padding: 18px 14px; margin: 20px 0;
       box-shadow: var(--shadow-lg); border: 1px solid #1e293b;
     }
-    .sim-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 14px; }
-    .sim-header h3 { font-size: 1.05rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 8px; }
-    .sim-controls { display: flex; gap: 8px; flex-wrap: wrap; width: 100%; }
+    .sim-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
+    .sim-header h3 { font-size: 0.98rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 6px; }
+    .sim-controls { display: flex; gap: 6px; flex-wrap: wrap; width: 100%; }
     .sim-btn {
-      background: var(--primary); color: white; border: none; padding: 10px 14px; border-radius: 10px;
-      font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.25s ease; flex: 1; text-align: center;
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+      background: var(--primary); color: white; border: none; padding: 8px 10px; border-radius: 8px;
+      font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: all 0.25s ease; flex: 1; text-align: center;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3); min-width: 110px;
     }
     .sim-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
     .sim-btn.secondary { background: #334155; box-shadow: none; }
     .sim-btn.secondary:hover { background: #475569; }
 
     .graph-screen {
-      background: #1e293b; border-radius: 14px; height: 230px; position: relative; overflow: hidden;
-      display: flex; align-items: flex-end; padding: 20px; border: 1px solid #334155; margin-bottom: 16px;
+      background: #1e293b; border-radius: 12px; height: 210px; position: relative; overflow: hidden;
+      display: flex; align-items: flex-end; padding: 14px; border: 1px solid #334155; margin-bottom: 12px;
     }
-    .graph-axis-y { position: absolute; left: 15px; top: 15px; bottom: 35px; width: 2px; background: #475569; display: flex; flex-direction: column; justify-content: space-between; font-size: 0.65rem; color: #94a3b8; }
-    .graph-axis-x { position: absolute; left: 30px; right: 20px; bottom: 20px; height: 2px; background: #475569; display: flex; justify-content: space-between; font-size: 0.65rem; color: #94a3b8; padding-top: 6px; }
-    .graph-curve { width: 100%; height: 100%; position: relative; margin-left: 15px; display: flex; align-items: flex-end; justify-content: space-around; padding-bottom: 10px; }
+    .graph-axis-y { position: absolute; left: 10px; top: 10px; bottom: 30px; width: 2px; background: #475569; display: flex; flex-direction: column; justify-content: space-between; font-size: 0.6rem; color: #94a3b8; }
+    .graph-axis-x { position: absolute; left: 25px; right: 15px; bottom: 12px; height: 2px; background: #475569; display: flex; justify-content: space-between; font-size: 0.6rem; color: #94a3b8; padding-top: 4px; }
+    .graph-curve { width: 100%; height: 100%; position: relative; margin-left: 12px; display: flex; align-items: flex-end; justify-content: space-around; padding-bottom: 6px; }
     
     .sim-bar {
-      width: 32px; background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
-      border-radius: 8px 8px 0 0; transition: height 0.8s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s ease;
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+      width: 26px; background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+      border-radius: 6px 6px 0 0; transition: height 0.8s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s ease;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
     }
-    .sim-status { font-family: monospace; font-size: 0.85rem; color: #cbd5e1; background: rgba(0,0,0,0.5); padding: 14px; border-radius: 10px; text-align: center; line-height: 1.6; border: 1px solid rgba(255,255,255,0.06); }
+    .sim-status { font-family: monospace; font-size: 0.78rem; color: #cbd5e1; background: rgba(0,0,0,0.5); padding: 12px; border-radius: 8px; text-align: center; line-height: 1.55; border: 1px solid rgba(255,255,255,0.06); }
 
     @media (min-width: 900px) {
       .mobile-navbar { display: none; }
       .pc-sidebar { display: flex; }
       .main-content-area { margin-left: 320px; }
-      .main-wrapper { padding: 40px 48px; max-width: 1140px; }
+      .main-wrapper { padding: 32px 40px; max-width: 1080px; }
       .sim-controls { width: auto; flex: unset; }
-      .sim-btn { flex: unset; }
-      .adme-controls { width: auto; flex: unset; }
-      .adme-btn { flex: unset; }
-      .content-card { padding: 34px 30px; }
-      .chapter-hero { padding: 42px 36px; }
+      .sim-btn { flex: unset; min-width: auto; }
+      .content-card { padding: 28px 26px; }
+      .chapter-hero { padding: 36px 30px; }
     }
   </style>
 </head>
@@ -232,25 +189,19 @@
     <!-- PC Sidebar Navigation -->
     <aside class="pc-sidebar">
       <div>
-        <a href="#sec-unit1" class="sidebar-brand">
+        <a href="#sec-pd-intro" class="sidebar-brand">
           <div class="pulse-box">🔬</div>
-          <span>Nursing Pharmacology</span>
+          <span>Pharmacodynamics</span>
         </a>
         <ul class="sidebar-menu">
-          <li><a href="#sec-unit1" class="active">Unit I: Intro &amp; Core Nursing Fundamentals</a></li>
-          <li><a href="#sec-intro">Introduction &amp; Grogan &amp; Preuss Core</a></li>
-          <li><a href="#sec-animation">✨ Live ADME Body Animation</a></li>
-          <li><a href="#sec-absorption">1. Absorption &amp; Liberation</a></li>
-          <li><a href="#sec-bioavailability" class="sidebar-sub">↳ Bioavailability &amp; AUC</a></li>
-          <li><a href="#sec-distribution">2. Distribution &amp; Vd</a></li>
-          <li><a href="#sec-protein" class="sidebar-sub">↳ Protein Binding &amp; Albumin</a></li>
-          <li><a href="#sec-metabolism">3. Metabolism &amp; CYP450 Phases</a></li>
-          <li><a href="#sec-excretion">4. Excretion &amp; Clearance</a></li>
-          <li><a href="#sec-kinetics">5. Drug Kinetics, Half-Life &amp; Orders</a></li>
-          <li><a href="#sec-pd">6. Pharmacodynamics (PD) &amp; Receptors</a></li>
-          <li><a href="#sec-affinity" class="sidebar-sub">↳ Agonists, Antagonists &amp; Intrinsic Activity</a></li>
-          <li><a href="#sec-ti" class="sidebar-sub">↳ Therapeutic Index &amp; Safety Margin</a></li>
-          <li><a href="#sec-clinical">7. Clinical Significance &amp; Teamwork</a></li>
+          <li><a href="#sec-pd-intro" class="active">1. Introduction to Pharmacodynamics</a></li>
+          <li><a href="#sec-receptor-types">2. The 4 Major Receptor Families</a></li>
+          <li><a href="#sec-signal-transduction" class="sidebar-sub">↳ Transmembrane Signaling</a></li>
+          <li><a href="#sec-dose-response">3. Dose-Response &amp; Binding Curves</a></li>
+          <li><a href="#sec-potency-efficacy" class="sidebar-sub">↳ Potency vs. Efficacy &amp; Spare Receptors</a></li>
+          <li><a href="#sec-agonists">4. Full, Partial &amp; Inverse Agonists</a></li>
+          <li><a href="#sec-antagonists">5. Competitive &amp; Noncompetitive Antagonists</a></li>
+          <li><a href="#sec-allosteric" class="sidebar-sub">↳ Allosteric &amp; Functional Antagonism</a></li>
         </ul>
       </div>
       <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; border-top: 1px solid var(--border); padding-top: 14px;">
@@ -262,9 +213,9 @@
 
       <!-- Polished Mobile Navbar -->
       <header class="mobile-navbar">
-        <a href="#sec-unit1" class="brand">
+        <a href="#sec-pd-intro" class="brand">
           <div class="pulse-box">🔬</div>
-          <span>Pharmacology Masterclass</span>
+          <span>Pharmacodynamics Master</span>
         </a>
         <button class="menu-toggle" onclick="toggleMenu()" aria-label="Open Navigation Menu">
           Menu ☰
@@ -280,23 +231,17 @@
               <div class="pulse-box">🔬</div>
               <span>Chapter Index</span>
             </div>
-            <button class="menu-toggle" onclick="toggleMenu()" style="padding: 6px 10px; font-size: 0.8rem;">✕ Close</button>
+            <button class="menu-toggle" onclick="toggleMenu()" style="padding: 6px 10px; font-size: 0.78rem;">✕ Close</button>
           </div>
           <ul class="drawer-menu">
-            <li><a href="#sec-unit1" onclick="toggleMenu()">Unit I: Intro &amp; Core Nursing Fundamentals</a></li>
-            <li><a href="#sec-intro" onclick="toggleMenu()">Introduction &amp; Grogan &amp; Preuss Core</a></li>
-            <li><a href="#sec-animation" onclick="toggleMenu()">✨ Live ADME Body Animation</a></li>
-            <li><a href="#sec-absorption" onclick="toggleMenu()">1. Absorption &amp; Liberation</a></li>
-            <li><a href="#sec-bioavailability" onclick="toggleMenu()">↳ Bioavailability &amp; AUC</a></li>
-            <li><a href="#sec-distribution" onclick="toggleMenu()">↳ Distribution &amp; Vd</a></li>
-            <li><a href="#sec-protein" onclick="toggleMenu()">↳ Protein Binding &amp; Albumin</a></li>
-            <li><a href="#sec-metabolism" onclick="toggleMenu()">↳ Metabolism &amp; CYP450 Phases</a></li>
-            <li><a href="#sec-excretion" onclick="toggleMenu()">↳ Excretion &amp; Clearance</a></li>
-            <li><a href="#sec-kinetics" onclick="toggleMenu()">↳ Drug Kinetics, Half-Life &amp; Orders</a></li>
-            <li><a href="#sec-pd" onclick="toggleMenu()">↳ Pharmacodynamics (PD) &amp; Receptors</a></li>
-            <li><a href="#sec-affinity" onclick="toggleMenu()">↳ Agonists, Antagonists &amp; Intrinsic Activity</a></li>
-            <li><a href="#sec-ti" onclick="toggleMenu()">↳ Therapeutic Index &amp; Safety Margin</a></li>
-            <li><a href="#sec-clinical" onclick="toggleMenu()">↳ Clinical Significance &amp; Teamwork</a></li>
+            <li><a href="#sec-pd-intro" onclick="toggleMenu()">1. Introduction to Pharmacodynamics</a></li>
+            <li><a href="#sec-receptor-types" onclick="toggleMenu()">2. The 4 Major Receptor Families</a></li>
+            <li><a href="#sec-signal-transduction" onclick="toggleMenu()">↳ Transmembrane Signaling</a></li>
+            <li><a href="#sec-dose-response" onclick="toggleMenu()">3. Dose-Response &amp; Binding Curves</a></li>
+            <li><a href="#sec-potency-efficacy" onclick="toggleMenu()">↳ Potency vs. Efficacy &amp; Spare Receptors</a></li>
+            <li><a href="#sec-agonists" onclick="toggleMenu()">4. Full, Partial &amp; Inverse Agonists</a></li>
+            <li><a href="#sec-antagonists" onclick="toggleMenu()">5. Competitive &amp; Noncompetitive Antagonists</a></li>
+            <li><a href="#sec-allosteric" onclick="toggleMenu()">↳ Allosteric &amp; Functional Antagonism</a></li>
           </ul>
         </div>
         <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; padding-top: 14px; border-top: 1px solid var(--border);">
@@ -308,507 +253,176 @@
         
         <!-- Hero Header -->
         <div class="chapter-hero">
-          <span class="badge-unit">Complete Clinical Masterclass</span>
-          <h1>Pharmacology &amp; Nursing Fundamentals: The Complete Science of Drugs</h1>
-          <p>Incorporating Unit I core nursing pharmacology foundations, drug standards, supply systems, and drug card preparation alongside advanced Pharmacokinetics and Pharmacodynamics.</p>
+          <span class="badge-unit">Advanced Pharmacodynamics</span>
+          <h1>Drug Action, Receptor Families &amp; Dose-Response Relationships</h1>
+          <p>Simplified clinical explanations of how drugs interact with cellular receptors, initiate signal transduction cascades, and produce therapeutic or toxic responses.</p>
         </div>
 
-        <!-- UNIT I: INTRODUCTION TO PHARMACOLOGY SECTION -->
-        <div id="sec-unit1" class="content-card">
-          <h2>Unit I: Introduction to Nursing Pharmacology</h2>
-          <p>Welcome to foundational nursing pharmacology. This section covers essential terminology, historical milestones, medication purposes, classifications, supply systems, legal standards, and practical toolkits for safe medication administration.</p>
-
-          <h3>1. Terminologies Related to Pharmacology</h3>
-          <ul>
-            <li><strong>Pharmacology:</strong> The comprehensive science of drugs, including their origin, composition, pharmacokinetics, pharmacodynamics, therapeutic uses, and toxicology.</li>
-            <li><strong>Drug:</strong> Any chemical substance that alters biological function through molecular interactions when introduced into a living organism.</li>
-            <li><strong>Medication:</strong> A substance administered for the diagnosis, cure, mitigation, treatment, or prevention of disease.</li>
-            <li><strong>Generic Name:</strong> The official, non-proprietary international name of a drug (e.g., paracetamol).</li>
-            <li><strong>Trade / Brand Name:</strong> The proprietary trademarked name given by the pharmaceutical manufacturer (e.g., Tylenol).</li>
-            <li><strong>Adverse Drug Reaction (ADR) / Side Effect:</strong> An unintended, noxious, or hazardous response occurring at normal therapeutic doses.</li>
-          </ul>
-
-          <h3>2. History of Pharmacology Briefly</h3>
-          <p>Pharmacology transitioned from ancient folklore and herbal remedies to empirical science:</p>
-          <ul>
-            <li><strong>Ancient Era:</strong> Reliance on plants, minerals, and animal products documented in historic texts (e.g., Ebers Papyrus in Egypt, ancient Chinese and Ayurvedic texts).</li>
-            <li><strong>19th Century Emergence:</strong> Isolation of active chemical compounds from crude drugs (e.g., isolation of morphine from opium by Friedrich Sertürner in 1805).</li>
-            <li><strong>Modern Era:</strong> Breakthroughs in synthetic chemistry, molecular biology, genomics, and targeted monoclonal antibody therapies, establishing strict clinical trials and regulatory frameworks.</li>
-          </ul>
-
-          <h3>3. Purposes of Medication</h3>
-          <p>Medications serve several core healthcare functions:</p>
-          <ul>
-            <li><strong>Diagnostic:</strong> Agents used to identify diseases (e.g., radiopaque contrast dyes for CT scans, barium sulfate).</li>
-            <li><strong>Curative:</strong> Agents that eliminate pathogens or cure diseases (e.g., antibiotics curing bacterial infections).</li>
-            <li><strong>Palliative:</strong> Agents that relieve symptoms without curing the underlying disease (e.g., analgesics or palliative opioids for terminal cancer pain).</li>
-            <li><strong>Prophylactic (Preventive):</strong> Agents given to prevent illnesses (e.g., vaccines, prophylactic antibiotics before surgery).</li>
-            <li><strong>Replacement:</strong> Agents that supplement missing body chemicals (e.g., insulin for diabetes mellitus, levothyroxine for hypothyroidism).</li>
-          </ul>
-
-          <h3>4. Sources of Medication</h3>
-          <div class="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Source Category</th>
-                  <th>Description &amp; Examples</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Plant Sources</strong></td>
-                  <td>Derived from roots, leaves, barks, or seeds (e.g., digoxin from foxglove, morphine from opium poppy, atropine).</td>
-                </tr>
-                <tr>
-                  <td><strong>Animal Sources</strong></td>
-                  <td>Extracted from animal tissues or organs (e.g., animal insulin, heparin from porcine intestinal mucosa).</td>
-                </tr>
-                <tr>
-                  <td><strong>Mineral Sources</strong></td>
-                  <td>Inorganic elements and minerals from the earth (e.g., magnesium sulfate, ferrous sulfate, potassium chloride).</td>
-                </tr>
-                <tr>
-                  <td><strong>Synthetic &amp; Biosynthetic</strong></td>
-                  <td>Created in laboratories via organic chemistry or recombinant DNA technology (e.g., synthetic human insulin, sulfonamides, aspirin).</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <h3>5. Classification of Drugs</h3>
-          <p>Drugs are categorized based on several systems:</p>
-          <ul>
-            <li><strong>Therapeutic Classification:</strong> Categorized by what condition they treat (e.g., antihypertensives, antidepressants, antihyperglycemics).</li>
-            <li><strong>Pharmacological Classification:</strong> Categorized by how they act at the molecular or systemic level (e.g., beta-blockers, ACE inhibitors, calcium channel blockers).</li>
-            <li><strong>Body System Classification:</strong> Grouped according to the physiological system they affect (e.g., cardiovascular drugs, respiratory agents, central nervous system drugs).</li>
-          </ul>
-
-          <h3>6. Three Types of Drug Supply Systems</h3>
-          <p>Hospitals and healthcare facilities utilize structured systems to store, manage, and distribute medications safely:</p>
-          <ul>
-            <li><strong>Floor Stock System:</strong> Bulk supplies of common medications are kept on nursing units. Nurses dispense directly from floor stock; highly vulnerable to medication errors and inventory discrepancies.</li>
-            <li><strong>Individual Prescription Order System:</strong> Medications are dispensed from the pharmacy specifically for an individual patient in a designated supply drawer for a 24-to-72-hour period.</li>
-            <li><strong>Unit-Dose System:</strong> The gold standard safety system. Medications are dispensed by the pharmacy in single-unit, pre-packaged, pre-labeled doses ready to administer directly to the specific patient, reducing preparation errors.</li>
-          </ul>
-
-          <h3>7. Drug Standards and Legislation</h3>
-          <p>National and international laws protect public health by establishing strict standards for drug purity, strength, quality, safety, and efficacy:</p>
-          <ul>
-            <li><strong>Pharmacopeias &amp; Formularies:</strong> Official public standards books (e.g., United States Pharmacopeia - USP, British Pharmacopoeia) defining medication composition and purity tests.</li>
-            <li><strong>Regulatory Agencies:</strong> Government bodies (e.g., FDA in the United States, DRAP in Pakistan) responsible for approving new drugs, monitoring adverse events, and enforcing manufacturing compliance.</li>
-            <li><strong>Controlled Substance Acts:</strong> Legislation regulating narcotics and habit-forming drugs, requiring secure double-locked storage, exact inventory counts, and witnessed waste disposal.</li>
-          </ul>
-
-          <h3>8. Resources to Collect and Utilize Drug Information</h3>
-          <p>Nurses must consult verified, evidence-based literature before administering medications:</p>
-          <ul>
-            <li><strong>Standard Nursing Drug Handbooks:</strong> (e.g., *Nursing Central*, *Mosby's Drug Guide*).</li>
-            <li><strong>Pharmacist Consultations &amp; Hospital Formularies:</strong> Institutional references outlining approved drug lists, dosages, and IV compatibility.</li>
-            <li><strong>Electronic Databases &amp; Apps:</strong> UpToDate, Lexicomp, Micromedex, and official manufacturer prescribing information sheets.</li>
-          </ul>
-
-          <h3>9. Learn to Prepare Drug Cards</h3>
-          <p>Drug cards are essential clinical learning tools used by nursing students to master pharmacology safely. A standard clinical drug card includes:</p>
-          <ul>
-            <li><strong>Generic &amp; Brand Name:</strong> Proper spelling and pronunciation.</li>
-            <li><strong>Pharmacological Classification &amp; Mechanism of Action:</strong> Drug category and how it works.</li>
-            <li><strong>Indication:</strong> Approved clinical uses and reasons the patient is taking it.</li>
-            <li><strong>Dosage, Route &amp; Safe Parameters:</strong> Standard clinical doses, routes, and baseline vital sign cutoffs (e.g., hold if heart rate < 60 bpm for digoxin).</li>
-            <li><strong>Adverse Effects &amp; Nursing Interventions:</strong> Common side effects, toxicities, lab monitoring, and patient education.</li>
-          </ul>
-        </div>
-
-        <!-- INTRODUCTION SECTION -->
-        <div id="sec-intro" class="content-card">
-          <h2>Definition &amp; Introduction</h2>
-          
-          <blockquote>
-            "Did we but know the mechanical affections of the particles of rhubarb, hemlock, opium, and a man...we should be able to tell beforehand that rhubarb will purge, hemlock kill, and opium make a man sleepy..."
-            <cite>— John Locke, Essay Concerning Human Understanding</cite>
-          </blockquote>
-
-          <p><mark>Pharmacokinetics (PK)</mark> is the study of how the body interacts with administered substances throughout their entire duration of exposure (what the body does to the drug). Conversely, <mark>Pharmacodynamics (PD)</mark> examines the drug’s molecular, biochemical, and physiological effect on the body (what the drug does to the body).</p>
+        <!-- SECTION 1: INTRO TO PHARMACODYNAMICS -->
+        <div id="sec-pd-intro" class="content-card">
+          <h2>1. Introduction to Pharmacodynamics</h2>
+          <p><strong>Pharmacodynamics (PD)</strong> describes what the drug does to the body and how drug concentrations influence the magnitude of the response. Most drugs exert their beneficial or harmful effects by binding to specialized target macromolecules called <mark>receptors</mark> located on the cell surface or inside the cell.</p>
           
           <div class="callout-box">
-            <h4>🎯 Core Distinction</h4>
-            <p>Pharmacodynamics studies drug action on the organism, while pharmacokinetics studies how the organism processes the drug. Both make up the two fundamental branches of pharmacology.</p>
+            <h4>🎯 The Drug-Receptor Complex</h4>
+            <p>When a drug binds to its receptor, it forms a drug-receptor complex that triggers changes in the cell's biochemical or molecular activity—a process known as <strong>signal transduction</strong>.</p>
           </div>
+
+          <h3>Protein Targets &amp; Exceptions</h3>
+          <p>Most drug receptors are proteins. Even general anesthetics, once thought to dissolve in cell membrane fats, are now known to interact with membrane proteins. However, all rules have exceptions: many antimicrobials, antitumor drugs, and mutagenic agents interact directly with <strong>DNA</strong> rather than proteins.</p>
         </div>
 
-        <!-- LIVE ADME ANIMATION SECTION -->
-        <div id="sec-animation" class="content-card">
-          <h2>✨ Live ADME Animated Simulation</h2>
-          <p>Watch how a drug particle travels through the human body step-by-step from administration to elimination. Click the stages below to trigger the animation and explanation!</p>
+        <!-- SECTION 2: THE 4 MAJOR RECEPTOR FAMILIES -->
+        <div id="sec-receptor-types" class="content-card">
+          <h2>2. The Four Major Receptor Families</h2>
+          <p>Pharmacology defines a receptor as any biologic molecule to which a drug binds to produce a measurable response (including enzymes, nucleic acids, and structural proteins). However, the richest sources of therapeutically relevant receptors are proteins that translate extracellular signals into intracellular responses, divided into four core families:</p>
 
-          <div class="adme-sim-container">
-            <div class="adme-header">
-              <h3>🎬 Drug Journey in Real-Time</h3>
-              <div class="adme-controls">
-                <button class="adme-btn" id="btnAbs" onclick="runAdme('absorption')">1. Absorption</button>
-                <button class="adme-btn" id="btnDis" onclick="runAdme('distribution')">2. Distribution</button>
-                <button class="adme-btn" id="btnMet" onclick="runAdme('metabolism')">3. Metabolism</button>
-                <button class="adme-btn" id="btnExc" onclick="runAdme('excretion')">4. Excretion</button>
-              </div>
-            </div>
-
-            <div class="body-canvas">
-              <div id="drugParticle"></div>
-              
-              <div class="body-station" id="stationAbs">
-                <div class="station-icon">💊</div>
-                <div class="station-label">Stomach / Gut<br>(Absorption)</div>
-              </div>
-
-              <div class="body-station" id="stationDis">
-                <div class="station-icon">❤️</div>
-                <div class="station-label">Blood &amp; Tissues<br>(Distribution)</div>
-              </div>
-
-              <div class="body-station" id="stationMet">
-                <div class="station-icon">🧪</div>
-                <div class="station-label">Liver (CYP450)<br>(Metabolism)</div>
-              </div>
-
-              <div class="body-station" id="stationExc">
-                <div class="station-icon">🚽</div>
-                <div class="station-label">Kidneys / Urine<br>(Excretion)</div>
-              </div>
-            </div>
-
-            <div class="adme-status" id="admeStatusMsg">
-              Click any stage above to start the animated drug journey through the body!
-            </div>
-          </div>
-        </div>
-
-        <!-- ABSORPTION SECTION -->
-        <div id="sec-absorption" class="content-card">
-          <h2>1. Absorption &amp; Liberation</h2>
-          <p><strong>Absorption</strong> is the process that brings a drug from its administration point into your <mark>systemic blood circulation</mark>.</p>
-          
-          <h3>Methods of Drug Administration</h3>
           <ul>
-            <li>Oral, intravenous (IV), intramuscular, intrathecal, subcutaneous</li>
-            <li>Buccal, rectal, vaginal, ocular, otic, inhaled, nebulized, and transdermal</li>
+            <li><strong>1) Ligand-Gated Ion Channels:</strong> Fast-acting channels that open or close instantly upon binding.</li>
+            <li><strong>2) G Protein-Coupled Receptors (GPCRs):</strong> Membrane receptors that activate intracellular G proteins and second messengers.</li>
+            <li><strong>3) Enzyme-Linked Receptors:</strong> Receptors with intrinsic enzyme activity (such as tyrosine kinase) that phosphorylate proteins.</li>
+            <li><strong>4) Intracellular Receptors:</strong> Receptors located inside the cell (nucleus/cytoplasm) that regulate gene transcription.</li>
           </ul>
 
           <div class="example-box">
-            <h4>💡 The Role of Liberation in Oral Medications</h4>
-            <p>Before absorption, oral drugs undergo <strong>liberation</strong> (release from their dosage form). If delayed in the esophagus, it can cause mucosal irritation. Stomach acid can also chemically degrade active ingredients prematurely.</p>
+            <h4>💡 Chemical Nature Determines Receptor Location</h4>
+            <p><strong>Hydrophilic (water-soluble) ligands</strong> cannot cross the lipid cell membrane, so they bind to surface receptors. <strong>Hydrophobic (fat-soluble) ligands</strong> easily cross the lipid bilayer to bind with intracellular receptors inside the cell.</p>
           </div>
         </div>
 
-        <!-- BIOAVAILABILITY & AUC -->
-        <div id="sec-bioavailability" class="content-card">
-          <h2>Bioavailability &amp; The Area Under the Curve (AUC)</h2>
-          <p><strong>Bioavailability (F)</strong> is the fraction of administered drug that reaches systemic circulation intact. Intravenous administration is the gold standard with <mark>100% bioavailability</mark>.</p>
+        <!-- SECTION 3: TRANSMEMBRANE SIGNALING MECHANISMS -->
+        <div id="sec-signal-transduction" class="content-card">
+          <h2>3. Transmembrane Signaling Mechanisms</h2>
 
-          <div class="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Route</th>
-                  <th>Bioavailability</th>
-                  <th>Mechanism</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Intravenous (IV)</strong></td>
-                  <td>100%</td>
-                  <td>Bypasses gut and liver filtering instantly.</td>
-                </tr>
-                <tr>
-                  <td><strong>Oral Tablets</strong></td>
-                  <td>Varies (Lower)</td>
-                  <td>Subject to stomach acid and hepatic first-pass metabolism.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <h3>First-Pass Metabolism &amp; AUC</h3>
-          <p>Orally absorbed drugs pass through gut wall enzymes and the liver via the portal vein before reaching general circulation (<mark>first-pass metabolism</mark>). The <mark>Area Under the Curve (AUC)</mark> calculates total systemic bioavailability over a given time frame.</p>
-        </div>
-
-        <!-- DISTRIBUTION SECTION -->
-        <div id="sec-distribution" class="content-card">
-          <h2>2. Distribution &amp; Volume of Distribution (Vd)</h2>
-          <p><strong>Distribution</strong> describes how a drug spreads through body fluids and tissues via <mark>diffusion and convection</mark>, striving to achieve effective drug concentration at receptor sites.</p>
-
-          <h3>Volume of Distribution (Vd)</h3>
-          <p>Vd relates the total amount of drug in the body to its plasma concentration:</p>
-          <p style="text-align: center; font-weight: 800; font-family: monospace; background: #f1f5f9; padding: 12px; border-radius: 10px; margin: 14px 0;">Vd = Amount of Drug in Body / Plasma Drug Concentration</p>
+          <h3>1. Ligand-Gated Ion Channels</h3>
+          <p>The extracellular portion contains the binding site. When an agonist binds, the channel opens briefly (milliseconds) to let specific ions flow across the membrane:</p>
           <ul>
-            <li><strong>Low Vd:</strong> Intravascular confinement (large/protein-bound molecules like cetrorelix).</li>
-            <li><strong>High Vd:</strong> Extensive tissue/adipose penetration (small lipophilic molecules like chloroquine).</li>
+            <li><strong>Example (Acetylcholine / Nicotinic Receptor):</strong> Opens to allow sodium ($Na^+$) influx and potassium ($K^+$) outflux, generating an action potential in neurons or muscle contraction.</li>
+            <li><strong>Example (GABA Receptor):</strong> Increases chloride ($Cl^-$) influx, hyperpolarizing and calming neurons.</li>
+            <li><strong>Voltage-Gated Channels:</strong> Can also be targeted by drugs (e.g., local anesthetics bind voltage-gated sodium channels to block pain signals).</li>
           </ul>
 
-          <div class="callout-box">
-            <h4>💡 Clinical Application: Loading Doses</h4>
-            <p>Loading doses rapidly achieve therapeutic plasma levels based directly on Vd: <br><em>Loading Dose = Vd × Desired Concentration / Bioavailability</em>.</p>
-          </div>
+          <h3>2. G Protein-Coupled Receptors (GPCRs)</h3>
+          <p>GPCRs feature three subunits ($\alpha, \beta, \gamma$). The $\alpha$ subunit binds GTP when activated, splitting from the $\beta\gamma$ complex to stimulate or inhibit cellular enzymes:</p>
+          <ul>
+            <li><strong>Gs &amp; Gi:</strong> Stimulate or inhibit <strong>adenylyl cyclase</strong>, altering cyclic AMP ($cAMP$) levels.</li>
+            <li><strong>Gq:</strong> Activates <strong>phospholipase C</strong>, generating $IP_3$ and $DAG$ second messengers to regulate calcium ($Ca^{2+}$) and protein kinases. Responses last seconds to minutes.</li>
+          </ul>
+
+          <h3>3. Enzyme-Linked Receptors</h3>
+          <p>These receptors form dimers or complexes. When activated, they undergo structural changes increasing cytosolic enzyme activity (lasting minutes to hours). Most possess <strong>tyrosine kinase</strong> activity (e.g., insulin, epidermal growth factor). Binding causes self-phosphorylation (autophosphorylation), triggering a cascade of intracellular signals.</p>
+
+          <h3>4. Intracellular Receptors</h3>
+          <p>Located entirely inside the cell, requiring lipid-soluble ligands to diffuse inward. Their primary targets are <strong>nuclear transcription factors</strong>. The ligand-receptor complex enters the nucleus to regulate gene expression (transcription into RNA and translation into proteins). This process takes hours to days (e.g., steroid hormones).</p>
+          <p><em>Other intracellular targets include:</em> Tubulin (paclitaxel target), dihydrofolate reductase (trimethoprim target), and bacterial 50S ribosomal subunits (macrolide antibiotics like erythromycin).</p>
         </div>
 
-        <!-- PROTEIN BINDING SECTION -->
-        <div id="sec-protein" class="content-card">
-          <h2>Protein Binding &amp; The Free Drug Rule</h2>
-          <p>Drugs circulate either <mark>protein-bound</mark> (to albumin or alpha-1-acid glycoprotein) or as <mark>free active drug</mark>. <mark>Only free drug can bind receptors</mark> or be eliminated.</p>
-
-          <div class="example-box">
-            <h4>💡 Clinical Example: Renal Failure</h4>
-            <p>In renal failure, uremia decreases serum protein binding for acidic drugs like diazepam. This increases the active free fraction, dramatically heightening the risk of toxicity (e.g., respiratory depression).</p>
-          </div>
-        </div>
-
-        <!-- METABOLISM DETAILED SECTION -->
-        <div id="sec-metabolism" class="content-card">
-          <h2>3. Metabolism (Biotransformation): Phase I and Phase II Reactions</h2>
-          <p><strong>Metabolism</strong> (or biotransformation) is the chemical alteration of a drug within the body, primarily occurring in the <strong>liver</strong>, but also in the gut wall, kidneys, and lungs. The ultimate goal of metabolism is to convert active, lipid-soluble (lipophilic) drug compounds into inactive, water-soluble (hydrophilic) metabolites so they can be easily excreted by the kidneys through urine or via bile into feces.</p>
+        <!-- SECTION 4: DOSE-RESPONSE & BINDING CURVES -->
+        <div id="sec-dose-response" class="content-card">
+          <h2>4. Dose-Response &amp; Binding Curves</h2>
+          <p>Drug binding and activation are two distinct steps. Binding is governed by <strong>affinity</strong>, while activation is governed by <strong>efficacy</strong>. Antagonists have affinity but zero efficacy.</p>
           
-          <div class="callout-box">
-            <h4>🎯 Prodrug Activation</h4>
-            <p>While metabolism generally inactivates drugs, some medications are administered as inactive precursors called <strong>prodrugs</strong> (e.g., codeine or clopidogrel). Metabolism converts these prodrugs into their active therapeutic forms within the body.</p>
-          </div>
-
-          <h3>Phase I Reactions: Non-Synthetic Modification</h3>
-          <p>Phase I metabolism involves <strong>oxidation, reduction, or hydrolysis</strong>. These chemical reactions introduce or unmask a polar functional group (such as -OH, -NH2, or -SH) on the drug molecule. This slightly increases water solubility and prepares the drug for Phase II conjugation.</p>
-          <ul>
-            <li><strong>The Cytochrome P450 (CYP450) System:</strong> The primary drivers of Phase I oxidation are the hepatic microsomal enzymes, most notably the CYP450 superfamily (e.g., CYP3A4, CYP2D6, CYP2C9).</li>
-            <li><strong>Enzyme Induction:</strong> Certain drugs (like rifampin, carbamazepine, or St. John's wort) increase the synthesis of CYP enzymes, causing other drugs to be metabolized faster and lose therapeutic efficacy.</li>
-            <li><strong>Enzyme Inhibition:</strong> Other drugs (like ketoconazole, erythromycin, or grapefruit juice) block CYP enzymes, slowing down the metabolism of companion drugs and causing toxic accumulation.</li>
-          </ul>
-
-          <h3>Phase II Reactions: Synthetic Conjugation</h3>
-          <p>If Phase I metabolites are still not sufficiently water-soluble to be excreted, they enter <strong>Phase II metabolism</strong>. Phase II reactions involve <strong>conjugation</strong> (attachment) of a large, highly polar, endogenous chemical group to the drug molecule.</p>
-          <ul>
-            <li><strong>Common Conjugation Pathways:</strong> Glucuronidation (via UDP-glucuronosyltransferases or UGT), sulfation, acetylation, methylation, and glutathione conjugation.</li>
-            <li><strong>Outcome:</strong> This creates bulky, highly water-soluble polar conjugates that are virtually inactive pharmacologically and ready for immediate elimination via renal or biliary clearance.</li>
-          </ul>
+          <h3>Graded Dose-Response Relations</h3>
+          <p>Plotting response against increasing doses produces a rectangular hyperbola (linear graph). Because doses span orders of magnitude, <strong>semilogarithmic plots</strong> are used to create smooth, easy-to-read sigmoidal curves.</p>
         </div>
 
-        <!-- EXCRETION SECTION -->
-        <div id="sec-excretion" class="content-card">
-          <h2>4. Excretion &amp; Clearance</h2>
-          <p><strong>Excretion</strong> eliminates drug waste primarily via the kidneys (glomerular filtration and tubular secretion), or via lungs, skin, and GI tract.</p>
-          <p><strong>Clearance</strong> measures the organ's efficiency in removing drug from blood plasma, guiding maintenance dosing calculations: <br><em>Maintenance Dose = Clearance × Desired Concentration / Bioavailability</em>.</p>
-        </div>
-
-        <!-- KINETICS & HALF LIFE -->
-        <div id="sec-kinetics" class="content-card">
-          <h2>5. Drug Kinetics: First-Order vs. Zero-Order Elimination &amp; Half-Life</h2>
-          <p>Understanding how drugs are eliminated from the body is essential for calculating dosing schedules and avoiding toxicity. Elimination kinetics are primarily categorized into two types:</p>
-
-          <h3>First-Order Elimination Kinetics</h3>
-          <p>In <mark>first-order kinetics</mark>, a constant <em>fraction</em> (percentage) of the drug is eliminated per unit of time. The rate of elimination is directly proportional to the drug concentration remaining in the body. Because of this exponential decline, the drug has a constant <mark>half-life (t1/2)</mark> regardless of how high the starting dose is. The vast majority of therapeutic drugs follow first-order kinetics at clinical doses.</p>
-          
-          <h3>Zero-Order Elimination Kinetics</h3>
-          <p>In <mark>zero-order kinetics</mark>, a constant <em>amount</em> of drug is eliminated per unit of time, regardless of how high the plasma concentration is. This occurs when elimination pathways (such as hepatic enzymes or renal transporters) become completely saturated. Examples of drugs that exhibit zero-order kinetics at high or therapeutic doses include <strong>ethanol, high-dose phenytoin, and aspirin (salicylate overdose)</strong>.</p>
-
-          <div class="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Kinetic Property</th>
-                  <th>First-Order Kinetics</th>
-                  <th>Zero-Order Kinetics</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Elimination Rate</strong></td>
-                  <td>Proportional to drug concentration (constant fraction/percentage).</td>
-                  <td>Constant amount per hour (independent of concentration).</td>
-                </tr>
-                <tr>
-                  <td><strong>Half-Life (t1/2)</strong></td>
-                  <td>Constant half-life time across different doses.</td>
-                  <td>No true constant half-life (elimination time lengthens as dose increases).</td>
-                </tr>
-                <tr>
-                  <td><strong>Enzyme Status</strong></td>
-                  <td>Enzymes are <em>not</em> saturated; plenty of binding capacity.</td>
-                  <td>Enzymes are <strong>fully saturated</strong> (Vmax reached).</td>
-                </tr>
-                <tr>
-                  <td><strong>Clinical Risk</strong></td>
-                  <td>Predictable clearing; easy to titrate maintenance dosing.</td>
-                  <td>High risk of sudden toxicity because a small extra dose can cause disproportionate accumulation.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <p>Half-life formula: t1/2 = (0.693 × Vd) / Clearance</p>
-          <p>Therapeutic steady state and complete elimination are both achieved after <mark>4 to 5 half-lives</mark> under regular first-order dosing regimens.</p>
+        <!-- SECTION 5: POTENCY, EFFICACY & SPARE RECEPTORS -->
+        <div id="sec-potency-efficacy" class="content-card">
+          <h2>5. Potency, Efficacy &amp; Spare Receptors</h2>
+          <ul>
+            <li><mark>Potency:</mark> The amount of drug needed to produce a given effect, measured by the <mark>EC50</mark> (concentration causing 50% of maximal response). Lower EC50 = higher potency.</li>
+            <li><mark>Efficacy (Emax):</mark> The maximum response a drug can produce when all receptors are occupied. <strong>Efficacy is clinically much more important than potency</strong> because a higher-efficacy drug provides superior therapeutic benefit.</li>
+            <li><mark>Spare Receptors (Receptor Reserve):</mark> Many full agonists can elicit maximal responses at very low receptor occupancy (e.g., &lt;1%), meaning tissue reserve capacity is substantial.</li>
+          </ul>
 
           <!-- INTERACTIVE GRAPH SIMULATION -->
           <div class="sim-container">
             <div class="sim-header">
-              <h3>📈 Interactive Plasma Concentration &amp; Elimination Graph</h3>
+              <h3>📈 Interactive Potency &amp; Efficacy Graph</h3>
               <div class="sim-controls">
-                <button class="sim-btn" onclick="updateGraph('iv')">IV Bolus (First-Order)</button>
-                <button class="sim-btn secondary" onclick="updateGraph('zero')">Zero-Order Saturation</button>
-                <button class="sim-btn secondary" onclick="updateGraph('steady')">Steady State (4-5 t1/2)</button>
+                <button class="sim-btn" onclick="updatePDGraph('potency')">Compare Potency (EC50)</button>
+                <button class="sim-btn secondary" onclick="updatePDGraph('efficacy')">Compare Efficacy (Emax)</button>
               </div>
             </div>
             <div class="graph-screen">
               <div class="graph-axis-y">
-                <span>Toxic Level</span>
-                <span>Therapeutic</span>
-                <span>Minimum</span>
-                <span>0</span>
+                <span>100% Max</span>
+                <span>50% (EC50)</span>
+                <span>0%</span>
               </div>
-              <div class="graph-curve" id="graphCanvas"></div>
+              <div class="graph-curve" id="pdGraphCanvas"></div>
               <div class="graph-axis-x">
-                <span>0h</span>
-                <span>1t1/2</span>
-                <span>2t1/2</span>
-                <span>3t1/2</span>
-                <span>4t1/2</span>
-                <span>5t1/2</span>
+                <span>Low Dose</span>
+                <span>Mid Dose</span>
+                <span>High Dose</span>
               </div>
             </div>
-            <div class="sim-status" id="graphStatusMsg">
-              Click buttons above to simulate how drugs behave in plasma across half-lives and administration routes.
+            <div class="sim-status" id="pdGraphStatusMsg">
+              Click buttons above to visualize differences between drug potency and maximal efficacy.
             </div>
           </div>
         </div>
 
-        <!-- PHARMACODYNAMICS SECTION -->
-        <div id="sec-pd" class="content-card">
-          <h2>6. Pharmacodynamics (PD): Molecular Mechanisms &amp; Receptors</h2>
-          <p><strong>Pharmacodynamics (PD)</strong> studies a drug's molecular, biochemical, and physiological effects. Drugs interact with biological targets (receptors, enzymes, carrier proteins) via:</p>
-          <ul>
-            <li><strong>Receptor Binding &amp; Post-Receptor Effects:</strong> Direct molecular engagement altering cellular function.</li>
-            <li><strong>Enzyme Inhibition:</strong> Blockade of catalytic active sites.</li>
-            <li><strong>Chemical Interactions:</strong> Neutralization or direct binding (e.g., tumor necrosis factor binders).</li>
-          </ul>
-
-          <h3>Types of Pharmacodynamic Actions</h3>
-          <ul>
-            <li><strong>Stimulation:</strong> Directly increasing cellular activity via receptor agonism.</li>
-            <li><strong>Depression:</strong> Decreasing cellular activity via receptor inhibition.</li>
-            <li><strong>Antagonism / Blocking:</strong> Binding a receptor without activating it, preventing endogenous ligands from binding.</li>
-            <li><strong>Stabilization:</strong> Maintaining resting membrane state without direct agonism or antagonism.</li>
-            <li><strong>Direct Chemical Reactions:</strong> Neutralization or chelation in bodily fluids.</li>
-          </ul>
-
-          <h3>Key PD Concepts: Emax, EC50, &amp; Hill Coefficient</h3>
-          <ul>
-            <li><mark>Emax:</mark> The maximal possible therapeutic effect of a drug.</li>
-            <li><mark>EC50:</mark> The drug concentration producing 50% of the maximum effect.</li>
-            <li><mark>Hill Coefficient:</mark> Slope measuring concentration-effect steepness. Values greater than 3 indicate an almost instantaneous "all-or-none" effect.</li>
-          </ul>
-
-          <h3>Direct vs. Indirect &amp; Immediate vs. Delayed Effects</h3>
-          <p><strong>Direct effects</strong> stem from immediate receptor/enzyme interaction (e.g., beta-blockers modifying cAMP). <strong>Indirect effects</strong> occur via upstream or downstream biological signaling cascades (e.g., corticosteroids binding nuclear transcription factors to suppress inflammatory mRNA).</p>
-          <p><strong>Immediate effects</strong> occur within seconds (e.g., succinylcholine depolarizing neuromuscular junctions), whereas <strong>delayed effects</strong> require biological turnover time (e.g., chemotherapy bone marrow suppression).</p>
-        </div>
-
-        <!-- AGONISTS, ANTAGONISTS, INTRINSIC ACTIVITY & POTENCY -->
-        <div id="sec-affinity" class="content-card">
-          <h2>Receptor Pharmacology: Affinity, Intrinsic Activity, Agonists, &amp; Antagonists</h2>
-          <p>Receptor interactions define drug potency, efficacy, and cellular response profiles:</p>
-
+        <!-- SECTION 6: FULL, PARTIAL & INVERSE AGONISTS -->
+        <div id="sec-agonists" class="content-card">
+          <h2>6. Full, Partial &amp; Inverse Agonists</h2>
+          
           <div class="table-container">
             <table>
               <thead>
                 <tr>
-                  <th>Pharmacologic Term</th>
-                  <th>Definition &amp; Clinical Meaning</th>
+                  <th>Agonist Type</th>
+                  <th>Intrinsic Activity</th>
+                  <th>Clinical Function &amp; Examples</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>Affinity (Kd)</strong></td>
-                  <td>How tightly a drug binds to its receptor (Kd = koff/kon). A <em>lower</em> Kd value indicates higher binding affinity (e.g., albuterol).</td>
-                </tr>
-                <tr>
-                  <td><strong>Intrinsic Activity (alpha)</strong></td>
-                  <td>The measure of a drug's ability to activate a receptor and produce a physiological response once bound. Full agonists have alpha = 1; antagonists have alpha = 0.</td>
-                </tr>
-                <tr>
                   <td><strong>Full Agonist</strong></td>
-                  <td>Binds to receptors and produces maximum biological response (Intrinsic activity = 1.0).</td>
+                  <td>1.0 (Maximum)</td>
+                  <td>Binds and stabilizes the active receptor state, producing maximal biologic response (e.g., phenylephrine at $\alpha_1$ receptors increases blood pressure).</td>
                 </tr>
                 <tr>
                   <td><strong>Partial Agonist</strong></td>
-                  <td>Binds to receptors but produces a submaximal response even at 100% occupancy (Intrinsic activity between 0 and 1.0). Can act as an antagonist in the presence of a full agonist.</td>
+                  <td>Between 0 and 1.0</td>
+                  <td>Produces submaximal response even at 100% occupancy. Can act as an antagonist in the presence of a full agonist (e.g., aripiprazole stabilizes dopamine pathways).</td>
                 </tr>
                 <tr>
-                  <td><strong>Competitive Antagonist</strong></td>
-                  <td>Binds reversibly to the active site. It shifts the agonist dose-response curve to the <em>right</em> without lowering the maximum efficacy (Emax), because high agonist concentrations can outcompete it.</td>
-                </tr>
-                <tr>
-                  <td><strong>Non-Competitive Antagonist</strong></td>
-                  <td>Binds irreversibly (or to an allosteric site), permanently reducing the total available functional receptors and depressing the total Emax.</td>
-                </tr>
-                <tr>
-                  <td><strong>Potency vs. Efficacy</strong></td>
-                  <td><strong>Potency</strong> refers to the amount of drug needed for a given effect (EC50). <strong>Efficacy</strong> refers to the maximum effect (Emax) a drug can produce. Clinically, efficacy is far more important than potency.</td>
+                  <td><strong>Inverse Agonist</strong></td>
+                  <td>Less than 0 (Negative)</td>
+                  <td>Stabilizes the inactive receptor form ($R$), reversing constitutive activation and producing the opposite effect of an agonist.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
 
-        <!-- THERAPEUTIC INDEX SECTION & GRAPH -->
-        <div id="sec-ti" class="content-card">
-          <h2>Therapeutic Index (TI) &amp; Safety Margins</h2>
-          <p>The <strong>Therapeutic Index (TI)</strong> is a quantitative measurement of the relative safety of a drug. It compares the dose that produces toxicity in 50% of populations (TD50) or lethal dose (LD50) to the dose that produces the desired therapeutic effect in 50% of populations (ED50):</p>
-          
-          <p style="text-align: center; font-weight: 800; font-family: monospace; background: #f1f5f9; padding: 12px; border-radius: 10px; margin: 14px 0;">Therapeutic Index (TI) = TD50 / ED50 (or LD50 / ED50)</p>
+        <!-- SECTION 7: COMPETITIVE & NONCOMPETITIVE ANTAGONISTS -->
+        <div id="sec-antagonists" class="content-card">
+          <h2>7. Competitive &amp; Noncompetitive Antagonists</h2>
+          <p>Antagonists bind receptors with high affinity but have zero intrinsic activity, reducing agonist effects.</p>
 
-          <p>Drugs with a <mark>narrow therapeutic index</mark> (e.g., <strong>warfarin, digoxin, lithium, theophylline, gentamicin</strong>) require strict therapeutic drug monitoring (TDM) because small increases in concentration can easily transition from a therapeutic effect into severe toxicity or death.</p>
-
-          <!-- THERAPEUTIC INDEX VISUALIZER CONTAINER -->
-          <div class="sim-container">
-            <div class="sim-header">
-              <h3>📊 Therapeutic Index &amp; Safety Margin Visualizer</h3>
-              <div class="sim-controls">
-                <button class="sim-btn" onclick="updateTI('narrow')">Narrow TI Drug (e.g., Digoxin)</button>
-                <button class="sim-btn secondary" onclick="updateTI('wide')">Wide TI Drug (e.g., Penicillin)</button>
-              </div>
-            </div>
-            
-            <div class="graph-screen" style="flex-direction: column; justify-content: flex-end; padding-bottom: 30px;">
-              <div style="display: flex; justify-content: space-between; width: 100%; height: 100%; align-items: flex-end; padding: 0 10px;" id="tiBarsCanvas">
-                <!-- Dynamically rendered TI bars -->
-              </div>
-              <div class="graph-axis-x" style="position: relative; left: 0; right: 0; bottom: 0; margin-top: 10px;">
-                <span>Low Dose (0mg)</span>
-                <span>ED50 (Therapeutic)</span>
-                <span>TD50 (Toxic)</span>
-                <span>High Dose</span>
-              </div>
-            </div>
-
-            <div class="sim-status" id="tiStatusMsg">
-              Select a drug profile above to compare safety margins between narrow and wide therapeutic index agents.
-            </div>
-          </div>
-
-          <h3>Receptor Occupancy, Up- &amp; Downregulation, and Tolerance</h3>
-          <p>According to the <strong>law of mass action</strong>, greater receptor occupancy increases pharmacodynamic response, though many systems feature <em>spare receptors</em> yielding maximal effects at less than 100% occupancy.</p>
+          <h3>Competitive Antagonism</h3>
           <ul>
-            <li><strong>Downregulation:</strong> Chronic agonist exposure decreases receptor density via internalization (e.g., insulin receptors).</li>
-            <li><strong>Upregulation:</strong> Chronic antagonist exposure increases receptor density. An exception is nicotine receptors, which upregulate despite being agonists, driving addiction.</li>
-            <li><strong>Tolerance:</strong> Diminishing response over time, often driven by intracellular proteins like <em>arrestins</em> that uncouple G-protein receptors and trigger endocytosis (e.g., opioid tolerance).</li>
+            <li>Binds reversibly to the active site.</li>
+            <li>Shifts the agonist dose-response curve to the <strong>right</strong> (increases apparent EC50).</li>
+            <li>Can be completely overcome by adding higher concentrations of the agonist (Maximal efficacy $E_{max}$ remains unchanged).</li>
+          </ul>
+
+          <h3>Noncompetitive Antagonism</h3>
+          <ul>
+            <li>Binds irreversibly (often covalently) or to an allosteric site.</li>
+            <li>Agonists <strong>cannot</strong> surmount the inhibitory effect regardless of concentration.</li>
+            <div>Reduces total maximal efficacy ($E_{max}$) unless spare receptors are present.</div>
           </ul>
         </div>
 
-        <!-- CLINICAL SIGNIFICANCE & TEAMWORK -->
-        <div id="sec-clinical" class="content-card">
-          <h2>7. Clinical Significance &amp; Interprofessional Teamwork</h2>
-          <p>Healthcare practitioners must <mark>treat the patient, not just the lab value or symptom</mark>. For instance, drugs like aspirin and ACE inhibitors are administered not merely to lower platelets or blood pressure, but to prevent catastrophic long-term endpoints like myocardial infarction, stroke, and renal failure.</p>
-
-          <h3>Interprofessional Care Team Roles</h3>
+        <!-- SECTION 8: ALLOSTERIC & FUNCTIONAL ANTAGONISM -->
+        <div id="sec-allosteric" class="content-card">
+          <h2>8. Allosteric &amp; Functional Antagonism</h2>
           <ul>
-            <li><strong>Physicians &amp; Nurse Practitioners:</strong> Formulate evidence-based pharmacological treatment plans considering both PK and PD parameters.</li>
-            <li><strong>Pharmacists:</strong> Monitor therapeutic indexes, calculate clearance adjustments, and check for narrow therapeutic window toxicities (e.g., gentamicin, digoxin).</li>
-            <li><strong>Nurses:</strong> Monitor adverse drug events, assess therapeutic efficacy during clinical follow-ups, verify patient adherence, and maintain open communication with the care team.</li>
+            <li><mark>Allosteric Modulators (NAMs &amp; PAMs):</mark> Bind to a separate site away from the active orthosteric site. Negative allosteric modulators inhibit activity, while positive allosteric modulators (like <strong>benzodiazepines</strong> binding GABA channels) enhance the net activating effect.</li>
+            <li><mark>Functional / Physiological Antagonism:</mark> Occurs when two drugs act at completely separate receptors to produce opposite physiological effects. <br><em>Classic Example:</em> Histamine causes bronchoconstriction via $H_1$ receptors, while epinephrine causes bronchodilation via $\beta_2$ receptors.</li>
           </ul>
         </div>
 
@@ -824,53 +438,18 @@
       overlay.classList.toggle('open');
     }
 
-    function runAdme(stage) {
-      const particle = document.getElementById('drugParticle');
-      const statusMsg = document.getElementById('admeStatusMsg');
-      
-      const stations = ['Abs', 'Dis', 'Met', 'Exc'];
-      stations.forEach(s => {
-        document.getElementById('station' + s).classList.remove('active');
-        document.getElementById('btn' + s).classList.remove('active-stage');
-      });
-
-      document.getElementById('station' + stage.charAt(0).toUpperCase() + stage.slice(1, 3)).classList.add('active');
-      document.getElementById('btn' + stage.charAt(0).toUpperCase() + stage.slice(1, 3)).classList.add('active-stage');
-
-      if (stage === 'absorption') {
-        particle.style.left = '12%';
-        particle.style.top = '110px';
-        statusMsg.innerHTML = "💊 <strong>Absorption:</strong> The oral tablet releases the drug (liberation), crossing gastrointestinal membranes into the systemic bloodstream.";
-      } else if (stage === 'distribution') {
-        particle.style.left = '38%';
-        particle.style.top = '70px';
-        statusMsg.innerHTML = "❤️ <strong>Distribution:</strong> Blood circulation and fluid convection carry the drug molecules through tissues to reach target receptor sites.";
-      } else if (stage === 'metabolism') {
-        particle.style.left = '64%';
-        particle.style.top = '130px';
-        statusMsg.innerHTML = "🧪 <strong>Metabolism:</strong> Liver enzymes (CYP450 / UGT) chemically modify fat-soluble drugs into water-soluble metabolites.";
-      } else if (stage === 'excretion') {
-        particle.style.left = '88%';
-        particle.style.top = '110px';
-        statusMsg.innerHTML = "🚽 <strong>Excretion:</strong> Kidneys filter the water-soluble drug waste, eliminating it permanently from the body via urine.";
-      }
-    }
-
-    function updateGraph(type) {
-      const canvas = document.getElementById('graphCanvas');
-      const status = document.getElementById('graphStatusMsg');
+    function updatePDGraph(type) {
+      const canvas = document.getElementById('pdGraphCanvas');
+      const status = document.getElementById('pdGraphStatusMsg');
       canvas.innerHTML = '';
 
       let heights = [];
-      if (type === 'iv') {
-        heights = [95, 48, 24, 12, 6, 3];
-        status.innerHTML = "⚡ <strong>IV Bolus First-Order Kinetics:</strong> Concentration starts at 100% peak and halves every t1/2, achieving 97% elimination by 5 half-lives.";
-      } else if (type === 'zero') {
-        heights = [90, 80, 70, 60, 50, 40];
-        status.innerHTML = "🛑 <strong>Zero-Order Saturation Kinetics:</strong> Elimination rate is constant per hour regardless of concentration (linear decline due to enzyme saturation).";
+      if (type === 'potency') {
+        heights = [20, 50, 85, 98, 100, 100];
+        status.innerHTML = "⚡ <strong>Potency Comparison:</strong> Drug A reaches 50% effect (EC50) at a lower dose than Drug B, meaning Drug A is more potent. Both eventually reach the same 100% max efficacy.";
       } else {
-        heights = [30, 55, 70, 85, 90, 90];
-        status.innerHTML = "🔄 <strong>Steady State:</strong> Regular scheduled dosing accumulates drug levels until input equals clearance, stabilizing after 4 to 5 half-lives.";
+        heights = [15, 35, 55, 65, 70, 70];
+        status.innerHTML = "📊 <strong>Efficacy Comparison (Full vs. Partial Agonist):</strong> Notice how the partial agonist plateaus at 70% max efficacy even at high doses, unable to reach the full agonist's 100% peak.";
       }
 
       heights.forEach((h) => {
@@ -881,59 +460,8 @@
       });
     }
 
-    function updateTI(type) {
-      const canvas = document.getElementById('tiBarsCanvas');
-      const status = document.getElementById('tiStatusMsg');
-      canvas.innerHTML = '';
-
-      let barHeights = [];
-      if (type === 'narrow') {
-        barHeights = [
-          { label: 'ED50 (Eff)', h: '40%', color: '#38bdf8' },
-          { label: 'TD50 (Tox)', h: '55%', color: '#f87171' }
-        ];
-        status.innerHTML = "⚠️ <strong>Narrow Therapeutic Index (e.g., Digoxin):</strong> Notice how close the effective dose (ED50) is to the toxic dose (TD50). Very tight safety margin requires blood monitoring!";
-      } else {
-        barHeights = [
-          { label: 'ED50 (Eff)', h: '30%', color: '#38bdf8' },
-          { label: 'TD50 (Tox)', h: '95%', color: '#4ade80' }
-        ];
-        status.innerHTML = "🛡️ <strong>Wide Therapeutic Index (e.g., Penicillin):</strong> There is a massive safety margin between the dose that cures and the dose that causes toxicity. Extremely safe to administer.";
-      }
-
-      barHeights.forEach((item) => {
-        const wrapper = document.createElement('div');
-        wrapper.style.display = 'flex';
-        wrapper.style.flexDirection = 'column';
-        wrapper.style.alignItems = 'center';
-        wrapper.style.flex = '1';
-        wrapper.style.height = '100%';
-        wrapper.style.justifyContent = 'flex-end';
-        wrapper.style.padding = '0 15px';
-
-        const bar = document.createElement('div');
-        bar.className = 'sim-bar';
-        bar.style.height = item.h;
-        bar.style.background = item.color;
-        bar.style.width = '60px';
-
-        const lbl = document.createElement('div');
-        lbl.style.fontSize = '0.72rem';
-        lbl.style.color = '#cbd5e1';
-        lbl.style.marginTop = '8px';
-        lbl.style.fontWeight = '700';
-        lbl.innerText = item.label;
-
-        wrapper.appendChild(bar);
-        wrapper.appendChild(lbl);
-        canvas.appendChild(wrapper);
-      });
-    }
-
     window.onload = function() {
-      updateGraph('iv');
-      runAdme('absorption');
-      updateTI('narrow');
+      updatePDGraph('potency');
     };
   </script>
 </body>
