@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Mastering Pharmacology, Receptors &amp; Nursing Fundamentals | Ultimate Edition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Unit 1: Introduction to Pharmacology | Ultimate Edition</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,204 +19,191 @@
       --text-dark: #0f172a;
       --text-muted: #64748b;
       --border: #e2e8f0;
-      --radius: 20px;
-      --shadow: 0 10px 30px -5px rgba(2, 132, 199, 0.08);
-      --shadow-lg: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
+      --radius: 16px;
+      --shadow: 0 4px 20px -2px rgba(2, 132, 199, 0.06);
+      --shadow-lg: 0 10px 30px -5px rgba(15, 23, 42, 0.1);
       --highlight: #fef08a;
       --highlight-alt: #ccfbf1;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
     html { scroll-behavior: smooth; }
-    body { background-color: var(--bg-main); color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; }
+    body { background-color: var(--bg-main); color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
 
     .app-layout { display: flex; min-height: 100vh; width: 100%; position: relative; }
     
     /* PC Sidebar Navigation */
     .pc-sidebar {
-      display: none; width: 320px; background: #ffffff; border-right: 1px solid var(--border);
-      position: fixed; top: 0; left: 0; height: 100vh; z-index: 50; padding: 28px 20px;
+      display: none; width: 280px; background: #ffffff; border-right: 1px solid var(--border);
+      position: fixed; top: 0; left: 0; height: 100vh; z-index: 50; padding: 24px 16px;
       flex-direction: column; justify-content: space-between; overflow-y: auto;
     }
-    .sidebar-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-dark); font-weight: 800; font-size: 1.05rem; margin-bottom: 24px; }
-    .pulse-box { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3); flex-shrink: 0; animation: pulseGlow 3s infinite ease-in-out; }
+    .sidebar-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-dark); font-weight: 800; font-size: 0.95rem; margin-bottom: 20px; }
+    .pulse-box { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3); flex-shrink: 0; }
     
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3); transform: scale(1); }
-      50% { box-shadow: 0 6px 20px rgba(13, 148, 136, 0.5); transform: scale(1.03); }
-    }
-
-    .sidebar-menu { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .sidebar-menu { list-style: none; display: flex; flex-direction: column; gap: 4px; }
     .sidebar-menu a {
-      text-decoration: none; color: var(--text-muted); font-weight: 700; font-size: 0.82rem;
-      display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; transition: all 0.25s ease;
+      text-decoration: none; color: var(--text-muted); font-weight: 700; font-size: 0.78rem;
+      display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 8px; transition: all 0.2s ease;
     }
-    .sidebar-menu a:hover, .sidebar-menu a.active { background: #f0f9ff; color: var(--primary-dark); transform: translateX(4px); }
-    .sidebar-sub { padding-left: 20px; font-size: 0.78rem !important; }
+    .sidebar-menu a:hover, .sidebar-menu a.active { background: #f0f9ff; color: var(--primary-dark); transform: translateX(2px); }
+    .sidebar-sub { padding-left: 16px; font-size: 0.74rem !important; }
 
-    /* Polished Mobile Navbar optimized for touch */
+    /* Polished Mobile Navbar */
     .mobile-navbar { 
       display: flex; position: sticky; top: 0; z-index: 100; 
-      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border); padding: 14px 18px; width: 100%;
-      justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border); padding: 12px 16px; width: 100%;
+      justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.04);
     }
-    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-dark); font-weight: 800; font-size: 0.92rem; }
+    .brand { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text-dark); font-weight: 800; font-size: 0.85rem; }
     .menu-toggle { 
-      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); border: 1px solid var(--border); padding: 10px 14px; 
-      border-radius: 12px; font-size: 0.85rem; font-weight: 800; cursor: pointer; color: var(--primary-dark);
-      display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      transition: transform 0.2s ease;
+      background: #f1f5f9; border: 1px solid var(--border); padding: 8px 12px; 
+      border-radius: 10px; font-size: 0.78rem; font-weight: 800; cursor: pointer; color: var(--primary-dark);
+      display: flex; align-items: center; justify-content: center; gap: 4px;
     }
-    .menu-toggle:active { transform: scale(0.95); }
+    .menu-toggle:active { transform: scale(0.96); }
 
-    .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); z-index: 200; display: none; opacity: 0; transition: opacity 0.35s ease; }
-    .drawer { position: fixed; top: 0; right: -320px; width: 300px; height: 100%; background: #ffffff; z-index: 201; transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); padding: 28px 20px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: -15px 0 35px rgba(0,0,0,0.15); overflow-y: auto; }
+    .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 200; display: none; opacity: 0; transition: opacity 0.3s ease; }
+    .drawer { position: fixed; top: 0; right: -280px; width: 280px; height: 100%; background: #ffffff; z-index: 201; transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1); padding: 20px 16px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: -10px 0 25px rgba(0,0,0,0.1); overflow-y: auto; }
     .drawer.open { right: 0; }
     .drawer-overlay.open { display: block; opacity: 1; }
-    .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
-    .drawer-menu { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .drawer-menu a { text-decoration: none; color: var(--text-dark); font-weight: 700; font-size: 0.88rem; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; background: #f8fafc; transition: background 0.2s; }
+    .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+    .drawer-menu { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .drawer-menu a { text-decoration: none; color: var(--text-dark); font-weight: 700; font-size: 0.82rem; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; background: #f8fafc; }
     .drawer-menu a:hover, .drawer-menu a.active { background: #f0f9ff; color: var(--primary-dark); }
 
-    .main-content-area { flex: 1; width: 100%; display: flex; flex-direction: column; }
-    .main-wrapper { max-width: 1020px; margin: 0 auto; padding: 16px 12px; width: 100%; flex: 1; }
+    .main-content-area { flex: 1; width: 100%; display: flex; flex-direction: column; min-width: 0; }
+    .main-wrapper { max-width: 960px; margin: 0 auto; padding: 12px 10px; width: 100%; flex: 1; }
 
     /* Hero Section */
     .chapter-hero {
-      background: linear-gradient(135deg, #0f172a 0%, #0284c7 50%, #0d9488 100%);
-      color: white; border-radius: var(--radius); padding: 28px 18px; margin-bottom: 24px;
+      background: linear-gradient(135deg, #0f172a 0%, #0284c7 60%, #0d9488 100%);
+      color: white; border-radius: var(--radius); padding: 22px 16px; margin-bottom: 16px;
       box-shadow: var(--shadow-lg); position: relative; overflow: hidden;
     }
-    .chapter-hero h1 { font-size: 1.35rem; font-weight: 800; line-height: 1.35; margin-bottom: 10px; }
-    .chapter-hero p { color: #bae6fd; font-size: 0.88rem; line-height: 1.6; }
-    .badge-unit { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(6px); padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.8px; border: 1px solid rgba(255,255,255,0.25); }
+    .chapter-hero h1 { font-size: 1.15rem; font-weight: 800; line-height: 1.35; margin-bottom: 8px; }
+    .chapter-hero p { color: #bae6fd; font-size: 0.82rem; line-height: 1.55; }
+    .badge-unit { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(4px); padding: 4px 10px; border-radius: 20px; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.2); }
 
-    /* Content Cards optimized for mobile screens */
+    /* Content Cards optimized for mobile alignment */
     .content-card {
       background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 20px 16px; margin-bottom: 24px; box-shadow: var(--shadow);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 16px 12px; margin-bottom: 16px; box-shadow: var(--shadow); width: 100%; word-break: break-word; overflow-wrap: break-word;
     }
-    .content-card h2 { font-size: 1.15rem; font-weight: 800; color: var(--text-dark); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
-    .content-card h3 { font-size: 1rem; font-weight: 800; color: var(--primary-dark); margin: 20px 0 8px 0; }
-    .content-card p { font-size: 0.9rem; color: #334155; line-height: 1.7; margin-bottom: 12px; }
-    .content-card ul { margin-left: 18px; margin-bottom: 14px; font-size: 0.9rem; color: #334155; line-height: 1.7; }
-    .content-card li { margin-bottom: 8px; }
+    .content-card h2 { font-size: 1.05rem; font-weight: 800; color: var(--text-dark); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; line-height: 1.4; }
+    .content-card h3 { font-size: 0.92rem; font-weight: 800; color: var(--primary-dark); margin: 16px 0 6px 0; line-height: 1.4; }
+    .content-card p { font-size: 0.85rem; color: #334155; line-height: 1.6; margin-bottom: 10px; }
+    .content-card ul { margin-left: 16px; margin-bottom: 12px; font-size: 0.85rem; color: #334155; line-height: 1.6; }
+    .content-card li { margin-bottom: 6px; }
 
-    mark { background-color: var(--highlight); padding: 2px 5px; border-radius: 4px; font-weight: 700; color: #1e293b; box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1); }
+    mark { background-color: var(--highlight); padding: 2px 4px; border-radius: 4px; font-weight: 700; color: #1e293b; }
     .mark-alt { background-color: var(--highlight-alt); color: #042f2e; }
 
     blockquote {
-      background: #f1f5f9; border-left: 4px solid var(--primary); padding: 14px 16px; border-radius: 0 10px 10px 0;
-      margin: 16px 0; font-style: italic; color: #334155; font-size: 0.88rem; line-height: 1.65;
+      background: #f1f5f9; border-left: 3px solid var(--primary); padding: 12px 14px; border-radius: 0 8px 8px 0;
+      margin: 12px 0; font-style: italic; color: #334155; font-size: 0.82rem; line-height: 1.6;
     }
-    blockquote cite { display: block; margin-top: 6px; font-weight: 700; font-style: normal; color: var(--primary-dark); font-size: 0.8rem; }
+    blockquote cite { display: block; margin-top: 4px; font-weight: 700; font-style: normal; color: var(--primary-dark); font-size: 0.75rem; }
 
     .example-box {
       background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-      border: 1px solid #fde68a; border-left: 5px solid #d97706;
-      border-radius: 14px; padding: 18px 16px; margin: 16px 0; box-shadow: 0 4px 15px rgba(217, 119, 6, 0.05);
+      border: 1px solid #fde68a; border-left: 4px solid #d97706;
+      border-radius: 12px; padding: 14px 12px; margin: 12px 0;
     }
-    .example-box h4 { font-size: 0.92rem; font-weight: 800; color: #b45309; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
-    .example-box p { font-size: 0.88rem; color: #78350f; margin-bottom: 0; line-height: 1.6; }
+    .example-box h4 { font-size: 0.85rem; font-weight: 800; color: #b45309; margin-bottom: 4px; display: flex; align-items: center; gap: 4px; }
+    .example-box p { font-size: 0.82rem; color: #78350f; margin-bottom: 0; line-height: 1.55; }
 
     .callout-box {
       background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-      border: 1px solid #bae6fd; border-left: 5px solid var(--primary);
-      border-radius: 14px; padding: 18px 16px; margin: 16px 0; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.05);
+      border: 1px solid #bae6fd; border-left: 4px solid var(--primary);
+      border-radius: 12px; padding: 14px 12px; margin: 12px 0;
     }
-    .callout-box h4 { font-size: 0.92rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
-    .callout-box p { font-size: 0.88rem; color: #0369a1; margin-bottom: 0; line-height: 1.6; }
+    .callout-box h4 { font-size: 0.85rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 4px; display: flex; align-items: center; gap: 4px; }
+    .callout-box p { font-size: 0.82rem; color: #0369a1; margin-bottom: 0; line-height: 1.55; }
 
     /* Tables */
-    .table-container { width: 100%; overflow-x: auto; margin: 16px 0; border-radius: 14px; border: 1px solid var(--border); -webkit-overflow-scrolling: touch; box-shadow: 0 4px 15px rgba(0,0,0,0.02); background: white; }
-    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; min-width: 600px; }
-    th { background: #f1f5f9; color: var(--text-dark); font-weight: 800; padding: 12px 14px; border-bottom: 2px solid var(--border); white-space: nowrap; }
-    td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: #334155; line-height: 1.6; }
+    .table-container { width: 100%; overflow-x: auto; margin: 12px 0; border-radius: 10px; border: 1px solid var(--border); background: white; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.8rem; min-width: 520px; }
+    th { background: #f1f5f9; color: var(--text-dark); font-weight: 800; padding: 10px 12px; border-bottom: 2px solid var(--border); white-space: nowrap; }
+    td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: #334155; line-height: 1.5; }
     tr:last-child td { border-bottom: none; }
     tr:nth-child(even) { background: #f8fafc; }
 
     /* Interactive ADME Animation Simulation */
     .adme-sim-container {
-      background: #0f172a; color: white; border-radius: var(--radius); padding: 20px 14px; margin: 20px 0;
-      box-shadow: var(--shadow-lg); border: 1px solid #1e293b;
+      background: #0f172a; color: white; border-radius: var(--radius); padding: 16px 10px; margin: 16px 0;
+      border: 1px solid #1e293b;
     }
-    .adme-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 12px; }
-    .adme-header h3 { font-size: 1rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 6px; }
-    .adme-controls { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; width: 100%; }
+    .adme-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+    .adme-header h3 { font-size: 0.9rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 4px; }
+    .adme-controls { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; width: 100%; }
     .adme-btn {
-      background: var(--primary); color: white; border: none; padding: 10px 12px; border-radius: 10px;
-      font-size: 0.78rem; font-weight: 700; cursor: pointer; transition: all 0.25s ease; text-align: center;
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+      background: var(--primary); color: white; border: none; padding: 8px 10px; border-radius: 8px;
+      font-size: 0.72rem; font-weight: 700; cursor: pointer; text-align: center;
     }
-    .adme-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
-    .adme-btn.active-stage { background: #0d9488; box-shadow: 0 0 15px rgba(13, 148, 136, 0.5); }
+    .adme-btn.active-stage { background: #0d9488; }
 
     .body-canvas {
-      background: #1e293b; border-radius: 12px; height: 220px; position: relative; overflow: hidden;
-      display: flex; align-items: center; justify-content: space-around; padding: 15px; border: 1px solid #334155; margin-bottom: 14px;
+      background: #1e293b; border-radius: 10px; height: 180px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: space-around; padding: 10px; border: 1px solid #334155; margin-bottom: 10px;
     }
-
     .body-station {
-      display: flex; flex-direction: column; align-items: center; gap: 6px; position: relative; z-index: 2;
-      opacity: 0.4; transition: opacity 0.3s ease, transform 0.3s ease;
+      display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; z-index: 2;
+      opacity: 0.4; transition: opacity 0.3s ease;
     }
     .body-station.active { opacity: 1; transform: scale(1.05); }
     .station-icon {
-      width: 44px; height: 44px; border-radius: 12px; background: #334155; display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; border: 2px solid #475569; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      width: 36px; height: 36px; border-radius: 10px; background: #334155; display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; border: 1px solid #475569;
     }
-    .body-station.active .station-icon { background: linear-gradient(135deg, var(--primary), var(--accent)); border-color: #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
-    .station-label { font-size: 0.68rem; font-weight: 700; color: #cbd5e1; text-align: center; }
+    .body-station.active .station-icon { background: linear-gradient(135deg, var(--primary), var(--accent)); border-color: #38bdf8; }
+    .station-label { font-size: 0.6rem; font-weight: 700; color: #cbd5e1; text-align: center; line-height: 1.2; }
 
     #drugParticle {
-      position: absolute; width: 18px; height: 18px; background: #fef08a; border-radius: 50%;
-      box-shadow: 0 0 12px #fef08a; z-index: 10; top: 100px; left: 20px;
-      transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+      position: absolute; width: 14px; height: 14px; background: #fef08a; border-radius: 50%;
+      box-shadow: 0 0 10px #fef08a; z-index: 10; top: 80px; left: 15px;
+      transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     }
-
-    .adme-status { font-family: monospace; font-size: 0.8rem; color: #cbd5e1; background: rgba(0,0,0,0.5); padding: 12px; border-radius: 10px; text-align: center; line-height: 1.5; border: 1px solid rgba(255,255,255,0.06); }
+    .adme-status { font-family: monospace; font-size: 0.72rem; color: #cbd5e1; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 8px; text-align: center; line-height: 1.4; }
 
     /* Interactive Receptor Animation Simulation */
     .receptor-sim-container {
-      background: #0f172a; color: white; border-radius: var(--radius); padding: 20px 14px; margin: 20px 0;
-      box-shadow: var(--shadow-lg); border: 1px solid #1e293b;
+      background: #0f172a; color: white; border-radius: var(--radius); padding: 16px 10px; margin: 16px 0;
+      border: 1px solid #1e293b;
     }
-    .receptor-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 12px; }
-    .receptor-header h3 { font-size: 1rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 6px; }
-    .receptor-controls { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; width: 100%; }
+    .receptor-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+    .receptor-header h3 { font-size: 0.9rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 4px; }
+    .receptor-controls { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; width: 100%; }
     .receptor-btn {
-      background: var(--primary); color: white; border: none; padding: 10px 12px; border-radius: 10px;
-      font-size: 0.78rem; font-weight: 700; cursor: pointer; transition: all 0.25s ease; text-align: center;
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+      background: var(--primary); color: white; border: none; padding: 8px 10px; border-radius: 8px;
+      font-size: 0.72rem; font-weight: 700; cursor: pointer; text-align: center;
     }
-    .receptor-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
-    .receptor-btn.active-receptor { background: #0d9488; box-shadow: 0 0 15px rgba(13, 148, 136, 0.5); }
+    .receptor-btn.active-receptor { background: #0d9488; }
 
     .receptor-canvas {
-      background: #1e293b; border-radius: 12px; height: 220px; position: relative; overflow: hidden;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; border: 1px solid #334155; margin-bottom: 14px;
+      background: #1e293b; border-radius: 10px; height: 180px; position: relative; overflow: hidden;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; border: 1px solid #334155; margin-bottom: 10px;
     }
-    .cell-membrane { width: 100%; height: 16px; background: #334155; border-radius: 8px; position: relative; display: flex; align-items: center; justify-content: center; margin: 35px 0; border: 1px solid #475569; }
-    .receptor-pore { width: 70px; height: 35px; border: 3px dashed #38bdf8; border-radius: 18px; position: absolute; display: flex; align-items: center; justify-content: center; transition: all 0.5s ease; font-size: 0.7rem; }
+    .cell-membrane { width: 100%; height: 14px; background: #334155; border-radius: 7px; position: relative; display: flex; align-items: center; justify-content: center; margin: 25px 0; border: 1px solid #475569; }
+    .receptor-pore { width: 60px; height: 30px; border: 2px dashed #38bdf8; border-radius: 15px; position: absolute; display: flex; align-items: center; justify-content: center; transition: all 0.4s ease; font-size: 0.65rem; }
     
     #ligandParticle {
-      position: absolute; width: 26px; height: 26px; background: #fef08a; border-radius: 50%;
-      box-shadow: 0 0 12px #fef08a; z-index: 10; top: 15px; left: 50%; transform: translateX(-50%);
-      transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: #1e293b; font-weight: 800;
+      position: absolute; width: 22px; height: 22px; background: #fef08a; border-radius: 50%;
+      box-shadow: 0 0 10px #fef08a; z-index: 10; top: 12px; left: 50%; transform: translateX(-50%);
+      transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); display: flex; align-items: center; justify-content: center; font-size: 0.6rem; color: #1e293b; font-weight: 800;
     }
-    .receptor-status { font-family: monospace; font-size: 0.8rem; color: #cbd5e1; background: rgba(0,0,0,0.5); padding: 12px; border-radius: 10px; text-align: center; line-height: 1.5; border: 1px solid rgba(255,255,255,0.06); }
+    .receptor-status { font-family: monospace; font-size: 0.72rem; color: #cbd5e1; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 8px; text-align: center; line-height: 1.4; }
 
     @media (min-width: 900px) {
       .mobile-navbar { display: none; }
       .pc-sidebar { display: flex; }
-      .main-content-area { margin-left: 320px; }
-      .main-wrapper { padding: 36px 40px; max-width: 1140px; }
+      .main-content-area { margin-left: 280px; }
+      .main-wrapper { padding: 30px 32px; max-width: 1080px; }
       .adme-controls, .receptor-controls { display: flex; width: auto; }
       .adme-btn, .receptor-btn { flex: 1; }
-      .content-card { padding: 30px 28px; }
-      .chapter-hero { padding: 36px 32px; }
+      .content-card { padding: 24px 22px; }
+      .chapter-hero { padding: 30px 28px; }
     }
   </style>
 </head>
@@ -232,7 +219,7 @@
           <span>Nursing Pharmacology</span>
         </a>
         <ul class="sidebar-menu">
-          <li><a href="#sec-unit1" class="active">Unit I: Introduction to Pharmacology</a></li>
+          <li><a href="#sec-unit1" class="active">UNIT 1: INTRODUCTION TO PHARMACOLOGY</a></li>
           <li><a href="#sec-t1" class="sidebar-sub">1. Terminologies Related</a></li>
           <li><a href="#sec-t2" class="sidebar-sub">2. History Briefly</a></li>
           <li><a href="#sec-t3" class="sidebar-sub">3. Purposes of Medication</a></li>
@@ -253,7 +240,7 @@
           <li><a href="#sec-clinical">Clinical Significance</a></li>
         </ul>
       </div>
-      <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; border-top: 1px solid var(--border); padding-top: 14px;">
+      <div style="font-size: 0.7rem; color: var(--text-muted); text-align: center; border-top: 1px solid var(--border); padding-top: 10px;">
         BS Nursing Syllabus • 2026
       </div>
     </aside>
@@ -280,10 +267,10 @@
               <div class="pulse-box">🔬</div>
               <span>Chapter Index</span>
             </div>
-            <button class="menu-toggle" onclick="toggleMenu()" style="padding: 6px 10px; font-size: 0.8rem;">✕ Close</button>
+            <button class="menu-toggle" onclick="toggleMenu()" style="padding: 6px 10px; font-size: 0.75rem;">✕ Close</button>
           </div>
           <ul class="drawer-menu">
-            <li><a href="#sec-unit1" onclick="toggleMenu()">Unit I: Introduction to Pharmacology</a></li>
+            <li><a href="#sec-unit1" onclick="toggleMenu()">UNIT 1: INTRODUCTION TO PHARMACOLOGY</a></li>
             <li><a href="#sec-t1" onclick="toggleMenu()">1. Terminologies Related</a></li>
             <li><a href="#sec-t2" onclick="toggleMenu()">2. History Briefly</a></li>
             <li><a href="#sec-t3" onclick="toggleMenu()">3. Purposes of Medication</a></li>
@@ -304,7 +291,7 @@
             <li><a href="#sec-clinical" onclick="toggleMenu()">Clinical Significance</a></li>
           </ul>
         </div>
-        <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; padding-top: 14px; border-top: 1px solid var(--border);">
+        <div style="font-size: 0.7rem; color: var(--text-muted); text-align: center; padding-top: 10px; border-top: 1px solid var(--border);">
           Mobile Optimized Edition
         </div>
       </div>
@@ -314,16 +301,16 @@
         <!-- Hero Header -->
         <div class="chapter-hero">
           <span class="badge-unit">BS Nursing Unit I &amp; Advanced Pharmacology</span>
-          <h1>Pharmacology &amp; Nursing Fundamentals: The Complete Science of Drugs</h1>
+          <h1>UNIT 1: INTRODUCTION TO PHARMACOLOGY</h1>
           <p>Comprehensive coverage of Unit I core nursing pharmacology foundations, advanced receptor superfamilies with detailed examples, drug supply systems, and clinical pharmacokinetics.</p>
         </div>
 
-        <!-- UNIT I: INTRODUCTION TO PHARMACOLOGY SECTION -->
+        <!-- UNIT 1: INTRODUCTION TO PHARMACOLOGY SECTION -->
         <div id="sec-unit1" class="content-card">
-          <h2>Unit I: Introduction to Nursing Pharmacology</h2>
+          <h2>UNIT 1: INTRODUCTION TO PHARMACOLOGY</h2>
           <p>Welcome to foundational nursing pharmacology. This module covers core definitions, historical milestones, medication purposes, classifications, supply systems, legal standards, and practical toolkits for safe nursing administration.</p>
 
-          <h3 id="sec-t1">1. Terminologies Related to Pharmacology</h3>
+          <h3 id="sec-t1">1. Discuss the terminologies related to pharmacology</h3>
           <ul>
             <li><strong>Pharmacology:</strong> The comprehensive science of drugs, covering their origin, chemical composition, pharmacokinetics, pharmacodynamics, therapeutic uses, and toxicology.</li>
             <li><strong>Drug:</strong> Any chemical substance that alters biological function through molecular interactions when introduced into a living organism.</li>
@@ -333,7 +320,7 @@
             <li><strong>Adverse Drug Reaction (ADR) / Side Effect:</strong> An unintended, noxious, or hazardous response occurring at normal therapeutic doses.</li>
           </ul>
 
-          <h3 id="sec-t2">2. History of Pharmacology Briefly</h3>
+          <h3 id="sec-t2">2. Discuss the history of pharmacology briefly</h3>
           <p>Pharmacology transitioned from ancient folklore and herbal remedies into an empirical molecular science:</p>
           <ul>
             <li><strong>Ancient Era:</strong> Reliance on plants, minerals, and animal products documented in historical texts like the Ebers Papyrus (Egypt) and ancient Ayurvedic treatises.</li>
@@ -341,7 +328,7 @@
             <li><strong>Modern Era:</strong> Breakthroughs in synthetic chemistry, molecular biology, genomics, and monoclonal antibodies, establishing rigorous clinical trials and regulatory frameworks.</li>
           </ul>
 
-          <h3 id="sec-t3">3. Purposes of Medication</h3>
+          <h3 id="sec-t3">3. Identify the purposes of medication</h3>
           <p>Medications serve several core healthcare functions:</p>
           <ul>
             <li><strong>Diagnostic:</strong> Agents used to identify diseases (e.g., radiopaque contrast media for CT scans, barium sulfate).</li>
@@ -351,7 +338,7 @@
             <li><strong>Replacement:</strong> Agents that supplement missing physiological body chemicals (e.g., insulin for type 1 diabetes mellitus, levothyroxine for hypothyroidism).</li>
           </ul>
 
-          <h3 id="sec-t4">4. Sources of Medication</h3>
+          <h3 id="sec-t4">4. Identify the source of medication</h3>
           <div class="table-container">
             <table>
               <thead>
@@ -381,7 +368,7 @@
             </table>
           </div>
 
-          <h3 id="sec-t5">5. Classification of Drugs</h3>
+          <h3 id="sec-t5">5. Discuss the classification of drugs</h3>
           <p>Drugs are categorized based on multiple standardized systems:</p>
           <ul>
             <li><strong>Therapeutic Classification:</strong> Categorized by what clinical condition they treat (e.g., antihypertensives, antidepressants, antihyperglycemics).</li>
@@ -389,7 +376,7 @@
             <li><strong>Body System Classification:</strong> Grouped according to the physiological system they affect (e.g., cardiovascular drugs, respiratory agents, central nervous system drugs).</li>
           </ul>
 
-          <h3 id="sec-t6">6. Three Types of Drug Supply Systems</h3>
+          <h3 id="sec-t6">6. Describe the three types of drug supply system</h3>
           <p>Hospitals and healthcare facilities utilize structured systems to store, manage, and distribute medications safely:</p>
           <ul>
             <li><strong>Floor Stock System:</strong> Bulk supplies of common medications are kept on nursing units. Nurses dispense directly from floor stock; highly vulnerable to medication errors and inventory discrepancies.</li>
@@ -397,7 +384,7 @@
             <li><strong>Unit-Dose System:</strong> The gold standard safety system. Medications are dispensed by the pharmacy in single-unit, pre-packaged, pre-labeled doses ready to administer directly to the specific patient, reducing preparation errors.</li>
           </ul>
 
-          <h3 id="sec-t7">7. Drug Standards and Legislation</h3>
+          <h3 id="sec-t7">7. Discuss the drugs standards and legislation</h3>
           <p>National and international laws protect public health by establishing strict standards for drug purity, strength, quality, safety, and efficacy:</p>
           <ul>
             <li><strong>Pharmacopeias &amp; Formularies:</strong> Official public standards books (e.g., United States Pharmacopeia - USP, British Pharmacopoeia) defining medication composition and purity tests.</li>
@@ -405,21 +392,21 @@
             <li><strong>Controlled Substance Acts:</strong> Legislation regulating narcotics and habit-forming drugs, requiring secure double-locked storage, exact inventory counts, and witnessed waste disposal.</li>
           </ul>
 
-          <h3 id="sec-t8">8. Resources to Collect and Utilize Drug Information</h3>
+          <h3 id="sec-t8">8. Identify resource to collect and utilize drug information</h3>
           <p>Nurses must consult verified, evidence-based literature before administering medications:</p>
           <ul>
-            <li><strong>Standard Nursing Drug Handbooks:</strong> (e.g., *Nursing Central*, *Mosby's Drug Guide*).</li>
+            <li><strong>Standard Nursing Drug Handbooks:</strong> (e.g., Nursing Central, Mosby's Drug Guide).</li>
             <li><strong>Pharmacist Consultations &amp; Hospital Formularies:</strong> Institutional references outlining approved drug lists, dosages, and IV compatibility.</li>
             <li><strong>Electronic Databases &amp; Apps:</strong> UpToDate, Lexicomp, Micromedex, and official manufacturer prescribing information sheets.</li>
           </ul>
 
-          <h3 id="sec-t9">9. Learn to Prepare Drug Cards</h3>
+          <h3 id="sec-t9">9. Learn to prepare drugs cards</h3>
           <p>Drug cards are essential clinical learning tools used by nursing students to master pharmacology safely. A standard clinical drug card includes:</p>
           <ul>
             <li><strong>Generic &amp; Brand Name:</strong> Proper spelling and pronunciation.</li>
             <li><strong>Pharmacological Classification &amp; Mechanism of Action:</strong> Drug category and how it works.</li>
             <li><strong>Indication:</strong> Approved clinical uses and reasons the patient is taking it.</li>
-            <li><strong>Dosage, Route &amp; Safe Parameters:</strong> Standard clinical doses, routes, and baseline vital sign cutoffs (e.g., hold if heart rate < 60 bpm for digoxin).</li>
+            <li><strong>Dosage, Route &amp; Safe Parameters:</strong> Standard clinical doses, routes, and baseline vital sign cutoffs (e.g., hold if heart rate under 60 bpm for digoxin).</li>
             <li><strong>Adverse Effects &amp; Nursing Interventions:</strong> Common side effects, toxicities, lab monitoring, and patient education.</li>
           </ul>
         </div>
@@ -477,14 +464,14 @@
 
           <h3>1. Four Major Superfamilies of Receptors</h3>
           <ul>
-            <li><strong>Type I: Ligand-Gated Ion Channels (Ionotropic Receptors):</strong> Fast-acting receptors (milliseconds) directly coupled to ion channels. When an agonist binds, the channel opens, allowing rapid ion flux ($\text{Na}^+, \text{K}^+, \text{Ca}^{2+}, \text{Cl}^-$) across the membrane, leading to depolarization or hyperpolarization.
+            <li><strong>Type I: Ligand-Gated Ion Channels (Ionotropic Receptors):</strong> Fast-acting receptors (milliseconds) directly coupled to ion channels. When an agonist binds, the channel opens, allowing rapid ion flux (Na+, K+, Ca2+, Cl-) across the membrane, leading to depolarization or hyperpolarization.
               <ul>
-                <li><em>Detailed Examples:</em> Nicotinic acetylcholine ($\text{N}_M$) receptors at the neuromuscular junction causing skeletal muscle contraction; $\text{GABA}_A$ receptors mediating inhibitory chloride influx; NMDA glutamate receptors involved in synaptic plasticity.</li>
+                <li><em>Detailed Examples:</em> Nicotinic acetylcholine (NM) receptors at the neuromuscular junction causing skeletal muscle contraction; GABAA receptors mediating inhibitory chloride influx; NMDA glutamate receptors involved in synaptic plasticity.</li>
               </ul>
             </li>
-            <li><strong>Type II: G-Protein Coupled Receptors (GPCRs / Metabotropic):</strong> The largest family of membrane receptors. Characterized by seven transmembrane spanning domains coupled to intracellular G-proteins ($\text{G}_s, \text{G}_i, \text{G}_q$). Response time is in seconds.
+            <li><strong>Type II: G-Protein Coupled Receptors (GPCRs / Metabotropic):</strong> The largest family of membrane receptors. Characterized by seven transmembrane spanning domains coupled to intracellular G-proteins (Gs, Gi, Gq). Response time is in seconds.
               <ul>
-                <li><em>Detailed Examples:</em> Muscarinic acetylcholine receptors ($\text{M}_2$ in heart slowing rate); Adrenergic receptors ($\beta_1$ increasing heart rate, $\beta_2$ causing bronchial smooth muscle relaxation); Opioid receptors ($\mu, \kappa, \delta$) mediating analgesia.</li>
+                <li><em>Detailed Examples:</em> Muscarinic acetylcholine receptors (M2 in heart slowing rate); Adrenergic receptors (beta-1 increasing heart rate, beta-2 causing bronchial smooth muscle relaxation); Opioid receptors (mu, kappa, delta) mediating analgesia.</li>
               </ul>
             </li>
             <li><strong>Type III: Enzyme-Linked Receptors (Catalytic Receptors):</strong> Receptors possessing an extracellular ligand-binding domain and an intracellular enzyme catalytic domain (often intrinsic tyrosine kinase). Response takes minutes to hours.
@@ -494,7 +481,7 @@
             </li>
             <li><strong>Type IV: Intracellular (Nuclear) Receptors:</strong> Lipid-soluble ligands cross the plasma membrane and bind to intracellular receptors located in the cytoplasm or nucleus, directly altering gene transcription and protein synthesis. Response takes hours to days.
               <ul>
-                <li><em>Detailed Examples:</em> Corticosteroids (glucocorticoid receptors reducing inflammation); Thyroid hormone receptors ($\text{T}_3/\text{T}_4$ regulating basal metabolic rate); Sex steroid receptors (estrogen and progesterone receptors).</li>
+                <li><em>Detailed Examples:</em> Corticosteroids (glucocorticoid receptors reducing inflammation); Thyroid hormone receptors (T3/T4 regulating basal metabolic rate); Sex steroid receptors (estrogen and progesterone receptors).</li>
               </ul>
             </li>
           </ul>
@@ -537,18 +524,16 @@
 
           <div class="callout-box">
             <h4>📊 Bioavailability (F) and Area Under the Curve (AUC)</h4>
-            <p><strong>Bioavailability ($F$)</strong> represents the fraction of an administered dose that reaches systemic circulation unchanged. <strong>AUC (Area Under the Curve)</strong> measures total systemic drug exposure over time on a plasma concentration-time graph.</p>
+            <p><strong>Bioavailability (F)</strong> represents the fraction of an administered dose that reaches systemic circulation unchanged. <strong>AUC (Area Under the Curve)</strong> measures total systemic drug exposure over time on a plasma concentration-time graph.</p>
           </div>
         </div>
 
         <!-- DISTRIBUTION & VOLUME -->
         <div id="sec-distribution" class="content-card">
-          <h2>Distribution &amp; Volume of Distribution ($V_d$)</h2>
+          <h2>Distribution &amp; Volume of Distribution (Vd)</h2>
           <p><mark>Distribution</mark> refers to the reversible transfer of drug from systemic circulation into interstitial and intracellular tissue fluids.</p>
           
-          <p>The <mark>Volume of Distribution ($V_d$)</mark> is a theoretical pharmacokinetic parameter relating the total amount of drug in the body ($D$) to the plasma drug concentration ($C$):</p>
-          
-          $$V_d = \frac{\text{Amount of drug in the body}}{\text{Plasma drug concentration}}$$
+          <p>The <mark>Volume of Distribution (Vd)</mark> is a theoretical pharmacokinetic parameter relating the total amount of drug in the body to the plasma drug concentration.</p>
 
           <div class="example-box">
             <h4>💡 Protein Binding &amp; Albumin Clinical Significance</h4>
@@ -578,7 +563,7 @@
           <p><mark>Excretion</mark> is the definitive elimination of drugs and their metabolites from the body. The <mark>kidneys</mark> are the primary excretory organ, eliminating substances via glomerular filtration, active tubular secretion, and passive reabsorption.</p>
           
           <ul>
-            <li><strong>Renal Clearance ($CL_renal$):</strong> The volume of plasma completely cleared of drug per unit time by renal excretion.</li>
+            <li><strong>Renal Clearance:</strong> The volume of plasma completely cleared of drug per unit time by renal excretion.</li>
             <li><strong>Biliary Excretion:</strong> Certain lipophilic drugs and conjugates are excreted via bile into the feces (enterohepatic recirculation).</li>
             <li><strong>Other Routes:</strong> Lungs (volatile anesthetics), sweat, saliva, and breast milk (critical consideration for nursing mothers).</li>
           </ul>
@@ -586,9 +571,9 @@
 
         <!-- KINETICS, HALF-LIFE & ORDERS -->
         <div id="sec-kinetics" class="content-card">
-          <h2>Drug Kinetics, Half-Life ($t_{1/2}$) &amp; Elimination Orders</h2>
+          <h2>Drug Kinetics, Half-Life &amp; Elimination Orders</h2>
           
-          <h3>Plasma Half-Life ($t_{1/2}$)</h3>
+          <h3>Plasma Half-Life</h3>
           <p>The time required for the total plasma concentration of a drug to decrease by exactly 50%. It determines dosing frequency and steady-state attainment (typically achieved after 4 to 5 half-lives).</p>
 
           <h3>First-Order vs. Zero-Order Kinetics</h3>
@@ -613,7 +598,7 @@
                   <td>Enzymes/carriers are saturated (e.g., Ethanol, Aspirin at toxic doses).</td>
                 </tr>
                 <tr>
-                  <td><strong>Half-Life ($t_{1/2}$)</strong></td>
+                  <td><strong>Half-Life</strong></td>
                   <td>Constant regardless of dose.</td>
                   <td>Varies depending on initial dose.</td>
                 </tr>
@@ -639,9 +624,8 @@
 
           <div class="example-box">
             <h4>⚠️ Therapeutic Index (TI) &amp; Safety Margins</h4>
-            <p>The <strong>Therapeutic Index</strong> is a quantitative measurement of relative drug safety, calculated as the ratio of the toxic dose to the effective dose:</p>
-            $$TI = \frac{\text{TD}_{50}}{\text{ED}_{50}}$$
-            <p>Drugs with a <em>narrow therapeutic index</em> (e.g., Warfarin, Digoxin, Lithium) require rigorous therapeutic drug monitoring (TDM) and blood serum draws to prevent fatal toxicity.</p>
+            <p>The <strong>Therapeutic Index</strong> is a quantitative measurement of relative drug safety, calculated as the ratio of the toxic dose to the effective dose.</p>
+            <p style="margin-top: 6px;">Drugs with a <em>narrow therapeutic index</em> (e.g., Warfarin, Digoxin, Lithium) require rigorous therapeutic drug monitoring (TDM) and blood serum draws to prevent fatal toxicity.</p>
           </div>
         </div>
 
@@ -678,26 +662,26 @@
       if(stage === 'absorption') {
         document.getElementById('btnAbs').classList.add('active-stage');
         document.getElementById('stationAbs').classList.add('active');
-        particle.style.top = '90px';
-        particle.style.left = '15%';
-        text.innerHTML = "<strong>1. Absorption Phase:</strong> Drug is ingested orally, dissolves in GI fluids (liberation), crosses mucosal membranes, and enters portal circulation.";
+        particle.style.top = '75px';
+        particle.style.left = '12%';
+        text.innerHTML = "<strong>1. Absorption Phase:</strong> Drug is ingested orally, dissolves in GI fluids, crosses mucosal membranes, and enters portal circulation.";
       } else if(stage === 'distribution') {
         document.getElementById('btnDis').classList.add('active-stage');
         document.getElementById('stationDis').classList.add('active');
-        particle.style.top = '50px';
-        particle.style.left = '40%';
-        text.innerHTML = "<strong>2. Distribution Phase:</strong> Drug travels via the bloodstream to well-perfused tissues and organs (heart, brain, kidneys), binding reversibly to plasma albumin.";
+        particle.style.top = '40px';
+        particle.style.left = '38%';
+        text.innerHTML = "<strong>2. Distribution Phase:</strong> Drug travels via the bloodstream to well-perfused tissues and organs, binding reversibly to plasma albumin.";
       } else if(stage === 'metabolism') {
         document.getElementById('btnMet').classList.add('active-stage');
         document.getElementById('stationMet').classList.add('active');
-        particle.style.top = '90px';
-        particle.style.left = '65%';
-        text.innerHTML = "<strong>3. Metabolism Phase:</strong> Drug passes through the liver. CYP450 enzymes (Phase I/II) modify lipophilic molecules into water-soluble metabolites.";
+        particle.style.top = '75px';
+        particle.style.left = '64%';
+        text.innerHTML = "<strong>3. Metabolism Phase:</strong> Drug passes through the liver. CYP450 enzymes modify lipophilic molecules into water-soluble metabolites.";
       } else if(stage === 'excretion') {
         document.getElementById('btnExc').classList.add('active-stage');
         document.getElementById('stationExc').classList.add('active');
-        particle.style.top = '90px';
-        particle.style.left = '88%';
+        particle.style.top = '75px';
+        particle.style.left = '86%';
         text.innerHTML = "<strong>4. Excretion Phase:</strong> Filtered by renal glomeruli and eliminated via urine or biliary secretion, clearing active drug from the body.";
       }
     }
@@ -711,28 +695,28 @@
 
       if(type === 'ionotropic') {
         document.getElementById('btnIon').classList.add('active-receptor');
-        ligand.style.top = '60px';
-        pore.style.width = '100px';
+        ligand.style.top = '50px';
+        pore.style.width = '85px';
         pore.style.borderColor = '#22c55e';
-        text.innerHTML = "<strong>Type I (Ligand-Gated Ion Channel):</strong> Agonist binds instantly, opening the ion pore channel for rapid $\text{Na}^+$ or $\text{Cl}^-$ ion flux (Milliseconds response time e.g., Nicotinic receptors).";
+        text.innerHTML = "<strong>Type I (Ionotropic):</strong> Agonist binds instantly, opening the ion pore channel for rapid ion flux (Milliseconds response time e.g., Nicotinic receptors).";
       } else if(type === 'gpcr') {
         document.getElementById('btnGpcr').classList.add('active-receptor');
-        ligand.style.top = '60px';
-        pore.style.width = '80px';
+        ligand.style.top = '50px';
+        pore.style.width = '70px';
         pore.style.borderColor = '#38bdf8';
-        text.innerHTML = "<strong>Type II (GPCR / Metabotropic):</strong> 7-transmembrane receptor activates intracellular G-proteins ($\text{G}_s/\text{G}_i$), altering second messengers like cAMP (Seconds response time e.g., $\beta_1$ adrenergic).";
+        text.innerHTML = "<strong>Type II (GPCR):</strong> 7-transmembrane receptor activates intracellular G-proteins, altering second messengers like cAMP (Seconds response time).";
       } else if(type === 'enzyme') {
         document.getElementById('btnEnz').classList.add('active-receptor');
-        ligand.style.top = '60px';
-        pore.style.width = '90px';
+        ligand.style.top = '50px';
+        pore.style.width = '75px';
         pore.style.borderColor = '#f59e0b';
-        text.innerHTML = "<strong>Type III (Enzyme-Linked):</strong> Ligand binding stimulates intracellular tyrosine kinase domain autophosphorylation (Minutes response time e.g., Insulin receptors).";
+        text.innerHTML = "<strong>Type III (Enzyme-Linked):</strong> Ligand binding stimulates intracellular tyrosine kinase domain autophosphorylation (Minutes response time e.g., Insulin).";
       } else if(type === 'nuclear') {
         document.getElementById('btnNuc').classList.add('active-receptor');
-        ligand.style.top = '95px';
-        pore.style.width = '60px';
+        ligand.style.top = '80px';
+        pore.style.width = '55px';
         pore.style.borderColor = '#ec4899';
-        text.innerHTML = "<strong>Type IV (Intracellular / Nuclear):</strong> Lipophilic drug crosses plasma membrane directly to bind intracellular receptors, modifying gene transcription (Hours/Days response time e.g., Corticosteroids).";
+        text.innerHTML = "<strong>Type IV (Intracellular):</strong> Lipophilic drug crosses plasma membrane directly to bind intracellular receptors, modifying gene transcription.";
       }
     }
   </script>
