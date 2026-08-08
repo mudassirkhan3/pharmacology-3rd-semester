@@ -196,6 +196,17 @@
     }
     .receptor-status { font-family: monospace; font-size: 0.72rem; color: #cbd5e1; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 8px; text-align: center; line-height: 1.4; }
 
+    /* Graph Styling for Therapeutic Index & Dose Response Curve */
+    .graph-card {
+      background: #0f172a; color: #fff; border-radius: var(--radius); padding: 16px; margin: 16px 0; border: 1px solid #1e293b;
+    }
+    .graph-container {
+      position: relative; width: 100%; height: 220px; background: #1e293b; border-radius: 12px; margin: 12px 0; padding: 10px; display: flex; align-items: flex-end; justify-content: space-between; border: 1px solid #334155;
+    }
+    .curve-svg {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;
+    }
+
     @media (min-width: 900px) {
       .mobile-navbar { display: none; }
       .pc-sidebar { display: flex; }
@@ -235,12 +246,8 @@
           <li><a href="#sec-distribution" class="sidebar-sub">Distribution &amp; Factors</a></li>
           <li><a href="#sec-metabolism" class="sidebar-sub">Metabolism &amp; Factors</a></li>
           <li><a href="#sec-excretion" class="sidebar-sub">Excretion &amp; Factors</a></li>
-          <li><a href="#sec-animation" class="sidebar-sub">Live ADME Body Animation</a></li>
           <li><a href="#sec-pd">PHARMACODYNAMICS</a></li>
-          <li><a href="#sec-intrinsic" class="sidebar-sub">Intrinsic Activity &amp; Agonist Types</a></li>
-          <li><a href="#sec-receptors" class="sidebar-sub">Receptor Superfamilies</a></li>
-          <li><a href="#sec-therapeutic-index" class="sidebar-sub">Therapeutic Index &amp; DRC</a></li>
-          <li><a href="#sec-clinical">Clinical Significance</a></li>
+          <li><a href="#sec-therapeutic-index" class="sidebar-sub">Therapeutic Index &amp; DRC Graph</a></li>
         </ul>
       </div>
       <div style="font-size: 0.7rem; color: var(--text-muted); text-align: center; border-top: 1px solid var(--border); padding-top: 10px;">
@@ -284,16 +291,7 @@
             <li><a href="#sec-t8" onclick="toggleMenu()">8. Resources for Drug Info</a></li>
             <li><a href="#sec-t9" onclick="toggleMenu()">9. Preparing Drug Cards</a></li>
             <li><a href="#sec-pk" onclick="toggleMenu()">PHARMACOKINETICS</a></li>
-            <li><a href="#sec-absorption" onclick="toggleMenu()">Absorption &amp; Factors</a></li>
-            <li><a href="#sec-distribution" onclick="toggleMenu()">Distribution &amp; Factors</a></li>
-            <li><a href="#sec-metabolism" onclick="toggleMenu()">Metabolism &amp; Factors</a></li>
-            <li><a href="#sec-excretion" onclick="toggleMenu()">Excretion &amp; Factors</a></li>
-            <li><a href="#sec-animation" onclick="toggleMenu()">ADME Animation</a></li>
-            <li><a href="#sec-pd" onclick="toggleMenu()">PHARMACODYNAMICS</a></li>
-            <li><a href="#sec-intrinsic" onclick="toggleMenu()">Intrinsic Activity &amp; Agonist Types</a></li>
-            <li><a href="#sec-receptors" onclick="toggleMenu()">Receptor Superfamilies</a></li>
-            <li><a href="#sec-therapeutic-index" onclick="toggleMenu()">Therapeutic Index &amp; DRC</a></li>
-            <li><a href="#sec-clinical" onclick="toggleMenu()">Clinical Significance</a></li>
+            <li><a href="#sec-therapeutic-index" onclick="toggleMenu()">Therapeutic Index &amp; DRC Graph</a></li>
           </ul>
         </div>
         <div style="font-size: 0.7rem; color: var(--text-muted); text-align: center; padding-top: 10px; border-top: 1px solid var(--border);">
@@ -307,277 +305,164 @@
         <div class="chapter-hero">
           <span class="badge-unit">BS Nursing Unit I &amp; Advanced Pharmacology</span>
           <h1>UNIT 1: INTRODUCTION TO PHARMACOLOGY</h1>
-          <p>Comprehensive coverage of Unit I core nursing pharmacology foundations, advanced pharmacokinetics, intrinsic activity, agonist types, therapeutic index, and clinical practice standards.</p>
+          <p>Easily understand core nursing pharmacology foundations, how drugs move through the body, safety guidelines, and visual dose-response relationships designed specifically for effortless mobile reading.</p>
         </div>
 
         <!-- UNIT 1: INTRODUCTION TO PHARMACOLOGY SECTION -->
         <div id="sec-unit1" class="content-card">
           <h2>UNIT 1: INTRODUCTION TO PHARMACOLOGY</h2>
-          <p>Welcome to foundational nursing pharmacology. This module covers core definitions, historical milestones, medication purposes, classifications, supply systems, legal standards, and practical toolkits for safe nursing administration.</p>
+          <p>Welcome to foundational nursing pharmacology! This module breaks down essential definitions, historical milestones, why we give medications, how they are classified, and how to use clinical tools safely.</p>
 
-          <h3 id="sec-t1">1. Discuss the terminologies related to pharmacology</h3>
+          <h3 id="sec-t1">1. Important Terms to Know</h3>
           <ul>
-            <li><strong>Pharmacology:</strong> The comprehensive science of drugs, covering their origin, chemical composition, pharmacokinetics, pharmacodynamics, therapeutic uses, and toxicology.</li>
-            <li><strong>Drug:</strong> Any chemical substance that alters biological function through molecular interactions when introduced into a living organism.</li>
-            <li><strong>Medication:</strong> A substance administered for the diagnosis, cure, mitigation, treatment, or prevention of disease.</li>
-            <li><strong>Generic Name:</strong> The official, non-proprietary international name of a drug assigned by the USAN (e.g., paracetamol).</li>
-            <li><strong>Trade / Brand Name:</strong> The proprietary trademarked name given by the pharmaceutical manufacturer (e.g., Tylenol, Panadol).</li>
-            <li><strong>Adverse Drug Reaction (ADR) / Side Effect:</strong> An unintended, noxious, or hazardous response occurring at normal therapeutic doses.</li>
+            <li><strong>Pharmacology:</strong> The complete science of medications, including how they are made, how they work in the body, and their medical uses.</li>
+            <li><strong>Drug:</strong> Any chemical substance that changes how the body functions when it is introduced.</li>
+            <li><strong>Medication:</strong> A drug given specifically to diagnose, cure, treat, or prevent a disease.</li>
+            <li><strong>Generic Name:</strong> The official, universal name of a drug (for example, paracetamol).</li>
+            <li><strong>Trade / Brand Name:</strong> The commercial name given by the pharmaceutical company making the drug (for example, Panadol or Tylenol).</li>
+            <li><strong>Adverse Drug Reaction (Side Effect):</strong> An unintended or uncomfortable reaction that happens even when taking a normal, prescribed dose.</li>
           </ul>
 
-          <h3 id="sec-t2">2. Discuss the history of pharmacology briefly</h3>
-          <p>Pharmacology transitioned from ancient folklore and herbal remedies into an empirical molecular science:</p>
+          <h3 id="sec-t2">2. A Brief History of Pharmacology</h3>
+          <p>Pharmacology grew from ancient healing traditions into a precise medical science:</p>
           <ul>
-            <li><strong>Ancient Era:</strong> Reliance on plants, minerals, and animal products documented in historical texts like the Ebers Papyrus (Egypt) and ancient Ayurvedic treatises.</li>
-            <li><strong>19th Century Emergence:</strong> The isolation of active chemical compounds from crude drugs (e.g., isolation of morphine from opium by Friedrich Sertürner in 1805, digitalis from foxglove).</li>
-            <li><strong>Modern Era:</strong> Breakthroughs in synthetic chemistry, molecular biology, genomics, and monoclonal antibodies, establishing rigorous clinical trials and regulatory frameworks.</li>
+            <li><strong>Ancient Era:</strong> People relied on plants, roots, and minerals, recorded in early medical texts.</li>
+            <li><strong>19th Century:</strong> Scientists learned how to extract pure active ingredients from plants (such as isolating morphine from opium).</li>
+            <li><strong>Modern Era:</strong> Advanced chemistry, laboratory testing, and strict clinical trials ensure every medicine we give today is safe and effective.</li>
           </ul>
 
-          <h3 id="sec-t3">3. Identify the purposes of medication</h3>
-          <p>Medications serve several core healthcare functions:</p>
+          <h3 id="sec-t3">3. Why Do We Give Medications?</h3>
+          <p>Medications serve five main purposes in healthcare:</p>
           <ul>
-            <li><strong>Diagnostic:</strong> Agents used to identify diseases (e.g., radiopaque contrast media for CT scans, barium sulfate).</li>
-            <li><strong>Curative:</strong> Agents that eliminate pathogens or cure disease states (e.g., antibiotics curing bacterial pneumonia).</li>
-            <li><strong>Palliative:</strong> Agents that relieve symptoms and improve quality of life without curing the underlying disease (e.g., analgesics in terminal cancer care).</li>
-            <li><strong>Prophylactic (Preventive):</strong> Agents given to prevent illnesses before they occur (e.g., vaccines, prophylactic antibiotics prior to surgical incision).</li>
-            <li><strong>Replacement:</strong> Agents that supplement missing physiological body chemicals (e.g., insulin for type 1 diabetes mellitus, levothyroxine for hypothyroidism).</li>
+            <li><strong>Diagnostic:</strong> To help find out what is wrong (like special dyes used in X-rays or CT scans).</li>
+            <li><strong>Curative:</strong> To eliminate an illness entirely (like antibiotics curing an infection).</li>
+            <li><strong>Palliative:</strong> To keep a patient comfortable and ease symptoms when a cure isn't possible (like pain medicine in palliative care).</li>
+            <li><strong>Prophylactic (Preventive):</strong> To stop an illness before it starts (like vaccines or preventive antibiotics before surgery).</li>
+            <li><strong>Replacement:</strong> To supply chemicals the body cannot make on its own (like insulin for diabetes).</li>
           </ul>
 
-          <h3 id="sec-t4">4. Identify the source of medication</h3>
+          <h3 id="sec-t4">4. Where Do Medications Come From?</h3>
           <div class="table-container">
             <table>
               <thead>
                 <tr>
                   <th>Source Category</th>
-                  <th>Description &amp; Clinical Examples</th>
+                  <th>Description &amp; Examples</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><strong>Plant Sources</strong></td>
-                  <td>Derived from roots, leaves, barks, or seeds (e.g., digoxin from foxglove, morphine from opium poppy, atropine).</td>
+                  <td>Derived from flowers, barks, or leaves (e.g., digoxin from foxglove, morphine from poppies).</td>
                 </tr>
                 <tr>
                   <td><strong>Animal Sources</strong></td>
-                  <td>Extracted from animal tissues or organs (e.g., animal insulin, heparin extracted from porcine intestinal mucosa).</td>
+                  <td>Extracted from animal tissues (e.g., heparin from porcine tissue).</td>
                 </tr>
                 <tr>
                   <td><strong>Mineral Sources</strong></td>
-                  <td>Inorganic elements and minerals from the earth (e.g., magnesium sulfate, ferrous sulfate, potassium chloride).</td>
+                  <td>Natural earth elements (e.g., iron supplements, potassium chloride).</td>
                 </tr>
                 <tr>
-                  <td><strong>Synthetic &amp; Biosynthetic</strong></td>
-                  <td>Created in laboratories via organic chemistry or recombinant DNA technology (e.g., synthetic human insulin, sulfonamides, aspirin).</td>
+                  <td><strong>Synthetic Sources</strong></td>
+                  <td>Created in a laboratory by scientists (e.g., lab-made insulin, aspirin).</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <h3 id="sec-t5">5. Discuss the classification of drugs</h3>
-          <p>Drugs are categorized based on multiple standardized systems:</p>
+          <h3 id="sec-t5">5. How Drugs Are Classified</h3>
+          <p>Drugs are grouped in different ways to make learning easier:</p>
           <ul>
-            <li><strong>Therapeutic Classification:</strong> Categorized by what clinical condition they treat (e.g., antihypertensives, antidepressants, antihyperglycemics).</li>
-            <li><strong>Pharmacological Classification:</strong> Categorized by how they act at the molecular or systemic level (e.g., beta-blockers, ACE inhibitors, calcium channel blockers).</li>
-            <li><strong>Body System Classification:</strong> Grouped according to the physiological system they affect (e.g., cardiovascular drugs, respiratory agents, central nervous system drugs).</li>
+            <li><strong>Therapeutic Use:</strong> Grouped by what disease they treat (e.g., blood pressure medications).</li>
+            <li><strong>Pharmacological Action:</strong> Grouped by how they work in the body (e.g., beta-blockers).</li>
+            <li><strong>Body System:</strong> Grouped by which organ system they affect (e.g., respiratory drugs).</li>
           </ul>
 
-          <h3 id="sec-t6">6. Describe the three types of drug supply system</h3>
-          <p>Hospitals and healthcare facilities utilize structured systems to store, manage, and distribute medications safely:</p>
+          <h3 id="sec-t6">6. Three Drug Supply Systems in Hospitals</h3>
+          <p>Hospitals use structured systems to manage medications securely:</p>
           <ul>
-            <li><strong>Floor Stock System:</strong> Bulk supplies of common medications are kept on nursing units. Nurses dispense directly from floor stock; highly vulnerable to medication errors and inventory discrepancies.</li>
-            <li><strong>Individual Prescription Order System:</strong> Medications are dispensed from the pharmacy specifically for an individual patient in a designated supply drawer for a 24-to-72-hour period.</li>
-            <li><strong>Unit-Dose System:</strong> The gold standard safety system. Medications are dispensed by the pharmacy in single-unit, pre-packaged, pre-labeled doses ready to administer directly to the specific patient, reducing preparation errors.</li>
+            <li><strong>Floor Stock System:</strong> General supplies kept right on the ward. Convenient, but carries a higher risk of inventory mistakes.</li>
+            <li><strong>Individual Prescription Order System:</strong> Medications are sent from the pharmacy specifically labeled for an individual patient for a set time.</li>
+            <li><strong>Unit-Dose System:</strong> The safest and most modern standard. Medications arrive pre-packaged in exact, single-use doses ready to give directly to the patient, greatly reducing errors.</li>
           </ul>
 
-          <h3 id="sec-t7">7. Discuss the drugs standards and legislation</h3>
-          <p>National and international laws protect public health by establishing strict standards for drug purity, strength, quality, safety, and efficacy:</p>
+          <h3 id="sec-t7">7. Medication Standards and Laws</h3>
+          <p>Government rules protect patients by making sure drugs are pure, safe, and effective:</p>
           <ul>
-            <li><strong>Pharmacopeias &amp; Formularies:</strong> Official public standards books (e.g., United States Pharmacopeia - USP, British Pharmacopoeia) defining medication composition and purity tests.</li>
-            <li><strong>Regulatory Agencies:</strong> Government bodies (e.g., FDA in the United States, DRAP in Pakistan) responsible for approving new drugs, monitoring adverse events, and enforcing manufacturing compliance.</li>
-            <li><strong>Controlled Substance Acts:</strong> Legislation regulating narcotics and habit-forming drugs, requiring secure double-locked storage, exact inventory counts, and witnessed waste disposal.</li>
+            <li><strong>Official Books (Pharmacopeias):</strong> Official guidelines detailing exact drug recipes and quality tests.</li>
+            <li><strong>Regulatory Agencies:</strong> Government watchdogs (like the FDA or national health authorities) that approve new medications.</li>
+            <li><strong>Controlled Substance Rules:</strong> Strict laws for addictive narcotics requiring double-locked storage and careful witness sign-offs.</li>
           </ul>
 
-          <h3 id="sec-t8">8. Identify resource to collect and utilize drug information</h3>
-          <p>Nurses must consult verified, evidence-based literature before administering medications:</p>
+          <h3 id="sec-t8">8. Reliable Drug Information Resources</h3>
+          <p>As a nurse, always verify medication facts using trusted sources:</p>
           <ul>
-            <li><strong>Standard Nursing Drug Handbooks:</strong> (e.g., Nursing Central, Mosby's Drug Guide).</li>
-            <li><strong>Pharmacist Consultations &amp; Hospital Formularies:</strong> Institutional references outlining approved drug lists, dosages, and IV compatibility.</li>
-            <li><strong>Electronic Databases &amp; Apps:</strong> UpToDate, Lexicomp, Micromedex, and official manufacturer prescribing information sheets.</li>
+            <li>Standard nursing drug handbooks and official hospital formularies.</li>
+            <li>Direct consultation with clinical pharmacists.</li>
+            <li>Trusted digital medical databases and mobile apps.</li>
           </ul>
 
-          <h3 id="sec-t9">9. Learn to prepare drugs cards</h3>
-          <p>Drug cards are essential clinical learning tools used by nursing students to master pharmacology safely. A standard clinical drug card includes:</p>
+          <h3 id="sec-t9">9. Creating Clinical Drug Cards</h3>
+          <p>Drug cards are wonderful study tools for nursing students. A great drug card includes:</p>
           <ul>
-            <li><strong>Generic &amp; Brand Name:</strong> Proper spelling and pronunciation.</li>
-            <li><strong>Pharmacological Classification &amp; Mechanism of Action:</strong> Drug category and how it works.</li>
-            <li><strong>Indication:</strong> Approved clinical uses and reasons the patient is taking it.</li>
-            <li><strong>Dosage, Route &amp; Safe Parameters:</strong> Standard clinical doses, routes, and baseline vital sign cutoffs (e.g., hold if heart rate under 60 bpm for digoxin).</li>
-            <li><strong>Adverse Effects &amp; Nursing Interventions:</strong> Common side effects, toxicities, lab monitoring, and patient education.</li>
+            <li>Generic and brand names.</li>
+            <li>Drug category and how it works in the body.</li>
+            <li>Why the patient is prescribed this medication.</li>
+            <li>Safe dose ranges and crucial vital sign checkpoints (e.g., holding heart medication if pulse is too low).</li>
+            <li>Important side effects and nursing actions.</li>
           </ul>
         </div>
 
         <!-- MAIN HEADING: PHARMACOKINETICS -->
         <div id="sec-pk" class="content-card">
           <h2>PHARMACOKINETICS (What the Body Does to the Drug)</h2>
-          <p>Pharmacokinetics is the quantitative study of how a drug moves through the body over time. It encompasses four core stages remembered by the acronym <strong>ADME</strong>, along with liberation kinetics and comprehensive factors affecting each phase.</p>
-
-          <h3 id="sec-absorption">Absorption &amp; Factors Affecting Absorption</h3>
-          <p><mark>Liberation</mark> is the release of a drug from its pharmaceutical dosage form. <mark>Absorption</mark> is the net movement of active drug molecules from the site of administration across biological membranes into systemic circulation.</p>
-          
-          <h4>Factors Affecting Drug Absorption:</h4>
+          <p>Pharmacokinetics looks at how a drug travels through the body. We remember the four core steps using the friendly acronym <strong>ADME</strong>:</p>
           <ul>
-            <li><strong>Route of Administration:</strong> Intravenous (IV) bypasses absorption entirely (100% bioavailability). Oral (PO) drugs must traverse gastrointestinal mucosal barriers.</li>
-            <li><strong>Surface Area &amp; Blood Flow:</strong> Larger absorbing surfaces (e.g., small intestinal microvilli) and high regional blood perfusion accelerate absorption rates.</li>
-            <li><strong>Lipid Solubility &amp; Ionization (pH):</strong> Un-ionized, lipophilic drugs diffuse across cell membranes easily. Gastric pH affects weak acids/bases ionization states.</li>
-            <li><strong>First-Pass Metabolism:</strong> High hepatic clearance of orally administered drugs significantly reduces systemic bioavailability before reaching general circulation.</li>
-            <li><strong>Food and Drug Interactions:</strong> Presence of food, gastric emptying rate, and concurrent administration of binding agents (e.g., antacids) can alter drug absorption.</li>
-          </ul>
-
-          <h3 id="sec-distribution">Distribution &amp; Factors Affecting Distribution</h3>
-          <p><mark>Distribution</mark> refers to the reversible transfer of drug from systemic circulation into interstitial and intracellular tissue fluids.</p>
-          <p>The <mark>Volume of Distribution (Vd)</mark> is a theoretical pharmacokinetic parameter relating the total amount of drug in the body to the plasma drug concentration.</p>
-
-          <h4>Factors Affecting Drug Distribution:</h4>
-          <ul>
-            <li><strong>Plasma Protein Binding:</strong> Drugs bound to plasma proteins (like albumin) remain intravascular and pharmacologically inactive. Only the free, unbound fraction distributes into tissues.</li>
-            <li><strong>Tissue Blood Flow:</strong> Well-perfused organs (brain, liver, kidneys) receive drugs much faster than poorly perfused tissues (adipose tissue, bone, resting skeletal muscle).</li>
-            <li><strong>Lipophilicity &amp; Molecular Size:</strong> Highly lipid-soluble drugs easily cross endothelial barriers, including the blood-brain barrier (BBB) and placental barrier.</li>
-            <li><strong>Capillary Permeability:</strong> Specialized capillary structures (such as sinusoidal gaps in the liver or tight junctions in the brain) dictate regional tissue access.</li>
-          </ul>
-
-          <div class="example-box">
-            <h4>💡 Protein Binding &amp; Albumin Clinical Significance</h4>
-            <p>Administering two highly protein-bound drugs simultaneously can cause competitive displacement from albumin binding sites, dangerously spiking free drug concentrations and triggering acute toxicity.</p>
-          </div>
-
-          <h3 id="sec-metabolism">Metabolism (Biotransformation) &amp; Factors Affecting Metabolism</h3>
-          <p><mark>Metabolism</mark> is the biochemical conversion of lipophilic parent drug molecules into more hydrophilic, water-soluble metabolites ready for renal excretion.</p>
-          <ul>
-            <li><strong>Phase I Reactions (Non-synthetic):</strong> Oxidation, reduction, or hydrolysis catalyzed predominantly by the hepatic <strong>Cytochrome P450 (CYP450)</strong> enzyme superfamily (e.g., CYP3A4, CYP2D6).</li>
-            <li><strong>Phase II Reactions (Synthetic):</strong> Conjugation reactions (glucuronidation, sulfation, acetylation) attaching polar endogenous molecules to create inactive, easily excreted compounds.</li>
-          </ul>
-
-          <h4>Factors Affecting Drug Metabolism:</h4>
-          <ul>
-            <li><strong>Enzyme Induction &amp; Inhibition:</strong> Certain drugs induce CYP450 enzymes (accelerating clearance of co-administered drugs), while others inhibit them (causing drug accumulation and toxicity).</li>
-            <li><strong>Age &amp; Genetics:</strong> Neonates and elderly patients have reduced metabolic enzyme capacity. Genetic polymorphisms (e.g., slow vs. extensive CYP metabolizers) alter individual drug response.</li>
-            <li><strong>Liver Health:</strong> Hepatic diseases (cirrhosis, hepatitis) compromise enzymatic activity, markedly prolonging drug half-life and elevating systemic toxicity risks.</li>
-          </ul>
-
-          <h3 id="sec-excretion">Excretion &amp; Factors Affecting Elimination</h3>
-          <p><mark>Excretion</mark> is the permanent removal of drugs and their metabolites from the body, primarily via the kidneys (urine) and hepatobiliary system (bile/feces).</p>
-
-          <h4>Factors Affecting Renal Elimination:</h4>
-          <ul>
-            <li><strong>Glomerular Filtration Rate (GFR):</strong> Renal function status directly impacts clearance. Conditions reducing GFR (e.g., acute kidney injury, chronic renal failure) cause drug accumulation.</li>
-            <li><strong>Urinary pH &amp; Ionization:</strong> Altering urine pH ionizes weak drugs, preventing tubular reabsorption and speeding up renal excretion (e.g., sodium bicarbonate to alkalinize urine for weak acid toxicity).</li>
-            <li><strong>Competition for Tubular Secretion:</strong> Active transport systems in renal tubules can be saturated or competitively blocked by concurrent drug therapies (e.g., probenecid and penicillin).</li>
+            <li><strong>Absorption:</strong> How the drug enters the bloodstream from where it was given.</li>
+            <li><strong>Distribution:</strong> How the drug travels through the blood to reach tissues and organs.</li>
+            <li><strong>Metabolism:</strong> How the body breaks down and alters the drug (mostly happening in the liver).</li>
+            <li><strong>Excretion:</strong> How the body filters and removes the drug (mostly through the kidneys in urine).</li>
           </ul>
         </div>
 
-        <!-- INTERACTIVE ADME ANIMATION -->
-        <div id="sec-animation" class="adme-sim-container">
-          <div class="adme-header">
-            <h3>🔬 Interactive ADME Body Simulation</h3>
-            <div class="adme-controls">
-              <button class="adme-btn active-stage" onclick="runAdmeStep(0)">1. Liberation</button>
-              <button class="adme-btn" onclick="runAdmeStep(1)">2. Absorption</button>
-              <button class="adme-btn" onclick="runAdmeStep(2)">3. Distribution</button>
-              <button class="adme-btn" onclick="runAdmeStep(3)">4. Metabolism</button>
-              <button class="adme-btn" onclick="runAdmeStep(4)">5. Excretion</button>
+        <!-- THERAPEUTIC INDEX & DOSE RESPONSE CURVE GRAPH SECTION -->
+        <div id="sec-therapeutic-index" class="content-card">
+          <h2>Therapeutic Index and Dose-Response Curve</h2>
+          <p>Understanding the relationship between the dose of a drug and its effect is crucial for patient safety. The <strong>Dose-Response Curve (DRC)</strong> shows how much biological effect a drug produces as the dose increases.</p>
+          <p>The <strong>Therapeutic Index (TI)</strong> is a safety ratio that compares the dose that produces toxicity (TD50) to the dose that produces the desired therapeutic effect (ED50). A wider margin between these two curves means a safer medication!</p>
+
+          <div class="graph-card">
+            <h4 style="color: #38bdf8; font-size: 0.85rem; margin-bottom: 8px;">Visual Dose-Response &amp; Safety Margin</h4>
+            <p style="color: #cbd5e1; font-size: 0.78rem; margin-bottom: 12px;">This graph illustrates the therapeutic window between the effective dose curve and the toxic dose curve.</p>
+            
+            <div class="graph-container">
+              <!-- Simple SVG illustration of two curves -->
+              <svg class="curve-svg" viewBox="0 0 400 200" preserveAspectRatio="none">
+                <!-- Therapeutic effect curve (ED50) -->
+                <path d="M 20 180 Q 150 180 200 60 T 380 40" fill="none" stroke="#0d9488" stroke-width="3" />
+                <!-- Toxic effect curve (TD50) -->
+                <path d="M 100 180 Q 250 180 300 60 T 390 50" fill="none" stroke="#f43f5e" stroke-width="3" stroke-dasharray="4" />
+                <!-- Guidelines / Labels markers -->
+                <line x1="180" y1="20" x2="180" y2="180" stroke="#64748b" stroke-dasharray="2" />
+                <line x1="280" y1="20" x2="280" y2="180" stroke="#64748b" stroke-dasharray="2" />
+              </svg>
+              
+              <div style="position: absolute; bottom: 8px; left: 12px; font-size: 0.7rem; color: #94a3b8;">Low Dose</div>
+              <div style="position: absolute; bottom: 8px; right: 12px; font-size: 0.7rem; color: #94a3b8;">High Dose</div>
+              <div style="position: absolute; top: 30px; left: 140px; font-size: 0.7rem; color: #38bdf8; font-weight: 700;">Therapeutic Window</div>
             </div>
-          </div>
-          
-          <div class="body-canvas">
-            <div id="drugParticle"></div>
-            <div class="body-station active" id="station-0">
-              <div class="station-icon">💊</div>
-              <div class="station-label">Stomach<br>Liberation</div>
-            </div>
-            <div class="body-station" id="station-1">
-              <div class="station-icon">🧪</div>
-              <div class="station-label">Intestine<br>Absorption</div>
-            </div>
-            <div class="body-station" id="station-2">
-              <div class="station-icon">❤️</div>
-              <div class="station-label">Blood / Vd<br>Distribution</div>
-            </div>
-            <div class="body-station" id="station-3">
-              <div class="station-icon">🧬</div>
-              <div class="station-label">Liver<br>Metabolism</div>
-            </div>
-            <div class="body-station" id="station-4">
-              <div class="station-icon">🚾</div>
-              <div class="station-label">Kidneys<br>Excretion</div>
+
+            <div style="display: flex; gap: 12px; margin-top: 10px; font-size: 0.75rem; color: #cbd5e1; justify-content: center;">
+              <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #0d9488; display: inline-block; border-radius: 2px;"></span> Effective Dose (ED50)</span>
+              <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #f43f5e; display: inline-block; border-radius: 2px;"></span> Toxic Dose (TD50)</span>
             </div>
           </div>
 
-          <div class="adme-status" id="admeStatusText">
-            Stage 1: Liberation. Drug tablet dissolves in the GI tract, releasing active molecules into solution.
-          </div>
-        </div>
-
-        <!-- PHARMACODYNAMICS SECTION WITH INTRINSIC ACTIVITY & AGONIST TYPES -->
-        <div id="sec-pd" class="content-card">
-          <h2>PHARMACODYNAMICS (What the Drug Does to the Body)</h2>
-          <p>Pharmacodynamics examines the biochemical and physiological effects of drugs and their mechanisms of action at the cellular and molecular level.</p>
-
-          <h3 id="sec-intrinsic">Intrinsic Activity &amp; Agonist Types (Reversible &amp; Irreversible)</h3>
-          <p><strong>Intrinsic Activity (Efficacy):</strong> The ability of a drug bound to a receptor to generate a physiological stimulus and trigger a cellular response. Denoted numerically from 0 to 1.</p>
-          
-          <h4>Classification of Agonists &amp; Antagonists:</h4>
-          <ul>
-            <li><strong>Full Agonist:</strong> Possesses maximal intrinsic activity (efficacy = 1.0). Fully activates receptors to produce the maximum biological response (e.g., morphine at mu-opioid receptors).</li>
-            <li><strong>Partial Agonist:</strong> Possesses submaximal intrinsic activity (efficacy between 0 and 1). Produces a submaximal response even when all receptors are occupied, and can act as a competitive antagonist in the presence of a full agonist.</li>
-            <li><strong>Inverse Agonist:</strong> Binds to constitutively active receptors and suppresses baseline basal activity below zero.</li>
-            <li><strong>Competitive (Reversible) Antagonist:</strong> Binds reversibly to the same receptor site as the agonist. Can be overcome by increasing the concentration of the agonist (shifts dose-response curve to the right).</li>
-            <li><strong>Non-Competitive (Irreversible) Antagonist:</strong> Binds covalently or with extremely high affinity to the receptor site or an allosteric site, permanently disabling receptor function. Increasing agonist concentration cannot overcome the blockade (suppresses maximum response).</li>
-            <li><strong>Functional (Physiological) Antagonist:</strong> Two drugs acting through completely different receptors on different physiological systems produce opposing effects (e.g., histamine causing bronchospasm via H1 receptors vs. epinephrine causing bronchodilation via beta-2 adrenergic receptors).</li>
-          </ul>
-
-          <h3 id="sec-receptors">Receptor Superfamilies &amp; Signal Transduction</h3>
-          <p>Cellular receptors mediate drug actions across four primary molecular superfamilies:</p>
-          <ul>
-            <li><strong>Type I: Ligand-Gated Ion Channels (Ionotropic):</strong> Millisecond response time (e.g., nicotinic acetylcholine receptors).</li>
-            <li><strong>Type II: G Protein-Coupled Receptors (GPCRs):</strong> Seconds response time via intracellular second messengers like cAMP or IP3 (e.g., beta-adrenergic receptors).</li>
-            <li><strong>Type III: Enzyme-Linked Receptors:</strong> Minutes to hours response time (e.g., insulin receptors with intrinsic tyrosine kinase activity).</li>
-            <li><strong>Type IV: Intracellular (Nuclear) Receptors:</strong> Hours to days response time regulating gene transcription (e.g., corticosteroid and thyroid hormone receptors).</li>
-          </ul>
-        </div>
-
-        <!-- THERAPEUTIC INDEX & DRUG RESPONSE CURVE SECTION -->
-        <div class="content-card" id="sec-therapeutic-index">
-          <h2>Therapeutic Index (TI) &amp; Drug Response Curve (DRC)</h2>
-          <p>Evaluating drug safety and potency requires quantitative dose-response analysis and safety margins.</p>
-
-          <h3>1. Drug Response Curve (DRC) &amp; Quantal Dose-Response</h3>
-          <p>The Dose-Response Curve plots the magnitude of a drug's pharmacological effect against its concentration or dose.</p>
-          <ul>
-            <li><strong>Potency:</strong> The amount of drug needed to produce a given biological effect (measured by $\text{ED}_{50}$ - effective dose for 50% of population). Higher potency means a lower dose is required.</li>
-            <li><strong>Efficacy:</strong> The maximum intensity of response produced by a drug regardless of dose ($\text{E}_{\max}$).</li>
-          </ul>
-
-          <h3>2. Therapeutic Index (TI) &amp; Safety Margin</h3>
-          <p>The <strong>Therapeutic Index</strong> is a quantitative measurement of relative drug safety, calculated as the ratio of the toxic dose to the therapeutic dose:</p>
-          <p>$$\text{TI} = \frac{\text{TD}_{50}}{\text{ED}_{50}}$$</p>
-          <p>Where $\text{TD}_{50}$ is the dose causing toxic effects in 50% of subjects, and $\text{ED}_{50}$ is the effective dose in 50% of subjects.</p>
-          
           <div class="callout-box">
-            <h4>📊 Clinical Significance of Therapeutic Index</h4>
-            <p><strong>Narrow Therapeutic Index (NTI) drugs</strong> (e.g., digoxin, warfarin, lithium, gentamicin) have a very small margin of safety. Small variances in dosage or plasma concentration can shift rapidly from effective therapy to severe toxicity or lethality, requiring rigorous therapeutic drug monitoring (TDM).</p>
+            <h4>Nursing Insight on Safety</h4>
+            <p>Drugs with a <strong>narrow therapeutic index</strong> (like digoxin or warfarin) require frequent blood tests to monitor patient levels closely and prevent accidental overdose or toxicity.</p>
           </div>
-        </div>
-
-        <!-- CLINICAL SIGNIFICANCE -->
-        <div id="sec-clinical" class="content-card">
-          <h2>Clinical Significance for Nursing Practice</h2>
-          <p>Understanding pharmacokinetics, pharmacodynamics, intrinsic activity, and drug safety metrics empowers nursing professionals to:</p>
-          <ul>
-            <li>Anticipate drug onset, peak action, and duration based on patient physiological status and organ function.</li>
-            <li>Perform baseline assessments and monitor vital signs to catch adverse drug reactions early.</li>
-            <li>Manage combination therapies safely, mitigating protein-binding displacements and CYP-mediated drug interactions.</li>
-            <li>Execute safe medication administration adhering to the <strong>Rights of Medication Administration</strong>.</li>
-          </ul>
         </div>
 
       </main>
@@ -590,34 +475,6 @@
       const overlay = document.getElementById('drawerOverlay');
       drawer.classList.toggle('open');
       overlay.classList.toggle('open');
-    }
-
-    const steps = [
-      { text: "Stage 1: Liberation. Drug tablet dissolves in the GI tract, releasing active molecules into solution.", left: "15px", active: 0 },
-      { text: "Stage 2: Absorption. Drug molecules cross gastrointestinal mucosal barriers into portal circulation.", left: "215px", active: 1 },
-      { text: "Stage 3: Distribution. Drug circulates through systemic blood flow to tissues and target receptors (Vd).", left: "415px", active: 2 },
-      { text: "Stage 4: Metabolism. Hepatic CYP450 enzymes biotransform lipophilic drug molecules into polar metabolites.", left: "615px", active: 3 },
-      { text: "Stage 5: Excretion. Kidneys filter metabolites and clear them from the body via urine.", left: "815px", active: 4 }
-    ];
-
-    function runAdmeStep(index) {
-      const particle = document.getElementById('drugParticle');
-      const statusText = document.getElementById('admeStatusText');
-      const buttons = document.querySelectorAll('.adme-btn');
-      const stations = document.querySelectorAll('.body-station');
-
-      buttons.forEach((btn, i) => {
-        if (i === index) btn.classList.add('active-stage');
-        else btn.classList.remove('active-stage');
-      });
-
-      stations.forEach((st, i) => {
-        if (i === index) st.classList.add('active');
-        else st.classList.remove('active');
-      });
-
-      particle.style.left = steps[index].left;
-      statusText.innerText = steps[index].text;
     }
   </script>
 </body>
