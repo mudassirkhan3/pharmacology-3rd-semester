@@ -131,11 +131,78 @@
     tr:last-child td { border-bottom: none; }
     tr:nth-child(even) { background: #f8fafc; }
 
+    /* Interactive ADME Animation Simulation */
+    .adme-sim-container {
+      background: #0f172a; color: white; border-radius: var(--radius); padding: 16px 10px; margin: 16px 0;
+      border: 1px solid #1e293b;
+    }
+    .adme-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+    .adme-header h3 { font-size: 0.9rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 4px; }
+    .adme-controls { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; width: 100%; }
+    .adme-btn {
+      background: var(--primary); color: white; border: none; padding: 8px 10px; border-radius: 8px;
+      font-size: 0.72rem; font-weight: 700; cursor: pointer; text-align: center;
+    }
+    .adme-btn.active-stage { background: #0d9488; }
+
+    .body-canvas {
+      background: #1e293b; border-radius: 10px; height: 180px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: space-around; padding: 10px; border: 1px solid #334155; margin-bottom: 10px;
+    }
+    .body-station {
+      display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; z-index: 2;
+      opacity: 0.4; transition: opacity 0.3s ease;
+    }
+    .body-station.active { opacity: 1; transform: scale(1.05); }
+    .station-icon {
+      width: 36px; height: 36px; border-radius: 10px; background: #334155; display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; border: 1px solid #475569;
+    }
+    .body-station.active .station-icon { background: linear-gradient(135deg, var(--primary), var(--accent)); border-color: #38bdf8; }
+    .station-label { font-size: 0.6rem; font-weight: 700; color: #cbd5e1; text-align: center; line-height: 1.2; }
+
+    #drugParticle {
+      position: absolute; width: 14px; height: 14px; background: #fef08a; border-radius: 50%;
+      box-shadow: 0 0 10px #fef08a; z-index: 10; top: 80px; left: 15px;
+      transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .adme-status { font-family: monospace; font-size: 0.72rem; color: #cbd5e1; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 8px; text-align: center; line-height: 1.4; }
+
+    /* Interactive Receptor Animation Simulation */
+    .receptor-sim-container {
+      background: #0f172a; color: white; border-radius: var(--radius); padding: 16px 10px; margin: 16px 0;
+      border: 1px solid #1e293b;
+    }
+    .receptor-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+    .receptor-header h3 { font-size: 0.9rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 4px; }
+    .receptor-controls { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; width: 100%; }
+    .receptor-btn {
+      background: var(--primary); color: white; border: none; padding: 8px 10px; border-radius: 8px;
+      font-size: 0.72rem; font-weight: 700; cursor: pointer; text-align: center;
+    }
+    .receptor-btn.active-receptor { background: #0d9488; }
+
+    .receptor-canvas {
+      background: #1e293b; border-radius: 10px; height: 180px; position: relative; overflow: hidden;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; border: 1px solid #334155; margin-bottom: 10px;
+    }
+    .cell-membrane { width: 100%; height: 14px; background: #334155; border-radius: 7px; position: relative; display: flex; align-items: center; justify-content: center; margin: 25px 0; border: 1px solid #475569; }
+    .receptor-pore { width: 60px; height: 30px; border: 2px dashed #38bdf8; border-radius: 15px; position: absolute; display: flex; align-items: center; justify-content: center; transition: all 0.4s ease; font-size: 0.65rem; }
+    
+    #ligandParticle {
+      position: absolute; width: 22px; height: 22px; background: #fef08a; border-radius: 50%;
+      box-shadow: 0 0 10px #fef08a; z-index: 10; top: 12px; left: 50%; transform: translateX(-50%);
+      transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); display: flex; align-items: center; justify-content: center; font-size: 0.6rem; color: #1e293b; font-weight: 800;
+    }
+    .receptor-status { font-family: monospace; font-size: 0.72rem; color: #cbd5e1; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 8px; text-align: center; line-height: 1.4; }
+
     @media (min-width: 900px) {
       .mobile-navbar { display: none; }
       .pc-sidebar { display: flex; }
       .main-content-area { margin-left: 280px; }
       .main-wrapper { padding: 30px 32px; max-width: 1080px; }
+      .adme-controls, .receptor-controls { display: flex; width: auto; }
+      .adme-btn, .receptor-btn { flex: 1; }
       .content-card { padding: 24px 22px; }
       .chapter-hero { padding: 30px 28px; }
     }
@@ -166,6 +233,14 @@
           <li><a href="#sec-pk">PHARMACOKINETICS</a></li>
           <li><a href="#sec-absorption" class="sidebar-sub">Absorption &amp; Factors</a></li>
           <li><a href="#sec-distribution" class="sidebar-sub">Distribution &amp; Factors</a></li>
+          <li><a href="#sec-metabolism" class="sidebar-sub">Metabolism &amp; Factors</a></li>
+          <li><a href="#sec-excretion" class="sidebar-sub">Excretion &amp; Factors</a></li>
+          <li><a href="#sec-animation" class="sidebar-sub">Live ADME Body Animation</a></li>
+          <li><a href="#sec-pd">PHARMACODYNAMICS</a></li>
+          <li><a href="#sec-intrinsic" class="sidebar-sub">Intrinsic Activity &amp; Agonist Types</a></li>
+          <li><a href="#sec-receptors" class="sidebar-sub">Receptor Superfamilies</a></li>
+          <li><a href="#sec-therapeutic-index" class="sidebar-sub">Therapeutic Index &amp; DRC</a></li>
+          <li><a href="#sec-clinical">Clinical Significance</a></li>
         </ul>
       </div>
       <div style="font-size: 0.7rem; color: var(--text-muted); text-align: center; border-top: 1px solid var(--border); padding-top: 10px;">
@@ -173,7 +248,7 @@
       </div>
     </aside>
 
-    <div class="main-content-area">
+    <main class="main-content-area">
 
       <!-- Polished Mobile Navbar -->
       <header class="mobile-navbar">
@@ -211,6 +286,14 @@
             <li><a href="#sec-pk" onclick="toggleMenu()">PHARMACOKINETICS</a></li>
             <li><a href="#sec-absorption" onclick="toggleMenu()">Absorption &amp; Factors</a></li>
             <li><a href="#sec-distribution" onclick="toggleMenu()">Distribution &amp; Factors</a></li>
+            <li><a href="#sec-metabolism" onclick="toggleMenu()">Metabolism &amp; Factors</a></li>
+            <li><a href="#sec-excretion" onclick="toggleMenu()">Excretion &amp; Factors</a></li>
+            <li><a href="#sec-animation" onclick="toggleMenu()">ADME Animation</a></li>
+            <li><a href="#sec-pd" onclick="toggleMenu()">PHARMACODYNAMICS</a></li>
+            <li><a href="#sec-intrinsic" onclick="toggleMenu()">Intrinsic Activity &amp; Agonist Types</a></li>
+            <li><a href="#sec-receptors" onclick="toggleMenu()">Receptor Superfamilies</a></li>
+            <li><a href="#sec-therapeutic-index" onclick="toggleMenu()">Therapeutic Index &amp; DRC</a></li>
+            <li><a href="#sec-clinical" onclick="toggleMenu()">Clinical Significance</a></li>
           </ul>
         </div>
         <div style="font-size: 0.7rem; color: var(--text-muted); text-align: center; padding-top: 10px; border-top: 1px solid var(--border);">
@@ -357,21 +440,4 @@
           <h4>Factors Affecting Drug Distribution:</h4>
           <ul>
             <li><strong>Plasma Protein Binding:</strong> Drugs reversibly bind to plasma proteins (primarily albumin). Only the free, unbound fraction is pharmacologically active and able to diffuse to target receptors.</li>
-            <li><strong>Tissue Perfusion &amp; Blood Flow:</strong> Highly vascularized organs (brain, heart, liver, kidneys) receive rapid high drug concentrations initially.</li>
-          </ul>
-        </div>
-
-      </main>
-    </div>
-  </div>
-
-  <script>
-    function toggleMenu() {
-      const drawer = document.getElementById('drawer');
-      const overlay = document.getElementById('drawerOverlay');
-      drawer.classList.toggle('open');
-      overlay.classList.toggle('open');
-    }
-  </script>
-</body>
-</html>
+            <li><strong>Tissue Perfusion &amp; Blood Flow:</strong> Highly vascularized organs (brain, heart, liver, kidneys) receive rapid high drug concentrations initially, followed by slower redistribution to muscle and adi
