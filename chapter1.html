@@ -132,6 +132,48 @@
     tr:last-child td { border-bottom: none; }
     tr:nth-child(even) { background: #f8fafc; }
 
+    /* Interactive ADME Animation Simulation */
+    .adme-sim-container {
+      background: #0f172a; color: white; border-radius: var(--radius); padding: 24px 18px; margin: 24px 0;
+      box-shadow: var(--shadow-lg); border: 1px solid #1e293b;
+    }
+    .adme-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 14px; }
+    .adme-header h3 { font-size: 1.05rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 8px; }
+    .adme-controls { display: flex; gap: 8px; flex-wrap: wrap; width: 100%; }
+    .adme-btn {
+      background: var(--primary); color: white; border: none; padding: 10px 14px; border-radius: 10px;
+      font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.25s ease; flex: 1; text-align: center;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+    }
+    .adme-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    .adme-btn.active-stage { background: #0d9488; box-shadow: 0 0 15px rgba(13, 148, 136, 0.5); }
+
+    .body-canvas {
+      background: #1e293b; border-radius: 14px; height: 260px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: space-around; padding: 20px; border: 1px solid #334155; margin-bottom: 16px;
+    }
+
+    .body-station {
+      display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; z-index: 2;
+      opacity: 0.4; transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .body-station.active { opacity: 1; transform: scale(1.08); }
+    .station-icon {
+      width: 54px; height: 54px; border-radius: 14px; background: #334155; display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; border: 2px solid #475569; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .body-station.active .station-icon { background: linear-gradient(135deg, var(--primary), var(--accent)); border-color: #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
+    .station-label { font-size: 0.75rem; font-weight: 700; color: #cbd5e1; text-align: center; }
+
+    /* Moving Drug Particle Animation */
+    #drugParticle {
+      position: absolute; width: 22px; height: 22px; background: #fef08a; border-radius: 50%;
+      box-shadow: 0 0 15px #fef08a; z-index: 10; top: 120px; left: 40px;
+      transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .adme-status { font-family: monospace; font-size: 0.85rem; color: #cbd5e1; background: rgba(0,0,0,0.5); padding: 14px; border-radius: 10px; text-align: center; line-height: 1.6; border: 1px solid rgba(255,255,255,0.06); }
+
     /* Interactive Graph Simulation */
     .sim-container {
       background: #0f172a; color: white; border-radius: var(--radius); padding: 24px 18px; margin: 24px 0;
@@ -171,6 +213,8 @@
       .main-wrapper { padding: 40px 48px; max-width: 1140px; }
       .sim-controls { width: auto; flex: unset; }
       .sim-btn { flex: unset; }
+      .adme-controls { width: auto; flex: unset; }
+      .adme-btn { flex: unset; }
       .content-card { padding: 34px 30px; }
       .chapter-hero { padding: 42px 36px; }
     }
@@ -189,6 +233,7 @@
         </a>
         <ul class="sidebar-menu">
           <li><a href="#sec-intro" class="active">Introduction &amp; Grogan &amp; Preuss Core</a></li>
+          <li><a href="#sec-animation">✨ Live ADME Body Animation</a></li>
           <li><a href="#sec-absorption">1. Absorption &amp; Liberation</a></li>
           <li><a href="#sec-bioavailability" class="sidebar-sub">↳ Bioavailability &amp; AUC</a></li>
           <li><a href="#sec-distribution">2. Distribution &amp; Vd</a></li>
@@ -230,6 +275,7 @@
           </div>
           <ul class="drawer-menu">
             <li><a href="#sec-intro" onclick="toggleMenu()">Introduction &amp; Grogan &amp; Preuss Core</a></li>
+            <li><a href="#sec-animation" onclick="toggleMenu()">✨ Live ADME Body Animation</a></li>
             <li><a href="#sec-absorption" onclick="toggleMenu()">1. Absorption &amp; Liberation</a></li>
             <li><a href="#sec-bioavailability" onclick="toggleMenu()">↳ Bioavailability &amp; AUC</a></li>
             <li><a href="#sec-distribution" onclick="toggleMenu()">2. Distribution &amp; Vd</a></li>
@@ -251,7 +297,7 @@
         <div class="chapter-hero">
           <span class="badge-unit">Complete Clinical Masterclass</span>
           <h1>Pharmacokinetics (PK): What Your Body Does to Medication</h1>
-          <p>Based on the foundational work by Sean Grogan and Charles V. Preuss. Explore how drugs travel, adapt, get metabolized, and exit the human body through simple explanations, real-life examples, and interactive simulations.</p>
+          <p>Based on the foundational work by Sean Grogan and Charles V. Preuss. Explore how drugs travel, adapt, get metabolized, and exit the human body through simple explanations, real-life examples, and interactive ADME animations.</p>
         </div>
 
         <!-- INTRODUCTION SECTION -->
@@ -272,6 +318,52 @@
             <li><strong>M</strong>etabolism</li>
             <li><strong>E</strong>xcretion</li>
           </ul>
+        </div>
+
+        <!-- LIVE ADME ANIMATION SECTION -->
+        <div id="sec-animation" class="content-card">
+          <h2>✨ Live ADME Animated Simulation</h2>
+          <p>Watch how a drug particle travels through the human body step-by-step from administration to elimination. Click the stages below to trigger the animation and explanation!</p>
+
+          <div class="adme-sim-container">
+            <div class="adme-header">
+              <h3>🎬 Drug Journey in Real-Time</h3>
+              <div class="adme-controls">
+                <button class="adme-btn" id="btnAbs" onclick="runAdme('absorption')">1. Absorption</button>
+                <button class="adme-btn" id="btnDis" onclick="runAdme('distribution')">2. Distribution</button>
+                <button class="adme-btn" id="btnMet" onclick="runAdme('metabolism')">3. Metabolism</button>
+                <button class="adme-btn" id="btnExc" onclick="runAdme('excretion')">4. Excretion</button>
+              </div>
+            </div>
+
+            <div class="body-canvas">
+              <div id="drugParticle"></div>
+              
+              <div class="body-station" id="stationAbs">
+                <div class="station-icon">💊</div>
+                <div class="station-label">Stomach / Gut<br>(Absorption)</div>
+              </div>
+
+              <div class="body-station" id="stationDis">
+                <div class="station-icon">❤️</div>
+                <div class="station-label">Blood &amp; Tissues<br>(Distribution)</div>
+              </div>
+
+              <div class="body-station" id="stationMet">
+                <div class="station-icon">🧪</div>
+                <div class="station-label">Liver (CYP450)<br>(Metabolism)</div>
+              </div>
+
+              <div class="body-station" id="stationExc">
+                <div class="station-icon">🚽</div>
+                <div class="station-label">Kidneys / Urine<br>(Excretion)</div>
+              </div>
+            </div>
+
+            <div class="adme-status" id="admeStatusMsg">
+              Click any stage above to start the animated drug journey through the body!
+            </div>
+          </div>
         </div>
 
         <!-- ABSORPTION SECTION -->
@@ -463,6 +555,38 @@
       overlay.classList.toggle('open');
     }
 
+    function runAdme(stage) {
+      const particle = document.getElementById('drugParticle');
+      const statusMsg = document.getElementById('admeStatusMsg');
+      
+      const stations = ['Abs', 'Dis', 'Met', 'Exc'];
+      stations.forEach(s => {
+        document.getElementById('station' + s).classList.remove('active');
+        document.getElementById('btn' + s).classList.remove('active-stage');
+      });
+
+      document.getElementById('station' + stage.charAt(0).toUpperCase() + stage.slice(1, 3)).classList.add('active');
+      document.getElementById('btn' + stage.charAt(0).toUpperCase() + stage.slice(1, 3)).classList.add('active-stage');
+
+      if (stage === 'absorption') {
+        particle.style.left = '12%';
+        particle.style.top = '110px';
+        statusMsg.innerHTML = "💊 <strong>Absorption:</strong> The oral tablet releases the drug (liberation), crossing gastrointestinal membranes into the systemic bloodstream.";
+      } else if (stage === 'distribution') {
+        particle.style.left = '38%';
+        particle.style.top = '70px';
+        statusMsg.innerHTML = "❤️ <strong>Distribution:</strong> Blood circulation and fluid convection carry the drug molecules through tissues to reach target receptor sites.";
+      } else if (stage === 'metabolism') {
+        particle.style.left = '64%';
+        particle.style.top = '130px';
+        statusMsg.innerHTML = "🧪 <strong>Metabolism:</strong> Liver enzymes (CYP450 / UGT) chemically modify fat-soluble drugs into water-soluble metabolites.";
+      } else if (stage === 'excretion') {
+        particle.style.left = '88%';
+        particle.style.top = '110px';
+        statusMsg.innerHTML = "🚽 <strong>Excretion:</strong> Kidneys filter the water-soluble drug waste, eliminating it permanently from the body via urine.";
+      }
+    }
+
     function updateGraph(type) {
       const canvas = document.getElementById('graphCanvas');
       const status = document.getElementById('graphStatusMsg');
@@ -490,6 +614,7 @@
 
     window.onload = function() {
       updateGraph('iv');
+      runAdme('absorption');
     };
   </script>
 </body>
