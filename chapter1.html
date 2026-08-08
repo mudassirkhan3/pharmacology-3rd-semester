@@ -1,16 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>The Master Guide to Pharmacodynamics &amp; Pharmacokinetics | Ultimate Clinical Edition</title>
-
+  <title>Mastering Pharmacokinetics: ADME, Clearance, &amp; Clinical Kinetics | Ultimate Edition</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  
   <style>
-    :root{
+    :root {
       --primary: #0284c7;
       --primary-dark: #0369a1;
       --accent: #0d9488;
@@ -19,678 +19,478 @@
       --text-dark: #0f172a;
       --text-muted: #64748b;
       --border: #e2e8f0;
-      --radius: 16px;
-      --shadow: 0 10px 30px -5px rgba(2,132,199,0.06);
-      --shadow-lg: 0 20px 40px -10px rgba(15,23,42,0.12);
+      --radius: 20px;
+      --shadow: 0 10px 30px -5px rgba(2, 132, 199, 0.08);
+      --shadow-lg: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
       --highlight: #fef08a;
       --highlight-alt: #ccfbf1;
-      --max-reading-width: 760px;
-      --tap-size: 44px;
-      --transition: 0.25s ease;
     }
 
-    /* Basic reset + typography */
-    *{box-sizing:border-box;margin:0;padding:0;font-family:'Plus Jakarta Sans',sans-serif;-webkit-tap-highlight-color:transparent}
-    html{scroll-behavior:smooth}
-    body{background:var(--bg-main);color:var(--text-dark);min-height:100vh;display:flex;flex-direction:column;line-height:1.6}
-    a{color:inherit}
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
+    body { background-color: var(--bg-main); color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; }
 
-    /* Reading progress bar */
-    #readingProgress{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--accent));width:0%;z-index:9999;transition:width var(--transition);}
+    .app-layout { display: flex; min-height: 100vh; width: 100%; position: relative; }
+    
+    /* PC Sidebar Navigation */
+    .pc-sidebar {
+      display: none; width: 320px; background: #ffffff; border-right: 1px solid var(--border);
+      position: fixed; top: 0; left: 0; height: 100vh; z-index: 50; padding: 28px 20px;
+      flex-direction: column; justify-content: space-between; overflow-y: auto;
+    }
+    .sidebar-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-dark); font-weight: 800; font-size: 1.05rem; margin-bottom: 24px; }
+    .pulse-box { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3); flex-shrink: 0; animation: pulseGlow 3s infinite ease-in-out; }
+    
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3); transform: scale(1); }
+      50% { box-shadow: 0 6px 20px rgba(13, 148, 136, 0.5); transform: scale(1.03); }
+    }
 
-    .app-layout{display:flex;min-height:100vh;width:100%;position:relative}
+    .sidebar-menu { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .sidebar-menu a {
+      text-decoration: none; color: var(--text-muted); font-weight: 700; font-size: 0.82rem;
+      display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; transition: all 0.25s ease;
+    }
+    .sidebar-menu a:hover, .sidebar-menu a.active { background: #f0f9ff; color: var(--primary-dark); transform: translateX(4px); }
+    .sidebar-sub { padding-left: 20px; font-size: 0.78rem !important; }
 
-    /* PC Sidebar */
-    .pc-sidebar{display:none;width:300px;background:var(--card-bg);border-right:1px solid var(--border);position:fixed;top:0;left:0;height:100vh;z-index:50;padding:24px 16px;flex-direction:column;justify-content:space-between;overflow-y:auto;transition:transform var(--transition),width var(--transition)}
-    .pc-sidebar.collapsed{width:72px}
-    .pc-sidebar.collapsed .sidebar-menu .text,
-    .pc-sidebar.collapsed .brand-text { display: none; }
-    .pc-sidebar .sidebar-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text-dark);font-weight:800;font-size:1rem;margin-bottom:18px}
-    .pulse-box{background:linear-gradient(135deg,var(--primary),var(--accent));color:white;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 6px 18px rgba(2,132,199,0.18)}
-    .sidebar-controls{display:flex;gap:8px;align-items:center;margin-bottom:12px}
-    .sidebar-toggle{background:transparent;border:1px solid var(--border);padding:6px;border-radius:10px;cursor:pointer;font-weight:700;color:var(--primary-dark)}
-    .sidebar-menu{list-style:none;display:flex;flex-direction:column;gap:6px}
-    .sidebar-menu a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--text-muted);font-weight:700;font-size:0.9rem;transition:all var(--transition)}
-    .sidebar-menu a.active{background:#f0f9ff;color:var(--primary-dark);transform:translateX(6px)}
-    .sidebar-menu .icon{width:28px;display:inline-flex;justify-content:center;align-items:center}
+    /* Polished Mobile Navbar */
+    .mobile-navbar { 
+      display: flex; position: sticky; top: 0; z-index: 100; 
+      background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border); padding: 14px 18px; width: 100%;
+      justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-dark); font-weight: 800; font-size: 0.95rem; }
+    .menu-toggle { 
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); border: 1px solid var(--border); padding: 10px 14px; 
+      border-radius: 12px; font-size: 0.85rem; font-weight: 800; cursor: pointer; color: var(--primary-dark);
+      display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: transform 0.2s ease;
+    }
+    .menu-toggle:active { transform: scale(0.95); }
 
-    /* Mobile navbar */
-    .mobile-navbar{display:flex;position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:12px 16px;width:100%;justify-content:space-between;align-items:center;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
-    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text-dark);font-weight:800;font-size:0.95rem}
-    .menu-toggle{background:linear-gradient(135deg,#f1f5f9 0%,#e2e8f0 100%);border:1px solid var(--border);padding:10px 14px;border-radius:12px;font-size:0.9rem;font-weight:800;cursor:pointer;color:var(--primary-dark);display:flex;align-items:center;gap:8px}
-    .menu-toggle:active{transform:scale(0.98)}
+    .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); z-index: 200; display: none; opacity: 0; transition: opacity 0.35s ease; }
+    .drawer { position: fixed; top: 0; right: -320px; width: 300px; height: 100%; background: #ffffff; z-index: 201; transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); padding: 28px 20px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: -15px 0 35px rgba(0,0,0,0.15); overflow-y: auto; }
+    .drawer.open { right: 0; }
+    .drawer-overlay.open { display: block; opacity: 1; }
+    .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
+    .drawer-menu { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .drawer-menu a { text-decoration: none; color: var(--text-dark); font-weight: 700; font-size: 0.88rem; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; background: #f8fafc; transition: background 0.2s; }
+    .drawer-menu a:hover, .drawer-menu a.active { background: #f0f9ff; color: var(--primary-dark); }
 
-    .drawer-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,23,42,0.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:200;display:none;opacity:0;transition:opacity var(--transition)}
-    .drawer{position:fixed;top:0;right:-340px;width:320px;height:100%;background:var(--card-bg);z-index:201;transition:right 0.35s cubic-bezier(.16,1,.3,1);padding:24px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:-18px 0 45px rgba(0,0,0,0.12);overflow-y:auto}
-    .drawer.open{right:0}
-    .drawer-overlay.open{display:block;opacity:1}
+    .main-content-area { flex: 1; width: 100%; display: flex; flex-direction: column; }
+    .main-wrapper { max-width: 1020px; margin: 0 auto; padding: 20px 16px; width: 100%; flex: 1; }
 
-    .main-content-area{flex:1;width:100%;display:flex;flex-direction:column}
-    .main-wrapper{max-width:var(--max-reading-width);margin:0 auto;padding:20px 16px;width:100%;flex:1}
+    /* Hero Section */
+    .chapter-hero {
+      background: linear-gradient(135deg, #0f172a 0%, #0284c7 50%, #0d9488 100%);
+      color: white; border-radius: var(--radius); padding: 36px 22px; margin-bottom: 28px;
+      box-shadow: var(--shadow-lg); position: relative; overflow: hidden;
+    }
+    .chapter-hero h1 { font-size: 1.5rem; font-weight: 800; line-height: 1.35; margin-bottom: 12px; }
+    .chapter-hero p { color: #bae6fd; font-size: 0.92rem; line-height: 1.65; }
+    .badge-unit { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(6px); padding: 6px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; margin-bottom: 14px; letter-spacing: 0.8px; border: 1px solid rgba(255,255,255,0.25); }
 
-    /* Hero */
-    .chapter-hero{background:linear-gradient(135deg,#0f172a 0%,#0284c7 50%,#0d9488 100%);color:white;border-radius:18px;padding:28px;margin-bottom:22px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
-    .chapter-hero h1{font-size:1.45rem;font-weight:800;line-height:1.35;margin-bottom:10px}
-    .chapter-hero p{color:#dbeafe;font-size:0.95rem}
+    /* Content Cards */
+    .content-card {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 26px 20px; margin-bottom: 28px; box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .content-card h2 { font-size: 1.25rem; font-weight: 800; color: var(--text-dark); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #f1f5f9; padding-bottom: 12px; }
+    .content-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--primary-dark); margin: 24px 0 10px 0; }
+    .content-card p { font-size: 0.94rem; color: #334155; line-height: 1.75; margin-bottom: 14px; }
+    .content-card ul { margin-left: 22px; margin-bottom: 16px; font-size: 0.94rem; color: #334155; line-height: 1.75; }
+    .content-card li { margin-bottom: 10px; }
 
-    /* Content card */
-    .content-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:22px;box-shadow:var(--shadow);transition:transform var(--transition),box-shadow var(--transition)}
-    .content-card h2{font-size:1.18rem;font-weight:800;color:var(--text-dark);margin-bottom:12px}
-    .content-card h3{font-size:1.02rem;font-weight:800;color:var(--primary-dark);margin:18px 0 10px}
-    .content-card p{font-size:0.96rem;color:#263244;line-height:1.75;margin-bottom:12px}
-    .content-card ul{margin-left:18px;margin-bottom:12px}
-    .content-card li{margin-bottom:8px}
+    mark { background-color: var(--highlight); padding: 2px 6px; border-radius: 4px; font-weight: 700; color: #1e293b; box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1); }
+    .mark-alt { background-color: var(--highlight-alt); color: #042f2e; }
 
-    mark{background-color:var(--highlight);padding:2px 6px;border-radius:4px;font-weight:700;color:#1e293b;box-shadow:inset 0 -1px 0 rgba(0,0,0,0.06)}
-    .mark-alt{background-color:var(--highlight-alt);color:#042f2e}
+    /* Real-Life Example Box */
+    .example-box {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 1px solid #fde68a; border-left: 6px solid #d97706;
+      border-radius: 16px; padding: 22px; margin: 20px 0; box-shadow: 0 4px 15px rgba(217, 119, 6, 0.05);
+    }
+    .example-box h4 { font-size: 0.98rem; font-weight: 800; color: #b45309; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .example-box p { font-size: 0.9rem; color: #78350f; margin-bottom: 0; line-height: 1.65; }
 
-    /* Special boxes */
-    .example-box{background:linear-gradient(135deg,#fffbeb 0%,#fef3c7 100%);border:1px solid #fde68a;border-left:6px solid #d97706;border-radius:12px;padding:16px;margin:14px 0;box-shadow:0 6px 18px rgba(217,119,6,0.04)}
-    .callout-box{background:linear-gradient(135deg,#f0f9ff 0%,#e0f2fe 100%);border:1px solid #bae6fd;border-left:6px solid var(--primary);border-radius:12px;padding:16px;margin:14px 0;box-shadow:0 6px 18px rgba(2,132,199,0.04)}
-    .mnemonic-box{background:linear-gradient(135deg,#f0fdf4 0%,#ecfeff 100%);border:1px solid #99f6e4;border-left:6px solid var(--accent);border-radius:12px;padding:16px;margin:14px 0;box-shadow:0 6px 18px rgba(13,148,136,0.04)}
+    .callout-box {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border: 1px solid #bae6fd; border-left: 6px solid var(--primary);
+      border-radius: 16px; padding: 22px; margin: 22px 0; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.05);
+    }
+    .callout-box h4 { font-size: 0.98rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .callout-box p { font-size: 0.9rem; color: #0369a1; margin-bottom: 0; line-height: 1.65; }
 
     /* Tables */
-    .table-container{width:100%;overflow-x:auto;margin:18px 0;border-radius:12px;border:1px solid var(--border);-webkit-overflow-scrolling:touch;background:white}
-    table{width:100%;border-collapse:collapse;text-align:left;font-size:0.9rem;min-width:640px}
-    th {
-      background: #f1f5f9;
-      color: var(--text-dark);
-      font-weight: 800;
-      padding: 12px 14px;
-      border-bottom: 1px solid var(--border);
-      white-space: nowrap;
+    .table-container { width: 100%; overflow-x: auto; margin: 20px 0; border-radius: 16px; border: 1px solid var(--border); -webkit-overflow-scrolling: touch; box-shadow: 0 4px 15px rgba(0,0,0,0.02); background: white; }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem; min-width: 650px; }
+    th { background: #f1f5f9; color: var(--text-dark); font-weight: 800; padding: 14px 18px; border-bottom: 2px solid var(--border); white-space: nowrap; }
+    td { padding: 14px 18px; border-bottom: 1px solid var(--border); color: #334155; line-height: 1.65; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) { background: #f8fafc; }
+
+    /* Interactive Graph Simulation */
+    .sim-container {
+      background: #0f172a; color: white; border-radius: var(--radius); padding: 24px 18px; margin: 24px 0;
+      box-shadow: var(--shadow-lg); border: 1px solid #1e293b;
     }
-    td{padding:12px 14px;border-bottom:1px solid var(--border);color:#334155}
-    tr:nth-child(even){background:#fbfcfe}
-
-    /* Simulations */
-    .sim-container{background:#0f172a;color:white;border-radius:14px;padding:18px;margin:18px 0;box-shadow:var(--shadow-lg);border:1px solid #1e293b}
-    .sim-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:12px}
-    .sim-header h3{font-size:1.02rem;font-weight:800;color:#7dd3fc}
-    .sim-controls{display:flex;gap:8px;flex-wrap:wrap;width:100%}
-    .sim-btn{background:var(--primary);color:white;border:none;padding:10px 14px;border-radius:10px;font-size:0.92rem;font-weight:800;cursor:pointer;transition:transform var(--transition);min-width:110px;flex:0 1 auto}
-    .sim-btn:focus{outline:3px solid rgba(59,130,246,0.18)}
-    .sim-btn.secondary{background:#334155}
-    .graph-screen{background:#0b1220;border-radius:12px;height:220px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:20px;border:1px solid #22303f;margin-bottom:12px}
-    .graph-axis-y{position:absolute;left:12px;top:12px;bottom:36px;width:2px;background:#3b4754;display:flex;flex-direction:column;justify-content:space-between;font-size:0.72rem;color:#94a3b8;padding-left:6px}
-    .graph-axis-x{position:absolute;left:36px;right:20px;bottom:18px;height:2px;background:#3b4754;display:flex;justify-content:space-between;font-size:0.72rem;color:#94a3b8;padding-top:6px}
-    .graph-curve{width:100%;height:100%;position:relative;margin-left:24px;display:flex;align-items:flex-end;justify-content:space-around;padding-bottom:8px}
-    .sim-bar{width:32px;background:linear-gradient(180deg,#38bdf8 0%,#0284c7 100%);border-radius:8px 8px 0 0;transition:height 0.8s cubic-bezier(.25,1,.5,1),background .25s;box-shadow:0 0 15px rgba(56,189,248,0.18)}
-    .sim-status{font-family:monospace;font-size:0.9rem;color:#cbd5e1;background:rgba(0,0,0,0.45);padding:12px;border-radius:10px;text-align:center;line-height:1.6;border:1px solid rgba(255,255,255,0.04)}
-
-    /* Pathway visualizer */
-    .pathway-sim{background:var(--bg-main);border:1px solid var(--border);border-radius:12px;padding:14px;margin:14px 0}
-    .pathway-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:10px}
-    .pathway-step-card{background:white;border:1px solid var(--border);border-radius:10px;padding:12px;cursor:pointer;transition:all var(--transition);box-shadow:0 4px 14px rgba(0,0,0,0.03)}
-    .pathway-step-card:hover{border-color:var(--primary);transform:translateY(-6px)}
-    .pathway-step-card.active{border-color:var(--accent);background:#f0fdf4}
-    .pathway-title{font-weight:800;font-size:0.92rem;color:var(--text-dark);display:flex;justify-content:space-between;align-items:center}
-    .pathway-desc{font-size:0.9rem;color:var(--text-muted);margin-top:6px;display:none}
-    .pathway-step-card.active .pathway-desc{display:block;color:#134e4a}
-
-    /* Smaller screens & layout adjustments */
-    @media(min-width:900px){
-      .mobile-navbar{display:none}
-      .pc-sidebar{display:flex}
-      .main-content-area{margin-left:300px}
-      .main-wrapper{padding:34px 48px;max-width:1080px}
-      .pathway-grid{grid-template-columns:repeat(3,1fr)}
+    .sim-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 14px; }
+    .sim-header h3 { font-size: 1.05rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 8px; }
+    .sim-controls { display: flex; gap: 8px; flex-wrap: wrap; width: 100%; }
+    .sim-btn {
+      background: var(--primary); color: white; border: none; padding: 10px 14px; border-radius: 10px;
+      font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.25s ease; flex: 1; text-align: center;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
     }
+    .sim-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    .sim-btn.secondary { background: #334155; box-shadow: none; }
+    .sim-btn.secondary:hover { background: #475569; }
 
-    @media(max-width:899px){
-      .pc-sidebar{display:none}
-      .main-wrapper{padding:18px 14px}
-      .graph-screen{height:180px}
+    .graph-screen {
+      background: #1e293b; border-radius: 14px; height: 230px; position: relative; overflow: hidden;
+      display: flex; align-items: flex-end; padding: 20px; border: 1px solid #334155; margin-bottom: 16px;
     }
+    .graph-axis-y { position: absolute; left: 15px; top: 15px; bottom: 35px; width: 2px; background: #475569; display: flex; flex-direction: column; justify-content: space-between; font-size: 0.65rem; color: #94a3b8; }
+    .graph-axis-x { position: absolute; left: 30px; right: 20px; bottom: 20px; height: 2px; background: #475569; display: flex; justify-content: space-between; font-size: 0.65rem; color: #94a3b8; padding-top: 6px; }
+    .graph-curve { width: 100%; height: 100%; position: relative; margin-left: 15px; display: flex; align-items: flex-end; justify-content: space-around; padding-bottom: 10px; }
+    
+    .sim-bar {
+      width: 32px; background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+      border-radius: 8px 8px 0 0; transition: height 0.8s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s ease;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+    }
+    .sim-status { font-family: monospace; font-size: 0.85rem; color: #cbd5e1; background: rgba(0,0,0,0.5); padding: 14px; border-radius: 10px; text-align: center; line-height: 1.6; border: 1px solid rgba(255,255,255,0.06); }
 
-    /* Reading mode adjustments */
-    .reading-mode body, .reading-mode .main-wrapper{max-width:720px}
-    .reading-mode .content-card p, .reading-mode .chapter-hero p {font-size:1.05rem;line-height:1.9}
-    .reading-mode .chapter-hero{padding:32px}
-    .reading-mode .content-card{padding:24px}
-
-    /* reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      *{transition:none!important;animation:none!important}
+    @media (min-width: 900px) {
+      .mobile-navbar { display: none; }
+      .pc-sidebar { display: flex; }
+      .main-content-area { margin-left: 320px; }
+      .main-wrapper { padding: 40px 48px; max-width: 1140px; }
+      .sim-controls { width: auto; flex: unset; }
+      .sim-btn { flex: unset; }
+      .content-card { padding: 34px 30px; }
+      .chapter-hero { padding: 42px 36px; }
     }
   </style>
 </head>
 <body>
 
-  <div id="readingProgress" aria-hidden="true"></div>
-
-  <div class="app-layout" id="appLayout">
+  <div class="app-layout">
 
     <!-- PC Sidebar Navigation -->
-    <aside class="pc-sidebar" id="pcSidebar" aria-label="Chapter navigation">
+    <aside class="pc-sidebar">
       <div>
-        <a href="#sec-core" class="sidebar-brand">
-          <div class="pulse-box" aria-hidden="true">🔬</div>
-          <span class="brand-text">Clinical Pharmacology</span>
+        <a href="#sec-intro" class="sidebar-brand">
+          <div class="pulse-box">🔬</div>
+          <span>Pharmacokinetics Guide</span>
         </a>
-
-        <div class="sidebar-controls" aria-hidden="false">
-          <button id="collapseSidebarBtn" class="sidebar-toggle" aria-label="Collapse sidebar" aria-pressed="false">Collapse ◀</button>
-          <button id="toggleReadingBtn" class="sidebar-toggle" aria-pressed="false">Reading Mode</button>
-        </div>
-
-        <ul class="sidebar-menu" id="pcMenu">
-          <li><a href="#sec-core" data-target="sec-core" class="active"><span class="icon">🏷️</span><span class="text">Core Essence &amp; Foundations</span></a></li>
-          <li><a href="#sec-pd" data-target="sec-pd"><span class="icon">⚙️</span><span class="text">1. Pharmacodynamics (PD)</span></a></li>
-          <li><a href="#sec-pk" data-target="sec-pk"><span class="icon">🚚</span><span class="text">2. Pharmacokinetics &amp; ADME</span></a></li>
-          <li><a href="#sec-adme-factors" data-target="sec-adme-factors" class="sidebar-sub"><span class="icon">🔎</span><span class="text">↳ Factors Affecting ADME</span></a></li>
-          <li><a href="#sec-bioavailability" data-target="sec-bioavailability" class="sidebar-sub"><span class="icon">💉</span><span class="text">↳ Deep Dive: Bioavailability</span></a></li>
-          <li><a href="#sec-plasma" data-target="sec-plasma" class="sidebar-sub"><span class="icon">📈</span><span class="text">↳ Plasma Concentration Graphs</span></a></li>
-          <li><a href="#sec-kinetics" data-target="sec-kinetics" class="sidebar-sub"><span class="icon">📐</span><span class="text">↳ Zero, First &amp; Second Order</span></a></li>
-          <li><a href="#sec-cyp" data-target="sec-cyp" class="sidebar-sub"><span class="icon">🧪</span><span class="text">↳ Biotransformation &amp; CYP450</span></a></li>
-          <li><a href="#sec-interactions" data-target="sec-interactions"><span class="icon">⚠️</span><span class="text">4. Drug Interactions &amp; Safety</span></a></li>
+        <ul class="sidebar-menu">
+          <li><a href="#sec-intro" class="active">Introduction &amp; Grogan &amp; Preuss Core</a></li>
+          <li><a href="#sec-absorption">1. Absorption &amp; Liberation</a></li>
+          <li><a href="#sec-bioavailability" class="sidebar-sub">↳ Bioavailability &amp; AUC</a></li>
+          <li><a href="#sec-distribution">2. Distribution &amp; Vd</a></li>
+          <li><a href="#sec-protein" class="sidebar-sub">↳ Protein Binding &amp; Albumin</a></li>
+          <li><a href="#sec-metabolism">3. Metabolism &amp; CYP450</a></li>
+          <li><a href="#sec-excretion">4. Excretion &amp; Clearance</a></li>
+          <li><a href="#sec-kinetics">5. Drug Kinetics &amp; Half-Life</a></li>
+          <li><a href="#sec-clinical">6. Clinical Significance &amp; Teamwork</a></li>
         </ul>
       </div>
-
-      <div style="font-size:0.78rem;color:var(--text-muted);text-align:center;border-top:1px solid var(--border);padding-top:12px;">
-        Vast Detailed &amp; Simple Edition • 2026
+      <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; border-top: 1px solid var(--border); padding-top: 14px;">
+        Based on Sean Grogan &amp; Charles V. Preuss • 2026
       </div>
     </aside>
 
     <main class="main-content-area">
 
-      <!-- Mobile navbar -->
-      <header class="mobile-navbar" role="banner">
-        <a href="#sec-core" class="brand" aria-label="Home">
-          <div class="pulse-box" aria-hidden="true">🔬</div>
-          <span>Pharmacology Guide</span>
+      <!-- Polished Mobile Navbar -->
+      <header class="mobile-navbar">
+        <a href="#sec-intro" class="brand">
+          <div class="pulse-box">🔬</div>
+          <span>PK Masterclass</span>
         </a>
-        <div style="display:flex;gap:8px;align-items:center">
-          <button id="mobileReadingBtn" class="menu-toggle" aria-pressed="false" title="Enable reading mode">Read Mode</button>
-          <button class="menu-toggle" onclick="toggleMenu()" aria-label="Open navigation menu">Menu ☰</button>
-        </div>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Open Navigation Menu">
+          Menu ☰
+        </button>
       </header>
 
-      <!-- Drawer for mobile -->
-      <div id="drawerOverlay" class="drawer-overlay" aria-hidden="true"></div>
-      <div id="drawer" class="drawer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="drawerTitle">
+      <!-- Drawer Overlay & Navigation Drawer for Mobile -->
+      <div id="drawerOverlay" class="drawer-overlay" onclick="toggleMenu()"></div>
+      <div id="drawer" class="drawer">
         <div>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-            <div class="brand"><div class="pulse-box" aria-hidden="true">🔬</div><strong id="drawerTitle">Chapter Index</strong></div>
-            <button id="drawerCloseBtn" class="menu-toggle" aria-label="Close">✕ Close</button>
+          <div class="drawer-header">
+            <div class="brand">
+              <div class="pulse-box">🔬</div>
+              <span>Chapter Index</span>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()" style="padding: 6px 10px; font-size: 0.8rem;">✕ Close</button>
           </div>
-
-          <ul class="drawer-menu" id="drawerMenu">
-            <li><a href="#sec-core" onclick="toggleMenu()">Core Essence &amp; Foundations</a></li>
-            <li><a href="#sec-pd" onclick="toggleMenu()">1. Pharmacodynamics (PD)</a></li>
-            <li><a href="#sec-pk" onclick="toggleMenu()">2. Pharmacokinetics &amp; ADME</a></li>
-            <li><a href="#sec-adme-factors" onclick="toggleMenu()">↳ Factors Affecting ADME</a></li>
-            <li><a href="#sec-bioavailability" onclick="toggleMenu()">↳ Deep Dive: Bioavailability</a></li>
-            <li><a href="#sec-plasma" onclick="toggleMenu()">↳ Plasma Concentration Graphs</a></li>
-            <li><a href="#sec-kinetics" onclick="toggleMenu()">↳ Zero, First &amp; Second Order</a></li>
-            <li><a href="#sec-cyp" onclick="toggleMenu()">↳ Biotransformation &amp; CYP450</a></li>
-            <li><a href="#sec-interactions" onclick="toggleMenu()">4. Drug Interactions &amp; Safety</a></li>
+          <ul class="drawer-menu">
+            <li><a href="#sec-intro" onclick="toggleMenu()">Introduction &amp; Grogan &amp; Preuss Core</a></li>
+            <li><a href="#sec-absorption" onclick="toggleMenu()">1. Absorption &amp; Liberation</a></li>
+            <li><a href="#sec-bioavailability" onclick="toggleMenu()">↳ Bioavailability &amp; AUC</a></li>
+            <li><a href="#sec-distribution" onclick="toggleMenu()">2. Distribution &amp; Vd</a></li>
+            <li><a href="#sec-protein" onclick="toggleMenu()">↳ Protein Binding &amp; Albumin</a></li>
+            <li><a href="#sec-metabolism" onclick="toggleMenu()">3. Metabolism &amp; CYP450</a></li>
+            <li><a href="#sec-excretion" onclick="toggleMenu()">4. Excretion &amp; Clearance</a></li>
+            <li><a href="#sec-kinetics" onclick="toggleMenu()">5. Drug Kinetics &amp; Half-Life</a></li>
+            <li><a href="#sec-clinical" onclick="toggleMenu()">6. Clinical Significance &amp; Teamwork</a></li>
           </ul>
         </div>
-
-        <div style="font-size:0.78rem;color:var(--text-muted);text-align:center;padding-top:12px;border-top:1px solid var(--border);">
+        <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; padding-top: 14px; border-top: 1px solid var(--border);">
           Mobile Optimized Edition
         </div>
       </div>
 
-      <div class="main-wrapper" id="mainWrapper" role="main">
-        <!-- Hero -->
-        <div class="chapter-hero" id="hero">
-          <span style="display:inline-block;background:rgba(255,255,255,0.12);padding:6px 12px;border-radius:16px;font-weight:800;font-size:0.74rem;margin-bottom:10px">Vast &amp; Detailed Clinical Masterclass</span>
-          <h1>Advanced Pharmacodynamics &amp; Pharmacokinetics — Clearly Explained</h1>
-          <p>Short, practical chapters, clear examples, formulas you can use at the bedside, and interactive visuals. Read in short bursts on mobile or study deeply on desktop — this page adapts to your device.</p>
+      <main class="main-wrapper">
+        
+        <!-- Hero Header -->
+        <div class="chapter-hero">
+          <span class="badge-unit">Complete Clinical Masterclass</span>
+          <h1>Pharmacokinetics (PK): What Your Body Does to Medication</h1>
+          <p>Based on the foundational work by Sean Grogan and Charles V. Preuss. Explore how drugs travel, adapt, get metabolized, and exit the human body through simple explanations, real-life examples, and interactive simulations.</p>
         </div>
 
-        <!-- Core definitions -->
-        <section id="sec-core" class="content-card" tabindex="-1" aria-labelledby="sec-core-title">
-          <h2 id="sec-core-title">Core Definitions &amp; The Two Main Branches</h2>
-          <p>Pharmacology splits into two main halves so you can separately ask two questions:</p>
-          <ul>
-            <li><strong>Pharmacodynamics (PD):</strong> What the drug does to the body — receptors, responses and clinical effects.</li>
-            <li><strong>Pharmacokinetics (PK):</strong> What the body does to the drug — ADME: absorption, distribution, metabolism, elimination.</li>
-          </ul>
-
-          <div class="example-box" aria-hidden="false">
-            <h4>💡 Everyday Life Example</h4>
-            <p>Taking ibuprofen for a headache: PD = how it blocks pain pathways; PK = how it dissolves, reaches blood, and is cleared by liver/kidney.</p>
-          </div>
-
+        <!-- INTRODUCTION SECTION -->
+        <div id="sec-intro" class="content-card">
+          <h2>Definition &amp; Introduction</h2>
+          <p><mark>Pharmacokinetics (PK)</mark> is the study of how the human body interacts with administered substances throughout their entire duration of exposure. In simple terms: <strong>PK is what your body does to the drug.</strong></p>
+          <p>This is closely related to, but distinct from, <strong>pharmacodynamics (PD)</strong>, which examines what the drug does to your body (its biological effects and receptor interactions).</p>
+          
           <div class="callout-box">
-            <h4>Quick Summary: Why this matters</h4>
-            <p>When you understand both PD and PK, you can choose the right dose, frequency, and route for each patient — and predict when interactions or toxicity might occur.</p>
+            <h4>🎯 Why This Matters for Clinicians and Nurses</h4>
+            <p>Understanding PK allows healthcare practitioners to prescribe and administer medications that provide the <mark>greatest benefit at the lowest risk</mark>, making precise dosage adjustments based on individual patient physiology and lifestyle.</p>
           </div>
-        </section>
-
-        <!-- Pharmacodynamics -->
-        <section id="sec-pd" class="content-card" tabindex="-1" aria-labelledby="sec-pd-title">
-          <h2 id="sec-pd-title">1. Pharmacodynamics (PD): Receptors and Drug Action</h2>
-          <p>Receptors are the 'locks'. Drugs are 'keys'. The interaction determines intensity, onset and adverse effects.</p>
-
-          <h3>Ligand Types &amp; Clinical Examples</h3>
+          
+          <p>Pharmacokinetics generally examines these four main parameters, famously known as <mark>ADME</mark>:</p>
           <ul>
-            <li><strong>Full agonist:</strong> Produces maximal response — e.g., morphine at μ-opioid receptors.</li>
-            <li><strong>Partial agonist:</strong> Moderate response, can block stronger agonists — e.g., buprenorphine.</li>
-            <li><strong>Neutral antagonist:</strong> Blocks receptor without own activity — e.g., naloxone reverses opioids.</li>
-            <li><strong>Inverse agonist:</strong> Reduces constitutive receptor activity — clinically used in specific contexts.</li>
+            <li><strong>A</strong>bsorption</li>
+            <li><strong>D</strong>istribution</li>
+            <li><strong>M</strong>etabolism</li>
+            <li><strong>E</strong>xcretion</li>
           </ul>
+        </div>
 
-          <h3>Important PD concepts</h3>
+        <!-- ABSORPTION SECTION -->
+        <div id="sec-absorption" class="content-card">
+          <h2>1. Absorption &amp; Liberation</h2>
+          <p><strong>Absorption</strong> is the process that brings a drug from its administration point (such as a tablet or capsule) into your <mark>systemic blood circulation</mark>. It dictates how fast and in what concentration a drug arrives at its target destination.</p>
+          
+          <h3>Methods of Drug Administration</h3>
+          <p>Drugs can enter the body through many routes, each with unique advantages and absorption speeds:</p>
           <ul>
-            <li><strong>Potency vs. Efficacy:</strong> Potency = how much drug to produce an effect; efficacy = maximum effect achievable.</li>
-            <li><strong>Therapeutic Index (TI):</strong> Ratio of toxic dose to effective dose. Narrow TI → require monitoring (e.g., digoxin).</li>
-            <li><strong>Tolerance &amp; tachyphylaxis:</strong> Repeated use reduces effect (up-regulation or down-regulation of receptors).</li>
-          </ul>
-
-          <div class="mnemonic-box">
-            <h4>Mnemonics</h4>
-            <p><strong>“PET”</strong> — Potency (how much), Efficacy (how big), Time (onset/duration).</p>
-          </div>
-        </section>
-
-        <!-- Pharmacokinetics -->
-        <section id="sec-pk" class="content-card" tabindex="-1" aria-labelledby="sec-pk-title">
-          <h2 id="sec-pk-title">2. Pharmacokinetics: The ADME Journey</h2>
-          <p>ADME controls how quickly and how much drug reaches the target site.</p>
-
-          <h3>ADME — bite-sized</h3>
-          <ul>
-            <li><strong>Absorption:</strong> Route, formulation, gut motility and food alter absorption speed and extent.</li>
-            <li><strong>Distribution:</strong> Perfusion, tissue-binding, and plasma protein binding determine where the drug goes.</li>
-            <li><strong>Metabolism:</strong> Mostly hepatic; Phase I (functionalization), Phase II (conjugation) → produce water-soluble metabolites.</li>
-            <li><strong>Elimination:</strong> Renal (filtration, secretion, reabsorption), biliary excretion, or exhalation.</li>
-          </ul>
-
-          <h3>Useful PK formulas (clinical)</h3>
-          <div class="table-container" aria-hidden="false">
-            <table>
-              <thead>
-                <tr><th>Concept</th><th>Formula / Rule</th><th>Clinical meaning</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Half-life (t½)</td><td>t½ = 0.693 / ke</td><td>Time for plasma concentration to fall by 50%. Guides dosing interval.</td></tr>
-                <tr><td>Clearance (CL)</td><td>CL = ke × Vd</td><td>Volume of plasma cleared of drug per unit time. Used to adjust dose in renal/liver disease.</td></tr>
-                <tr><td>Loading dose</td><td>LD = (Css × Vd) / F</td><td>Used to rapidly achieve a target concentration (Css = target steady-state concentration).</td></tr>
-                <tr><td>Time to steady state</td><td>~4–5 × t½</td><td>After repeated dosing, steady peaks/troughs are reached after several half-lives.</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <!-- ADME Factors -->
-        <section id="sec-adme-factors" class="content-card" tabindex="-1" aria-labelledby="sec-adme-factors-title">
-          <h2 id="sec-adme-factors-title">Factors That Alter ADME</h2>
-          <p>Patient-specific and drug-specific factors change ADME and therefore dosing decisions.</p>
-
-          <h3>Absorption</h3>
-          <ul>
-            <li>Gastric emptying, pH, formulation, surface area and interacting medications (e.g., antacids)</li>
-            <li>Transdermal and inhaled routes bypass first-pass hepatic metabolism</li>
-          </ul>
-
-          <h3>Distribution</h3>
-          <ul>
-            <li>Plasma protein binding: only free drug is active — low albumin increases free fraction</li>
-            <li>Vd (volume of distribution) informs whether drug remains intravascular or distributes widely</li>
-          </ul>
-
-          <h3>Metabolism &amp; Elimination</h3>
-          <ul>
-            <li>Liver enzyme activity (CYPs), renal GFR, age, genetics, and drug-diet interactions (e.g., grapefruit)</li>
-            <li>Organ failure often requires dose reduction and monitoring</li>
+            <li>Oral, intravenous (IV), intramuscular, intrathecal, subcutaneous</li>
+            <li>Buccal, rectal, vaginal, ocular, otic</li>
+            <li>Inhaled, nebulized, and transdermal (skin patches)</li>
           </ul>
 
           <div class="example-box">
-            <h4>Protein Binding Example</h4>
-            <p>Same dose of a highly protein-bound drug can produce higher free levels in a hypoalbuminemic patient → risk of toxicity.</p>
+            <h4>💡 The Role of Liberation in Oral Medications</h4>
+            <p>Before an oral pill can be absorbed, it undergoes <strong>liberation</strong>—the process where the drug is released from its solid dosage form. If an oral pill gets stuck in the esophagus for hours, it can delay healing or even cause local mucosal damage. Once in the stomach, acidic fluids can chemically react with the drug before it ever reaches the bloodstream.</p>
           </div>
-        </section>
+        </div>
 
-        <!-- Bioavailability -->
-        <section id="sec-bioavailability" class="content-card" tabindex="-1" aria-labelledby="sec-bioavailability-title">
-          <h2 id="sec-bioavailability-title">Deep Dive: Bioavailability (F)</h2>
-          <p>Bioavailability is the fraction of dose that reaches systemic circulation unchanged. It's determined by formulation and first-pass metabolism.</p>
+        <!-- BIOAVAILABILITY & AUC -->
+        <div id="sec-bioavailability" class="content-card">
+          <h2>Bioavailability &amp; The Area Under the Curve (AUC)</h2>
+          <p><strong>Bioavailability (F)</strong> is the fraction of the originally administered drug dose that successfully arrives in systemic circulation in an active form. It is a direct reflection of absorption efficiency.</p>
 
           <div class="table-container">
             <table>
-              <thead><tr><th>Route</th><th>F (typical)</th><th>Notes</th></tr></thead>
+              <thead>
+                <tr>
+                  <th>Route</th>
+                  <th>Bioavailability</th>
+                  <th>Clinical Reason</th>
+                </tr>
+              </thead>
               <tbody>
-                <tr><td>IV</td><td>100%</td><td>Immediate, predictable</td></tr>
-                <tr><td>Oral</td><td>Variable (e.g., 20–90%)</td><td>Affected by gut, liver first-pass</td></tr>
-                <tr><td>IM / SC</td><td>High to moderate</td><td>Slower absorption than IV</td></tr>
-                <tr><td>Transdermal</td><td>Often lower but steady</td><td>Bypasses GI/hepatic first-pass</td></tr>
+                <tr>
+                  <td><strong>Intravenous (IV)</strong></td>
+                  <td>100% (Gold Standard)</td>
+                  <td>Injected directly into the vein, bypassing digestive breakdown and liver filtering entirely.</td>
+                </tr>
+                <tr>
+                  <td><strong>Oral Tablets</strong></td>
+                  <td>Varies (often lower)</td>
+                  <td>Must survive stomach acid, digestive enzymes, and hepatic first-pass metabolism.</td>
+                </tr>
               </tbody>
             </table>
           </div>
 
-          <p>Clinical tip: When switching route (e.g., IV → oral), calculate required oral dose using F to keep equivalent systemic exposure.</p>
-        </section>
+          <h3>What is First-Pass Metabolism?</h3>
+          <p>When you swallow an oral medication, it is absorbed by gut transporters and routed straight to the liver via the portal vein. The liver and gut wall process large quantities of the drug before it reaches the rest of the body. This <mark>first-pass metabolism</mark> significantly lowers the final amount of active drug entering general circulation.</p>
 
-        <!-- Plasma concentration + interactive -->
-        <section id="sec-plasma" class="content-card" tabindex="-1" aria-labelledby="sec-plasma-title">
-          <h2 id="sec-plasma-title">Plasma Concentration &amp; Therapeutic Window</h2>
-          <p>Therapeutic monitoring ensures concentrations stay between the minimum effective concentration and the toxic threshold.</p>
+          <h3>Understanding AUC (Area Under the Curve)</h3>
+          <p>For drugs given orally, intramuscularly, or transdermally, absorption happens over time rather than all at once. Clinicians use the <mark>Area Under the Curve (AUC)</mark> on a graph measuring plasma concentration over time to calculate total drug bioavailability compared to a 100% IV baseline.</p>
+        </div>
 
-          <div class="sim-container" aria-labelledby="plasmaSimTitle">
-            <div class="sim-header">
-              <h3 id="plasmaSimTitle">📈 Interactive Plasma Concentration Graph</h3>
-              <div class="sim-controls" role="toolbar" aria-label="Graph controls">
-                <button class="sim-btn" onclick="updateGraph('iv')" onkeydown="buttonKey(event,'iv')" aria-pressed="false">IV Bolus Curve</button>
-                <button class="sim-btn secondary" onclick="updateGraph('oral')" onkeydown="buttonKey(event,'oral')" aria-pressed="false">Oral Administration</button>
-                <button class="sim-btn secondary" onclick="updateGraph('steady')" onkeydown="buttonKey(event,'steady')" aria-pressed="false">Steady State</button>
-              </div>
-            </div>
+        <!-- DISTRIBUTION SECTION -->
+        <div id="sec-distribution" class="content-card">
+          <h2>2. Distribution &amp; Volume of Distribution (Vd)</h2>
+          <p><strong>Distribution</strong> describes how a substance spreads throughout the body's tissues. In the simplest sense, distribution is driven by two main physical forces: <mark>diffusion and convection</mark>.</p>
+          <p>Distribution is heavily influenced by drug polarity, molecular size, tissue binding abilities, patient hydration status, protein levels, and total body fat (habitus).</p>
+          <p>The ultimate goal of distribution is achieving the <mark>effective drug concentration</mark>—the exact concentration needed at the receptor site to create a therapeutic response.</p>
 
-            <div class="graph-screen" role="img" aria-label="Plasma concentration graph showing relative concentration over 24 hours">
-              <div class="graph-axis-y" aria-hidden="true">
-                <span>Toxic</span>
-                <span>Therapeutic</span>
-                <span>Sub-therapeutic</span>
-                <span>0</span>
-              </div>
-              <div class="graph-curve" id="graphCanvas" aria-hidden="false" tabindex="0"></div>
-              <div class="graph-axis-x" aria-hidden="true">
-                <span>0h</span><span>2h</span><span>4h</span><span>8h</span><span>12h</span><span>24h</span>
-              </div>
-            </div>
+          <h3>Volume of Distribution (Vd)</h3>
+          <p>The <strong>Volume of Distribution (Vd)</strong> is a mathematical metric describing how widely a drug disperses throughout the body's theoretical fluid compartments:</p>
+          <p style="text-align: center; font-weight: 800; font-family: monospace; background: #f1f5f9; padding: 12px; border-radius: 10px; margin: 14px 0;">Vd = Total Amount of Drug in Body / Plasma Drug Concentration</p>
 
-            <div class="sim-status" id="graphStatusMsg" role="status" aria-live="polite">
-              Click a button to simulate how administration route changes blood concentration over time.
-            </div>
-          </div>
-        </section>
-
-        <!-- Kinetics -->
-        <section id="sec-kinetics" class="content-card" tabindex="-1" aria-labelledby="sec-kinetics-title">
-          <h2 id="sec-kinetics-title">First-Order vs. Zero-Order Kinetics</h2>
-          <p>Understanding these patterns helps predict accumulation and overdose risk.</p>
           <ul>
-            <li><strong>First-order:</strong> Constant proportion removed per time (e.g., most drugs). Graphically exponential decline.</li>
-            <li><strong>Zero-order:</strong> Constant amount removed per time (e.g., ethanol, phenytoin at high doses). Risk of rapid toxicity with increased dose.</li>
+            <li><strong>Low Vd (Intravascular):</strong> Large, electrically charged, or heavily protein-bound molecules (like cetrorelix, Vd = 0.39 L/kg) stay trapped inside blood vessels.</li>
+            <li><strong>Medium Vd (Extracellular):</strong> Small, hydrophilic molecules distribute through blood and extracellular fluids.</li>
+            <li><strong>Very High Vd (Tissues/Fat):</strong> Small, lipophilic (fat-soluble) molecules (like chloroquine, Vd = 140 L/kg) diffuse deep into body cells and adipose tissue.</li>
           </ul>
 
           <div class="callout-box">
-            <h4>Clinical rule of thumb</h4>
-            <p>Steady state is usually reached after 4–5 half-lives. If t½ is 8 hours, steady state ≈ 32–40 hours.</p>
+            <h4>💡 Why Vd Matters: Loading Doses</h4>
+            <p>Knowing Vd is vital for calculating correct <mark>loading doses</mark>. For example, a patient with a severe infection may need an initial loading dose of vancomycin so drug concentrations rapidly reach therapeutic levels without waiting for slow accumulation. Loading dose is calculated as: <br><em>Vd × Desired Plasma Concentration / Bioavailability</em>.</p>
           </div>
-        </section>
+        </div>
 
-        <!-- CYP -->
-        <section id="sec-cyp" class="content-card" tabindex="-1" aria-labelledby="sec-cyp-title">
-          <h2 id="sec-cyp-title">3. Biotransformation &amp; the CYP450 System</h2>
-          <p>The hepatic CYP family (CYP3A4, CYP2D6, CYP2C9, etc.) metabolizes many drugs. Inhibition or induction drastically changes exposure.</p>
-
-          <p>Interactive: tap to read each hepatic processing step.</p>
-
-          <div class="pathway-sim" aria-hidden="false">
-            <h4 style="font-size:0.95rem;font-weight:800;color:var(--primary-dark);margin-bottom:8px">Interactive Liver Steps</h4>
-            <div class="pathway-grid" id="pathwayGrid">
-              <div class="pathway-step-card active" onclick="selectPathway(0)" role="button" tabindex="0">
-                <div class="pathway-title"><span>Phase I: Functionalization</span><span>🔍</span></div>
-                <div class="pathway-desc">Oxidation/reduction/hydrolysis (often CYP enzymes) add or expose functional groups to increase polarity.</div>
-              </div>
-              <div class="pathway-step-card" onclick="selectPathway(1)" role="button" tabindex="0">
-                <div class="pathway-title"><span>Phase II: Conjugation</span><span>🔗</span></div>
-                <div class="pathway-desc">Transferases add glucuronide, sulfate or glutathione groups to dramatically increase water solubility.</div>
-              </div>
-              <div class="pathway-step-card" onclick="selectPathway(2)" role="button" tabindex="0">
-                <div class="pathway-title"><span>Phase III: Excretion</span><span>🚽</span></div>
-                <div class="pathway-desc">Transporters move metabolites into bile or urine for elimination.</div>
-              </div>
-            </div>
-          </div>
+        <!-- PROTEIN BINDING SECTION -->
+        <div id="sec-protein" class="content-card">
+          <h2>Protein Binding &amp; The Free Drug Rule</h2>
+          <p>Inside the bloodstream, drugs can exist in two states: <mark>protein-bound</mark> or <mark>free (unbound)</mark>.</p>
+          <p><strong>Only free drug can act at pharmacological receptor sites</strong>, cross fluid barriers, or be eliminated by organs. The primary blood proteins responsible for binding medications are <mark>albumin</mark> and <mark>alpha-1-acid glycoprotein</mark>.</p>
 
           <div class="example-box">
-            <h4>Grapefruit juice &amp; CYP3A4</h4>
-            <p>Grapefruit blocks intestinal CYP3A4 → increases bioavailability of drugs metabolized by that enzyme (e.g., some statins) → risk of toxicity.</p>
+            <h4>💡 Clinical Example: Renal Failure &amp; Toxicity</h4>
+            <p>In patients with kidney failure, uremia decreases the ability of acidic drugs (like diazepam) to bind to serum proteins. Even though the standard dose is given, there is far more <mark>free drug</mark> circulating in the active space. This sharply increases medication potency and the risk of severe toxicity, such as respiratory depression.</p>
           </div>
-        </section>
+        </div>
 
-        <!-- Interactions -->
-        <section id="sec-interactions" class="content-card" tabindex="-1" aria-labelledby="sec-interactions-title">
-          <h2 id="sec-interactions-title">4. Drug Interactions &amp; Patient Safety</h2>
-          <p>Enzyme inhibition raises levels of affected drugs; enzyme induction lowers them. Always review organ function and diet.</p>
+        <!-- METABOLISM SECTION -->
+        <div id="sec-metabolism" class="content-card">
+          <h2>3. Metabolism &amp; The Liver</h2>
+          <p><strong>Metabolism</strong> is the biochemical processing of a drug by the body into subsequent compounds. Its primary goal is converting fat-soluble (lipophilic) drugs into <mark>water-soluble (hydrophilic) substances</mark> so the kidneys can filter and clear them.</p>
+          <p>For prodrugs (like codeine), metabolism is required to convert an inactive substance into its active metabolite.</p>
 
-          <h3>Practical safety checklist</h3>
+          <h3>Phase I and Phase II Liver Reactions</h3>
+          <p>While metabolism can occur in the gut, skin, lungs, and kidneys, the vast majority happens in the liver through two key phases:</p>
           <ul>
-            <li>Check renal function (eGFR) and liver tests before starting narrow TI drugs.</li>
-            <li>Review patient's herbal supplements (St John's wort, grapefruit, etc.).</li>
-            <li>Consider therapeutic drug monitoring for digoxin, lithium, aminoglycosides, vancomycin, and some antiepileptics.</li>
+            <li><strong>Phase I Reactions (CYP450 enzymes):</strong> Transform substances into polar metabolites via oxidation, preparing them for Phase II.</li>
+            <li><strong>Phase II Reactions (UGT enzymes):</strong> Conjugate large molecules onto the drug to make it fully water-soluble for excretion in urine or bile.</li>
+          </ul>
+        </div>
+
+        <!-- EXCRETION SECTION -->
+        <div id="sec-excretion" class="content-card">
+          <h2>4. Excretion &amp; Clearance</h2>
+          <p><strong>Excretion</strong> is the process by which drug waste is permanently eliminated from the body. While the <mark>kidneys</mark> handle the vast majority of excretion via glomerular filtration and tubular secretion, some drugs leave via the lungs, skin, or gastrointestinal tract.</p>
+
+          <h3>Clearance and Maintenance Dosing</h3>
+          <p><strong>Clearance</strong> is the ratio of a drug's elimination rate to its plasma drug concentration. It depends heavily on organ blood flow and kidney status.</p>
+          <p>Understanding clearance allows practitioners to calculate accurate <mark>maintenance doses</mark>—doses designed to steadily replace the exact amount of drug eliminated since the last administration. <br><em>Maintenance Dose = Clearance × Desired Plasma Concentration / Bioavailability</em>.</p>
+        </div>
+
+        <!-- KINETICS & HALF LIFE -->
+        <div id="sec-kinetics" class="content-card">
+          <h2>5. Drug Kinetics, Half-Life, and Steady State</h2>
+          <p>Drug kinetics tracks how plasma concentrations change over time as metabolism and elimination take place. The two major kinetic models are:</p>
+          <ul>
+            <li><strong>First-Order Kinetics:</strong> The body eliminates a <mark>constant proportion</mark> (percentage) of the drug per unit of time. The half-life is constant, and clearance decreases as concentration drops. This applies to most medications.</li>
+            <li><strong>Zero-Order Kinetics:</strong> The body eliminates a <mark>constant fixed amount</mark> per hour because metabolic enzymes are fully saturated. <br><em>Example: Alcohol and high-dose salicylates or phenytoin.</em></li>
           </ul>
 
-          <div class="mnemonic-box">
-            <h4>High-Yield Rule</h4>
-            <p>Before prescribing: check GFR, LFTs, and dietary interactions — especially when the drug has a narrow therapeutic window.</p>
+          <h3>Half-Life ($t_{1/2}$) and Steady State</h3>
+          <p>The <mark>half-life</mark> is the time required for serum drug concentrations to decrease by 50%. It is directly proportional to Vd and inversely proportional to clearance: <br>$$t_{1/2} = \frac{0.693 \times Vd}{Clearance}$$</p>
+
+          <ul>
+            <li><strong>Reaching Steady State:</strong> When continuous drug infusion equals clearance, a stable steady-state plasma concentration is reached after <mark>4 to 5 half-lives</mark>.</li>
+            <li><strong>Complete Elimination:</strong> A drug is considered completely eliminated from the system after <mark>4 to 5 half-lives</mark> (94% to 97% cleared).</li>
+          </ul>
+
+          <!-- INTERACTIVE GRAPH SIMULATION -->
+          <div class="sim-container">
+            <div class="sim-header">
+              <h3>📈 Interactive Plasma Concentration &amp; Elimination Graph</h3>
+              <div class="sim-controls">
+                <button class="sim-btn" onclick="updateGraph('iv')">IV Bolus Curve</button>
+                <button class="sim-btn secondary" onclick="updateGraph('oral')">Oral Absorption</button>
+                <button class="sim-btn secondary" onclick="updateGraph('steady')">Steady State (4-5 $t_{1/2}$)</button>
+              </div>
+            </div>
+            <div class="graph-screen">
+              <div class="graph-axis-y">
+                <span>Toxic Level</span>
+                <span>Therapeutic</span>
+                <span>Minimum</span>
+                <span>0</span>
+              </div>
+              <div class="graph-curve" id="graphCanvas"></div>
+              <div class="graph-axis-x">
+                <span>0h</span>
+                <span>1t½</span>
+                <span>2t½</span>
+                <span>3t½</span>
+                <span>4t½</span>
+                <span>5t½</span>
+              </div>
+            </div>
+            <div class="sim-status" id="graphStatusMsg">
+              Click buttons above to simulate how drugs behave in plasma across half-lives and administration routes.
+            </div>
           </div>
+        </div>
 
-          <div style="margin-top:10px;font-size:0.9rem;color:var(--text-muted)">
-            Last reviewed: 2026 • For bedside decisions, combine PK/PD knowledge with patient-specific labs and consult local dosing guidelines.
-          </div>
-        </section>
+        <!-- CLINICAL SIGNIFICANCE & TEAMWORK -->
+        <div id="sec-clinical" class="content-card">
+          <h2>6. Clinical Significance &amp; Interprofessional Teamwork</h2>
+          <p>When a healthcare provider prescribes medication, the ultimate goal is achieving a <mark>positive therapeutic outcome while minimizing adverse reactions</mark>. A thorough understanding of pharmacokinetics is essential for building safe, effective treatment plans.</p>
 
-        <!-- Footer spacing -->
-        <div style="height:28px"></div>
+          <h3>Nursing, Allied Health, and Interprofessional Roles</h3>
+          <ul>
+            <li><strong>Physicians, Nurses, and Pharmacists:</strong> Educate patients on correct self-administration, storage, and adherence to minimize toxicity.</li>
+            <li><strong>Pharmacists:</strong> Verify dosing calculations, perform drug-interaction checks, and track plasma concentrations for narrow therapeutic index drugs (e.g., gentamicin).</li>
+            <li><strong>Nurses:</strong> Monitor adverse events, assess treatment effectiveness on follow-up visits, verify medication adherence, and maintain open communication with the interprofessional care team.</li>
+          </ul>
+        </div>
 
-      </div>
+      </main>
     </main>
   </div>
 
   <script>
-    // Enhanced drawer toggle with focus management and escape handling
-    (function(){
+    function toggleMenu() {
       const drawer = document.getElementById('drawer');
       const overlay = document.getElementById('drawerOverlay');
-      const drawerCloseBtn = document.getElementById('drawerCloseBtn');
-      let lastFocused = null;
-      let onKeydown;
+      drawer.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
 
-      function trapFocus(e) {
-        const focusable = Array.from(drawer.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])')).filter(el => !el.hasAttribute('disabled'));
-        if (!focusable.length) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-
-        if (e.key === 'Tab') {
-          if (e.shiftKey && document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
-          } else if (!e.shiftKey && document.activeElement === last) {
-            e.preventDefault();
-            first.focus();
-          }
-        } else if (e.key === 'Escape' || e.key === 'Esc') {
-          e.preventDefault();
-          closeDrawer();
-        }
-      }
-
-      function openDrawer() {
-        lastFocused = document.activeElement;
-        drawer.classList.add('open');
-        overlay.classList.add('open');
-        drawer.setAttribute('aria-hidden', 'false');
-        overlay.setAttribute('aria-hidden', 'false');
-
-        // focus the close button
-        if (drawerCloseBtn) drawerCloseBtn.focus();
-
-        onKeydown = trapFocus;
-        document.addEventListener('keydown', onKeydown, true);
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeDrawer() {
-        drawer.classList.remove('open');
-        overlay.classList.remove('open');
-        drawer.setAttribute('aria-hidden', 'true');
-        overlay.setAttribute('aria-hidden', 'true');
-
-        if (onKeydown) {
-          document.removeEventListener('keydown', onKeydown, true);
-          onKeydown = null;
-        }
-        if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
-        document.body.style.overflow = '';
-      }
-
-      // Export global function to keep existing inline handlers working
-      window.toggleMenu = function() {
-        const isOpen = drawer.classList.contains('open');
-        if (isOpen) closeDrawer(); else openDrawer();
-      };
-
-      // wire overlay and close button
-      overlay.addEventListener('click', closeDrawer);
-      drawerCloseBtn && drawerCloseBtn.addEventListener('click', closeDrawer);
-    })();
-
-    // Update graph (bar visualization) with safer DOM updates
-    function updateGraph(type){
+    function updateGraph(type) {
       const canvas = document.getElementById('graphCanvas');
       const status = document.getElementById('graphStatusMsg');
       canvas.innerHTML = '';
 
-      // accessible status text
-      let statusText = '';
-
       let heights = [];
-      if (type === 'iv'){
-        heights = [95,75,55,35,20,10];
-        statusText = "IV Bolus: immediate high peak then exponential decline as the body eliminates the drug.";
-      } else if (type === 'oral'){
-        heights = [5,30,70,50,30,12];
-        statusText = "Oral: absorption phase produces a delayed peak (Cmax) and then elimination; first-pass reduces bioavailability.";
-      } else { // steady
-        heights = [30,55,45,65,60,70];
-        statusText = "Steady state: repeated dosing produces peaks and troughs that stabilize after ~4-5 half-lives.";
+      if (type === 'iv') {
+        heights = [95, 48, 24, 12, 6, 3];
+        status.innerHTML = "⚡ <strong>IV Bolus Kinetics:</strong> Concentration starts at 100% peak and halves every $t_{1/2}$, achieving 97% elimination by 5 half-lives.";
+      } else if (type === 'oral') {
+        heights = [15, 65, 90, 55, 30, 15];
+        status.innerHTML = "💊 <strong>Oral Absorption Curve:</strong> Concentration rises as the drug is absorbed from the gut, peaks ($C_{max}$), and then declines following first-order elimination.";
+      } else {
+        heights = [30, 55, 70, 85, 90, 90];
+        status.innerHTML = "🔄 <strong>Steady State:</strong> Regular scheduled dosing accumulates drug levels until input equals clearance, stabilizing after 4 to 5 half-lives.";
       }
 
-      // safer update of status element
-      status.textContent = '';
-      const strong = document.createElement('strong');
-      strong.textContent = statusText;
-      status.appendChild(strong);
-
-      heights.forEach(h=>{
+      heights.forEach((h) => {
         const bar = document.createElement('div');
         bar.className = 'sim-bar';
         bar.style.height = h + '%';
-        bar.setAttribute('role','presentation');
         canvas.appendChild(bar);
       });
-
-      // set focus for keyboard users
-      canvas.focus();
     }
 
-    // Keyboard support for buttons — robust space handling
-    function buttonKey(e, type){
-      const isEnter = e.key === 'Enter' || e.key === 'NumpadEnter';
-      const isSpace = e.key === ' ' || e.key === 'Spacebar' || e.code === 'Space';
-      if (isEnter || isSpace) {
-        e.preventDefault();
-        updateGraph(type);
-      }
-    }
-
-    // Pathway selection
-    function selectPathway(index){
-      const cards = document.querySelectorAll('.pathway-step-card');
-      cards.forEach((card,idx)=>{
-        if(idx === index) card.classList.add('active');
-        else card.classList.remove('active');
-      });
-    }
-
-    // Activate keyboard selection on pathway cards
-    document.querySelectorAll('.pathway-step-card').forEach((card, idx)=>{
-      card.addEventListener('keydown', (e)=>{
-        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectPathway(idx) }
-      });
-    });
-
-    // Sidebar collapse for desktop — toggle class only (no inline styles)
-    const collapseBtn = document.getElementById('collapseSidebarBtn');
-    const pcSidebar = document.getElementById('pcSidebar');
-    collapseBtn && collapseBtn.addEventListener('click', () => {
-      const collapsed = pcSidebar.classList.toggle('collapsed');
-      collapseBtn.textContent = collapsed ? 'Expand ▶' : 'Collapse ◀';
-      collapseBtn.setAttribute('aria-pressed', collapsed ? 'true' : 'false');
-    });
-
-    // Reading mode toggle
-    const toggleReadingBtn = document.getElementById('toggleReadingBtn');
-    const mobileReadingBtn = document.getElementById('mobileReadingBtn');
-
-    function setReadingMode(on){
-      if(on){
-        document.documentElement.classList.add('reading-mode');
-        document.body.classList.add('reading-mode');
-      } else {
-        document.documentElement.classList.remove('reading-mode');
-        document.body.classList.remove('reading-mode');
-      }
-      toggleReadingBtn && toggleReadingBtn.setAttribute('aria-pressed', on);
-      mobileReadingBtn && mobileReadingBtn.setAttribute('aria-pressed', on);
-    }
-
-    toggleReadingBtn && toggleReadingBtn.addEventListener('click', () => {
-      const on = toggleReadingBtn.getAttribute('aria-pressed') === 'true';
-      setReadingMode(!on);
-    });
-
-    mobileReadingBtn && mobileReadingBtn.addEventListener('click', () => {
-      const on = mobileReadingBtn.getAttribute('aria-pressed') === 'true';
-      setReadingMode(!on);
-    });
-
-    // Highlight table of contents item based on scroll and update reading progress
-    const sections = Array.from(document.querySelectorAll('main [id]')).filter(s => s.id && s.id.startsWith('sec-'));
-    const pcMenuLinks = Array.from(document.querySelectorAll('#pcMenu a'));
-    const drawerMenuLinks = Array.from(document.querySelectorAll('#drawerMenu a'));
-
-    function onScroll(){
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      document.getElementById('readingProgress').style.width = progress + '%';
-
-      let current = sections[0];
-      for(let sec of sections){
-        const rect = sec.getBoundingClientRect();
-        if(rect.top <= 120) current = sec;
-      }
-      // update active links
-      pcMenuLinks.forEach(a => a.classList.toggle('active', a.dataset.target === current.id));
-      drawerMenuLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === ('#' + current.id)));
-    }
-
-    window.addEventListener('scroll', onScroll, {passive:true});
-    window.addEventListener('resize', onScroll);
-
-    // Smoothly close drawer when a link is clicked
-    drawerMenuLinks.forEach(a => {
-      a.addEventListener('click', () => {
-        const drawer = document.getElementById('drawer');
-        const overlay = document.getElementById('drawerOverlay');
-        drawer.classList.remove('open');
-        overlay.classList.remove('open');
-        drawer.setAttribute('aria-hidden', 'true');
-        overlay.setAttribute('aria-hidden', 'true');
-      });
-    });
-
-    // Initialize
-    window.addEventListener('load', () => {
+    window.onload = function() {
       updateGraph('iv');
-      onScroll();
-    });
-
-    // Allow deep link focus
-    if(location.hash){
-      const target = document.querySelector(location.hash);
-      target && target.scrollIntoView({behavior:'smooth', block:'start'});
-    }
+    };
   </script>
-
 </body>
 </html>
