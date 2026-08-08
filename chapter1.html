@@ -39,12 +39,7 @@
       flex-direction: column; justify-content: space-between; overflow-y: auto;
     }
     .sidebar-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-dark); font-weight: 800; font-size: 0.95rem; margin-bottom: 20px; }
-    .pulse-box { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3); flex-shrink: 0; animation: pulseGlow 3s infinite ease-in-out; }
-    
-    @keyframes pulseGlow {
-      0%, 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3); }
-      50% { transform: scale(1.05); box-shadow: 0 6px 18px rgba(13, 148, 136, 0.5); }
-    }
+    .pulse-box { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3); flex-shrink: 0; }
     
     .sidebar-menu { list-style: none; display: flex; flex-direction: column; gap: 4px; }
     .sidebar-menu a {
@@ -91,7 +86,7 @@
     .chapter-hero p { color: #bae6fd; font-size: 0.82rem; line-height: 1.55; }
     .badge-unit { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(4px); padding: 4px 10px; border-radius: 20px; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.2); }
 
-    /* Content Cards */
+    /* Content Cards optimized for mobile alignment */
     .content-card {
       background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 16px 12px; margin-bottom: 16px; box-shadow: var(--shadow); width: 100%; word-break: break-word; overflow-wrap: break-word;
@@ -139,69 +134,67 @@
     /* Interactive ADME Animation Simulation */
     .adme-sim-container {
       background: #0f172a; color: white; border-radius: var(--radius); padding: 16px 10px; margin: 16px 0;
-      border: 1px solid #1e293b; box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
+      border: 1px solid #1e293b;
     }
     .adme-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
     .adme-header h3 { font-size: 0.9rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 4px; }
     .adme-controls { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; width: 100%; }
     .adme-btn {
-      background: var(--primary); color: white; border: none; padding: 9px 12px; border-radius: 8px;
-      font-size: 0.72rem; font-weight: 700; cursor: pointer; text-align: center; transition: all 0.2s ease;
+      background: var(--primary); color: white; border: none; padding: 8px 10px; border-radius: 8px;
+      font-size: 0.72rem; font-weight: 700; cursor: pointer; text-align: center;
     }
-    .adme-btn:hover { background: #0284c7; transform: translateY(-1px); }
-    .adme-btn.active-stage { background: #0d9488; box-shadow: 0 0 12px rgba(13, 148, 136, 0.6); }
+    .adme-btn.active-stage { background: #0d9488; }
 
     .body-canvas {
-      background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); border-radius: 10px; height: 190px; position: relative; overflow: hidden;
+      background: #1e293b; border-radius: 10px; height: 180px; position: relative; overflow: hidden;
       display: flex; align-items: center; justify-content: space-around; padding: 10px; border: 1px solid #334155; margin-bottom: 10px;
     }
     .body-station {
-      display: flex; flex-direction: column; align-items: center; gap: 6px; position: relative; z-index: 2;
-      opacity: 0.4; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; z-index: 2;
+      opacity: 0.4; transition: opacity 0.3s ease;
     }
-    .body-station.active { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.6)); }
+    .body-station.active { opacity: 1; transform: scale(1.05); }
     .station-icon {
-      width: 40px; height: 40px; border-radius: 12px; background: #334155; display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; border: 1px solid #475569; transition: all 0.3s ease;
+      width: 36px; height: 36px; border-radius: 10px; background: #334155; display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; border: 1px solid #475569;
     }
     .body-station.active .station-icon { background: linear-gradient(135deg, var(--primary), var(--accent)); border-color: #38bdf8; }
-    .station-label { font-size: 0.62rem; font-weight: 700; color: #cbd5e1; text-align: center; line-height: 1.2; }
+    .station-label { font-size: 0.6rem; font-weight: 700; color: #cbd5e1; text-align: center; line-height: 1.2; }
 
     #drugParticle {
-      position: absolute; width: 16px; height: 16px; background: #fef08a; border-radius: 50%;
-      box-shadow: 0 0 14px #fef08a, 0 0 4px #fff; z-index: 10; top: 85px; left: 15px;
-      transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: absolute; width: 14px; height: 14px; background: #fef08a; border-radius: 50%;
+      box-shadow: 0 0 10px #fef08a; z-index: 10; top: 80px; left: 15px;
+      transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     }
-    .adme-status { font-family: monospace; font-size: 0.74rem; color: #cbd5e1; background: rgba(0,0,0,0.6); padding: 10px; border-radius: 8px; text-align: center; line-height: 1.4; border: 1px solid #334155; }
+    .adme-status { font-family: monospace; font-size: 0.72rem; color: #cbd5e1; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 8px; text-align: center; line-height: 1.4; }
 
     /* Interactive Receptor Animation Simulation */
     .receptor-sim-container {
       background: #0f172a; color: white; border-radius: var(--radius); padding: 16px 10px; margin: 16px 0;
-      border: 1px solid #1e293b; box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
+      border: 1px solid #1e293b;
     }
     .receptor-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
     .receptor-header h3 { font-size: 0.9rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 4px; }
     .receptor-controls { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; width: 100%; }
     .receptor-btn {
-      background: var(--primary); color: white; border: none; padding: 9px 12px; border-radius: 8px;
-      font-size: 0.72rem; font-weight: 700; cursor: pointer; text-align: center; transition: all 0.2s ease;
+      background: var(--primary); color: white; border: none; padding: 8px 10px; border-radius: 8px;
+      font-size: 0.72rem; font-weight: 700; cursor: pointer; text-align: center;
     }
-    .receptor-btn:hover { background: #0284c7; transform: translateY(-1px); }
-    .receptor-btn.active-receptor { background: #0d9488; box-shadow: 0 0 12px rgba(13, 148, 136, 0.6); }
+    .receptor-btn.active-receptor { background: #0d9488; }
 
     .receptor-canvas {
-      background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); border-radius: 10px; height: 190px; position: relative; overflow: hidden;
+      background: #1e293b; border-radius: 10px; height: 180px; position: relative; overflow: hidden;
       display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; border: 1px solid #334155; margin-bottom: 10px;
     }
-    .cell-membrane { width: 100%; height: 16px; background: #334155; border-radius: 8px; position: relative; display: flex; align-items: center; justify-content: center; margin: 30px 0; border: 1px solid #475569; }
-    .receptor-pore { width: 70px; height: 34px; border: 2px dashed #38bdf8; border-radius: 17px; position: absolute; display: flex; align-items: center; justify-content: center; transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); font-size: 0.65rem; background: rgba(15, 23, 42, 0.4); }
+    .cell-membrane { width: 100%; height: 14px; background: #334155; border-radius: 7px; position: relative; display: flex; align-items: center; justify-content: center; margin: 25px 0; border: 1px solid #475569; }
+    .receptor-pore { width: 60px; height: 30px; border: 2px dashed #38bdf8; border-radius: 15px; position: absolute; display: flex; align-items: center; justify-content: center; transition: all 0.4s ease; font-size: 0.65rem; }
     
     #ligandParticle {
-      position: absolute; width: 24px; height: 24px; background: #fef08a; border-radius: 50%;
-      box-shadow: 0 0 14px #fef08a, 0 0 4px #fff; z-index: 10; top: 12px; left: 50%; transform: translateX(-50%);
-      transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1); display: flex; align-items: center; justify-content: center; font-size: 0.6rem; color: #1e293b; font-weight: 800;
+      position: absolute; width: 22px; height: 22px; background: #fef08a; border-radius: 50%;
+      box-shadow: 0 0 10px #fef08a; z-index: 10; top: 12px; left: 50%; transform: translateX(-50%);
+      transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); display: flex; align-items: center; justify-content: center; font-size: 0.6rem; color: #1e293b; font-weight: 800;
     }
-    .receptor-status { font-family: monospace; font-size: 0.74rem; color: #cbd5e1; background: rgba(0,0,0,0.6); padding: 10px; border-radius: 8px; text-align: center; line-height: 1.4; border: 1px solid #334155; }
+    .receptor-status { font-family: monospace; font-size: 0.72rem; color: #cbd5e1; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 8px; text-align: center; line-height: 1.4; }
 
     @media (min-width: 900px) {
       .mobile-navbar { display: none; }
@@ -245,10 +238,8 @@
           <li><a href="#sec-animation" class="sidebar-sub">Live ADME Body Animation</a></li>
           <li><a href="#sec-pd">PHARMACODYNAMICS</a></li>
           <li><a href="#sec-intrinsic" class="sidebar-sub">Intrinsic Activity &amp; Agonist Types</a></li>
-          <li><a href="#sec-functional-agonist" class="sidebar-sub">Functional Agonist / Antagonist</a></li>
           <li><a href="#sec-receptors" class="sidebar-sub">Receptor Superfamilies</a></li>
           <li><a href="#sec-therapeutic-index" class="sidebar-sub">Therapeutic Index &amp; DRC</a></li>
-          <li><a href="#sec-potency-efficacy" class="sidebar-sub">Potency &amp; Efficacy Deep Dive</a></li>
           <li><a href="#sec-clinical">Clinical Significance</a></li>
         </ul>
       </div>
@@ -300,10 +291,8 @@
             <li><a href="#sec-animation" onclick="toggleMenu()">ADME Animation</a></li>
             <li><a href="#sec-pd" onclick="toggleMenu()">PHARMACODYNAMICS</a></li>
             <li><a href="#sec-intrinsic" onclick="toggleMenu()">Intrinsic Activity &amp; Agonist Types</a></li>
-            <li><a href="#sec-functional-agonist" onclick="toggleMenu()">Functional Agonist / Antagonist</a></li>
             <li><a href="#sec-receptors" onclick="toggleMenu()">Receptor Superfamilies</a></li>
             <li><a href="#sec-therapeutic-index" onclick="toggleMenu()">Therapeutic Index &amp; DRC</a></li>
-            <li><a href="#sec-potency-efficacy" onclick="toggleMenu()">Potency &amp; Efficacy Deep Dive</a></li>
             <li><a href="#sec-clinical" onclick="toggleMenu()">Clinical Significance</a></li>
           </ul>
         </div>
@@ -312,13 +301,13 @@
         </div>
       </div>
 
-      <div class="main-wrapper">
+      <main class="main-wrapper">
         
         <!-- Hero Header -->
         <div class="chapter-hero">
           <span class="badge-unit">BS Nursing Unit I &amp; Advanced Pharmacology</span>
           <h1>UNIT 1: INTRODUCTION TO PHARMACOLOGY</h1>
-          <p>Comprehensive coverage of Unit I core nursing pharmacology foundations, advanced pharmacokinetics, intrinsic activity, receptor agonists/antagonists, dose-response curves, and clinical practice standards.</p>
+          <p>Comprehensive coverage of Unit I core nursing pharmacology foundations, advanced pharmacokinetics, intrinsic activity, agonist types, therapeutic index, and clinical practice standards.</p>
         </div>
 
         <!-- UNIT 1: INTRODUCTION TO PHARMACOLOGY SECTION -->
@@ -427,7 +416,7 @@
           </ul>
         </div>
 
-        <!-- PHARMACOKINETICS -->
+        <!-- MAIN HEADING: PHARMACOKINETICS -->
         <div id="sec-pk" class="content-card">
           <h2>PHARMACOKINETICS (What the Body Does to the Drug)</h2>
           <p>Pharmacokinetics is the quantitative study of how a drug moves through the body over time. It encompasses four core stages remembered by the acronym <strong>ADME</strong>, along with liberation kinetics and comprehensive factors affecting each phase.</p>
@@ -439,4 +428,246 @@
           <ul>
             <li><strong>Route of Administration:</strong> Intravenous (IV) bypasses absorption entirely (100% bioavailability). Oral (PO) drugs must traverse gastrointestinal mucosal barriers.</li>
             <li><strong>Surface Area &amp; Blood Flow:</strong> Larger absorbing surfaces (e.g., small intestinal microvilli) and high regional blood perfusion accelerate absorption rates.</li>
-            <li><strong>Lipid Solubility &amp; Ionization (pH):</strong> Un-ionized, lipophilic drugs diffuse acro
+            <li><strong>Lipid Solubility &amp; Ionization (pH):</strong> Un-ionized, lipophilic drugs diffuse across cell membranes easily. Gastric pH affects weak acids/bases ionization states.</li>
+            <li><strong>First-Pass Metabolism:</strong> High hepatic clearance of orally administered drugs significantly reduces systemic bioavailability before reaching general circulation.</li>
+            <li><strong>Food and Drug Interactions:</strong> Presence of food, gastric emptying rate, and concurrent administration of binding agents (e.g., antacids) can alter drug absorption.</li>
+          </ul>
+
+          <h3 id="sec-distribution">Distribution &amp; Factors Affecting Distribution</h3>
+          <p><mark>Distribution</mark> refers to the reversible transfer of drug from systemic circulation into interstitial and intracellular tissue fluids.</p>
+          <p>The <mark>Volume of Distribution (Vd)</mark> is a theoretical pharmacokinetic parameter relating the total amount of drug in the body to the plasma drug concentration.</p>
+
+          <h4>Factors Affecting Drug Distribution:</h4>
+          <ul>
+            <li><strong>Plasma Protein Binding:</strong> Drugs bound to plasma proteins (like albumin) remain intravascular and pharmacologically inactive. Only the free, unbound fraction distributes into tissues.</li>
+            <li><strong>Tissue Blood Flow:</strong> Well-perfused organs (brain, liver, kidneys) receive drugs much faster than poorly perfused tissues (adipose tissue, bone, resting skeletal muscle).</li>
+            <li><strong>Capillary Permeability:</strong> Endothelial slit junctions in most capillaries allow easy drug egress. In contrast, tight junctions in the brain form the Blood-Brain Barrier (BBB), restricting polar or ionized drugs.</li>
+            <li><strong>Lipid Solubility:</strong> Highly lipophilic drugs easily cross lipid cell membranes and accumulate in adipose tissue.</li>
+          </ul>
+
+          <h3 id="sec-metabolism">Metabolism &amp; Factors Affecting Metabolism</h3>
+          <p><mark>Metabolism (Biotransformation)</mark> is the chemical alteration of drug molecules by the body, predominantly occurring in the liver, to facilitate excretion and terminate biological activity.</p>
+          <ul>
+            <li><strong>Phase I Reactions (Non-synthetic):</strong> Oxidation, reduction, or hydrolysis mediated primarily by the Cytochrome P450 (CYP450) enzyme system, converting lipophilic drugs into more polar metabolites.</li>
+            <li><strong>Phase II Reactions (Synthetic / Conjugation):</strong> Coupling of the drug or Phase I metabolite with an endogenous polar substance (e.g., glucuronic acid, sulfate, glutathione) to form highly water-soluble inactive compounds.</li>
+          </ul>
+
+          <h4>Factors Affecting Metabolism:</h4>
+          <ul>
+            <li><strong>Enzyme Induction &amp; Inhibition:</strong> Inducers (e.g., rifampin, carbamazepine) accelerate metabolism of co-administered drugs, decreasing efficacy. Inhibitors (e.g., ketoconazole, grapefruit juice) decrease metabolism, predisposing to drug toxicity.</li>
+            <li><strong>Age &amp; Genetics:</strong> Neonates have immature metabolic enzymes, while elderly individuals exhibit reduced hepatic blood flow and enzymatic reserve. Genetic polymorphisms in CYP enzymes alter metabolic rates (poor vs. extensive metabolizers).</li>
+            <li><strong>Liver Disease:</strong> Cirrhosis or hepatitis significantly impairs hepatic enzyme synthesis and clearance capacity.</li>
+          </ul>
+
+          <h3 id="sec-excretion">Excretion &amp; Factors Affecting Excretion</h3>
+          <p><mark>Excretion</mark> is the permanent elimination of drugs and their metabolites from the body. The primary organs of excretion are the kidneys (renal excretion) and the biliary system (fecal excretion).</p>
+          <ul>
+            <li><strong>Renal Excretion Processes:</strong> Includes glomerular filtration, active tubular secretion, and passive tubular reabsorption. Lipophilic drugs are reabsorbed into blood unless metabolized into hydrophilic polar compounds.</li>
+            <li><strong>Biliary &amp; Enterohepatic Circulation:</strong> Drugs excreted into bile enter the duodenum; some conjugates are hydrolyzed by gut flora and reabsorbed back into circulation.</li>
+          </ul>
+
+          <h4>Factors Affecting Excretion:</h4>
+          <ul>
+            <li><strong>Renal Function (GFR):</strong> Creatinine clearance and glomerular filtration rate directly dictate elimination half-life and clearance of renally excreted drugs.</li>
+            <li><strong>Urine pH:</strong> Altering urine pH can ionize weak acids or bases, trapping them in renal tubules and enhancing elimination (ion trapping).</li>
+          </ul>
+        </div>
+
+        <!-- LIVE ADME SIMULATION -->
+        <div id="sec-animation" class="content-card">
+          <h2>Interactive ADME Body Simulation</h2>
+          <p>Click through the stages below to visualize how a single drug molecule moves, transforms, and exits across major physiological stations in the human body.</p>
+
+          <div class="adme-sim-container">
+            <div class="adme-header">
+              <h3><span>⚡</span> Live Pharmacokinetic Pipeline</h3>
+              <div class="adme-controls">
+                <button class="adme-btn active-stage" onclick="runADME('absorption')">1. Absorption</button>
+                <button class="adme-btn" onclick="runADME('distribution')">2. Distribution</button>
+                <button class="adme-btn" onclick="runADME('metabolism')">3. Metabolism</button>
+                <button class="adme-btn" onclick="runADME('excretion')">4. Excretion</button>
+              </div>
+            </div>
+
+            <div class="body-canvas">
+              <div id="drugParticle"></div>
+              
+              <div class="body-station active" id="station-abs">
+                <div class="station-icon">💊</div>
+                <div class="station-label">GI Tract<br>(Absorption)</div>
+              </div>
+
+              <div class="body-station" id="station-dist">
+                <div class="station-icon">❤️</div>
+                <div class="station-label">Blood &amp;<br>Tissues</div>
+              </div>
+
+              <div class="body-station" id="station-meta">
+                <div class="station-icon">🔬</div>
+                <div class="station-label">Liver<br>(CYP450)</div>
+              </div>
+
+              <div class="body-station" id="station-excr">
+                <div class="station-icon">🚽</div>
+                <div class="station-label">Kidneys<br>(Excretion)</div>
+              </div>
+            </div>
+
+            <div class="adme-status" id="admeStatusText">
+              Stage 1: Drug is ingested orally. Liberation occurs in gastric fluids, and drug molecules cross intestinal mucosal barriers into portal circulation.
+            </div>
+          </div>
+        </div>
+
+        <!-- MAIN HEADING: PHARMACODYNAMICS -->
+        <div id="sec-pd" class="content-card">
+          <h2>PHARMACODYNAMICS (What the Drug Does to the Body)</h2>
+          <p>Pharmacodynamics examines the biochemical and physiological effects of drugs on living organisms and their mechanisms of action at the cellular and molecular level.</p>
+
+          <h3 id="sec-intrinsic">Intrinsic Activity &amp; Agonist Types</h3>
+          <p><mark>Intrinsic Activity</mark> refers to the ability of a drug-receptor complex to initiate a maximal pharmacological response once bound to a receptor.</p>
+          <ul>
+            <li><strong>Full Agonists:</strong> Possess high affinity and maximal intrinsic activity (efficacy = 1.0), reproducing the full physiological response of endogenous ligands (e.g., morphine at mu-opioid receptors).</li>
+            <li><strong>Partial Agonists:</strong> Bind to receptors but possess sub-maximal intrinsic activity (efficacy between 0 and 1.0). They can act as agonists in the absence of full agonists, or as competitive antagonists in their presence.</li>
+            <li><strong>Competitive Antagonists:</strong> Bind reversibly to the same receptor site as agonists without producing activation (intrinsic activity = 0), shifting the agonist dose-response curve to the right.</li>
+            <li><strong>Non-Competitive Antagonists:</strong> Bind irreversibly or to an allosteric site, depressing the maximal attainable response regardless of agonist concentration.</li>
+            <li><strong>Inverse Agonists:</strong> Bind to receptors to stabilize them in an inactive conformation, reducing constitutive baseline receptor activity below zero.</li>
+          </ul>
+
+          <h3 id="sec-receptors">Receptor Superfamilies</h3>
+          <p>Receptors are specialized macromolecular proteins located on cell membranes or intracellularly. They are divided into four primary superfamilies:</p>
+          <ul>
+            <li><strong>Type 1: Ligand-Gated Ion Channels (Ionotropic):</strong> Millisecond response times. Binding opens or closes ion channels (e.g., Nicotinic acetylcholine receptors, GABA-A receptors).</li>
+            <li><strong>Type 2: G-Protein Coupled Receptors (GPCR / Metabotropic):</strong> Seconds response times. Seven-transmembrane spanning proteins coupled to intracellular G-proteins activating second messengers like cAMP or IP3 (e.g., Beta-adrenoceptors, muscarinic receptors).</li>
+            <li><strong>Type 3: Enzyme-Linked Receptors:</strong> Hours response times. Extracellular binding activates intrinsic intracellular enzymatic activity, typically tyrosine kinase (e.g., Insulin receptors, growth factor receptors).</li>
+            <li><strong>Type 4: Intracellular / Nuclear Receptors:</strong> Hours to days response times. Lipophilic drugs cross the cell membrane to bind intracellular receptors, regulating gene transcription and protein synthesis (e.g., Corticosteroid receptors, thyroid hormone receptors).</li>
+          </ul>
+
+          <div class="receptor-sim-container">
+            <div class="receptor-header">
+              <h3><span>🧬</span> Receptor-Ligand Interaction Simulator</h3>
+              <div class="receptor-controls">
+                <button class="receptor-btn active-receptor" onclick="runReceptor('agonist')">Full Agonist</button>
+                <button class="receptor-btn" onclick="runReceptor('partial')">Partial Agonist</button>
+                <button class="receptor-btn" onclick="runReceptor('antagonist')">Antagonist</button>
+              </div>
+            </div>
+
+            <div class="receptor-canvas">
+              <div id="ligandParticle">💊</div>
+              <div class="cell-membrane">
+                <div class="receptor-pore" id="receptorPore">RECEPTOR</div>
+              </div>
+            </div>
+
+            <div class="receptor-status" id="receptorStatusText">
+              Full Agonist bound successfully. Intrinsic activity initiated (Efficacy = 100%). Maximum biological response triggered.
+            </div>
+          </div>
+
+          <h3 id="sec-therapeutic-index">Therapeutic Index &amp; Dose-Response Curve</h3>
+          <p><mark>Therapeutic Index (TI)</mark> is a quantitative measurement of relative drug safety, calculated as the ratio of the toxic dose to the therapeutic dose:</p>
+          
+          <div style="background: #f1f5f9; padding: 12px; border-radius: 8px; margin: 10px 0; text-align: center; font-family: monospace; font-weight: 800; font-size: 0.85rem; color: var(--primary-dark);">
+            Therapeutic Index (TI) = TD50 / ED50
+          </div>
+
+          <p>Where <strong>TD50</strong> is the dose causing toxicity in 50% of subjects, and <strong>ED50</strong> is the median effective dose in 50% of subjects. A narrow therapeutic index (e.g., warfarin, digoxin, lithium) requires routine therapeutic drug monitoring (TDM) to prevent severe toxicity.</p>
+
+          <p><mark>Dose-Response Curves (DRC)</mark> graphically illustrate the relationship between drug concentration and the magnitude of the pharmacological effect. Graded dose-response curves demonstrate potency and efficacy, while quantal dose-response curves evaluate population frequency distributions of therapeutic and toxic thresholds.</p>
+        </div>
+
+        <!-- CLINICAL SIGNIFICANCE -->
+        <div id="sec-clinical" class="content-card">
+          <h2>Clinical Significance &amp; Nursing Implications</h2>
+          <p>Applying pharmacokinetic and pharmacodynamic principles at the bedside ensures patient safety and optimizes therapeutic outcomes:</p>
+          <ul>
+            <li><strong>Individualized Dosing:</strong> Accounting for patient age, renal function, hepatic impairment, and weight to calculate safe therapeutic dosages.</li>
+            <li><strong>Therapeutic Drug Monitoring (TDM):</strong> Drawing peak and trough serum levels for drugs with narrow therapeutic indices (e.g., vancomycin, aminoglycosides, digoxin).</li>
+            <li><strong>Monitoring for Adverse Reactions:</strong> Remaining vigilant for exaggerated pharmacodynamic responses or toxicities during drug administration.</li>
+            <li><strong>Patient Education:</strong> Instructing patients on correct administration routes, recognizing side effects, and reinforcing adherence to prescribed regimens.</li>
+          </ul>
+        </div>
+
+      </main>
+    </main>
+
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const drawer = document.getElementById('drawer');
+      const overlay = document.getElementById('drawerOverlay');
+      drawer.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+
+    function runADME(stage) {
+      const btns = document.querySelectorAll('.adme-btn');
+      btns.forEach(b => b.classList.remove('active-stage'));
+      event.target.classList.add('active-stage');
+
+      const stations = document.querySelectorAll('.body-station');
+      stations.forEach(s => s.classList.remove('active'));
+
+      const particle = document.getElementById('drugParticle');
+      const statusText = document.getElementById('admeStatusText');
+
+      if (stage === 'absorption') {
+        document.getElementById('station-abs').classList.add('active');
+        particle.style.left = '15px';
+        particle.style.top = '80px';
+        statusText.innerHTML = "Stage 1: Drug is ingested orally. Liberation occurs in gastric fluids, and drug molecules cross intestinal mucosal barriers into portal circulation.";
+      } else if (stage === 'distribution') {
+        document.getElementById('station-dist').classList.add('active');
+        particle.style.left = '315px';
+        particle.style.top = '80px';
+        statusText.innerHTML = "Stage 2: Drug enters systemic bloodstream. Free unbound drug distributes reversibly across capillary endothelium into interstitial and target tissue fluids.";
+      } else if (stage === 'metabolism') {
+        document.getElementById('station-meta').classList.add('active');
+        particle.style.left = '615px';
+        particle.style.top = '80px';
+        statusText.innerHTML = "Stage 3: Hepatic Biotransformation. Phase I (CYP450 oxidation) and Phase II (conjugation) convert lipophilic drugs into water-soluble metabolites.";
+      } else if (stage === 'excretion') {
+        document.getElementById('station-excr').classList.add('active');
+        particle.style.left = '915px';
+        particle.style.top = '80px';
+        statusText.innerHTML = "Stage 4: Renal Excretion. Filtered and secreted water-soluble metabolites are eliminated from the body via urine through glomerular filtration and tubular secretion.";
+      }
+    }
+
+    function runReceptor(type) {
+      const btns = document.querySelectorAll('.receptor-btn');
+      btns.forEach(b => b.classList.remove('active-receptor'));
+      event.target.classList.add('active-receptor');
+
+      const ligand = document.getElementById('ligandParticle');
+      const pore = document.getElementById('receptorPore');
+      const statusText = document.getElementById('receptorStatusText');
+
+      if (type === 'agonist') {
+        ligand.style.top = '68px';
+        ligand.style.background = '#fef08a';
+        ligand.innerText = '💊';
+        pore.style.borderColor = '#38bdf8';
+        pore.style.background = 'rgba(14, 165, 233, 0.2)';
+        statusText.innerHTML = "Full Agonist bound successfully. Maximum intrinsic activity initiated (Efficacy = 100%). Full biological cellular response triggered.";
+      } else if (type === 'partial') {
+        ligand.style.top = '68px';
+        ligand.style.background = '#fde047';
+        ligand.innerText = '💊';
+        pore.style.borderColor = '#facc15';
+        pore.style.background = 'rgba(234, 179, 8, 0.2)';
+        statusText.innerHTML = "Partial Agonist bound. Sub-maximal intrinsic activity initiated (Efficacy between 0 and 1.0). Moderate cellular response produced.";
+      } else if (type === 'antagonist') {
+        ligand.style.top = '68px';
+        ligand.style.background = '#f87171';
+        ligand.innerText = '❌';
+        pore.style.borderColor = '#f87171';
+        pore.style.background = 'rgba(239, 68, 68, 0.2)';
+        statusText.innerHTML = "Competitive Antagonist bound. Zero intrinsic activity (Efficacy = 0). Receptor is blocked, preventing agonist binding and inhibiting cellular activation.";
+      }
+    }
+  </script>
+</body>
+</html>
