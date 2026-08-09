@@ -571,6 +571,284 @@
           <li><strong>Wide Therapeutic Index:</strong> High safety margin (e.g., Penicillin). Routine monitoring is rarely required.</li>
           <li><strong>Narrow Therapeutic Index:</strong> Small margin of safety (e.g., Digoxin, Warfarin, Lithium). Requires mandatory therapeutic drug monitoring (TDM) and blood level draws to prevent toxicity.</li>
         </ul>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Interactive Therapeutic Index & Dose-Response Animation</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --bg-main: #f8fafc;
+      --card-bg: #ffffff;
+      --text-dark: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 16px;
+      --shadow: 0 4px 20px -2px rgba(2, 132, 199, 0.08);
+      --green-eff: #10b981;
+      --red-tox: #ef4444;
+      --blue-part: #3b82f6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { background-color: var(--bg-main); color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; padding: 12px; }
+
+    .wrapper { max-width: 800px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 16px; }
+
+    .hero-banner {
+      background: linear-gradient(135deg, #0f172a 0%, #0284c7 100%);
+      color: white; border-radius: var(--radius); padding: 18px 16px; text-align: center;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15);
+    }
+    .hero-banner h1 { font-size: 1.15rem; font-weight: 800; margin-bottom: 6px; letter-spacing: 0.5px; }
+    .hero-banner p { font-size: 0.8rem; color: #bae6fd; line-height: 1.4; }
+
+    .card {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 16px; box-shadow: var(--shadow); width: 100%;
+    }
+    .card-title { font-size: 0.95rem; font-weight: 800; color: var(--text-dark); margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; }
+
+    /* Interactive Graph Stage */
+    .graph-stage {
+      background: #0f172a; border-radius: 12px; height: 240px; position: relative; overflow: hidden;
+      padding: 16px 12px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #1e293b;
+    }
+    .axis-y { position: absolute; left: 16px; top: 16px; bottom: 35px; width: 2px; background: #334155; }
+    .axis-x { position: absolute; left: 16px; right: 16px; bottom: 35px; height: 2px; background: #334155; }
+    
+    .label-y { position: absolute; left: 6px; top: 12px; font-size: 0.65rem; color: #94a3b8; font-weight: 700; }
+    .label-y-mid { position: absolute; left: 6px; top: 50%; font-size: 0.65rem; color: #94a3b8; font-weight: 700; transform: translateY(-50%); }
+    .label-x { position: absolute; right: 16px; bottom: 12px; font-size: 0.65rem; color: #94a3b8; font-weight: 700; }
+
+    /* SVG Curve Overlays */
+    .svg-container { position: absolute; left: 30px; right: 16px; top: 16px; bottom: 35px; pointer-events: none; }
+    
+    /* Interactive Slider Controls */
+    .control-group { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+    .control-row { display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 700; color: var(--text-muted); }
+    .control-row span span { color: var(--primary-dark); font-weight: 800; }
+    
+    input[type=range] {
+      width: 100%; height: 8px; border-radius: 4px; background: #e2e8f0; outline: none; -webkit-appearance: none;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--primary); cursor: pointer;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.4); transition: transform 0.1s ease;
+    }
+    input[type=range]::-webkit-slider-thumb:active { transform: scale(1.15); }
+
+    /* Dynamic Data Readout Boxes */
+    .readout-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 12px; }
+    .readout-box { background: #f8fafc; border: 1px solid var(--border); border-radius: 10px; padding: 10px; text-align: center; }
+    .readout-box .r-label { font-size: 0.68rem; font-weight: 700; color: var(--text-muted); margin-bottom: 2px; }
+    .readout-box .r-value { font-size: 0.95rem; font-weight: 800; color: var(--primary-dark); }
+    .readout-box.safe .r-value { color: var(--green-eff); }
+    .readout-box.danger .r-value { color: var(--red-tox); }
+
+    .formula-pill { background: #e0f2fe; color: #0369a1; padding: 6px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: 800; text-align: center; margin-top: 10px; border: 1px solid #bae6fd; }
+
+    /* Mode Selector Buttons */
+    .mode-toggle { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-bottom: 12px; }
+    .mode-btn { background: #f1f5f9; border: 1px solid var(--border); padding: 8px; border-radius: 8px; font-size: 0.75rem; font-weight: 800; cursor: pointer; color: var(--text-muted); text-align: center; transition: all 0.2s; }
+    .mode-btn.active { background: var(--primary); color: white; border-color: var(--primary-dark); }
+
+    .explanation-box { font-size: 0.78rem; color: #334155; line-height: 1.5; background: #f8fafc; padding: 10px 12px; border-radius: 10px; border-left: 4px solid var(--primary); margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+      <h1>⚡ Interactive Pharmacology Visualizer</h1>
+      <p>Animate and explore the Therapeutic Index (TI) and Dose-Response curves directly based on your study guide.</p>
+    </div>
+
+    <!-- Mode Selector -->
+    <div class="mode-toggle">
+      <button class="mode-btn active" id="btnTI" onclick="switchMode('ti')">1. Therapeutic Index (TI)</button>
+      <button class="mode-btn" id="btnDR" onclick="switchMode('dr')">2. Potency & Efficacy</button>
+    </div>
+
+    <!-- CARD 1: THERAPEUTIC INDEX ANIMATOR -->
+    <div class="card" id="cardTI">
+      <div class="card-title">
+        <span>Therapeutic Index Safety Simulator</span>
+        <span style="font-size: 0.7rem; color: var(--green-eff); font-weight: 800;">● Live Model</span>
+      </div>
+
+      <div class="graph-stage">
+        <div class="axis-y"></div>
+        <div class="axis-x"></div>
+        <div class="label-y">100%</div>
+        <div class="label-y-mid">50%</div>
+        <div class="label-x">Log Dose →</div>
+
+        <svg class="svg-container" viewBox="0 0 300 160" preserveAspectRatio="none">
+          <!-- Therapeutic Curve (Green) -->
+          <path id="pathTherapeutic" d="M 10,140 Q 60,140 90,80 T 170,15" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
+          <!-- Toxic Curve (Red) -->
+          <path id="pathToxic" d="M 90,140 Q 140,140 180,80 T 260,15" fill="none" stroke="#ef4444" stroke-width="4" stroke-linecap="round" />
+          
+          <!-- 50% Dotted Reference Line -->
+          <line x1="0" y1="80" x2="300" y2="80" stroke="#334155" stroke-dasharray="4" stroke-width="1.5" />
+          
+          <!-- ED50 & TD50 Indicators -->
+          <circle id="dotED" cx="90" cy="80" r="5" fill="#10b981" />
+          <circle id="dotTD" cx="180" cy="80" r="5" fill="#ef4444" />
+        </svg>
+      </div>
+
+      <div class="control-group">
+        <div class="control-row">
+          <label>Adjust Administered Dose / Patient Exposure:</label>
+          <span id="doseVal">50 mg/kg</span>
+        </div>
+        <input type="range" id="doseSlider" min="10" max="500" value="50" oninput="updateTI(this.value)">
+      </div>
+
+      <div class="readout-grid">
+        <div class="readout-box safe">
+          <div class="r-label">ED50 (Desired Effect)</div>
+          <div class="r-value">10 mg/kg</div>
+        </div>
+        <div class="readout-box danger">
+          <div class="r-label">TD50 (Toxic Effect)</div>
+          <div class="r-value">500 mg/kg</div>
+        </div>
+      </div>
+
+      <div class="formula-pill">
+        Therapeutic Index (TI) = TD50 / ED50 = 500 / 10 = <span id="tiResult">50</span> (High TI = Safer Drug)
+      </div>
+
+      <div class="explanation-box" id="tiExplanation">
+        <strong>Status:</strong> Safe therapeutic range. The desired therapeutic effect is achieved well below the toxic threshold.
+      </div>
+    </div>
+
+    <!-- CARD 2: DOSE-RESPONSE & POTENCY ANIMATOR -->
+    <div class="card" id="cardDR" style="display: none;">
+      <div class="card-title">
+        <span>Potency & Efficacy Curve Animator</span>
+        <span style="font-size: 0.7rem; color: var(--primary); font-weight: 800;">● Comparative Model</span>
+      </div>
+
+      <div class="graph-stage">
+        <div class="axis-y"></div>
+        <div class="axis-x"></div>
+        <div class="label-y">100%</div>
+        <div class="label-y-mid">50%</div>
+        <div class="label-x">Log Dose →</div>
+
+        <svg class="svg-container" viewBox="0 0 300 160" preserveAspectRatio="none">
+          <!-- Full Agonist Green -->
+          <path d="M 10,140 Q 50,140 80,80 T 180,15" fill="none" stroke="#10b981" stroke-width="3.5" />
+          <!-- Partial Agonist Blue (Shifted / Lower Efficacy) -->
+          <path d="M 10,140 Q 80,140 120,110 T 240,75" fill="none" stroke="#3b82f6" stroke-width="3.5" />
+          <!-- Antagonist Red (Flat) -->
+          <line x1="10" y1="140" x2="290" y2="140" stroke="#ef4444" stroke-width="3" stroke-dasharray="6" />
+        </svg>
+      </div>
+
+      <div class="control-group">
+        <div class="control-row">
+          <label>Select Drug Profile to Analyze:</label>
+          <span id="drugLabelName">Full Agonist (Green)</span>
+        </div>
+        <input type="range" id="drugSlider" min="1" max="3" value="1" step="1" oninput="updateDrugProfile(this.value)">
+      </div>
+
+      <div class="readout-grid">
+        <div class="readout-box">
+          <div class="r-label">Potency (ED50)</div>
+          <div class="r-value" id="valPotency">High (Requires less dose)</div>
+        </div>
+        <div class="readout-box">
+          <div class="r-label">Efficacy (Emax)</div>
+          <div class="r-value" id="valEfficacy">Maximum (100%)</div>
+        </div>
+      </div>
+
+      <div class="explanation-box" id="drExplanation">
+        <strong>Full Agonist:</strong> Produces the maximum physiological response with high efficacy and high potency (shifted left).
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function switchMode(mode) {
+      const cardTI = document.getElementById('cardTI');
+      const cardDR = document.getElementById('cardDR');
+      const btnTI = document.getElementById('btnTI');
+      const btnDR = document.getElementById('btnDR');
+
+      if(mode === 'ti') {
+        cardTI.style.display = 'block';
+        cardDR.style.display = 'none';
+        btnTI.classList.add('active');
+        btnDR.classList.remove('active');
+      } else {
+        cardTI.style.display = 'none';
+        cardDR.style.display = 'block';
+        btnDR.classList.add('active');
+        btnTI.classList.remove('active');
+      }
+    }
+
+    function updateTI(val) {
+      document.getElementById('doseVal').innerText = val + " mg/kg";
+      const exp = document.getElementById('tiExplanation');
+      
+      if(val < 10) {
+        exp.innerHTML = "<strong>Sub-therapeutic:</strong> Dose is below ED50 (10 mg/kg). The drug has not yet produced the desired therapeutic effect.";
+        exp.style.borderLeftColor = "#94a3b8";
+      } else if(val >= 10 && val < 300) {
+        exp.innerHTML = `<strong>Safe Range:</strong> Current dose (${val} mg/kg) achieves therapeutic effect (ED50 = 10) safely below toxicity threshold (TD50 = 500).`;
+        exp.style.borderLeftColor = "#10b981";
+      } else {
+        exp.innerHTML = `<strong>Warning - Toxicity Risk!</strong> Dose (${val} mg/kg) approaches or exceeds toxic dose thresholds (TD50 = 500 mg/kg). Low safety margin!`;
+        exp.style.borderLeftColor = "#ef4444";
+      }
+    }
+
+    function updateDrugProfile(val) {
+      const name = document.getElementById('drugLabelName');
+      const pot = document.getElementById('valPotency');
+      const eff = document.getElementById('valEfficacy');
+      const exp = document.getElementById('drExplanation');
+
+      if(val == "1") {
+        name.innerText = "Full Agonist (Green Curve)";
+        pot.innerText = "High (Leftward shift)";
+        eff.innerText = "Maximum (100% Emax)";
+        exp.innerHTML = "<strong>Full Agonist:</strong> Binds receptor and produces maximum physiological effect with high efficacy.";
+      } else if(val == "2") {
+        name.innerText = "Partial Agonist (Blue Curve)";
+        pot.innerText = "Moderate";
+        eff.innerText = "Lower Efficacy (< 50%)";
+        exp.innerHTML = "<strong>Partial Agonist:</strong> Produces a sub-maximal response even when all receptors are occupied. Can act as a blocker if full agonist is present.";
+      } else {
+        name.innerText = "Antagonist (Red Line)";
+        pot.innerText = "N/A";
+        eff.innerText = "Zero Effect (0%)";
+        exp.innerHTML = "<strong>Antagonist:</strong> Has affinity for the receptor but zero intrinsic activity. Produces no effect on its own (flat line at baseline).";
+      }
+    }
+  </script>
+</body>
+</html>
 
         <h3 id="sec-clinical">Clinical Significance in Nursing Practice</h3>
         <p>Understanding pharmacokinetics and pharmacodynamics enables nurses to anticipate therapeutic drug onset, monitor for toxic side effects, calculate precise safe dosages, and provide effective patient education to ensure optimal clinical outcomes.</p>
