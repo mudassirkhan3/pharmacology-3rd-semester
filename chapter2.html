@@ -3,107 +3,350 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Chapter 2: Anti-Infective Agents</title>
+  <title>Chapter 2: Anti-Infective Pharmacology</title>
   <style>
+    :root {
+      --primary: #2563eb;
+      --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      --accent: #06b6d4;
+      --bg-gradient: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%);
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --card-border: #e2e8f0;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(37, 99, 235, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f8fafc;
+      color: var(--text-dark);
       line-height: 1.6;
-      max-width: 900px;
+      padding: 20px 15px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 950px;
       margin: 0 auto;
-      padding: 20px;
-      color: #333;
-      background-color: #f9fafb;
+      background: var(--card-bg);
+      padding: 35px 30px;
+      border-radius: 20px;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.8s ease-out;
     }
-    main {
-      background: #ffffff;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+
+    /* Header Styling */
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #dbeafe;
+      color: #1e40af;
+      font-weight: 700;
+      font-size: 13px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
     }
-    h1, h2, h3 {
-      color: #1e293b;
-    }
+
     h1 {
-      border-bottom: 3px solid #2563eb;
-      padding-bottom: 10px;
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
     }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+
     h2 {
-      border-bottom: 2px solid #e2e8f0;
-      padding-bottom: 6px;
-      margin-top: 30px;
+      font-size: 1.4rem;
+      color: #1e293b;
+      margin: 35px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 22px;
+      background: var(--primary);
+      border-radius: 4px;
+    }
+
+    /* Grid Layout & Animated Cards */
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin: 20px 0;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
     }
+
     .card {
-      border: 2px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 16px;
-      background-color: #f8fafc;
+      position: relative;
+      background: #ffffff;
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      padding: 22px;
       text-decoration: none;
       color: inherit;
-      transition: transform 0.2s, border-color 0.2s;
-      display: block;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+
+    /* Staggered Card Load Animations */
+    .card:nth-child(1) { animation-delay: 0.15s; }
+    .card:nth-child(2) { animation-delay: 0.30s; }
+    .card:nth-child(3) { animation-delay: 0.45s; }
+    .card:nth-child(4) { animation-delay: 0.60s; }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--primary-gradient);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
     .card:hover {
-      transform: translateY(-3px);
-      border-color: #2563eb;
+      transform: translateY(-8px);
+      border-color: #3b82f6;
+      box-shadow: var(--shadow-lg);
     }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      background: #eff6ff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 14px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover .card-icon {
+      transform: scale(1.1) rotate(-5deg);
+      background: #dbeafe;
+    }
+
     .card h3 {
-      margin-top: 0;
-      color: #2563eb;
-    }
-    .card p {
-      font-size: 14px;
-      margin-bottom: 0;
-      color: #475569;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    li {
+      font-size: 1.15rem;
+      color: #1e293b;
       margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .card-link {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s ease;
+    }
+
+    .card:hover .card-link {
+      gap: 10px;
+    }
+
+    /* Animated List for Nursing Responsibilities */
+    .nursing-list {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+      margin-top: 15px;
+    }
+
+    .nursing-item {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-left: 4px solid var(--primary);
+      border-radius: 10px;
+      padding: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nursing-item:hover {
+      transform: translateX(6px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .nursing-number {
+      background: #dbeafe;
+      color: #1e40af;
+      font-weight: 800;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .nursing-content strong {
+      color: #1e293b;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 16px;
+      }
+      h1 {
+        font-size: 1.75rem;
+      }
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
-  <main>
-    <h1>Chapter 2: Drugs Used to Prevent &amp; Treat Infection</h1>
-    <p>Anti-infective agents are medications designed to target and eliminate invading microorganisms (bacteria, fungi, viruses, and parasites) without harming host human cells.</p>
+  <div class="container">
+    <header>
+      <span class="badge">Pharmacology — Unit II</span>
+      <h1>Drugs Used to Prevent &amp; Treat Infection</h1>
+      <p class="subtitle">An essential clinical guide to anti-infective therapy, mechanisms of action, and critical nursing implications.</p>
+    </header>
 
-    <h2>1. Select Drug Category</h2>
-    <div class="card-grid">
-      <a href="antibacterial.html" class="card">
-        <h3>Antibacterial</h3>
-        <p>Antibiotics, mechanism of action, bactericidal vs. bacteriostatic agents.</p>
-      </a>
-      <a href="antifungal.html" class="card">
-        <h3>Antifungal</h3>
-        <p>Agents targeting fungal cell membranes (ergosterol) and systemic infections.</p>
-      </a>
-      <a href="antiviral.html" class="card">
-        <h3>Antiviral</h3>
-        <p>Drugs inhibiting viral entry, reverse transcription, and viral replication.</p>
-      </a>
-      <a href="antiparasitic.html" class="card">
-        <h3>Antiparasitic &amp; Antimalarial</h3>
-        <p>Treatments for protozoal, helminthic, and <em>Plasmodium</em> infections.</p>
-      </a>
-    </div>
+    <main>
+      <h2>Select Drug Category</h2>
+      <div class="card-grid">
 
-    <h2>2. General Nursing Measures &amp; Patient Education</h2>
-    <ul>
-      <li><strong>Culture &amp; Sensitivity First:</strong> Always obtain necessary cultures (blood, sputum, urine) <em>before</em> initiating the first antibiotic dose.</li>
-      <li><strong>Complete Full Regimen:</strong> Instruct patients to finish all prescribed doses even if symptoms improve to prevent bacterial resistance.</li>
-      <li><strong>Allergy Checks:</strong> Screen for drug hypersensitivities (e.g., Penicillin cross-reactivity) and monitor patients during the first 30 minutes of administration.</li>
-      <li><strong>Toxicity &amp; Monitoring:</strong> Track peak and trough serum levels for narrow therapeutic index anti-infectives (e.g., Vancomycin, Gentamicin).</li>
-      <li><strong>Hydration &amp; Renal Care:</strong> Encourage adequate fluid intake to prevent crystalluria and nephrotoxicity with agents like Sulfonamides and Acyclovir.</li>
-    </ul>
-  </main>
+        <!-- Antibacterial Card -->
+        <a href="antibacterial.html" class="card">
+          <div>
+            <div class="card-icon">🧫</div>
+            <h3>Antibacterial</h3>
+            <p>Bactericidal vs. bacteriostatic drugs, cell wall inhibitors, and resistance.</p>
+          </div>
+          <span class="card-link">Explore Chapter &rarr;</span>
+        </a>
+
+        <!-- Antifungal Card -->
+        <a href="antifungal.html" class="card">
+          <div>
+            <div class="card-icon">🍄</div>
+            <h3>Antifungal</h3>
+            <p>Targeting fungal cell membranes (ergosterol) and systemic mycoses.</p>
+          </div>
+          <span class="card-link">Explore Chapter &rarr;</span>
+        </a>
+
+        <!-- Antiviral Card -->
+        <a href="antiviral.html" class="card">
+          <div>
+            <div class="card-icon">🦠</div>
+            <h3>Antiviral</h3>
+            <p>Inhibiting viral replication, viral entry, and reverse transcriptase.</p>
+          </div>
+          <span class="card-link">Explore Chapter &rarr;</span>
+        </a>
+
+        <!-- Antiparasitic Card -->
+        <a href="antiparasitic.html" class="card">
+          <div>
+            <div class="card-icon">🦟</div>
+            <h3>Antiparasitic</h3>
+            <p>Treatments for protozoa, helminths, and antimalarial regimens.</p>
+          </div>
+          <span class="card-link">Explore Chapter &rarr;</span>
+        </a>
+
+      </div>
+
+      <h2>General Nursing Measures &amp; Patient Education</h2>
+      <ul class="nursing-list">
+        <li class="nursing-item">
+          <div class="nursing-number">1</div>
+          <div class="nursing-content">
+            <strong>Culture &amp; Sensitivity Testing:</strong> Always obtain diagnostic cultures (blood, urine, or wound) <em>before</em> administering the first dose of anti-infective therapy.
+          </div>
+        </li>
+        <li class="nursing-item">
+          <div class="nursing-number">2</div>
+          <div class="nursing-content">
+            <strong>Complete Full Regimen:</strong> Emphasize to patients the critical importance of finishing the entire prescribed regimen to prevent antimicrobial resistance.
+          </div>
+        </li>
+        <li class="nursing-item">
+          <div class="nursing-number">3</div>
+          <div class="nursing-content">
+            <strong>Hypersensitivity Screening:</strong> Screen for cross-sensitivities (e.g., Penicillins and Cephalosporins) and monitor patients during the first 30 minutes of administration.
+          </div>
+        </li>
+        <li class="nursing-item">
+          <div class="nursing-number">4</div>
+          <div class="nursing-content">
+            <strong>Therapeutic Drug Monitoring (TDM):</strong> Regularly track serum peak and trough levels for narrow therapeutic index drugs like Vancomycin and Gentamicin.
+          </div>
+        </li>
+      </ul>
+    </main>
+  </div>
 
 </body>
 </html>
