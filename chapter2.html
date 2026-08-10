@@ -3,21 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Unit II: Anti-Infective Pharmacotherapy Hub</title>
+  <title>Chapter 2: Anti-Infective Pharmacology</title>
   <style>
     :root {
-      --brand-primary: #0284c7;
-      --brand-secondary: #0d9488;
-      --brand-gradient: linear-gradient(135deg, #0284c7 0%, #0f766e 100%);
-      --surface-main: #f8fafc;
-      --surface-card: #ffffff;
-      --text-heading: #0f172a;
-      --text-body: #334155;
-      --text-muted: #64748b;
-      --border-subtle: #e2e8f0;
-      --shadow-hover: 0 20px 25px -5px rgba(2, 132, 199, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-      --radius-lg: 16px;
-      --radius-sm: 8px;
+      --primary: #2563eb;
+      --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      --accent: #06b6d4;
+      --bg-gradient: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%);
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --card-border: #e2e8f0;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(37, 99, 235, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
     }
 
     * {
@@ -27,319 +25,328 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--surface-main);
-      color: var(--text-body);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f8fafc;
+      color: var(--text-dark);
       line-height: 1.6;
-      padding: 30px 16px;
+      padding: 20px 15px;
       min-height: 100vh;
     }
 
-    .app-container {
-      max-width: 1000px;
+    .container {
+      max-width: 950px;
       margin: 0 auto;
+      background: var(--card-bg);
+      padding: 35px 30px;
+      border-radius: 20px;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.8s ease-out;
     }
 
-    /* Hero Header */
-    .hero-header {
-      background: var(--surface-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 36px 30px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    /* Header Styling */
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #dbeafe;
+      color: #1e40af;
+      font-weight: 700;
+      font-size: 13px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      color: #1e293b;
+      margin: 35px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 22px;
+      background: var(--primary);
+      border-radius: 4px;
+    }
+
+    /* Grid Layout & Animated Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
       position: relative;
+      background: #ffffff;
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      padding: 22px;
+      text-decoration: none;
+      color: inherit;
       overflow: hidden;
-      margin-bottom: 24px;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    .hero-header::before {
+    /* Staggered Card Load Animations */
+    .card:nth-child(1) { animation-delay: 0.15s; }
+    .card:nth-child(2) { animation-delay: 0.30s; }
+    .card:nth-child(3) { animation-delay: 0.45s; }
+    .card:nth-child(4) { animation-delay: 0.60s; }
+
+    .card::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
-      right: 0;
-      height: 5px;
-      background: var(--brand-gradient);
-    }
-
-    .pill-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
-      background: #e0f2fe;
-      color: #0369a1;
-      font-size: 12px;
-      font-weight: 700;
-      border-radius: 20px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 14px;
-    }
-
-    .hero-title {
-      font-size: 2.2rem;
-      color: var(--text-heading);
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      margin-bottom: 10px;
-    }
-
-    .hero-desc {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      max-width: 750px;
-      margin-bottom: 24px;
-    }
-
-    /* Stats Bar */
-    .stats-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    .stat-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: #f1f5f9;
-      padding: 8px 16px;
-      border-radius: var(--radius-sm);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-heading);
-    }
-
-    .stat-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--brand-secondary);
-    }
-
-    /* Search Bar */
-    .controls-bar {
-      margin-bottom: 24px;
-    }
-
-    .search-input {
       width: 100%;
-      padding: 14px 20px;
-      font-size: 15px;
-      border: 2px solid var(--border-subtle);
-      border-radius: var(--radius-sm);
-      outline: none;
-      transition: all 0.2s ease;
-      background: var(--surface-card);
+      height: 4px;
+      background: var(--primary-gradient);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
-    .search-input:focus {
-      border-color: var(--brand-primary);
-      box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15);
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #3b82f6;
+      box-shadow: var(--shadow-lg);
     }
 
-    /* Grid Section */
-    .grid-title {
-      font-size: 1.3rem;
-      color: var(--text-heading);
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .card:hover::before {
+      opacity: 1;
     }
 
-    .modules-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .module-card {
-      background: var(--surface-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .module-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--brand-primary);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .card-badge {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--brand-primary);
-      background: #f0f9ff;
-      padding: 4px 8px;
-      border-radius: 6px;
-      width: fit-content;
-      margin-bottom: 12px;
-    }
-
-    .card-icon-frame {
-      width: 48px;
-      height: 48px;
-      background: #f0fdfa;
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      background: #eff6ff;
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
-      margin-bottom: 16px;
-      border: 1px solid #ccfbf1;
+      font-size: 20px;
+      margin-bottom: 14px;
+      transition: transform 0.3s ease;
     }
 
-    .module-card h3 {
-      font-size: 1.2rem;
-      color: var(--text-heading);
+    .card:hover .card-icon {
+      transform: scale(1.1) rotate(-5deg);
+      background: #dbeafe;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      color: #1e293b;
       margin-bottom: 8px;
-      font-weight: 700;
     }
 
-    .module-card p {
-      font-size: 0.9rem;
+    .card p {
+      font-size: 0.88rem;
       color: var(--text-muted);
-      margin-bottom: 20px;
-      line-height: 1.5;
+      margin-bottom: 16px;
     }
 
-    .card-footer {
+    .card-link {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--brand-primary);
-      padding-top: 12px;
-      border-top: 1px dashed var(--border-subtle);
+      gap: 6px;
+      transition: gap 0.2s ease;
     }
 
-    @media (max-width: 640px) {
-      .hero-title { font-size: 1.7rem; }
-      .hero-header { padding: 24px 18px; }
+    .card:hover .card-link {
+      gap: 10px;
+    }
+
+    /* Animated List for Nursing Responsibilities */
+    .nursing-list {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+      margin-top: 15px;
+    }
+
+    .nursing-item {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-left: 4px solid var(--primary);
+      border-radius: 10px;
+      padding: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nursing-item:hover {
+      transform: translateX(6px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .nursing-number {
+      background: #dbeafe;
+      color: #1e40af;
+      font-weight: 800;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .nursing-content strong {
+      color: #1e293b;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 16px;
+      }
+      h1 {
+        font-size: 1.75rem;
+      }
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="app-container">
-
-    <!-- Hero Header -->
-    <header class="hero-header">
-      <span class="pill-tag">BSN Pharmacology • Chapter 2</span>
-      <h1 class="hero-title">Anti-Infective Pharmacotherapy</h1>
-      <p class="hero-desc">An interactive study dashboard covering mechanisms of action, drug classifications, spectrum of activity, and clinical nursing guidelines.</p>
-      
-      <div class="stats-bar">
-        <div class="stat-item"><span class="stat-dot"></span> 4 Core Sub-Chapters</div>
-        <div class="stat-item"><span class="stat-dot"></span> Mechanisms of Action</div>
-        <div class="stat-item"><span class="stat-dot"></span> NCLEX-RN Key Points</div>
-      </div>
+  <div class="container">
+    <header>
+      <span class="badge">Pharmacology — Unit II</span>
+      <h1>Drugs Used to Prevent &amp; Treat Infection</h1>
+      <p class="subtitle">An essential clinical guide to anti-infective therapy, mechanisms of action, and critical nursing implications.</p>
     </header>
 
-    <!-- Search Bar -->
-    <div class="controls-bar">
-      <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search drug classes (e.g., Antibacterial, Antifungal, Penicillin)..." onkeyup="filterCards()">
-    </div>
+    <main>
+      <h2>Select Drug Category</h2>
+      <div class="card-grid">
 
-    <!-- Modules Grid -->
-    <section>
-      <div class="grid-title">
-        <h2>Module Directories</h2>
-        <span style="font-size: 13px; color: var(--text-muted);">Select a category to view detailed notes</span>
-      </div>
-
-      <div class="modules-grid" id="modulesGrid">
-
-        <!-- Card 1 -->
-        <a href="antibacterial.html" class="module-card">
+        <!-- Antibacterial Card -->
+        <a href="antibacterial.html" class="card">
           <div>
-            <span class="card-badge">SECTION 2.1</span>
-            <div class="card-icon-frame">🧫</div>
-            <h3>Antibacterial Agents</h3>
-            <p>Bactericidal vs. bacteriostatic mechanisms, cell wall synthesis inhibitors, and aminoglycoside toxicity protocols.</p>
+            <div class="card-icon">🧫</div>
+            <h3>Antibacterial</h3>
+            <p>Bactericidal vs. bacteriostatic drugs, cell wall inhibitors, and resistance.</p>
           </div>
-          <div class="card-footer">
-            <span>Explore Module</span>
-            <span>&rarr;</span>
-          </div>
+          <span class="card-link">Explore Chapter &rarr;</span>
         </a>
 
-        <!-- Card 2 -->
-        <a href="antifungal.html" class="module-card">
+        <!-- Antifungal Card -->
+        <a href="antifungal.html" class="card">
           <div>
-            <span class="card-badge">SECTION 2.2</span>
-            <div class="card-icon-frame">🍄</div>
-            <h3>Antifungal Drugs</h3>
-            <p>Ergosterol synthesis inhibitors, azoles, polyenes, and systemic mycoses clinical monitoring.</p>
+            <div class="card-icon">🍄</div>
+            <h3>Antifungal</h3>
+            <p>Targeting fungal cell membranes (ergosterol) and systemic mycoses.</p>
           </div>
-          <div class="card-footer">
-            <span>Explore Module</span>
-            <span>&rarr;</span>
-          </div>
+          <span class="card-link">Explore Chapter &rarr;</span>
         </a>
 
-        <!-- Card 3 -->
-        <a href="antiviral.html" class="module-card">
+        <!-- Antiviral Card -->
+        <a href="antiviral.html" class="card">
           <div>
-            <span class="card-badge">SECTION 2.3</span>
-            <div class="card-icon-frame">🦠</div>
-            <h3>Antiviral Therapies</h3>
-            <p>Reverse transcriptase inhibitors, viral penetration blockers, and anti-retroviral administration safety.</p>
+            <div class="card-icon">🦠</div>
+            <h3>Antiviral</h3>
+            <p>Inhibiting viral replication, viral entry, and reverse transcriptase.</p>
           </div>
-          <div class="card-footer">
-            <span>Explore Module</span>
-            <span>&rarr;</span>
-          </div>
+          <span class="card-link">Explore Chapter &rarr;</span>
         </a>
 
-        <!-- Card 4 -->
-        <a href="antiparasitic.html" class="module-card">
+        <!-- Antiparasitic Card -->
+        <a href="antiparasitic.html" class="card">
           <div>
-            <span class="card-badge">SECTION 2.4</span>
-            <div class="card-icon-frame">🦟</div>
-            <h3>Antiparasiticals</h3>
-            <p>Antimalarial regimens, <em>Plasmodium</em> life cycles, antihelminthic therapy, and protozoal infection care.</p>
+            <div class="card-icon">🦟</div>
+            <h3>Antiparasitic</h3>
+            <p>Treatments for protozoa, helminths, and antimalarial regimens.</p>
           </div>
-          <div class="card-footer">
-            <span>Explore Module</span>
-            <span>&rarr;</span>
-          </div>
+          <span class="card-link">Explore Chapter &rarr;</span>
         </a>
 
       </div>
-    </section>
 
+      <h2>General Nursing Measures &amp; Patient Education</h2>
+      <ul class="nursing-list">
+        <li class="nursing-item">
+          <div class="nursing-number">1</div>
+          <div class="nursing-content">
+            <strong>Culture &amp; Sensitivity Testing:</strong> Always obtain diagnostic cultures (blood, urine, or wound) <em>before</em> administering the first dose of anti-infective therapy.
+          </div>
+        </li>
+        <li class="nursing-item">
+          <div class="nursing-number">2</div>
+          <div class="nursing-content">
+            <strong>Complete Full Regimen:</strong> Emphasize to patients the critical importance of finishing the entire prescribed regimen to prevent antimicrobial resistance.
+          </div>
+        </li>
+        <li class="nursing-item">
+          <div class="nursing-number">3</div>
+          <div class="nursing-content">
+            <strong>Hypersensitivity Screening:</strong> Screen for cross-sensitivities (e.g., Penicillins and Cephalosporins) and monitor patients during the first 30 minutes of administration.
+          </div>
+        </li>
+        <li class="nursing-item">
+          <div class="nursing-number">4</div>
+          <div class="nursing-content">
+            <strong>Therapeutic Drug Monitoring (TDM):</strong> Regularly track serum peak and trough levels for narrow therapeutic index drugs like Vancomycin and Gentamicin.
+          </div>
+        </li>
+      </ul>
+    </main>
   </div>
-
-  <script>
-    // Live Search Filter Function
-    function filterCards() {
-      const query = document.getElementById('searchInput').value.toLowerCase();
-      const cards = document.querySelectorAll('.module-card');
-      
-      cards.forEach(card => {
-        const text = card.innerText.toLowerCase();
-        if (text.includes(query)) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
-  </script>
 
 </body>
 </html>
