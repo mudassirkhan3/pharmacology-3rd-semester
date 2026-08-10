@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Cell Wall Inhibitors: Complete Pharmacology Masterclass</title>
+  <title>Cell Wall Inhibitors: Ultimate BSN Pharmacology Masterclass</title>
   <style>
     :root {
       --primary: #0284c7;
@@ -16,6 +16,8 @@
       --text-muted: #475569;
       --border: #cbd5e1;
       --highlight: #fef08a;
+      --pearl-bg: #fdf4ff;
+      --pearl-border: #e879f9;
       --radius: 16px;
     }
 
@@ -46,7 +48,7 @@
     .header-banner {
       background: linear-gradient(135deg, #0284c7 0%, #0f766e 100%);
       color: white;
-      padding: 30px 24px;
+      padding: 32px 24px;
       border-radius: 12px;
       margin-bottom: 35px;
       box-shadow: 0 4px 15px rgba(2, 132, 199, 0.2);
@@ -99,7 +101,20 @@
       font-weight: 500;
     }
 
-    /* Table Container for Mobile Responsiveness & Border Alignment */
+    /* Pronunciation Guide Tag */
+    .phonetic {
+      font-size: 0.85rem;
+      color: #0d9488;
+      background: #f0fdfa;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid #ccfbf1;
+      display: inline-block;
+      margin-left: 6px;
+      font-style: italic;
+    }
+
+    /* Table Container */
     .table-wrapper {
       width: 100%;
       overflow-x: auto;
@@ -128,7 +143,7 @@
       font-weight: 700;
     }
 
-    /* Mnemonic Styling Box */
+    /* Mnemonic Box */
     .mnemonic-box {
       background: #f0fdf4;
       border-left: 5px solid #22c55e;
@@ -140,6 +155,23 @@
 
     .mnemonic-box strong {
       color: #15803d;
+      font-size: 1.02rem;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* Clinical Pearl Box */
+    .clinical-pearl {
+      background: var(--pearl-bg);
+      border-left: 5px solid var(--pearl-border);
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin: 18px 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .clinical-pearl strong {
+      color: #a21caf;
       font-size: 1.02rem;
       display: block;
       margin-bottom: 4px;
@@ -185,6 +217,49 @@
       100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(2, 132, 199, 0); }
     }
 
+    /* Interactive NCLEX Mini Quiz Styling */
+    .quiz-card {
+      background: #fffbeb;
+      border: 2px solid #fde68a;
+      border-radius: 12px;
+      padding: 24px;
+      margin: 35px 0;
+    }
+
+    .quiz-card h3 {
+      color: #b45309;
+      margin-bottom: 12px;
+      font-size: 1.25rem;
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .quiz-btn {
+      background: white;
+      border: 1px solid #d97706;
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-align: left;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quiz-btn:hover {
+      background: #fef3c7;
+    }
+
+    .quiz-feedback {
+      margin-top: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: none;
+    }
+
     ul {
       padding-left: 20px;
       margin-bottom: 16px;
@@ -211,7 +286,7 @@
 
     <div class="header-banner">
       <h1>Unit II: Cell Wall Inhibitors (Beta-Lactams)</h1>
-      <p>Master pharmacology guide covering mechanisms, dynamic flow steps, powerful mnemonics, classifications, and clinical nursing considerations.</p>
+      <p>Interactive BSN Masterclass featuring animated mechanisms, custom mnemonics, clinical ward pearls, and NCLEX quick-check questions.</p>
     </div>
 
     <main>
@@ -219,10 +294,10 @@
       <!-- ========================================== -->
       <!-- 1. PENICILLINS                             -->
       <!-- ========================================== -->
-      <h2 class="class-main-title">🛡️ 1. Penicillins</h2>
+      <h2 class="class-main-title">🛡️ 1. Penicillins <span class="phonetic">Pronunciation: pen-uh-SIL-ins</span></h2>
 
       <h3 class="section-subtitle">📌 Introduction</h3>
-      <p>Penicillins are cornerstone <mark>beta-lactam antibacterial drugs</mark> originally derived from <em>Penicillium</em> molds. They possess a characteristic 4-membered beta-lactam ring that is crucial for their bactericidal activity against susceptible bacterial cell walls.</p>
+      <p>Penicillins are foundational <mark>beta-lactam antibacterial drugs</mark> originally isolated from <em>Penicillium</em> mold fungi. They share a characteristic 4-membered beta-lactam ring structure essential for bactericidal activity against susceptible bacterial pathogens.</p>
 
       <h3 class="section-subtitle">📋 Classification</h3>
       <div class="table-wrapper">
@@ -243,27 +318,27 @@
             <tr>
               <td><strong>Aminopenicillins</strong></td>
               <td>Amoxicillin, Ampicillin</td>
-              <td>Broadened spectrum; enhanced penetration through outer membranes of select Gram-negative bacilli.</td>
+              <td>Broadened spectrum; enhanced tissue penetration against select Gram-negative bacilli.</td>
             </tr>
             <tr>
               <td><strong>Penicillinase-Resistant</strong></td>
               <td>Nafcillin, Oxacillin, Dicloxacillin</td>
-              <td>Engineered to resist <mark>beta-lactamase enzymes</mark> secreted by staphylococcal strains.</td>
+              <td>Engineered specifically to resist <mark>beta-lactamase enzymes</mark> produced by staphylococcal strains.</td>
             </tr>
             <tr>
-              <td><strong>Extended-Spectrum (Antipseudomonal)</strong></td>
-              <td>Piperacillin (commonly paired with tazobactam)</td>
-              <td>Ultra-broad spectrum; active against <em>Pseudomonas aeruginosa</em> and severe nosocomial infections.</td>
+              <td><strong>Extended-Spectrum</strong></td>
+              <td>Piperacillin (paired with tazobactam)</td>
+              <td>Ultra-broad spectrum; active against <em>Pseudomonas aeruginosa</em> and severe hospital-acquired sepsis.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <h3 class="section-subtitle">⚡ Mechanism of Action (with Flow Animation)</h3>
-      <p>Penicillins interrupt bacterial growth by directly targeting bacterial structural architecture.</p>
+      <p>Penicillins disrupt bacterial replication by sabotaging cell wall construction.</p>
       
       <div class="flow-container">
-        <div class="flow-step">1. Drug Enters Body &amp; Tissues</div>
+        <div class="flow-step">1. Drug Absorbed &amp; Distributed</div>
         <div class="flow-arrow">&rarr;</div>
         <div class="flow-step">2. Binds Penicillin-Binding Proteins (PBPs)</div>
         <div class="flow-arrow">&rarr;</div>
@@ -277,6 +352,11 @@
         <mark>PBPDW</mark> &rarr; <mark>P</mark>enicillin <mark>B</mark>inds <mark>P</mark>roteins to <mark>D</mark>estroy <mark>W</mark>all.
       </div>
 
+      <div class="clinical-pearl">
+        <strong>💡 Clinical Ward Pearl (Nurse's Note):</strong>
+        Always ask patients about prior penicillin reactions <em>before</em> hanging the IV bag. Even a mild rash in childhood can escalate to severe anaphylaxis upon re-exposure!
+      </div>
+
       <h3 class="section-subtitle">🎯 Uses</h3>
       <p>Indicated for upper/lower respiratory infections, streptococcal pharyngitis, acute otitis media, syphilis, and endocarditis prophylaxis.</p>
       <div class="mnemonic-box">
@@ -285,7 +365,7 @@
       </div>
 
       <h3 class="section-subtitle">⚠️ Adverse Effects</h3>
-      <p>Frequent side effects include <mark>hypersensitivity/anaphylaxis</mark>, gastrointestinal distress, pseudomembranous colitis, and electrolyte imbalances with high IV sodium/potassium salt loads.</p>
+      <p>Frequent side effects include <mark>hypersensitivity/anaphylaxis</mark>, gastrointestinal distress, pseudomembranous colitis, and electrolyte disturbances with high IV sodium/potassium loads.</p>
       <div class="mnemonic-box">
         <strong>🧠 Memory Mnemonic for Adverse Effects:</strong>
         <mark>HAGS</mark> &rarr; <mark>H</mark>ypersensitivity, <mark>A</mark>llergies, <mark>G</mark>I upset/diarrhea, <mark>S</mark>uperinfections (e.g., <em>C. diff</em>).
@@ -298,10 +378,10 @@
       <!-- ========================================== -->
       <!-- 2. CEPHALOSPORINS                          -->
       <!-- ========================================== -->
-      <h2 class="class-main-title">🛡️ 2. Cephalosporins</h2>
+      <h2 class="class-main-title">🛡️ 2. Cephalosporins <span class="phonetic">Pronunciation: sef-uh-luh-SPOR-ins</span></h2>
 
       <h3 class="section-subtitle">📌 Introduction</h3>
-      <p>Cephalosporins are semisynthetic beta-lactam antibiotics divided structurally into <mark>five distinct generations</mark>. As generations progress, activity shifts from predominantly Gram-positive coverage to extensive Gram-negative penetration and cerebrospinal fluid access.</p>
+      <p>Cephalosporins are semisynthetic beta-lactam antibiotics categorized structurally into <mark>five distinct generations</mark>. As generations progress, coverage shifts from Gram-positive focus to extensive Gram-negative potency and cerebrospinal fluid penetration.</p>
 
       <h3 class="section-subtitle">📋 Classification</h3>
       <div class="table-wrapper">
@@ -337,19 +417,19 @@
             <tr>
               <td><strong>5th Generation</strong></td>
               <td>Ceftaroline</td>
-              <td>Unique advanced spectrum with active coverage against <mark>MRSA (Methicillin-Resistant S. aureus)</mark>.</td>
+              <td>Advanced spectrum with active clinical coverage against <mark>MRSA (Methicillin-Resistant S. aureus)</mark>.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <h3 class="section-subtitle">⚡ Mechanism of Action (with Flow Animation)</h3>
-      <p>Functions similarly to penicillins by targeting bacterial cell wall synthesis architecture.</p>
+      <p>Functions similarly to penicillins by interfering with bacterial cell wall cross-linking.</p>
       
       <div class="flow-container">
         <div class="flow-step">1. Drug Penetrates Bacterial Wall</div>
         <div class="flow-arrow">&rarr;</div>
-        <div class="flow-step">2. Attaches to Specific Cell PBPs</div>
+        <div class="flow-step">2. Attaches to Target PBPs</div>
         <div class="flow-arrow">&rarr;</div>
         <div class="flow-step">3. Stops Peptidoglycan Synthesis</div>
         <div class="flow-arrow">&rarr;</div>
@@ -361,6 +441,11 @@
         <mark>CBW</mark> &rarr; <mark>C</mark>eph <mark>B</mark>locks <mark>W</mark>all.
       </div>
 
+      <div class="clinical-pearl">
+        <strong>💡 Clinical Ward Pearl (Nurse's Note):</strong>
+        Keep in mind that there is a <mark>1% to 10% cross-allergenicity</mark> rate between penicillins and early generation cephalosporins. Monitor closely if the patient has a mild penicillin allergy.
+      </div>
+
       <h3 class="section-subtitle">🎯 Uses</h3>
       <p>Surgical site infection prophylaxis, urinary tract infections, respiratory infections, pelvic inflammatory disease, and <mark>bacterial meningitis</mark>.</p>
       <div class="mnemonic-box">
@@ -369,7 +454,7 @@
       </div>
 
       <h3 class="section-subtitle">⚠️ Adverse Effects</h3>
-      <p>Allergic hypersensitivity reactions, cross-reactivity with penicillins (~1-10%), bleeding tendencies, <mark>disulfiram-like reactions with alcohol ingestion</mark>, and nephrotoxicity.</p>
+      <p>Allergic hypersensitivity reactions, cross-reactivity risks, bleeding tendencies, <mark>disulfiram-like reactions with alcohol ingestion</mark>, and nephrotoxicity.</p>
       <div class="mnemonic-box">
         <strong>🧠 Memory Mnemonic for Adverse Effects:</strong>
         <mark>BADS</mark> &rarr; <mark>B</mark>leeding risks, <mark>A</mark>llergies, <mark>D</mark>isulfiram alcohol reaction, <mark>S</mark>uperinfections.
@@ -382,10 +467,10 @@
       <!-- ========================================== -->
       <!-- 3. CARBAPENEMS                             -->
       <!-- ========================================== -->
-      <h2 class="class-main-title">🛡️ 3. Carbapenems</h2>
+      <h2 class="class-main-title">🛡️ 3. Carbapenems <span class="phonetic">Pronunciation: kar-buh-PEN-emz</span></h2>
 
       <h3 class="section-subtitle">📌 Introduction</h3>
-      <p>Carbapenems are synthetic, <mark>ultra-broad-spectrum beta-lactam antibiotics</mark> featuring a fused beta-lactam ring structure that provides exceptional resistance to most beta-lactamase (penicillinase) enzymes. They represent frontline therapy for severe, multi-drug resistant (MDR) infections.</p>
+      <p>Carbapenems are synthetic, <mark>ultra-broad-spectrum beta-lactam antibiotics</mark> featuring a modified fused ring structure that confers exceptional resistance to most beta-lactamase (penicillinase) enzymes. They serve as frontline heavy artillery for severe, multi-drug resistant (MDR) infections.</p>
 
       <h3 class="section-subtitle">📋 Classification</h3>
       <div class="table-wrapper">
@@ -423,12 +508,12 @@
       </div>
 
       <h3 class="section-subtitle">⚡ Mechanism of Action (with Flow Animation)</h3>
-      <p>Penetrates microbial cell walls with extreme rapidity and resists common resistance enzymes.</p>
+      <p>Penetrates microbial cell walls rapidly and resists enzymatic destruction.</p>
       
       <div class="flow-container">
         <div class="flow-step">1. Rapid Porin Channel Entry</div>
         <div class="flow-arrow">&rarr;</div>
-        <div class="flow-step">2. Evades Beta-Lactamase Destruction</div>
+        <div class="flow-step">2. Evades Beta-Lactamases</div>
         <div class="flow-arrow">&rarr;</div>
         <div class="flow-step">3. Binds Target PBPs Intensely</div>
         <div class="flow-arrow">&rarr;</div>
@@ -440,6 +525,11 @@
         <mark>CKBR</mark> &rarr; <mark>C</mark>arbapenems <mark>K</mark>ill <mark>B</mark>ugs <mark>R</mark>esistant.
       </div>
 
+      <div class="clinical-pearl">
+        <strong>💡 Clinical Ward Pearl (Nurse's Note):</strong>
+        Carbapenems are usually saved as <mark>"Big Guns"</mark> for hospital-acquired infections or when lower-tier antibiotics fail, preventing widespread community resistance!
+      </div>
+
       <h3 class="section-subtitle">🎯 Uses</h3>
       <p>Empiric therapy for severe polymicrobial infections, febrile neutropenia, hospital-acquired pneumonia, and <mark>multidrug-resistant bacterial sepsis</mark>.</p>
       <div class="mnemonic-box">
@@ -447,7 +537,7 @@
         <mark>SMIT</mark> &rarr; <mark>S</mark>epsis, <mark>M</mark>eningitis, <mark>I</mark>ntra-abdominal infections, <mark>T</mark>ough resistant bugs.
       </div>
 
-      <h3>⚠️ Adverse Effects</h3>
+      <h3 class="section-subtitle">⚠️ Adverse Effects</h3>
       <p>Gastrointestinal distress, injection site inflammation, allergic hypersensitivity, and a <mark>risk of central nervous system toxicity / seizures</mark> (most prominent with high-dose imipenem).</p>
       <div class="mnemonic-box">
         <strong>🧠 Memory Mnemonic for Adverse Effects:</strong>
@@ -457,8 +547,39 @@
       <h3 class="section-subtitle">🚫 Contraindications</h3>
       <p>Hypersensitivity to carbapenems and extreme caution in patients with pre-existing <mark>central nervous system disorders or active seizure histories</mark>.</p>
 
+
+      <!-- ========================================== -->
+      <!-- INTERACTIVE NCLEX QUICK CHECK QUIZ         -->
+      <!-- ========================================== -->
+      <div class="quiz-card">
+        <h3>🧠 NCLEX Quick-Check Self-Assessment</h3>
+        <p>A patient with a documented history of severe anaphylaxis to Penicillin is prescribed a 1st-generation Cephalosporin. What is the most appropriate nursing action?</p>
+        
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="checkAnswer(false)">A) Administer the medication as ordered without changes.</button>
+          <button class="quiz-btn" onclick="checkAnswer(true)">B) Hold the medication and notify the prescribing physician due to cross-sensitivity risks.</button>
+          <button class="quiz-btn" onclick="checkAnswer(false)">C) Give half the dose to test for tolerance.</button>
+        </div>
+
+        <div id="quizFeedback" class="quiz-feedback"></div>
+      </div>
+
     </main>
   </div>
+
+  <script>
+    function checkAnswer(isCorrect) {
+      const feedback = document.getElementById('quizFeedback');
+      feedback.style.display = 'block';
+      if (isCorrect) {
+        feedback.style.color = '#15803d';
+        feedback.innerHTML = '✅ Correct! Due to potential cross-allergenicity between beta-lactams, severe anaphylaxis to penicillins is a major caution/contraindication for cephalosporins. Always notify the provider!';
+      } else {
+        feedback.style.color = '#b91c1c';
+        feedback.innerHTML = '❌ Incorrect. Review cross-allergenicity guidelines. Patients with severe anaphylaxis to penicillins should generally avoid beta-lactam cross-reactants unless specifically cleared.';
+      }
+    }
+  </script>
 
 </body>
 </html>
