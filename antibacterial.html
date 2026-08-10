@@ -1,1 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Cell Wall Inhibitors - Pharmacology Unit II</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --secondary: #0d9488;
+      --bg-main: #f8fafc;
+      --surface: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #475569;
+      --border: #e2e8f0;
+      --highlight: #fef08a;
+      --radius: 14px;
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 24px 16px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--surface);
+      padding: 40px 30px;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      border: 1px solid var(--border);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 24px;
+      transition: gap 0.2s;
+    }
+
+    .back-link:hover {
+      gap: 10px;
+    }
+
+    .page-header {
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 16px;
+      margin-bottom: 30px;
+    }
+
+    .badge {
+      background: #e0f2fe;
+      color: var(--primary-dark);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: var(--text-main);
+      margin-top: 10px;
+      font-weight: 800;
+    }
+
+    h2.drug-class-title {
+      font-size: 1.6rem;
+      color: #0f172a;
+      margin-top: 45px;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      color: var(--primary-dark);
+      margin: 24px 0 10px;
+      font-weight: 700;
+    }
+
+    p, li {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    mark {
+      background-color: var(--highlight);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #1a202c;
+    }
+
+    .mnemonic-box {
+      background: #f0fdf4;
+      border-left: 4px solid #22c55e;
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+    }
+
+    .mnemonic-box strong {
+      color: #15803d;
+    }
+
+    /* Flow Animation Styles */
+    .flow-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin: 16px 0;
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px dashed var(--border);
+    }
+
+    .flow-step {
+      background: var(--surface);
+      border: 2px solid var(--primary);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+      animation: pulseGlow 2s infinite ease-in-out;
+    }
+
+    .flow-arrow {
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.2); }
+      50% { transform: scale(1.02); box-shadow: 0 0 0 6px rgba(2, 132, 199, 0); }
+      100% { transform: scale(1.01); box-shadow: 0 0 0 0 rgba(2, 132, 199, 0); }
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background-color: #f1f5f9;
+      color: var(--text-main);
+    }
+
+    @media (max-width: 650px) {
+      .container { padding: 20px 15px; }
+      h1 { font-size: 1.7rem; }
+      .flow-container { flex-direction: column; align-items: stretch; }
+      .flow-arrow { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <a href="chapter2.html" class="back-link">&larr; Back to Chapter 2 Hub</a>
+
+    <header class="page-header">
+      <span class="badge">Section 2.1 • Antibacterials</span>
+      <h1>Cell Wall Inhibitors (Beta-Lactams)</h1>
+      <p>Comprehensive clinical breakdown of core beta-lactam antibiotic classes, mechanisms, clinical applications, and essential nursing considerations.</p>
+    </header>
+
+    <main>
+
+      <!-- ================= PENICILLINS ================= -->
+      <h2 class="drug-class-title">1. Penicillins</h2>
+
+      <h3>Introduction</h3>
+      <p>Penicillins are among the oldest and most reliable beta-lactam antibacterial drugs, derived from the <mark>Penicillium fungi</mark>. They contain a core beta-lactam ring responsible for their bactericidal antibacterial activity.</p>
+
+      <h3>Classification</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Sub-Category</th>
+            <th>Examples</th>
+            <th>Spectrum &amp; Clinical Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Natural Penicillins</strong></td>
+            <td>Penicillin G, Penicillin V</td>
+            <td>Narrow spectrum; primarily effective against Gram-positive organisms.</td>
+          </tr>
+          <tr>
+            <td><strong>Aminopenicillins</strong></td>
+            <td>Amoxicillin, Ampicillin</td>
+            <td>Broadened spectrum; effective against certain Gram-negative bacilli.</td>
+          </tr>
+          <tr>
+            <td><strong>Penicillinase-Resistant</strong></td>
+            <td>Nafcillin, Oxacillin, Dicloxacillin</td>
+            <td>Resistant to penicillinase enzyme produced by specific staphylococci.</td>
+          </tr>
+          <tr>
+            <td><strong>Extended-Spectrum</strong></td>
+            <td>Piperacillin (often paired with tazobactam)</td>
+            <td>Pseudomonal coverage; used in severe nosocomial infections.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Mechanism of Action</h3>
+      <p>Penicillins target bacterial structural integrity by binding to specialized cellular structures.</p>
+      <div class="flow-container">
+        <div class="flow-step">1. Drug Administered</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">2. Binds Penicillin-Binding Proteins (PBPs)</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">3. Inhibits Peptidoglycan Cross-Linking</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">4. <mark>Osmotic Lysis (Bactericidal)</mark></div>
+      </div>
+      <div class="mnemonic-box">
+        <strong>Mechanism Mnemonic:</strong> <mark>P</in>enicillin <mark>B</mark>inds <mark>P</mark>roteins to <mark>D</mark>estroy <mark>W</mark>all (<mark>PBPDW</mark>)
+      </div>
+
+      <h3>Uses</h3>
+      <p>Indicated for respiratory tract infections, streptococcal pharyngitis, syphilis, and endocarditis prophylaxis.</p>
+      <div class="mnemonic-box">
+        <strong>Uses Mnemonic:</strong> <mark>S S G P</mark> &rarr; <mark>S</mark>trep throat, <mark>S</mark>yphilis, <mark>G</mark>onorrhea, <mark>P</mark>neumonia.
+      </div>
+
+      <h3>Adverse Effects</h3>
+      <p>Common complications include hypersensitivity reactions, gastrointestinal distress, and <mark>superinfections like <em>Clostridioides difficile</em></mark> or oral candidiasis.</p>
+      <div class="mnemonic-box">
+        <strong>Adverse Effects Mnemonic:</strong> <mark>H A G S</mark> &rarr; <mark>H</mark>ypersensitivity (anaphylaxis), <mark>A</mark>llergies, <mark>G</mark>I upset / diarrhea, <mark>S</mark>uperinfections.
+      </div>
+
+      <h3>Contraindications</h3>
+      <p>Absolute contraindication in patients with a history of <mark>severe, immediate-type anaphylactic hypersensitivity to penicillins</mark> or cephalosporins.</p>
+
+
+      <!-- ================= CEPHALOSPORINS ================= -->
+      <h2 class="drug-class-title">2. Cephalosporins</h2>
+
+      <h3>Introduction</h3>
+      <p>Cephalosporins are broad-spectrum beta-lactam antibiotics structurally related to penicillins. They are organized into <mark>five distinct generations</mark>, progressing from narrow Gram-positive coverage to extensive Gram-negative and central nervous system penetration.</p>
+
+      <h3>Classification</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Generation</th>
+            <th>Examples</th>
+            <th>Key Coverage Profile</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1st Generation</strong></td>
+            <td>Cefazolin, Cephalexin</td>
+            <td>Excellent Gram-positive coverage; frequent surgical prophylaxis.</td>
+          </tr>
+          <tr>
+            <td><strong>2nd Generation</strong></td>
+            <td>Cefaclor, Cefoxitin</td>
+            <td>Enhanced Gram-negative coverage compared to 1st generation.</td>
+          </tr>
+          <tr>
+            <td><strong>3rd Generation</strong></td>
+            <td>Ceftriaxone, Cefotaxime</td>
+            <td>Crosses the blood-brain barrier; highly effective against severe Gram-negative bacilli and meningitis.</td>
+          </tr>
+          <tr>
+            <td><strong>4th Generation</strong></td>
+            <td>Cefepime</td>
+            <td>Broad spectrum; highly potent against <em>Pseudomonas aeruginosa</em>.</td>
+          </tr>
+          <tr>
+            <td><strong>5th Generation</strong></td>
+            <td>Ceftaroline</td>
+            <td>Unique ability to cover <mark>Methicillin-Resistant Staphylococcus aureus (MRSA)</mark>.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Mechanism of Action</h3>
+      <p>Interferes directly with the structural scaffolding of active bacterial replication.</p>
+      <div class="flow-container">
+        <div class="flow-step">1. Enters Bacterial Matrix</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">2. Attaches to Specific PBPs</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">3. Blocks Cell Wall Synthesis</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">4. <mark>Cell Lysis &amp; Bacterial Death</mark></div>
+      </div>
+      <div class="mnemonic-box">
+        <strong>Mechanism Mnemonic:</strong> <mark>C</mark>eph <mark>B</mark>locks <mark>W</mark>all (<mark>CBW</mark>)
+      </div>
+
+      <h3>Uses</h3>
+      <p>Surgical prophylaxis, urinary tract infections, pelvic inflammatory disease, community-acquired pneumonia, and <mark>bacterial meningitis</mark> (3rd generation).</p>
+      <div class="mnemonic-box">
+        <strong>Uses Mnemonic:</strong> <mark>S U P E R</mark> &rarr; <mark>S</mark>urgical prophylaxis, <mark>U</mark>TIs, <mark>P</mark>neumonia, <mark>E</mark>ndocarditis, <mark>R</mark>espiratory infections.
+      </div>
+
+      <h3>Adverse Effects</h3>
+      <p>Hypersensitivity reactions, bleeding tendencies (due to hypoprothrombinemia in specific agents), <mark>disulfiram-like ethanol reactions</mark>, and nephrotoxicity when combined with aminoglycosides.</p>
+      <div class="mnemonic-box">
+        <strong>Adverse Effects Mnemonic:</strong> <mark>B A D S</mark> &rarr; <mark>B</mark>leeding risks, <mark>A</mark>llergies (cross-reactivity), <mark>D</mark>isulfiram-like alcohol reaction, <mark>S</mark>uperinfections.
+      </div>
+
+      <h3>Contraindications</h3>
+      <p>Hypersensitivity to cephalosporins and history of <mark>severe immediate anaphylaxis to penicillins</mark> (due to potential cross-allergenicity).</p>
+
+
+      <!-- ================= CARBAPENEMS ================= -->
+      <h2 class="drug-class-title">3. Carbapenems</h2>
+
+      <h3>Introduction</h3>
+      <p>Carbapenems are synthetic, <mark>ultra-broad-spectrum beta-lactam antibiotics</mark> featuring exceptional resistance to beta-lactamase (penicillinase) enzymes. They are typically reserved for complicated, multi-drug resistant (MDR) nosocomial infections.</p>
+
+      <h3>Classification</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Agent</th>
+            <th>Co-Formulation / Details</th>
+            <th>Primary Clinical Application</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Imipenem</strong></td>
+            <td>Formulated with <em>cilastatin</em> to prevent renal breakdown</td>
+            <td>Severe intra-abdominal, respiratory, and urinary tract infections.</td>
+          </tr>
+          <tr>
+            <td><strong>Meropenem</strong></td>
+            <td>Standalone agent; lower seizure risk than imipenem</td>
+            <td>Meningitis, sepsis, and severe polymicrobial infections.</td>
+          </tr>
+          <tr>
+            <td><strong>Ertapenem</strong></td>
+            <td>Once-daily dosing; lacks activity against <em>Pseudomonas</em></td>
+            <td>Community-acquired and complicated skin/pelvic infections.</td>
+          </tr>
+          <tr>
+            <td><strong>Doripenem</strong></td>
+            <td>High potency against pseudomonal strains</td>
+            <td>Complicated urinary tract and intra-abdominal infections.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Mechanism of Action</h3>
+      <p>Penetrates bacterial cells rapidly and resists enzymatic breakdown.</p>
+      <div class="flow-container">
+        <div class="flow-step">1. Rapid Cell Penetration</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">2. Binds PBPs (Resists Beta-Lactamases)</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">3. Halts Peptidoglycan Assembly</div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">4. <mark>Rapid Bactericidal Lysis</mark></div>
+      </div>
+      <div class="mnemonic-box">
+        <strong>Mechanism Mnemonic:</strong> <mark>C</mark>arbapenems <mark>K</mark>ill <mark>B</mark>ugs <mark>R</mark>esistant (<mark>CKBR</mark>)
+      </div>
+
+      <h3>Uses</h3>
+      <p>Severe polymicrobial infections, febrile neutropenia, complicated intra-abdominal infections, and <mark>multidrug-resistant hospital-acquired pneumonia</mark>.</p>
+      <div class="mnemonic-box">
+        <strong>Uses Mnemonic:</strong> <mark>S M I T</mark> &rarr; <mark>S</mark>epsis, <mark>M</mark>eningitis, <mark>I</mark>ntra-abdominal infections, <mark>T</mark>ough resistant bugs.
+      </div>
+
+      <h3>Adverse Effects</h3>
+      <p>Gastrointestinal distress, infusion site reactions, hypersensitivity, and a <mark>risk of drug-induced seizures</mark> (particularly notable with high-dose Imipenem therapy).</p>
+      <div class="mnemonic-box">
+        <strong>Adverse Effects Mnemonic:</strong> <mark>S G I H</mark> &rarr; <mark>S</mark>eizures (imipenem risk), <mark>G</mark>I distress, <mark>I</mark>nfusion reactions, <mark>H</mark>ypersensitivity.
+      </div>
+
+      <h3>Contraindications</h3>
+      <p>Hypersensitivity to carbapenems and caution in patients with a history of <mark>central nervous system disorders or seizure histories</mark>.</p>
+
+    </main>
+  </div>
+
+</body>
+</html>
