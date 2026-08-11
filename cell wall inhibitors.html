@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Cell Wall Inhibitors — Detailed Pharmacology Masterclass</title>
+  <title>Cell Wall Inhibitors — Ultimate Student Guide</title>
   <style>
     :root {
       --primary: #2563eb;
@@ -12,10 +12,14 @@
       --bg-gradient: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%);
       --text-dark: #0f172a;
       --text-muted: #475569;
-      --card-bg: rgba(255, 255, 255, 0.95);
+      --card-bg: rgba(255, 255, 255, 0.98);
       --card-border: #e2e8f0;
       --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
       --shadow-lg: 0 20px 25px -5px rgba(37, 99, 235, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --mnemonics-bg: #eff6ff;
+      --mnemonics-border: #bfdbfe;
+      --warning-bg: #fff1f2;
+      --warning-border: #fecdd3;
     }
 
     * {
@@ -34,7 +38,7 @@
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 1050px;
       margin: 0 auto;
       background: var(--card-bg);
       padding: 40px 35px;
@@ -73,7 +77,7 @@
     }
 
     h1 {
-      font-size: 2.3rem;
+      font-size: 2.4rem;
       font-weight: 800;
       background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%);
       -webkit-background-clip: text;
@@ -88,12 +92,14 @@
     }
 
     h2 {
-      font-size: 1.5rem;
+      font-size: 1.55rem;
       color: #1e293b;
-      margin: 40px 0 22px;
+      margin: 45px 0 22px;
       display: flex;
       align-items: center;
       gap: 10px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
     }
 
     h2::before {
@@ -105,159 +111,169 @@
       border-radius: 4px;
     }
 
-    /* Detailed Sections Layout */
-    .section-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
+    h3 {
+      font-size: 1.25rem;
+      color: #1e293b;
+      margin: 25px 0 12px;
     }
 
-    .detail-card {
+    p {
+      margin-bottom: 15px;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    /* Introduction Section & Flow Animation */
+    .intro-box {
       background: #ffffff;
       border: 2px solid var(--card-border);
       border-radius: 16px;
       padding: 28px;
-      position: relative;
-      overflow: hidden;
+      margin-bottom: 30px;
       box-shadow: var(--shadow-sm);
-      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-      opacity: 0;
-      transform: translateY(20px);
-      animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    .detail-card:nth-child(1) { animation-delay: 0.1s; }
-    .detail-card:nth-child(2) { animation-delay: 0.2s; }
-    .detail-card:nth-child(3) { animation-delay: 0.3s; }
-    .detail-card:nth-child(4) { animation-delay: 0.4s; }
+    .flow-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 25px;
+    }
 
-    .detail-card::before {
+    .flow-step {
+      background: #f8fafc;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      position: relative;
+      animation: pulseGlow 3s infinite alternate;
+    }
+
+    .flow-step:nth-child(1) { animation-delay: 0s; }
+    .flow-step:nth-child(2) { animation-delay: 0.75s; }
+    .flow-step:nth-child(3) { animation-delay: 1.5s; }
+    .flow-step:nth-child(4) { animation-delay: 2.25s; }
+
+    .flow-step .step-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .flow-step strong {
+      display: block;
+      color: #1e293b;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .flow-step span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Drug Card Framework */
+    .drug-class-card {
+      background: #ffffff;
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .drug-class-card::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 4px;
+      height: 5px;
       background: var(--primary-gradient);
+      border-radius: 16px 16px 0 0;
     }
 
-    .detail-card:hover {
-      transform: translateY(-5px);
-      border-color: #3b82f6;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .card-header-flex {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-
-    .card-icon {
-      width: 48px;
-      height: 48px;
-      background: #eff6ff;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      flex-shrink: 0;
-      transition: transform 0.3s ease;
-    }
-
-    .detail-card:hover .card-icon {
-      transform: scale(1.1) rotate(-5deg);
-      background: #dbeafe;
-    }
-
-    .detail-card h3 {
-      font-size: 1.3rem;
-      color: #1e293b;
-      font-weight: 700;
-    }
-
-    .detail-card p.card-desc {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 18px;
-    }
-
-    .drug-sublist {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .drug-item {
+    /* Sub-sections inside Cards */
+    .sub-block {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
-      border-radius: 10px;
-      padding: 14px 16px;
-    }
-
-    .drug-item strong {
-      display: block;
-      color: #1e293b;
-      font-size: 0.92rem;
-      margin-bottom: 4px;
-    }
-
-    .drug-item span {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    /* Animated List for Nursing Responsibilities */
-    .nursing-list {
-      list-style: none;
-      display: grid;
-      gap: 14px;
-      margin-top: 15px;
-    }
-
-    .nursing-item {
-      background: #ffffff;
-      border: 1px solid var(--card-border);
-      border-left: 4px solid var(--primary);
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 18px 20px;
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: var(--shadow-sm);
+      margin: 18px 0;
     }
 
-    .nursing-item:hover {
-      transform: translateX(6px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-    }
-
-    .nursing-number {
-      background: #dbeafe;
+    .sub-block h4 {
+      font-size: 1.05rem;
       color: #1e40af;
-      font-weight: 800;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      flex-shrink: 0;
-      margin-top: 2px;
+      gap: 8px;
     }
 
-    .nursing-content {
-      font-size: 0.95rem;
+    /* Mnemonics Styling */
+    .mnemonic-box {
+      background: var(--mnemonics-bg);
+      border: 1px solid var(--mnemonics-border);
+      border-left: 5px solid var(--primary);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 15px 0;
+    }
+
+    .mnemonic-box h4 {
+      color: #1e40af;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Warning / Contraindication Styling */
+    .warning-box {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-left: 5px solid #e11d48;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 15px 0;
+    }
+
+    .warning-box h4 {
+      color: #9f1239;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Grid for sub-drugs */
+    .subdrug-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .subdrug-item {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .subdrug-item strong {
+      display: block;
+      color: #0f172a;
+      font-size: 0.9rem;
+    }
+
+    .subdrug-item span {
+      font-size: 0.82rem;
       color: var(--text-muted);
-    }
-
-    .nursing-content strong {
-      color: #1e293b;
     }
 
     /* Keyframe Animations */
@@ -266,15 +282,9 @@
       to { opacity: 1; }
     }
 
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    @keyframes pulseGlow {
+      0% { border-color: #cbd5e1; background: #f8fafc; }
+      100% { border-color: var(--primary); background: #eff6ff; }
     }
 
     @media (max-width: 600px) {
@@ -284,10 +294,8 @@
       h1 {
         font-size: 1.8rem;
       }
-      .card-header-flex {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+      .flow-container {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -298,145 +306,228 @@
     <header>
       <div class="badge-container">
         <a href="index.html" class="badge">&larr; Back to Hub</a>
-        <span class="badge" style="background: #e2e8f0; color: #334155;">Subchapter I — Detailed Pharmacology</span>
+        <span class="badge" style="background: #e2e8f0; color: #334155;">Master Study Guide</span>
       </div>
       <h1>Cell Wall Inhibitors</h1>
-      <p class="subtitle">Comprehensive analysis of bactericidal agents targeting peptidoglycan synthesis, clinical classifications, spectrum of activity, and vital nursing protocols.</p>
+      <p class="subtitle">An intuitive, high-yield pharmacology masterclass designed for nursing students: Mechanisms, Mnemonics, Classifications, and Critical Care Points.</p>
     </header>
 
     <main>
-      <h2>Detailed Drug Classifications &amp; Subchapters</h2>
-      <div class="section-stack">
 
-        <!-- Penicillins Detail Card -->
-        <div class="detail-card">
-          <div class="card-header-flex">
-            <div class="card-icon">💊</div>
-            <div>
-              <h3>Penicillins</h3>
-              <p class="card-desc">Beta-lactam antibiotics containing a thiazolidine ring attached to a beta-lactam ring. They inhibit bacterial cell wall synthesis by binding to penicillin-binding proteins (PBPs), leading to cell lysis.</p>
-            </div>
+      <!-- 1. INTRODUCTION & MECHANISM OF ACTION -->
+      <section class="intro-box">
+        <h2>1. Introduction &amp; Mechanism of Action</h2>
+        <p>Bacterial cells survive in a hypotonic environment, meaning internal osmotic pressure is exceptionally high. To prevent themselves from bursting (lysed), bacteria rely on a rigid outer structure called the <strong>peptidoglycan cell wall</strong>. Cell wall inhibitors target this unique structure, making them <strong>bactericidal</strong> (killing active bacteria) while leaving human host cells unharmed (since human cells lack cell walls).</p>
+        
+        <h3>Flow Animation: How Cell Wall Inhibitors Kill Bacteria</h3>
+        <div class="flow-container">
+          <div class="flow-step">
+            <div class="step-icon">🧱</div>
+            <strong>Step 1: PBP Binding</strong>
+            <span>Drugs bind to Penicillin-Binding Proteins (PBPs) on the bacterial membrane.</span>
           </div>
-          <div class="drug-sublist">
-            <div class="drug-item">
+          <div class="flow-step">
+            <div class="step-icon">⛓️</div>
+            <strong>Step 2: Synthesis Block</strong>
+            <span>Cross-linking of peptidoglycan chains is blocked, halting wall construction.</span>
+          </div>
+          <div class="flow-step">
+            <div class="step-icon">💧</div>
+            <strong>Step 3: Osmotic Instability</strong>
+            <span>Water rushes unchecked into the bacterial cell due to high internal pressure.</span>
+          </div>
+          <div class="flow-step">
+            <div class="step-icon">💥</div>
+            <strong>Step 4: Cell Lysis</strong>
+            <span>The cell wall ruptures and the bacterium dies (Bactericidal effect).</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. PENICILLINS -->
+      <section class="drug-class-card">
+        <h2>2. Penicillins ("The -cillins")</h2>
+        <p>The foundational beta-lactam antibiotics discovered by Alexander Fleming. They are exceptionally effective against sensitive gram-positive organisms.</p>
+
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
               <strong>Natural Penicillins</strong>
-              <span>Penicillin G, Penicillin V (Target streptococci, sensitive gram-positive cocci).</span>
+              <span>Penicillin G (IV/IM), Penicillin V (Oral). Good for Strep.</span>
             </div>
-            <div class="drug-item">
+            <div class="subdrug-item">
               <strong>Aminopenicillins</strong>
-              <span>Ampicillin, Amoxicillin (Broader spectrum against gram-negative bacilli like E. coli).</span>
+              <span>Ampicillin, Amoxicillin. Broader spectrum, covers E. coli &amp; H. pylori.</span>
             </div>
-            <div class="drug-item">
-              <strong>Penicillinase-Resistant</strong>
-              <span>Dicloxacillin, Nafcillin, Oxacillin (Designed for penicillinase-producing Staphylococci).</span>
+            <div class="subdrug-item">
+              <strong>Antistaphylococcal</strong>
+              <span>Nafcillin, Oxacillin, Dicloxacillin. Resists penicillinase enzyme.</span>
             </div>
-            <div class="drug-item">
-              <strong>Extended-Spectrum</strong>
-              <span>Piperacillin (+ Tazobactam) providing robust antipseudomonal and anaerobic coverage.</span>
+            <div class="subdrug-item">
+              <strong>Antipseudomonal</strong>
+              <span>Piperacillin (+ Tazobactam = Zosyn). Heavy-hitter for hospital-acquired infections.</span>
             </div>
           </div>
         </div>
 
-        <!-- Cephalosporins Detail Card -->
-        <div class="detail-card">
-          <div class="card-header-flex">
-            <div class="card-icon">🛡️</div>
-            <div>
-              <h3>Cephalosporins</h3>
-              <p class="card-desc">Beta-lactam derivatives categorized into five generations. Progression from earlier generations (gram-positive focus) to later generations (enhanced gram-negative and CNS penetration).</p>
-            </div>
-          </div>
-          <div class="drug-sublist">
-            <div class="drug-item">
+        <div class="mnemonic-box">
+          <h4>💡 Mnemonic for Uses: "N.A.P.S."</h4>
+          <p><strong>N</strong>ecrotizing pneumonia/strep infections &bull; <strong>A</strong>nthrax prophylaxis &bull; <strong>P</strong>neumococcal &amp; Meningococcal infections &bull; <strong>S</strong>yphilis (Penicillin G is the gold standard).</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Mnemonic for Adverse Effects: "P.E.N.I.C.I.L.L.I.N."</h4>
+          <p><strong>P</strong>ain at injection site &bull; <strong>E</strong>lectrolyte imbalance (Na+/K+ overload) &bull; <strong>N</strong>ausea &amp; vomiting &bull; <strong>I</strong>nterstitial nephritis &bull; <strong>C</strong>lostridioides difficile diarrhea &bull; <strong>I</strong>mmunologic hypersensitivity (Anaphylaxis) &bull; <strong>L</strong>eukopenia &bull; <strong>L</strong>iver enzyme elevation &bull; <strong>I</strong>tching / Rash &bull; <strong>N</strong>eurological toxicity (seizures at high doses).</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Contraindications &amp; Precautions</h4>
+          <p>Absolute contraindication: History of severe immediate-type hypersensitivity (anaphylaxis) to any beta-lactam. Use with extreme caution in patients with renal impairment (dosage adjustments required).</p>
+        </div>
+
+        <div class="sub-block">
+          <h4>⭐ Important Nursing Points</h4>
+          <p>&bull; Always perform an allergy history check before giving the first dose.<br>&bull; Monitor patients for at least 30 minutes post-IV administration for signs of anaphylaxis (wheezing, hives, hypotension).<br>&bull; Oral amoxicillin can be taken with or without food, but suspension forms should be shaken well.</p>
+        </div>
+      </section>
+
+      <!-- 3. CEPHALOSPORINS -->
+      <section class="drug-class-card">
+        <h2>3. Cephalosporins (The "Cef-" or "Ceph-" Family)</h2>
+        <p>Structurally similar to penicillins but grouped into 5 generations. As generation numbers increase, gram-negative coverage and blood-brain barrier penetration improve, while gram-positive coverage slightly shifts.</p>
+
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Generations</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
               <strong>1st Generation</strong>
-              <span>Cefazolin, Cephalexin (Excellent gram-positive skin and soft tissue infection coverage).</span>
+              <span>Cefazolin, Cephalexin. Great for skin/soft tissue (Staph/Strep).</span>
             </div>
-            <div class="drug-item">
-              <strong>2nd &amp; 3rd Generation</strong>
-              <span>Cefuroxime, Ceftriaxone (Expanded gram-negative coverage; Ceftriaxone penetrates CSF for meningitis).</span>
+            <div class="subdrug-item">
+              <strong>2nd Generation</strong>
+              <span>Cefuroxime, Cefaclor. Better against anaerobes and respiratory bugs.</span>
             </div>
-            <div class="drug-item">
-              <strong>4th Generation</strong>
-              <span>Cefepime (Broad spectrum with enhanced stability against beta-lactamases and Pseudomonas).</span>
+            <div class="subdrug-item">
+              <strong>3rd Generation</strong>
+              <span>Ceftriaxone, Cefotaxime. Crosses BBB; great for meningitis &amp; gonorrhea.</span>
             </div>
-            <div class="drug-item">
-              <strong>5th Generation</strong>
-              <span>Ceftaroline (Unique activity against Methicillin-Resistant Staphylococcus aureus - MRSA).</span>
+            <div class="subdrug-item">
+              <strong>4th &amp; 5th Generation</strong>
+              <span>Cefepime (4th, Pseudomonas coverage), Ceftaroline (5th, covers MRSA).</span>
             </div>
           </div>
         </div>
 
-        <!-- Carbapenems & Monobactams Detail Card -->
-        <div class="detail-card">
-          <div class="card-header-flex">
-            <div class="card-icon">⚡</div>
-            <div>
-              <h3>Carbapenems &amp; Monobactams</h3>
-              <p class="card-desc">Ultra-broad spectrum beta-lactams resistant to most beta-lactamases, reserved for severe, multidrug-resistant nosocomial infections.</p>
-            </div>
-          </div>
-          <div class="drug-sublist">
-            <div class="drug-item">
+        <div class="mnemonic-box">
+          <h4>💡 Mnemonic for Uses: "C.E.F.S."</h4>
+          <p><strong>C</strong>ommunity-acquired pneumonia &bull; <strong>E</strong>ndocarditis prophylaxis before surgery &bull; <strong>F</strong>ebrile neutropenia (Cefepime) &bull; <strong>S</strong>urgical site infection prevention.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Mnemonic for Adverse Effects: "B.L.E.E.D."</h4>
+          <p><strong>B</strong>leeding risks (due to hypoprothrombinemia with certain types like cefoperazone) &bull; <strong>L</strong>iver test elevations &bull; <strong>E</strong>lectrolyte issues &bull; <strong>E</strong>nterocolitis (C. diff overgrowth) &bull; <strong>D</strong>isulfiram-like reaction (severe flushing, nausea, vomiting if alcohol is consumed with cefotetan).</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Contraindications &amp; Precautions</h4>
+          <p>Patients with a history of severe penicillin anaphylaxis should avoid cephalosporins due to a ~5-10% cross-reactivity rate (though newer guidelines suggest modern 2nd-5th gens carry lower risk, caution is mandatory). Avoid alcohol with specific cephalosporins.</p>
+        </div>
+
+        <div class="sub-block">
+          <h4>⭐ Important Nursing Points</h4>
+          <p>&bull; Teach patients strictly to avoid alcohol during and for 72 hours after finishing cefotetan or cefoperazone.<br>&bull; Monitor prothrombin time (PT/INR) in malnourished or critically ill patients on long-term therapy.<br>&bull; Ceftriaxone does not require renal dosage adjustment, making it unique for outpatient therapy.</p>
+        </div>
+      </section>
+
+      <!-- 4. CARBAPENEMS & MONOBACTAMS -->
+      <section class="drug-class-card">
+        <h2>4. Carbapenems &amp; Monobactams (The Heavy Hitters)</h2>
+        <p>Carbapenems are the broadest-spectrum beta-lactams known to medicine. They are reserved for complex, multi-drug resistant (MDR) infections. Monobactams (Aztreonam) offer a unique alternative for narrow gram-negative coverage.</p>
+
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
               <strong>Carbapenems</strong>
-              <span>Imipenem/Cilastatin, Meropenem, Ertapenem (Broadest spectrum available; monitor for seizures).</span>
+              <span>Imipenem/Cilastatin, Meropenem, Ertapenem. Ultra-broad spectrum.</span>
             </div>
-            <div class="drug-item">
+            <div class="subdrug-item">
               <strong>Monobactams</strong>
-              <span>Aztreonam (Narrow spectrum targeting aerobic gram-negative bacilli; safe for penicillin-allergic patients).</span>
+              <span>Aztreonam. Solely targets aerobic gram-negative rods; safe in penicillin allergy.</span>
             </div>
           </div>
         </div>
 
-        <!-- Glycopeptides Detail Card -->
-        <div class="detail-card">
-          <div class="card-header-flex">
-            <div class="card-icon">🧬</div>
-            <div>
-              <h3>Glycopeptides</h3>
-              <p class="card-desc">Complex cyclic glycopeptide antibiotics that inhibit cell wall synthesis by binding tightly to D-alanyl-D-alanine precursors, independent of PBPs.</p>
+        <div class="mnemonic-box">
+          <h4>💡 Mnemonic for Uses: "S.E.V.E.R.E."</h4>
+          <p><strong>S</strong>epsis of unknown origin &bull; <strong>E</strong>nterobacteriaceae multi-drug resistant strains &bull; <strong>V</strong>entilator-associated pneumonia &bull; <strong>E</strong>rtapenem for intra-abdominal infections &bull; <strong>R</strong>esistant nosocomial infections &bull; <strong>E</strong>xtreme mixed aerobic/anaerobic wounds.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Mnemonic for Adverse Effects: "S.N.A.P."</h4>
+          <p><strong>S</strong>eizures (Imipenem lowers seizure threshold, especially in renal failure) &bull; <strong>N</strong>ausea and vomiting &bull; <strong>A</strong>llergic cross-sensitivity (though rare with Aztreonam) &bull; <strong>P</strong>ain / phlebitis at the IV infusion site.</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Contraindications &amp; Precautions</h4>
+          <p>Use Imipenem with extreme caution in patients with a history of seizure disorders or central nervous system disorders. Ertapenem should not be infused with glucose-containing solutions.</p>
+        </div>
+
+        <div class="sub-block">
+          <h4>⭐ Important Nursing Points</h4>
+          <p>&bull; Aztreonam is a structural lifesaver: it can be safely given to patients with severe penicillin or cephalosporin anaphylaxis allergies because it does not cross-react.<br>&bull; Monitor neurological status closely for twitching or confusion during carbapenem therapy.</p>
+        </div>
+      </section>
+
+      <!-- 5. OTHER BETA-LACTAMASE INHIBITORS & LIPOPOLYSACCHARIDES -->
+      <section class="drug-class-card">
+        <h2>5. Other Beta-Lactamase Inhibitors &amp; Glycopeptides/Lipopeptides</h2>
+        <p>Bacteria fight back against beta-lactams by producing enzymes called <strong>beta-lactamases</strong> (penicillinases) that destroy the drug ring. Pharmacologists developed suicide inhibitors and alternative cell wall/membrane agents to bypass this defense.</p>
+
+        <div class="sub-block">
+          <h4>📂 Key Combinations &amp; Alternative Agents</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Beta-Lactamase Inhibitors</strong>
+              <span>Clavulanic Acid, Sulbactam, Tazobactam. Tied to penicillins (e.g., Augmentin, Zosyn).</span>
             </div>
-          </div>
-          <div class="drug-sublist">
-            <div class="drug-item">
-              <strong>Vancomycin</strong>
-              <span>Gold standard IV therapy for MRSA and severe gram-positive infections; oral form used strictly for C. diff colitis.</span>
+            <div class="subdrug-item">
+              <strong>Glycopeptides</strong>
+              <span>Vancomycin, Teicoplanin. Binds D-alanyl-D-alanine directly; essential for MRSA.</span>
             </div>
-            <div class="drug-item">
-              <strong>Therapeutic Drug Monitoring</strong>
-              <span>Requires precise serum trough and peak monitoring to prevent ototoxicity and nephrotoxicity.</span>
+            <div class="subdrug-item">
+              <strong>Lipopeptides</strong>
+              <span>Daptomycin. Inserts into bacterial cell membrane, causing rapid depolarization and ion loss.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Polypeptides</strong>
+              <span>Bacitracin, Polymyxin B. Topical or rescue agents disrupting cell membranes.</span>
             </div>
           </div>
         </div>
 
-      </div>
+        <div class="mnemonic-box">
+          <h4>💡 Mnemonic for Uses: "C.A.S.T." (Combinations &amp; Rescues)</h4>
+          <p><strong>C</strong>lavulanate + Amoxicillin (Augmentin for sinus/ear infections) &bull; <strong>A</strong>mpicillin + Sulbactam (Unasyn for skin/intra-abdominal) &bull; <strong>S</strong>ulbactam/Piperacillin-Tazobactam (Zosyn for pseudomonal sepsis) &bull; <strong>T</strong>acrolimus/Vancomycin oral therapy for C. diff colitis.</p>
+        </div>
 
-      <h2>Clinical Nursing Measures &amp; Patient Safety Protocols</h2>
-      <ul class="nursing-list">
-        <li class="nursing-item">
-          <div class="nursing-number">1</div>
-          <div class="nursing-content">
-            <strong>Hypersensitivity &amp; Cross-Reactivity Screening:</strong> Meticulously screen patients for prior allergic reactions to penicillins or cephalosporins before administering the first dose. Due to structural similarity, approximately 5% to 10% cross-allergenicity exists.
-          </div>
-        </li>
-        <li class="nursing-item">
-          <div class="nursing-number">2</div>
-          <div class="nursing-content">
-            <strong>Infusion Rate &amp; Red Man Syndrome Management:</strong> Administer intravenous Vancomycin slowly over at least 60 minutes (or longer for high doses) at a concentration not exceeding 5 mg/mL to prevent histamine-mediated flushing, pruritus, and hypotension known as Red Man Syndrome.
-          </div>
-        </li>
-        <li class="nursing-item">
-          <div class="nursing-number">3</div>
-          <div class="nursing-content">
-            <strong>Renal Function &amp; Laboratory Monitoring:</strong> Regularly track serum creatinine, blood urea nitrogen (BUN), and urine output, particularly when administering vancomycin or aminoglycosides concurrently, as nephrotoxicity risk is significantly amplified.
-          </div>
-        </li>
-        <li class="nursing-item">
-          <div class="nursing-number">4</div>
-          <div class="nursing-content">
-            <strong>Superinfections &amp; Gastrointestinal Support:</strong> Monitor patients for signs of secondary opportunistic infections during prolonged therapy, such as oral candidiasis (thrush) or <em>Clostridioides difficile</em>-associated severe watery diarrhea.
-          </div>
-        </li>
-      </ul>
+        <div class="mnemonic-box">
+          <h4>💡 Mnemonic for Adverse Effects (Vancomycin &amp; Daptomycin): "R.E.D. M.A.N."</h4>
+          <p><strong>R</strong>ed Man Syndrome (histamine flush from rapid vancomycin infusion) &bull; <strong>E</strong>ar damage (Ototoxicity with high troughs) &bull; <strong>D</strong>amage to kidneys (Nephrotoxicity) &bull; <strong>M</strong>uscle pain/myopathy (with Daptomycin) &bull; <strong>A</strong>naphylactoid reactions &bull; <strong>N</strong>o IM administration (must be IV slow infusion).</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Contraindications &amp; Precautions</h4>
+          <p>Never give Vancomycin via IV push—it must infuse over at least 60 minutes. Avoid concurrent administration of vancomycin and aminoglycosides unless absolutely necessary due to compounded nephrotoxicity.</p>
+        </div>
+
+        <div class="sub-block">
+          <h4>⭐ Important Nursing Points</h4>
+          <p>&bull; <strong>Therapeutic Drug Monitoring (TDM):</strong> Draw serum trough levels for Vancomycin just prior to the 4th dose to ensure therapeutic safety.<br>&bull; If Red Man Syndrome occurs (flushing of face/neck, hypotension), immediately pause the infusion, administer an antihistamine (diphenhydramine), and restart at a slower rate once symptoms resolve.</p>
+        </div>
+      </section>
+
     </main>
   </div>
 
