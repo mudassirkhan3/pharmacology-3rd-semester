@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Cell Wall Inhibitors: Advanced Clinical Pharmacology Masterclass</title>
+  <title>Antibacterial Pharmacology Masterclass Hub</title>
   <style>
     :root {
       --primary: #0284c7;
       --primary-dark: #0369a1;
-      --secondary: #0d9488;
+      --primary-gradient: linear-gradient(135deg, #0284c7 0%, #0d9488 100%);
       --accent: #f59e0b;
       --bg-main: #f8fafc;
       --surface: #ffffff;
-      --text-main: #1e293b;
+      --text-main: #0f172a;
       --text-muted: #475569;
       --border: #cbd5e1;
-      --highlight: #fef08a;
-      --pearl-bg: #fdf4ff;
-      --pearl-border: #e879f9;
-      --radius: 16px;
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 20px 30px -10px rgba(2, 132, 199, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --radius: 18px;
     }
 
     * {
@@ -29,478 +29,351 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-main);
+      background: var(--bg-main);
       color: var(--text-main);
       line-height: 1.7;
-      padding: 24px 14px;
+      padding: 30px 15px;
+      min-height: 100vh;
     }
 
-    .master-container {
-      max-width: 960px;
+    .container {
+      max-width: 1050px;
       margin: 0 auto;
-      background: var(--surface);
-      padding: 40px 30px;
+      background: var(--card-bg);
+      padding: 45px 35px;
       border-radius: var(--radius);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
       border: 1px solid var(--border);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+      animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    .header-banner {
-      background: linear-gradient(135deg, #0284c7 0%, #0f766e 100%);
-      color: white;
-      padding: 35px 30px;
-      border-radius: 14px;
-      margin-bottom: 40px;
-      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.2);
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 700;
+      font-size: 0.8rem;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 14px;
+      border: 1px solid #bae6fd;
+      animation: pulseBadge 3s infinite ease-in-out;
     }
 
-    .header-banner h1 {
-      font-size: 2.2rem;
+    @keyframes pulseBadge {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.2); }
+      50% { box-shadow: 0 0 0 6px rgba(2, 132, 199, 0); }
+    }
+
+    h1 {
+      font-size: 2.3rem;
       font-weight: 800;
+      background: linear-gradient(135deg, #0f172a 0%, #0284c7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       margin-bottom: 10px;
       letter-spacing: -0.5px;
     }
 
-    .header-banner p {
-      font-size: 1.05rem;
-      opacity: 0.95;
-      color: #f0fdf4;
+    .subtitle {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      margin-bottom: 35px;
     }
 
-    h2.class-main-title {
-      font-size: 1.75rem;
+    h2 {
+      font-size: 1.45rem;
       color: #0f172a;
-      margin-top: 55px;
-      margin-bottom: 24px;
-      padding-bottom: 12px;
-      border-bottom: 3px solid var(--primary);
+      margin: 45px 0 22px;
       display: flex;
       align-items: center;
       gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e2e8f0;
     }
 
-    h3.section-subtitle {
-      font-size: 1.25rem;
-      color: var(--primary-dark);
-      margin: 32px 0 12px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    p {
-      font-size: 0.98rem;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-    }
-
-    mark {
-      background-color: var(--highlight);
-      padding: 2px 6px;
-      border-radius: 4px;
-      color: #111827;
-      font-weight: 500;
-    }
-
-    .phonetic {
-      font-size: 0.85rem;
-      color: #0d9488;
-      background: #f0fdfa;
-      padding: 3px 10px;
-      border-radius: 6px;
-      border: 1px solid #ccfbf1;
+    h2::before {
+      content: '';
       display: inline-block;
-      margin-left: 8px;
-      font-style: italic;
+      width: 6px;
+      height: 24px;
+      background: var(--primary);
+      border-radius: 4px;
     }
 
-    .table-wrapper {
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      position: relative;
+      background: #ffffff;
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 26px;
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      transform: translateY(25px);
+      animation: slideUpCard 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      overflow-x: auto;
-      margin: 22px 0;
-      border-radius: 10px;
-      border: 1px solid var(--border);
+      height: 4px;
+      background: var(--primary-gradient);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 620px;
-      background: var(--surface);
+    .card:hover {
+      transform: translateY(-8px) scale(1.01);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-lg);
     }
 
-    th, td {
-      border: 1px solid var(--border);
-      padding: 14px 18px;
-      text-align: left;
-      font-size: 0.93rem;
+    .card:hover::before {
+      opacity: 1;
     }
 
-    th {
-      background-color: #f1f5f9;
-      color: var(--text-main);
+    .card-icon {
+      width: 50px;
+      height: 50px;
+      background: #f0f9ff;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 18px;
+      border: 1px solid #bae6fd;
+      transition: transform 0.35s ease, background 0.35s ease;
+    }
+
+    .card:hover .card-icon {
+      transform: scale(1.12) rotate(-6deg);
+      background: #e0f2fe;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      color: #0f172a;
+      margin-bottom: 8px;
       font-weight: 700;
     }
 
-    .mnemonic-box {
-      background: #f0fdf4;
-      border-left: 5px solid #22c55e;
-      padding: 18px 22px;
-      border-radius: 0 10px 10px 0;
-      margin: 20px 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-    }
-
-    .mnemonic-box strong {
-      color: #15803d;
-      font-size: 1.05rem;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .clinical-pearl {
-      background: var(--pearl-bg);
-      border-left: 5px solid var(--pearl-border);
-      padding: 18px 22px;
-      border-radius: 0 10px 10px 0;
-      margin: 20px 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-    }
-
-    .clinical-pearl strong {
-      color: #a21caf;
-      font-size: 1.05rem;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .flow-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-      margin: 22px 0;
-      background: #f8fafc;
-      padding: 24px;
-      border-radius: 12px;
-      border: 1px dashed var(--border);
-    }
-
-    .flow-step {
-      background: var(--surface);
-      border: 2px solid var(--primary);
-      padding: 14px 18px;
-      border-radius: 10px;
+    .card p {
       font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text-main);
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
-      animation: pulseGlow 2.5s infinite ease-in-out;
-      flex: 1;
-      min-width: 150px;
-      text-align: center;
-    }
-
-    .flow-arrow {
-      color: var(--primary);
-      font-weight: 900;
-      font-size: 1.3rem;
-    }
-
-    @keyframes pulseGlow {
-      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.2); }
-      50% { transform: scale(1.02); box-shadow: 0 0 0 6px rgba(2, 132, 199, 0); }
-      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(2, 132, 199, 0); }
-    }
-
-    ul {
-      padding-left: 20px;
-      margin-bottom: 16px;
-    }
-
-    li {
-      font-size: 0.96rem;
       color: var(--text-muted);
-      margin-bottom: 6px;
+      margin-bottom: 22px;
+    }
+
+    .card-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.25s ease;
+    }
+
+    .card:hover .card-link {
+      gap: 12px;
+    }
+
+    .nursing-list {
+      list-style: none;
+      display: grid;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .nursing-item {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: 12px;
+      padding: 18px 22px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      opacity: 0;
+      transform: translateX(-15px);
+      animation: slideInItem 0.5s ease forwards;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .nursing-item:nth-child(1) { animation-delay: 0.5s; }
+    .nursing-item:nth-child(2) { animation-delay: 0.6s; }
+    .nursing-item:nth-child(3) { animation-delay: 0.7s; }
+    .nursing-item:nth-child(4) { animation-delay: 0.8s; }
+
+    .nursing-item:hover {
+      transform: translateX(6px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .nursing-number {
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 800;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .nursing-content {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .nursing-content strong {
+      color: #0f172a;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUpCard {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInItem {
+      from {
+        opacity: 0;
+        transform: translateX(-15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
     @media (max-width: 768px) {
-      .master-container { padding: 20px 16px; }
-      .header-banner { padding: 24px 20px; }
-      .header-banner h1 { font-size: 1.7rem; }
-      .flow-container { flex-direction: column; align-items: stretch; }
-      .flow-arrow { text-align: center; transform: rotate(90deg); margin: 6px 0; }
+      .container { padding: 22px 16px; }
+      h1 { font-size: 1.8rem; }
+      .card-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <div class="master-container">
-
-    <div class="header-banner">
-      <h1>Cell Wall Inhibitors (Beta-Lactams)</h1>
-      <p>An immersive, professionally structured clinical pharmacology masterclass detailing core antibacterial classes, animated mechanisms, high-yield memory mnemonics, and essential ward considerations.</p>
-    </div>
+  <div class="container">
+    <header>
+      <span class="badge">Pharmacology — Antibacterial Masterclass Hub</span>
+      <h1>Antibacterial Therapeutics</h1>
+      <p class="subtitle">An advanced clinical repository dedicated strictly to antibacterial agents, specialized subchapters, and vital evidence-based nursing protocols.</p>
+    </header>
 
     <main>
+      <h2>Antibacterial Subchapters</h2>
+      <div class="card-grid">
 
-      <!-- ========================================== -->
-      <!-- 1. PENICILLINS                             -->
-      <!-- ========================================== -->
-      <h2 class="class-main-title">🛡️ 1. Penicillins <span class="phonetic">Pronunciation: pen-uh-SIL-ins</span></h2>
+        <!-- Cell Wall Inhibitors -->
+        <a href="cell wall inhibitors.html" class="card">
+          <div>
+            <div class="card-icon">🛡️</div>
+            <h3>Cell Wall Inhibitors</h3>
+            <p>Beta-lactams (Penicillins, Cephalosporins, Carbapenems) and Glycopeptides disrupting peptidoglycan synthesis.</p>
+          </div>
+          <span class="card-link">Explore Subchapter &rarr;</span>
+        </a>
 
-      <h3 class="section-subtitle">📌 Introduction</h3>
-      <p>Penicillins represent the cornerstone historical class of <mark>beta-lactam antibacterial medications</mark> originally extracted from <em>Penicillium</em> fungi. Their core chemical structure contains a signature 4-membered beta-lactam ring that is vital for disrupting bacterial structural synthesis and achieving <mark>bactericidal destruction</mark>.</p>
+        <!-- Protein Synthesis Inhibitors -->
+        <a href="protein-synthesis.html" class="card">
+          <div>
+            <div class="card-icon">🧬</div>
+            <h3>Protein Synthesis Inhibitors</h3>
+            <p>Targeting bacterial $30S$ and $50S$ ribosomal subunits (Aminoglycosides, Tetracyclines, Macrolides, Lincosamides).</p>
+          </div>
+          <span class="card-link">Explore Subchapter &rarr;</span>
+        </a>
 
-      <h3 class="section-subtitle">📋 Classification</h3>
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Classification Subgroup</th>
-              <th>Representative Agent Examples</th>
-              <th>Antimicrobial Spectrum &amp; Clinical Context</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Natural Penicillins</strong></td>
-              <td>Penicillin G, Penicillin V</td>
-              <td>Narrow spectrum; exceptionally effective against <mark>Gram-positive cocci</mark> and spirochetes (e.g., Treponema pallidum).</td>
-            </tr>
-            <tr>
-              <td><strong>Aminopenicillins</strong></td>
-              <td>Amoxicillin, Ampicillin</td>
-              <td>Expanded spectrum; features enhanced penetration across outer walls of selective Gram-negative bacilli.</td>
-            </tr>
-            <tr>
-              <td><strong>Penicillinase-Resistant</strong></td>
-              <td>Nafcillin, Oxacillin, Dicloxacillin</td>
-              <td>Specialized formulation engineered to withstand <mark>beta-lactamase (penicillinase)</mark> enzymes produced by staphylococci.</td>
-            </tr>
-            <tr>
-              <td><strong>Extended-Spectrum (Antipseudomonal)</strong></td>
-              <td>Piperacillin (frequently paired with tazobactam)</td>
-              <td>Ultra-broad spectrum; deployed aggressively against <em>Pseudomonas aeruginosa</em> and complex nosocomial sepsis.</td>
-            </tr>
-          </tbody>
-        </table>
+        <!-- Fluoroquinolones, Folic Acid Antagonists & Urinary Tract Antiseptics -->
+        <a href="Fluoroquinolones,Folic Acid Antagonists,,Urinary Tract Antiseptics.html" class="card">
+          <div>
+            <div class="card-icon">⚡</div>
+            <h3>Quinolones &amp; Antimetabolites</h3>
+            <p>DNA synthesis inhibitors, TMP-SMX folic acid blockers, and specialized renal tract antiseptic medications.</p>
+          </div>
+          <span class="card-link">Explore Subchapter &rarr;</span>
+        </a>
+
+        <!-- Antimycobacterial Drugs -->
+        <a href="Antimycobacterial Drugs.html" class="card">
+          <div>
+            <div class="card-icon">🦠</div>
+            <h3>Antimycobacterial Regimens</h3>
+            <p>First-line multi-drug RIPE protocols for Tuberculosis and chronic mycobacterial infection management.</p>
+          </div>
+          <span class="card-link">Explore Subchapter &rarr;</span>
+        </a>
+
       </div>
 
-      <h3 class="section-subtitle">⚡ Mechanism of Action (with Flow Animation)</h3>
-      <p>Penicillins inhibit the final phase of bacterial cell wall synthesis by interfering with structural integrity maintenance.</p>
-      
-      <div class="flow-container">
-        <div class="flow-step">1. Systemic Absorption &amp; Tissue Distribution</div>
-        <div class="flow-arrow">&rarr;</div>
-        <div class="flow-step">2. Covalently Binds Penicillin-Binding Proteins (PBPs)</div>
-        <div class="flow-arrow">&rarr;</div>
-        <div class="flow-step">3. Halts Peptidoglycan Cross-Linking Assembly</div>
-        <div class="flow-arrow">&rarr;</div>
-        <div class="flow-step">4. <mark>Induces Cell Lysis &amp; Bacterial Death</mark></div>
-      </div>
-
-      <div class="mnemonic-box">
-        <strong>🧠 Action Mnemonic:</strong>
-        <mark>PBPDW</mark> &rarr; <mark>P</mark>enicillin <mark>B</mark>inds <mark>P</mark>roteins to <mark>D</mark>estroy <mark>W</mark>all.
-      </div>
-
-      <div class="clinical-pearl">
-        <strong>💡 Clinical Ward Pearl:</strong>
-        Always perform a rigorous allergy reconciliation before administration. Even minor historical reports of rashes or hives require detailed clinical clearance due to potential anaphylactic escalation.
-      </div>
-
-      <h3 class="section-subtitle">🎯 Uses</h3>
-      <p>Clinically indicated for upper and lower respiratory tract infections, acute streptococcal pharyngitis, syphilis protocols, and infective endocarditis prophylaxis.</p>
-      <div class="mnemonic-box">
-        <strong>🧠 Uses Mnemonic:</strong>
-        <mark>SSGP</mark> &rarr; <mark>S</mark>trep throat, <mark>S</mark>yphilis, <mark>G</mark>onorrhea, <mark>P</mark>neumonia.
-      </div>
-
-      <h3 class="section-subtitle">⚠️ Adverse Effects</h3>
-      <p>Frequent side effects include <mark>hypersensitivity reactions (ranging from mild rashes to fatal anaphylaxis)</mark>, gastrointestinal upset, pseudomembranous colitis, and electrolyte imbalances during high-dose sodium or potassium salt administration.</p>
-      <div class="mnemonic-box">
-        <strong>🧠 Adverse Effects Mnemonic:</strong>
-        <mark>HAGS</mark> &rarr; <mark>H</mark>ypersensitivity, <mark>A</mark>llergies, <mark>G</mark>I upset / diarrhea, <mark>S</mark>uperinfections (e.g., <em>C. difficile</em>).
-      </div>
-
-      <h3 class="section-subtitle">🚫 Contraindications</h3>
-      <p>Absolute contraindication in patients with documented history of <mark>severe, immediate IgE-mediated anaphylactic hypersensitivity</mark> to penicillins or related beta-lactam compounds.</p>
-
-
-      <!-- ========================================== -->
-      <!-- 2. CEPHALOSPORINS                          -->
-      <!-- ========================================== -->
-      <h2 class="class-main-title">🛡️ 2. Cephalosporins <span class="phonetic">Pronunciation: sef-uh-luh-SPOR-ins</span></h2>
-
-      <h3 class="section-subtitle">📌 Introduction</h3>
-      <p>Cephalosporins are semisynthetic beta-lactam antibacterial drugs systematically structured across <mark>five distinct generations</mark>. As generational evolution advances, antimicrobial activity transitions from primary Gram-positive potency to profound Gram-extended coverage and robust cerebrospinal fluid penetration.</p>
-
-      <h3 class="section-subtitle">📋 Classification</h3>
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Generation Tier</th>
-              <th>Representative Agent Examples</th>
-              <th>Key Antimicrobial Spectrum Profile</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>1st Generation</strong></td>
-              <td>Cefazolin, Cephalexin</td>
-              <td>Exceptional Gram-positive coverage; standard gold standard for <mark>surgical site infection prophylaxis</mark>.</td>
-            </tr>
-            <tr>
-              <td><strong>2nd Generation</strong></td>
-              <td>Cefaclor, Cefoxitin</td>
-              <td>Balanced Gram-positive activity coupled with extended Gram-negative coverage (e.g., <em>E. coli</em>, <em>Klebsiella</em>).</td>
-            </tr>
-            <tr>
-              <td><strong>3rd Generation</strong></td>
-              <td>Ceftriaxone, Cefotaxime</td>
-              <td>Crosses blood-brain barrier smoothly; highly potent against resistant bacilli and <mark>bacterial meningitis</mark>.</td>
-            </tr>
-            <tr>
-              <td><strong>4th Generation</strong></td>
-              <td>Cefepime</td>
-              <td>Advanced broad spectrum; powerful therapeutic efficacy against resistant strains and <em>Pseudomonas aeruginosa</em>.</td>
-            </tr>
-            <tr>
-              <td><strong>5th Generation</strong></td>
-              <td>Ceftaroline</td>
-              <td>Unique structural capability providing proven active clinical coverage against <mark>MRSA (Methicillin-Resistant S. aureus)</mark>.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3 class="section-subtitle">⚡ Mechanism of Action (with Flow Animation)</h3>
-      <p>Operates via parallel beta-lactam architecture to disrupt cell wall mucopeptide construction.</p>
-      
-      <div class="flow-container">
-        <div class="flow-step">1. Transverses Bacterial Membrane Walls</div>
-        <div class="flow-arrow">&rarr;</div>
-        <div class="flow-step">2. Attaches Selectively to Target PBPs</div>
-        <div class="flow-arrow">&rarr;</div>
-        <div class="flow-step">3. Blocks Essential Peptidoglycan Synthesis</div>
-        <div class="flow-arrow">&rarr;</div>
-        <div class="flow-step">4. <mark>Rapid Osmotic Lysis &amp; Bacterial Death</mark></div>
-      </div>
-
-      <div class="mnemonic-box">
-        <strong>🧠 Action Mnemonic:</strong>
-        <mark>CBW</mark> &rarr; <mark>C</mark>eph <mark>B</mark>locks <mark>W</mark>all.
-      </div>
-
-      <div class="clinical-pearl">
-        <strong>💡 Clinical Ward Pearl:</strong>
-        Note that an estimated <mark>1% to 10% cross-allergenicity rate</mark> exists between penicillins and early-generation cephalosporins. Always evaluate severity before switching classes.
-      </div>
-
-      <h3 class="section-subtitle">🎯 Uses</h3>
-      <p>Surgical prophylaxis, complicated urinary tract infections, community-acquired respiratory infections, pelvic inflammatory disease, and <mark>acute bacterial meningitis</mark>.</p>
-      <div class="mnemonic-box">
-        <strong>🧠 Uses Mnemonic:</strong>
-        <mark>SUPER</mark> &rarr; <mark>S</mark>urgical prophylaxis, <mark>U</mark>TIs, <mark>P</mark>neumonia, <mark>E</mark>ndocarditis, <mark>R</mark>espiratory infections.
-      </div>
-
-      <h3 class="section-subtitle">⚠️ Adverse Effects</h3>
-      <p>Allergic hypersensitivity, cross-reactivity risks, bleeding complications (due to hypoprothrombinemic tendencies), <mark>disulfiram-like reactions concurrent with alcohol ingestion</mark>, and nephrotoxicity when synergized with aminoglycosides.</p>
-      <div class="mnemonic-box">
-        <strong>🧠 Adverse Effects Mnemonic:</strong>
-        <mark>BADS</mark> &rarr; <mark>B</mark>leeding risks, <mark>A</mark>llergies, <mark>D</mark>isulfiram-like alcohol reaction, <mark>S</mark>uperinfections.
-      </div>
-
-      <h3 class="section-subtitle">🚫 Contraindications</h3>
-      <p>Documented hypersensitivity reactions or historic anaphylaxis to cephalosporin class compounds or related beta-lactam antibiotics.</p>
-
-
-      <!-- ========================================== -->
-      <!-- 3. CARBAPENEMS                             -->
-      <!-- ========================================== -->
-      <h2 class="class-main-title">🛡️ 3. Carbapenems <span class="phonetic">Pronunciation: kar-buh-PEN-emz</span></h2>
-
-      <h3 class="section-subtitle">📌 Introduction</h3>
-      <p>Carbapenems are synthetic, <mark>ultra-broad-spectrum beta-lactam antibiotics</mark> featuring a modified fused ring configuration that grants profound structural stability and resistance against most beta-lactamase (penicillinase) enzymes. They serve as frontline heavy interventions for severe, multi-drug resistant (MDR) infections.</p>
-
-      <h3 class="section-subtitle">📋 Classification</h3>
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Carbapenem Agent</th>
-              <th>Formulation Notes &amp; Pharmacokinetics</th>
-              <th>Primary Clinical Application Focus</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Imipenem</strong></td>
-              <td>Formulated in a fixed combination with <mark>cilastatin</mark> to prevent renal tubular dehydropeptidase degradation.</td>
-              <td>Severe intra-abdominal, respiratory tract, and urinary infections.</td>
-            </tr>
-            <tr>
-              <td><strong>Meropenem</strong></td>
-              <td>Administered as a standalone agent; exhibits a markedly lower central nervous system seizure liability.</td>
-              <td>Bacterial meningitis, severe sepsis, and complex polymicrobial infections.</td>
-            </tr>
-            <tr>
-              <td><strong>Ertapenem</strong></td>
-              <td>Features convenient once-daily dosing advantages; lacks clinically significant activity against <em>Pseudomonas</em>.</td>
-              <td>Community-acquired pneumonia and complicated skin or pelvic structure infections.</td>
-            </tr>
-            <tr>
-              <td><strong>Doripenem</strong></td>
-              <td>Demonstrates high intrinsic potency against resistant pseudomonal clinical isolates.</td>
-              <td>Complicated urinary tract and intra-abdominal nosocomial infections.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3 class="section-subtitle">⚡ Mechanism of Action (with Flow Animation)</h3>
-      <p>Penetrates bacterial cell walls with exceptional velocity and evades enzymatic destruction.</p>
-      
-      <div class="flow-container">
-        <div class="flow-step">1. Rapid Porin Channel Entry</div>
-        <div class="flow-arrow">&rarr;</div>
-        <div class="flow-step">2. Evades Hydrolysis by Beta-Lactamases</div>
-        <div class="flow-arrow">&rarr;</div>
-        <div class="flow-step">3. Binds Target PBPs with High Affinity</div>
-        <div class="flow-arrow">&rarr;</div>
-        <div class="flow-step">4. <mark>Rapid Bactericidal Lysis &amp; Eradication</mark></div>
-      </div>
-
-      <div class="mnemonic-box">
-        <strong>🧠 Action Mnemonic:</strong>
-        <mark>CKBR</mark> &rarr; <mark>C</mark>arbapenems <mark>K</mark>ill <mark>B</mark>ugs <mark>R</mark>esistant.
-      </div>
-
-      <div class="clinical-pearl">
-        <strong>💡 Clinical Ward Pearl:</strong>
-        Carbapenems are traditionally preserved as <mark>"Big Guns"</mark> in stewardship protocols to safeguard against widespread resistance and reserve efficacy for complex hospital-acquired bugs!
-      </div>
-
-      <h3 class="section-subtitle">🎯 Uses</h3>
-      <p>Empiric coverage for severe polymicrobial infections, febrile neutropenia, hospital-acquired pneumonia, and <mark>multidrug-resistant bacterial sepsis</mark>.</p>
-      <div class="mnemonic-box">
-        <strong>🧠 Uses Mnemonic:</strong>
-        <mark>SMIT</mark> &rarr; <mark>S</mark>epsis, <mark>M</mark>eningitis, <mark>I</mark>ntra-abdominal infections, <mark>T</mark>ough resistant bugs.
-      </div>
-
-      <h3 class="section-subtitle">⚠️ Adverse Effects</h3>
-      <p>Gastrointestinal distress, infusion site phlebitis, allergic hypersensitivity, and a <mark>dose-dependent risk of central nervous system toxicity / seizures</mark> (most prominent during high-dose Imipenem therapy).</p>
-      <div class="mnemonic-box">
-        <strong>🧠 Adverse Effects Mnemonic:</strong>
-        <mark>SGIH</mark> &rarr; <mark>S</mark>eizures (imipenem risk), <mark>G</mark>I distress, <mark>I</mark>nfusion reactions, <mark>H</mark>ypersensitivity.
-      </div>
-
-      <h3 class="section-subtitle">🚫 Contraindications</h3>
-      <p>Hypersensitivity to carbapenem agents and caution in patients with pre-existing <mark>central nervous system disorders, structural brain lesions, or active seizure histories</mark>.</p>
-
+      <h2>Essential Clinical Ward Protocols &amp; Nursing Measures</h2>
+      <ul class="nursing-list">
+        <li class="nursing-item">
+          <div class="nursing-number">1</div>
+          <div class="nursing-content">
+            <strong>Culture &amp; Sensitivity Timing:</strong> Always obtain targeted diagnostic cultures (blood, urine, sputum, or wound swabs) <em>prior</em> to administering the first loading dose of antibacterial therapy.
+          </div>
+        </li>
+        <li class="nursing-item">
+          <div class="nursing-number">2</div>
+          <div class="nursing-content">
+            <strong>Antimicrobial Stewardship &amp; Compliance:</strong> Educate patients thoroughly on completing the entire prescribed therapeutic course to prevent resistant bacterial strain development.
+          </div>
+        </li>
+        <li class="nursing-item">
+          <div class="nursing-number">3</div>
+          <div class="nursing-content">
+            <strong>Hypersensitivity &amp; Cross-Reactivity Screening:</strong> Perform meticulous allergy reconciliations regarding beta-lactams and monitor patients closely during the initial infusion window.
+          </div>
+        </li>
+        <li class="nursing-item">
+          <div class="nursing-number">4</div>
+          <div class="nursing-content">
+            <strong>Therapeutic Drug Monitoring (TDM):</strong> Rigorously track serum peak and trough concentrations for narrow therapeutic index agents to optimize bacterial eradication safely.
+          </div>
+        </li>
+      </ul>
     </main>
   </div>
 
