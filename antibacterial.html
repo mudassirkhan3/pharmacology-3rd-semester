@@ -6,19 +6,16 @@
   <title>Antibacterial Pharmacology Masterclass Hub</title>
   <style>
     :root {
+      --bg-gradient: radial-gradient(circle at 10% 20%, rgb(2, 132, 199, 0.08) 0%, rgba(13, 148, 136, 0.05) 40%, #f8fafc 90%);
       --primary: #0284c7;
       --primary-dark: #0369a1;
-      --primary-gradient: linear-gradient(135deg, #0284c7 0%, #0d9488 100%);
-      --accent: #f59e0b;
-      --bg-main: #f8fafc;
-      --surface: #ffffff;
+      --accent: #10b981;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --card-border: rgba(203, 213, 225, 0.8);
       --text-main: #0f172a;
       --text-muted: #475569;
-      --border: #cbd5e1;
-      --card-bg: rgba(255, 255, 255, 0.98);
-      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
-      --shadow-lg: 0 20px 30px -10px rgba(2, 132, 199, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-      --radius: 18px;
+      --shadow-glow: 0 20px 40px -15px rgba(2, 132, 199, 0.25);
+      --radius: 20px;
     }
 
     * {
@@ -29,92 +26,112 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg-main);
+      background: var(--bg-gradient);
+      background-attachment: fixed;
       color: var(--text-main);
       line-height: 1.7;
-      padding: 30px 15px;
+      padding: 40px 16px;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     .container {
-      max-width: 1050px;
+      max-width: 1100px;
       margin: 0 auto;
       background: var(--card-bg);
-      padding: 45px 35px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 50px 40px;
       border-radius: var(--radius);
-      border: 1px solid var(--border);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
-      animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+      animation: zoomInSmooth 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Floating Header Badge */
+    .hero-header {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
     }
 
     .badge {
-      display: inline-block;
-      padding: 6px 16px;
-      background: #e0f2fe;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      background: linear-gradient(135deg, #e0f2fe 0%, #ccfbf1 100%);
       color: #0369a1;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.8rem;
       border-radius: 50px;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
-      margin-bottom: 14px;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
       border: 1px solid #bae6fd;
-      animation: pulseBadge 3s infinite ease-in-out;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.1);
+      animation: floatBadge 4s ease-in-out infinite;
     }
 
-    @keyframes pulseBadge {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.2); }
-      50% { box-shadow: 0 0 0 6px rgba(2, 132, 199, 0); }
+    .badge span {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 8px var(--accent);
     }
 
     h1 {
-      font-size: 2.3rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #0f172a 0%, #0284c7 100%);
+      font-size: 2.6rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #0f172a 0%, #0284c7 50%, #0d9488 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
-      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+      letter-spacing: -0.8px;
     }
 
     .subtitle {
-      font-size: 1.08rem;
+      font-size: 1.1rem;
       color: var(--text-muted);
-      margin-bottom: 35px;
+      max-width: 750px;
+      margin: 0 auto;
     }
 
+    /* Section Headings */
     h2 {
-      font-size: 1.45rem;
+      font-size: 1.5rem;
       color: #0f172a;
-      margin: 45px 0 22px;
+      margin: 50px 0 25px;
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid #e2e8f0;
+      gap: 14px;
+      position: relative;
     }
 
     h2::before {
       content: '';
       display: inline-block;
-      width: 6px;
-      height: 24px;
-      background: var(--primary);
-      border-radius: 4px;
+      width: 8px;
+      height: 28px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+      border-radius: 6px;
     }
 
+    /* Stunning Creative Card Grid */
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 22px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
     }
 
     .card {
       position: relative;
       background: #ffffff;
-      border: 2px solid var(--border);
-      border-radius: 16px;
-      padding: 26px;
+      border: 2px solid var(--card-border);
+      border-radius: 18px;
+      padding: 30px 24px;
       text-decoration: none;
       color: inherit;
       overflow: hidden;
@@ -122,135 +139,144 @@
       flex-direction: column;
       justify-content: space-between;
       opacity: 0;
-      transform: translateY(25px);
-      animation: slideUpCard 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateY(30px);
+      animation: cardEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.03);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    .card:nth-child(1) { animation-delay: 0.1s; }
-    .card:nth-child(2) { animation-delay: 0.2s; }
-    .card:nth-child(3) { animation-delay: 0.3s; }
-    .card:nth-child(4) { animation-delay: 0.4s; }
+    .card:nth-child(1) { animation-delay: 0.15s; }
+    .card:nth-child(2) { animation-delay: 0.3s; }
+    .card:nth-child(3) { animation-delay: 0.45s; }
+    .card:nth-child(4) { animation-delay: 0.6s; }
 
-    .card::before {
+    .card::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: var(--primary-gradient);
+      inset: 0;
+      border-radius: 18px;
+      border: 2px solid transparent;
+      background: linear-gradient(135deg, var(--primary), var(--accent)) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.4s ease;
     }
 
     .card:hover {
-      transform: translateY(-8px) scale(1.01);
-      border-color: var(--primary);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: var(--shadow-glow);
+      border-color: transparent;
     }
 
-    .card:hover::before {
+    .card:hover::after {
       opacity: 1;
     }
 
     .card-icon {
-      width: 50px;
-      height: 50px;
-      background: #f0f9ff;
-      border-radius: 14px;
+      width: 58px;
+      height: 58px;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      margin-bottom: 18px;
+      font-size: 26px;
+      margin-bottom: 20px;
       border: 1px solid #bae6fd;
-      transition: transform 0.35s ease, background 0.35s ease;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.4s ease;
     }
 
     .card:hover .card-icon {
-      transform: scale(1.12) rotate(-6deg);
-      background: #e0f2fe;
+      transform: scale(1.18) rotate(-8deg);
+      background: linear-gradient(135deg, #0284c7 0%, #0d9488 100%);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 8px 16px rgba(2, 132, 199, 0.3);
     }
 
     .card h3 {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       color: #0f172a;
-      margin-bottom: 8px;
-      font-weight: 700;
+      margin-bottom: 10px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
     }
 
     .card p {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--text-muted);
-      margin-bottom: 22px;
+      margin-bottom: 25px;
     }
 
     .card-link {
-      font-size: 0.88rem;
-      font-weight: 700;
+      font-size: 0.9rem;
+      font-weight: 800;
       color: var(--primary);
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 6px;
-      transition: gap 0.25s ease;
+      gap: 8px;
+      transition: gap 0.3s ease, color 0.3s ease;
     }
 
     .card:hover .card-link {
-      gap: 12px;
+      gap: 14px;
+      color: var(--accent);
     }
 
+    /* Creative Nursing Protocol List */
     .nursing-list {
       list-style: none;
       display: grid;
-      gap: 16px;
-      margin-top: 20px;
+      gap: 18px;
+      margin-top: 25px;
     }
 
     .nursing-item {
       background: #ffffff;
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--primary);
-      border-radius: 12px;
-      padding: 18px 22px;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px 24px;
       display: flex;
       align-items: flex-start;
-      gap: 16px;
+      gap: 18px;
       opacity: 0;
-      transform: translateX(-15px);
-      animation: slideInItem 0.5s ease forwards;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      transition: all 0.3s ease;
     }
 
-    .nursing-item:nth-child(1) { animation-delay: 0.5s; }
-    .nursing-item:nth-child(2) { animation-delay: 0.6s; }
-    .nursing-item:nth-child(3) { animation-delay: 0.7s; }
-    .nursing-item:nth-child(4) { animation-delay: 0.8s; }
+    .nursing-item:nth-child(1) { animation-delay: 0.7s; }
+    .nursing-item:nth-child(2) { animation-delay: 0.8s; }
+    .nursing-item:nth-child(3) { animation-delay: 0.9s; }
+    .nursing-item:nth-child(4) { animation-delay: 1s; }
 
     .nursing-item:hover {
-      transform: translateX(6px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      transform: translateX(8px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 25px rgba(2, 132, 199, 0.08);
+      background: linear-gradient(to right, #ffffff, #f0f9ff);
     }
 
     .nursing-number {
-      background: #e0f2fe;
-      color: #0369a1;
+      background: linear-gradient(135deg, #0284c7 0%, #0d9488 100%);
+      color: white;
       font-weight: 800;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
+      font-size: 14px;
       flex-shrink: 0;
-      margin-top: 2px;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.25);
     }
 
     .nursing-content {
-      font-size: 0.95rem;
+      font-size: 0.96rem;
       color: var(--text-muted);
     }
 
@@ -258,36 +284,30 @@
       color: #0f172a;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    /* Keyframe Animations */
+    @keyframes zoomInSmooth {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
     }
 
-    @keyframes slideUpCard {
-      from {
-        opacity: 0;
-        transform: translateY(25px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    @keyframes cardEntrance {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes slideInItem {
-      from {
-        opacity: 0;
-        transform: translateX(-15px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
     }
 
     @media (max-width: 768px) {
-      .container { padding: 22px 16px; }
-      h1 { font-size: 1.8rem; }
+      .container { padding: 30px 20px; }
+      h1 { font-size: 2rem; }
       .card-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -295,14 +315,14 @@
 <body>
 
   <div class="container">
-    <header>
-      <span class="badge">Pharmacology — Antibacterial Masterclass Hub</span>
-      <h1>Antibacterial Therapeutics</h1>
-      <p class="subtitle">An advanced clinical repository dedicated strictly to antibacterial agents, specialized subchapters, and vital evidence-based nursing protocols.</p>
-    </header>
+    <div class="hero-header">
+      <div class="badge"><span></span> Unit II Clinical Repository</div>
+      <h1>Antibacterial Pharmacology Masterclass</h1>
+      <p class="subtitle">An immersive, high-precision web portal exploring targeted antimicrobial mechanisms, advanced pharmacokinetics, and evidence-based nursing interventions.</p>
+    </div>
 
     <main>
-      <h2>Antibacterial Subchapters</h2>
+      <h2>Essential Antibacterial Subchapters</h2>
       <div class="card-grid">
 
         <!-- Cell Wall Inhibitors -->
@@ -312,7 +332,7 @@
             <h3>Cell Wall Inhibitors</h3>
             <p>Beta-lactams (Penicillins, Cephalosporins, Carbapenems) and Glycopeptides disrupting peptidoglycan synthesis.</p>
           </div>
-          <span class="card-link">Explore Subchapter &rarr;</span>
+          <span class="card-link">Access Subchapter &rarr;</span>
         </a>
 
         <!-- Protein Synthesis Inhibitors -->
@@ -322,32 +342,32 @@
             <h3>Protein Synthesis Inhibitors</h3>
             <p>Targeting bacterial $30S$ and $50S$ ribosomal subunits (Aminoglycosides, Tetracyclines, Macrolides, Lincosamides).</p>
           </div>
-          <span class="card-link">Explore Subchapter &rarr;</span>
+          <span class="card-link">Access Subchapter &rarr;</span>
         </a>
 
-        <!-- Fluoroquinolones, Folic Acid Antagonists & Urinary Tract Antiseptics -->
+        <!-- Quinolones & Antimetabolites -->
         <a href="Fluoroquinolones,Folic Acid Antagonists,,Urinary Tract Antiseptics.html" class="card">
           <div>
             <div class="card-icon">⚡</div>
             <h3>Quinolones &amp; Antimetabolites</h3>
             <p>DNA synthesis inhibitors, TMP-SMX folic acid blockers, and specialized renal tract antiseptic medications.</p>
           </div>
-          <span class="card-link">Explore Subchapter &rarr;</span>
+          <span class="card-link">Access Subchapter &rarr;</span>
         </a>
 
-        <!-- Antimycobacterial Drugs -->
+        <!-- Antimycobacterial Regimens -->
         <a href="Antimycobacterial Drugs.html" class="card">
           <div>
             <div class="card-icon">🦠</div>
             <h3>Antimycobacterial Regimens</h3>
             <p>First-line multi-drug RIPE protocols for Tuberculosis and chronic mycobacterial infection management.</p>
           </div>
-          <span class="card-link">Explore Subchapter &rarr;</span>
+          <span class="card-link">Access Subchapter &rarr;</span>
         </a>
 
       </div>
 
-      <h2>Essential Clinical Ward Protocols &amp; Nursing Measures</h2>
+      <h2>Clinical Ward Protocols &amp; Nursing Responsibilities</h2>
       <ul class="nursing-list">
         <li class="nursing-item">
           <div class="nursing-number">1</div>
