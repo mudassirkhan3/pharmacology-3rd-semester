@@ -6,7 +6,26 @@
   <title>Student Dashboard | Pharmacology-I Portal</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    /* Security: Prevent Text Highlighting & Copying */
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      font-family: 'Plus Jakarta Sans', sans-serif; 
+      -webkit-user-select: none; 
+      -moz-user-select: none; 
+      -ms-user-select: none; 
+      user-select: none; 
+    }
+
+    /* Allow typing inside input fields */
+    input {
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
+    }
+
     body { background: #f1f5f9; color: #0f172a; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; }
 
     /* Header */
@@ -159,7 +178,7 @@
 
           <!-- Chapters Grid -->
           <div class="chapters-grid">
-            <a href="chapter1.html" class="chapter-box">
+            <a href="chapter1.html" class="chapter-box" onclick="return checkAccess(event)">
               <div>
                 <h4>Unit I: Basics</h4>
                 <p>Terminologies, history, sources, &amp; drug classifications.</p>
@@ -167,7 +186,7 @@
               <span class="chapter-link-text">Read Notes →</span>
             </a>
 
-            <a href="chapter2.html" class="chapter-box">
+            <a href="chapter2.html" class="chapter-box" onclick="return checkAccess(event)">
               <div>
                 <h4>Unit II: Infections</h4>
                 <p>Antibiotics, antifungals, antivirals &amp; patient care.</p>
@@ -175,7 +194,7 @@
               <span class="chapter-link-text">Read Notes →</span>
             </a>
 
-            <a href="chapter3.html" class="chapter-box">
+            <a href="chapter3.html" class="chapter-box" onclick="return checkAccess(event)">
               <div>
                 <h4>Unit III: Gastrointestinal</h4>
                 <p>GI symptoms, disorder medications &amp; dosages.</p>
@@ -183,7 +202,7 @@
               <span class="chapter-link-text">Read Notes →</span>
             </a>
 
-            <a href="chapter4.html" class="chapter-box">
+            <a href="chapter4.html" class="chapter-box" onclick="return checkAccess(event)">
               <div>
                 <h4>Unit IV: Hematology</h4>
                 <p>Blood disorders, anticoagulants &amp; monitoring.</p>
@@ -191,7 +210,7 @@
               <span class="chapter-link-text">Read Notes →</span>
             </a>
 
-            <a href="chapter5.html" class="chapter-box">
+            <a href="chapter5.html" class="chapter-box" onclick="return checkAccess(event)">
               <div>
                 <h4>Unit V: Anti-Neoplastic</h4>
                 <p>Chemotherapy drugs, actions &amp; safety protocols.</p>
@@ -260,7 +279,40 @@
   </footer>
 
   <script>
-    // Database of Single-Use Access Codes (false = unused, true = already used)
+    // --- ADVANCED SECURITY LOCK SCRIPTS ---
+
+    // 1. Disable Right-Click Context Menu Everywhere
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      alert('⚠️ Right-click is disabled to protect copyrighted study materials.');
+    });
+
+    // 2. Disable Developer Shortcuts (F12, Ctrl+Shift+I, Ctrl+U, Ctrl+S)
+    document.addEventListener('keydown', function(e) {
+      if (
+        e.keyCode === 123 || 
+        (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || 
+        (e.ctrlKey && e.keyCode === 85) || 
+        (e.ctrlKey && e.keyCode === 83)
+      ) {
+        e.preventDefault();
+        alert('⚠️ Unauthorized action blocked.');
+        return false;
+      }
+    });
+
+    // 3. Prevent Chapter Access if Code is Not Verified
+    function checkAccess(event) {
+      if (localStorage.getItem('pharmacologyUnlocked') !== 'true') {
+        event.preventDefault();
+        alert('❌ Locked! Please enter your valid single-use access code first.');
+        return false;
+      }
+      return true;
+    }
+
+    // --- DATABASE & APP LOGIC ---
+
     let validCodes = JSON.parse(localStorage.getItem('pharmacologyDatabaseCodes')) || {
       "PHARMA-101": false,
       "PHARMA-102": false,
@@ -269,7 +321,6 @@
     };
 
     window.onload = function() {
-      // Check if student logged in through login.html
       if (localStorage.getItem('pharmacologyLoggedIn') !== 'true') {
         window.location.href = 'login.html';
         return;
@@ -277,13 +328,11 @@
 
       loadUserDataToUI();
 
-      // Load profile picture preview if saved
       const savedPic = localStorage.getItem('pharmacologyUserPic');
       if (savedPic) {
         document.getElementById('profile-pic').src = savedPic;
       }
 
-      // Check if access code was already verified in this session
       if (localStorage.getItem('pharmacologyUnlocked') === 'true') {
         unlockContentUI();
       }
@@ -300,7 +349,6 @@
       }
     }
 
-    // Edit Profile Modal Handlers
     function openEditProfileModal() {
       const userJSON = localStorage.getItem('pharmacologyUser');
       let user = userJSON ? JSON.parse(userJSON) : {
@@ -336,7 +384,6 @@
       alert('✅ Profile updated successfully!');
     }
 
-    // Forgot Password Modal Handlers
     function openForgotPasswordModal() {
       document.getElementById('resetEmailInput').value = '';
       document.getElementById('newPasswordInput').value = '';
@@ -356,7 +403,6 @@
         return;
       }
 
-      // Update registered users database if stored in localStorage
       let usersDB = JSON.parse(localStorage.getItem('pharmacologyRegisteredUsers')) || [];
       let found = false;
 
@@ -373,13 +419,11 @@
         alert('🎉 Password updated successfully! You can now log in with your new password.');
         closeForgotPasswordModal();
       } else {
-        // Fallback if user list isn't populated or active session matches
         alert('🎉 Password reset instructions/update completed successfully!');
         closeForgotPasswordModal();
       }
     }
 
-    // Verify Single-Use Access Code
     function verifySingleUseCode() {
       const enteredCode = document.getElementById('sidebarAccessInput').value.trim();
 
@@ -392,11 +436,9 @@
         if (validCodes[enteredCode] === true) {
           alert('❌ Access Denied: This code has already been used by another student and cannot be reused!');
         } else {
-          // Permanently mark code as used
           validCodes[enteredCode] = true;
           localStorage.setItem('pharmacologyDatabaseCodes', JSON.stringify(validCodes));
           
-          // Unlock dashboard content
           localStorage.setItem('pharmacologyUnlocked', 'true');
           unlockContentUI();
           alert('🎉 Success! Code verified. All chapter notes are now unlocked.');
@@ -406,7 +448,6 @@
       }
     }
 
-    // Helper to unlock chapters UI
     function unlockContentUI() {
       document.getElementById('lockOverlay').style.display = 'none';
       const statusText = document.getElementById('accessStatusText');
@@ -416,7 +457,6 @@
       document.getElementById('sidebarAccessInput').disabled = true;
     }
 
-    // Handle profile picture local upload preview & save
     function previewImage(event) {
       const file = event.target.files[0];
       if (file) {
@@ -430,7 +470,6 @@
       }
     }
 
-    // Logout clears login session and redirects back to login.html
     function logout() {
       localStorage.removeItem('pharmacologyLoggedIn');
       localStorage.removeItem('pharmacologyUser');
