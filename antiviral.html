@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Antiviral Pharmacology Guide — Comprehensive Classifications &amp; MOA</title>
+  <style>
+    :root {
+      --primary: #0d9488;
+      --primary-gradient: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+      --accent: #2dd4bf;
+      --bg-gradient: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%);
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --card-border: #e2e8f0;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(13, 148, 136, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --mnemonics-bg: #f0fdf4;
+      --mnemonics-border: #bbf7d0;
+      --warning-bg: #fff1f2;
+      --warning-border: #fecdd3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f8fafc;
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 20px 15px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 40px 35px;
+      border-radius: 20px;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .badge-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #ccfbf1;
+      color: #0f766e;
+      font-weight: 700;
+      font-size: 13px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1e293b 0%, #0d9488 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      margin-bottom: 35px;
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      color: #1e293b;
+      margin: 45px 0 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 24px;
+      background: var(--primary);
+      border-radius: 4px;
+    }
+
+    h4 {
+      font-size: 1.05rem;
+      color: #0f766e;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    p {
+      margin-bottom: 15px;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .drug-class-card {
+      background: #ffffff;
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 35px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .drug-class-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-gradient);
+      border-radius: 16px 16px 0 0;
+    }
+
+    .sub-block {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+
+    .moa-flow-box {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 14px;
+      padding: 22px;
+      margin: 20px 0;
+    }
+
+    .moa-flow-box h4 {
+      color: #166534;
+      margin-bottom: 15px;
+    }
+
+    .flow-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+    }
+
+    .flow-step {
+      background: #ffffff;
+      border: 2px dashed #86efac;
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      animation: pulseGlow 3s infinite alternate;
+    }
+
+    .flow-step:nth-child(1) { animation-delay: 0s; }
+    .flow-step:nth-child(2) { animation-delay: 0.75s; }
+    .flow-step:nth-child(3) { animation-delay: 1.5s; }
+    .flow-step:nth-child(4) { animation-delay: 2.25s; }
+
+    .flow-step .step-icon {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .flow-step strong {
+      display: block;
+      color: #14532d;
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+    }
+
+    .flow-step span {
+      font-size: 0.8rem;
+      color: #166534;
+    }
+
+    .mnemonic-box {
+      background: var(--mnemonics-bg);
+      border: 1px solid var(--mnemonics-border);
+      border-left: 5px solid var(--primary);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 15px 0;
+    }
+
+    .mnemonic-box h4 {
+      color: #0f766e;
+    }
+
+    .warning-box {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-left: 5px solid #e11d48;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 15px 0;
+    }
+
+    .warning-box h4 {
+      color: #9f1239;
+    }
+
+    .subdrug-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .subdrug-item {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+
+    .subdrug-item strong {
+      display: block;
+      color: #0f172a;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .subdrug-item .moa-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      background: #ccfbf1;
+      color: #0f766e;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .subdrug-item span {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulseGlow {
+      0% { border-color: #86efac; background: #ffffff; }
+      100% { border-color: #0d9488; background: #f0fdf4; }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 16px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .flow-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge-container">
+        <span class="badge">Simplified Nursing Study Guide</span>
+      </div>
+      <h1>Antiviral Pharmacology Guide</h1>
+      <p class="subtitle">Complete classification breakdown, exact mechanisms of action, clinical uses, and high-yield exam mnemonics for viral infections.</p>
+    </header>
+
+    <main>
+
+      <!-- ================= 1. RESPIRATORY VIRUS INFECTIONS ================= -->
+      <section class="drug-class-card">
+        <h2>Respiratory Virus Infections</h2>
+        <p><em>Antiviral agents used to prevent and treat acute respiratory infections, primarily Influenza and Respiratory Syncytial Virus (RSV).</em></p>
+        
+        <div class="sub-block">
+          <h4>📂 Drug Names &amp; Molecular MOA</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Oseltamivir / Zanamivir</strong>
+              <span class="moa-tag">MOA: Neuraminidase Inhibitors</span>
+              <span>Inhibits viral neuraminidase enzyme, preventing newly replicated influenza virions from budding off and spreading to other host cells.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Baloxavir Marboxil</strong>
+              <span class="moa-tag">MOA: Cap-Dependent Endonuclease Inhibitor</span>
+              <span>Blocks the polymerase acidic protein of influenza viruses, halting viral transcription and mRNA synthesis.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Palivizumab</strong>
+              <span class="moa-tag">MOA: Monoclonal Antibody Fusion Blocker</span>
+              <span>Binds to the F protein of RSV, preventing viral entry and infection in high-risk pediatric infants.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="moa-flow-box">
+          <h4>⚡ Animated MOA Workflow: Blocking Respiratory Spread</h4>
+          <div class="flow-container">
+            <div class="flow-step">
+              <div class="step-icon">🦠</div>
+              <strong>Step 1: Virus Entry</strong>
+              <span>Respiratory virus enters airway epithelial cells and replicates rapidly.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">🛑</div>
+              <strong>Step 2: Enzyme Blockade</strong>
+              <span>Drugs inhibit neuraminidase or endonuclease enzymes to halt viral progeny maturation.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">🛡️</div>
+              <strong>Step 3: Release Prevention</strong>
+              <span>Infected cells cannot release new virions, trapping the infection locally.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">✨</div>
+              <strong>Step 4: Symptom Reduction</strong>
+              <span>Shortens illness duration and prevents severe lower respiratory complications.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Mnemonic: "O.Z.B." for Influenza</h4>
+          <p><strong>O</strong>seltamivir (oral pill) &bull; <strong>Z</strong>anamivir (inhaled powder) &bull; <strong>B</strong>aloxavir (single-dose endonuclease inhibitor).</p>
+        </div>
+      </section>
+
+      <!-- ================= 2. HEPATIC VIRUS INFECTIONS (HBV & HCV) ================= -->
+      <section class="drug-class-card">
+        <h2>Hepatic Virus Infections (Hepatitis B &amp; C)</h2>
+        <p><em>Targeted antiviral therapies and direct-acting antivirals (DAAs) to suppress chronic Hepatitis B and cure Hepatitis C infections.</em></p>
+        
+        <div class="sub-block">
+          <h4>📂 Drug Names &amp; Molecular MOA</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Entecavir / Tenofovir (HBV)</strong>
+              <span class="moa-tag">MOA: Reverse Transcriptase Inhibitors</span>
+              <span>Competes with natural nucleotides to inhibit HBV polymerase and viral DNA chain elongation.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Sofosbuvir (HCV)</strong>
+              <span class="moa-tag">MOA: NS5B Polymerase Inhibitor</span>
+              <span>Acts as a nucleotide prodrug that terminates HCV RNA chain elongation during replication.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Ledipasvir / Glecaprevir (HCV)</strong>
+              <span class="moa-tag">MOA: NS5A / Protease Inhibitors</span>
+              <span>Disrupts HCV viral assembly proteins and blocks core protease enzymes required for viral maturation.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="moa-flow-box">
+          <h4>⚡ Animated MOA Workflow: Hepatic Viral Suppression &amp; Cure</h4>
+          <div class="flow-container">
+            <div class="flow-step">
+              <div class="step-icon">🧬</div>
+              <strong>Step 1: Nucleotide Mimicry</strong>
+              <span>Drugs mimic building blocks and target viral polymerases inside hepatocytes.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">⛓️</div>
+              <strong>Step 2: Chain Termination</strong>
+              <span>Abruptly stops viral DNA or RNA strand growth.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">📉</div>
+              <strong>Step 3: Viral Load Drop</strong>
+              <span>Significantly lowers circulating viral counts, reducing liver inflammation and cirrhosis risk.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">✨</div>
+              <strong>Step 4: Sustained Virologic Response</strong>
+              <span>Achieves permanent cure for HCV (SVR12) and long-term remission for HBV.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Mnemonic: "H.E.P. S.O.F."</h4>
+          <p><strong>H</strong>epatitis B treated with <strong>E</strong>ntecavir &amp; <strong>P</strong>eginterferon &bull; <strong>S</strong>ofosbuvir &bull; <strong>O</strong>ther <strong>F</strong>ixed DAAs curing Hepatitis C.</p>
+        </div>
+      </section>
+
+      <!-- ================= 3. HERPESVIRUS & CYTOMEGALOVIRUS ================= -->
+      <section class="drug-class-card">
+        <h2>Herpesvirus and Cytomegalovirus (CMV)</h2>
+        <p><em>Nucleoside analogs designed to manage Herpes Simplex (HSV), Varicella-Zoster (VZV), and Cytomegalovirus (CMV) infections.</em></p>
+        
+        <div class="sub-block">
+          <h4>📂 Drug Names &amp; Molecular MOA</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Acyclovir / Valacyclovir</strong>
+              <span class="moa-tag">MOA: Viral DNA Polymerase Inhibitor</span>
+              <span>Requires viral thymidine kinase for initial activation; incorporates into viral DNA to cause chain termination.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Ganciclovir / Valganciclovir</strong>
+              <span class="moa-tag">MOA: CMV Polymerase Inhibitor</span>
+              <span>Specifically targeted for cytomegalovirus; inhibits viral DNA polymerase and halts replication.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Foscarnet</strong>
+              <span class="moa-tag">MOA: Pyrophosphate Analog</span>
+              <span>Directly inhibits viral DNA polymerase without requiring prior viral enzyme activation.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="moa-flow-box">
+          <h4>⚡ Animated MOA Workflow: Herpes DNA Termination</h4>
+          <div class="flow-container">
+            <div class="flow-step">
+              <div class="step-icon">🔑</div>
+              <strong>Step 1: Viral Activation</strong>
+              <span>Drug is selectively phosphorylated by viral enzymes inside infected cells.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">🧱</div>
+              <strong>Step 2: False Building Block</strong>
+              <span>Inserts into growing viral DNA strands, mimicking normal nucleotides.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">🛑</div>
+              <strong>Step 3: Synthesis Halt</strong>
+              <span>Stops further DNA elongation, halting blister formation and nerve replication.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">✨</div>
+              <strong>Step 4: Latent Suppression</strong>
+              <span>Controls recurrent outbreaks and systemic CMV complications.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Mnemonic: "A.V.G.F."</h4>
+          <p><strong>A</strong>cyclovir &bull; <strong>V</strong>alacyclovir &bull; <strong>G</strong>anciclovir (CMV specialist) &bull; <strong>F</strong>oscarnet (resistant strains rescue).</p>
+        </div>
+      </section>
+
+      <!-- ================= 4. HIV: NNRTIs, PROTEASE INHIBITORS, ENTRY INHIBITORS ================= -->
+      <section class="drug-class-card">
+        <h2>HIV: NNRTIs, Protease Inhibitors &amp; Entry Inhibitors</h2>
+        <p><em>Antiretroviral classes targeting distinct phases of the HIV replication cycle: reverse transcription, polyprotein cleavage, and cellular entry.</em></p>
+        
+        <div class="sub-block">
+          <h4>📂 Drug Names &amp; Molecular MOA</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Efavirenz / Rilpivirine (NNRTIs)</strong>
+              <span class="moa-tag">MOA: Non-Nucleoside RT Inhibitors</span>
+              <span>Binds directly and non-competitively to HIV reverse transcriptase enzyme, changing its shape and disabling function.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Atazanavir / Darunavir (Protease Inhibitors)</strong>
+              <span class="moa-tag">MOA: HIV Protease Blockers</span>
+              <span>Inhibits HIV protease enzyme, preventing cleavage of viral polyproteins into mature, infectious viral particles.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Maraviroc / Enfuvirtide (Entry Inhibitors)</strong>
+              <span class="moa-tag">MOA: CCR5 Antagonist / Fusion Inhibitor</span>
+              <span>Blocks host cell CCR5 coreceptors or prevents viral membrane fusion to stop HIV from entering CD4 cells.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="moa-flow-box">
+          <h4>⚡ Animated MOA Workflow: Multi-Target Antiretroviral Blockade</h4>
+          <div class="flow-container">
+            <div class="flow-step">
+              <div class="step-icon">🚪</div>
+              <strong>Step 1: Entry Block</strong>
+              <span>Entry inhibitors stop HIV from binding or fusing to CD4 cell membranes.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">⚙️</div>
+              <strong>Step 2: Enzyme Shutdown</strong>
+              <span>NNRTIs disable reverse transcriptase so viral RNA is never converted to DNA.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">✂️</div>
+              <strong>Step 3: Cleavage Halt</strong>
+              <span>Protease inhibitors prevent structural proteins from assembling into functional viruses.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">✨</div>
+              <strong>Step 4: Viral Suppression</strong>
+              <span>Maintains undetectable viral loads and preserves immune function.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Mnemonic: "E.P.E."</h4>
+          <p><strong>E</strong>favirenz (NNRTI) &bull; <strong>P</strong>rotease inhibitors ending in -navir &bull; <strong>E</strong>ntry &amp; fusion blockers (Maraviroc/Enfuvirtide).</p>
+        </div>
+      </section>
+
+      <!-- ================= 5. HIV INTEGRASE INHIBITORS ================= -->
+      <section class="drug-class-card">
+        <h2>HIV Integrase Strand Transfer Inhibitors (INSTIs)</h2>
+        <p><em>The preferred frontline anchor class for modern antiretroviral therapy due to high potency and rapid viral load reduction.</em></p>
+        
+        <div class="sub-block">
+          <h4>📂 Drug Names &amp; Molecular MOA</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Dolutegravir / Bictegravir</strong>
+              <span class="moa-tag">MOA: Integrase Strand Transfer Inhibition</span>
+              <span>Binds to the HIV integrase active site, blocking strand transfer of viral DNA into the host cell chromosomal DNA.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Raltegravir</strong>
+              <span class="moa-tag">MOA: First-Generation INSTI</span>
+              <span>Inhibits insertion of viral genetic material into human DNA, preventing permanent provirus formation.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="moa-flow-box">
+          <h4>⚡ Animated MOA Workflow: Stopping Genomic Integration</h4>
+          <div class="flow-container">
+            <div class="flow-step">
+              <div class="step-icon">🧬</div>
+              <strong>Step 1: DNA Migration</strong>
+              <span>Viral DNA enters the host cell nucleus looking for human chromosomes.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">🔗</div>
+              <strong>Step 2: Enzyme Blockade</strong>
+              <span>INSTIs bind to integrase and block strand transfer activity.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">❌</div>
+              <strong>Step 3: Insertion Failure</strong>
+              <span>Viral DNA cannot integrate into host DNA and is degraded.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">✨</div>
+              <strong>Step 4: Replication Arrest</strong>
+              <span>Stops permanent viral establishment in immune cells.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Mnemonic: Ending in "-tegravir"</h4>
+          <p><strong>Bic</strong>tegravir &bull; <strong>Dol</strong>utegravir &bull; <strong>Ralt</strong>egravir &bull; <strong>Elvite</strong>gravir.</p>
+        </div>
+      </section>
+
+      <!-- ================= 6. PHARMACOKINETIC ENHANCERS FOR HIV ================= -->
+      <section class="drug-class-card">
+        <h2>Pharmacokinetic Enhancers for HIV (Boosters)</h2>
+        <p><em>Pharmacological agents used solely to inhibit liver enzymes and boost blood concentrations of co-administered antiretroviral drugs.</em></p>
+        
+        <div class="sub-block">
+          <h4>📂 Drug Names &amp; Molecular MOA</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Ritonavir</strong>
+              <span class="moa-tag">MOA: CYP3A4 Enzyme Inhibitor</span>
+              <span>Potent cytochrome P450 3A4 inhibitor; boosts half-life and plasma levels of protease inhibitors.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Cobicistat</strong>
+              <span class="moa-tag">MOA: Pharmacokinetic Enhancer</span>
+              <span>Selective CYP3A inhibitor with no antiretroviral activity of its own; used to boost INSTIs and PIs.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="moa-flow-box">
+          <h4>⚡ Animated MOA Workflow: Boosting Drug Levels</h4>
+          <div class="flow-container">
+            <div class="flow-step">
+              <div class="step-icon">💊</div>
+              <strong>Step 1: Co-Administration</strong>
+              <span>Booster is paired with a primary protease inhibitor or integrase inhibitor.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">🛡️</div>
+              <strong>Step 2: Liver Enzyme Block</strong>
+              <span>Inhibits CYP3A metabolism in the liver and gut wall.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">📈</div>
+              <strong>Step 3: Extended Half-Life</strong>
+              <span>Maintains higher, therapeutic drug levels in the bloodstream for longer periods.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">✨</div>
+              <strong>Step 4: Reduced Dosing</strong>
+              <span>Allows for lower pill burdens and once-daily dosing schedules.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Mnemonic: "R.C." Boosters</h4>
+          <p><strong>R</strong>itonavir &bull; <strong>C</strong>obicistat (The two pharmacokinetic boosters used in HIV therapy).</p>
+        </div>
+      </section>
+
+      <!-- ================= 7. HIV FIXED-DOSE COMBINATIONS ================= -->
+      <section class="drug-class-card">
+        <h2>HIV Fixed-Dose Combinations (Single-Tablet Regimens)</h2>
+        <p><em>Combinations of multiple antiretroviral medications formulated into a single daily tablet to maximize patient adherence and treatment success.</em></p>
+        
+        <div class="sub-block">
+          <h4>📂 Important FDC Regimens &amp; Uses</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Biktarvy</strong>
+              <span class="moa-tag">Components: Bictegravir / Emtricitabine / Tenofovir alafenamide</span>
+              <span>First-line single-tablet regimen for treatment-naive adults.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Triumeq</strong>
+              <span class="moa-tag">Components: Dolutegravir / Abacavir / Lamivudine</span>
+              <span>Once-daily potent INSTI-based backbone regimen (requires HLA-B*5701 testing for abacavir).</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Symtuza</strong>
+              <span class="moa-tag">Components: Darunavir / Cobicistat / Emtricitabine / Tenofovir alafenamide</span>
+              <span>Complete protease inhibitor-based single-tablet regimen.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="moa-flow-box">
+          <h4>⚡ Animated MOA Workflow: Simplified Adherence Strategy</h4>
+          <div class="flow-container">
+            <div class="flow-step">
+              <div class="step-icon">📋</div>
+              <strong>Step 1: Multi-Class Synergy</strong>
+              <span>Combines 2 or 3 active drugs from different classes in one pill.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">🎯</div>
+              <strong>Step 2: Dual Attack</strong>
+              <span>Blocks multiple viral replication steps simultaneously (e.g., integrase + reverse transcriptase).</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">🤝</div>
+              <strong>Step 3: High Adherence</strong>
+              <span>Simplifies dosing schedule, preventing missed doses and drug resistance.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">✨</div>
+              <strong>Step 4: Long-term Success</strong>
+              <span>Sustains viral suppression and preserves immune health.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Mnemonic: "S.T.R."</h4>
+          <p><strong>S</strong>ingle <strong>T</strong>ablet <strong>R</strong>egimens improve patient compliance and reduce viral resistance.</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Clinical Warnings</h4>
+          <p>Always screen patients for baseline hepatitis B and kidney function before starting tenofovir-containing regimens. Screen for HLA-B*5701 before prescribing abacavir-containing regimens to prevent severe hypersensitivity reactions.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    document.addEventListener('selectstart', function(e) { e.preventDefault(); });
+    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+    document.addEventListener('keydown', function(e) {
+      if (
+        e.key === 'F12' || 
+        (e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'p' || e.key === 'c' || e.key === 'a')) ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))
+      ) {
+        e.preventDefault();
+      }
+    });
+  </script>
+
+</body>
+</html>
