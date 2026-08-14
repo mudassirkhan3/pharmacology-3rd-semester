@@ -1,1 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Antimycobacterial Guide — Tuberculosis &amp; Leprosy Treatments</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-gradient: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      --accent: #38bdf8;
+      --bg-gradient: linear-gradient(180deg, #f0f9ff 0%, #f8fafc 100%);
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --card-border: #e2e8f0;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(2, 132, 199, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --mnemonics-bg: #f0f9ff;
+      --mnemonics-border: #bae6fd;
+      --warning-bg: #fff1f2;
+      --warning-border: #fecdd3;
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f8fafc;
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 20px 15px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 40px 35px;
+      border-radius: 20px;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .badge-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 700;
+      font-size: 13px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1e293b 0%, #0284c7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      margin-bottom: 35px;
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      color: #1e293b;
+      margin: 45px 0 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 24px;
+      background: var(--primary);
+      border-radius: 4px;
+    }
+
+    h4 {
+      font-size: 1.05rem;
+      color: #0369a1;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    p {
+      margin-bottom: 15px;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .drug-class-card {
+      background: #ffffff;
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 35px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .drug-class-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-gradient);
+      border-radius: 16px 16px 0 0;
+    }
+
+    .sub-block {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+
+    .moa-flow-box {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 14px;
+      padding: 22px;
+      margin: 20px 0;
+    }
+
+    .moa-flow-box h4 {
+      color: #166534;
+      margin-bottom: 15px;
+    }
+
+    .flow-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+    }
+
+    .flow-step {
+      background: #ffffff;
+      border: 2px dashed #86efac;
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      animation: pulseGlow 3s infinite alternate;
+    }
+
+    .flow-step:nth-child(1) { animation-delay: 0s; }
+    .flow-step:nth-child(2) { animation-delay: 0.75s; }
+    .flow-step:nth-child(3) { animation-delay: 1.5s; }
+    .flow-step:nth-child(4) { animation-delay: 2.25s; }
+
+    .flow-step .step-icon {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .flow-step strong {
+      display: block;
+      color: #14532d;
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+    }
+
+    .flow-step span {
+      font-size: 0.8rem;
+      color: #166534;
+    }
+
+    .mnemonic-box {
+      background: var(--mnemonics-bg);
+      border: 1px solid var(--mnemonics-border);
+      border-left: 5px solid var(--primary);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 15px 0;
+    }
+
+    .mnemonic-box h4 {
+      color: #0369a1;
+    }
+
+    .warning-box {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-left: 5px solid #e11d48;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 15px 0;
+    }
+
+    .warning-box h4 {
+      color: #9f1239;
+    }
+
+    .subdrug-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .subdrug-item {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .subdrug-item strong {
+      display: block;
+      color: #0f172a;
+      font-size: 0.9rem;
+    }
+
+    .subdrug-item span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulseGlow {
+      0% { border-color: #86efac; background: #ffffff; }
+      100% { border-color: #22c55e; background: #f0fdf4; }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 16px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .flow-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge-container">
+        <span class="badge">Simplified Nursing Study Guide</span>
+      </div>
+      <h1>Antimycobacterial Drugs: Tuberculosis &amp; Leprosy</h1>
+      <p class="subtitle">Clear classifications, drug names, animated workflows, and exam mnemonics for treating mycobacterial infections.</p>
+    </header>
+
+    <main>
+
+      <!-- ================= 1. FIRST-LINE ANTI-TB DRUGS (R.I.P.E.) ================= -->
+      <section class="drug-class-card">
+        <h2>First-Line Anti-Tuberculosis Drugs (R.I.P.E.)</h2>
+        <p><em>The standard 4-drug initial combination therapy used to treat active tuberculosis infections.</em></p>
+        
+        <div class="sub-block">
+          <h4>📂 Clear Drug Names &amp; Uses</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item"><strong>Isoniazid (INH)</strong><span>Core frontline bactericidal drug; stops mycolic acid cell wall building.</span></div>
+            <div class="subdrug-item"><strong>Rifampin (RIF)</strong><span>Stops bacterial RNA synthesis; turns body fluids a harmless red-orange.</span></div>
+            <div class="subdrug-item"><strong>Pyrazinamide (PZA)</strong><span>Works best in acidic environments inside macrophages to kill dormant TB bacilli.</span></div>
+            <div class="subdrug-item"><strong>Ethambutol (EMB)</strong><span>Blocks cell wall assembly; prevents bacterial resistance development.</span></div>
+          </div>
+        </div>
+
+        <div class="moa-flow-box">
+          <h4>⚡ Animated MOA Workflow: Multi-Target Mycobacterial Attack</h4>
+          <div class="flow-container">
+            <div class="flow-step">
+              <div class="step-icon">🦠</div>
+              <strong>Step 1: Ingestion</strong>
+              <span>Drugs penetrate waxy mycobacterial cell walls and enter infection sites.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">🧱</div>
+              <strong>Step 2: Wall &amp; RNA Disruption</strong>
+              <span>INH &amp; EMB destroy cell wall components; RIF stops RNA transcription.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">💤</div>
+              <strong>Step 3: Dormant Kill</strong>
+              <span>PZA targets semi-dormant bacteria hiding inside immune cells.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">✨</div>
+              <strong>Step 4: Eradication</strong>
+              <span>Prevents resistance emergence through powerful four-drug synergy.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Drug Names Mnemonic: "R.I.P.E."</h4>
+          <p><strong>R</strong>ifampin &bull; <strong>I</strong>soniazid &bull; <strong>P</strong>yrazinamide &bull; <strong>E</strong>thambutol.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Side Effects Mnemonic: "N.O.R.P.H."</h4>
+          <p><strong>N</strong>europathy (INH - give Vitamin B6) &bull; <strong>O</strong>ptic neuritis (Ethambutol - color blindness) &bull; <strong>R</strong>ed-orange body fluids (Rifampin) &bull; <strong>P</strong>ainful joints / Gout (Pyrazinamide) &bull; <strong>H</strong>epato-toxicity (liver enzyme bumps across all).</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Clinical Warnings</h4>
+          <p>Monitor liver function tests (LFTs) regularly. Ethambutol requires baseline and periodic visual acuity/color discrimination testing.</p>
+        </div>
+      </section>
+
+      <!-- ================= 2. SECOND-LINE ANTI-TB DRUGS ================= -->
+      <section class="drug-class-card">
+        <h2>Second-Line Anti-Tuberculosis Drugs</h2>
+        <p><em>Used when patients develop multi-drug resistant TB (MDR-TB) or cannot tolerate first-line medications.</em></p>
+        
+        <div class="sub-block">
+          <h4>📂 Clear Drug Names &amp; Uses</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item"><strong>Fluoroquinolones</strong><span>(Levofloxacin / Moxifloxacin) Strong DNA-gyrase inhibitors used for drug-resistant strains.</span></div>
+            <div class="subdrug-item"><strong>Injectable Aminoglycosides</strong><span>(Amikacin / Streptomycin / Capreomycin) Protein synthesis blockers given via injection.</span></div>
+            <div class="subdrug-item"><strong>Bedaquiline</strong><span>Novel ATP synthase inhibitor used specifically for severe resistant TB.</span></div>
+            <div class="subdrug-item"><strong>Linezolid</strong><span>Oxazolidinone antibiotic effective against resistant intracellular mycobacteria.</span></div>
+          </div>
+        </div>
+
+        <div class="moa-flow-box">
+          <h4>⚡ Animated MOA Workflow: Alternative Resistant Pathogen Attack</h4>
+          <div class="flow-container">
+            <div class="flow-step">
+              <div class="step-icon">🎯</div>
+              <strong>Step 1: New Targets</strong>
+              <span>Bypasses standard pathways by targeting bacterial ATP production or protein translation.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">🛑</div>
+              <strong>Step 2: Replication Halt</strong>
+              <span>Stops resistant bacteria from multiplying inside lung cavities.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">🛡️</div>
+              <strong>Step 3: Resistance Shield</strong>
+              <span>Added to combination protocols to protect against total treatment failure.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">💡</div>
+              <strong>Step 4: Long-term Cure</strong>
+              <span>Extends treatment duration (up to 18–24 months) to secure complete clearance.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Uses Mnemonic: "M.D.R.T.B."</h4>
+          <p><strong>M</strong>ulti-drug resistant strains &bull; <strong>D</strong>rug intolerance reactions &bull; <strong>R</strong>ecurrent treatment failure &bull; <strong>T</strong>oxic side effect management &bull; <strong>B</strong>acterial load reduction.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects Mnemonic: "O.T.T.E.R."</h4>
+          <p><strong>O</strong>totoxicity / hearing loss (injectables) &bull; <strong>T</strong>endon issues (fluoroquinolones) &bull; <strong>T</strong>oxicity to kidneys / nephrotoxicity &bull; <strong>E</strong>lectrolyte imbalances &bull; <strong>R</strong>etinal / optic nerve damage.</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Clinical Warnings</h4>
+          <p>Second-line regimens require prolonged supervision, frequent audiometric testing, and close kidney/liver monitoring.</p>
+        </div>
+      </section>
+
+      <!-- ================= 3. ANTI-LEPROSY DRUGS (MDT) ================= -->
+      <section class="drug-class-card">
+        <h2>Anti-Leprosy Drugs (Multidrug Therapy - MDT)</h2>
+        <p><em>Combination medications used to cure Hansen's disease caused by Mycobacterium leprae.</em></p>
+        
+        <div class="sub-block">
+          <h4>📂 Clear Drug Names &amp; Uses</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item"><strong>Dapsone</strong><span>Sulfone antibiotic that blocks bacterial folic acid synthesis; core leprosy drug.</span></div>
+            <div class="subdrug-item"><strong>Rifampin</strong><span>Powerful bactericidal agent included in the monthly MDT blister pack.</span></div>
+            <div class="subdrug-item"><strong>Clofazimine</strong><span>Anti-inflammatory and anti-mycobacterial dye that binds bacterial DNA.</span></div>
+          </div>
+        </div>
+
+        <div class="moa-flow-box">
+          <h4>⚡ Animated MOA Workflow: Leprosy Multidrug Clearance</h4>
+          <div class="flow-container">
+            <div class="flow-step">
+              <div class="step-icon">💊</div>
+              <strong>Step 1: MDT Blister Pack</strong>
+              <span>Combining Dapsone, Rifampin, and Clofazimine prevents single-drug resistance.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">🔬</div>
+              <strong>Step 2: Dual Inhibition</strong>
+              <span>Dapsone blocks folate; Rifampin blocks RNA; Clofazimine targets DNA &amp; inflammation.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">🌿</div>
+              <strong>Step 3: Skin &amp; Nerve Rescue</strong>
+              <span>Clears bacilli from skin lesions and peripheral nerves to stop deformity progression.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">✨</div>
+              <strong>Step 4: Clinical Cure</strong>
+              <span>Achieves permanent microbiological cure over 6 to 12+ months.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Treatment Regimen Mnemonic: "D.R.C."</h4>
+          <p><strong>D</strong>apsone (daily baseline) &bull; <strong>R</strong>ifampin (monthly supervised dose) &bull; <strong>C</strong>lofazimine (monthly supervised + daily anti-inflammatory support).</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects Mnemonic: "S.K.I.N.S."</h4>
+          <p><strong>S</strong>inister hemolysis in G6PD deficiency (Dapsone) &bull; <strong>K</strong>idney / liver strain &bull; <strong>I</strong>ron deficiency anemia risk &bull; <strong>N</strong>atural reddish-brown skin discoloration (Clofazimine) &bull; <strong>S</strong>evere hypersensitivity skin rashes.</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Clinical Warnings</h4>
+          <p>Screen patients for G6PD deficiency before starting Dapsone to avoid acute hemolytic anemia. Warn patients about temporary skin pigmentation changes caused by Clofazimine.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    document.addEventListener('selectstart', function(e) { e.preventDefault(); });
+    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+    document.addEventListener('keydown', function(e) {
+      if (
+        e.key === 'F12' || 
+        (e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'p' || e.key === 'c' || e.key === 'a')) ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))
+      ) {
+        e.preventDefault();
+      }
+    });
+  </script>
+
+</body>
+</html>
