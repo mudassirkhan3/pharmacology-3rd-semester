@@ -20,10 +20,6 @@
       --mnemonics-border: #bbf7d0;
       --warning-bg: #fff1f2;
       --warning-border: #fecdd3;
-      --uses-bg: #f0fdfa;
-      --uses-border: #99f6e4;
-      --adr-bg: #fffbeb;
-      --adr-border: #fde68a;
     }
 
     * {
@@ -118,6 +114,15 @@
       color: var(--text-muted);
       margin-bottom: 20px;
       font-weight: 500;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      color: #0f766e;
+      margin: 25px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     h4 {
@@ -253,14 +258,15 @@
       border: 1px solid #cbd5e1;
       border-radius: 10px;
       padding: 16px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
     .subdrug-item strong {
       display: block;
       color: #0f172a;
       font-size: 0.98rem;
-      margin-bottom: 4px;
     }
 
     .moa-tag {
@@ -268,40 +274,20 @@
       font-size: 0.75rem;
       background: #ccfbf1;
       color: #0f766e;
-      padding: 2px 8px;
+      padding: 3px 8px;
       border-radius: 4px;
       font-weight: 600;
-      margin-bottom: 8px;
+      width: fit-content;
     }
 
-    .drug-detail-section {
-      margin-top: 8px;
+    .drug-detail-row {
       font-size: 0.85rem;
+      color: var(--text-muted);
     }
 
-    .drug-detail-section span.label {
+    .drug-detail-row span.label {
       font-weight: 700;
-      color: #334155;
-    }
-
-    .uses-tag {
-      background: var(--uses-bg);
-      border: 1px solid var(--uses-border);
-      color: #115e59;
-      padding: 4px 8px;
-      border-radius: 6px;
-      margin-top: 6px;
-      display: block;
-    }
-
-    .adr-tag {
-      background: var(--adr-bg);
-      border: 1px solid var(--adr-border);
-      color: #92400e;
-      padding: 4px 8px;
-      border-radius: 6px;
-      margin-top: 6px;
-      display: block;
+      color: #1e293b;
     }
 
     @keyframes fadeIn {
@@ -334,8 +320,8 @@
       <div class="badge-container">
         <span class="badge">Advanced Nursing Pharmacology Guide</span>
       </div>
-      <h1>Antiviral Pharmacology Guide — Classifications, MOA, Uses &amp; Specific ADRs</h1>
-      <p class="subtitle">Complete reference guide featuring separated Hepatitis B and Hepatitis C classifications, Nucleoside/Nucleotide Reverse Transcriptase Inhibitors, precise clinical uses, and specific drug-level Adverse Drug Reactions (ADRs).</p>
+      <h1>Antiviral Pharmacology Guide — Complete Classifications, Uses &amp; ADRs</h1>
+      <p class="subtitle">Complete reference guide featuring separated Hepatitis B and Hepatitis C classifications, detailed Nucleoside and Nucleotide Reverse Transcriptase Inhibitors, Clinical Uses, and Adverse Drug Reactions (ADRs) for every agent.</p>
     </header>
 
     <main>
@@ -343,80 +329,34 @@
       <!-- ================= 1. RESPIRATORY VIRUS INFECTIONS ================= -->
       <section class="drug-class-card">
         <h2>Classification: Drugs for Respiratory Virus Infections</h2>
-        <p class="section-intro">Detailed pharmacological breakdown of antiviral agents targeting influenza, respiratory syncytial virus (RSV), and severe acute respiratory infections, complete with indications and specific adverse drug reactions.</p>
+        <p class="section-intro">Detailed pharmacological breakdown of antiviral agents targeting influenza, respiratory syncytial virus (RSV), and coronavirus infections with mechanisms, uses, and adverse drug reactions.</p>
         
         <div class="sub-block">
-          <h4>📂 Expanded Drug Inventory, MOA, Uses &amp; Specific ADRs</h4>
+          <h4>📂 Drug Inventory: Mechanism, Uses &amp; ADRs</h4>
           <div class="subdrug-grid">
             <div class="subdrug-item">
               <strong>Oseltamivir / Zanamivir / Peramivir</strong>
               <span class="moa-tag">MOA: Neuraminidase Inhibitors</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Treatment and prophylaxis of acute uncomplicated Influenza A and B infections.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Nausea, vomiting, abdominal pain; neuropsychiatric events (confusion, abnormal behavior, self-injury, mostly in pediatric patients taking Oseltamivir); bronchospasm and cough (primarily with inhaled Zanamivir).</span>
-              </div>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Treatment and chemoprophylaxis of acute uncomplicated Influenza A and B.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Nausea, vomiting, headache, psychiatric events (hallucinations, delirium mostly in pediatric patients), bronchospasm (in inhaled zanamivir).</div>
             </div>
-
             <div class="subdrug-item">
               <strong>Baloxavir Marboxil</strong>
               <span class="moa-tag">MOA: Cap-Dependent Endonuclease Inhibitor</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Acute uncomplicated influenza in patients aged 12 years and older.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Diarrhea, bronchitis, nausea, nasopharyngitis, headache.</span>
-              </div>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Single-dose treatment of acute uncomplicated influenza in patients aged 12 years and older.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Diarrhea, bronchitis, nausea, nasopharyngitis, headache.</div>
             </div>
-
             <div class="subdrug-item">
               <strong>Palivizumab</strong>
               <span class="moa-tag">MOA: Monoclonal Antibody Fusion Blocker</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Prevention of serious lower respiratory tract disease caused by RSV in high-risk infants.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Injection site reactions, upper respiratory tract infections, fever, rash, rare anaphylaxis.</span>
-              </div>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Prevention of serious lower respiratory tract disease caused by RSV in high-risk infants.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Injection site reactions, upper respiratory infection, fever, rash, rare anaphylaxis.</div>
             </div>
-
             <div class="subdrug-item">
               <strong>Remdesivir</strong>
               <span class="moa-tag">MOA: RNA Polymerase Inhibitor</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Treatment of COVID-19 requiring hospital admission and supplemental oxygen.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Elevated liver transaminases (ALT/AST), nausea, headache, infusion-related hypersensitivity reactions (hypotension, sweating, shivering).</span>
-              </div>
-            </div>
-
-            <div class="subdrug-item">
-              <strong>Nirmatrelvir / Ritonavir (Paxlovid)</strong>
-              <span class="moa-tag">MOA: Viral Protease Inhibitor + Booster</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Mild-to-moderate COVID-19 in adults at high risk for progression to severe disease.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Dysgeusia (altered taste/metallic taste), diarrhea, hypertension, myalgia, severe drug-drug interactions due to CYP3A4 inhibition.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="moa-flow-box">
-          <h4>⚡ Action Flow: Stopping Respiratory Pathogen Proliferation</h4>
-          <div class="flow-container">
-            <div class="flow-step">
-              <div class="step-icon">🦠</div>
-              <strong>Step 1: Inhalation &amp; Entry</strong>
-              <span>Viruses invade upper and lower respiratory tract mucosal tissues.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">⚙️</div>
-              <strong>Step 2: Targeted Inhibition</strong>
-              <span>Drugs block viral uncoating, polymerases, endonucleases, or neuraminidase.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">🛡️</div>
-              <strong>Step 3: Replication Arrest</strong>
-              <span>Intracellular transcription and viral budding are completely blocked.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">✨</div>
-              <strong>Step 4: Clinical Recovery</strong>
-              <span>Reduces symptom severity, duration, and hospitalization risks.</span>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Treatment of COVID-19 requiring supplemental oxygen and severe viral pneumonias.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Elevated liver transaminases (ALT/AST), nausea, increased risk of infusion-related hypersensitivity reactions.</div>
             </div>
           </div>
         </div>
@@ -427,89 +367,69 @@
         </div>
       </section>
 
-      <!-- ================= 2. HEPATITIS B VIRUS (HBV) NUCLEOSIDE & NUCLEOTIDE INHIBITORS ================= -->
+      <!-- ================= 2. HEPATITIS B VIRUS (HBV) INFECTIONS ================= -->
       <section class="drug-class-card">
-        <h2>Classification: Nucleoside &amp; Nucleotide Reverse Transcriptase Inhibitors (NRTIs) for Hepatitis B Virus (HBV)</h2>
-        <p class="section-intro">Targeted nucleoside and nucleotide analogues engineered to incorporate into viral DNA and inhibit HBV polymerase, suppressing chronic viral replication and preventing cirrhosis.</p>
+        <h2>Classification: Drugs for Hepatitis B Virus (HBV) Infections</h2>
+        <p class="section-intro">Strictly separated into Nucleoside Reverse Transcriptase Inhibitors (NRTIs), Nucleotide Reverse Transcriptase Inhibitors (NtRTIs), and Immune Modulators for chronic hepatitis B management.</p>
         
+        <h3>1. Nucleoside Reverse Transcriptase Inhibitors (NRTIs) for HBV</h3>
+        <p>These agents lack a 3'-hydroxyl group, causing immediate DNA chain termination upon incorporation by viral reverse transcriptase.</p>
         <div class="sub-block">
-          <h4>📂 Expanded Drug Inventory, Molecular MOA, Uses &amp; Specific ADRs</h4>
           <div class="subdrug-grid">
             <div class="subdrug-item">
               <strong>Entecavir</strong>
-              <span class="moa-tag">MOA: Guanosine Nucleoside Analog NRTI</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Chronic Hepatitis B virus infection with active viral replication and evidence of persistent hepatocellular inflammation.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Headache, fatigue, dizziness, nausea, elevated blood glucose, rare lactic acidosis and severe hepatomegaly with steatosis.</span>
-              </div>
+              <span class="moa-tag">MOA: Guanosine Nucleoside Analog</span>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Chronic hepatitis B infection with active viral replication and evidence of hepatocellular inflammation.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Headache, fatigue, dizziness, nausea, rare lactic acidosis with severe hepatomegaly and steatosis.</div>
             </div>
-
-            <div class="subdrug-item">
-              <strong>Tenofovir Disoproxil Fumarate (TDF) / Tenofovir Alafenamide (TAF)</strong>
-              <span class="moa-tag">MOA: Nucleotide Analog RTIs (NtRTI)</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Chronic Hepatitis B infection and HIV-1 treatment.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> <em>TDF:</em> Nephrotoxicity, Fanconi syndrome, hypophosphatemia, decreased bone mineral density (osteomalacia). <em>TAF:</em> Significantly reduced renal and bone toxicity, headache, nausea, fatigue.</span>
-              </div>
-            </div>
-
             <div class="subdrug-item">
               <strong>Lamivudine</strong>
               <span class="moa-tag">MOA: Cytidine Analog NRTI</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Chronic Hepatitis B (and HIV coinfection regimens).</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Headache, fatigue, nausea, abdominal discomfort, pancreatitis (rare), lactic acidosis upon sudden cessation (viral flare).</span>
-              </div>
-            </div>
-
-            <div class="subdrug-item">
-              <strong>Adefovir Dipivoxil</strong>
-              <span class="moa-tag">MOA: Acyclic Nucleotide Analog NRTI</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Chronic Hepatitis B, especially lamivudine-resistant strains.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Dose-dependent nephrotoxicity (elevated serum creatinine), hypophosphatemia, asthenia, generalized weakness.</span>
-              </div>
-            </div>
-
-            <div class="subdrug-item">
-              <strong>Peginterferon Alfa-2a</strong>
-              <span class="moa-tag">MOA: Immune Modulator / Cytokine</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> HBeAg-positive and HBeAg-negative chronic hepatitis B.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Influenza-like symptoms (fever, chills, myalgia), depression, suicidal ideation, alopecia, bone marrow suppression (neutropenia, thrombocytopenia).</span>
-              </div>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Chronic hepatitis B and HIV coinfection (though high resistance rates limit HBV monotherapy).</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Fatigue, headache, nausea, pancreatitis, lactic acidosis, severe acute exacerbation of hepatitis upon discontinuation.</div>
             </div>
           </div>
         </div>
 
-        <div class="moa-flow-box">
-          <h4>⚡ Action Flow: Chronic Hepatitis B Viral Suppression</h4>
-          <div class="flow-container">
-            <div class="flow-step">
-              <div class="step-icon">🧬</div>
-              <strong>Step 1: Hepatocyte Entry</strong>
-              <span>Drugs are absorbed into liver cells and phosphorylated into active triphosphate forms.</span>
+        <h3>2. Nucleotide Reverse Transcriptase Inhibitors (NtRTIs) for HBV</h3>
+        <p>These analogs already possess a preformed phosphonate group mimicking nucleotides, bypassing initial phosphorylation steps to inhibit viral polymerase.</p>
+        <div class="sub-block">
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Tenofovir Disoproxil Fumarate (TDF)</strong>
+              <span class="moa-tag">MOA: Nucleotide RT Inhibitor</span>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Chronic hepatitis B and HIV-1 infection.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Nephrotoxicity, proximal renal tubular dysfunction (Fanconi syndrome), decreased bone mineral density, nausea, flatulence.</div>
             </div>
-            <div class="flow-step">
-              <div class="step-icon">⛓️</div>
-              <strong>Step 2: Polymerase Inhibition</strong>
-              <span>Competes with natural nucleotides to block HBV reverse transcriptase.</span>
+            <div class="subdrug-item">
+              <strong>Tenofovir Alafenamide (TAF)</strong>
+              <span class="moa-tag">MOA: Targeted Nucleotide RT Inhibitor</span>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Chronic hepatitis B with safer renal and bone profile compared to TDF.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Headache, abdominal pain, fatigue, nausea; significantly lower rates of renal impairment and bone mineral density loss.</div>
             </div>
-            <div class="flow-step">
-              <div class="step-icon">📉</div>
-              <strong>Step 3: Viral Load Drop</strong>
-              <span>Significantly reduces circulating serum HBV DNA and halts progressive liver inflammation.</span>
+            <div class="subdrug-item">
+              <strong>Adefovir Dipivoxil</strong>
+              <span class="moa-tag">MOA: Acyclic Nucleotide Analog</span>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Chronic hepatitis B, including lamivudine-resistant strains.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Dose-dependent nephrotoxicity (elevated serum creatinine, hypophosphatemia), asthenia, headache, abdominal pain.</div>
             </div>
-            <div class="flow-step">
-              <div class="step-icon">✨</div>
-              <strong>Step 4: Long-Term Remission</strong>
-              <span>Prevents hepatic fibrosis, cirrhosis, and hepatocellular carcinoma.</span>
+          </div>
+        </div>
+
+        <h3>3. Immune Modulators for HBV</h3>
+        <div class="sub-block">
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Peginterferon Alfa-2a</strong>
+              <span class="moa-tag">MOA: Cytokine / Immune Stimulator</span>
+              <div class="drug-detail-row"><span class="label">Uses:</span> HBeAg-positive and HBeAg-negative chronic hepatitis B.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Flu-like symptoms (fever, chills, myalgia), severe depression, suicidal ideation, bone marrow suppression (neutropenia, thrombocytopenia), alopecia, thyroid disorders.</div>
             </div>
           </div>
         </div>
 
         <div class="mnemonic-box">
-          <h4>💡 Mnemonic: "E.T. L.A.P." (Hepatitis B Medications)</h4>
+          <h4>💡 Mnemonic: "E.T. L.A.P." (Hepatitis B Agents)</h4>
           <p><strong>E</strong>ntecavir &bull; <strong>T</strong>enofovir (TDF/TAF) &bull; <strong>L</strong>amivudine &bull; <strong>A</strong>defovir &bull; <strong>P</strong>eginterferon.</p>
         </div>
       </section>
@@ -517,149 +437,75 @@
       <!-- ================= 3. HEPATITIS C VIRUS (HCV) INFECTIONS ================= -->
       <section class="drug-class-card">
         <h2>Classification: Direct-Acting Antivirals (DAAs) for Hepatitis C Virus (HCV) Infections</h2>
-        <p class="section-intro">Advanced direct-acting antiviral (DAA) drug classes engineered to completely cure chronic Hepatitis C by targeting specific viral non-structural proteins.</p>
+        <p class="section-intro">Advanced direct-acting antiviral drug classes classified by target viral non-structural proteins to achieve a permanent virologic cure for Hepatitis C.</p>
         
         <div class="sub-block">
-          <h4>📂 Expanded Drug Inventory, Molecular MOA, Uses &amp; Specific ADRs</h4>
+          <h4>📂 Drug Inventory: Mechanism, Uses &amp; ADRs</h4>
           <div class="subdrug-grid">
             <div class="subdrug-item">
               <strong>Sofosbuvir</strong>
               <span class="moa-tag">MOA: NS5B RNA Polymerase Inhibitor</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Chronic Hepatitis C virus infection across genotypes 1 through 6 in combination therapy.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Fatigue, headache, nausea, insomnia; severe symptomatic bradycardia if co-administered with amiodarone.</span>
-              </div>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Chronic hepatitis C genotypes 1 through 6 in combination regimens.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Fatigue, headache, nausea, insomnia; severe symptomatic bradycardia if co-administered with amiodarone.</div>
             </div>
-
             <div class="subdrug-item">
               <strong>Ledipasvir / Velpatasvir / Pibrentasvir</strong>
               <span class="moa-tag">MOA: NS5A Replication Complex Inhibitors</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Chronic HCV eradication regimens combined with polymerase or protease inhibitors.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Fatigue, headache, diarrhea, nausea, asthenia.</span>
-              </div>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Pan-genotypic chronic hepatitis C virus eradication.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Headache, fatigue, diarrhea, nausea, dizziness.</div>
             </div>
-
             <div class="subdrug-item">
               <strong>Glecaprevir / Voxilaprevir</strong>
               <span class="moa-tag">MOA: NS3/4A Protease Inhibitors</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Pangenotypic chronic Hepatitis C treatment, including direct-acting antiviral failures.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Fatigue, headache, nausea, transient elevations in serum bilirubin.</span>
-              </div>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Treatment of chronic HCV including direct-acting antiviral failure cases and compensated cirrhosis.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Fatigue, headache, nausea, pruritus, transient elevations in serum bilirubin.</div>
             </div>
-
             <div class="subdrug-item">
               <strong>Ribavirin</strong>
               <span class="moa-tag">MOA: Guanosine Analog Co-Therapy</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Combination therapy for difficult-to-treat chronic HCV or viral hemorrhagic fevers.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Severe hemolytic anemia, fatigue, headache, rash, cough, teratogenicity (absolute contraindication in pregnancy for both men and women).</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="moa-flow-box">
-          <h4>⚡ Action Flow: Achieving Permanent Hepatitis C Cure</h4>
-          <div class="flow-container">
-            <div class="flow-step">
-              <div class="step-icon">🎯</div>
-              <strong>Step 1: Multi-Target Attack</strong>
-              <span>Combines NS5B, NS5A, and Protease inhibitors to block viral replication pathways.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">🛑</div>
-              <strong>Step 2: Chain Termination</strong>
-              <span>Stops HCV RNA synthesis and disrupts core structural assembly inside liver cells.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">📉</div>
-              <strong>Step 3: Rapid Clearance</strong>
-              <span>Clears HCV RNA from the bloodstream within weeks of starting therapy.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">✨</div>
-              <strong>Step 4: Sustained Virologic Response (SVR12)</strong>
-              <span>Achieves a permanent, lifelong virologic cure for Hepatitis C.</span>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Combination regimens for difficult-to-treat chronic HCV or severe RSV infections.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Hemolytic anemia (can worsen cardiac disease), severe teratogenicity (Category X - requires strict contraception), fatigue, rash.</div>
             </div>
           </div>
         </div>
 
         <div class="mnemonic-box">
-          <h4>💡 Mnemonic: "S.O.F. + A.S.V.I.R. / P.R.E.V.I.R." (HCV DAAs)</h4>
-          <p><strong>S</strong>ofosbuvir paired with DAAs ending in <strong>-asvir</strong> (NS5A inhibitors) and <strong>-previr</strong> (Protease inhibitors).</p>
+          <h4>💡 Mnemonic: "S.O.F. + Asvir / Previr" (HCV DAAs)</h4>
+          <p><strong>S</strong>ofosbuvir paired with DAAs ending in <strong>-asvir</strong> (NS5A) and <strong>-previr</strong> (Protease inhibitors).</p>
         </div>
       </section>
 
       <!-- ================= 4. HERPESVIRUS & CYTOMEGALOVIRUS ================= -->
       <section class="drug-class-card">
         <h2>Classification: Drugs for Herpesvirus and Cytomegalovirus (CMV)</h2>
-        <p class="section-intro">Nucleoside and nucleotide analogs engineered to treat Herpes Simplex Virus (HSV 1 &amp; 2), Varicella-Zoster Virus (VZV), and Cytomegalovirus (CMV).</p>
+        <p class="section-intro">Nucleoside and nucleotide analogs engineered to treat HSV-1, HSV-2, Varicella-Zoster, and Cytomegalovirus.</p>
         
         <div class="sub-block">
-          <h4>📂 Expanded Drug Inventory, Molecular MOA, Uses &amp; Specific ADRs</h4>
+          <h4>📂 Drug Inventory: Mechanism, Uses &amp; ADRs</h4>
           <div class="subdrug-grid">
             <div class="subdrug-item">
               <strong>Acyclovir / Valacyclovir / Famciclovir</strong>
               <span class="moa-tag">MOA: Viral DNA Polymerase Inhibitors</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Herpes simplex encephalitis, genital herpes, varicella-zoster (shingles), chickenpox.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Phlebitis and local irritation (IV injection), headache, nausea, acute kidney injury from crystalline nephropathy (prevented with adequate IV hydration).</span>
-              </div>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Genital herpes, herpes labialis, varicella-zoster (shingles), and herpes encephalitis.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Malaise, headache, nausea, diarrhea; crystalline nephropathy and neurotoxicity (tremors, confusion) with rapid IV bolus administration.</div>
             </div>
-
             <div class="subdrug-item">
               <strong>Ganciclovir / Valganciclovir</strong>
               <span class="moa-tag">MOA: CMV DNA Polymerase Inhibitor</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Treatment and prevention of Cytomegalovirus (CMV) retinitis and systemic disease in immunocompromised patients.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Severe bone marrow suppression (leukopenia, neutropenia, thrombocytopenia), fever, rash, diarrhea, confusion.</span>
-              </div>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Treatment and prevention of Cytomegalovirus (CMV) retinitis and systemic disease in immunocompromised patients.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Severe bone marrow suppression (leukopenia, neutropenia, thrombocytopenia), fever, rash, nausea, central nervous system toxicity.</div>
             </div>
-
             <div class="subdrug-item">
               <strong>Cidofovir</strong>
               <span class="moa-tag">MOA: Nucleotide Analog (CMV/HSV)</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> CMV retinitis in patients with AIDS (especially ganciclovir-resistant strains).</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Dose-dependent nephrotoxicity (requires concurrent probenecid and saline hydration), proteinuria, neutropenia, metabolic acidosis.</span>
-              </div>
+              <div class="drug-detail-row"><span class="label">Uses:</span> CMV retinitis in patients with AIDS (especially resistant strains).</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Severe nephrotoxicity (requires probenecid co-administration and saline hydration), proteinuria, neutropenia, metabolic acidosis.</div>
             </div>
-
             <div class="subdrug-item">
               <strong>Foscarnet</strong>
               <span class="moa-tag">MOA: Pyrophosphate Analog</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> CMV retinitis and acyclovir-resistant HSV or VZV infections.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Severe nephrotoxicity, severe electrolyte abnormalities (hypocalcemia, hypomagnesemia, hypokalemia, hypophosphatemia), seizures, painful penile ulcerations.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="moa-flow-box">
-          <h4>⚡ Action Flow: Herpes &amp; CMV Chain Termination</h4>
-          <div class="flow-container">
-            <div class="flow-step">
-              <div class="step-icon">🔑</div>
-              <strong>Step 1: Selective Activation</strong>
-              <span>Viral or cellular enzymes phosphorylate the drug inside infected cells.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">🧱</div>
-              <strong>Step 2: DNA Incorporation</strong>
-              <span>Inserts fraudulent nucleosides into the viral DNA replication fork.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">🛑</div>
-              <strong>Step 3: Synthesis Halt</strong>
-              <span>Halts viral replication, reducing lesion duration and nerve pain.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">✨</div>
-              <strong>Step 4: Latent Outbreak Control</strong>
-              <span>Suppresses recurrent flare-ups and severe systemic CMV complications.</span>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Acyclovir-resistant HSV/VZV and ganciclovir-resistant CMV infections.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Nephrotoxicity, severe electrolyte disturbances (hypocalcemia, hypomagnesemia, hypokalemia, hypophosphatemia), genital ulcerations, seizures.</div>
             </div>
           </div>
         </div>
@@ -673,140 +519,69 @@
       <!-- ================= 5. HIV: NNRTIs, PIs, AND ENTRY INHIBITORS ================= -->
       <section class="drug-class-card">
         <h2>Classification: HIV Antiretrovirals (NNRTIs, Protease Inhibitors &amp; Entry Inhibitors)</h2>
-        <p class="section-intro">Classes targeting early and late stages of the HIV life cycle, including reverse transcriptase non-nucleoside binding, polyprotein cleavage, and viral-cell entry blocking.</p>
+        <p class="section-intro">Classes targeting early and middle stages of the HIV life cycle.</p>
         
         <div class="sub-block">
-          <h4>📂 Expanded Drug Inventory, Molecular MOA, Uses &amp; Specific ADRs</h4>
+          <h4>📂 Drug Inventory: Mechanism, Uses &amp; ADRs</h4>
           <div class="subdrug-grid">
             <div class="subdrug-item">
               <strong>Efavirenz / Rilpivirine / Doravirine</strong>
               <span class="moa-tag">MOA: Non-Nucleoside RT Inhibitors (NNRTIs)</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Combination antiretroviral therapy (cART) for HIV-1 infection.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> <em>Efavirenz:</em> Central nervous system toxicity (vivid dreams, dizziness, depression, insomnia, rash). <em>Rilpivirine:</em> Depression, insomnia, prolonged QTc interval at high doses.</span>
-              </div>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Combination antiretroviral therapy (cART) for HIV-1 infection.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Central nervous system symptoms (vivid dreams, dizziness, depression with efavirenz), rash, elevated liver enzymes, QT prolongation (rilpivirine).</div>
             </div>
-
             <div class="subdrug-item">
               <strong>Darunavir / Atazanavir / Lopinavir</strong>
               <span class="moa-tag">MOA: Protease Inhibitors (PIs)</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Treatment-naive and treatment-experienced HIV-1 infection regimens.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Metabolic syndrome (hyperlipidemia, hyperglycemia, insulin resistance), lipodystrophy (fat redistribution), GI intolerance (nausea, diarrhea), hyperbilirubinemia (Atazanavir).</span>
-              </div>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Treatment-naive and treatment-experienced HIV-1 infection management.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Dyslipidemia, insulin resistance/hyperglycemia, lipodystrophy (fat redistribution), GI intolerance, indirect hyperbilirubinemia (atazanavir).</div>
             </div>
-
             <div class="subdrug-item">
               <strong>Maraviroc</strong>
               <span class="moa-tag">MOA: CCR5 Antagonist (Entry Inhibitor)</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Treatment-experienced adults with R5-tropic HIV-1 infections.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Hepatotoxicity (preceded by systemic allergic reactions like pruritic rash), cough, musculoskeletal symptoms, orthostatic hypotension.</span>
-              </div>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Treatment-experienced adults infected with CCR5-tropic HIV-1 strains.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Hepatotoxicity (preceded by systemic allergic rash), upper respiratory infections, cough, musculoskeletal symptoms, orthostatic hypotension.</div>
             </div>
-
             <div class="subdrug-item">
               <strong>Enfuvirtide</strong>
               <span class="moa-tag">MOA: Fusion Inhibitor</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Salvage therapy for treatment-experienced HIV patients with resistant strains.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Painful subcutaneous injection site reactions (nodules, erythema, cysts), increased risk of bacterial pneumonia, hypersensitivity reactions.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="moa-flow-box">
-          <h4>⚡ Action Flow: Multi-Target HIV Blockade</h4>
-          <div class="flow-container">
-            <div class="flow-step">
-              <div class="step-icon">🚪</div>
-              <strong>Step 1: Entry &amp; Coreceptor Block</strong>
-              <span>Maraviroc and Enfuvirtide stop HIV from attaching or fusing to CD4 cells.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">⚙️</div>
-              <strong>Step 2: Reverse Transcription Halt</strong>
-              <span>NNRTIs disable reverse transcriptase enzyme from building viral DNA.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">✂️</div>
-              <strong>Step 3: Cleavage Prevention</strong>
-              <span>Protease inhibitors block structural protein maturation.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">✨</div>
-              <strong>Step 4: Viral Suppression</strong>
-              <span>Preserves immune function and maintains undetectable viral loads.</span>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Salvage therapy for treatment-experienced patients with ongoing HIV replication despite optimized regimens.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Painful subcutaneous injection site reactions (nodules, erythema), increased risk of bacterial pneumonia, hypersensitivity reactions.</div>
             </div>
           </div>
         </div>
 
         <div class="mnemonic-box">
-          <h4>💡 Mnemonic: "E.D.A.M." (Entry &amp; NNRTI Classes)</h4>
-          <p><strong>E</strong>favirenz &bull; <strong>D</strong>arunavir &bull; <strong>A</strong>tazanavir &bull; <strong>M</strong>araviroc.</p>
+          <h4>💡 Mnemonic: "E.D.A.M."</h4>
+          <p><strong>E</strong>favirenz &bull; <strong>Dar</strong>unavir &bull; <strong>A</strong>tazanavir &bull; <strong>M</strong>araviroc.</p>
         </div>
       </section>
 
       <!-- ================= 6. HIV INTEGRASE INHIBITORS ================= -->
       <section class="drug-class-card">
         <h2>Classification: HIV Integrase Strand Transfer Inhibitors (INSTIs)</h2>
-        <p class="section-intro">The preferred frontline anchor class in modern antiretroviral therapy regimens due to rapid viral load suppression and high genetic barrier to resistance.</p>
+        <p class="section-intro">Frontline anchor class in modern antiretroviral therapy regimens.</p>
         
         <div class="sub-block">
-          <h4>📂 Expanded Drug Inventory, Molecular MOA, Uses &amp; Specific ADRs</h4>
+          <h4>📂 Drug Inventory: Mechanism, Uses &amp; ADRs</h4>
           <div class="subdrug-grid">
             <div class="subdrug-item">
               <strong>Dolutegravir / Bictegravir</strong>
               <span class="moa-tag">MOA: Second-Generation INSTIs</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Preferred frontline anchor drugs for initial HIV-1 infection treatment regimens.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Insomnia, headache, weight gain, nausea, rare hypersensitivity reactions and mild benign increases in serum creatinine (due to tubular secretion blocking, not kidney injury).</span>
-              </div>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Preferred frontline anchor agents for HIV-1 initial and maintenance treatment.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Insomnia, headache, weight gain, nausea, rare neural tube defect risk when used at time of conception.</div>
             </div>
-
             <div class="subdrug-item">
               <strong>Raltegravir</strong>
               <span class="moa-tag">MOA: First-Generation INSTI</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> HIV-1 infection in combination with other antiretroviral agents.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Diarrhea, nausea, headache, fatigue, rare severe skin reactions (Stevens-Johnson syndrome), creatine kinase elevations and myopathy.</span>
-              </div>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Treatment of HIV-1 infection in combination with other antiretrovirals.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Insomnia, nausea, headache, diarrhea, rare severe hypersensitivity reactions (DRESS syndrome), CPK elevations/myopathy.</div>
             </div>
-
             <div class="subdrug-item">
               <strong>Cabotegravir</strong>
               <span class="moa-tag">MOA: Long-Acting INSTI</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Long-acting maintenance HIV treatment (monthly/bimonthly IM injection) and Pre-Exposure Prophylaxis (PrEP).</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Injection site pain/nodules, pyrexia, fatigue, headache, musculoskeletal pain, hepatotoxicity.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="moa-flow-box">
-          <h4>⚡ Action Flow: Blocking Provirus Integration</h4>
-          <div class="flow-container">
-            <div class="flow-step">
-              <div class="step-icon">🧬</div>
-              <strong>Step 1: Viral DNA Entry</strong>
-              <span>Transcribed viral DNA migrates into the host cell nucleus.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">🔗</div>
-              <strong>Step 2: INSTI Binding</strong>
-              <span>Inhibitor binds to integrase enzyme and chelates active metal ions.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">❌</div>
-              <strong>Step 3: Strand Transfer Block</strong>
-              <span>Stops covalent insertion of viral DNA into human host DNA.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">✨</div>
-              <strong>Step 4: Permanent Halt</strong>
-              <span>Degrades unintegrated viral DNA and halts permanent infection.</span>
+              <div class="drug-detail-row"><span class="label">Uses:</span> HIV treatment (monthly/bimonthly injectables) and pre-exposure prophylaxis (PrEP).</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Injection site reactions (pain, swelling, nodules), pyrexia, fatigue, headache, musculoskeletal pain.</div>
             </div>
           </div>
         </div>
@@ -817,146 +592,67 @@
         </div>
       </section>
 
-      <!-- ================= 7. PHARMACOKINETIC ENHANCERS FOR HIV ================= -->
+      <!-- ================= 7. PHARMACOKINETIC ENHANCERS ================= -->
       <section class="drug-class-card">
         <h2>Classification: Pharmacokinetic Enhancers for HIV (Boosters)</h2>
-        <p class="section-intro">Pharmacological boosting agents utilized to inhibit hepatic cytochrome P450 enzymes and amplify co-administered antiretroviral drug exposures.</p>
+        <p class="section-intro">Agents used to inhibit CYP3A4 enzymes and boost co-administered antiretroviral drug half-lives.</p>
         
         <div class="sub-block">
-          <h4>📂 Expanded Drug Inventory, Molecular MOA, Uses &amp; Specific ADRs</h4>
+          <h4>📂 Drug Inventory: Mechanism, Uses &amp; ADRs</h4>
           <div class="subdrug-grid">
             <div class="subdrug-item">
               <strong>Ritonavir</strong>
               <span class="moa-tag">MOA: Potent CYP3A4 Inhibitor</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Pharmacokinetic booster for protease inhibitors in HIV therapy.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Nausea, vomiting, diarrhea, hyperlipidemia, paresthesias, elevated transaminases, numerous severe drug-drug interactions.</span>
-              </div>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Low-dose pharmacokinetic enhancer (booster) for protease inhibitors.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Gastrointestinal distress (nausea, diarrhea), dyslipidemia, elevated transaminases, peripheral paresthesias.</div>
             </div>
-
             <div class="subdrug-item">
               <strong>Cobicistat</strong>
               <span class="moa-tag">MOA: Selective CYP3A Enhancer</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Pharmacokinetic booster for elvitegravir, darunavir, and atazanavir in fixed-dose combinations.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Nausea, jaundice, mild serum creatinine increases due to blocked tubular secretion without lowering glomerular filtration rate.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="moa-flow-box">
-          <h4>⚡ Action Flow: Enhancing Therapeutic Half-Life</h4>
-          <div class="flow-container">
-            <div class="flow-step">
-              <div class="step-icon">💊</div>
-              <strong>Step 1: Combined Dosing</strong>
-              <span>Booster is co-formulated with protease or integrase inhibitors.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">🛡️</div>
-              <strong>Step 2: Hepatic Enzyme Blockade</strong>
-              <span>Inhibits CYP3A metabolism in liver and intestinal walls.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">📈</div>
-              <strong>Step 3: Elevated Plasma Levels</strong>
-              <span>Maintains peak therapeutic drug concentrations for longer intervals.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">✨</div>
-              <strong>Step 4: Once-Daily Schedule</strong>
-              <span>Reduces pill burden and supports high patient adherence.</span>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Pharmacokinetic booster for elvitegravir, darunavir, and atazanavir in fixed-dose combinations.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Benign increase in serum creatinine (due to tubular secretion inhibition without affecting true GFR), nausea, jaundice.</div>
             </div>
           </div>
         </div>
 
         <div class="mnemonic-box">
           <h4>💡 Mnemonic: "R.C. Boosters"</h4>
-          <p><strong>R</strong>itonavir &bull; <strong>C</strong>obicistat (The two pharmacokinetic enhancers used in clinical practice).</p>
+          <p><strong>R</strong>itonavir &bull; <strong>C</strong>obicistat.</p>
         </div>
       </section>
 
       <!-- ================= 8. HIV FIXED-DOSE COMBINATIONS ================= -->
       <section class="drug-class-card">
         <h2>Classification: HIV Fixed-Dose Combinations (Single-Tablet Regimens)</h2>
-        <p class="section-intro">Advanced single-tablet regimens (STRs) combining multiple classes of antiretrovirals into one daily pill to optimize patient compliance and viral suppression.</p>
+        <p class="section-intro">Advanced single-tablet regimens combining multiple antiretroviral classes into one daily pill.</p>
         
         <div class="sub-block">
-          <h4>📂 Expanded Drug Inventory, Component Breakdown, Uses &amp; Specific ADRs</h4>
+          <h4>📂 Regimen Inventory: Mechanism, Uses &amp; ADRs</h4>
           <div class="subdrug-grid">
             <div class="subdrug-item">
-              <strong>Biktarvy</strong>
-              <span class="moa-tag">Components: Bictegravir / Emtricitabine / TAF</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Premier frontline single-tablet regimen for treatment-naive and virologically suppressed adults with HIV-1.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Diarrhea, nausea, headache, fatigue; minimal renal and bone toxicity profile compared to older TDF regimens.</span>
-              </div>
+              <strong>Biktarvy (Bictegravir / Emtricitabine / TAF)</strong>
+              <span class="moa-tag">STR Regimen (INSTI + 2 NRTIs)</span>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Complete frontline regimen for HIV-1 treatment-naive adults.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Diarrhea, nausea, headache, mild lipid elevations; minimal renal/bone risk due to TAF backbone.</div>
             </div>
-
             <div class="subdrug-item">
-              <strong>Triumeq</strong>
-              <span class="moa-tag">Components: Dolutegravir / Abacavir / Lamivudine</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Complete single-tablet regimen for HIV-1 infection (requires HLA-B*5701 negative test).</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Insomnia, headache, nausea, hypersensitivity reaction related to abacavir (fever, rash, GI distress, respiratory symptoms which can be fatal if rechallenged).</span>
-              </div>
+              <strong>Triumeq (Dolutegravir / Abacavir / Lamivudine)</strong>
+              <span class="moa-tag">STR Regimen (INSTI + 2 NRTIs)</span>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Complete antiretroviral regimen (requires HLA-B*5701 negative screening).</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Insomnia, fatigue, nausea, headache, severe hypersensitivity reactions (if HLA-B*5701 positive).</div>
             </div>
-
             <div class="subdrug-item">
-              <strong>Symtuza</strong>
-              <span class="moa-tag">Components: Darunavir / Cobicistat / Emtricitabine / TAF</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Protease inhibitor-based complete single-tablet regimen for robust viral control.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Diarrhea, rash, nausea, headache, hyperlipidemia, mild insulin resistance.</span>
-              </div>
-            </div>
-
-            <div class="subdrug-item">
-              <strong>Dovato</strong>
-              <span class="moa-tag">Components: Dolutegravir / Lamivudine</span>
-              <div class="drug-detail-section">
-                <span class="uses-tag"><strong>Clinical Uses:</strong> Two-drug single-tablet regimen for treatment-naive HIV-1 infected adults without baseline resistance.</span>
-                <span class="adr-tag"><strong>Specific ADRs:</strong> Headache, diarrhea, nausea, insomnia, fatigue.</span>
-              </div>
+              <strong>Dovato (Dolutegravir / Lamivudine)</strong>
+              <span class="moa-tag">2-Drug STR Regimen (INSTI + NRTI)</span>
+              <div class="drug-detail-row"><span class="label">Uses:</span> Initial and switch maintenance therapy for HIV-1 suppression.</div>
+              <div class="drug-detail-row"><span class="label">ADRs:</span> Headache, diarrhea, nausea, insomnia, fatigue; reduces long-term renal and bone toxicity risks.</div>
             </div>
           </div>
-        </div>
-
-        <div class="moa-flow-box">
-          <h4>⚡ Action Flow: Single-Tablet Regimen Synergy</h4>
-          <div class="flow-container">
-            <div class="flow-step">
-              <div class="step-icon">📋</div>
-              <strong>Step 1: Multi-Drug Synergy</strong>
-              <span>Combines 2 or 3 distinct antiviral classes into one convenient pill.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">🎯</div>
-              <strong>Step 2: Dual &amp; Triple Attacks</strong>
-              <span>Blocks multiple viral replication steps simultaneously (integrase + reverse transcriptase).</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">🤝</div>
-              <strong>Step 3: Maximum Adherence</strong>
-              <span>Simplifies daily schedules, preventing missed doses and drug resistance mutations.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">✨</div>
-              <strong>Step 4: Long-Term Suppression</strong>
-              <span>Sustains undetectable viral loads and normalizes patient life expectancy.</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="mnemonic-box">
-          <h4>💡 Mnemonic: "S.T.R."</h4>
-          <p><strong>S</strong>ingle <strong>T</strong>ablet <strong>R</strong>egimens maximize adherence and prevent therapeutic failure.</p>
         </div>
 
         <div class="warning-box">
           <h4>🚫 Clinical Warnings &amp; Nursing Interventions</h4>
-          <p>Always screen patients for baseline hepatitis B coinfection, renal function (eGFR), and bone mineral density before starting tenofovir-containing regimens. Perform HLA-B*5701 genetic testing prior to prescribing abacavir to prevent fatal hypersensitivity reactions.</p>
+          <p>Always perform baseline hepatitis B screening and check renal function (eGFR) before administering tenofovir-containing regimens. Screen patients genetically for HLA-B*5701 before prescribing abacavir to prevent fatal hypersensitivity reactions.</p>
         </div>
       </section>
 
