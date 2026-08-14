@@ -1,1 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Antifungal Pharmacology Guide — Systemic, Subcutaneous &amp; Cutaneous Mycoses</title>
+  <style>
+    :root {
+      --primary: #7c3aed;
+      --primary-gradient: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+      --accent: #a78bfa;
+      --bg-gradient: linear-gradient(180deg, #f5f3ff 0%, #f8fafc 100%);
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --card-border: #e2e8f0;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(124, 58, 237, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --mnemonics-bg: #f5f3ff;
+      --mnemonics-border: #ddd6fe;
+      --warning-bg: #fff1f2;
+      --warning-border: #fecdd3;
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f8fafc;
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 20px 15px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 40px 35px;
+      border-radius: 20px;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .badge-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #ede9fe;
+      color: #6d28d9;
+      font-weight: 700;
+      font-size: 13px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1e293b 0%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      margin-bottom: 35px;
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      color: #1e293b;
+      margin: 45px 0 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 24px;
+      background: var(--primary);
+      border-radius: 4px;
+    }
+
+    h4 {
+      font-size: 1.05rem;
+      color: #6d28d9;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    p {
+      margin-bottom: 15px;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .drug-class-card {
+      background: #ffffff;
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 35px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .drug-class-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-gradient);
+      border-radius: 16px 16px 0 0;
+    }
+
+    .sub-block {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+
+    .moa-flow-box {
+      background: #f5f3ff;
+      border: 2px solid #ddd6fe;
+      border-radius: 14px;
+      padding: 22px;
+      margin: 20px 0;
+    }
+
+    .moa-flow-box h4 {
+      color: #5b21b6;
+      margin-bottom: 15px;
+    }
+
+    .flow-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+    }
+
+    .flow-step {
+      background: #ffffff;
+      border: 2px dashed #c4b5fd;
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      animation: pulseGlow 3s infinite alternate;
+    }
+
+    .flow-step:nth-child(1) { animation-delay: 0s; }
+    .flow-step:nth-child(2) { animation-delay: 0.75s; }
+    .flow-step:nth-child(3) { animation-delay: 1.5s; }
+    .flow-step:nth-child(4) { animation-delay: 2.25s; }
+
+    .flow-step .step-icon {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .flow-step strong {
+      display: block;
+      color: #4c1d95;
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+    }
+
+    .flow-step span {
+      font-size: 0.8rem;
+      color: #5b21b6;
+    }
+
+    .mnemonic-box {
+      background: var(--mnemonics-bg);
+      border: 1px solid var(--mnemonics-border);
+      border-left: 5px solid var(--primary);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 15px 0;
+    }
+
+    .mnemonic-box h4 {
+      color: #6d28d9;
+    }
+
+    .warning-box {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-left: 5px solid #e11d48;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 15px 0;
+    }
+
+    .warning-box h4 {
+      color: #9f1239;
+    }
+
+    .subdrug-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .subdrug-item {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .subdrug-item strong {
+      display: block;
+      color: #0f172a;
+      font-size: 0.9rem;
+    }
+
+    .subdrug-item span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulseGlow {
+      0% { border-color: #c4b5fd; background: #ffffff; }
+      100% { border-color: #7c3aed; background: #f5f3ff; }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 16px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .flow-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge-container">
+        <span class="badge">Simplified Nursing Study Guide</span>
+      </div>
+      <h1>Antifungal Drugs: Systemic, Subcutaneous &amp; Cutaneous Mycoses</h1>
+      <p class="subtitle">Clear drug classifications, mechanisms of action, clinical indications, and exam mnemonics for fungal infections.</p>
+    </header>
+
+    <main>
+
+      <!-- ================= 1. DRUGS FOR SUBCUTANEOUS & SYSTEMIC MYCOSES ================= -->
+      <section class="drug-class-card">
+        <h2>Drugs for Subcutaneous and Systemic Mycoses</h2>
+        <p><em>Potent antifungal agents used to treat deep-seated, life-threatening systemic fungal infections and localized subcutaneous mycoses.</em></p>
+        
+        <div class="sub-block">
+          <h4>📂 Clear Drug Names &amp; Uses</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item"><strong>Amphotericin B</strong><span>Gold standard intravenous polyene for severe, life-threatening systemic mycoses.</span></div>
+            <div class="subdrug-item"><strong>Fluconazole</strong><span>Oral/IV triazole frontline for candidiasis and cryptococcal meningitis.</span></div>
+            <div class="subdrug-item"><strong>Itraconazole</strong><span>Broad-spectrum azole for systemic and subcutaneous infections (e.g., sporotrichosis).</span></div>
+            <div class="subdrug-item"><strong>Voriconazole</strong><span>Frontline triazole specifically targeting invasive aspergillosis.</span></div>
+            <div class="subdrug-item"><strong>Caspofungin (Echinocandins)</strong><span>Cell wall synthesis blocker used for invasive candidiasis and aspergillosis rescue.</span></div>
+            <div class="subdrug-item"><strong>Flucytosine</strong><span>Pyrimidine antimetabolite used synergistically with Amphotericin B.</span></div>
+          </div>
+        </div>
+
+        <div class="moa-flow-box">
+          <h4>⚡ Animated MOA Workflow: Fungal Membrane &amp; Wall Attack</h4>
+          <div class="flow-container">
+            <div class="flow-step">
+              <div class="step-icon">🍄</div>
+              <strong>Step 1: Target Binding</strong>
+              <span>Drugs bind fungal cell membrane ergosterol or block beta-glucan cell wall synthesis.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">🕳️</div>
+              <strong>Step 2: Pore Formation</strong>
+              <span>Polyenes punch microscopic pores in the fungal membrane; azoles block ergosterol production.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">💧</div>
+              <strong>Step 3: Leakage &amp; Burst</strong>
+              <span>Intracellular ions (potassium) leak out, leading to osmotic instability.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">💥</div>
+              <strong>Step 4: Fungal Death</strong>
+              <span>Resulting cellular collapse causes rapid fungal cell death (fungicidal/fungistatic).</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "S.Y.S.T.E.M."</h4>
+          <p><strong>S</strong>ystemic candidiasis &bull; <strong>Y</strong>east meningitis (Cryptococcus) &bull; <strong>S</strong>ubcutaneous sporotrichosis &bull; <strong>T</strong>ough aspergillosis &bull; <strong>E</strong>ndemic histoplasmosis &bull; <strong>M</strong>ucormycosis infections.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "S.H.A.K.E."</h4>
+          <p><strong>S</strong>haking chills &amp; fever infusion reactions (Amphotericin B "shake and bake") &bull; <strong>H</strong>epatic enzyme bumps &bull; <strong>A</strong>nemia / bone marrow suppression &bull; <strong>K</strong>idney / nephrotoxicity &bull; <strong>E</strong>lectrolyte loss (low potassium and magnesium).</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Clinical Warnings</h4>
+          <p>Amphotericin B requires premedication (antipyretics, antihistamines, hydration) to manage severe infusion reactions and nephrotoxicity risks.</p>
+        </div>
+      </section>
+
+      <!-- ================= 2. DRUGS FOR CUTANEOUS & SUPERFICIAL MYCOSES ================= -->
+      <section class="drug-class-card">
+        <h2>Drugs for Cutaneous Mycoses</h2>
+        <p><em>Topical and oral medications designed to treat superficial fungal infections affecting skin, hair, and nails (dermatophytes and superficial yeasts).</em></p>
+        
+        <div class="sub-block">
+          <h4>📂 Clear Drug Names &amp; Uses</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item"><strong>Terbinafine</strong><span>Squalene epoxidase inhibitor; frontline oral/topical treatment for athlete's foot &amp; nail fungus.</span></div>
+            <div class="subdrug-item"><strong>Griseofulvin</strong><span>Oral agent binding keratin in skin, hair, and nail dermatophytosis (ringworm).</span></div>
+            <div class="subdrug-item"><strong>Clotrimazole</strong><span>Topical azole for ringworm, jock itch, and cutaneous candidiasis.</span></div>
+            <div class="subdrug-item"><strong>Miconazole</strong><span>Topical cream/powder for common superficial skin and vaginal yeast infections.</span></div>
+            <div class="subdrug-item"><strong>Nystatin</strong><span>Polyene used topically or as a swish-and-swallow solution for oral thrush (candidiasis).</span></div>
+            <div class="subdrug-item"><strong>Ketoconazole</strong><span>Topical cream and medicated shampoo for seborrheic dermatitis and ringworm.</span></div>
+          </div>
+        </div>
+
+        <div class="moa-flow-box">
+          <h4>⚡ Animated MOA Workflow: Superficial Ergosterol &amp; Keratin Disruption</h4>
+          <div class="flow-container">
+            <div class="flow-step">
+              <div class="step-icon">🧴</div>
+              <strong>Step 1: Application / Ingestion</strong>
+              <span>Drug is applied topically to skin lesions or ingested orally to bind keratin structures.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">⚙️</div>
+              <strong>Step 2: Enzyme Blockade</strong>
+              <span>Terbinafine blocks squalene epoxidase, causing toxic squalene accumulation in fungi.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">🛡️</div>
+              <strong>Step 3: Keratin Protection</strong>
+              <span>Griseofulvin integrates into newly growing keratinized skin and nails, preventing invasion.</span>
+            </div>
+            <div class="flow-step">
+              <div class="step-icon">✨</div>
+              <strong>Step 4: Skin Clearance</strong>
+              <span>Eradicates superficial fungal colonies, clearing rashes and restoring skin health.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "S.K.I.N.S."</h4>
+          <p><strong>S</strong>uperficial ringworm (tinea corporis) &bull; <strong>K</strong>aposi-alternative fungal rashes &bull; <strong>I</strong>nfections of athlete's foot (tinea pedis) &bull; <strong>N</strong>ail fungus (onychomycosis) &bull; <strong>S</strong>wish-and-swallow oral thrush (Nystatin).</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "R.A.S.H.E.S."</h4>
+          <p><strong>R</strong>edness and local skin irritation &bull; <strong>A</strong>bdominal stomach upset &bull; <strong>S</strong>unlight photosensitivity &bull; <strong>H</strong>eadache &bull; <strong>E</strong>levated liver enzymes (oral terbinafine/griseofulvin) &bull; <strong>S</strong>kin contact dermatitis.</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Clinical Warnings</h4>
+          <p>Oral terbinafine and griseofulvin require baseline liver function checks. Avoid alcohol consumption during treatment due to potential hepatic strain.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    document.addEventListener('selectstart', function(e) { e.preventDefault(); });
+    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+    document.addEventListener('keydown', function(e) {
+      if (
+        e.key === 'F12' || 
+        (e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'p' || e.key === 'c' || e.key === 'a')) ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))
+      ) {
+        e.preventDefault();
+      }
+    });
+  </script>
+
+</body>
+</html>
