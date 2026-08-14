@@ -1,1 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Protein Synthesis Inhibitors — Ultimate Student Guide</title>
+  <style>
+    :root {
+      --primary: #7c3aed;
+      --primary-gradient: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+      --accent: #06b6d4;
+      --bg-gradient: linear-gradient(180deg, #f5f3ff 0%, #f8fafc 100%);
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --card-border: #e2e8f0;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(124, 58, 237, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --mnemonics-bg: #f5f3ff;
+      --mnemonics-border: #ddd6fe;
+      --warning-bg: #fff1f2;
+      --warning-border: #fecdd3;
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f8fafc;
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 20px 15px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 40px 35px;
+      border-radius: 20px;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    /* Header Styling */
+    .badge-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #ede9fe;
+      color: #6d28d9;
+      font-weight: 700;
+      font-size: 13px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+
+    .badge:hover {
+      background: #ddd6fe;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1e293b 0%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      margin-bottom: 35px;
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      color: #1e293b;
+      margin: 45px 0 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 24px;
+      background: var(--primary);
+      border-radius: 4px;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      color: #1e293b;
+      margin: 25px 0 12px;
+    }
+
+    h4 {
+      font-size: 1.05rem;
+      color: #6d28d9;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    p {
+      margin-bottom: 15px;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    /* Introduction Section & Flow Animation */
+    .intro-box {
+      background: #ffffff;
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .flow-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .flow-step {
+      background: #f8fafc;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      position: relative;
+      animation: pulseGlow 3s infinite alternate;
+    }
+
+    .flow-step:nth-child(1) { animation-delay: 0s; }
+    .flow-step:nth-child(2) { animation-delay: 0.75s; }
+    .flow-step:nth-child(3) { animation-delay: 1.5s; }
+    .flow-step:nth-child(4) { animation-delay: 2.25s; }
+
+    .flow-step .step-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .flow-step strong {
+      display: block;
+      color: #1e293b;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .flow-step span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Drug Card Framework */
+    .drug-class-card {
+      background: #ffffff;
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .drug-class-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-gradient);
+      border-radius: 16px 16px 0 0;
+    }
+
+    /* Sub-sections inside Cards */
+    .sub-block {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+
+    /* Mnemonics Styling */
+    .mnemonic-box {
+      background: var(--mnemonics-bg);
+      border: 1px solid var(--mnemonics-border);
+      border-left: 5px solid var(--primary);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 15px 0;
+    }
+
+    .mnemonic-box h4 {
+      color: #6d28d9;
+    }
+
+    /* Warning / Contraindication Styling */
+    .warning-box {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-left: 5px solid #e11d48;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 15px 0;
+    }
+
+    .warning-box h4 {
+      color: #9f1239;
+    }
+
+    /* Grid for sub-drugs */
+    .subdrug-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .subdrug-item {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .subdrug-item strong {
+      display: block;
+      color: #0f172a;
+      font-size: 0.9rem;
+    }
+
+    .subdrug-item span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulseGlow {
+      0% { border-color: #cbd5e1; background: #f8fafc; }
+      100% { border-color: var(--primary); background: #f5f3ff; }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 16px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .flow-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge-container">
+        <span class="badge" style="background: #ede9fe; color: #6d28d9;">Master Study Guide</span>
+      </div>
+      <h1>Protein Synthesis Inhibitors</h1>
+      <p class="subtitle">An ultimate nursing pharmacology breakdown of 30S &amp; 50S ribosomal blockers: Classifications, Mechanisms, Mnemonics, and Clinical Safety Points.</p>
+    </header>
+
+    <main>
+
+      <!-- ================= 1. GENERAL INTRODUCTION & MECHANISM ================= -->
+      <section class="intro-box">
+        <h2>1. General Introduction &amp; Ribosomal Target Mechanism</h2>
+        <p>Bacteria rely heavily on protein translation to build functional enzymes, structures, and reproduce. Protein synthesis inhibitors target bacterial ribosomes (which differ from human ribosomes). They generally split into two primary ribosomal subunit targets: the <strong>30S Subunit</strong> and the <strong>50S Subunit</strong>. Most are <em>bacteriostatic</em> (halt growth), while Aminoglycosides are uniquely <em>bactericidal</em> (kill outright).</p>
+        
+        <h3>Flow Animation: How Protein Synthesis Inhibitors Work</h3>
+        <div class="flow-container">
+          <div class="flow-step">
+            <div class="step-icon">🔬</div>
+            <strong>Step 1: Entry</strong>
+            <span>Antibiotic penetrates the bacterial cell wall and outer membrane.</span>
+          </div>
+          <div class="flow-step">
+            <div class="step-icon">🎯</div>
+            <strong>Step 2: Subunit Binding</strong>
+            <span>Binds specifically to either the 30S or 50S ribosomal subunits.</span>
+          </div>
+          <div class="flow-step">
+            <div class="step-icon">🛑</div>
+            <strong>Step 3: Translation Halt</strong>
+            <span>Blocks mRNA reading, amino acid transfer, or peptide bond formation.</span>
+          </div>
+          <div class="flow-step">
+            <div class="step-icon">🦠</div>
+            <strong>Step 4: Growth Arrest / Death</strong>
+            <span>Microbe fails to create structural proteins and stops growing or dies.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 2. AMINOGLYCOSIDES ================= -->
+      <section class="drug-class-card">
+        <h2>2. Aminoglycosides (The "-ycin" / "-micin" High-Hitters)</h2>
+        
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Gentamicin</strong>
+              <span>Standard IV/IM agent for severe gram-negative rod infections.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Amikacin</strong>
+              <span>Broadest spectrum; used for resistant hospital strains.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Tobramycin</strong>
+              <span>Highly effective against <em>Pseudomonas aeruginosa</em> (inhaled for cystic fibrosis).</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Streptomycin</strong>
+              <span>Historic agent used for tuberculosis and plague.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action</h4>
+          <p>Irreversibly binds to the <strong>30S ribosomal subunit</strong>, causing misreading of the genetic code and premature termination of protein synthesis. Highly unique as a <strong>bactericidal</strong> protein synthesis inhibitor.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "A.M.I.N.O."</h4>
+          <p><strong>A</strong>erobic gram-negative bacilli sepsis &bull; <strong>M</strong>ycobacterial infections (Streptomycin) &bull; <strong>I</strong>ntensive care synergism with beta-lactams &bull; <strong>N</strong>eonatal empirical sepsis &bull; <strong>O</strong>cular/UTI topical treatments.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "O.T.O.N.E.P.H.R.O."</h4>
+          <p><strong>O</strong>totoxicity (irreversible hearing loss/tinnitus) &bull; <strong>T</strong>oxicity to kidneys (acute tubular necrosis) &bull; <strong>N</strong>euromuscular blockade (can cause respiratory paralysis) &bull; <strong>E</strong>lectrolyte wasting (Magnesium/Potassium) &bull; <strong>P</strong>eak and trough monitoring required.</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Contraindications</h4>
+          <p>Absolute caution with pre-existing renal impairment, myasthenia gravis (worsens muscle weakness), and co-administration with loop diuretics or vancomycin.</p>
+        </div>
+
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; <strong>Therapeutic Drug Monitoring:</strong> Always draw peak and trough blood levels to prevent kidney damage and hearing loss.<br>&bull; Encourage high fluid intake (unless contraindicated) to protect renal tubules.</p>
+        </div>
+      </section>
+
+      <!-- ================= 3. TETRACYCLINES ================= -->
+      <section class="drug-class-card">
+        <h2>3. Tetracyclines (The "-cycline" Family)</h2>
+
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Doxycycline</strong>
+              <span>Long-acting, oral/IV. First-line for lyme disease, acne, and atypical bugs.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Minocycline</strong>
+              <span>Lipophilic, penetrates skin and CNS well; used for severe acne and RA.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Tetracycline</strong>
+              <span>Classic short-acting oral agent (less frequently used today due to resistance).</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action</h4>
+          <p>Reversibly binds to the <strong>30S ribosomal subunit</strong>, blocking the access of aminoacyl-tRNA to the mRNA-ribosome complex. Functions as a <strong>bacteriostatic</strong> agent.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "T.E.T.R.A."</h4>
+          <p><strong>T</strong>ick-borne infections (Lyme disease, Rocky Mountain spotted fever) &bull; <strong>E</strong>pidemic cholera and anthrax prophylaxis &bull; <strong>T</strong>rachoma and chlamydia infections &bull; <strong>R</strong>osacea and severe inflammatory acne &bull; <strong>A</strong>typical pneumonias.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "T.E.E.T.H."</h4>
+          <p><strong>T</strong>ooth discoloration and enamel hypoplasia in young children &bull; <strong>E</strong>pigastric burning and esophageal ulcerations &bull; <strong>E</strong>rythema from severe photosensitivity &bull; <strong>T</strong>eratogenic effects in pregnancy &bull; <strong>H</strong>epatotoxicity with high doses.</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Contraindications</h4>
+          <p>Contraindicated in pregnant women, breastfeeding mothers, and children under 8 years of age due to permanent bone and teeth binding.</p>
+        </div>
+
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; Do not administer with dairy products, antacids, or iron supplements (calcium and multi-valent cations bind tetracyclines and block absorption).<br>&bull; Instruct patients to take pills with a full glass of water and remain upright for 30 minutes to prevent esophageal ulcers.</p>
+        </div>
+      </section>
+
+      <!-- ================= 4. MACROLIDES ================= -->
+      <section class="drug-class-card">
+        <h2>4. Macrolides ("The -thrimycins")</h2>
+
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Azithromycin</strong>
+              <span>Z-Pak. Long tissue half-life, minimal CYP450 drug interactions.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Clarithromycin</strong>
+              <span>Enhanced coverage for H. pylori and respiratory bugs; strong CYP inhibitor.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Erythromycin</strong>
+              <span>Classic older agent; powerful GI motility stimulant, highly prone to interactions.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action</h4>
+          <p>Reversibly binds to the <strong>50S ribosomal subunit</strong>, inhibiting translocation and peptide chain elongation. Primarily <strong>bacteriostatic</strong> (can be bactericidal at high concentrations against sensitive organisms).</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "M.A.C.R.O."</h4>
+          <p><strong>M</strong>ycoplasma and atypical community-acquired pneumonia &bull; <strong>A</strong>typical mycobacterial infections (MAC in HIV) &bull; <strong>C</strong>hlamydia and pertussis (whooping cough) &bull; <strong>R</strong>espiratory tract streptococcal infections in penicillin-allergic patients &bull; <strong>O</strong>titis media.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "M.A.C.H.I.N.E."</h4>
+          <p><strong>M</strong>otility issues (severe GI upset, cramping, nausea from erythromycin) &bull; <strong>A</strong>rrhythmias (QT prolongation and fatal Torsades de Pointes) &bull; <strong>C</strong>holestatic hepatitis &bull; <strong>H</strong>earing loss / ototoxicity with high IV doses &bull; <strong>I</strong>nteraction via CYP450 enzyme inhibition &bull; <strong>E</strong>osinophilia / Allergic rash.</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Contraindications</h4>
+          <p>Use with extreme caution in patients with baseline QT prolongation, cardiac arrhythmias, or severe hepatic impairment.</p>
+        </div>
+
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; Monitor ECG for QTc interval prolongation if given IV or combined with other cardiac medications.<br>&bull; Azithromycin is typically dosed as a convenient 3-day or 5-day taper course due to its long tissue retention.</p>
+        </div>
+      </section>
+
+      <!-- ================= 5. LINCOSAMIDES ================= -->
+      <section class="drug-class-card">
+        <h2>5. Lincosamides (Clindamycin)</h2>
+
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Clindamycin</strong>
+              <span>Primary lincosamide. Excellent tissue penetration for bone, skin, and anaerobic infections.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action</h4>
+          <p>Binds exclusively to the <strong>50S ribosomal subunit</strong>, preventing peptide bond formation and halting protein elongation. Primarily <strong>bacteriostatic</strong>.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "C.L.I.N.D.A."</h4>
+          <p><strong>C</strong>ellulitis and deep skin/soft tissue infections &bull; <strong>L</strong>ung abscesses and aspiration pneumonia &bull; <strong>I</strong>ntra-abdominal anaerobic coverage &bull; <strong>N</strong>ecrotizing fasciitis (suppresses toxin production) &bull; <strong>D</strong>ental and oral bone infections &bull; <strong>A</strong>lternative for penicillin-allergic staph/strep.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "C.D.I.F.F."</h4>
+          <p><strong>C</strong>lostridioides difficile overgrowth and severe pseudomembranous colitis &bull; <strong>D</strong>iarrhea and severe abdominal cramping &bull; <strong>I</strong>njection site thrombophlebitis &bull; <strong>F</strong>ouling metallic taste &bull; <strong>F</strong>requent hypersensitivity rashes.</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Contraindications</h4>
+          <p>Avoid in patients with a history of inflammatory bowel disease (IBD) or antibiotic-associated colitis due to extreme risk of C. diff triggering.</p>
+        </div>
+
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; Educate patients to immediately report watery or bloody diarrhea during or weeks after finishing treatment.<br>&bull; Never administer IV push; always infuse diluted over at least 10–60 minutes.</p>
+        </div>
+      </section>
+
+      <!-- ================= 6. OXAZOLIDINONES ================= -->
+      <section class="drug-class-card">
+        <h2>6. Oxazolidinones (Linezolid &amp; Tedizolid)</h2>
+
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Linezolid</strong>
+              <span>First-line oral/IV heavy-hitter for multi-drug resistant Gram-positive bugs.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Tedizolid</strong>
+              <span>Second-generation oxazolidinone with once-daily dosing for skin infections.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action</h4>
+          <p>Binds to the 50S ribosomal subunit at a unique site close to the 30S interface, preventing the formation of the initial <strong>70S initiation complex</strong>. Highly effective against resistant strains.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "V.R.S.A."</h4>
+          <p><strong>V</strong>ancomycin-Resistant Staphylococcus Aureus (VRSA) &bull; <strong>R</strong>esistant Enterococcus faecium (VRE) infections &bull; <strong>S</strong>evere hospital-acquired pneumonia &bull; <strong>A</strong>naerobic and complicated skin structure infections.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "B.O.N.E."</h4>
+          <p><strong>B</strong>one marrow suppression (thrombocytopenia and anemia during prolonged use) &bull; <strong>O</strong>ptic neuritis with prolonged therapy (>2 weeks) &bull; <strong>N</strong>europathy (peripheral nerve damage) &bull; <strong>E</strong>nteric serotonin syndrome risk when mixed with SSRI antidepressants (weak MAOI activity).</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Contraindications</h4>
+          <p>Do not co-administer with MAO inhibitors or SSRI antidepressants without extreme caution due to risk of dangerous serotonin syndrome and severe hypertension.</p>
+        </div>
+
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; Monitor weekly complete blood counts (CBC) for platelet drops if treatment exceeds 10–14 days.<br>&bull; Instruct patients to avoid foods exceptionally high in tyramine (aged cheeses, cured meats) while on therapy.</p>
+        </div>
+      </section>
+
+      <!-- ================= 7. GLYCYLCYC LINES ================= -->
+      <section class="drug-class-card">
+        <h2>7. Glycylcyclines (Tigecycline)</h2>
+
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Tigecycline</strong>
+              <span>Derivation of minocycline designed to bypass traditional tetracycline efflux pumps.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action</h4>
+          <p>Binds to the <strong>30S ribosomal subunit</strong> with a binding affinity up to 5 times stronger than standard tetracyclines, overcoming major resistance mechanisms.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "B.R.O.A.D."</h4>
+          <p><strong>B</strong>road-spectrum multidrug-resistant intra-abdominal infections &bull; <strong>R</strong>esistant complicated skin and soft tissue infections &bull; <strong>O</strong>utpatient/inpatient severe polymicrobial sepsis &bull; <strong>A</strong>cinetobacter and CRE coverage &bull; <strong>D</strong>rug-resistant superbugs.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "N.A.U.S.E.A."</h4>
+          <p><strong>N</strong>oticeable, severe nausea and projectile vomiting &bull; <strong>A</strong>llergic hypersensitivity &bull; <strong>U</strong>pset stomach &bull; <strong>S</strong>evere acute pancreatitis reports &bull; <strong>E</strong>levated liver enzymes &bull; <strong>A</strong>zotemia.</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Contraindications</h4>
+          <p>Avoid in pregnant women and pediatric patients under 8 (same tooth/bone binding rules as tetracyclines). Boxed warning for increased all-cause mortality risk in clinical trials.</p>
+        </div>
+
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; Administer antiemetics preemptively prior to infusion, as severe nausea is extremely common with tigecycline.<br>&bull; Reconstitute IV vials carefully to a yellow-orange color before further dilution.</p>
+        </div>
+      </section>
+
+      <!-- ================= 8. CHLORAMPHENICOL & OTHERS ================= -->
+      <section class="drug-class-card">
+        <h2>8. Chloramphenicol &amp; Other Protein Synthesis Inhibitors</h2>
+
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Chloramphenicol</strong>
+              <span>Historic broad-spectrum 50S inhibitor reserved for life-threatening emergencies.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Quinupristin / Dalfopristin</strong>
+              <span>Streptogramin combination targeting 50S subunit for VRE bacteremia.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action</h4>
+          <p>Chloramphenicol binds reversibly to the <strong>50S ribosomal subunit</strong>, inhibiting peptide bond formation (peptidyl transferase blockade). Streptogramins bind two distinct sites on the 50S subunit for synergistic bactericidal action.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "B.R.A.I.N."</h4>
+          <p><strong>B</strong>rain abscesses and severe bacterial meningitis in penicillin-allergic patients &bull; <strong>R</strong>ocky Mountain spotted fever in pregnant patients where tetracyclines are forbidden &bull; <strong>A</strong>lternative for multi-drug resistant typhoid fever &bull; <strong>I</strong>ntraocular severe infections (excellent eye drop penetration) &bull; <strong>N</strong>osocomial life-threatening infections.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "G.R.A.Y."</h4>
+          <p><strong>G</strong>ray Baby Syndrome in neonates (hypotension, cyanosis, abdominal distension due to immature liver glucuronidation) &bull; <strong>R</strong>ed bone marrow suppression (dose-dependent reversible anemia &amp; irreversible, fatal aplastic anemia) &bull; <strong>A</strong>lergic skin reactions &bull; <strong>Y</strong>east (candida) superinfections.</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Contraindications</h4>
+          <p>Avoid systemic use when safer alternatives exist. Strictly contraindicated for minor infections or routine prophylaxis due to the high risk of fatal aplastic anemia.</p>
+        </div>
+
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; Monitor blood levels and perform frequent serial baseline blood cell counts (CBC) during systemic therapy.<br>&bull; In neonates, monitor serum levels closely to prevent toxic drug accumulation and Gray Baby Syndrome.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+
+    // Disable text selection start
+    document.addEventListener('selectstart', function(e) {
+      e.preventDefault();
+    });
+
+    // Disable dragging elements/images
+    document.addEventListener('dragstart', function(e) {
+      e.preventDefault();
+    });
+
+    // Disable keyboard shortcuts for saving, printing, viewing source, and copying
+    document.addEventListener('keydown', function(e) {
+      if (
+        e.key === 'F12' || 
+        (e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'p' || e.key === 'c' || e.key === 'a')) ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))
+      ) {
+        e.preventDefault();
+      }
+    });
+  </script>
+
+</body>
+</html>
