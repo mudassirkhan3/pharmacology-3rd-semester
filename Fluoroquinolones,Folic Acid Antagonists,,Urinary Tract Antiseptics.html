@@ -1,1 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Quinolones, Folate Inhibitors &amp; Urinary Antiseptics — Ultimate Student Guide</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-gradient: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      --accent: #38bdf8;
+      --bg-gradient: linear-gradient(180deg, #f0f9ff 0%, #f8fafc 100%);
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --card-border: #e2e8f0;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(2, 132, 199, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --mnemonics-bg: #f0f9ff;
+      --mnemonics-border: #bae6fd;
+      --warning-bg: #fff1f2;
+      --warning-border: #fecdd3;
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f8fafc;
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 20px 15px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 40px 35px;
+      border-radius: 20px;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .badge-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 700;
+      font-size: 13px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+
+    .badge:hover {
+      background: #bae6fd;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1e293b 0%, #0284c7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      margin-bottom: 35px;
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      color: #1e293b;
+      margin: 45px 0 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 24px;
+      background: var(--primary);
+      border-radius: 4px;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      color: #1e293b;
+      margin: 25px 0 12px;
+    }
+
+    h4 {
+      font-size: 1.05rem;
+      color: #0369a1;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    p {
+      margin-bottom: 15px;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .intro-box {
+      background: #ffffff;
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .flow-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .flow-step {
+      background: #f8fafc;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      position: relative;
+      animation: pulseGlow 3s infinite alternate;
+    }
+
+    .flow-step:nth-child(1) { animation-delay: 0s; }
+    .flow-step:nth-child(2) { animation-delay: 0.75s; }
+    .flow-step:nth-child(3) { animation-delay: 1.5s; }
+    .flow-step:nth-child(4) { animation-delay: 2.25s; }
+
+    .flow-step .step-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .flow-step strong {
+      display: block;
+      color: #1e293b;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .flow-step span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .drug-class-card {
+      background: #ffffff;
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .drug-class-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-gradient);
+      border-radius: 16px 16px 0 0;
+    }
+
+    .sub-block {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+
+    .mnemonic-box {
+      background: var(--mnemonics-bg);
+      border: 1px solid var(--mnemonics-border);
+      border-left: 5px solid var(--primary);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 15px 0;
+    }
+
+    .mnemonic-box h4 {
+      color: #0369a1;
+    }
+
+    .warning-box {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-left: 5px solid #e11d48;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 15px 0;
+    }
+
+    .warning-box h4 {
+      color: #9f1239;
+    }
+
+    .subdrug-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .subdrug-item {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .subdrug-item strong {
+      display: block;
+      color: #0f172a;
+      font-size: 0.9rem;
+    }
+
+    .subdrug-item span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulseGlow {
+      0% { border-color: #cbd5e1; background: #f8fafc; }
+      100% { border-color: var(--primary); background: #f0f9ff; }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 16px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .flow-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge-container">
+        <span class="badge">Master Study Guide</span>
+      </div>
+      <h1>Quinolones, Fluoroquinolones, Folate &amp; Urinary Antiseptics</h1>
+      <p class="subtitle">An ultimate nursing pharmacology breakdown of DNA replication blockers, metabolic pathway inhibitors, and concentrated urinary tract agents.</p>
+    </header>
+
+    <main>
+
+      <!-- ================= 1. QUINOLONES & FLUOROQUINOLONES ================= -->
+      <section class="drug-class-card">
+        <h2>Quinolones &amp; Fluoroquinolones (The "-oxacins")</h2>
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item"><strong>Ciprofloxacin</strong><span>2nd Gen; Gold standard for <em>Pseudomonas</em> and anthrax.</span></div>
+            <div class="subdrug-item"><strong>Levofloxacin</strong><span>3rd Gen ("Respiratory FQ"); covers strep pneumoniae and atypicals.</span></div>
+            <div class="subdrug-item"><strong>Moxifloxacin</strong><span>4th Gen; Enhanced anaerobic and respiratory coverage; no renal adjustment needed.</span></div>
+            <div class="subdrug-item"><strong>Nalidixic Acid</strong><span>1st Gen Quinolone; historic urinary antiseptic agent.</span></div>
+          </div>
+        </div>
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action</h4>
+          <p>Inhibits bacterial DNA synthesis by targeting <strong>DNA gyrase</strong> (topoisomerase II, crucial for gram-negatives) and <strong>topoisomerase IV</strong> (crucial for gram-positives), causing lethal double-stranded DNA breaks (<strong>bactericidal</strong>).</p>
+        </div>
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "F.L.U.O.R.O."</h4>
+          <p><strong>F</strong>luid infections / UTIs &bull; <strong>L</strong>ung infections (community-acquired pneumonia) &bull; <strong>U</strong>rogenital and sexually transmitted bugs &bull; <strong>O</strong>steomyelitis (good bone penetration) &bull; <strong>R</strong>esistant anthrax exposure &bull; <strong>O</strong>phthalmologic severe conjunctivitis.</p>
+        </div>
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "T.E.N.D.O.N."</h4>
+          <p><strong>T</strong>endonitis and spontaneous Achilles tendon rupture &bull; <strong>E</strong>CG QT interval prolongation &bull; <strong>N</strong>eurological central effects (seizures, dizziness) &bull; <strong>D</strong>ysglycemia (severe hypo/hyperglycemia) &bull; <strong>O</strong>totoxicity and photosensitivity &bull; <strong>N</strong>ausea and C. diff risk.</p>
+        </div>
+        <div class="warning-box">
+          <h4>🚫 Contraindications</h4>
+          <p>Boxed warning for tendon rupture and myasthenia gravis exacerbation. Avoid in children under 18 and pregnant women due to cartilage damage risks.</p>
+        </div>
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; Avoid taking with multivalent cations (antacids, iron, calcium, sucralfate), which chelate and destroy absorption.<br>&bull; Monitor patients closely for sudden ankle/heel pain and stop the drug immediately if tendonitis is suspected.</p>
+        </div>
+      </section>
+
+      <!-- ================= 2. FOLATE SYNTHESIS INHIBITORS ================= -->
+      <section class="drug-class-card">
+        <h2>Folate Synthesis Inhibitors (Sulfonamides)</h2>
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item"><strong>Sulfamethoxazole</strong><span>Primary systemic sulfonamide combined with trimethoprim.</span></div>
+            <div class="subdrug-item"><strong>Sulfisoxazole</strong><span>Rapidly absorbed oral agent used for simple UTIs.</span></div>
+            <div class="subdrug-item"><strong>Sulfadiazine</strong><span>Used alongside pyrimethamine for toxoplasmosis.</span></div>
+            <div class="subdrug-item"><strong>Silver Sulfadiazine</strong><span>Topical cream applied to prevent burn wound infections.</span></div>
+          </div>
+        </div>
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action</h4>
+          <p>Structural analogues of para-aminobenzoic acid (PABA) that competitively inhibit <strong>dihydropteroate synthase</strong>, halting bacterial folic acid synthesis required for DNA/RNA bases (<strong>bacteriostatic</strong>).</p>
+        </div>
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "S.U.L.F.A."</h4>
+          <p><strong>S</strong>imple urinary tract infections &bull; <strong>U</strong>lcerative colitis and inflammatory bowel conditions &bull; <strong>L</strong>ung prophylaxis against <em>Pneumocystis jirovecii</em> pneumonia (PJP) &bull; <strong>F</strong>acial and body burn wound coverage &bull; <strong>A</strong>cute toxoplasmosis.</p>
+        </div>
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "S.K.I.N.S."</h4>
+          <p><strong>S</strong>evere hypersensitivity (Stevens-Johnson syndrome, toxic epidermal necrolysis) &bull; <strong>K</strong>idney crystal nephropathy from precipitation &bull; <strong>I</strong>cterus / kernicterus in neonates &bull; <strong>N</strong>ausea and vomiting &bull; <strong>S</strong>unlight photosensitivity rashes.</p>
+        </div>
+        <div class="warning-box">
+          <h4>🚫 Contraindications</h4>
+          <p>Contraindicated near term pregnancy, nursing mothers, and neonates under 2 months due to bilirubin displacement (kernicterus).</p>
+        </div>
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; Encourage a high fluid intake (2000–3000 mL/day) to prevent drug crystallization in renal tubules.<br>&bull; Assess for history of sulfa or thiazide diuretic allergies.</p>
+        </div>
+      </section>
+
+      <!-- ================= 3. INHIBITORS OF FOLATE REDUCTION ================= -->
+      <section class="drug-class-card">
+        <h2>Inhibitors of Folate Reduction (Trimethoprim &amp; Pyrimethamine)</h2>
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item"><strong>Trimethoprim</strong><span>Standalone oral agent concentrating heavily in prostatic and urinary fluids.</span></div>
+            <div class="subdrug-item"><strong>Pyrimethamine</strong><span>Dihydrofolate reductase inhibitor paired with sulfadiazine for protozoal infections.</span></div>
+          </div>
+        </div>
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action</h4>
+          <p>Selectively inhibits bacterial <strong>dihydrofolate reductase (DHFR)</strong>, preventing the conversion of dihydrofolate to active tetrahydrofolate, blocking nucleic acid synthesis (<strong>bacteriostatic</strong>).</p>
+        </div>
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "U.R.I.N.E."</h4>
+          <p><strong>U</strong>ncomplicated acute lower urinary tract infections &bull; <strong>R</strong>ecurrent cystitis prophylaxis &bull; <strong>I</strong>nflammatory prostatitis management &bull; <strong>N</strong>on-sulfur alternative for simple UTIs &bull; <strong>E</strong>ffecitve against gram-negative uropathogens.</p>
+        </div>
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "B.L.O.O.D."</h4>
+          <p><strong>B</strong>one marrow suppression (megaloblastic anemia, leukopenia, thrombocytopenia) &bull; <strong>L</strong>iver enzyme elevations &bull; <strong>O</strong>ral pruritus and rash &bull; <strong>O</strong>ccasional GI upset &bull; <strong>D</strong>ecreased renal clearance of creatinine.</p>
+        </div>
+        <div class="warning-box">
+          <h4>🚫 Contraindications</h4>
+          <p>Avoid in patients with documented folate deficiency, baseline megaloblastic anemia, or during the first trimester of pregnancy.</p>
+        </div>
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; Monitor complete blood counts (CBC) during prolonged therapy.<br>&bull; May be prescribed alongside folinic acid (leucovorin) rescue to protect host cells from bone marrow depression.</p>
+        </div>
+      </section>
+
+      <!-- ================= 4. COMBINATION OF INHIBITOR AND REDUCTION ================= -->
+      <section class="drug-class-card">
+        <h2>Combination of Inhibitor &amp; Reduction (Trimethoprim-Sulfamethoxazole / Co-Trimoxazole)</h2>
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item"><strong>Bactrim / Septra</strong><span>Fixed 1:5 ratio of Trimethoprim to Sulfamethoxazole (TMP-SMX).</span></div>
+          </div>
+        </div>
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action</h4>
+          <p>Sequential dual-blockade of the bacterial folic acid pathway: Sulfamethoxazole blocks synthesis, and Trimethoprim blocks reduction. This sequential inhibition transforms two static drugs into a powerful <strong>bactericidal</strong> combination.</p>
+        </div>
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "P.N.E.U.M.O."</h4>
+          <p><strong>P</strong>neumocystis jirovecii pneumonia (treatment and PJP prophylaxis in HIV) &bull; <strong>N</strong>ocardiosis &bull; <strong>E</strong>. coli uncomplicated and complicated UTIs &bull; <strong>U</strong>pper and lower respiratory infections &bull; <strong>M</strong>RSA skin and soft tissue infections &bull; <strong>O</strong>stitis/osteomyelitis.</p>
+        </div>
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "R.A.S.H.E.S."</h4>
+          <p><strong>R</strong>ash and severe cutaneous reactions (SJS/TEN) &bull; <strong>A</strong>nemia (hemolytic in G6PD deficiency) &bull; <strong>S</strong>erum hyperkalemia (trimethoprim blocks renal potassium excretion) &bull; <strong>H</strong>epatic necrosis &bull; <strong>E</strong>levated creatinine &bull; <strong>S</strong>tombach/GI upset.</p>
+        </div>
+        <div class="warning-box">
+          <h4>🚫 Contraindications</h4>
+          <p>Contraindicated in infants under 2 months, pregnant women at term, nursing mothers, and patients with documented G6PD deficiency.</p>
+        </div>
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; Monitor serum potassium levels closely, especially in elderly patients or those taking ACE inhibitors/ARBs.<br>&bull; Maintain high daily fluid intake to prevent crystalluria.</p>
+        </div>
+      </section>
+
+      <!-- ================= 5. URINARY TRACT ANTISEPTICS ================= -->
+      <section class="drug-class-card">
+        <h2>Urinary Tract Antiseptics</h2>
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item"><strong>Nitrofurantoin</strong><span>First-line oral agent concentrating exclusively in urine for acute cystitis.</span></div>
+            <div class="subdrug-item"><strong>Methenamine</strong><span>Converts to formaldehyde in acidic urine to suppress chronic bacteriuria.</span></div>
+            <div class="subdrug-item"><strong>Fosfomycin</strong><span>Single-dose sachet powder targeting multiple steps in cell wall synthesis.</span></div>
+          </div>
+        </div>
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action</h4>
+          <p><strong>Nitrofurantoin</strong> is reduced by bacterial enzymes into reactive intermediates that damage ribosomal proteins and DNA. <strong>Methenamine</strong> decomposes in acidic urine ($\text{pH} \le 5.5$) to release formaldehyde, which denatures microbial proteins.</p>
+        </div>
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "C.Y.S.T.I."</h4>
+          <p><strong>C</strong>ystitis acute uncomplicated lower urinary tract infections &bull; <strong>Y</strong>east and bug suppression in chronic catheterized patients (Methenamine) &bull; <strong>S</strong>ingle-dose eradication of female UTIs (Fosfomycin) &bull; <strong>T</strong>argeting multidrug-resistant E. coli &bull; <strong>I</strong>nfectious flare-up prevention.</p>
+        </div>
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "P.U.L.M.O."</h4>
+          <p><strong>P</strong>ulmonary toxicity (acute hypersensitivity pneumonitis or chronic pulmonary fibrosis) &bull; <strong>U</strong>rine discoloration (brownish-orange tint) &bull; <strong>L</strong>iver toxicity and hepatitis &bull; <strong>M</strong>egalo/hemolytic anemia in G6PD deficiency &bull; <strong>O</strong>ptic neuritis and peripheral neuropathy.</p>
+        </div>
+        <div class="warning-box">
+          <h4>🚫 Contraindications</h4>
+          <p>Nitrofurantoin is contraindicated in significant renal impairment (CrCl < 30-60 mL/min) because the drug cannot concentrate in urine and accumulates systemically to toxic levels.</p>
+        </div>
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; Administer Nitrofurantoin with food or milk to reduce severe gastrointestinal distress.<br>&bull; Inform patients that harmless brown discoloration of urine will occur during therapy.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    document.addEventListener('selectstart', function(e) { e.preventDefault(); });
+    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+    document.addEventListener('keydown', function(e) {
+      if (
+        e.key === 'F12' || 
+        (e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'p' || e.key === 'c' || e.key === 'a')) ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))
+      ) {
+        e.preventDefault();
+      }
+    });
+  </script>
+
+</body>
+</html>
