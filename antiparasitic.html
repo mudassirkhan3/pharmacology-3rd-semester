@@ -3,15 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nursing Guide: Antiparasitic Pharmacology</title>
+  <title>Nursing Study: Antiparasitic Flow Charts</title>
   <style>
     :root {
       --primary: #4f46e5;
       --bg: #f8fafc;
       --card-bg: #ffffff;
-      --border-color: #e2e8f0;
-      --moa-bg: #eff6ff;
-      --mnemonic-bg: #f5f3ff;
+      --moa-bar: #e0e7ff;
       --nursing-bg: #f0fdf4;
       --text: #1e293b;
     }
@@ -21,14 +19,12 @@
     
     .section-card { background: var(--card-bg); border-radius: 16px; padding: 25px; margin-bottom: 35px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 8px solid var(--primary); }
     h2 { color: var(--primary); margin-top: 0; }
-    h3 { font-size: 1.1rem; color: #374151; margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
-
-    /* Flow Styling */
-    .flow-box { background: var(--moa-bg); padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 0.95rem; }
-    .step { display: flex; align-items: flex-start; margin-bottom: 8px; }
-    .step-num { background: var(--primary); color: white; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; margin-right: 10px; flex-shrink: 0; margin-top: 3px; }
-
-    .mnemonic { background: var(--mnemonic-bg); border: 1px dashed var(--primary); padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+    
+    /* Flow Logic */
+    .moa-flow { background: var(--moa-bar); padding: 20px; border-radius: 10px; margin: 15px 0; font-weight: 600; text-align: center; line-height: 2.5; }
+    .arrow { color: var(--primary); font-size: 1.2rem; font-weight: bold; margin: 0 8px; }
+    
+    .mnemonic { background: #f5f3ff; border: 1px dashed var(--primary); padding: 15px; border-radius: 8px; margin-bottom: 15px; }
     .nursing-box { background: var(--nursing-bg); border: 1px solid #bbf7d0; padding: 15px; border-radius: 8px; }
   </style>
 </head>
@@ -40,13 +36,14 @@
   <!-- 1. ANTIPROTOZOALS -->
   <section class="section-card" style="border-left-color: #6366f1;">
     <h2>1. Antiprotozoals</h2>
+    <p><em>(Metronidazole / Chloroquine)</em></p>
     
-    <h3>⚙️ MOA Detailed Flow</h3>
-    <div class="flow-box">
-      <div class="step"><div class="step-num">1</div> <strong>Ingestion:</strong> Drug enters the protozoan cell.</div>
-      <div class="step"><div class="step-num">2</div> <strong>Activation:</strong> (Metronidazole) is reduced by internal parasitic enzymes into reactive, toxic radicals.</div>
-      <div class="step"><div class="step-num">3</div> <strong>Destruction:</strong> These radicals attack the DNA structure, creating breaks in the genetic code.</div>
-      <div class="step"><div class="step-num">4</div> <strong>Result:</strong> Parasite cannot replicate and dies.</div>
+    <h3>⚙️ MOA Flow</h3>
+    <div class="moa-flow">
+      Ingestion 
+      <span class="arrow">➜</span> Reduction to Radicals 
+      <span class="arrow">➜</span> DNA Damage 
+      <span class="arrow">➜</span> Parasite Death
     </div>
 
     <div class="mnemonic">
@@ -57,8 +54,8 @@
     <div class="nursing-box">
       <strong>Nursing Takeaways:</strong>
       <ul style="margin:5px 0;">
-        <li><strong>Alcohol Ban:</strong> Disulfiram-like reaction (Violent vomiting). Patient MUST avoid alcohol 48 hours post-treatment.</li>
-        <li><strong>Dark Urine:</strong> Inform patient that red/brown urine is expected (harmless).</li>
+        <li><strong>No Alcohol:</strong> Severe vomiting (Disulfiram-like reaction).</li>
+        <li><strong>Patient Education:</strong> Urine will turn red/brown—this is normal and harmless.</li>
       </ul>
     </div>
   </section>
@@ -66,13 +63,14 @@
   <!-- 2. ANTIHELMINTHICS -->
   <section class="section-card" style="border-left-color: #10b981;">
     <h2>2. Antihelminthics</h2>
+    <p><em>(Albendazole / Ivermectin)</em></p>
 
-    <h3>⚙️ MOA Detailed Flow</h3>
-    <div class="flow-box">
-      <div class="step"><div class="step-num">1</div> <strong>Binding:</strong> Drug attaches to the worm's structural proteins (microtubules) or specific nerve receptors (Chloride channels).</div>
-      <div class="step"><div class="step-num">2</div> <strong>Disruption:</strong> (Albendazole) blocks glucose absorption; (Ivermectin) hyperpolarizes the nerve cells.</div>
-      <div class="step"><div class="step-num">3</div> <strong>Paralysis/Starvation:</strong> The worm becomes immobile or depleted of energy.</div>
-      <div class="step"><div class="step-num">4</div> <strong>Result:</strong> The parasite loses its grip on the intestinal wall and is expelled via peristalsis.</div>
+    <h3>⚙️ MOA Flow</h3>
+    <div class="moa-flow">
+      Binding to Worm Protein 
+      <span class="arrow">➜</span> Disruption of Glucose/Nerves 
+      <span class="arrow">➜</span> Starvation/Paralysis 
+      <span class="arrow">➜</span> Expulsion
     </div>
 
     <div class="mnemonic">
@@ -83,9 +81,8 @@
     <div class="nursing-box">
       <strong>Nursing Takeaways:</strong>
       <ul style="margin:5px 0;">
-        <li><strong>Family Hygiene:</strong> Pinworms are highly contagious. Treat the entire household.</li>
-        <li><strong>Environment:</strong> Wash all linens/pajamas in hot water. Cut nails short to stop the fecal-oral cycle (scratching to mouth).</li>
-        <li><strong>Mazzotti Reaction:</strong> Monitor for fever/rash (Immune reaction to the dying worm carcasses).</li>
+        <li><strong>Family Hygiene:</strong> Everyone in the house must be treated to break the cycle.</li>
+        <li><strong>Hygiene:</strong> Hot water wash for all linens. Short nails prevent re-infection.</li>
       </ul>
     </div>
   </section>
@@ -93,13 +90,14 @@
   <!-- 3. ECTOPARASITICIDES -->
   <section class="section-card" style="border-left-color: #f43f5e;">
     <h2>3. Ectoparasiticides</h2>
+    <p><em>(Permethrin)</em></p>
 
-    <h3>⚙️ MOA Detailed Flow</h3>
-    <div class="flow-box">
-      <div class="step"><div class="step-num">1</div> <strong>Application:</strong> Topical cream/lotion absorbed into the exoskeleton of the mite/lice.</div>
-      <div class="step"><div class="step-num">2</div> <strong>Channel Blockade:</strong> Drug binds to the Sodium channels in the parasite's nerve cell membrane.</div>
-      <div class="step"><div class="step-num">3</div> <strong>Repolarization Failure:</strong> Sodium channels stay open; nerves fire continuously without stopping.</div>
-      <div class="step"><div class="step-num">4</div> <strong>Result:</strong> Parasite suffers from uncontrollable twitching, paralysis, and death.</div>
+    <h3>⚙️ MOA Flow</h3>
+    <div class="moa-flow">
+      Topical Absorption 
+      <span class="arrow">➜</span> Sodium Channel Blockade 
+      <span class="arrow">➜</span> Nerve Over-stimulation 
+      <span class="arrow">➜</span> Paralysis & Death
     </div>
 
     <div class="mnemonic">
@@ -110,8 +108,8 @@
     <div class="nursing-box">
       <strong>Nursing Takeaways:</strong>
       <ul style="margin:5px 0;">
-        <li><strong>Timing:</strong> Follow instructions EXACTLY. Leave the medication on for the prescribed time (e.g., 8 hours) before washing.</li>
-        <li><strong>Fomites:</strong> Non-washables (like stuffed toys) must be bagged for 14 days. Lice cannot survive without a human host for long.</li>
+        <li><strong>Exact Timing:</strong> The drug must stay on for the required hours (check the specific order).</li>
+        <li><strong>Fomites:</strong> Seal non-washable items in bags for 14 days to starve the parasites.</li>
       </ul>
     </div>
   </section>
