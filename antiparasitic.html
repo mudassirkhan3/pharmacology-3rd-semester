@@ -3,431 +3,149 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Antiparasitic Pharmacology Guide — Mechanisms &amp; Classification</title>
+  <title>Antiparasitic Pharmacology Guide</title>
   <style>
     :root {
       --primary: #7c3aed;
       --primary-gradient: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
-      --accent: #a78bfa;
-      --bg-gradient: linear-gradient(180deg, #f5f3ff 0%, #f8fafc 100%);
       --text-dark: #0f172a;
       --text-muted: #475569;
       --card-bg: rgba(255, 255, 255, 0.98);
       --card-border: #e2e8f0;
       --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-      --shadow-lg: 0 20px 25px -5px rgba(124, 58, 237, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
       --mnemonics-bg: #f5f3ff;
       --mnemonics-border: #ddd6fe;
       --warning-bg: #fff1f2;
       --warning-border: #fecdd3;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      -webkit-touch-callout: none;
-    }
-
-    body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: #f8fafc;
-      color: var(--text-dark);
-      line-height: 1.6;
-      padding: 20px 15px;
-      min-height: 100vh;
-    }
-
-    .container {
-      max-width: 1050px;
-      margin: 0 auto;
-      background: var(--card-bg);
-      padding: 40px 35px;
-      border-radius: 20px;
-      border: 1px solid rgba(226, 232, 240, 0.8);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-      backdrop-filter: blur(10px);
-      animation: fadeIn 0.8s ease-out;
-    }
-
-    .badge-container {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 6px 14px;
-      background: #ede9fe;
-      color: #6d28d9;
-      font-weight: 700;
-      font-size: 13px;
-      border-radius: 50px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    h1 {
-      font-size: 2.4rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #1e293b 0%, #7c3aed 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
-    }
-
-    .subtitle {
-      font-size: 1.08rem;
-      color: var(--text-muted);
-      margin-bottom: 35px;
-    }
-
-    h2 {
-      font-size: 1.55rem;
-      color: #1e293b;
-      margin: 45px 0 22px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-bottom: 2px solid #e2e8f0;
-      padding-bottom: 10px;
-    }
-
-    h2::before {
-      content: '';
-      display: inline-block;
-      width: 5px;
-      height: 24px;
-      background: var(--primary);
-      border-radius: 4px;
-    }
-
-    h4 {
-      font-size: 1.05rem;
-      color: #6d28d9;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    p {
-      margin-bottom: 15px;
-      color: var(--text-muted);
-      font-size: 0.98rem;
-    }
-
-    .drug-class-card {
-      background: #ffffff;
-      border: 2px solid var(--card-border);
-      border-radius: 16px;
-      padding: 30px;
-      margin-bottom: 35px;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-    }
-
-    .drug-class-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: var(--primary-gradient);
-      border-radius: 16px 16px 0 0;
-    }
-
-    .sub-block {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 18px 20px;
-      margin: 18px 0;
-    }
-
-    .moa-flow-box {
-      background: #f5f3ff;
-      border: 2px solid #ddd6fe;
-      border-radius: 14px;
-      padding: 22px;
-      margin: 20px 0;
-    }
-
-    .moa-flow-box h4 {
-      color: #5b21b6;
-      margin-bottom: 15px;
-    }
-
-    .flow-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 12px;
-    }
-
-    .flow-step {
-      background: #ffffff;
-      border: 2px dashed #c4b5fd;
-      border-radius: 10px;
-      padding: 16px;
-      text-align: center;
-      position: relative;
-      animation: pulseGlow 3s infinite alternate;
-    }
-
-    .flow-step:nth-child(1) { animation-delay: 0s; }
-    .flow-step:nth-child(2) { animation-delay: 0.75s; }
-    .flow-step:nth-child(3) { animation-delay: 1.5s; }
-    .flow-step:nth-child(4) { animation-delay: 2.25s; }
-
-    .flow-step .step-icon {
-      font-size: 26px;
-      margin-bottom: 6px;
-    }
-
-    .flow-step strong {
-      display: block;
-      color: #4c1d95;
-      font-size: 0.92rem;
-      margin-bottom: 4px;
-    }
-
-    .flow-step span {
-      font-size: 0.8rem;
-      color: #5b21b6;
-    }
-
-    .mnemonic-box {
-      background: var(--mnemonics-bg);
-      border: 1px solid var(--mnemonics-border);
-      border-left: 5px solid var(--primary);
-      border-radius: 10px;
-      padding: 16px 20px;
-      margin: 15px 0;
-    }
-
-    .mnemonic-box h4 {
-      color: #6d28d9;
-    }
-
-    .warning-box {
-      background: var(--warning-bg);
-      border: 1px solid var(--warning-border);
-      border-left: 5px solid #e11d48;
-      border-radius: 10px;
-      padding: 16px 20px;
-      margin: 15px 0;
-    }
-
-    .warning-box h4 {
-      color: #9f1239;
-    }
-
-    .subdrug-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px;
-      margin-top: 12px;
-    }
-
-    .subdrug-item {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      padding: 14px 16px;
-    }
-
-    .subdrug-item strong {
-      display: block;
-      color: #0f172a;
-      font-size: 0.95rem;
-      margin-bottom: 4px;
-    }
-
-    .subdrug-item .moa-tag {
-      display: inline-block;
-      font-size: 0.75rem;
-      background: #ede9fe;
-      color: #6d28d9;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .subdrug-item span {
-      display: block;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes pulseGlow {
-      0% { border-color: #c4b5fd; background: #ffffff; }
-      100% { border-color: #7c3aed; background: #f5f3ff; }
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 20px 16px;
-      }
-      h1 {
-        font-size: 1.8rem;
-      }
-      .flow-container {
-        grid-template-columns: 1fr;
-      }
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; color: var(--text-dark); line-height: 1.6; padding: 20px 15px; }
+    .container { max-width: 1050px; margin: 0 auto; background: var(--card-bg); padding: 40px 35px; border-radius: 20px; border: 1px solid rgba(226, 232, 240, 0.8); }
+    .badge { display: inline-block; padding: 6px 14px; background: #ede9fe; color: #6d28d9; font-weight: 700; font-size: 13px; border-radius: 50px; text-transform: uppercase; margin-bottom: 12px; }
+    h1 { font-size: 2.4rem; background: linear-gradient(135deg, #1e293b 0%, #7c3aed 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+    .subtitle { color: var(--text-muted); margin-bottom: 35px; }
+    h2 { font-size: 1.55rem; color: #1e293b; margin: 45px 0 22px; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+    h2::before { content: ''; display: inline-block; width: 5px; height: 24px; background: var(--primary); border-radius: 4px; }
+    h4 { color: #6d28d9; margin-bottom: 8px; }
+    .drug-class-card { background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 30px; margin-bottom: 35px; position: relative; }
+    .drug-class-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--primary-gradient); border-radius: 16px 16px 0 0; }
+    .sub-block { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 20px; margin: 18px 0; }
+    .subdrug-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+    .subdrug-item { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 14px; }
+    .moa-tag { font-size: 0.75rem; background: #ede9fe; color: #6d28d9; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+    .mnemonic-box { background: var(--mnemonics-bg); border: 1px solid var(--mnemonics-border); border-left: 5px solid var(--primary); border-radius: 10px; padding: 16px; margin: 15px 0; }
+    .warning-box { background: var(--warning-bg); border: 1px solid var(--warning-border); border-left: 5px solid #e11d48; border-radius: 10px; padding: 16px; margin: 15px 0; }
   </style>
 </head>
 <body>
 
   <div class="container">
     <header>
-      <div class="badge-container">
-        <span class="badge">Pharmacology Study Guide</span>
-      </div>
-      <h1>Antiparasitic Drugs: Mechanisms &amp; Classification</h1>
-      <p class="subtitle">A clear breakdown of how we treat Protozoa, Helminths, and Ectoparasites.</p>
+      <span class="badge">Comprehensive Study Guide</span>
+      <h1>Antiparasitic Pharmacology</h1>
+      <p class="subtitle">Simplified Mechanisms, Clinical Uses, and Memory Aids.</p>
     </header>
 
     <main>
 
-      <!-- SECTION 1: ANTIPROTOZOALS -->
+      <!-- 1. ANTIPROTOZOALS -->
       <section class="drug-class-card">
         <h2>1. Antiprotozoal Agents</h2>
-        <p><em>Used to treat single-celled eukaryotic organisms like Amoeba, Giardia, and Malaria parasites.</em></p>
+        <p><em>Used to treat single-celled protozoa like malaria and ameba.</em></p>
         
         <div class="sub-block">
-          <h4>📂 Drug Names &amp; Molecular MOA</h4>
+          <h4>📂 Mechanisms of Action</h4>
           <div class="subdrug-grid">
             <div class="subdrug-item">
               <strong>Metronidazole</strong>
-              <span class="moa-tag">MOA: DNA Strand Breaker</span>
-              <span>Reduced inside the parasite to free radicals; these radicals damage parasitic DNA, preventing replication.</span>
+              <span class="moa-tag">MOA: DNA Damage</span>
+              <span>Reduced inside the cell, creating radicals that fragment parasitic DNA.</span>
             </div>
             <div class="subdrug-item">
               <strong>Chloroquine</strong>
-              <span class="moa-tag">MOA: Heme Detox Inhibition</span>
-              <span>Accumulates in the parasite's food vacuole, preventing the detoxification of toxic heme into hemozoin.</span>
+              <span class="moa-tag">MOA: Heme Detox Block</span>
+              <span>Prevents the parasite from detoxifying heme, causing self-poisoning.</span>
             </div>
           </div>
         </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Clinical Uses: "P.A.M."</h4>
+          <p><strong>P</strong>rotozoal diarrhea (Giardia) &bull; <strong>A</strong>mebiasis (Amoeba) &bull; <strong>M</strong>alaria prophylaxis/treatment.</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 ADRs & Mnemonic: "M.E.T.A.L."</h4>
+          <p><strong>M</strong>etallic taste &bull; <strong>E</strong>pigastric distress (nausea) &bull; <strong>T</strong>oxic to CNS (dizziness) &bull; <strong>A</strong>bdominal cramps &bull; <strong>L</strong>eukopenia (low white cell count).</p>
+        </div>
       </section>
 
-      <!-- SECTION 2: ANTIHELMINTHICS -->
+      <!-- 2. ANTIHELMINTHICS -->
       <section class="drug-class-card">
         <h2>2. Antihelminthic Agents</h2>
-        <p><em>Used to treat worm infections (Roundworms, Tapeworms, Flukes).</em></p>
+        <p><em>Used to treat worm infestations (Roundworms, Tapeworms, Flukes).</em></p>
         
         <div class="sub-block">
-          <h4>📂 Drug Names &amp; Molecular MOA</h4>
+          <h4>📂 Mechanisms of Action</h4>
           <div class="subdrug-grid">
             <div class="subdrug-item">
-              <strong>Albendazole / Mebendazole</strong>
-              <span class="moa-tag">MOA: Microtubule Inhibitor</span>
-              <span>Binds to parasite beta-tubulin, preventing microtubule polymerization needed for cell structure and glucose intake.</span>
+              <strong>Albendazole</strong>
+              <span class="moa-tag">MOA: Microtubule Block</span>
+              <span>Stops microtubule synthesis; worm starves to death.</span>
             </div>
             <div class="subdrug-item">
               <strong>Ivermectin</strong>
-              <span class="moa-tag">MOA: Chloride Channel Agonist</span>
-              <span>Binds to glutamate-gated chloride channels in nerve/muscle cells, causing hyperpolarization and paralysis.</span>
-            </div>
-            <div class="subdrug-item">
-              <strong>Praziquantel</strong>
-              <span class="moa-tag">MOA: Calcium Flux Inducer</span>
-              <span>Increases permeability of the cell membrane to calcium, resulting in tetanic contraction and worm paralysis.</span>
+              <span class="moa-tag">MOA: Chloride Channels</span>
+              <span>Locks chloride channels open, causing parasite paralysis.</span>
             </div>
           </div>
         </div>
 
-        <div class="moa-flow-box">
-          <h4>⚡ Animated MOA Workflow: Parasitic Destruction</h4>
-          <div class="flow-container">
-            <div class="flow-step">
-              <div class="step-icon">💊</div>
-              <strong>Step 1: Ingestion</strong>
-              <span>Drug is absorbed and transported to the site of parasitic infection.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">🎯</div>
-              <strong>Step 2: Pathway Block</strong>
-              <span>Drug binds to tubulin, ion channels, or DNA-repair enzymes.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">⚡</div>
-              <strong>Step 3: Paralysis</strong>
-              <span>Metabolism fails or muscles paralyze, stopping movement.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">✨</div>
-              <strong>Step 4: Clearance</strong>
-              <span>The paralyzed parasite is expelled by host peristalsis or immune cells.</span>
-            </div>
-          </div>
+        <div class="mnemonic-box">
+          <h4>💡 Clinical Uses: "W.O.R.M.S."</h4>
+          <p><strong>W</strong>hipworms &bull; <strong>O</strong>xyuriasis (Pinworms) &bull; <strong>R</strong>oundworms &bull; <strong>M</strong>igrating larvae (Strongyloides) &bull; <strong>S</strong>tapeworms (Taenia).</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 ADRs & Mnemonic: "A.B.D.O.M."</h4>
+          <p><strong>A</strong>bdominal pain/cramps &bull; <strong>B</strong>one marrow suppression &bull; <strong>D</strong>iarrhea &bull; <strong>O</strong>ut of sorts (malaise) &bull; <strong>M</strong>azzotti reaction (hypersensitivity to dying worms).</p>
         </div>
       </section>
 
-      <!-- SECTION 3: ECTOPARASITICIDES & MNEMONICS -->
+      <!-- 3. ECTOPARASITICIDES -->
       <section class="drug-class-card">
-        <h2>3. Ectoparasiticides &amp; Mnemonics</h2>
-        <p><em>Treating external infestations like lice and scabies.</em></p>
+        <h2>3. Ectoparasiticides</h2>
+        <p><em>Used to treat external skin parasites like lice and scabies.</em></p>
         
         <div class="sub-block">
-          <h4>📂 Common Topical Treatments</h4>
+          <h4>📂 Mechanism of Action</h4>
           <div class="subdrug-grid">
             <div class="subdrug-item">
               <strong>Permethrin</strong>
-              <span class="moa-tag">MOA: Sodium Channel Disruption</span>
-              <span>Neurotoxic to parasites; inhibits sodium channel repolarization, causing paralysis of lice/scabies mites.</span>
+              <span class="moa-tag">MOA: Sodium Channel Tox</span>
+              <span>Disrupts parasite sodium channels, inducing paralysis.</span>
             </div>
           </div>
         </div>
 
         <div class="mnemonic-box">
-          <h4>💡 Drug Classifications: "A.P.E."</h4>
-          <p><strong>A</strong>ntiprotozoals (Amoeba/Malaria) &bull; <strong>P</strong>arallel Antihelminthics (Worms) &bull; <strong>E</strong>ctoparasiticides (Lice/Scabies).</p>
+          <h4>💡 Clinical Uses: "L.I.C.E."</h4>
+          <p><strong>L</strong>ice (Pediculosis) &bull; <strong>I</strong>tch (Scabies) &bull; <strong>C</strong>rabs (Pubic lice) &bull; <strong>E</strong>ctoparasite skin infestations.</p>
         </div>
 
         <div class="mnemonic-box">
-          <h4>💡 Side Effects: "G.I. + N.E.R.V."</h4>
-          <p><strong>G</strong>astro-intestinal upset (Nausea/Vomiting) &bull; <strong>I</strong>nflammation &bull; <strong>N</strong>eurological (Dizziness) &bull; <strong>E</strong>levated enzymes (Liver) &bull; <strong>R</strong>ashes (allergic) &bull; <strong>V</strong>ertigo.</p>
+          <h4>💡 ADRs & Mnemonic: "S.K.I.N."</h4>
+          <p><strong>S</strong>tinging/Burning &bull; <strong>K</strong>eep away from eyes (avoid contact) &bull; <strong>I</strong>rritation of local area &bull; <strong>N</strong>umbness/Paresthesia.</p>
         </div>
 
         <div class="warning-box">
           <h4>🚫 Clinical Warnings</h4>
-          <p>Always monitor for hypersensitivity reactions (fever/rash) caused by the release of antigens from dying parasites (Mazzotti reaction). Avoid in pregnancy unless absolutely necessary.</p>
+          <p>Always wash off topical agents at the specified time to prevent chemical burns. Perform contact tracing for lice/scabies to prevent re-infestation.</p>
         </div>
       </section>
 
     </main>
   </div>
-
-  <script>
-    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-    document.addEventListener('selectstart', function(e) { e.preventDefault(); });
-    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
-    document.addEventListener('keydown', function(e) {
-      if (
-        e.key === 'F12' || 
-        (e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'p' || e.key === 'c' || e.key === 'a')) ||
-        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))
-      ) {
-        e.preventDefault();
-      }
-    });
-  </script>
-
 </body>
 </html>
