@@ -3,29 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nursing Guide: Antiparasitic Pharmacology</title>
+  <title>Comprehensive Antiparasitic Guide</title>
   <style>
     :root {
       --primary: #4f46e5;
       --bg: #f8fafc;
       --card-bg: #ffffff;
+      --border: #e2e8f0;
       --text: #1e293b;
-      --arrow-color: #6366f1;
     }
     body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); padding: 20px; line-height: 1.6; }
     .container { max-width: 900px; margin: auto; }
-    
-    .card { background: var(--card-bg); border-radius: 12px; padding: 25px; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 8px solid var(--primary); }
+    .card { background: var(--card-bg); border-radius: 12px; padding: 20px; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid var(--border); }
     h1 { text-align: center; color: var(--primary); }
-    h2 { margin-top: 0; color: var(--primary); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+    h2 { color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 10px; }
+    h3 { font-size: 1rem; color: #475569; margin-top: 15px; }
     
-    /* MOA Flow Styles */
-    .flow-container { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; margin: 20px 0; }
-    .step { background: #eef2ff; padding: 10px 15px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-align: center; border: 1px solid #c7d2fe; flex: 1; min-width: 120px; }
-    .arrow { font-size: 1.5rem; color: var(--arrow-color); font-weight: bold; }
-
-    .mnemonic { background: #f5f3ff; border: 1px dashed var(--primary); padding: 15px; border-radius: 8px; margin: 15px 0; }
-    .nursing-takeaway { background: #f0fdf4; border: 1px solid #22c55e; padding: 15px; border-radius: 8px; color: #166534; }
+    /* Flow Styles */
+    .flow-chart { background: #f1f5f9; padding: 15px; border-radius: 8px; font-weight: 500; color: #334155; margin: 10px 0; }
+    .arrow { color: var(--primary); font-weight: bold; margin: 0 5px; }
+    
+    /* Box Styles */
+    .drug-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 10px 0; }
+    .pill { background: #e0e7ff; padding: 5px 10px; border-radius: 6px; font-size: 0.9rem; }
+    .nursing-tip { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 10px; margin-top: 10px; }
+    .mnemonic { background: #fef2f2; border: 1px solid #fecaca; padding: 10px; border-radius: 8px; margin-top: 10px; font-weight: 600; }
   </style>
 </head>
 <body>
@@ -35,91 +37,78 @@
 
   <!-- 1. ANTIPROTOZOALS -->
   <section class="card">
-    <h2>1. Antiprotozoals (e.g., Metronidazole)</h2>
-    <p><strong>Target:</strong> Protozoa (Ameba, Malaria, Giardia)</p>
-
-    <div class="flow-container">
-      <div class="step">Drug Ingestion</div>
-      <div class="arrow">→</div>
-      <div class="step">Internal Reduction</div>
-      <div class="arrow">→</div>
-      <div class="step">DNA Strand Breakage</div>
-      <div class="arrow">→</div>
-      <div class="step">Parasite Death</div>
+    <h2>1. Antiprotozoal Agents</h2>
+    <div class="drug-list">
+      <div class="pill">Metronidazole</div>
+      <div class="pill">Chloroquine</div>
+      <div class="pill">Primaquine</div>
+      <div class="pill">Pentamidine</div>
+      <div class="pill">Pyrimethamine</div>
     </div>
-    <p><em>Explanation: The drug is reduced by parasitic enzymes into toxic radicals that shred the parasite's DNA, making replication impossible.</em></p>
+
+    <h3>⚙️ MOA Detailed Flow</h3>
+    <div class="flow-chart">
+      Drug Entry <span class="arrow">→</span> Intracellular Reduction/Activation <span class="arrow">→</span> Formation of Toxic Free Radicals <span class="arrow">→</span> DNA/Heme Disruption <span class="arrow">→</span> Cell Death
+    </div>
 
     <div class="mnemonic">
-      <strong>Uses:</strong> <b>P.A.M.</b> (<b>P</b>rotozoal diarrhea, <b>A</b>mebiasis, <b>M</b>alaria) <br>
-      <strong>ADRs:</strong> <b>M.E.T.A.L.</b> (<b>M</b>etallic taste, <b>E</b>pigastric distress, <b>T</b>oxic to CNS, <b>A</b>bdominal cramps, <b>L</b>eukopenia)
+      Mnemonic (ADRs): <strong>M.E.T.A.L.</strong><br>
+      • M-etallic taste | E-pigastric distress | T-oxic to CNS | A-bdominal cramps | L-eukopenia
     </div>
 
-    <div class="nursing-takeaway">
-      <strong>Nursing Takeaways:</strong>
-      <ul>
-        <li><strong>ALCOHOL WARNING:</strong> Absolutely no alcohol! Causes violent vomiting (Disulfiram-like reaction).</li>
-        <li><strong>Patient Edu:</strong> Urine may turn red/brown (harmless).</li>
-      </ul>
+    <div class="nursing-tip">
+      <strong>Nursing Pearl:</strong> NO ALCOHOL (Disulfiram reaction). Monitor liver/kidney function. Dark urine is a normal, harmless side effect of Metronidazole.
     </div>
   </section>
 
   <!-- 2. ANTIHELMINTHICS -->
-  <section class="card" style="border-left-color: #10b981;">
-    <h2>2. Antihelminthics (e.g., Albendazole, Ivermectin)</h2>
-    <p><strong>Target:</strong> Worms (Pinworms, Roundworms)</p>
-
-    <div class="flow-container">
-      <div class="step">Drug Binding</div>
-      <div class="arrow">→</div>
-      <div class="step">Metabolic Block</div>
-      <div class="arrow">→</div>
-      <div class="step">Immobilization</div>
-      <div class="arrow">→</div>
-      <div class="step">Expulsion</div>
+  <section class="card">
+    <h2>2. Antihelminthic Agents</h2>
+    <div class="drug-list">
+      <div class="pill">Albendazole</div>
+      <div class="pill">Mebendazole</div>
+      <div class="pill">Ivermectin</div>
+      <div class="pill">Praziquantel</div>
+      <div class="pill">Pyrantel Pamoate</div>
     </div>
-    <p><em>Explanation: The drug binds to the worm's structure or receptors. This blocks glucose absorption (starvation) or paralyzes the muscles, so the worm loses its grip on the gut and is pooped out.</em></p>
+
+    <h3>⚙️ MOA Detailed Flow</h3>
+    <div class="flow-chart">
+      Drug Binding <span class="arrow">→</span> Microtubule Inhibition / Chloride Channel Lock <span class="arrow">→</span> Glucose Starvation / Muscle Paralysis <span class="arrow">→</span> Detachment from Intestinal Wall <span class="arrow">→</span> Expulsion via Peristalsis
+    </div>
 
     <div class="mnemonic">
-      <strong>Uses:</strong> <b>W.O.R.M.S.</b> (<b>W</b>hipworms, <b>O</b>xyuriasis/Pinworms, <b>R</b>oundworms, <b>M</b>igrating larvae, <b>S</b>tapeworms) <br>
-      <strong>ADRs:</strong> <b>A.B.D.O.M.</b> (<b>A</b>bdominal pain, <b>B</b>one marrow suppression, <b>D</b>iarrhea, <b>O</b>ut-of-sorts/malaise, <b>M</b>azzotti reaction)
+      Mnemonic (Uses): <strong>W.O.R.M.S.</strong><br>
+      • W-hipworms | O-xyuriasis (Pinworms) | R-oundworms | M-igrating larvae | S-tapeworms
     </div>
 
-    <div class="nursing-takeaway">
-      <strong>Nursing Takeaways:</strong>
-      <ul>
-        <li><strong>Household Hygiene:</strong> Pinworms spread easily. Treat the <em>whole family</em> simultaneously.</li>
-        <li><strong>Fecal-Oral Cycle:</strong> Teach parents to trim fingernails short to prevent eggs being picked up from scratching and transferred to the mouth.</li>
-      </ul>
+    <div class="nursing-tip">
+      <strong>Nursing Pearl:</strong> Treat the WHOLE family. Wash all bedding in hot water. Cut fingernails short. Watch for the "Mazzotti Reaction" (fever/rash due to rapid worm death).
     </div>
   </section>
 
   <!-- 3. ECTOPARASITICIDES -->
-  <section class="card" style="border-left-color: #f43f5e;">
-    <h2>3. Ectoparasiticides (e.g., Permethrin)</h2>
-    <p><strong>Target:</strong> External parasites (Lice, Scabies)</p>
-
-    <div class="flow-container">
-      <div class="step">Topical Application</div>
-      <div class="arrow">→</div>
-      <div class="step">Sodium Channel Block</div>
-      <div class="arrow">→</div>
-      <div class="step">Continuous Firing</div>
-      <div class="arrow">→</div>
-      <div class="step">Paralysis & Death</div>
+  <section class="card">
+    <h2>3. Ectoparasiticides</h2>
+    <div class="drug-list">
+      <div class="pill">Permethrin</div>
+      <div class="pill">Malathion</div>
+      <div class="pill">Lindane (Restricted)</div>
+      <div class="pill">Crotamiton</div>
     </div>
-    <p><em>Explanation: The drug jams open the Sodium channels in the parasite's nerve cells, causing the nerves to fire repeatedly until the parasite is paralyzed and dies.</em></p>
+
+    <h3>⚙️ MOA Detailed Flow</h3>
+    <div class="flow-chart">
+      Topical Application <span class="arrow">→</span> Penetration of Exoskeleton <span class="arrow">→</span> Sodium Channel Blockade <span class="arrow">→</span> Constant Nerve Firing <span class="arrow">→</span> Paralysis/Death
+    </div>
 
     <div class="mnemonic">
-      <strong>Uses:</strong> <b>L.I.C.E.</b> (<b>L</b>ice, <b>I</b>tch/Scabies, <b>C</b>rabs/Pubic lice, <b>E</b>ctoparasites) <br>
-      <strong>ADRs:</strong> <b>S.K.I.N.</b> (<b>S</b>tinging, <b>K</b>eep out of eyes, <b>I</b>rritation, <b>N</b>umbness)
+      Mnemonic (ADRs): <strong>S.K.I.N.</strong><br>
+      • S-tinging | K-eep away from eyes | I-rritation | N-umbness
     </div>
 
-    <div class="nursing-takeaway">
-      <strong>Nursing Takeaways:</strong>
-      <ul>
-        <li><strong>Contact Precautions:</strong> Lice survive on fabrics. Seal non-washables in plastic bags for 14 days.</li>
-        <li><strong>Application:</strong> Do not wash off prematurely! Follow the "soak time" exactly (usually 8-14 hours).</li>
-      </ul>
+    <div class="nursing-tip">
+      <strong>Nursing Pearl:</strong> Leave on for the *exact* prescribed duration (e.g., 8–14 hours for Scabies). Bag non-washable items in sealed plastic for 14 days to starve parasites.
     </div>
   </section>
 
