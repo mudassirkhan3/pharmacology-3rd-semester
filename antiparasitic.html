@@ -1,461 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Advanced Antiparasitic Pharmacology — Mudassir khan</title>
-  <style>
-    :root {
-      --primary: #0d9488;
-      --primary-gradient: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
-      --accent: #2dd4bf;
-      --bg-gradient: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%);
-      --text-dark: #0f172a;
-      --text-muted: #475569;
-      --card-bg: rgba(255, 255, 255, 0.98);
-      --card-border: #e2e8f0;
-      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-      --shadow-lg: 0 20px 25px -5px rgba(13, 148, 136, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-      --mnemonics-bg: #f0fdf4;
-      --mnemonics-border: #bbf7d0;
-      --warning-bg: #fff1f2;
-      --warning-border: #fecdd3;
-      --anim-box-bg: #f8fafc;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Guide to Antiparasitic Drugs</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --bg-color: #f8fafc;
+            --text-color: #334155;
+            --card-bg: #ffffff;
+            --accent: #0ea5e9;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      -webkit-touch-callout: none;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
 
-    body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: #f8fafc;
-      color: var(--text-dark);
-      line-height: 1.6;
-      padding: 20px 15px;
-      min-height: 100vh;
-    }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
 
-    .container {
-      max-width: 1150px;
-      margin: 0 auto;
-      background: var(--card-bg);
-      padding: 40px 35px;
-      border-radius: 20px;
-      border: 1px solid rgba(226, 232, 240, 0.8);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-      backdrop-filter: blur(10px);
-      animation: fadeIn 0.8s ease-out;
-    }
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
 
-    .badge-container {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
 
-    .badge {
-      display: inline-block;
-      padding: 6px 14px;
-      background: #ccfbf1;
-      color: #0f766e;
-      font-weight: 700;
-      font-size: 13px;
-      border-radius: 50px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+        h2 {
+            color: var(--secondary);
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-top: 40px;
+        }
 
-    h1 {
-      font-size: 2.4rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #1e293b 0%, #0d9488 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
-    }
+        h3 {
+            color: var(--primary);
+            margin-top: 20px;
+        }
 
-    .subtitle {
-      font-size: 1.08rem;
-      color: var(--text-muted);
-      margin-bottom: 35px;
-    }
+        p, li {
+            font-size: 1.05rem;
+        }
 
-    h2 {
-      font-size: 1.55rem;
-      color: #1e293b;
-      margin: 45px 0 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-bottom: 2px solid #e2e8f0;
-      padding-bottom: 10px;
-    }
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
 
-    h2::before {
-      content: '';
-      display: inline-block;
-      width: 5px;
-      height: 24px;
-      background: var(--primary);
-      border-radius: 4px;
-    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
 
-    .section-intro {
-      font-size: 1.02rem;
-      color: var(--text-muted);
-      margin-bottom: 20px;
-      font-weight: 500;
-    }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 12px;
+            text-align: left;
+        }
 
-    h4 {
-      font-size: 1.05rem;
-      color: #0f766e;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+        th {
+            background-color: #eff6ff;
+            color: var(--primary);
+        }
 
-    p {
-      margin-bottom: 15px;
-      color: var(--text-muted);
-      font-size: 0.98rem;
-    }
+        /* Animation Styles for Mechanism of Action */
+        .animation-container {
+            background: #f1f5f9;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+        }
 
-    .drug-class-card {
-      background: #ffffff;
-      border: 2px solid var(--card-border);
-      border-radius: 16px;
-      padding: 30px;
-      margin-bottom: 35px;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-    }
+        .flow-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
 
-    .drug-class-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: var(--primary-gradient);
-      border-radius: 16px 16px 0 0;
-    }
+        .flow-step {
+            background: #ffffff;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            padding: 15px;
+            flex: 1;
+            min-width: 180px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            animation: pulseHighlight 4s infinite;
+        }
 
-    .sub-block {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 18px 20px;
-      margin: 18px 0;
-    }
+        .flow-step:nth-child(1) { animation-delay: 0s; }
+        .flow-step:nth-child(2) { animation-delay: 1s; }
+        .flow-step:nth-child(3) { animation-delay: 2s; }
+        .flow-step:nth-child(4) { animation-delay: 3s; }
 
-    /* ANIMATED FLOW STYLES */
-    .animation-container {
-      background: #0f172a;
-      border-radius: 12px;
-      padding: 25px;
-      margin: 20px 0;
-      color: #ffffff;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    }
+        @keyframes pulseHighlight {
+            0%, 20% {
+                border-color: var(--accent);
+                background-color: #ffffff;
+                transform: scale(1);
+            }
+            25%, 45% {
+                border-color: #22c55e;
+                background-color: #f0fdf4;
+                transform: scale(1.03);
+            }
+            50%, 100% {
+                border-color: var(--accent);
+                background-color: #ffffff;
+                transform: scale(1);
+            }
+        }
 
-    .animation-title {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--accent);
-      margin-bottom: 15px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            font-weight: bold;
+        }
 
-    .flow-track {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      margin: 30px 10px;
-      gap: 15px;
-    }
-
-    .flow-track::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: #334155;
-      transform: translateY(-50%);
-      z-index: 1;
-    }
-
-    .flow-node {
-      background: #1e293b;
-      border: 2px solid #475569;
-      border-radius: 10px;
-      padding: 12px 15px;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-      min-width: 130px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #f8fafc;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    }
-
-    .flow-node.highlight {
-      border-color: var(--accent);
-      background: rgba(13, 148, 136, 0.2);
-    }
-
-    .flow-particle {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 16px;
-      height: 16px;
-      background: var(--accent);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 3;
-      box-shadow: 0 0 12px var(--accent);
-      animation: moveParticle 4s infinite linear;
-    }
-
-    @keyframes moveParticle {
-      0% { left: 5%; }
-      50% { left: 50%; background: #f43f5e; box-shadow: 0 0 15px #f43f5e; }
-      100% { left: 95%; background: #38bdf8; box-shadow: 0 0 12px #38bdf8; }
-    }
-
-    .pulse-badge {
-      display: inline-block;
-      padding: 4px 10px;
-      background: rgba(244, 63, 94, 0.2);
-      border: 1px solid #f43f5e;
-      color: #fda4af;
-      border-radius: 6px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      animation: pulseAnim 2s infinite;
-      margin-top: 8px;
-    }
-
-    @keyframes pulseAnim {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.05); opacity: 0.7; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    .mnemonic-box {
-      background: var(--mnemonics-bg);
-      border: 1px solid var(--mnemonics-border);
-      border-left: 5px solid var(--primary);
-      border-radius: 10px;
-      padding: 16px 20px;
-      margin: 15px 0;
-    }
-
-    .warning-box {
-      background: var(--warning-bg);
-      border: 1px solid var(--warning-border);
-      border-left: 5px solid #e11d48;
-      border-radius: 10px;
-      padding: 16px 20px;
-      margin: 15px 0;
-    }
-
-    .warning-box h4 {
-      color: #9f1239;
-    }
-
-    .subdrug-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-      margin-top: 12px;
-    }
-
-    .subdrug-item {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .subdrug-item strong {
-      display: block;
-      color: #0f172a;
-      font-size: 0.98rem;
-    }
-
-    .drug-detail-row {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .drug-detail-row span.label {
-      font-weight: 700;
-      color: #1e293b;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 20px 16px;
-      }
-      h1 {
-        font-size: 1.8rem;
-      }
-      .flow-track {
-        flex-direction: column;
-        gap: 25px;
-      }
-      .flow-track::before {
-        width: 4px;
-        height: 100%;
-        left: 50%;
-        top: 0;
-        transform: translateX(-50%);
-      }
-      .flow-particle {
-        display: none;
-      }
-    }
-  </style>
+        .highlight-box {
+            background-color: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
 </head>
 <body>
 
-  <div class="container">
-    <header>
-      <div class="badge-container">
-        <span class="badge">Advanced Nursing Pharmacology Guide</span>
-      </div>
-      <h1>Antiparasitic Pharmacology Guide — MOA Flow &amp; Drug Classes</h1>
-      <p class="subtitle">Clinical breakdown of antiprotozoal and antihelminthic pharmacology, featuring mechanisms of action, clinical applications, and essential adverse drug reactions.</p>
-    </header>
+<div class="container">
+    <h1>Antiparasitic Drugs</h1>
+    <div class="subtitle">A Detailed Guide to Classification, Mechanisms, Uses, ADRs, and Clinical Complications</div>
 
-    <main>
+    <!-- 1. INTRODUCTION -->
+    <h2>1. Introduction</h2>
+    <p>Antiparasitic drugs are a class of medications designed to treat parasitic infections, which include diseases caused by protozoa (single-celled organisms), helminths (worms), and ectoparasites (such as lice and mites). Unlike bacteria or viruses, parasites possess complex eukaryotic cellular structures closer to human cells, making selective toxicity a unique pharmacological challenge.</p>
 
-      <!-- ================= 1. ANTIMALARIAL AGENTS ================= -->
-      <section class="drug-class-card">
-        <h2>Classification: Antimalarial Agents</h2>
-        <p class="section-intro">Pharmacological strategies for the treatment and prophylaxis of Plasmodium species infections, focusing on heme toxicity and metabolic disruption.</p>
-        
-        <!-- ANIMATED FLOW DIAGRAM -->
-        <div class="animation-container">
-          <div class="animation-title">⚡ Animated Flow: Chloroquine Mechanism</div>
-          <div class="flow-track">
-            <div class="flow-node">1. Heme Ingestion</div>
-            <div class="flow-node highlight">2. Heme Polymerization<br><span class="pulse-badge">Inhibited by Drug</span></div>
-            <div class="flow-node">3. Toxic Heme Accumulation</div>
-          </div>
-          <div class="flow-particle"></div>
-        </div>
+    <!-- 2. CLASSIFICATION -->
+    <h2>2. Classification of Antiparasitic Drugs</h2>
+    <p>Antiparasitic agents are broadly categorized based on the specific type of parasite they target:</p>
+    
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Target Organisms</th>
+            <th>Examples</th>
+        </tr>
+        <tr>
+            <td><strong>Antiprotozoals</strong></td>
+            <td>Protozoa (e.g., <em>Plasmodium</em>, <em>Giardia</em>, <em>Entamoeba</em>, <em>Trichomonas</em>)</td>
+            <td>Metronidazole, Chloroquine, Artemisinin, Atovaquone</td>
+        </tr>
+        <tr>
+            <td><strong>Antihelminthics (Anthelmintics)</strong></td>
+            <td>Helminths (Nematodes, Cestodes, Trematodes / Roundworms, Tapeworms, Flukes)</td>
+            <td>Albendazole, Mebendazole, Ivermectin, Praziquantel</td>
+        </tr>
+        <tr>
+            <td><strong>Ectoparasiticides</strong></td>
+            <td>Ectoparasites (Lice, Scabies mites, Ticks)</td>
+            <td>Permethrin, Malathion, Ivermectin (topical/oral)</td>
+        </tr>
+    </table>
 
-        <div class="sub-block">
-          <h4>📂 Drug Inventory: Detailed MOA, Uses &amp; ADRs</h4>
-          <div class="subdrug-grid">
-            <div class="subdrug-item">
-              <strong>Chloroquine / Hydroxychloroquine</strong>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Accumulates in the food vacuole of the parasite, preventing the detoxification of heme into non-toxic hemozoin. The resulting accumulation of toxic free heme leads to parasite death.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> First-line treatment for malaria (sensitive strains), rheumatoid arthritis, and SLE.</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Retinopathy (maculopathy), pruritus, headache, and GI upset.</div>
+    <!-- 3. MECHANISM OF ACTION -->
+    <h2>3. Mechanism of Action (MoA)</h2>
+    <p>Antiparasitic drugs disrupt crucial biological pathways unique to parasites or vital for their survival:</p>
+    <ul>
+        <li><strong>Inhibition of Microtubule Synthesis:</strong> Benzimidazoles (e.g., Albendazole) bind to parasite beta-tubulin, preventing microtubule formation, which halts glucose uptake and cell division.</li>
+        <li><strong>Neuromuscular Paralysis:</strong> Ivermectin binds to glutamate-gated chloride channels, causing hyperpolarization and paralysis of the parasite's somatic musculature. Praziquantel increases cell membrane permeability to calcium, resulting in severe contraction and paralysis of schistosomes.</li>
+        <li><strong>Nucleic Acid & DNA Damage:</strong> Metronidazole is reduced inside protozoan cells to reactive free radicals that damage DNA.</li>
+        <li><strong>Interference with Hemozoin Formation:</strong> Quinolines (e.g., Chloroquine) block the polymerization of toxic heme into harmless hemozoin within the malaria parasite food vacuole, causing parasite poisoning.</li>
+    </ul>
+
+    <!-- FLOW ANIMATION -->
+    <div class="animation-container">
+        <h3>Mechanism of Action: Flow Animation Sequence</h3>
+        <p style="font-size: 0.95rem; color: #64748b;">(Observe the cyclical step-by-step drug action lifecycle)</p>
+        <div class="flow-wrapper">
+            <div class="flow-step">
+                <strong>Step 1</strong>
+                <p>Drug Administered & Absorbed into Host System</p>
             </div>
-            <div class="subdrug-item">
-              <strong>Artemisinin Derivatives (Artesunate)</strong>
-              <div class="drug-detail-row"><span class="label">MOA:</span> The endoperoxide bridge is cleaved by heme iron within the parasite, producing free radicals that damage parasite proteins, lipids, and nucleic acids.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> First-line therapy for severe/complicated P. falciparum malaria.</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Generally well-tolerated; rare dizziness, transient neutropenia, and delayed hemolysis.</div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-step">
+                <strong>Step 2</strong>
+                <p>Target Binding (Tubulin / DNA / Ion Channels)</p>
             </div>
-            <div class="subdrug-item">
-              <strong>Primaquine</strong>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Disrupts mitochondrial electron transport and targets the exoerythrocytic (liver) stages of malaria by producing reactive oxygen species.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> Radical cure for P. vivax and P. ovale (targets hypnozoites in the liver).</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Severe hemolysis in patients with G6PD deficiency; GI distress.</div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-step">
+                <strong>Step 3</strong>
+                <p>Metabolic Disruption & Paralysis of Parasite</p>
             </div>
-          </div>
-        </div>
-
-        <div class="mnemonic-box">
-          <h4>💡 Mnemonic: "C.A.P." (Malaria)</h4>
-          <p><strong>C</strong>hloroquine &bull; <strong>A</strong>rtemisinin &bull; <strong>P</strong>rimaquine.</p>
-        </div>
-      </section>
-
-      <!-- ================= 2. ANTIHELMINTHICS ================= -->
-      <section class="drug-class-card">
-        <h2>Classification: Antihelminthics</h2>
-        <p class="section-intro">Agents targeting parasitic worms (nematodes, trematodes, cestodes) by inhibiting essential structural proteins or causing muscular paralysis.</p>
-        
-        <!-- ANIMATED FLOW DIAGRAM -->
-        <div class="animation-container">
-          <div class="animation-title">⚡ Animated Flow: Benzimidazole Mechanism</div>
-          <div class="flow-track">
-            <div class="flow-node">1. Tubulin Binding</div>
-            <div class="flow-node highlight">2. Microtubule Synthesis<br><span class="pulse-badge">Blocked by Drug</span></div>
-            <div class="flow-node">3. Parasite Starvation</div>
-          </div>
-          <div class="flow-particle"></div>
-        </div>
-
-        <div class="sub-block">
-          <h4>📂 Drug Inventory: Detailed MOA, Uses &amp; ADRs</h4>
-          <div class="subdrug-grid">
-            <div class="subdrug-item">
-              <strong>Albendazole / Mebendazole</strong>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Inhibits β-tubulin polymerization, preventing microtubule formation within the parasite, which impairs glucose uptake and causes worm starvation.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> Nematode infections (Ascaris, Hookworm, Pinworm, Strongyloides).</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Abdominal pain, liver enzyme elevation (long-term), headache.</div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-step">
+                <strong>Step 4</strong>
+                <p>Parasite Clearance & Elimination</p>
             </div>
-            <div class="subdrug-item">
-              <strong>Ivermectin</strong>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Agonist of glutamate-gated chloride channels in parasite nerve/muscle cells, increasing chloride influx leading to hyperpolarization and flaccid paralysis of the worm.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> Strongyloidiasis, Onchocerciasis (River Blindness), Scabies.</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Mazzotti reaction (fever, rash, lymphadenopathy) due to killing of microfilariae.</div>
-            </div>
-            <div class="subdrug-item">
-              <strong>Praziquantel</strong>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Increases parasite membrane permeability to calcium, inducing massive contraction and paralysis of the worm's musculature, exposing it to the host immune system.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> Trematodes (Schistosomiasis) and Cestodes (Tapeworms).</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Dizziness, headache, abdominal pain, and nausea.</div>
-            </div>
-          </div>
         </div>
+    </div>
 
-        <div class="mnemonic-box">
-          <h4>💡 Mnemonic: "A.I.P." (Antihelminthic)</h4>
-          <p><strong>A</strong>lbendazole &bull; <strong>I</strong>vermectin &bull; <strong>P</strong>raziquantel.</p>
-        </div>
-      </section>
+    <!-- 4. USES -->
+    <h2>4. Therapeutic Uses</h2>
+    <ul>
+        <li><strong>Malaria:</strong> Chloroquine, Artemisinin-based combination therapies (ACTs) for prevention and treatment.</li>
+        <li><strong>Amoebiasis & Giardiasis:</strong> Metronidazole or Tinidazole for intestinal and hepatic protozoan infections.</li>
+        <li><strong>Intestinal Worm Infections (Ascariasis, Enterobiasis, Hookworm):</strong> Albendazole or Mebendazole.</li>
+        <li><strong>Filariasis & Onchocerciasis ("River Blindness"):</strong> Ivermectin and Diethylcarbamazine (DEC).</li>
+        <li><strong>Schistosomiasis & Tapeworm Infections:</strong> Praziquantel.</li>
+        <li><strong>Scabies & Pediculosis:</strong> Permethrin cream/lotion.</li>
+    </ul>
 
-    </main>
-  </div>
+    <!-- 5. ADRS (ADVERSE DRUG REACTIONS) -->
+    <h2>5. Adverse Drug Reactions (ADRs)</h2>
+    <ul>
+        <li><strong>Gastrointestinal Distress:</strong> Nausea, vomiting, abdominal cramps, and diarrhea (common with Albendazole and Metronidazole).</li>
+        <li><strong>Central Nervous System (CNS) Effects:</strong> Dizziness, headache, fatigue, and sometimes peripheral neuropathy (e.g., prolonged Metronidazole use).</li>
+        <li><strong>Hepatotoxicity:</strong> Elevated liver enzymes and transient hepatitis associated with systemic antihelminthics.</li>
+        <li><strong>Hypersensitivity Reactions:</strong> Rash, pruritus, and fever—frequently triggered by the immune system reacting to antigens released by dying parasites (e.g., Mazzotti reaction with Ivermectin).</li>
+    </ul>
+
+    <!-- 6. COMPLICATIONS -->
+    <h2>6. Complications</h2>
+    <div class="highlight-box">
+        <strong>Important Clinical Risks & Complications:</strong>
+        <ul>
+            <li><strong>Drug Resistance:</strong> Widespread overuse has led to significant resistance, particularly in malaria (chloroquine resistance) and veterinary/human helminths.</li>
+            <li><strong>Severe Toxicity / Teratogenicity:</strong> Certain agents (like Albendazole) are contraindicated in early pregnancy due to teratogenic risks.</li>
+            <li><strong>Encephalopathy / Neurotoxicity:</strong> High doses or specific drug combinations (like high-dose Ivermectin in patients with compromised blood-brain barriers) can cause severe neurotoxic effects.</li>
+        </ul>
+    </div>
+
+    <!-- 7. IMPORTANT POINTS -->
+    <h2>7. Key Takeaways & Important Points</h2>
+    <ul>
+        <li><strong>Selective Toxicity:</strong> The primary goal is targeting parasite-specific pathways without inflicting heavy cytotoxicity on host human cells.</li>
+        <li><strong>Combination Therapy:</strong> Used heavily in malaria treatment to prevent the emergence of drug-resistant parasite strains.</li>
+        <li><strong>Patient Compliance:</strong> Single-dose regimens (like single-dose Albendazole or Ivermectin) significantly improve compliance in mass drug administration (MDA) programs for neglected tropical diseases.</li>
+    </ul>
+
+</div>
 
 </body>
 </html>
