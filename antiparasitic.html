@@ -3,172 +3,111 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clinical Master Guide: Antiparasitics</title>
+  <title>Ultimate Antiparasitic Master Guide</title>
   <style>
     :root {
-      --bg: #f0f4f8;
+      --bg: #f8fafc;
       --card-bg: #ffffff;
-      --text: #2d3748;
-      --proto-color: #667eea;
-      --helm-color: #48bb78;
-      --ecto-color: #f56565;
+      --proto-border: #6366f1;
+      --helm-border: #10b981;
+      --ecto-border: #f43f5e;
     }
-    body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--bg); color: var(--text); padding: 20px; line-height: 1.6; }
-    .container { max-width: 950px; margin: auto; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--bg); color: #334155; line-height: 1.6; padding: 20px; }
+    .container { max-width: 1000px; margin: auto; }
+    h1 { text-align: center; color: #1e293b; margin-bottom: 40px; }
+
+    /* Card Styling */
+    .section-card { background: var(--card-bg); border-radius: 20px; padding: 30px; margin-bottom: 40px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-left: 10px solid; }
     
-    header { text-align: center; margin-bottom: 40px; }
-    header h1 { font-size: 2.5rem; color: #1a202c; }
-    
-    .module { background: var(--card-bg); border-radius: 20px; padding: 30px; margin-bottom: 30px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); border-top: 10px solid; }
-    .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-    
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .box { background: #f7fafc; padding: 15px; border-radius: 10px; border-left: 4px solid #cbd5e0; }
-    
-    .moa-flow { display: flex; flex-direction: column; align-items: center; background: #edf2f7; padding: 15px; border-radius: 10px; margin: 20px 0; }
-    .step { background: white; padding: 8px 15px; border-radius: 8px; border: 1px solid #e2e8f0; margin: 4px 0; width: 80%; text-align: center; font-weight: 600; font-size: 0.85rem; }
-    .arrow { font-size: 1.1rem; color: #a0aec0; margin: 2px 0; }
-    
-    .info-section { margin-top: 15px; }
-    .mnemonic { background: #edf2ff; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 0.9rem; border-left: 4px solid #667eea; margin-top: 10px; }
-    .nursing-pearl { background: #fffaf0; padding: 12px; border-radius: 8px; font-size: 0.9rem; border-left: 4px solid #ecc94b; margin-top: 10px; }
+    /* Layout for MOA and Text */
+    .flex-layout { display: flex; gap: 30px; align-items: flex-start; flex-wrap: wrap; }
+    .flow-col { flex: 1; min-width: 250px; background: #f1f5f9; padding: 20px; border-radius: 12px; }
+    .text-col { flex: 1.5; min-width: 300px; }
+
+    /* Flow Chart Elements */
+    .flow-step { background: white; padding: 10px; margin: 8px 0; border-radius: 6px; border: 1px solid #cbd5e1; text-align: center; font-size: 0.85rem; font-weight: 600; }
+    .arrow { text-align: center; font-size: 1.2rem; color: #94a3b8; }
+
+    /* Metadata boxes */
+    .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+    .box { padding: 15px; border-radius: 10px; background: #f8fafc; font-size: 0.9rem; }
+    .mnemonic { background: #fef3c7; border-left: 4px solid #d97706; padding: 10px; margin-top: 10px; font-weight: 500; }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <header>
-    <h1>Antiparasitic Master Guide</h1>
-  </header>
+  <h1>💊 Antiparasitic Pharmacology Dashboard</h1>
 
   <!-- 1. ANTIPROTOZOALS -->
-  <section class="module" style="border-color: var(--proto-color);">
-    <div class="header-row">
-      <h2>1. Antiprotozoals</h2>
-    </div>
-    
-    <p><strong>Concept:</strong> Chemicals that hunt single-celled organisms. They sabotage the parasite's internal machinery, disrupting vital metabolic functions like DNA replication, causing the parasite to self-destruct.</p>
-
-    <div class="grid">
-      <div class="box" style="border-color: var(--proto-color);">
-        <strong>Common Agents:</strong>
-        <ul style="font-size: 0.9rem;">
-          <li>Metronidazole, Tinidazole</li>
-          <li>Chloroquine, Hydroxychloroquine</li>
-          <li>Atovaquone</li>
-        </ul>
+  <section class="section-card" style="border-color: var(--proto-border);">
+    <h2 style="color: var(--proto-border);">1. Antiprotozoals</h2>
+    <div class="flex-layout">
+      <div class="flow-col">
+        <div class="flow-step">Drug Enters Parasite</div>
+        <div class="arrow">↓</div>
+        <div class="flow-step">Reduced to Toxic Radicals</div>
+        <div class="arrow">↓</div>
+        <div class="flow-step">DNA Strand Breaks</div>
+        <div class="arrow">↓</div>
+        <div class="flow-step">Parasite Replication Death</div>
       </div>
-      <div class="box" style="border-color: var(--proto-color);">
-        <strong>Detailed Clinical Uses:</strong>
-        <ul style="font-size: 0.9rem; padding-left: 20px;">
-          <li>Malaria (prophylaxis)</li>
-          <li>Giardiasis & Amoebiasis</li>
-          <li>Trichomoniasis</li>
-          <li>Toxoplasmosis</li>
-        </ul>
+      <div class="text-col">
+        <p><strong>Mechanism Explained:</strong> These drugs act as "Trojan Horses." The drug enters the protozoan cell harmlessly, but once inside, the parasite's internal enzymes convert the drug into highly toxic reactive radicals. These radicals then aggressively attack the parasite's DNA, causing permanent strand fragmentation. Unable to repair its genetic code, the parasite cannot synthesize proteins or replicate, leading to rapid cell death.</p>
+        <div class="meta-grid">
+          <div class="box"><strong>Agents:</strong> Metronidazole, Chloroquine, Atovaquone.</div>
+          <div class="box"><strong>Uses:</strong> Malaria, Giardiasis, Amoebic Dysentery, Trichomoniasis.</div>
+        </div>
+        <div class="mnemonic">💡 Mnemonic: METAL (Metallic taste, Epigastric distress, Toxic to CNS, Abdominal cramps, Leukopenia).</div>
       </div>
-    </div>
-
-    <div class="moa-flow">
-      <div class="step">Drug enters Parasite</div>
-      <div class="arrow">↓</div>
-      <div class="step">Activation into toxic radicals</div>
-      <div class="arrow">↓</div>
-      <div class="step">DNA Strand fragmentation</div>
-      <div class="arrow">↓</div>
-      <div class="step">Parasite Death</div>
-    </div>
-
-    <div class="info-section">
-      <div class="mnemonic">ADR Mnemonic (M.E.T.A.L.): Metallic taste, Epigastric distress, Toxic to CNS, Abdominal cramps, Leukopenia.</div>
-      <div class="nursing-pearl"><strong>Pearl:</strong> No alcohol! Causes a "Disulfiram-like" reaction (violent vomiting). Warn patients about dark/red urine (harmless).</div>
     </div>
   </section>
 
   <!-- 2. ANTIHELMINTHICS -->
-  <section class="module" style="border-color: var(--helm-color);">
-    <div class="header-row">
-      <h2>2. Antihelminthics</h2>
-    </div>
-
-    <p><strong>Concept:</strong> Designed for worm infestations. These target the parasite's nervous system or structural proteins. They effectively starve the worm or paralyze it, so it loses its grip on the intestine and is passed out.</p>
-
-    <div class="grid">
-      <div class="box" style="border-color: var(--helm-color);">
-        <strong>Common Agents:</strong>
-        <ul style="font-size: 0.9rem;">
-          <li>Albendazole, Mebendazole</li>
-          <li>Ivermectin</li>
-          <li>Praziquantel</li>
-        </ul>
+  <section class="section-card" style="border-color: var(--helm-border);">
+    <h2 style="color: var(--helm-border);">2. Antihelminthics</h2>
+    <div class="flex-layout">
+      <div class="flow-col">
+        <div class="flow-step">Binding to Tubulin/Nerves</div>
+        <div class="arrow">↓</div>
+        <div class="flow-step">Glucose Absorption Block</div>
+        <div class="arrow">↓</div>
+        <div class="flow-step">Flaccid Paralysis</div>
+        <div class="arrow">↓</div>
+        <div class="flow-step">Expulsion via Peristalsis</div>
       </div>
-      <div class="box" style="border-color: var(--helm-color);">
-        <strong>Detailed Clinical Uses:</strong>
-        <ul style="font-size: 0.9rem; padding-left: 20px;">
-          <li>Pinworms & Roundworms</li>
-          <li>Tapeworms (Taenia)</li>
-          <li>Hookworms</li>
-          <li>Strongyloidiasis</li>
-        </ul>
+      <div class="text-col">
+        <p><strong>Mechanism Explained:</strong> These agents focus on structural and metabolic starvation. They bind to the parasite's microtubules (tubulin) or critical nerve receptors. By blocking the worm's ability to absorb glucose—their primary energy source—the worm becomes depleted of ATP. Simultaneously, nerve signaling is inhibited, causing total flaccid paralysis. Once immobilized, the worm can no longer anchor itself to the intestinal wall and is naturally eliminated by the host's normal bowel movements.</p>
+        <div class="meta-grid">
+          <div class="box"><strong>Agents:</strong> Albendazole, Ivermectin, Praziquantel.</div>
+          <div class="box"><strong>Uses:</strong> Pinworms, Roundworms, Tapeworms, Strongyloidiasis.</div>
+        </div>
+        <div class="mnemonic">💡 Mnemonic: WORMS (Whipworms, Oxyuriasis, Roundworms, Migrating larvae, Stapeworms).</div>
       </div>
-    </div>
-
-    <div class="moa-flow">
-      <div class="step">Drug binds to Tubulin/Nerve receptors</div>
-      <div class="arrow">↓</div>
-      <div class="step">Blocking nutrient absorption</div>
-      <div class="arrow">↓</div>
-      <div class="step">Flaccid paralysis</div>
-      <div class="arrow">↓</div>
-      <div class="step">Expulsion via bowel</div>
-    </div>
-
-    <div class="info-section">
-      <div class="mnemonic">Uses Mnemonic (W.O.R.M.S.): Whipworms, Oxyuriasis, Roundworms, Migrating larvae, Tapeworms.</div>
-      <div class="nursing-pearl"><strong>Pearl:</strong> Whole-family treatment is required. Wash linens in hot water. Cut fingernails short to break the fecal-oral cycle.</div>
     </div>
   </section>
 
   <!-- 3. ECTOPARASITICIDES -->
-  <section class="module" style="border-color: var(--ecto-color);">
-    <div class="header-row">
-      <h2>3. Ectoparasiticides</h2>
-    </div>
-
-    <p><strong>Concept:</strong> External armor-piercing agents. These drugs absorb into the exoskeleton of surface parasites (lice/mites). They disrupt nerve cell channels, causing unceasing twitching and eventual death.</p>
-
-    <div class="grid">
-      <div class="box" style="border-color: var(--ecto-color);">
-        <strong>Common Agents:</strong>
-        <ul style="font-size: 0.9rem;">
-          <li>Permethrin</li>
-          <li>Malathion</li>
-          <li>Spinosad</li>
-        </ul>
+  <section class="section-card" style="border-color: var(--ecto-border);">
+    <h2 style="color: var(--ecto-border);">3. Ectoparasiticides</h2>
+    <div class="flex-layout">
+      <div class="flow-col">
+        <div class="flow-step">Topical Absorption into Shell</div>
+        <div class="arrow">↓</div>
+        <div class="flow-step">Sodium Channel Lock</div>
+        <div class="arrow">↓</div>
+        <div class="flow-step">Continuous Nerve Firing</div>
+        <div class="arrow">↓</div>
+        <div class="flow-step">Death by Paralysis</div>
       </div>
-      <div class="box" style="border-color: var(--ecto-color);">
-        <strong>Detailed Clinical Uses:</strong>
-        <ul style="font-size: 0.9rem; padding-left: 20px;">
-          <li>Head & Body Lice</li>
-          <li>Pubic Lice (Crabs)</li>
-          <li>Scabies mites</li>
-        </ul>
+      <div class="text-col">
+        <p><strong>Mechanism Explained:</strong> These are surface-acting neurotoxins. When applied topically, the drug penetrates the chitinous exoskeleton of lice or mites. It specifically targets the parasite's voltage-gated sodium channels. By keeping these channels locked open, the drug causes repetitive, uncontrollable nerve discharge. The parasite suffers from extreme over-stimulation, leading to exhaustion, paralysis, and death. It effectively turns the parasite's own nervous system against it.</p>
+        <div class="meta-grid">
+          <div class="box"><strong>Agents:</strong> Permethrin, Malathion, Spinosad.</div>
+          <div class="box"><strong>Uses:</strong> Head lice, Body lice, Pubic lice, Scabies.</div>
+        </div>
+        <div class="mnemonic">💡 Mnemonic: SKIN (Stinging, Keep out of eyes, Irritation, Numbness).</div>
       </div>
-    </div>
-
-    <div class="moa-flow">
-      <div class="step">Topical absorption</div>
-      <div class="arrow">↓</div>
-      <div class="step">Sodium channel over-stimulation</div>
-      <div class="arrow">↓</div>
-      <div class="step">Continuous nerve firing</div>
-      <div class="arrow">↓</div>
-      <div class="step">Death by paralysis</div>
-    </div>
-
-    <div class="info-section">
-      <div class="mnemonic">ADR Mnemonic (S.K.I.N.): Stinging, Keep out of eyes, Irritation, Numbness.</div>
-      <div class="nursing-pearl"><strong>Pearl:</strong> Leave on for the *exact* required time. Isolate non-washable items in bags for 14 days (parasites die without a host).</div>
     </div>
   </section>
 
