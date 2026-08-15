@@ -7,38 +7,29 @@
   <style>
     :root {
       --primary: #4f46e5;
-      --secondary: #0ea5e9;
       --bg: #f8fafc;
-      --card: #ffffff;
-      --mnemonic-bg: #eef2ff;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --moa-bg: #eff6ff;
+      --mnemonic-bg: #f5f3ff;
       --nursing-bg: #f0fdf4;
-      --nursing-border: #22c55e;
-      --warning-bg: #fff1f2;
-      --warning-border: #f43f5e;
       --text: #1e293b;
     }
-
     body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); padding: 20px; line-height: 1.6; }
     .container { max-width: 900px; margin: auto; }
-
-    /* Layout Cards */
-    .section-card { background: var(--card); border-radius: 16px; padding: 25px; margin-bottom: 30px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-left: 8px solid var(--primary); }
     h1 { text-align: center; color: var(--primary); margin-bottom: 30px; }
-    h2 { margin-top: 0; color: var(--primary); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
     
-    /* Grid for Drugs */
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0; }
-    @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
-    
-    .drug-box { background: #f1f5f9; padding: 15px; border-radius: 8px; }
-    .label { font-weight: bold; color: #475569; display: block; font-size: 0.8rem; text-transform: uppercase; }
+    .section-card { background: var(--card-bg); border-radius: 16px; padding: 25px; margin-bottom: 35px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 8px solid var(--primary); }
+    h2 { color: var(--primary); margin-top: 0; }
+    h3 { font-size: 1.1rem; color: #374151; margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
 
-    /* Mnemonic Box */
-    .mnemonic { background: var(--mnemonic-bg); border: 1px dashed var(--primary); padding: 15px; border-radius: 8px; margin: 15px 0; }
-    
-    /* Actionable Boxes */
-    .nursing-box { background: var(--nursing-bg); padding: 15px; border-left: 4px solid var(--nursing-border); border-radius: 4px; margin-top: 15px; }
-    .warning-box { background: var(--warning-bg); padding: 15px; border-left: 4px solid var(--warning-border); border-radius: 4px; margin-top: 15px; }
+    /* Flow Styling */
+    .flow-box { background: var(--moa-bg); padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 0.95rem; }
+    .step { display: flex; align-items: flex-start; margin-bottom: 8px; }
+    .step-num { background: var(--primary); color: white; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; margin-right: 10px; flex-shrink: 0; margin-top: 3px; }
+
+    .mnemonic { background: var(--mnemonic-bg); border: 1px dashed var(--primary); padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+    .nursing-box { background: var(--nursing-bg); border: 1px solid #bbf7d0; padding: 15px; border-radius: 8px; }
   </style>
 </head>
 <body>
@@ -49,19 +40,13 @@
   <!-- 1. ANTIPROTOZOALS -->
   <section class="section-card" style="border-left-color: #6366f1;">
     <h2>1. Antiprotozoals</h2>
-    <p>Target: <em>Amoebas, Malaria, Giardia.</em></p>
     
-    <div class="grid">
-      <div class="drug-box">
-        <span class="label">Primary Drug</span>
-        <strong>Metronidazole</strong>
-        <p style="font-size: 0.9rem;">Damages parasitic DNA.</p>
-      </div>
-      <div class="drug-box">
-        <span class="label">Secondary Drug</span>
-        <strong>Chloroquine</strong>
-        <p style="font-size: 0.9rem;">Blocks heme detoxification.</p>
-      </div>
+    <h3>⚙️ MOA Detailed Flow</h3>
+    <div class="flow-box">
+      <div class="step"><div class="step-num">1</div> <strong>Ingestion:</strong> Drug enters the protozoan cell.</div>
+      <div class="step"><div class="step-num">2</div> <strong>Activation:</strong> (Metronidazole) is reduced by internal parasitic enzymes into reactive, toxic radicals.</div>
+      <div class="step"><div class="step-num">3</div> <strong>Destruction:</strong> These radicals attack the DNA structure, creating breaks in the genetic code.</div>
+      <div class="step"><div class="step-num">4</div> <strong>Result:</strong> Parasite cannot replicate and dies.</div>
     </div>
 
     <div class="mnemonic">
@@ -70,11 +55,10 @@
     </div>
 
     <div class="nursing-box">
-      <strong>Nursing Action:</strong>
-      <ul style="margin: 5px 0 0 0;">
-        <li><strong>CRITICAL:</strong> No alcohol. A "Disulfiram-like reaction" occurs (severe vomiting).</li>
-        <li>Check baseline CBC (watch for leukopenia).</li>
-        <li>Advise patient that dark/reddish-brown urine is a harmless side effect.</li>
+      <strong>Nursing Takeaways:</strong>
+      <ul style="margin:5px 0;">
+        <li><strong>Alcohol Ban:</strong> Disulfiram-like reaction (Violent vomiting). Patient MUST avoid alcohol 48 hours post-treatment.</li>
+        <li><strong>Dark Urine:</strong> Inform patient that red/brown urine is expected (harmless).</li>
       </ul>
     </div>
   </section>
@@ -82,19 +66,13 @@
   <!-- 2. ANTIHELMINTHICS -->
   <section class="section-card" style="border-left-color: #10b981;">
     <h2>2. Antihelminthics</h2>
-    <p>Target: <em>Worms (Pinworms, Roundworms, Tapeworms).</em></p>
-    
-    <div class="grid">
-      <div class="drug-box">
-        <span class="label">Primary Drug</span>
-        <strong>Albendazole</strong>
-        <p style="font-size: 0.9rem;">Starves the worm by stopping sugar intake.</p>
-      </div>
-      <div class="drug-box">
-        <span class="label">Primary Drug</span>
-        <strong>Ivermectin</strong>
-        <p style="font-size: 0.9rem;">Paralyzes the worm.</p>
-      </div>
+
+    <h3>⚙️ MOA Detailed Flow</h3>
+    <div class="flow-box">
+      <div class="step"><div class="step-num">1</div> <strong>Binding:</strong> Drug attaches to the worm's structural proteins (microtubules) or specific nerve receptors (Chloride channels).</div>
+      <div class="step"><div class="step-num">2</div> <strong>Disruption:</strong> (Albendazole) blocks glucose absorption; (Ivermectin) hyperpolarizes the nerve cells.</div>
+      <div class="step"><div class="step-num">3</div> <strong>Paralysis/Starvation:</strong> The worm becomes immobile or depleted of energy.</div>
+      <div class="step"><div class="step-num">4</div> <strong>Result:</strong> The parasite loses its grip on the intestinal wall and is expelled via peristalsis.</div>
     </div>
 
     <div class="mnemonic">
@@ -103,11 +81,11 @@
     </div>
 
     <div class="nursing-box">
-      <strong>Nursing Action:</strong>
-      <ul style="margin: 5px 0 0 0;">
-        <li><strong>Family Treatement:</strong> The <em>entire family</em> must be treated, even if asymptomatic.</li>
-        <li><strong>Hygiene is Key:</strong> Wash all sheets in hot water. Cut fingernails short (to prevent re-infection from scratching).</li>
-        <li><strong>Mazzotti Reaction:</strong> Monitor for fever/rash caused by mass death of parasites.</li>
+      <strong>Nursing Takeaways:</strong>
+      <ul style="margin:5px 0;">
+        <li><strong>Family Hygiene:</strong> Pinworms are highly contagious. Treat the entire household.</li>
+        <li><strong>Environment:</strong> Wash all linens/pajamas in hot water. Cut nails short to stop the fecal-oral cycle (scratching to mouth).</li>
+        <li><strong>Mazzotti Reaction:</strong> Monitor for fever/rash (Immune reaction to the dying worm carcasses).</li>
       </ul>
     </div>
   </section>
@@ -115,29 +93,26 @@
   <!-- 3. ECTOPARASITICIDES -->
   <section class="section-card" style="border-left-color: #f43f5e;">
     <h2>3. Ectoparasiticides</h2>
-    <p>Target: <em>External parasites (Lice, Scabies).</em></p>
-    
-    <div class="drug-box">
-      <span class="label">Drug</span>
-      <strong>Permethrin</strong>
-      <p style="font-size: 0.9rem;">Neurotoxin that paralyzes external parasites.</p>
+
+    <h3>⚙️ MOA Detailed Flow</h3>
+    <div class="flow-box">
+      <div class="step"><div class="step-num">1</div> <strong>Application:</strong> Topical cream/lotion absorbed into the exoskeleton of the mite/lice.</div>
+      <div class="step"><div class="step-num">2</div> <strong>Channel Blockade:</strong> Drug binds to the Sodium channels in the parasite's nerve cell membrane.</div>
+      <div class="step"><div class="step-num">3</div> <strong>Repolarization Failure:</strong> Sodium channels stay open; nerves fire continuously without stopping.</div>
+      <div class="step"><div class="step-num">4</div> <strong>Result:</strong> Parasite suffers from uncontrollable twitching, paralysis, and death.</div>
     </div>
 
-    <div class="mnemonic" style="margin-top:15px;">
+    <div class="mnemonic">
       <strong>Mnemonic for ADRs: "S.K.I.N."</strong><br>
-      • <strong>S</strong>tinging | <strong>K</strong>eep out of eyes | <strong>I</strong>rritation | <strong>N</strong>umbness
+      • <strong>S</strong>tinging | <strong>K</strong>eep away from eyes | <strong>I</strong>rritation | <strong>N</strong>umbness
     </div>
 
     <div class="nursing-box">
-      <strong>Nursing Action:</strong>
-      <ul style="margin: 5px 0 0 0;">
-        <li><strong>Proper Application:</strong> Leave the cream on for the full required time (e.g., 8–14 hours for scabies) before washing.</li>
-        <li><strong>Cleaning:</strong> Bag up non-washable items (stuffed animals) for 14 days; parasites die without a human host.</li>
+      <strong>Nursing Takeaways:</strong>
+      <ul style="margin:5px 0;">
+        <li><strong>Timing:</strong> Follow instructions EXACTLY. Leave the medication on for the prescribed time (e.g., 8 hours) before washing.</li>
+        <li><strong>Fomites:</strong> Non-washables (like stuffed toys) must be bagged for 14 days. Lice cannot survive without a human host for long.</li>
       </ul>
-    </div>
-
-    <div class="warning-box">
-      <strong>Safety Warning:</strong> Always verify pregnancy status before administration. Some antiparasitics are harmful to the fetus.
     </div>
   </section>
 
