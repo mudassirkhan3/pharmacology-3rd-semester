@@ -2,90 +2,188 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GI Pharmacology Master Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Chapter 3: Gastrointestinal Pharmacology</title>
   <style>
     :root {
+      /* GI Themed Colors (Emerald Green) */
       --primary: #059669;
       --primary-gradient: linear-gradient(135deg, #059669 0%, #047857 100%);
-      --bg: #f0fdf4;
-      --card-bg: #ffffff;
+      --bg-gradient: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%);
       --text-dark: #064e3b;
+      --text-muted: #475569;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --card-border: #d1fae5;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(5, 150, 105, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
     }
-    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: #1e293b; padding: 20px; line-height: 1.6; }
-    .container { max-width: 900px; margin: 0 auto; }
-    
-    header { text-align: center; margin-bottom: 30px; }
-    h1 { color: #065f46; margin-bottom: 10px; }
-    
-    .repo-banner { background: #d1fae5; padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 30px; border: 1px solid var(--primary); }
-    .repo-banner a { color: var(--primary); font-weight: bold; text-decoration: none; }
-    
-    .section-card { background: var(--card-bg); border: 2px solid #a7f3d0; border-radius: 15px; padding: 25px; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-    h2 { color: var(--primary); font-size: 1.4rem; margin-bottom: 15px; border-bottom: 2px solid #d1fae5; padding-bottom: 10px; }
-    
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
-    .drug-item { background: #f9fafb; padding: 12px; border-radius: 8px; border-left: 4px solid var(--primary); font-size: 0.95rem; }
-    .nursing-note { margin-top: 10px; font-size: 0.85rem; font-style: italic; color: #475569; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f8fafc;
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 20px 15px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 35px 30px;
+      border-radius: 20px;
+      border: 1px solid rgba(209, 250, 229, 0.8);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #d1fae5;
+      color: #065f46;
+      font-weight: 700;
+      font-size: 13px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #064e3b 0%, #059669 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .subtitle { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 30px; }
+
+    h2 { font-size: 1.4rem; color: #064e3b; margin: 35px 0 20px; display: flex; align-items: center; gap: 10px; }
+    h2::before { content: ''; display: inline-block; width: 5px; height: 22px; background: var(--primary); border-radius: 4px; }
+
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+
+    .card {
+      position: relative;
+      background: #ffffff;
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      padding: 22px;
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.15s; }
+    .card:nth-child(2) { animation-delay: 0.30s; }
+    .card:nth-child(3) { animation-delay: 0.45s; }
+    .card:nth-child(4) { animation-delay: 0.60s; }
+
+    .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--primary-gradient); opacity: 0; transition: opacity 0.3s ease; }
+    .card:hover { transform: translateY(-8px); border-color: #34d399; box-shadow: var(--shadow-lg); }
+    .card:hover::before { opacity: 1; }
+
+    .card-icon {
+      width: 42px; height: 42px; background: #ecfdf5; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 14px;
+    }
+
+    .card h3 { font-size: 1.1rem; color: #064e3b; margin-bottom: 8px; }
+    .card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px; }
+    .card-link { font-size: 0.85rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 6px; }
+
+    .nursing-list { list-style: none; display: grid; gap: 14px; margin-top: 15px; }
+    .nursing-item { background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--primary); border-radius: 10px; padding: 16px; display: flex; align-items: flex-start; gap: 12px; }
+    .nursing-number { background: #d1fae5; color: #065f46; font-weight: 800; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <header>
-    <h1>GI Pharmacology Dashboard</h1>
-    <p>Nursing Study Guide - 3rd Semester</p>
-  </header>
+  <div class="container">
+    <header>
+      <span class="badge">Pharmacology — Unit III</span>
+      <h1>Gastrointestinal Pharmacology</h1>
+      <p class="subtitle">Acid-reducing agents, cytoprotective therapy, and anti-infective protocols.</p>
+    </header>
 
-  <div class="repo-banner">
-    🔗 <strong>Reference:</strong> <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semeste/" target="_blank">Pharmacology 3rd Semester Classifications</a>
+    <main>
+      <h2>Select Drug Category</h2>
+      <div class="card-grid">
+
+        <a href="#" class="card">
+          <div>
+            <div class="card-icon">🦠</div>
+            <h3>Antimicrobial Agents</h3>
+            <p>Eradication therapy for H. Pylori, including Amoxicillin, Clarithromycin, and Metronidazole.</p>
+          </div>
+          <span class="card-link">View Details &rarr;</span>
+        </a>
+
+        <a href="#" class="card">
+          <div>
+            <div class="card-icon">🧪</div>
+            <h3>H2 Receptor Blockers</h3>
+            <p>Reducing acid production by blocking histamine receptors (e.g., Famotidine, Cimetidine).</p>
+          </div>
+          <span class="card-link">View Details &rarr;</span>
+        </a>
+
+        <a href="#" class="card">
+          <div>
+            <div class="card-icon">💊</div>
+            <h3>PPIs & Prostaglandins</h3>
+            <p>Proton pump inhibition (Omeprazole) and mucus-stimulating protective analogs (Misoprostol).</p>
+          </div>
+          <span class="card-link">View Details &rarr;</span>
+        </a>
+
+        <a href="#" class="card">
+          <div>
+            <div class="card-icon">🛡️</div>
+            <h3>Antimuscarinics & Antacids</h3>
+            <p>Acid neutralization and mucosal protective agents (Sucralfate, Al/Mg Hydroxide).</p>
+          </div>
+          <span class="card-link">View Details &rarr;</span>
+        </a>
+
+      </div>
+
+      <h2>Nursing Clinical Considerations</h2>
+      <ul class="nursing-list">
+        <li class="nursing-item">
+          <div class="nursing-number">1</div>
+          <div><strong>PPI Administration:</strong> Instruct patients to take Proton Pump Inhibitors 30 minutes before breakfast for maximum effectiveness.</div>
+        </li>
+        <li class="nursing-item">
+          <div class="nursing-number">2</div>
+          <div><strong>Antacid Interactions:</strong> Antacids can alter the absorption of other medications; space doses at least 1–2 hours apart.</div>
+        </li>
+        <li class="nursing-item">
+          <div class="nursing-number">3</div>
+          <div><strong>Misoprostol Warning:</strong> Contraindicated in pregnancy as it may stimulate uterine contractions. Screen patients accordingly.</div>
+        </li>
+        <li class="nursing-item">
+          <div class="nursing-number">4</div>
+          <div><strong>H. Pylori Compliance:</strong> Stress completion of the full course of antimicrobials to prevent treatment failure and resistant bacterial strains.</div>
+        </li>
+      </ul>
+    </main>
   </div>
-
-  <!-- 1. Antimicrobial Agents -->
-  <section class="section-card">
-    <h2>1. Antimicrobial Agents (H. Pylori)</h2>
-    <div class="grid">
-      <div class="drug-item"><strong>Clarithromycin:</strong> Inhibits protein synthesis.</div>
-      <div class="drug-item"><strong>Amoxicillin:</strong> Disrupts bacterial cell wall.</div>
-      <div class="drug-item"><strong>Metronidazole:</strong> Inhibits DNA synthesis.</div>
-    </div>
-    <p class="nursing-note">Nursing Note: Always monitor for allergic reactions and diarrhea during triple therapy.</p>
-  </section>
-
-  <!-- 2. H2 Receptor Blockers -->
-  <section class="section-card">
-    <h2>2. H2 Receptor Blockers</h2>
-    <div class="grid">
-      <div class="drug-item"><strong>Famotidine:</strong> Potent, long-acting secretion inhibitor.</div>
-      <div class="drug-item"><strong>Cimetidine:</strong> High drug interaction profile.</div>
-      <div class="drug-item"><strong>Ranitidine:</strong> Competitive histamine antagonist.</div>
-    </div>
-  </section>
-
-  <!-- 3. PPI & Prostaglandins -->
-  <section class="section-card">
-    <h2>3. Proton Pump Inhibitors & Prostaglandins</h2>
-    <div class="grid">
-      <div class="drug-item"><strong>Omeprazole (PPI):</strong> Binds H+/K+ ATPase irreversibly.</div>
-      <div class="drug-item"><strong>Pantoprazole (PPI):</strong> High potency, available IV.</div>
-      <div class="drug-item"><strong>Misoprostol (PG):</strong> Enhances mucus/bicarb.</div>
-    </div>
-    <p class="nursing-note">Nursing Note: Take PPIs 30 mins before breakfast. Misoprostol is contraindicated in pregnancy.</p>
-  </section>
-
-  <!-- 4. Antimuscarinics, Antacids & Mucosal Protective Agents -->
-  <section class="section-card">
-    <h2>4. Antimuscarinics, Antacids & Mucosal Protective</h2>
-    <div class="grid">
-      <div class="drug-item"><strong>Pirenzepine:</strong> M1-selective antimuscarinic.</div>
-      <div class="drug-item"><strong>Mg/Al Hydroxide:</strong> Rapid acid neutralization.</div>
-      <div class="drug-item"><strong>Sucralfate:</strong> Forms a physical ulcer protective barrier.</div>
-      <div class="drug-item"><strong>Bismuth Subsalicylate:</strong> Anti-secretory & coating agent.</div>
-    </div>
-    <p class="nursing-note">Nursing Note: Sucralfate needs an acidic pH; do not give with antacids simultaneously.</p>
-  </section>
-
-</div>
 
 </body>
 </html>
