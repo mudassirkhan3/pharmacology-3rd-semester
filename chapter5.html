@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Oncology Pharmacology Masterclass Hub</title>
+  <title>Chapter 5: Oncology Pharmacology Hub</title>
   <style>
     :root {
       --bg-gradient: radial-gradient(circle at 10% 20%, rgb(124, 58, 237, 0.08) 0%, rgba(192, 38, 211, 0.05) 40%, #f8fafc 90%);
@@ -13,29 +13,26 @@
       --card-bg: rgba(255, 255, 255, 0.85);
       --card-border: rgba(216, 180, 254, 0.8);
       --text-main: #1e1b4b;
-      --text-muted: #581c87;
       --shadow-glow: 0 20px 40px -15px rgba(124, 58, 237, 0.25);
       --radius: 20px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; user-select: none; }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; user-select: none; }
     body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.7; padding: 40px 16px; min-height: 100vh; }
-
     .container { max-width: 1100px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(16px); padding: 50px 40px; border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08); }
-
-    .hero-header { text-align: center; margin-bottom: 50px; }
+    .hero-header { text-align: center; margin-bottom: 40px; }
     h1 { font-size: 2.6rem; font-weight: 900; background: linear-gradient(135deg, #1e1b4b 0%, var(--primary) 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
-
+    h2 { font-size: 1.4rem; margin: 40px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
+    
     .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-
     .card { position: relative; background: #ffffff; border: 2px solid var(--card-border); border-radius: 18px; padding: 30px 24px; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.03); }
     .card:hover { transform: translateY(-10px) scale(1.02); box-shadow: var(--shadow-glow); border-color: transparent; }
-
     .card-icon { width: 58px; height: 58px; background: #f5f3ff; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 20px; transition: 0.4s; }
     .card:hover .card-icon { transform: scale(1.1) rotate(-5deg); background: var(--primary); color: white; }
+    .card h3 { margin-bottom: 8px; font-size: 1.2rem; }
+    .card p { font-size: 0.95rem; color: #475569; }
 
-    .nursing-list { list-style: none; display: grid; gap: 18px; margin-top: 25px; }
+    .nursing-list { list-style: none; display: grid; gap: 18px; margin-top: 15px; }
     .nursing-item { background: #ffffff; border: 1px solid var(--card-border); border-radius: 14px; padding: 20px 24px; display: flex; align-items: flex-start; gap: 18px; }
     .nursing-number { background: var(--primary); color: white; font-weight: 800; width: 34px; height: 34px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
   </style>
@@ -44,61 +41,52 @@
 
 <div class="container">
   <div class="hero-header">
-    <h1>Oncology Pharmacology Hub</h1>
+    <h1>Chapter 5: Oncology Pharmacology Hub</h1>
   </div>
 
   <main>
     <div class="card-grid">
-
-      <!-- 1. Alkylating (Chains/Cross-linking) -->
-      <a href="#" class="card" onclick="return checkAccess(event)">
+      <a href="alkylating.html" class="card">
         <div class="card-icon">⛓️</div>
         <h3>Alkylating Agents</h3>
         <p>DNA cross-linking causing strand breakage (e.g., Nitrogen mustards, Platinums).</p>
       </a>
 
-      <!-- 2. Antimetabolites (Puzzle/Mimicry) -->
-      <a href="#" class="card" onclick="return checkAccess(event)">
+      <a href="antimetabolites.html" class="card">
         <div class="card-icon">🧩</div>
         <h3>Antimetabolites</h3>
         <p>Mimics natural bases to inhibit S-phase enzyme function (e.g., 5-FU, Methotrexate).</p>
       </a>
 
-      <!-- 3. Antitumor Antibiotics (DNA Strand) -->
-      <a href="#" class="card" onclick="return checkAccess(event)">
+      <a href="antibiotics.html" class="card">
         <div class="card-icon">🧬</div>
         <h3>Antitumor Antibiotics</h3>
         <p>Intercalation into DNA and Topoisomerase interference (e.g., Doxorubicin).</p>
       </a>
 
-      <!-- 4. Microtubule Inhibitors (Spindles/Yarn) -->
-      <a href="#" class="card" onclick="return checkAccess(event)">
+      <a href="microtubule.html" class="card">
         <div class="card-icon">🧶</div>
         <h3>Microtubule Inhibitors</h3>
         <p>Inhibiting mitotic spindle formation to halt cell division (e.g., Vinca alkaloids).</p>
       </a>
 
-      <!-- 5. Hormones (Lock and Key) -->
-      <a href="#" class="card" onclick="return checkAccess(event)">
+      <a href="hormones.html" class="card">
         <div class="card-icon">🔑</div>
         <h3>Hormones & Antagonists</h3>
         <p>Modulating receptor-mediated signaling pathways (e.g., Tamoxifen).</p>
       </a>
 
-      <!-- 6. mAbs (Immune Shield) -->
-      <a href="#" class="card" onclick="return checkAccess(event)">
+      <a href="mabs.html" class="card">
         <div class="card-icon">🛡️</div>
         <h3>Monoclonal Antibodies</h3>
         <p>Targeted binding to surface antigens for immune-mediated lysis.</p>
       </a>
 
-      <!-- 7. TKIs (Signal/Transmission) -->
-      <a href="#" class="card" onclick="return checkAccess(event)">
+      <a href="tkis.html" class="card">
         <div class="card-icon">📡</div>
         <h3>Tyrosine Kinase Inhibitors</h3>
         <p>Blocking intracellular growth signaling pathways (e.g., Imatinib).</p>
       </a>
-
     </div>
 
     <h2>Nursing Safety Protocols</h2>
@@ -118,17 +106,6 @@
     </ul>
   </main>
 </div>
-
-<script>
-  function checkAccess(event) {
-    if (localStorage.getItem('oncologyUnlocked') !== 'true') {
-      event.preventDefault();
-      alert('🔒 Access Restricted: Verify your credentials.');
-      return false;
-    }
-    return true;
-  }
-</script>
 
 </body>
 </html>
