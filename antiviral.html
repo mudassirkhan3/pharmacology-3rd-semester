@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Comprehensive Antiviral Pharmacology Guide — Expanded Drug Classes &amp; Detailed MOA</title>
+  <title>Advanced Antiviral Pharmacology — Animated Mechanism of Action (MOA) Flow</title>
   <style>
     :root {
       --primary: #0d9488;
@@ -20,6 +20,7 @@
       --mnemonics-border: #bbf7d0;
       --warning-bg: #fff1f2;
       --warning-border: #fecdd3;
+      --anim-box-bg: #f8fafc;
     }
 
     * {
@@ -116,15 +117,6 @@
       font-weight: 500;
     }
 
-    h3 {
-      font-size: 1.2rem;
-      color: #0f766e;
-      margin: 25px 0 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
     h4 {
       font-size: 1.05rem;
       color: #0f766e;
@@ -169,6 +161,110 @@
       margin: 18px 0;
     }
 
+    /* ANIMATED FLOW STYLES */
+    .animation-container {
+      background: #0f172a;
+      border-radius: 12px;
+      padding: 25px;
+      margin: 20px 0;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    .animation-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .flow-track {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      margin: 30px 10px;
+      gap: 15px;
+    }
+
+    .flow-track::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #334155;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    .flow-node {
+      background: #1e293b;
+      border: 2px solid #475569;
+      border-radius: 10px;
+      padding: 12px 15px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      min-width: 130px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #f8fafc;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+
+    .flow-node.highlight {
+      border-color: var(--accent);
+      background: rgba(13, 148, 136, 0.2);
+    }
+
+    .flow-particle {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 16px;
+      height: 16px;
+      background: var(--accent);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      box-shadow: 0 0 12px var(--accent);
+      animation: moveParticle 4s infinite linear;
+    }
+
+    @keyframes moveParticle {
+      0% { left: 5%; }
+      50% { left: 50%; background: #f43f5e; box-shadow: 0 0 15px #f43f5e; }
+      100% { left: 95%; background: #38bdf8; box-shadow: 0 0 12px #38bdf8; }
+    }
+
+    .pulse-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(244, 63, 94, 0.2);
+      border: 1px solid #f43f5e;
+      color: #fda4af;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      animation: pulseAnim 2s infinite;
+      margin-top: 8px;
+    }
+
+    @keyframes pulseAnim {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
     .mnemonic-box {
       background: var(--mnemonics-bg);
       border: 1px solid var(--mnemonics-border);
@@ -176,10 +272,6 @@
       border-radius: 10px;
       padding: 16px 20px;
       margin: 15px 0;
-    }
-
-    .mnemonic-box h4 {
-      color: #0f766e;
     }
 
     .warning-box {
@@ -240,6 +332,20 @@
       h1 {
         font-size: 1.8rem;
       }
+      .flow-track {
+        flex-direction: column;
+        gap: 25px;
+      }
+      .flow-track::before {
+        width: 4px;
+        height: 100%;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+      }
+      .flow-particle {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -250,8 +356,8 @@
       <div class="badge-container">
         <span class="badge">Advanced Nursing Pharmacology Guide</span>
       </div>
-      <h1>Antiviral Pharmacology Guide — Expanded Classifications &amp; Detailed MOA</h1>
-      <p class="subtitle">Comprehensive educational reference guide featuring clear, expanded pharmacological explanations of Mechanism of Action (MOA), Clinical Uses, and Adverse Drug Reactions (ADRs) across all antiviral drug classes.</p>
+      <h1>Antiviral Pharmacology Guide — Animated MOA Flow &amp; Drug Classes</h1>
+      <p class="subtitle">Comprehensive pharmacology reference guide featuring detailed Mechanism of Action (MOA) explanations, animated visual flow diagrams, Clinical Uses, and Adverse Drug Reactions (ADRs).</p>
     </header>
 
     <main>
@@ -261,6 +367,17 @@
         <h2>Classification: Drugs for Respiratory Virus Infections</h2>
         <p class="section-intro">Detailed pharmacological breakdown of antiviral agents targeting influenza, respiratory syncytial virus (RSV), and coronavirus infections.</p>
         
+        <!-- ANIMATED FLOW DIAGRAM -->
+        <div class="animation-container">
+          <div class="animation-title">⚡ Animated Flow: Neuraminidase Inhibitor Mechanism (Oseltamivir)</div>
+          <div class="flow-track">
+            <div class="flow-node">1. Viral Assembly</div>
+            <div class="flow-node highlight">2. Neuraminidase Action<br><span class="pulse-badge">Blocked by Drug</span></div>
+            <div class="flow-node">3. Viral Release Halted</div>
+          </div>
+          <div class="flow-particle"></div>
+        </div>
+
         <div class="sub-block">
           <h4>📂 Drug Inventory: Detailed MOA, Uses &amp; ADRs</h4>
           <div class="subdrug-grid">
@@ -308,6 +425,17 @@
         <h2>Classification: HIV Nucleoside &amp; Nucleotide Reverse Transcriptase Inhibitors (NRTIs &amp; NtRTIs)</h2>
         <p class="section-intro">Backbone agents of antiretroviral therapy (ART). They act as false building blocks that incorporate into viral DNA and cause chain termination.</p>
         
+        <!-- ANIMATED FLOW DIAGRAM -->
+        <div class="animation-container">
+          <div class="animation-title">⚡ Animated Flow: NRTI Chain Termination Mechanism</div>
+          <div class="flow-track">
+            <div class="flow-node">1. Viral RNA Template</div>
+            <div class="flow-node highlight">2. NRTI Incorporation<br><span class="pulse-badge">Chain Termination</span></div>
+            <div class="flow-node">3. Replication Halted</div>
+          </div>
+          <div class="flow-particle"></div>
+        </div>
+
         <div class="sub-block">
           <h4>📂 Drug Inventory: Detailed MOA, Uses &amp; ADRs</h4>
           <div class="subdrug-grid">
@@ -549,6 +677,17 @@
         <h2>Classification: HIV Integrase Strand Transfer Inhibitors (INSTIs)</h2>
         <p class="section-intro">Expanded frontline anchor class in modern antiretroviral therapy regimens.</p>
         
+        <!-- ANIMATED FLOW DIAGRAM -->
+        <div class="animation-container">
+          <div class="animation-title">⚡ Animated Flow: INSTI Strand Transfer Block</div>
+          <div class="flow-track">
+            <div class="flow-node">1. Viral DNA Formed</div>
+            <div class="flow-node highlight">2. Integrase Active Site<br><span class="pulse-badge">Chelation &amp; Block</span></div>
+            <div class="flow-node">3. Integration Prevented</div>
+          </div>
+          <div class="flow-particle"></div>
+        </div>
+
         <div class="sub-block">
           <h4>📂 Drug Inventory: Detailed MOA, Uses &amp; ADRs</h4>
           <div class="subdrug-grid">
