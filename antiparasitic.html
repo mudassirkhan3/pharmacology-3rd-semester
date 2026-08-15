@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Antiparasitic Guide — Classification, Mechanisms &amp; Clinical Management</title>
+  <title>Antiparasitic Pharmacology Guide — Mechanisms &amp; Classification</title>
   <style>
     :root {
-      --primary: #0284c7;
-      --primary-gradient: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-      --accent: #38bdf8;
-      --bg-gradient: linear-gradient(180deg, #f0f9ff 0%, #f8fafc 100%);
+      --primary: #7c3aed;
+      --primary-gradient: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+      --accent: #a78bfa;
+      --bg-gradient: linear-gradient(180deg, #f5f3ff 0%, #f8fafc 100%);
       --text-dark: #0f172a;
       --text-muted: #475569;
       --card-bg: rgba(255, 255, 255, 0.98);
       --card-border: #e2e8f0;
       --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-      --shadow-lg: 0 20px 25px -5px rgba(2, 132, 199, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-      --mnemonics-bg: #f0f9ff;
-      --mnemonics-border: #bae6fd;
+      --shadow-lg: 0 20px 25px -5px rgba(124, 58, 237, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --mnemonics-bg: #f5f3ff;
+      --mnemonics-border: #ddd6fe;
       --warning-bg: #fff1f2;
       --warning-border: #fecdd3;
     }
@@ -65,8 +65,8 @@
     .badge {
       display: inline-block;
       padding: 6px 14px;
-      background: #e0f2fe;
-      color: #0369a1;
+      background: #ede9fe;
+      color: #6d28d9;
       font-weight: 700;
       font-size: 13px;
       border-radius: 50px;
@@ -77,7 +77,7 @@
     h1 {
       font-size: 2.4rem;
       font-weight: 800;
-      background: linear-gradient(135deg, #1e293b 0%, #0284c7 100%);
+      background: linear-gradient(135deg, #1e293b 0%, #7c3aed 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 10px;
@@ -111,7 +111,7 @@
 
     h4 {
       font-size: 1.05rem;
-      color: #0369a1;
+      color: #6d28d9;
       margin-bottom: 8px;
       display: flex;
       align-items: center;
@@ -154,15 +154,15 @@
     }
 
     .moa-flow-box {
-      background: #f0fdf4;
-      border: 2px solid #bbf7d0;
+      background: #f5f3ff;
+      border: 2px solid #ddd6fe;
       border-radius: 14px;
       padding: 22px;
       margin: 20px 0;
     }
 
     .moa-flow-box h4 {
-      color: #166534;
+      color: #5b21b6;
       margin-bottom: 15px;
     }
 
@@ -174,7 +174,7 @@
 
     .flow-step {
       background: #ffffff;
-      border: 2px dashed #86efac;
+      border: 2px dashed #c4b5fd;
       border-radius: 10px;
       padding: 16px;
       text-align: center;
@@ -194,14 +194,14 @@
 
     .flow-step strong {
       display: block;
-      color: #14532d;
+      color: #4c1d95;
       font-size: 0.92rem;
       margin-bottom: 4px;
     }
 
     .flow-step span {
       font-size: 0.8rem;
-      color: #166534;
+      color: #5b21b6;
     }
 
     .mnemonic-box {
@@ -214,7 +214,7 @@
     }
 
     .mnemonic-box h4 {
-      color: #0369a1;
+      color: #6d28d9;
     }
 
     .warning-box {
@@ -232,8 +232,8 @@
 
     .subdrug-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
       margin-top: 12px;
     }
 
@@ -241,16 +241,29 @@
       background: #ffffff;
       border: 1px solid #cbd5e1;
       border-radius: 8px;
-      padding: 12px 14px;
+      padding: 14px 16px;
     }
 
     .subdrug-item strong {
       display: block;
       color: #0f172a;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .subdrug-item .moa-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      background: #ede9fe;
+      color: #6d28d9;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      margin-bottom: 4px;
     }
 
     .subdrug-item span {
+      display: block;
       font-size: 0.82rem;
       color: var(--text-muted);
     }
@@ -261,8 +274,8 @@
     }
 
     @keyframes pulseGlow {
-      0% { border-color: #86efac; background: #ffffff; }
-      100% { border-color: #22c55e; background: #f0fdf4; }
+      0% { border-color: #c4b5fd; background: #ffffff; }
+      100% { border-color: #7c3aed; background: #f5f3ff; }
     }
 
     @media (max-width: 600px) {
@@ -285,118 +298,116 @@
       <div class="badge-container">
         <span class="badge">Pharmacology Study Guide</span>
       </div>
-      <h1>Antiparasitic Drugs: Overview, Mechanisms &amp; Management</h1>
-      <p class="subtitle">Detailed guide covering introduction, classification, mechanisms of action, therapeutic uses, adverse reactions, and clinical complications.</p>
+      <h1>Antiparasitic Drugs: Mechanisms &amp; Classification</h1>
+      <p class="subtitle">A clear breakdown of how we treat Protozoa, Helminths, and Ectoparasites.</p>
     </header>
 
     <main>
 
-      <!-- ================= 1. INTRODUCTION & CLASSIFICATION ================= -->
+      <!-- SECTION 1: ANTIPROTOZOALS -->
       <section class="drug-class-card">
-        <h2>1. Introduction &amp; Classification</h2>
-        <p><em>Antiparasitic drugs are specialized medications designed to prevent and treat infections caused by parasitic organisms. Because parasites possess complex eukaryotic cellular structures similar to human host cells, achieving selective toxicity without harming host tissue presents a unique pharmacological challenge.</em></p>
+        <h2>1. Antiprotozoal Agents</h2>
+        <p><em>Used to treat single-celled eukaryotic organisms like Amoeba, Giardia, and Malaria parasites.</em></p>
         
         <div class="sub-block">
-          <h4>📂 Drug Classifications &amp; Targets</h4>
+          <h4>📂 Drug Names &amp; Molecular MOA</h4>
           <div class="subdrug-grid">
-            <div class="subdrug-item"><strong>Antiprotozoals</strong><span>Targets single-celled protozoa like Plasmodium, Giardia, Entamoeba, and Trichomonas. (e.g., Metronidazole, Chloroquine, Artemisinin)</span></div>
-            <div class="subdrug-item"><strong>Antihelminthics</strong><span>Targets parasitic worms including nematodes (roundworms), cestodes (tapeworms), and trematodes (flukes). (e.g., Albendazole, Mebendazole, Ivermectin, Praziquantel)</span></div>
-            <div class="subdrug-item"><strong>Ectoparasiticides</strong><span>Targets external surface pests like lice, scabies mites, and ticks. (e.g., Permethrin, Topical Ivermectin)</span></div>
+            <div class="subdrug-item">
+              <strong>Metronidazole</strong>
+              <span class="moa-tag">MOA: DNA Strand Breaker</span>
+              <span>Reduced inside the parasite to free radicals; these radicals damage parasitic DNA, preventing replication.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Chloroquine</strong>
+              <span class="moa-tag">MOA: Heme Detox Inhibition</span>
+              <span>Accumulates in the parasite's food vacuole, preventing the detoxification of toxic heme into hemozoin.</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- ================= 2. MECHANISM OF ACTION & FLOW ANIMATION ================= -->
+      <!-- SECTION 2: ANTIHELMINTHICS -->
       <section class="drug-class-card">
-        <h2>2. Mechanism of Action (MoA)</h2>
-        <p><em>Antiparasitic agents interrupt vital biochemical pathways, structural protein assembly, or neuromuscular transmission unique to the parasite lifecycle.</em></p>
+        <h2>2. Antihelminthic Agents</h2>
+        <p><em>Used to treat worm infections (Roundworms, Tapeworms, Flukes).</em></p>
         
         <div class="sub-block">
-          <h4>🔬 Pharmacological Action Pathways</h4>
+          <h4>📂 Drug Names &amp; Molecular MOA</h4>
           <div class="subdrug-grid">
-            <div class="subdrug-item"><strong>Microtubule Inhibition</strong><span>Benzimidazoles bind beta-tubulin, blocking cell division and glucose intake.</span></div>
-            <div class="subdrug-item"><strong>Neuromuscular Paralysis</strong><span>Ivermectin/Praziquantel cause ion channel hyperpolarization or calcium influx, paralyzing worms.</span></div>
-            <div class="subdrug-item"><strong>Free Radical Damage</strong><span>Metronidazole reduces inside cells to reactive radicals causing lethal DNA breaks.</span></div>
-            <div class="subdrug-item"><strong>Hemozoin Blockade</strong><span>Quinolines prevent toxic heme detoxification inside malaria food vacuoles.</span></div>
+            <div class="subdrug-item">
+              <strong>Albendazole / Mebendazole</strong>
+              <span class="moa-tag">MOA: Microtubule Inhibitor</span>
+              <span>Binds to parasite beta-tubulin, preventing microtubule polymerization needed for cell structure and glucose intake.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Ivermectin</strong>
+              <span class="moa-tag">MOA: Chloride Channel Agonist</span>
+              <span>Binds to glutamate-gated chloride channels in nerve/muscle cells, causing hyperpolarization and paralysis.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Praziquantel</strong>
+              <span class="moa-tag">MOA: Calcium Flux Inducer</span>
+              <span>Increases permeability of the cell membrane to calcium, resulting in tetanic contraction and worm paralysis.</span>
+            </div>
           </div>
         </div>
 
         <div class="moa-flow-box">
-          <h4>⚡ Animated MOA Workflow: Parasite Elimination Cycle</h4>
+          <h4>⚡ Animated MOA Workflow: Parasitic Destruction</h4>
           <div class="flow-container">
             <div class="flow-step">
-              <div class="step-icon">💉</div>
+              <div class="step-icon">💊</div>
               <strong>Step 1: Ingestion</strong>
-              <span>Drug administered and absorbed systemically into the host environment.</span>
+              <span>Drug is absorbed and transported to the site of parasitic infection.</span>
             </div>
             <div class="flow-step">
               <div class="step-icon">🎯</div>
-              <strong>Step 2: Target Binding</strong>
-              <span>Molecules intercept parasite tubulin, DNA, or ion channels.</span>
+              <strong>Step 2: Pathway Block</strong>
+              <span>Drug binds to tubulin, ion channels, or DNA-repair enzymes.</span>
             </div>
             <div class="flow-step">
-              <div class="step-icon">🛑</div>
-              <strong>Step 3: Paralysis &amp; Halt</strong>
-              <span>Cellular disruption blocks energy metabolism and paralyzes movement.</span>
+              <div class="step-icon">⚡</div>
+              <strong>Step 3: Paralysis</strong>
+              <span>Metabolism fails or muscles paralyze, stopping movement.</span>
             </div>
             <div class="flow-step">
               <div class="step-icon">✨</div>
               <strong>Step 4: Clearance</strong>
-              <span>Host immune system and excretion pathways clear dead parasites.</span>
+              <span>The paralyzed parasite is expelled by host peristalsis or immune cells.</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ================= 3. THERAPEUTIC USES ================= -->
+      <!-- SECTION 3: ECTOPARASITICIDES & MNEMONICS -->
       <section class="drug-class-card">
-        <h2>3. Therapeutic Uses</h2>
-        <p><em>Clinical applications span across tropical medicine, vector-borne disease control, and gastrointestinal infestations.</em></p>
+        <h2>3. Ectoparasiticides &amp; Mnemonics</h2>
+        <p><em>Treating external infestations like lice and scabies.</em></p>
         
         <div class="sub-block">
-          <h4>📂 Common Indications</h4>
+          <h4>📂 Common Topical Treatments</h4>
           <div class="subdrug-grid">
-            <div class="subdrug-item"><strong>Malaria</strong><span>Prevention and acute management using Chloroquine and Artemisinin-based combinations (ACTs).</span></div>
-            <div class="subdrug-item"><strong>Amoebiasis &amp; Giardiasis</strong><span>Intestinal and hepatic protozoan infections treated with Metronidazole or Tinidazole.</span></div>
-            <div class="subdrug-item"><strong>Intestinal Nematodes</strong><span>Roundworm, hookworm, and pinworm clearance using Albendazole or Mebendazole.</span></div>
-            <div class="subdrug-item"><strong>Filariasis &amp; Schistosomiasis</strong><span>Tissue-dwelling worms and blood flukes managed via Ivermectin and Praziquantel.</span></div>
+            <div class="subdrug-item">
+              <strong>Permethrin</strong>
+              <span class="moa-tag">MOA: Sodium Channel Disruption</span>
+              <span>Neurotoxic to parasites; inhibits sodium channel repolarization, causing paralysis of lice/scabies mites.</span>
+            </div>
           </div>
         </div>
-      </section>
 
-      <!-- ================= 4. ADRS & COMPLICATIONS ================= -->
-      <section class="drug-class-card">
-        <h2>4. Adverse Drug Reactions (ADRs) &amp; Complications</h2>
-        <p><em>Monitoring side effects ensures patient safety while managing systemic exposure limits.</em></p>
-        
-        <div class="sub-block">
-          <h4>📂 Key Adverse Effects</h4>
-          <div class="subdrug-grid">
-            <div class="subdrug-item"><strong>Gastrointestinal</strong><span>Nausea, vomiting, abdominal cramping, and diarrhea (common with Metronidazole/Albendazole).</span></div>
-            <div class="subdrug-item"><strong>Neurological</strong><span>Headache, dizziness, fatigue, and potential peripheral neuropathy upon long-term exposure.</span></div>
-            <div class="subdrug-item"><strong>Hepatotoxicity</strong><span>Transient liver transaminase bumps and risk of drug-induced hepatitis.</span></div>
-            <div class="subdrug-item"><strong>Immune Reactions</strong><span>Pruritus, rashes, and fever triggered by host immune response to dying parasite antigens (Mazzotti reaction).</span></div>
-          </div>
+        <div class="mnemonic-box">
+          <h4>💡 Drug Classifications: "A.P.E."</h4>
+          <p><strong>A</strong>ntiprotozoals (Amoeba/Malaria) &bull; <strong>P</strong>arallel Antihelminthics (Worms) &bull; <strong>E</strong>ctoparasiticides (Lice/Scabies).</p>
+        </div>
+
+        <div class="mnemonic-box">
+          <h4>💡 Side Effects: "G.I. + N.E.R.V."</h4>
+          <p><strong>G</strong>astro-intestinal upset (Nausea/Vomiting) &bull; <strong>I</strong>nflammation &bull; <strong>N</strong>eurological (Dizziness) &bull; <strong>E</strong>levated enzymes (Liver) &bull; <strong>R</strong>ashes (allergic) &bull; <strong>V</strong>ertigo.</p>
         </div>
 
         <div class="warning-box">
-          <h4>🚫 Clinical Complications &amp; Risks</h4>
-          <p><strong>Drug Resistance:</strong> Overuse has fostered significant resistance traits globally, particularly in malaria and helminth populations.<br>
-          <strong>Teratogenicity:</strong> Certain systemic agents (e.g., Albendazole) carry fetal risks and are contraindicated in early pregnancy.<br>
-          <strong>Neurotoxicity:</strong> High doses or compromised blood-brain barriers can induce severe neurological complications.</p>
-        </div>
-      </section>
-
-      <!-- ================= 5. IMPORTANT POINTS ================= -->
-      <section class="drug-class-card">
-        <h2>5. Important Points &amp; Key Takeaways</h2>
-        <p><em>Essential clinical rules guiding safe and effective antiparasitic drug administration.</em></p>
-        
-        <div class="mnemonic-box">
-          <h4>💡 Clinical Practice Principles</h4>
-          <p><strong>Selective Toxicity:</strong> Focuses on exploiting unique parasite metabolic targets while sparing human host cells.<br>
-          <strong>Combination Regimens:</strong> Essential in malaria and tropical infections to prevent treatment failure and genetic resistance.<br>
-          <strong>Mass Drug Administration (MDA):</strong> Single-dose public health protocols enhance compliance in endemic regions.</p>
+          <h4>🚫 Clinical Warnings</h4>
+          <p>Always monitor for hypersensitivity reactions (fever/rash) caused by the release of antigens from dying parasites (Mazzotti reaction). Avoid in pregnancy unless absolutely necessary.</p>
         </div>
       </section>
 
