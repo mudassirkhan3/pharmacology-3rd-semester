@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Chapter 4: Hematology Pharmacology</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      --accent: #06b6d4;
+      --bg-gradient: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%);
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --card-border: #e2e8f0;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(37, 99, 235, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8fafc; color: var(--text-dark); line-height: 1.6; padding: 20px 15px; min-height: 100vh; }
+    .container { max-width: 950px; margin: 0 auto; background: var(--card-bg); padding: 35px 30px; border-radius: 20px; border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); backdrop-filter: blur(10px); animation: fadeIn 0.8s ease-out; }
+    
+    .badge { display: inline-block; padding: 6px 14px; background: #dbeafe; color: #1e40af; font-weight: 700; font-size: 13px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+    h1 { font-size: 2.2rem; font-weight: 800; background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+    .subtitle { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 30px; }
+    h2 { font-size: 1.4rem; color: #1e293b; margin: 35px 0 20px; display: flex; align-items: center; gap: 10px; }
+    h2::before { content: ''; display: inline-block; width: 5px; height: 22px; background: var(--primary); border-radius: 4px; }
+
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .card { position: relative; background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 22px; text-decoration: none; color: inherit; overflow: hidden; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; justify-content: space-between; opacity: 0; animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .card:nth-child(1) { animation-delay: 0.15s; } .card:nth-child(2) { animation-delay: 0.30s; } .card:nth-child(3) { animation-delay: 0.45s; } .card:nth-child(4) { animation-delay: 0.60s; }
+    .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--primary-gradient); opacity: 0; transition: opacity 0.3s ease; }
+    .card:hover { transform: translateY(-8px); border-color: #3b82f6; box-shadow: var(--shadow-lg); }
+    .card:hover::before { opacity: 1; }
+    .card-icon { width: 42px; height: 42px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 14px; transition: transform 0.3s ease; }
+    .card h3 { font-size: 1.15rem; color: #1e293b; margin-bottom: 8px; }
+    .card p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; }
+    .card-link { font-size: 0.85rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 6px; }
+
+    .nursing-list { list-style: none; display: grid; gap: 14px; margin-top: 15px; }
+    .nursing-item { background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--primary); border-radius: 10px; padding: 16px; display: flex; align-items: flex-start; gap: 12px; box-shadow: var(--shadow-sm); }
+    .nursing-number { background: #dbeafe; color: #1e40af; font-weight: 800; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <span class="badge">Pharmacology — Unit IV</span>
+      <h1>Drugs Affecting the Hematology System</h1>
+      <p class="subtitle">Coagulation management, thrombolysis, and hemostatic protocols for nursing practice.</p>
+    </header>
+
+    <main>
+      <h2>Select Drug Category</h2>
+      <div class="card-grid">
+
+        <a href="plateletInhibitors.html" class="card">
+          <div>
+            <div class="card-icon">🩸</div>
+            <h3>Platelet Inhibitors</h3>
+            <p>Mechanisms of inhibiting platelet aggregation to prevent arterial thrombosis.</p>
+          </div>
+          <span class="card-link">Explore Details &rarr;</span>
+        </a>
+
+        <a href="anticoagulants.html" class="card">
+          <div>
+            <div class="card-icon">🧪</div>
+            <h3>Anticoagulants</h3>
+            <p>Interfering with clotting factors (Heparin/Warfarin) to manage VTE.</p>
+          </div>
+          <span class="card-link">Explore Details &rarr;</span>
+        </a>
+
+        <a href="thrombolyticAgents.html" class="card">
+          <div>
+            <div class="card-icon">⚡</div>
+            <h3>Thrombolytic Agents</h3>
+            <p>Fibrinolytic drugs (Alteplase) used to dissolve life-threatening clots.</p>
+          </div>
+          <span class="card-link">Explore Details &rarr;</span>
+        </a>
+
+        <a href="treatmentOfBleeding.html" class="card">
+          <div>
+            <div class="card-icon">🩹</div>
+            <h3>Treatment of Bleedings</h3>
+            <p>Hemostatic agents and reversal protocols to manage hemorrhage.</p>
+          </div>
+          <span class="card-link">Explore Details &rarr;</span>
+        </a>
+
+      </div>
+
+      <h2>General Nursing Measures</h2>
+      <ul class="nursing-list">
+        <li class="nursing-item">
+          <div class="nursing-number">1</div>
+          <div><strong>Monitoring Coagulation:</strong> Regularly check lab values (PT/INR for Warfarin; aPTT for Heparin) before administering doses.</div>
+        </li>
+        <li class="nursing-item">
+          <div class="nursing-number">2</div>
+          <div><strong>Bleeding Precautions:</strong> Implement strict bleeding precautions: use a soft-bristle toothbrush, electric razor, and minimize trauma.</div>
+        </li>
+        <li class="nursing-item">
+          <div class="nursing-number">3</div>
+          <div><strong>Antidote Readiness:</strong> Always verify that reversal agents (Vitamin K, Protamine Sulfate) are readily available for emergency use.</div>
+        </li>
+        <li class="nursing-item">
+          <div class="nursing-number">4</div>
+          <div><strong>Injection Safety:</strong> Avoid IM injections for patients on anticoagulants to prevent hematoma formation at the site.</div>
+        </li>
+      </ul>
+    </main>
+  </div>
+
+</body>
+</html>
