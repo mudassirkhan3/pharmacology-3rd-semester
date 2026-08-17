@@ -50,7 +50,7 @@
     .card-box:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 15px 30px rgba(37, 99, 235, 0.1); }
     .card-box h3 { color: var(--primary); margin-bottom: 12px; font-size: 1.25rem; display: flex; align-items: center; gap: 10px; }
 
-    /* ADVANCED INTERACTIVE RECEPTOR ANIMATION CONTAINER */
+    /* ANIMATION STAGE 1: MOLECULAR BINDING */
     .animation-stage { background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%); border: 2px solid #93c5fd; border-radius: 20px; padding: 35px; margin: 35px 0; text-align: center; box-shadow: 0 15px 35px rgba(37, 99, 235, 0.08); position: relative; overflow: hidden; }
     .receptor-membrane { display: flex; justify-content: space-around; align-items: center; background: #dbeafe; border-radius: 16px; padding: 20px; position: relative; margin: 25px 0; border: 2px dashed #3b82f6; }
     
@@ -68,6 +68,29 @@
     .cascade-step:hover { background: var(--primary); color: white; transform: translateY(-3px); }
     .cascade-step small { color: var(--text-muted); display: block; margin-top: 5px; font-weight: normal; }
     .cascade-step:hover small { color: #f8fafc; }
+
+    /* ANIMATION STAGE 2: INTERACTIVE RECEPTOR COMPETITION SIMULATOR */
+    .sim-stage { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border: 2px solid #cbd5e1; border-radius: 20px; padding: 30px; margin: 35px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
+    .sim-controls { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 25px; }
+    .sim-btn { padding: 10px 18px; border-radius: 10px; border: none; font-weight: 700; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.08); font-size: 0.95rem; }
+    .btn-agonist { background: #2563eb; color: white; }
+    .btn-agonist:hover { background: #1d4ed8; }
+    .btn-comp { background: #f59e0b; color: white; }
+    .btn-comp:hover { background: #d97706; }
+    .btn-irrev { background: #dc2626; color: white; }
+    .btn-irrev:hover { background: #b91c1c; }
+    .btn-reset { background: #64748b; color: white; }
+    .btn-reset:hover { background: #475569; }
+
+    .receptor-slots { display: flex; justify-content: center; gap: 16px; margin: 25px 0; flex-wrap: wrap; }
+    .slot { width: 65px; height: 65px; background: white; border: 3px dashed #94a3b8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; transition: 0.3s; box-shadow: inset 0 2px 5px rgba(0,0,0,0.05); }
+    .slot.occupied-agonist { border-color: #2563eb; background: #eff6ff; transform: scale(1.08); }
+    .slot.occupied-comp { border-color: #f59e0b; background: #fef3c7; transform: scale(1.08); }
+    .slot.occupied-irrev { border-color: #dc2626; background: #fee2e2; transform: scale(1.08); }
+
+    .response-meter-box { background: white; border-radius: 12px; padding: 15px 20px; border: 1px solid #cbd5e1; margin-top: 20px; }
+    .response-bar-bg { width: 100%; background: #e2e8f0; height: 22px; border-radius: 11px; overflow: hidden; margin-top: 8px; position: relative; }
+    .response-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #2563eb, #10b981); transition: width 0.4s ease-in-out; border-radius: 11px; }
 
     .mnemonic-box { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-left: 6px solid var(--accent); padding: 25px; border-radius: 14px; margin: 30px 0; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.1); border: 1px solid #fde68a; }
     .mnemonic-box h4 { color: #b45309; font-size: 1.15rem; margin-bottom: 10px; font-weight: 800; display: flex; align-items: center; gap: 12px; }
@@ -94,9 +117,9 @@
   <h1>Pharmacodynamics: Signal Transduction, Receptors & Dose-Response</h1>
   <p>Pharmacodynamics examines <strong>what drugs do to the body and how they do it</strong>. It investigates molecular receptor interactions, signal amplification cascades, cellular adaptation mechanisms, and the quantitative mathematical relationship between drug concentration and pharmacological response.</p>
 
-  <!-- ADVANCED ANIMATION STAGE -->
+  <!-- ANIMATION STAGE 1: MOLECULAR BINDING -->
   <div class="animation-stage">
-    <h3 style="color: var(--primary-dark); margin-bottom: 8px;">Interactive Animation: Molecular Binding & Signal Cascade</h3>
+    <h3 style="color: var(--primary-dark); margin-bottom: 8px;">Animation 1: Molecular Binding & Signal Cascade</h3>
     <p style="font-size: 0.95rem; margin-bottom: 20px;">Observe how a drug molecule binds to a cell surface receptor and triggers a biological response:</p>
     
     <div style="position: relative; height: 70px;">
@@ -208,6 +231,38 @@
     </div>
   </div>
 
+  <!-- RECOMMENDED NEW ANIMATION: INTERACTIVE RECEPTOR COMPETITION SIMULATOR -->
+  <div class="sim-stage">
+    <h3 style="color: var(--primary-dark); text-align: center; margin-bottom: 6px;">Animation 2: Interactive Receptor Competition Simulator</h3>
+    <p style="text-align: center; font-size: 0.95rem; margin-bottom: 20px;">Test how Agonists (💊), Competitive Antagonists (🛡️), and Irreversible Blockers (🔒) compete for available cell receptors:</p>
+
+    <div class="sim-controls">
+      <button class="sim-btn btn-agonist" onclick="addDrug('agonist')">+ Add Agonist (💊)</button>
+      <button class="sim-btn btn-comp" onclick="addDrug('competitive')">+ Add Competitive Antagonist (🛡️)</button>
+      <button class="sim-btn btn-irrev" onclick="addDrug('irreversible')">+ Add Irreversible Blocker (🔒)</button>
+      <button class="sim-btn btn-reset" onclick="resetSim()">Reset Receptors</button>
+    </div>
+
+    <div class="receptor-slots" id="receptorContainer">
+      <div class="slot" id="slot-0">○</div>
+      <div class="slot" id="slot-1">○</div>
+      <div class="slot" id="slot-2">○</div>
+      <div class="slot" id="slot-3">○</div>
+      <div class="slot" id="slot-4">○</div>
+      <div class="slot" id="slot-5">○</div>
+    </div>
+
+    <div class="response-meter-box">
+      <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 0.95rem; color: var(--primary-dark);">
+        <span>Cellular Response Output:</span>
+        <span id="responsePercentage">0%</span>
+      </div>
+      <div class="response-bar-bg">
+        <div class="response-bar-fill" id="responseFill"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- SECTION 5: DOSE-RESPONSE RELATIONSHIPS & GRAPHS -->
   <h2>5. Dose-Response Relations & Curves <span class="high-yield-badge">Core Concept</span></h2>
 
@@ -313,6 +368,56 @@
   </ul>
 
 </div>
+
+<!-- SIMULATOR JAVASCRIPT LOGIC -->
+<script>
+  const totalSlots = 6;
+  let receptors = Array(totalSlots).fill(null); // null, 'agonist', 'competitive', 'irreversible'
+
+  function addDrug(type) {
+    // Find first empty slot
+    const emptyIndex = receptors.findIndex(r => r === null);
+    if (emptyIndex === -1) {
+      alert("All receptors are fully occupied! Reset to test new drug combinations.");
+      return;
+    }
+    receptors[emptyIndex] = type;
+    updateSimUI();
+  }
+
+  function resetSim() {
+    receptors = Array(totalSlots).fill(null);
+    updateSimUI();
+  }
+
+  function updateSimUI() {
+    let agonistCount = 0;
+    for (let i = 0; i < totalSlots; i++) {
+      const slotEl = document.getElementById(`slot-${i}`);
+      slotEl.className = "slot";
+      const state = receptors[i];
+      
+      if (state === null) {
+        slotEl.textContent = "○";
+      } else if (state === 'agonist') {
+        slotEl.textContent = "💊";
+        slotEl.classList.add("occupied-agonist");
+        agonistCount++;
+      } else if (state === 'competitive') {
+        slotEl.textContent = "🛡️";
+        slotEl.classList.add("occupied-comp");
+      } else if (state === 'irreversible') {
+        slotEl.textContent = "🔒";
+        slotEl.classList.add("occupied-irrev");
+      }
+    }
+
+    // Calculate response percentage (each agonist contributes ~16.6%)
+    const percentage = Math.round((agonistCount / totalSlots) * 100);
+    document.getElementById("responsePercentage").textContent = percentage + "%";
+    document.getElementById("responseFill").style.width = percentage + "%";
+  }
+</script>
 
 </body>
 </html>
