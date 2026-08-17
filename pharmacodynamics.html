@@ -6,81 +6,83 @@
   <title>Pharmacodynamics: Signal Transduction, Receptors & Dose-Response | Elite Masterclass</title>
   <style>
     :root {
-      --bg-gradient: radial-gradient(circle at 15% 15%, rgba(13, 148, 136, 0.12) 0%, rgba(14, 165, 233, 0.08) 45%, #f8fafc 90%);
-      --primary: #0d9488;
-      --primary-dark: #0f766e;
-      --primary-light: #2dd4bf;
-      --accent: #f43f5e;
-      --accent-bg: #fff1f2;
+      --bg-gradient: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #faf5ff 100%);
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --primary-light: #60a5fa;
+      --accent: #f59e0b;
+      --accent-green: #10b981;
       --card-bg: rgba(255, 255, 255, 0.95);
-      --card-border: rgba(20, 184, 166, 0.25);
+      --card-border: rgba(37, 99, 235, 0.2);
       --text-main: #0f172a;
-      --text-muted: #334155;
-      --shadow-glow: 0 20px 45px -10px rgba(13, 148, 136, 0.15);
-      --radius: 22px;
+      --text-muted: #475569;
+      --shadow-glow: 0 20px 40px -15px rgba(37, 99, 235, 0.15);
+      --radius: 24px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
     body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.8; padding: 40px 16px; min-height: 100vh; }
     
-    .container { max-width: 1040px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(20px); padding: 50px 45px; border-radius: var(--radius); border: 1px solid var(--card-border); box-shadow: var(--shadow-glow); position: relative; overflow: hidden; }
-    .container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #0d9488, #0ea5e9, #f43f5e); }
+    .container { max-width: 1050px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(20px); padding: 55px 50px; border-radius: var(--radius); border: 1px solid var(--card-border); box-shadow: var(--shadow-glow); position: relative; overflow: hidden; }
+    .container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #2563eb, #10b981, #f59e0b); }
     
-    .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; margin-bottom: 30px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 15px rgba(13, 148, 136, 0.25); }
-    .back-btn:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(13, 148, 136, 0.35); }
+    .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; margin-bottom: 30px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25); }
+    .back-btn:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35); }
 
-    .badge { display: inline-block; padding: 6px 16px; background: #ccfbf1; color: var(--primary-dark); font-weight: 800; font-size: 0.8rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px; border: 1px solid #5eead4; }
+    .badge { display: inline-block; padding: 6px 16px; background: #dbeafe; color: var(--primary-dark); font-weight: 800; font-size: 0.8rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px; border: 1px solid #bfdbfe; }
     
-    .high-yield-badge { display: inline-block; background: linear-gradient(135deg, #f43f5e, #e11d48); color: #fff; font-size: 0.75rem; font-weight: 900; padding: 2px 10px; border-radius: 6px; margin-left: 8px; text-transform: uppercase; letter-spacing: 0.5px; vertical-align: middle; box-shadow: 0 2px 8px rgba(244, 63, 94, 0.3); }
+    .high-yield-badge { display: inline-block; background: linear-gradient(135deg, #d97706, #b45309); color: #fff; font-size: 0.75rem; font-weight: 900; padding: 2px 10px; border-radius: 6px; margin-left: 8px; text-transform: uppercase; letter-spacing: 0.5px; vertical-align: middle; box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3); }
 
-    h1 { font-size: 2.6rem; font-weight: 900; background: linear-gradient(135deg, #0f172a 0%, #0d9488 50%, #0ea5e9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; line-height: 1.2; }
+    h1 { font-size: 2.7rem; font-weight: 900; background: linear-gradient(135deg, #0f172a 0%, #1e40af 50%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; line-height: 1.2; }
     
-    h2 { font-size: 1.6rem; margin: 45px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #ccfbf1; padding-bottom: 12px; }
+    h2 { font-size: 1.6rem; margin: 45px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #e2e8f0; padding-bottom: 12px; }
     h2::before { content: ''; display: inline-block; width: 6px; height: 26px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; }
 
-    h3 { font-size: 1.2rem; color: var(--primary-dark); margin: 20px 0 10px; }
+    h3 { font-size: 1.25rem; color: var(--primary-dark); margin: 20px 0 10px; }
 
-    p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 20px; font-weight: 400; }
-    p strong, li strong { color: var(--text-main); font-weight: 700; }
+    p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 20px; }
+    p strong { color: var(--text-main); }
 
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; margin: 25px 0; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 24px; margin: 25px 0; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin: 25px 0; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: 25px 0; }
     
-    .card-box { background: #ffffff; border: 2px solid var(--card-border); border-radius: 18px; padding: 28px; box-shadow: 0 10px 30px rgba(13, 148, 136, 0.05); transition: 0.3s; position: relative; }
-    .card-box:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 15px 35px rgba(13, 148, 136, 0.12); }
+    .card-box { background: #ffffff; border: 2px solid #e2e8f0; border-radius: 18px; padding: 28px; box-shadow: 0 10px 25px rgba(0,0,0,0.03); transition: 0.3s; position: relative; }
+    .card-box:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 15px 30px rgba(37, 99, 235, 0.1); }
     .card-box h3 { color: var(--primary); margin-bottom: 12px; font-size: 1.25rem; display: flex; align-items: center; gap: 10px; }
 
-    /* REDESIGNED INTERACTIVE ANIMATION CONTAINER */
-    .animation-container { background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%); border: 2px solid var(--primary); border-radius: 20px; padding: 35px; margin: 35px 0; text-align: center; box-shadow: 0 15px 35px rgba(13, 148, 136, 0.12); position: relative; overflow: hidden; }
+    /* ADVANCED INTERACTIVE RECEPTOR ANIMATION CONTAINER */
+    .animation-stage { background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%); border: 2px solid #93c5fd; border-radius: 20px; padding: 35px; margin: 35px 0; text-align: center; box-shadow: 0 15px 35px rgba(37, 99, 235, 0.08); position: relative; overflow: hidden; }
+    .receptor-membrane { display: flex; justify-content: space-around; align-items: center; background: #dbeafe; border-radius: 16px; padding: 20px; position: relative; margin: 25px 0; border: 2px dashed #3b82f6; }
     
-    .cell-membrane-sim { display: flex; justify-content: space-around; align-items: center; margin: 30px 0; position: relative; gap: 10px; flex-wrap: wrap; }
-    
-    .sim-step { background: white; border: 2px solid #0d9488; border-radius: 14px; padding: 18px; width: 22%; min-width: 160px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); transition: all 0.4s ease; position: relative; }
-    .sim-step:hover { transform: translateY(-5px); background: #ccfbf1; border-color: var(--primary-dark); }
-    .sim-icon { font-size: 2rem; margin-bottom: 8px; display: block; }
-    .sim-title { font-weight: 800; color: var(--primary-dark); font-size: 0.95rem; margin-bottom: 4px; }
-    .sim-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; }
-
-    .pulse-bar { height: 6px; width: 100%; background: #e2e8f0; border-radius: 4px; margin-top: 25px; position: relative; overflow: hidden; }
-    .pulse-progress { position: absolute; height: 100%; width: 35%; background: linear-gradient(90deg, #0d9488, #f43f5e); border-radius: 4px; animation: pulseMotion 3.5s infinite linear; }
-    
-    @keyframes pulseMotion {
-      0% { left: -35%; }
-      100% { left: 100%; }
+    .animated-drug { font-size: 2rem; position: absolute; top: -10px; left: 10%; animation: bindReceptor 4s infinite ease-in-out; }
+    @keyframes bindReceptor {
+      0% { left: 5%; top: -20px; opacity: 0; transform: scale(0.5) rotate(0deg); }
+      20% { opacity: 1; transform: scale(1) rotate(45deg); }
+      50% { left: 45%; top: 25px; transform: scale(1.2) rotate(180deg); }
+      70% { left: 65%; top: 60px; opacity: 1; transform: scale(1) rotate(270deg); }
+      100% { left: 90%; top: 20px; opacity: 0; transform: scale(0.5) rotate(360deg); }
     }
 
-    .mnemonic-box { background: linear-gradient(135deg, #fef2f2 0%, #fff1f2 100%); border-left: 6px solid var(--accent); padding: 25px; border-radius: 14px; margin: 30px 0; box-shadow: 0 10px 25px rgba(244, 63, 94, 0.08); border: 1px solid #fecdd3; }
-    .mnemonic-box h4 { color: var(--accent); font-size: 1.15rem; margin-bottom: 10px; font-weight: 800; display: flex; align-items: center; gap: 12px; }
+    .cascade-flow { display: flex; justify-content: space-between; gap: 15px; margin-top: 25px; flex-wrap: wrap; }
+    .cascade-step { background: white; border: 2px solid var(--primary); border-radius: 12px; padding: 15px; flex: 1; min-width: 140px; font-weight: 700; color: var(--primary-dark); box-shadow: 0 5px 15px rgba(0,0,0,0.04); transition: 0.3s; }
+    .cascade-step:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+    .cascade-step small { color: var(--text-muted); display: block; margin-top: 5px; font-weight: normal; }
+    .cascade-step:hover small { color: #f8fafc; }
+
+    .mnemonic-box { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-left: 6px solid var(--accent); padding: 25px; border-radius: 14px; margin: 30px 0; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.1); border: 1px solid #fde68a; }
+    .mnemonic-box h4 { color: #b45309; font-size: 1.15rem; margin-bottom: 10px; font-weight: 800; display: flex; align-items: center; gap: 12px; }
     .mnemonic-box p { color: var(--text-main); margin-bottom: 0; font-weight: 500; }
 
     ul { list-style-type: none; padding-left: 0; margin-bottom: 20px; }
     ul li { position: relative; padding-left: 30px; margin-bottom: 14px; color: var(--text-muted); font-size: 1.05rem; }
     ul li::before { content: '✦'; position: absolute; left: 6px; color: var(--primary); font-size: 0.9rem; }
+    ul li strong { color: var(--text-main); }
 
-    .formula-box { background: #f8fafc; border: 1px dashed var(--primary); padding: 18px; border-radius: 12px; margin: 18px 0; font-family: monospace; font-weight: bold; color: var(--primary-dark); text-align: center; box-shadow: inset 0 2px 6px rgba(0,0,0,0.02); font-size: 1.05rem; }
+    .formula-box { background: #f8fafc; border: 2px dashed var(--primary); padding: 20px; border-radius: 14px; margin: 20px 0; font-family: monospace; font-weight: bold; color: var(--primary-dark); text-align: center; box-shadow: inset 0 2px 6px rgba(0,0,0,0.02); font-size: 1.15rem; }
     
-    .graph-card { background: white; border: 2px solid var(--card-border); border-radius: 18px; padding: 28px; margin: 30px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.04); text-align: center; }
-    .graph-card h3 { color: var(--text-main); margin-bottom: 15px; }
+    .graph-card { background: white; border: 2px solid #e2e8f0; border-radius: 18px; padding: 28px; margin: 30px 0; box-shadow: 0 10px 25px rgba(0,0,0,0.04); text-align: center; }
+    .graph-card h3 { color: var(--primary-dark); margin-bottom: 10px; }
+    .graph-container { margin: 20px auto; max-width: 600px; background: #f8fafc; border-radius: 12px; padding: 15px; border: 1px solid #e2e8f0; }
   </style>
 </head>
 <body>
@@ -88,209 +90,226 @@
 <div class="container">
   <a href="chapt5.html" class="back-btn">&larr; Back to Chapter 5 Hub</a>
   
-  <div class="badge">💎 Elite Medical Masterclass Series</div>
+  <div class="badge">Elite Medical Masterclass Series</div>
   <h1>Pharmacodynamics: Signal Transduction, Receptors & Dose-Response</h1>
-  <p><strong>Pharmacodynamics</strong> is the study of what drugs do to the living body and the biochemical and physiological mechanisms behind their therapeutic and adverse effects. It bridges molecular biology and clinical pharmacology, explaining how drug-receptor binding translates into clinical healing.</p>
+  <p>Pharmacodynamics examines <strong>what drugs do to the body and how they do it</strong>. It investigates molecular receptor interactions, signal amplification cascades, cellular adaptation mechanisms, and the quantitative mathematical relationship between drug concentration and pharmacological response.</p>
 
-  <!-- REDESIGNED CLEAR & INTUITIVE ANIMATION CONTAINER -->
-  <div class="animation-container">
-    <h3 style="color: var(--primary-dark); margin-bottom: 8px;">⚡ Interactive Signal Transduction Simulator</h3>
-    <p style="font-size: 0.92rem; margin-bottom: 20px;">Follow how an extracellular drug signal translates into an intracellular biological response:</p>
+  <!-- ADVANCED ANIMATION STAGE -->
+  <div class="animation-stage">
+    <h3 style="color: var(--primary-dark); margin-bottom: 8px;">Interactive Animation: Molecular Binding & Signal Cascade</h3>
+    <p style="font-size: 0.95rem; margin-bottom: 20px;">Observe how a drug molecule binds to a cell surface receptor and triggers a biological response:</p>
     
-    <div class="cell-membrane-sim">
-      <div class="sim-step">
-        <span class="sim-icon">💊</span>
-        <div class="sim-title">1. Drug Binding</div>
-        <div class="sim-desc">Agonist attaches specifically to cell surface receptor.</div>
-      </div>
-      <div class="sim-step">
-        <span class="sim-icon">🔄</span>
-        <div class="sim-title">2. Transduction</div>
-        <div class="sim-desc">Conformational shift activates G-proteins or enzymes.</div>
-      </div>
-      <div class="sim-step">
-        <span class="sim-icon">🚀</span>
-        <div class="sim-title">3. Amplification</div>
-        <div class="sim-desc">Second messengers (cAMP, IP3) multiply signal millions fold.</div>
-      </div>
-      <div class="sim-step">
-        <span class="sim-icon">🎯</span>
-        <div class="sim-title">4. Response</div>
-        <div class="sim-desc">Cellular effect triggered (e.g., muscle relaxation or hormone release).</div>
-      </div>
+    <div style="position: relative; height: 70px;">
+      <div class="animated-drug">💊</div>
     </div>
-    
-    <div class="pulse-bar"><div class="pulse-progress"></div></div>
+
+    <div class="receptor-membrane">
+      <div style="font-weight: 800; color: #1e40af;">Extracellular Space (Drug Arrival)</div>
+      <div style="background: white; padding: 8px 16px; border-radius: 8px; border: 2px solid #3b82f6; font-weight: 800; color: #1e40af;">Cell Membrane Receptor</div>
+      <div style="font-weight: 800; color: #047857;">Intracellular Cytoplasm</div>
+    </div>
+
+    <div class="cascade-flow">
+      <div class="cascade-step">1. Recognition<br><small>Drug binds active site</small></div>
+      <div class="cascade-step">2. Activation<br><small>Receptor conformation shift</small></div>
+      <div class="cascade-step">3. Amplification<br><small>Second messengers generated</small></div>
+      <div class="cascade-step">4. Response<br><small>Physiologic change</small></div>
+    </div>
   </div>
 
   <!-- SECTION 1: SIGNAL TRANSDUCTION & CHARACTERISTICS -->
   <h2>1. Characteristics of Signal Transduction <span class="high-yield-badge">Core Concept</span></h2>
-  <p>When a drug binds to its specific target receptor, it triggers an intricate sequence of biochemical events known as <strong>signal transduction</strong>. This cellular communication pathway features two critical operational properties:</p>
+  <p>When a drug binds to its specific cellular receptor, it initiates a precise sequence of biochemical events known as <strong>signal transduction</strong>. This system operates through several vital characteristics:</p>
 
   <div class="grid-2">
     <div class="card-box">
-      <h3>🔊 Signal Amplification</h3>
-      <p>A single drug molecule binding to a single surface receptor can activate multiple G-protein complexes. Each activated G-protein stimulates enzymes like adenylate cyclase to produce thousands of <strong>cyclic AMP (cAMP)</strong> second messengers. This enzymatic cascade exponentially multiplies the initial chemical signal, meaning a tiny dose of drug can generate a massive cellular response.</p>
+      <h3>Signal Amplification</h3>
+      <p>A single drug molecule binding to a single surface receptor can activate multiple G-proteins, which in turn stimulate enzymes like adenylate cyclase to produce thousands of <strong>cyclic AMP (cAMP)</strong> second messenger molecules. This exponentially multiplies the initial signal, creating a massive cellular response from minimal drug input.</p>
     </div>
     <div class="card-box">
-      <h3>🛡️ Desensitization & Receptor Down-Regulation</h3>
-      <p>When exposed to high concentrations of an agonist continuously, receptors become desensitized (also known as <strong>tachyphylaxis</strong>). Over time, cells pull these receptors inside via endocytosis and degrade them (<strong>down-regulation</strong>). This biological feedback loop explains why patients develop <strong>drug tolerance</strong> and require higher doses over time.</p>
+      <h3>Desensitization & Down-Regulation</h3>
+      <p>Continuous or prolonged exposure to an agonist diminishes the receptor response over time, known as <strong>desensitization or tachyphylaxis</strong>. To protect the cell from overstimulation, receptors are internalized and destroyed via <strong>down-regulation</strong>, directly causing clinical drug tolerance.</p>
     </div>
   </div>
 
-  <!-- SECTION 2: THE 4 MAJOR RECEPTOR FAMILIES -->
+  <!-- SECTION 2: MAJOR RECEPTOR FAMILIES -->
   <h2>2. The 4 Major Receptor Families / Types <span class="high-yield-badge">High Yield</span></h2>
-  <p>Receptors are protein macromolecules embedded across cell membranes or inside cells. They are categorized into four major superfamilies based on molecular structure and speed of signal transmission:</p>
+  <p>Receptors are categorized into four major superfamilies based on their macromolecular structure and the speed of their signal transduction pathways:</p>
 
   <div class="grid-2">
     <div class="card-box">
       <h3>1 = Ligand-Gated Ion Channels</h3>
-      <p><strong>Speed of Response:</strong> Milliseconds (Fastest)</p>
-      <p><strong>Mechanism:</strong> The binding of an agonist directly opens or closes an ion channel pore, causing rapid shifts in transmembrane ionic currents ($Na^+$, $K^+$, $Ca^{2+}$, or $Cl^-$) and immediate membrane depolarization or hyperpolarization.</p>
-      <p><strong>Clinical Example:</strong> <strong>Nicotinic acetylcholine receptors</strong> at the neuromuscular junction; <strong>GABA-A receptors</strong> in the central nervous system.</p>
+      <p><strong>Speed:</strong> Milliseconds (Fastest)</p>
+      <p><strong>Mechanism:</strong> Binding of an agonist opens or closes ion channels directly, instantly altering transmembrane electrical potential and ion flux.</p>
+      <p><strong>Example:</strong> Nicotinic acetylcholine receptors at the neuromuscular junction; GABA-A chloride channels.</p>
     </div>
     <div class="card-box">
       <h3>2 = G Protein-Coupled Receptors (GPCRs)</h3>
-      <p><strong>Speed of Response:</strong> Seconds</p>
-      <p><strong>Mechanism:</strong> Seven-transmembrane spanning receptors linked intracellularly to trimeric G-proteins ($G_s$, $G_i$, $G_q$). Activation modulates intracellular second messengers like cAMP, IP3, and DAG.</p>
-      <p><strong>Clinical Example:</strong> <strong>Beta-adrenoreceptors</strong>, muscarinic acetylcholine receptors, and opioid receptors.</p>
+      <p><strong>Speed:</strong> Seconds</p>
+      <p><strong>Mechanism:</strong> Seven-transmembrane spanning receptors coupled with intracellular G-proteins (Gs, Gi, Gq) that activate second messengers like cAMP, IP3, and DAG.</p>
+      <p><strong>Example:</strong> Beta-adrenoreceptors, muscarinic acetylcholine receptors.</p>
     </div>
     <div class="card-box">
       <h3>3 = Enzyme-Linked Receptors</h3>
-      <p><strong>Speed of Response:</strong> Hours</p>
-      <p><strong>Mechanism:</strong> These transmembrane receptors possess intrinsic enzymatic activity on their cytoplasmic tail (most commonly <strong>tyrosine kinase</strong>) or bind directly to separate intracellular enzymes. Agonist binding triggers receptor autophosphorylation.</p>
-      <p><strong>Clinical Example:</strong> <strong>Insulin receptors</strong>, epidermal growth factor (EGF) receptors, and cytokine receptors.</p>
+      <p><strong>Speed:</strong> Hours</p>
+      <p><strong>Mechanism:</strong> Receptors possess intrinsic enzymatic activity (typically tyrosine kinase) or bind directly to intracellular enzymes that phosphorylate key regulatory proteins.</p>
+      <p><strong>Example:</strong> Insulin receptors, epidermal growth factor receptors.</p>
     </div>
     <div class="card-box">
       <h3>4 = Intracellular / Nuclear Receptors</h3>
-      <p><strong>Speed of Response:</strong> Hours to Days (Slowest)</p>
-      <p><strong>Mechanism:</strong> Lipophilic (fat-soluble) drug molecules cross the plasma membrane freely, bind to intracellular or nuclear receptors, and directly alter <strong>gene transcription and protein synthesis</strong>.</p>
-      <p><strong>Clinical Example:</strong> <strong>Corticosteroids</strong>, thyroid hormone receptors, and sex steroid hormone receptors.</p>
+      <p><strong>Speed:</strong> Hours to Days (Slowest)</p>
+      <p><strong>Mechanism:</strong> Lipophilic drugs cross the plasma membrane, bind intracellular receptors in the cytoplasm or nucleus, and directly regulate gene transcription.</p>
+      <p><strong>Example:</strong> Corticosteroids, sex hormones, thyroid hormone receptors.</p>
     </div>
   </div>
 
-  <!-- SECTION 3: INTRINSIC ACTIVITY & DRUG BINDING TYPES -->
-  <h2>3. Intrinsic Activity & Drug Action Types <span class="high-yield-badge">Exam Favorite</span></h2>
-  <p><strong>Intrinsic Activity (Alpha):</strong> This is the numerical measure of a drug's ability to activate a receptor and trigger a functional cellular response once bound. It ranges from 0 to 1 (or higher).</p>
+  <!-- SECTION 3: INTRINSIC ACTIVITY & AGONIST TYPES -->
+  <h2>3. Intrinsic Activity & Agonist Types <span class="high-yield-badge">Exam Favorite</span></h2>
+  <p><strong>Intrinsic Activity (Alpha):</strong> The quantitative measure of a drug's ability to activate a receptor and produce a biological response after binding (ranges from 0 to 1 or higher).</p>
 
   <div class="grid-3">
     <div class="card-box">
       <h3>A = Full Agonist</h3>
       <p><strong>Intrinsic Activity = 1</strong></p>
-      <p>Binds to receptors, fully activates them, and triggers the <strong>maximum possible physiological response</strong> of that tissue system (e.g., Morphine acting on mu-opioid receptors for profound pain relief).</p>
+      <p>Binds to receptors, fully activates them, and produces the <strong>maximum possible physiological response</strong> (e.g., Morphine at mu-opioid receptors).</p>
     </div>
     <div class="card-box">
       <h3>B = Partial Agonist</h3>
       <p><strong>Intrinsic Activity between 0 and 1</strong></p>
-      <p>Binds to receptors but produces <strong>submaximal efficacy</strong> even when 100 percent of receptors are occupied. In the presence of a full agonist, it can act as a blocker (e.g., Buprenorphine).</p>
+      <p>Produces submaximal efficacy even when 100 percent of receptors are occupied. Can act as a competitive antagonist if administered alongside a full agonist (e.g., Buprenorphine).</p>
     </div>
     <div class="card-box">
       <h3>C = Inverse Agonist</h3>
-      <p><strong>Intrinsic Activity &lt; 0 (Negative)</strong></p>
-      <p>Binds to constitutively active receptors and suppresses their basal baseline activity below zero, producing an <strong>effect opposite to an agonist</strong> (e.g., certain benzodiazepine inverse agonists producing anxiety).</p>
+      <p><strong>Intrinsic Activity less than 0 (Negative)</strong></p>
+      <p>Binds to constitutively active receptors and suppresses their basal baseline activity below zero, producing an effect <strong>opposite</strong> to an agonist (e.g., Certain benzodiazepine inverse agonists).</p>
     </div>
   </div>
 
   <!-- SECTION 4: ANTAGONIST TYPES -->
   <h2>4. Antagonists & Their Mechanisms <span class="high-yield-badge">Must Know</span></h2>
-  <p>Antagonists are drugs that bind to receptors with <strong>zero intrinsic activity</strong> (Alpha = 0). They do not provoke a biological response themselves; instead, they block or reduce the action of agonists.</p>
+  <p>Antagonists bind to receptors without activating them (Intrinsic Activity = 0), effectively blocking the action of endogenous agonists or drugs.</p>
 
   <div class="grid-2">
     <div class="card-box">
-      <h3>🔄 Competitive Antagonist</h3>
-      <p>Binds reversibly to the <strong>same active binding site</strong> as the agonist. Because binding is reversible, adding a high concentration of agonist can overcome the block. <strong>Graph Effect:</strong> Shifts the graded dose-response curve to the right without reducing maximum efficacy ($E_{max}$) (e.g., <strong>Naloxone</strong> reversing opioid overdose).</p>
+      <h3>Competitive Antagonist</h3>
+      <p>Binds reversibly to the <em>same active site</em> as the agonist. High concentrations of agonist can overcome the block. <strong>Effect:</strong> Shifts the dose-response curve to the right without reducing maximum efficacy (e.g., Naloxone blocking opioids).</p>
     </div>
     <div class="card-box">
-      <h3>🔒 Irreversible Antagonist</h3>
-      <p>Binds covalently to the active receptor site, permanently inactivating the receptor. Adding more agonist cannot overcome the block because available functional receptors are destroyed. <strong>Graph Effect:</strong> Reduces maximum efficacy ($E_{max}$) (e.g., <strong>Phenoxybenzamine</strong> at alpha receptors).</p>
+      <h3>Irreversible Antagonist</h3>
+      <p>Binds covalently to the active site, permanently neutralizing the receptor. Adding more agonist cannot overcome the block. <strong>Effect:</strong> Reduces maximum efficacy (Emax) because functional receptors are destroyed (e.g., Phenoxybenzamine).</p>
     </div>
     <div class="card-box">
-      <h3>🧩 Allosteric Antagonist</h3>
-      <p>Binds to a distinct, separate regulatory site (an allosteric site) on the receptor protein rather than the active agonist site. This induces a conformational change that prevents agonists from binding or activating the receptor effectively.</p>
+      <h3>Allosteric Antagonist</h3>
+      <p>Binds to a distinct, separate site (allosteric site) on the receptor protein, inducing a conformational change that prevents agonists from binding or activating the receptor successfully.</p>
     </div>
     <div class="card-box">
-      <h3>⚖️ Functional / Physiological Antagonist</h3>
-      <p>Two different drugs bind to <strong>completely separate receptors on different organ systems</strong>, producing opposing physiological effects that cancel each other out. <strong>Clinical Example:</strong> Epinephrine relaxing bronchial smooth muscle via Beta-2 receptors, counteracting histamine-induced bronchospasm during anaphylaxis.</p>
+      <h3>Functional / Physiological Antagonist</h3>
+      <p>Two drugs act on completely different receptors and organ systems to produce opposing physiological effects. <strong>Example:</strong> Epinephrine relaxing bronchial smooth muscle via Beta-2 receptors, counteracting histamine during anaphylaxis.</p>
     </div>
   </div>
 
-  <!-- SECTION 5: DOSE-RESPONSE RELATIONSHIPS & CURVES -->
+  <!-- SECTION 5: DOSE-RESPONSE RELATIONSHIPS & GRAPHS -->
   <h2>5. Dose-Response Relations & Curves <span class="high-yield-badge">Core Concept</span></h2>
-  <p>The relationship between drug concentration and clinical effect is evaluated using two distinct mathematical curves:</p>
 
   <div class="grid-2">
     <div class="card-box">
-      <h3>📈 Graded Dose-Response Relationship</h3>
-      <p>As the dose of a drug increases, the pharmacological effect increases in a graded, incremental manner until all receptors are saturated, reaching <strong>Maximum Efficacy ($E_{max}$)</strong>.</p>
-      <p><strong>Potency ($EC_{50}$):</strong> The concentration of a drug required to produce 50 percent of its maximum effect. A lower $EC_{50}$ indicates <strong>higher potency</strong>.</p>
+      <h3>Graded Dose-Response Relationship</h3>
+      <p>As the dose of a drug increases, the pharmacological effect increases in a graded manner until all available receptors are saturated, reaching <strong>Maximum Efficacy (Emax)</strong>.</p>
+      <p><strong>Potency (EC50):</strong> The concentration of drug producing 50 percent of its maximum effect. A <strong>lower EC50 indicates higher potency</strong>.</p>
+      <p><strong>Example:</strong> Comparing blood pressure reduction efficacy between different antihypertensive agents.</p>
     </div>
     <div class="card-box">
-      <h3>📊 Quantal Dose-Response Relationship</h3>
-      <p>Measures the percentage of a population that exhibits a specified, all-or-none pharmacological response (such as therapeutic cure, toxic reaction, or lethality) across a range of doses. This is vital for establishing population safety guidelines.</p>
+      <h3>Quantal Dose-Response Relationship</h3>
+      <p>Measures the percentage of a patient population that exhibits a specified, all-or-none response (such as therapeutic cure, toxic reaction, or lethality) at various administered doses.</p>
+      <p>Essential for establishing population safety margins, therapeutic windows, and clinical dosing guidelines.</p>
     </div>
   </div>
 
-  <!-- ADDED GRAPH CARD FOR DOSE-RESPONSE -->
+  <!-- EMBEDDED GRAPH 1: GRADED DOSE-RESPONSE -->
   <div class="graph-card">
-    <h3>📈 Visual Graph: Graded Dose-Response Curve (Agonist vs Competitive Antagonist)</h3>
-    <svg viewBox="0 0 450 220" width="100%" height="auto" style="max-width: 600px; margin: 15px auto; display: block;">
-      <!-- Axes -->
-      <line x1="50" y1="180" x2="420" y2="180" stroke="#334155" stroke-width="2.5"/>
-      <line x1="50" y1="20" x2="50" y2="180" stroke="#334155" stroke-width="2.5"/>
-      
-      <!-- Axis Labels -->
-      <text x="210" y="210" font-size="12" fill="#0f172a" font-weight="bold">Log Drug Dose (Concentration)</text>
-      <text x="10" y="105" font-size="12" fill="#0f172a" font-weight="bold" transform="rotate(-90 10 105)">Effect (% Max)</text>
-      
-      <!-- Emax line -->
-      <line x1="45" y1="35" x2="420" y2="35" stroke="#cbd5e1" stroke-dasharray="4" stroke-width="1.5"/>
-      <text x="360" y="30" font-size="10" fill="#64748b">Emax (Maximum Effect)</text>
+    <h3>Figure 1: Graded Dose-Response Curve (Competitive vs Irreversible Antagonism)</h3>
+    <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 15px;">Showing rightward shift for competitive antagonism and reduced Emax for irreversible antagonism.</p>
+    <div class="graph-container">
+      <svg viewBox="0 0 500 250" width="100%" height="auto">
+        <!-- Axes -->
+        <line x1="50" y1="210" x2="470" y2="210" stroke="#475569" stroke-width="2" />
+        <line x1="50" y1="30" x2="50" y2="210" stroke="#475569" stroke-width="2" />
+        <text x="240" y="240" font-size="12" fill="#0f172a" font-weight="bold">Log Drug Concentration</text>
+        <text x="10" y="120" font-size="12" fill="#0f172a" font-weight="bold" transform="rotate(-90 10 120)">Effect (% Max)</text>
+        
+        <!-- Curves -->
+        <!-- Control Agonist -->
+        <path d="M 50 205 Q 150 200 220 120 T 450 45" fill="none" stroke="#2563eb" stroke-width="3.5" />
+        <text x="320" y="35" font-size="11" fill="#2563eb" font-weight="bold">Control Agonist</text>
 
-      <!-- Curve 1: Agonist Alone -->
-      <path d="M 50 175 Q 150 170 200 100 T 380 35" fill="none" stroke="#0d9488" stroke-width="4"/>
-      <text x="240" y="70" font-size="11" fill="#0d9488" font-weight="bold">Agonist Alone</text>
+        <!-- Competitive Antagonist (Shift right) -->
+        <path d="M 50 205 Q 220 200 300 120 T 450 45" fill="none" stroke="#10b981" stroke-width="3" stroke-dasharray="5,5" />
+        <text x="320" y="55" font-size="11" fill="#10b981" font-weight="bold">+ Competitive Antagonist</text>
 
-      <!-- Curve 2: Agonist + Competitive Antagonist (Shifted Right) -->
-      <path d="M 50 178 Q 200 175 260 100 T 420 35" fill="none" stroke="#f43f5e" stroke-width="4" stroke-dasharray="6"/>
-      <text x="300" y="125" font-size="11" fill="#f43f5e" font-weight="bold">Agonist + Competitive Antagonist</text>
-    </svg>
-    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 10px;"><strong>Key Takeaway:</strong> A competitive antagonist shifts the curve to the right (reducing potency) but <strong>maintains the exact same Maximum Efficacy (Emax)</strong> because high agonist doses overcome the block.</p>
+        <!-- Irreversible Antagonist (Lower Emax) -->
+        <path d="M 50 205 Q 150 200 220 160 T 450 140" fill="none" stroke="#f59e0b" stroke-width="3" />
+        <text x="320" y="75" font-size="11" fill="#b45309" font-weight="bold">+ Irreversible Antagonist</text>
+      </svg>
+    </div>
   </div>
 
-  <!-- THERAPEUTIC INDEX -->
+  <!-- EMBEDDED GRAPH 2: QUANTAL DOSE-RESPONSE & SAFETY -->
+  <div class="graph-card">
+    <h3>Figure 2: Quantal Dose-Response Curve (Therapeutic Window & Toxicity)</h3>
+    <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 15px;">Comparing Median Effective Dose (ED50) against Median Toxic Dose (TD50).</p>
+    <div class="graph-container">
+      <svg viewBox="0 0 500 250" width="100%" height="auto">
+        <!-- Axes -->
+        <line x1="50" y1="210" x2="470" y2="210" stroke="#475569" stroke-width="2" />
+        <line x1="50" y1="30" x2="50" y2="210" stroke="#475569" stroke-width="2" />
+        <text x="240" y="240" font-size="12" fill="#0f172a" font-weight="bold">Log Dose</text>
+        <text x="15" y="120" font-size="12" fill="#0f172a" font-weight="bold" transform="rotate(-90 15 120)">Population (%)</text>
+        
+        <!-- ED50 Bell Curve (Therapeutic) -->
+        <path d="M 60 210 Q 150 40 240 210" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" stroke-width="3" />
+        <text x="130" y="110" font-size="11" fill="#047857" font-weight="bold">ED50 (Therapeutic)</text>
+
+        <!-- TD50 Bell Curve (Toxic) -->
+        <path d="M 220 210 Q 330 30 440 210" fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" stroke-width="3" />
+        <text x="310" y="100" font-size="11" fill="#b45309" font-weight="bold">TD50 (Toxic)</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- SECTION 6: THERAPEUTIC INDEX -->
   <h2>6. Therapeutic Index (TI) & Safety Margin <span class="high-yield-badge">Clinical Pearl</span></h2>
-  <p>The <strong>Therapeutic Index</strong> is a vital quantitative measurement of relative drug safety. It compares the dosage range that produces toxicity to the dosage required for the therapeutic effect.</p>
+  <p>The <strong>Therapeutic Index</strong> is a vital quantitative measurement of relative drug safety. It compares the dosage that produces toxicity to the dosage that produces the desired therapeutic effect.</p>
 
   <div class="formula-box">
-    Therapeutic Index (TI) = TD50 / ED50 <br>
-    (Or LD50 / ED50 in preclinical animal toxicity studies)
+    Therapeutic Index (TI) = TD50 / ED50<br>
+    (Or LD50 / ED50 in preclinical animal trials)
   </div>
-  <p style="font-size: 0.92rem; text-align: center; color: var(--text-muted); margin-top: -10px;"><strong>ED50</strong> = Median Effective Dose | <strong>TD50</strong> = Median Toxic Dose | <strong>LD50</strong> = Median Lethal Dose</p>
+  <p style="font-size: 0.95rem; text-align: center; color: var(--text-muted); margin-top: -10px;">ED50 = Median Effective Dose | TD50 = Median Toxic Dose | LD50 = Median Lethal Dose</p>
 
   <div class="grid-2">
     <div class="card-box">
-      <h3>🟢 Wide Therapeutic Index (Safe Medications)</h3>
-      <p>A high ratio means there is a wide margin of safety between the therapeutic dose and the toxic dose. <strong>Example:</strong> <strong>Penicillin</strong>. Extremely safe to administer clinically with minimal risk of accidental overdose.</p>
+      <h3>Wide Therapeutic Index (Safe Medications)</h3>
+      <p>A high ratio indicates a wide margin of safety between the therapeutic dose and toxic dose. <strong>Example:</strong> Penicillin. Safe to administer with minimal routine laboratory monitoring.</p>
     </div>
     <div class="card-box">
-      <h3>🔴 Narrow Therapeutic Index (Risky Medications)</h3>
-      <p>A low ratio (close to 1) means even a slight increase in dosage can trigger severe toxicity or death. <strong>Example:</strong> <strong>Warfarin, Digoxin, and Lithium</strong>. Requires rigorous routine blood plasma level monitoring (TDM).</p>
+      <h3>Narrow Therapeutic Index (High-Risk Medications)</h3>
+      <p>A low ratio (close to 1) means slight dosage increments can trigger severe toxicity or death. <strong>Example:</strong> Warfarin, Digoxin, Lithium. Requires strict therapeutic drug monitoring (TDM) and routine lab testing.</p>
     </div>
   </div>
 
   <!-- MNEUMONIC BOX -->
   <div class="mnemonic-box">
-    <h4>💡 High-Yield Mnemonic: "Full Power, Half Power, Zero Block"</h4>
-    <p><strong>Full Agonist:</strong> 100 percent efficacy (Alpha = 1) ➔ <strong>Partial Agonist:</strong> Submaximal efficacy (Alpha &lt; 1) ➔ <strong>Antagonist:</strong> Zero intrinsic activity (Alpha = 0, blocks receptor effects).</p>
+    <h4>💡 Mnemonic for Agonist vs Antagonist Efficacy: "Full Power, Half Power, Zero Block"</h4>
+    <p><strong>Full Agonist:</strong> 100 percent efficacy ➔ <strong>Partial Agonist:</strong> Submaximal efficacy ➔ <strong>Antagonist:</strong> Zero intrinsic activity (blocks receptor effects).</p>
   </div>
 
   <!-- KEY NURSING TAKEAWAYS -->
   <h2>7. Key Nursing Takeaways & Clinical Application</h2>
   <ul>
-    <li><strong>Monitor Drug Levels for Narrow TI Drugs:</strong> Always review peak and trough laboratory levels for medications like <strong>digoxin and warfarin</strong> to prevent fatal toxicity.</li>
-    <li><strong>Understand Receptor Tolerance:</strong> Educate patients on why long-term use of agonist medications may lead to receptor down-regulation, requiring clinical dosage adjustments.</li>
-    <li><strong>Anticipate Competitive Reversals:</strong> Recognize that competitive antagonists like <strong>naloxone</strong> can be overcome by administering higher doses of an agonist in acute overdose scenarios.</li>
-    <li><strong>Appreciate Signal Timelines:</strong> Keep in mind that fast responses via ion channels happen in <strong>milliseconds</strong>, while genomic responses via nuclear receptors take <strong>days</strong> to manifest fully.</li>
+    <li><strong>Monitor Drug Levels for Narrow TI Drugs:</strong> Always review peak and trough laboratory levels for medications like digoxin, warfarin, and lithium to prevent catastrophic toxicity.</li>
+    <li><strong>Understand Receptor Down-Regulation:</strong> Educate patients on why long-term use of agonist medications may lead to drug tolerance due to receptor internalization.</li>
+    <li><strong>Anticipate Competitive Reversals:</strong> Recognize that competitive antagonists like naloxone can be overcome with higher agonist concentrations in acute overdose settings.</li>
+    <li><strong>Appreciate Signal Transduction Speeds:</strong> Understand that fast responses (ion channels) occur in milliseconds, whereas genomic responses (steroids) take days to manifest fully.</li>
   </ul>
 
 </div>
