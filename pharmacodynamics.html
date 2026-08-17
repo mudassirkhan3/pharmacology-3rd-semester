@@ -50,34 +50,25 @@
     .card-box:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 15px 35px rgba(13, 148, 136, 0.12); }
     .card-box h3 { color: var(--primary); margin-bottom: 12px; font-size: 1.25rem; display: flex; align-items: center; gap: 10px; }
 
-    /* ADVANCED BIOLOGICAL ANIMATION CONTAINER */
-    .bio-animation-box { background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%); border: 2px solid var(--primary); border-radius: 20px; padding: 35px; margin: 35px 0; text-align: center; box-shadow: 0 15px 35px rgba(13, 148, 136, 0.1); position: relative; overflow: hidden; }
+    /* SIMPLIFIED & CLEAR STEP-BY-STEP VISUAL ANIMATION CONTAINER */
+    .bio-animation-box { background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%); border: 2px solid var(--primary); border-radius: 20px; padding: 35px 25px; margin: 35px 0; text-align: center; box-shadow: 0 15px 35px rgba(13, 148, 136, 0.1); }
     
-    .membrane-visual { display: flex; justify-content: space-around; align-items: center; position: relative; height: 160px; margin: 20px 0; background: rgba(255, 255, 255, 0.6); border-radius: 16px; border: 1px dashed var(--primary); padding: 0 20px; }
+    .steps-visual-container { display: flex; justify-content: space-between; gap: 15px; margin-top: 25px; flex-wrap: wrap; }
     
-    .extracellular-space { position: absolute; top: 10px; left: 20px; font-size: 0.85rem; font-weight: bold; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 1px; }
-    .intracellular-space { position: absolute; bottom: 10px; left: 20px; font-size: 0.85rem; font-weight: bold; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+    .step-card { flex: 1; min-width: 220px; background: white; border: 2px solid var(--card-border); border-radius: 16px; padding: 22px; position: relative; box-shadow: 0 8px 20px rgba(0,0,0,0.04); transition: 0.3s; animation: pulseStep 6s infinite ease-in-out; text-align: left; }
+    
+    .step-card:nth-child(1) { animation-delay: 0s; }
+    .step-card:nth-child(2) { animation-delay: 2s; }
+    .step-card:nth-child(3) { animation-delay: 4s; }
 
-    .animated-ligand { width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem; position: absolute; top: 15px; animation: bindLigand 4s infinite ease-in-out; box-shadow: 0 0 12px rgba(244, 63, 94, 0.5); }
-    
-    @keyframes bindLigand {
-      0% { transform: translate(0, 0) scale(1); opacity: 1; }
-      40% { transform: translate(120px, 60px) scale(1); opacity: 1; }
-      60% { transform: translate(120px, 60px) scale(1.15); box-shadow: 0 0 20px var(--primary); }
-      80% { transform: translate(120px, 60px) scale(1); }
-      100% { transform: translate(250px, 110px) scale(0.8); opacity: 0; }
+    @keyframes pulseStep {
+      0%, 28% { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 14px 30px rgba(13, 148, 136, 0.22); background: #f0fdfa; }
+      33%, 100% { border-color: var(--card-border); transform: translateY(0); box-shadow: 0 8px 20px rgba(0,0,0,0.04); background: white; }
     }
 
-    .receptor-protein { width: 60px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 12px; position: absolute; top: 40px; left: 130px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.75rem; box-shadow: 0 5px 15px rgba(13, 148, 136, 0.3); }
-
-    .second-messenger { width: 18px; height: 18px; background: #0ea5e9; border-radius: 50%; position: absolute; bottom: 25px; left: 150px; animation: releaseMessenger 4s infinite ease-in-out; opacity: 0; }
-
-    @keyframes releaseMessenger {
-      0%, 50% { transform: translate(0, 0); opacity: 0; }
-      60% { transform: translate(0, 0); opacity: 1; }
-      90% { transform: translate(140px, 10px) scale(1.3); opacity: 1; }
-      100% { transform: translate(180px, 15px) scale(0.5); opacity: 0; }
-    }
+    .step-number { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: var(--primary); color: white; border-radius: 50%; font-weight: bold; margin-bottom: 12px; font-size: 0.95rem; box-shadow: 0 4px 10px rgba(13, 148, 136, 0.3); }
+    .step-card h4 { color: var(--primary-dark); font-size: 1.15rem; margin-bottom: 8px; font-weight: 800; }
+    .step-card p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0; line-height: 1.5; }
 
     .mnemonic-box { background: linear-gradient(135deg, #fef2f2 0%, #fff1f2 100%); border-left: 6px solid var(--accent); padding: 25px; border-radius: 14px; margin: 30px 0; box-shadow: 0 10px 25px rgba(244, 63, 94, 0.08); border: 1px solid #fecdd3; }
     .mnemonic-box h4 { color: var(--accent); font-size: 1.15rem; margin-bottom: 10px; font-weight: 800; display: flex; align-items: center; gap: 12px; }
@@ -97,23 +88,34 @@
 <body>
 
 <div class="container">
-  <a href="chapter1.html" class="back-btn">&larr; Back to Chapter 1 Hub</a>
+  <a href="chapt5.html" class="back-btn">&larr; Back to Chapter 5 Hub</a>
   
   <div class="badge">💎 Elite Medical Masterclass Series</div>
   <h1>Pharmacodynamics: Signal Transduction, Receptors & Dose-Response</h1>
   <p>Pharmacodynamics examines what drugs do to the living body and the intricate biochemical and physiological mechanisms responsible for their therapeutic and adverse effects. It bridges molecular receptor biology with clinical pharmacology and dosing safety.</p>
 
-  <!-- ADVANCED ANIMATED RECEPTOR BINDING & SIGNAL TRANSDUCTION -->
+  <!-- SIMPLIFIED STEP-BY-STEP VISUAL ANIMATION -->
   <div class="bio-animation-box">
-    <h3 style="color: var(--primary-dark); margin-bottom: 8px;">⚡ Dynamic Molecular Mechanism: Receptor Binding & Second Messenger Activation</h3>
-    <p style="font-size: 0.95rem; margin-bottom: 15px;">Observe extracellular drug molecules binding to transmembrane receptors to release intracellular second messenger cascades:</p>
+    <span class="badge" style="background: #ccfbf1; color: var(--primary-dark); margin-bottom: 10px;">Visual Learning Guide</span>
+    <h3 style="color: var(--primary-dark); margin-bottom: 8px;">🧪 How Pharmacodynamics Works: The 3-Step Lock & Key Mechanism</h3>
+    <p style="font-size: 0.95rem; margin-bottom: 15px; color: var(--text-muted);">Watch how a drug interacts with a cell. Each step lights up sequentially to explain signal transduction simply:</p>
     
-    <div class="membrane-visual">
-      <span class="extracellular-space">Extracellular Fluid (Drug Delivery)</span>
-      <span class="intracellular-space">Intracellular Cytoplasm (Response Cascade)</span>
-      <div class="animated-ligand">Drug</div>
-      <div class="receptor-protein">Receptor</div>
-      <div class="second-messenger"></div>
+    <div class="steps-visual-container">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h4>The Drug Arrives</h4>
+        <p>The drug travels through the bloodstream into the extracellular space outside the target cell, searching for its specific matching receptor.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h4>Lock & Key Binding</h4>
+        <p>The drug molecule (the Key) fits precisely into the receptor protein (the Lock) on the cell membrane, activating its shape.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h4>Cellular Response</h4>
+        <p>Inside the cell, second messengers are released to trigger the final therapeutic action or change in cellular function.</p>
+      </div>
     </div>
   </div>
 
