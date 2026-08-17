@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit I: Introduction to Pharmacology | Nursing Study Portal</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #faf5ff 100%);
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --primary-light: #60a5fa;
+      --accent: #f59e0b;
+      --accent-green: #10b981;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --card-border: rgba(37, 99, 235, 0.2);
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --shadow-glow: 0 20px 40px -15px rgba(37, 99, 235, 0.15);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.8; padding: 40px 16px; min-height: 100vh; }
+    
+    .container { max-width: 1050px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(20px); padding: 55px 50px; border-radius: var(--radius); border: 1px solid var(--card-border); box-shadow: var(--shadow-glow); position: relative; overflow: hidden; }
+    .container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #2563eb, #10b981, #f59e0b); }
+    
+    .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; margin-bottom: 30px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25); }
+    .back-btn:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35); }
+
+    .badge { display: inline-block; padding: 6px 16px; background: #dbeafe; color: var(--primary-dark); font-weight: 800; font-size: 0.8rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px; border: 1px solid #bfdbfe; }
+    
+    .high-yield-badge { display: inline-block; background: linear-gradient(135deg, #d97706, #b45309); color: #fff; font-size: 0.75rem; font-weight: 900; padding: 2px 10px; border-radius: 6px; margin-left: 8px; text-transform: uppercase; letter-spacing: 0.5px; vertical-align: middle; box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3); }
+
+    h1 { font-size: 2.7rem; font-weight: 900; background: linear-gradient(135deg, #0f172a 0%, #1e40af 50%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; line-height: 1.2; }
+    
+    h2 { font-size: 1.6rem; margin: 45px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #e2e8f0; padding-bottom: 12px; }
+    h2::before { content: ''; display: inline-block; width: 6px; height: 26px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; }
+
+    h3 { font-size: 1.25rem; color: var(--primary-dark); margin: 20px 0 10px; }
+
+    p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 20px; }
+    p strong { color: var(--text-main); }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin: 25px 0; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: 25px 0; }
+    
+    .card-box { background: #ffffff; border: 2px solid #e2e8f0; border-radius: 18px; padding: 28px; box-shadow: 0 10px 25px rgba(0,0,0,0.03); transition: 0.3s; position: relative; }
+    .card-box:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 15px 30px rgba(37, 99, 235, 0.1); }
+    .card-box h3 { color: var(--primary); margin-bottom: 12px; font-size: 1.25rem; display: flex; align-items: center; gap: 10px; }
+
+    /* INTERACTIVE DRUG CARD GENERATOR WIDGET */
+    .sim-stage { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border: 2px solid #cbd5e1; border-radius: 20px; padding: 30px; margin: 35px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
+    .sim-controls { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 25px; }
+    .sim-btn { padding: 10px 18px; border-radius: 10px; border: none; font-weight: 700; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.08); font-size: 0.95rem; background: var(--primary); color: white; }
+    .sim-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    
+    .drug-card-display { background: white; border: 2px solid #3b82f6; border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px rgba(37, 99, 235, 0.08); margin-top: 15px; }
+    .drug-card-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 12px; margin-bottom: 15px; }
+    .drug-card-title { font-size: 1.3rem; font-weight: 800; color: var(--primary-dark); }
+    .drug-card-class { background: #dbeafe; color: #1e40af; padding: 4px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 700; }
+    .drug-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+    .drug-section-box { background: #f8fafc; padding: 12px 16px; border-radius: 10px; border: 1px solid #e2e8f0; }
+    .drug-section-box strong { color: var(--primary-dark); display: block; margin-bottom: 4px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .mnemonic-box { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-left: 6px solid var(--accent); padding: 25px; border-radius: 14px; margin: 30px 0; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.1); border: 1px solid #fde68a; }
+    .mnemonic-box h4 { color: #b45309; font-size: 1.15rem; margin-bottom: 10px; font-weight: 800; display: flex; align-items: center; gap: 12px; }
+    .mnemonic-box p { color: var(--text-main); margin-bottom: 0; font-weight: 500; }
+
+    ul { list-style-type: none; padding-left: 0; margin-bottom: 20px; }
+    ul li { position: relative; padding-left: 30px; margin-bottom: 14px; color: var(--text-muted); font-size: 1.05rem; }
+    ul li::before { content: '✦'; position: absolute; left: 6px; color: var(--primary); font-size: 0.9rem; }
+    ul li strong { color: var(--text-main); }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <a href="pharmacology-hub.html" class="back-btn">&larr; Back to Pharmacology Hub</a>
+  
+  <div class="badge">Nursing Foundation Masterclass</div>
+  <h1>Unit I: Introduction to Pharmacology</h1>
+  <p>Welcome to the foundational bedrock of pharmacology! This unit introduces essential drug terminologies, historical milestones, medication purposes, sources, classifications, supply systems, legislation, and reliable reference resources to ensure safe clinical nursing practice.</p>
+
+  <!-- TOPIC 1: TERMINOLOGIES -->
+  <h2>1. Terminologies Related to Pharmacology <span class="high-yield-badge">Core Concept</span></h2>
+  <p>Understanding clinical terminology is critical for safe medication administration and effective multidisciplinary communication:</p>
+  
+  <div class="grid-2">
+    <div class="card-box">
+      <h3>Pharmacology</h3>
+      <p>The comprehensive study of drugs, including their origin, chemical structure, properties, physiological effects, and mechanisms of action within living systems.</p>
+    </div>
+    <div class="card-box">
+      <h3>Pharmacokinetics (PK)</h3>
+      <p>What the <strong>body does to the drug</strong>. Examines the four key phases: Absorption, Distribution, Metabolism, and Excretion (ADME).</p>
+    </div>
+    <div class="card-box">
+      <h3>Pharmacodynamics (PD)</h3>
+      <p>What the <strong>drug does to the body</strong>. Examines drug-receptor interactions, signal transduction, and physiological responses.</p>
+    </div>
+    <div class="card-box">
+      <h3>Pharmacotherapeutics</h3>
+      <p>The clinical application of drugs to prevent, diagnose, treat, or manage diseases and symptoms.</p>
+    </div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card-box">
+      <h3>Toxicology</h3>
+      <p>The study of poisons, adverse drug reactions, and harmful toxic effects of chemical substances.</p>
+    </div>
+    <div class="card-box">
+      <h3>Pharmacognosy</h3>
+      <p>The study of medicinal drugs derived from natural sources (plants, minerals, and animals).</p>
+    </div>
+    <div class="card-box">
+      <h3>Pharmaceutics</h3>
+      <p>The science of formulating active chemical drug compounds into safe, stable, and effective clinical dosage forms (tablets, syrups, injections).</p>
+    </div>
+  </div>
+
+  <!-- TOPIC 2: HISTORY OF PHARMACOLOGY -->
+  <h2>2. Brief History of Pharmacology <span class="high-yield-badge">Historical Context</span></h2>
+  <p>Pharmacology evolved from ancient herbal traditions into an exact biochemical science through major eras:</p>
+  
+  <div class="grid-2">
+    <div class="card-box">
+      <h3>Ancient & Traditional Era</h3>
+      <p>Early civilizations relied on trial and error with medicinal plants, barks, roots, and minerals (e.g., willow bark for pain, morphine from opium poppies, cinchona bark for malaria).</p>
+    </div>
+    <div class="card-box">
+      <h3>Emergence of Modern Science (19th Century)</h3>
+      <p>Advances in organic chemistry allowed scientists to isolate pure active compounds (like morphine extracted from opium in 1805) rather than using crude plant mixtures.</p>
+    </div>
+    <div class="card-box">
+      <h3>Twentieth Century & Synthetic Era</h3>
+      <p>Discovery of sulfonamides and penicillin revolutionized medicine. Development of synthetic drugs, receptor theory, and rigorous clinical trials established modern pharmacology.</p>
+    </div>
+    <div class="card-box">
+      <h3>Contemporary Genomic Era</h3>
+      <p>Focus on pharmacogenomics (tailoring drug therapy based on genetic makeup), biotechnology, monoclonal antibodies, and targeted molecular therapies.</p>
+    </div>
+  </div>
+
+  <!-- TOPIC 3: PURPOSES OF MEDICATION -->
+  <h2>3. Purposes of Medication <span class="high-yield-badge">Clinical Application</span></h2>
+  <p>Medications are prescribed and administered in healthcare settings for several distinct clinical purposes:</p>
+
+  <ul>
+    <li><strong>Prophylaxis (Prevention):</strong> Administered to prevent diseases or infections before they occur (e.g., vaccines, prophylactic antibiotics prior to surgery).</li>
+    <li><strong>Diagnosis:</strong> Utilized in clinical tests and diagnostic imaging to identify abnormalities (e.g., radiocontrast dyes, diagnostic radiopharmaceuticals).</li>
+    <li><strong>Treatment (Cure):</strong> Administered to eliminate pathogens or cure an active disease process (e.g., antibiotics curing bacterial pneumonia).</li>
+    <li><strong>Palliation (Symptom Relief):</strong> Designed to relieve symptoms, pain, and suffering without curing the underlying disease (e.g., analgesics for terminal cancer patients).</li>
+    <li><strong>Restoration (Maintenance):</strong> Used to restore normal body function or maintain optimal physiological status (e.g., insulin for diabetes, thyroid hormone replacement).</li>
+  </ul>
+
+  <!-- TOPIC 4: SOURCES OF MEDICATION -->
+  <h2>4. Sources of Medication <span class="high-yield-badge">High Yield</span></h2>
+  <p>Drugs are sourced from diverse natural and synthetic origins in modern pharmaceutical manufacturing:</p>
+
+  <div class="grid-3">
+    <div class="card-box">
+      <h3>Plant Sources</h3>
+      <p>Derived from leaves, roots, or bark. <strong>Examples:</strong> Digoxin from digitalis (foxglove), Morphine from opium poppy, Atropine from belladonna.</p>
+    </div>
+    <div class="card-box">
+      <h3>Animal & Mineral Sources</h3>
+      <p>Extracted from animal tissues or inorganic mineral elements. <strong>Examples:</strong> Porcine/Bovine insulin, heparin, and mineral supplements like iron and magnesium sulfate.</p>
+    </div>
+    <div class="card-box">
+      <h3>Synthetic & Biotechnology</h3>
+      <p>Synthesized in chemical laboratories or produced via recombinant DNA technology. <strong>Examples:</strong> Synthetic antibiotics, human recombinant insulin, monoclonal antibodies.</p>
+    </div>
+  </div>
+
+  <!-- TOPIC 5: CLASSIFICATION OF DRUGS -->
+  <h2>5. Classification of Drugs <span class="high-yield-badge">Core Concept</span></h2>
+  <p>Drugs are categorized into groups to simplify clinical study and safe administration. Classification is typically based on three primary systems:</p>
+
+  <div class="grid-3">
+    <div class="card-box">
+      <h3>Body System Classification</h3>
+      <p>Grouped by the specific organ system they affect. <strong>Example:</strong> Cardiovascular drugs (antihypertensives, antiarrhythmics), Central Nervous System drugs.</p>
+    </div>
+    <div class="card-box">
+      <h3>Therapeutic Use</h3>
+      <p>Grouped by what condition they treat. <strong>Example:</strong> Antihypertensives (lower blood pressure), Antipyretics (reduce fever), Antibiotics (treat infections).</p>
+    </div>
+    <div class="card-box">
+      <h3>Mechanism of Action (MOA)</h3>
+      <p>Grouped by how they work at the cellular or biochemical level. <strong>Example:</strong> Beta-blockers, ACE inhibitors, Calcium channel blockers.</p>
+    </div>
+  </div>
+
+  <!-- TOPIC 6: THREE TYPES OF DRUG SUPPLY SYSTEM -->
+  <h2>6. Three Types of Drug Supply System <span class="high-yield-badge">Clinical Practice</span></h2>
+  <p>Hospital and clinical facilities utilize different medication distribution systems to ensure efficiency, safety, and inventory control:</p>
+
+  <div class="grid-3">
+    <div class="card-box">
+      <h3>1. Floor Stock System</h3>
+      <p>Commonly used emergency or routine supplies are kept in bulk quantities directly on the nursing unit. <strong>Pros:</strong> Immediate availability. <strong>Cons:</strong> Higher risk of medication errors and diversion.</p>
+    </div>
+    <div class="card-box">
+      <h3>2. Unit Dose Distribution System</h3>
+      <p>Pharmacy dispenses individual, patient-specific, single-dose packages labeled for 24-hour cycles. <strong>Pros:</strong> Safest system, reduces nursing prep time, pharmacist reviews each dose.</p>
+    </div>
+    <div class="card-box">
+      <h3>3. Automated Dispensing Cabinets (ADCs)</h3>
+      <p>Computerized secure medication storage units located on nursing units (e.g., Pyxis, Omnicell). <strong>Pros:</strong> Biometric security, real-time inventory tracking, barcode safety integration.</p>
+    </div>
+  </div>
+
+  <!-- TOPIC 7: DRUG STANDARDS AND LEGISLATION -->
+  <h2>7. Drug Standards and Legislation <span class="high-yield-badge">Must Know</span></h2>
+  <p>Government regulations and official compendia ensure that all marketed medications meet strict criteria for purity, potency, safety, and efficacy:</p>
+
+  <div class="grid-2">
+    <div class="card-box">
+      <h3>Official Drug Standards & Compendia</h3>
+      <p>Reference standards like the <strong>United States Pharmacopeia (USP)</strong> or British Pharmacopoeia (BP) set official benchmarks for drug purity, strength, quality, and labeling standards.</p>
+    </div>
+    <div class="card-box">
+      <h3>Regulatory Agencies & Legislation</h3>
+      <p>Agencies like the <strong>FDA</strong> (USA) or <strong>DRAP</strong> (Drug Regulatory Authority of Pakistan) enforce legislation governing drug approvals, clinical trials, prescription laws, and controlled substance schedules.</p>
+    </div>
+  </div>
+
+  <!-- TOPIC 8: RESOURCES TO COLLECT & UTILIZE DRUG INFORMATION -->
+  <h2>8. Resources to Collect and Utilize Drug Information <span class="high-yield-badge">Clinical Skills</span></h2>
+  <p>Nurses must rely on validated, up-to-date, and authoritative reference sources before administering any medication:</p>
+
+  <ul>
+    <li><strong>Standard Nursing Drug Handbooks:</strong> (e.g., <em>Nursing 2026 Drug Handbook</em> or <em>Davis's Drug Guide</em>) providing clear nursing implications, dosages, and side effects.</li>
+    <li><strong>Pharmacist Consultation:</strong> The most accessible and expert clinical resource for drug compatibility, dosing adjustments, and interactions.</li>
+    <li><strong>Official Formulary & British National Formulary (BNF):</strong> Authoritative guides detailing approved institutional medications and prescribing guidelines.</li>
+    <li><strong>Evidence-Based Databases:</strong> Electronic clinical decision tools such as Micromedex, UpToDate, and Lexicomp.</li>
+  </ul>
+
+  <!-- TOPIC 9: HOW TO PREPARE DRUG CARDS (INTERACTIVE WIDGET) -->
+  <h2>9. Preparing Drug Cards <span class="high-yield-badge">Student Favorite</span></h2>
+  <p>Drug cards are a nursing student's best tool for mastering pharmacology. Click the buttons below to preview a standard, high-yield drug card structure:</p>
+
+  <div class="sim-stage">
+    <h3 style="color: var(--primary-dark); text-align: center; margin-bottom: 6px;">Interactive Drug Card Viewer</h3>
+    <p style="text-align: center; font-size: 0.95rem; margin-bottom: 20px;">Select a medication to view its structured student drug card:</p>
+
+    <div class="sim-controls">
+      <button class="sim-btn" onclick="loadDrugCard('digoxin')">Digoxin (Lanoxin)</button>
+      <button class="sim-btn" onclick="loadDrugCard('furosemide')">Furosemide (Lasix)</button>
+      <button class="sim-btn" onclick="loadDrugCard('morphine')">Morphine Sulfate</button>
+    </div>
+
+    <div class="drug-card-display" id="drugCardDisplay">
+      <div class="drug-card-header">
+        <span class="drug-card-title" id="dcTitle">Select a drug above</span>
+        <span class="drug-card-class" id="dcClass">Classification</span>
+      </div>
+      <div class="drug-grid">
+        <div class="drug-section-box">
+          <strong>Mechanism of Action</strong>
+          <span id="dcMoa" style="color: var(--text-muted); font-size: 0.95rem;">Click any drug button to load details.</span>
+        </div>
+        <div class="drug-section-box">
+          <strong>Indications</strong>
+          <span id="dcInd" style="color: var(--text-muted); font-size: 0.95rem;">-</span>
+        </div>
+        <div class="drug-section-box">
+          <strong>Key Side Effects</strong>
+          <span id="dcSide" style="color: var(--text-muted); font-size: 0.95rem;">-</span>
+        </div>
+        <div class="drug-section-box">
+          <strong>Nursing Interventions</strong>
+          <span id="dcNurse" style="color: var(--text-muted); font-size: 0.95rem;">-</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MNEUMONIC BOX -->
+  <div class="mnemonic-box">
+    <h4>💡 Mnemonic for the 5 Rights of Medication Administration: "T-DRAM"</h4>
+    <p><strong>T</strong>ime, <strong>D</strong>ose, <strong>R</strong>oute, <strong>A</strong>mount/Patient, <strong>M</strong>edication. Always double-check before administering any drug in clinical practice!</p>
+  </div>
+
+  <!-- KEY NURSING TAKEAWAYS -->
+  <h2>Key Nursing Takeaways</h2>
+  <ul>
+    <li><strong>Master PK & PD:</strong> Understand that pharmacokinetics is what the body does to the drug, while pharmacodynamics is what the drug does to the body.</li>
+    <li><strong>Always Verify Sources:</strong> Never rely on memory; cross-check dosages and compatibility using trusted nursing drug handbooks or hospital pharmacists.</li>
+    <li><strong>Prioritize Patient Safety:</strong> Strict adherence to unit-dose distribution systems and automated dispensing safety checks prevents catastrophic medication errors.</li>
+  </ul>
+
+</div>
+
+<!-- DRUG CARD JAVASCRIPT -->
+<script>
+  const drugData = {
+    digoxin: {
+      title: "Digoxin (Lanoxin)",
+      class: "Cardiac Glycoside / Inotrope",
+      moa: "Inhibits Na+/K+ ATPase pump, increasing intracellular calcium, which enhances myocardial contractility and slows heart rate.",
+      ind: "Heart failure, atrial fibrillation, atrial flutter.",
+      side: "Bradycardia, visual disturbances (yellow-green halos), nausea, arrhythmias.",
+      nurse: "Check apical pulse for 1 full minute before administration (hold if <60 bpm). Monitor serum digoxin levels (therapeutic range: 0.5–2.0 ng/mL)."
+    },
+    furosemide: {
+      title: "Furosemide (Lasix)",
+      class: "Loop Diuretic",
+      moa: "Inhibits reabsorption of sodium and chloride in the ascending loop of Henle, promoting rapid fluid excretion.",
+      ind: "Edema associated with heart failure, hepatic/renal disease, acute pulmonary edema, hypertension.",
+      side: "Hypokalemia, dehydration, hypotension, ototoxicity, hyponatremia.",
+      nurse: "Monitor daily weights, strict intake and output (I&O), blood pressure, and serum potassium levels. Administer slow IV push to prevent tinnitus/hearing loss."
+    },
+    morphine: {
+      title: "Morphine Sulfate",
+      class: "Opioid Analgesic",
+      moa: "Binds to mu-opioid receptors in the central nervous system, altering pain perception and emotional response to pain.",
+      ind: "Severe acute or chronic pain, myocardial infarction pain, pulmonary edema dyspnea.",
+      side: "Respiratory depression, constipation, sedation, hypotension, urinary retention.",
+      nurse: "Assess respiratory rate and depth prior to administration (hold if RR < 12/min). Have Naloxone (Narcan) readily available as an antidote. Implement bowel regimen."
+    }
+  };
+
+  function loadDrugCard(drugKey) {
+    const drug = drugData[drugKey];
+    if (!drug) return;
+    document.getElementById("dcTitle").textContent = drug.title;
+    document.getElementById("dcClass").textContent = drug.class;
+    document.getElementById("dcMoa").textContent = drug.moa;
+    document.getElementById("dcInd").textContent = drug.ind;
+    document.getElementById("dcSide").textContent = drug.side;
+    document.getElementById("dcNurse").textContent = drug.nurse;
+  }
+
+  // Load default first drug
+  window.onload = function() {
+    loadDrugCard('digoxin');
+  };
+</script>
+
+</body>
+</html>
