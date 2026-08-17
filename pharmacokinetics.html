@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pharmacokinetics: Complete ADME Deep-Dive | Pharmacology Fundamentals</title>
+  <title>Pharmacokinetics: ADME & Kinetics Deep-Dive | Pharmacology Fundamentals</title>
   <style>
     :root {
       --bg-gradient: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.08) 0%, rgba(37, 99, 235, 0.05) 40%, #f8fafc 90%);
@@ -32,6 +32,8 @@
     
     h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #bfdbfe; padding-bottom: 10px; }
     h2::before { content: ''; display: inline-block; width: 6px; height: 24px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; }
+
+    h3 { font-size: 1.2rem; color: var(--primary-dark); margin: 20px 0 10px; }
 
     p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 20px; }
 
@@ -65,6 +67,7 @@
     ul li { position: relative; padding-left: 28px; margin-bottom: 12px; color: var(--text-muted); font-size: 1.05rem; }
     ul li::before { content: '▪'; position: absolute; left: 8px; color: var(--primary); font-weight: bold; font-size: 1.2rem; }
 
+    .formula-box { background: #f8fafc; border: 1px dashed var(--primary); padding: 15px; border-radius: 10px; margin: 15px 0; font-family: monospace; font-weight: bold; color: var(--primary-dark); text-align: center; }
     .graph-box { background: white; border: 2px solid var(--card-border); border-radius: 16px; padding: 25px; margin: 30px 0; text-align: center; }
   </style>
 </head>
@@ -74,13 +77,13 @@
   <a href="chapt4.html" class="back-btn">&larr; Back to Chapter 4 Hub</a>
   
   <div class="badge">Pharmacology Masterclass Deep-Dive</div>
-  <h1>Pharmacokinetics: The Ultimate ADME Guide</h1>
-  <p>Pharmacokinetics explores the journey of a drug through the human body: **What the body does to the drug**. Broken down into four core phases—<strong>A</strong>bsorption, <strong>D</strong>istribution, <strong>M</strong>etabolism, and <strong>E</strong>limination—this chapter unlocks how drugs enter, travel, transform, and leave.</p>
+  <h1>Pharmacokinetics: ADME Principles & Kinetics</h1>
+  <p>Pharmacokinetics is the study of what the human body does to a drug. Imagine a pill as a traveler going on an incredible journey through your organs. This journey follows four main milestones known as <strong>ADME</strong>: <strong>A</strong>bsorption, <strong>D</strong>istribution, <strong>M</strong>etabolism, and <strong>E</strong>limination.</p>
 
   <!-- INTERACTIVE ADME ANIMATION -->
   <div class="animation-container">
-    <h3 style="color: var(--primary-dark); margin-bottom: 10px;">⚡ Visual ADME Journey in Action</h3>
-    <p style="font-size: 0.95rem; margin-bottom: 25px;">Follow the animated drug molecule as it flows through the body's processing pipeline:</p>
+    <h3 style="color: var(--primary-dark); margin-bottom: 10px;">⚡ Animated ADME Journey</h3>
+    <p style="font-size: 0.95rem; margin-bottom: 25px;">Follow the active drug molecule as it moves through the body systems:</p>
     
     <div style="position: relative; padding-top: 20px;">
       <div class="moving-pill">💊</div>
@@ -95,159 +98,148 @@
 
   <!-- SECTION 1: ABSORPTION & BIOAVAILABILITY -->
   <h2>1. Absorption & Bioavailability</h2>
-  <p><strong>Absorption</strong> is the process by which a drug moves from its administration site (like the GI tract, muscle, or skin) into the bloodstream. Before a drug can do its job, it must cross cellular membranes.</p>
+  <p><strong>Absorption</strong> is the process by which a drug enters the bloodstream from its site of administration (such as the stomach, skin, or muscle). If you take a drug intravenously (IV), absorption is bypassed completely because the medicine goes straight into your veins.</p>
 
   <div class="grid-2">
     <div class="card-box">
-      <h3>🧬 How Drugs Cross Membranes</h3>
-      <p><strong>Passive Diffusion:</strong> Molecules slip right through the lipid bilayer from high to low concentration.<br><strong>Active Transport & Carriers:</strong> Specialized protein channels escort molecules across using cellular energy.<br><strong>Endocytosis:</strong> The cell engulfs massive drug molecules.</p>
+      <h3>🧬 Factors Affecting Absorption</h3>
+      <ul>
+        <li><strong>Surface Area:</strong> The small intestine has villi and microvilli, giving it a massive surface area that absorbs drugs much faster than the stomach.</li>
+        <li><strong>Blood Flow:</strong> Organs with rich blood supplies (like muscles or intestines) absorb injected or ingested drugs much quicker than poorly perfused areas (like fatty tissue).</li>
+        <li><strong>Lipophilicity (Fat Solubility):</strong> Cell membranes are made of lipid bilayers. Fat-loving drugs slip across these membranes effortlessly.</li>
+        <li><strong>pH and Ionization:</strong> Weak acids (like aspirin) are absorbed best in the acidic environment of the stomach, whereas weak bases prefer the alkaline small intestine.</li>
+      </ul>
     </div>
     <div class="card-box">
-      <h3>📈 Factors Affecting Absorption</h3>
-      <p>• <strong>Surface Area:</strong> The small intestine has villi with massive surface area, making absorption lightning-fast.<br>• <strong>Blood Flow:</strong> Highly vascular areas absorb drugs much faster than fat or skin.<br>• <strong>Lipid Solubility:</strong> Fat-loving (lipophilic) drugs cruise across cell membranes effortlessly.<br>• <strong>pH & Ionization:</strong> Acidic drugs are absorbed best in the acidic stomach; alkaline drugs in the intestines.</p>
+      <h3>🌟 The Concept of Bioavailability (F)</h3>
+      <p><strong>Bioavailability</strong> measures the percentage of the administered drug that reaches the systemic circulation in an active, unchanged form.</p>
+      <div class="formula-box">Bioavailability (F) = (AUC oral / AUC IV) * 100</div>
+      <p><strong>Factors Affecting Bioavailability:</strong></p>
+      <ul>
+        <li><strong>First-Pass Metabolism:</strong> Oral drugs must travel through the portal vein to the liver first. Liver enzymes can destroy a huge portion of the drug before it ever reaches the rest of the body (e.g., Nitroglycerin has such high first-pass breakdown that it cannot be taken as a standard oral pill).</li>
+        <li><strong>Solubility & Formulation:</strong> Poorly soluble drugs or hard tablets that do not dissolve properly fail to absorb.</li>
+        <li><strong>Chemical Instability:</strong> Some drugs are destroyed by stomach acid or digestive enzymes before absorption.</li>
+      </ul>
     </div>
-  </div>
-
-  <!-- BIOAVAILABILITY DEEP DIVE -->
-  <div class="card-box" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-color: #10b981; margin: 30px 0;">
-    <h3 style="color: #047857; font-size: 1.3rem;">🌟 The Concept of Bioavailability ($F$)</h3>
-    <p style="color: #064e3b; margin-bottom: 15px;"><strong>Bioavailability</strong> is the fraction (percentage) of an administered drug that successfully reaches the systemic circulation in an active form.</p>
-    
-    <ul style="color: #064e3b;">
-      <li><strong>Intravenous (IV) Administration:</strong> Yields exactly <strong>100% bioavailability ($F = 1.0$)</strong> because the drug is injected directly into the bloodstream, skipping absorption barriers entirely.</li>
-      <li><strong>Oral Administration:</strong> Bioavailability is usually less than 100% due to incomplete absorption and hepatic first-pass metabolism.</li>
-    </ul>
-
-    <h4 style="color: #047857; margin: 15px 0 10px; font-size: 1.1rem;">Factors Affecting Bioavailability:</h4>
-    <ul style="color: #064e3b;">
-      <li><strong>The First-Pass Effect:</strong> Oral drugs travel via the portal vein straight to the liver before reaching the rest of the body. Liver enzymes can metabolize and destroy a huge chunk of the drug before it ever acts!</li>
-      <li><strong>Solubility & Formulation:</strong> Poorly water-soluble drugs or poorly manufactured pills may pass through the GI tract unabsorbed.</li>
-      <li><strong>Chemical Stability:</strong> Some drugs (like penicillin or insulin) are destroyed by stomach acid or digestive enzymes if taken orally.</li>
-      <li><strong>Food Interactions:</strong> Certain foods can bind to drugs in the stomach or alter gut pH, either boosting or blocking absorption.</li>
-    </ul>
   </div>
 
   <!-- SECTION 2: DISTRIBUTION & VOLUME OF DISTRIBUTION -->
-  <h2>2. Distribution & Volume of Distribution ($V_d$)</h2>
-  <p><strong>Distribution</strong> is the reversible movement of a drug from the bloodstream into interstitial fluids and target body tissues (like fat, muscle, and brain).</p>
+  <h2>2. Distribution & Volume of Distribution</h2>
+  <p><strong>Distribution</strong> is the process where a drug leaves the bloodstream and travels into the interstitial fluids and body tissues (such as fat, muscle, and brain).</p>
 
   <div class="grid-2">
     <div class="card-box">
-      <h3>🌐 Key Distribution Barriers</h3>
-      <p><strong>Plasma Protein Binding:</strong> Drugs float in blood bound to albumin. Only the <em>unbound (free)</em> drug molecule is pharmacologically active and able to slip out of capillaries to hit receptors.<br><strong>Blood-Brain Barrier (BBB):</strong> Tight capillary endothelial cells in the brain block water-soluble molecules. Only highly lipophilic drugs can penetrate the central nervous system.</p>
+      <h3>🌐 Key Factors Affecting Distribution</h3>
+      <ul>
+        <li><strong>Blood Flow (Perfusion):</strong> Highly perfused organs like the brain, heart, and liver receive drugs within seconds. Tissues with low blood flow (fat, bone, skin) take hours.</li>
+        <li><strong>Capillary Permeability:</strong> The liver and spleen have wide gaps in their capillaries, allowing large drugs to enter easily. In contrast, the brain has tight junctions (the Blood-Brain Barrier) that block polar drugs.</li>
+        <li><strong>Plasma Protein Binding:</strong> Drugs can latch onto blood proteins like albumin. Only the <em>free (unbound)</em> drug is pharmacologically active and able to cross cell membranes to reach receptors. If a drug is 99 percent protein-bound, only 1 percent is active!</li>
+        <li><strong>Tissue Binding:</strong> Some drugs accumulate heavily in specific tissues (e.g., tetracycline antibiotics bind strongly to calcium in bones and teeth).</li>
+        <li><strong>Lipophilicity:</strong> Highly lipid-soluble drugs easily cross cell membranes and concentrate heavily in adipose (fat) tissue.</li>
+      </ul>
     </div>
     <div class="card-box">
-      <h3>📈 Factors Affecting Distribution</h3>
-      <p>• <strong>Cardiac Output & Perfusion:</strong> Organs with heavy blood flow (heart, brain, liver) get flooded with drugs instantly; fat and bone take much longer.<br>• <strong>Tissue Affinity:</strong> Some drugs love specific tissues (e.g., iodine accumulates in the thyroid; tetracyclines bind bone).</p>
+      <h3>📦 Volume of Distribution (Vd)</h3>
+      <p><strong>Volume of Distribution</strong> is a theoretical concept that tells us how widely a drug spreads throughout the body relative to the blood plasma concentration.</p>
+      <div class="formula-box">Vd = Total Amount of Drug in Body / Plasma Concentration</div>
+      <p><strong>Simple Examples:</strong></p>
+      <ul>
+        <li><strong>Low Vd (e.g., Heparin, ~3 to 5 Liters):</strong> Stays almost entirely inside the blood plasma because it binds heavily to blood proteins and is too large to cross into tissues.</li>
+        <li><strong>High Vd (e.g., Digoxin or Morphine, hundreds of Liters):</strong> Leaves the blood completely and concentrates heavily inside body fat, muscles, and organs, leaving very little drug floating in the blood plasma.</li>
+      </ul>
     </div>
   </div>
 
-  <!-- VOLUME OF DISTRIBUTION DEEP DIVE -->
-  <div class="card-box" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-color: #3b82f6; margin: 30px 0;">
-    <h3 style="color: #1d4ed8; font-size: 1.3rem;">🧮 Volume of Distribution ($V_d$) Explained Simply</h3>
-    <p style="color: #1e3a8a; margin-bottom: 15px;"><strong>Volume of Distribution ($V_d$)</strong> is a theoretical concept. It doesn't measure physical body water; rather, it tells us <em>how widely</em> a drug spreads throughout the body.</p>
-    
-    <p style="color: #1e3a8a; margin-bottom: 15px;"><strong>Analogy Time:</strong> Imagine dissolving dye in a bucket of water vs. a swimming pool. If the dye stays concentrated in the bucket, it has a small $V_d$. If it dilutes across the entire pool, it has a massive $V_d$.</p>
-    
-    <ul style="color: #1e3a8a;">
-      <li><strong>Small $V_d$ (Stays in Blood):</strong> Drugs that are large, highly protein-bound, or water-soluble (hydrophilic) stay trapped in the blood plasma. (Example: Heparin, $V_d \approx 4\text{L}$).</li>
-      <li><strong>Large $V_d$ (Hides in Tissues):</strong> Drugs that are fat-soluble (lipophilic) leave the blood immediately and hide out in fatty tissues and organs. (Example: Digoxin or chloroquine, where $V_d$ can exceed hundreds of liters!).</li>
-    </ul>
-  </div>
+  <!-- SECTION 3: METABOLISM & CYP450 -->
+  <h2>3. Metabolism (Biotransformation) & The CYP450 System</h2>
+  <p><strong>Metabolism</strong> is the chemical alteration of a drug by the body, turning fat-soluble (lipophilic) molecules into water-soluble (hydrophilic) compounds so the kidneys can easily excrete them in urine. This happens primarily in the liver.</p>
 
-  <!-- SECTION 3: METABOLISM & CYP450 SYSTEM -->
-  <h2>3. Metabolism & The Cytochrome P450 System</h2>
-  <p><strong>Metabolism (Biotransformation)</strong> is the chemical alteration of a drug within the body—primarily in the liver—transforming active, fat-soluble drug molecules into inactive, water-soluble metabolites that the kidneys can easily excrete.</p>
-
-  <!-- CYP450 DEEP DIVE -->
-  <div class="card-box" style="background: #ffffff; border-color: var(--primary); margin: 30px 0;">
-    <h3 style="color: var(--primary); font-size: 1.3rem;">⚙️ Meet the Liver's Biochemical Factory: Cytochrome P450 (CYP450)</h3>
-    <p style="color: var(--text-muted); margin-bottom: 15px;">The <strong>CYP450 enzyme superfamily</strong> (located in the liver's endoplasmic reticulum) is responsible for chemically modifying the vast majority of drugs. Think of them as specialized molecular mechanics.</p>
-    
-    <div class="grid-2" style="margin-top: 15px;">
-      <div style="background: #f8fafc; padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0;">
-        <h4 style="color: #1d4ed8; margin-bottom: 8px;">🚀 CYP450 Inducers</h4>
-        <p style="font-size: 0.95rem;">Drugs that <em>accelerate</em> enzyme production. They act like putting turbochargers on the liver factory. Result? Other drugs are broken down way too fast, dropping blood levels and causing treatment failure. <br><em>Example: Rifampin, Carbamazepine, St. John's Wort.</em></p>
-      </div>
-      <div style="background: #f8fafc; padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0;">
-        <h4 style="color: #dc2626; margin-bottom: 8px;">🛑 CYP450 Inhibitors</h4>
-        <p style="font-size: 0.95rem;">Drugs that <em>block or slow down</em> enzymes. They put a brake on the factory. Result? The co-administered drug lingers in the blood, building up to dangerous, toxic levels! <br><em>Example: Ketoconazole, Erythromycin, Grapefruit juice.</em></p>
-      </div>
+  <div class="grid-3">
+    <div class="card-box">
+      <h3>🧪 Phase 1 Reactions</h3>
+      <p><strong>Modification:</strong> Phase 1 reactions involve oxidation, reduction, or hydrolysis. They introduce or unmask a polar functional group (like an OH group) on the drug molecule. This slightly increases water solubility and prepares the drug for Phase 2.</p>
+    </div>
+    <div class="card-box">
+      <h3>⚙️ The CYP450 System in Detail</h3>
+      <p>The Cytochrome P450 enzyme family in the liver acts like a massive biological factory line breaking down drugs.</p>
+      <ul>
+        <li><strong>Inducers:</strong> Drugs like rifampin or St. John's wort speed up the factory. They increase enzyme production, causing other drugs to break down too fast (leading to treatment failure).</li>
+        <li><strong>Inhibitors:</strong> Drugs like ketoconazole or grapefruit juice shut down the factory lines. They block CYP450 enzymes, causing other drugs to accumulate and reach toxic levels.</li>
+      </ul>
+    </div>
+    <div class="card-box">
+      <h3>🛡️ Phase 2 Reactions</h3>
+      <p><strong>Conjugation:</strong> If a Phase 1 product is still not water-soluble enough, Phase 2 attaches a large, highly polar chemical group (such as glucuronic acid, sulfate, or acetate). This creates a completely inactive, highly water-soluble compound ready for elimination.</p>
     </div>
   </div>
 
-  <!-- PHASE I & PHASE II REACTIONS -->
-  <h2>4. Phase I vs. Phase II Metabolic Reactions</h2>
-  <p>The liver processes drugs using a clever two-step biochemical assembly line:</p>
+  <!-- SECTION 4: KINETICS OF METABOLISM -->
+  <h2>4. Kinetics of Metabolism: First-Order vs. Zero-Order</h2>
+  <p>How do our bodies eliminate or metabolize drugs over time? There are two primary mathematical rules (kinetics) that govern this process.</p>
 
   <div class="grid-2">
     <div class="card-box">
-      <h3>🧪 Phase I Reactions (Functionalization)</h3>
-      <p><strong>What happens:</strong> Oxidation, reduction, or hydrolysis.<br><br><strong>The Goal:</strong> To introduce or unmask a polar chemical group (like a hydroxyl group, $-OH$) onto the drug molecule. Think of this as adding a <em>molecular handle</em> to the drug.<br><br><strong>Key Players:</strong> Dominated by the CYP450 enzyme system. Often turns an active drug into an inactive metabolite, though sometimes it converts an inactive prodrug into its active form!</p>
+      <h3>📈 First-Order Kinetics (Exponential Elimination)</h3>
+      <p><strong>How it works:</strong> The body eliminates a <em>constant percentage</em> of the drug per unit time. If you have 100mg of a drug and 50 percent is eliminated every hour, you will have 50mg left after hour one, 25mg after hour two, and so on.</p>
+      <div class="formula-box">Rate of Elimination = Constant * Drug Concentration</div>
+      <p><strong>Key Feature:</strong> The half-life is constant regardless of how much drug is in the body. Most drugs in pharmacology follow first-order kinetics at therapeutic doses.</p>
     </div>
     <div class="card-box">
-      <h3>🏷️ Phase II Reactions (Conjugation)</h3>
-      <p><strong>What happens:</strong> Attachment of a bulky, highly polar, water-soluble endogenous molecule.<br><br><strong>The Goal:</strong> To attach a heavy polar tag (like glucuronic acid, sulfate, or glutathione) onto the drug's Phase I handle. Think of this as stamping a <em>water-soluble passport</em> on the molecule.<br><br><strong>Result:</strong> The drug becomes completely water-soluble, ensuring it cannot cross cell membranes anymore and is immediately ready for renal or biliary exit.</p>
+      <h3>📊 Zero-Order Kinetics (Constant Rate Elimination)</h3>
+      <p><strong>How it works:</strong> The body eliminates a <em>constant amount</em> of the drug per unit time, regardless of how high the concentration is. This happens when metabolic enzymes become completely saturated.</p>
+      <div class="formula-box">Rate of Elimination = Constant (Independent of Concentration)</div>
+      <p><strong>Key Feature:</strong> If a person takes too much, the liver enzymes cannot keep up. A small increase in dose can cause a massive, dangerous spike in blood levels and toxicity.</p>
+      <p><strong>Classic Examples:</strong> Alcohol, Aspirin (at high toxic doses), and Phenytoin.</p>
     </div>
   </div>
 
-  <!-- SECTION 5: ELIMINATION -->
-  <h2>5. Elimination (Excretion)</h2>
-  <p><strong>Elimination</strong> is the irreversible removal of drugs and their metabolites from the body. While sweat, saliva, and lungs play minor roles, the <strong>kidneys</strong> are the undisputed champions of excretion.</p>
+  <!-- GRAPH COMPARISON -->
+  <h2>5. Visual Comparison of Metabolism Kinetics</h2>
+  <p>The graphs below show the difference between First-Order (curved exponential drop) and Zero-Order (straight-line constant drop) elimination over time.</p>
 
   <div class="grid-2">
-    <div class="card-box">
-      <h3>🌊 Renal Excretion Steps</h3>
-      <p><strong>1. Glomerular Filtration:</strong> Free, unbound drug molecules filter through the kidney glomerulus into the nephron filtrate.<br><strong>2. Active Tubular Secretion:</strong> Transporter pumps actively push remaining drugs into the tubule.<br><strong>3. Passive Tubular Reabsorption:</strong> Lipophilic drugs try to sneak back across the tubule into the blood unless they have been successfully made water-soluble by Phase II metabolism!</p>
+    <div class="graph-box">
+      <h3>First-Order Kinetics Graph</h3>
+      <svg viewBox="0 0 300 180" width="100%" height="auto">
+        <line x1="30" y1="150" x2="270" y2="150" stroke="#475569" stroke-width="2" />
+        <line x1="30" y1="20" x2="30" y2="150" stroke="#475569" stroke-width="2" />
+        <text x="130" y="175" font-size="11" fill="#475569" font-weight="bold">Time</text>
+        <text x="5" y="90" font-size="11" fill="#475569" font-weight="bold" transform="rotate(-90 5 90)">Conc</text>
+        <!-- Exponential Decay Curve -->
+        <path d="M 30 30 Q 100 130 260 145" fill="none" stroke="#3b82f6" stroke-width="3" />
+      </svg>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Curved drop: Elimination slows down as concentration decreases.</p>
     </div>
-    <div class="card-box">
-      <h3>⏳ Half-Life ($t_{1/2}$) & Clearance</h3>
-      <p><strong>Half-Life ($t_{1/2}$):</strong> The exact time required for the concentration of a drug in the body to drop by 50%. It dictates dosing schedules.<br><strong>Renal Impairment:</strong> If kidney function ($GFR$) drops, elimination slows down drastically, causing drug accumulation and severe toxicity unless doses are adjusted.</p>
+    <div class="graph-box">
+      <h3>Zero-Order Kinetics Graph</h3>
+      <svg viewBox="0 0 300 180" width="100%" height="auto">
+        <line x1="30" y1="150" x2="270" y2="150" stroke="#475569" stroke-width="2" />
+        <line x1="30" y1="20" x2="30" y2="150" stroke="#475569" stroke-width="2" />
+        <text x="130" y="175" font-size="11" fill="#475569" font-weight="bold">Time</text>
+        <text x="5" y="90" font-size="11" fill="#475569" font-weight="bold" transform="rotate(-90 5 90)">Conc</text>
+        <!-- Straight Linear Drop -->
+        <line x1="30" y1="30" x2="240" y2="150" stroke="#ef4444" stroke-width="3" />
+      </svg>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Straight line drop: Fixed amount removed per hour due to enzyme saturation.</p>
     </div>
   </div>
 
-  <!-- GRAPH SECTION -->
-  <h2>6. Plasma Concentration-Time Profile</h2>
-  <p>The graph below charts a drug's journey over time, showcasing absorption, peak concentration ($C_{max}$), the therapeutic window, and eventual elimination.</p>
-
-  <div class="graph-box">
-    <svg viewBox="0 0 500 250" width="100%" height="auto" style="max-width: 500px;">
-      <!-- Axes -->
-      <line x1="50" y1="200" x2="450" y2="200" stroke="#475569" stroke-width="2" />
-      <line x1="50" y1="30" x2="50" y2="200" stroke="#475569" stroke-width="2" />
-      
-      <!-- Labels -->
-      <text x="230" y="235" font-size="12" fill="#475569" font-weight="bold">Time (Hours)</text>
-      <text x="15" y="120" font-size="12" fill="#475569" font-weight="bold" transform="rotate(-90 15 120)">Concentration</text>
-      
-      <!-- Therapeutic Window Lines -->
-      <line x1="50" y1="80" x2="450" y2="80" stroke="#10b981" stroke-dasharray="4" stroke-width="1.5" />
-      <line x1="50" y1="140" x2="450" y2="140" stroke="#10b981" stroke-dasharray="4" stroke-width="1.5" />
-      <text x="455" y="85" font-size="10" fill="#059669">Toxic Level</text>
-      <text x="455" y="145" font-size="10" fill="#059669">Minimum Effective</text>
-
-      <!-- Curve -->
-      <path d="M 50 200 Q 150 20 230 70 T 450 190" fill="none" stroke="#3b82f6" stroke-width="4" />
-
-      <!-- Cmax dot -->
-      <circle cx="230" cy="70" r="5" fill="#1d4ed8" />
-      <text x="200" y="60" font-size="11" fill="#1d4ed8" font-weight="bold">$C_{max}$ (Peak)</text>
-    </svg>
-    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 10px;">Figure: Plasma drug concentration vs. Time curve, highlighting the therapeutic window between minimum effective concentration and toxicity.</p>
-  </div>
+  <!-- SECTION 6: ELIMINATION -->
+  <h2>6. Elimination (Excretion)</h2>
+  <p><strong>Elimination</strong> is the final removal of the drug and its metabolites from the body. The kidneys are the primary organs responsible for excreting water-soluble metabolites via urine, though the liver/biliary tract, lungs, and sweat glands also participate.</p>
 
   <div class="mnemonic-box">
-    <h4>💡 Mnemonic for ADME Overview: "All Dogs Met Eleanor"</h4>
+    <h4>💡 Mnemonic for ADME Review: "All Dogs Met Eleanor"</h4>
     <p><strong>A</strong>bsorption (into blood) ➔ <strong>D</strong>istribution (to tissues) ➔ <strong>M</strong>etabolism (liver breakdown) ➔ <strong>E</strong>limination (renal excretion)</p>
   </div>
 
   <!-- KEY NURSING TAKEAWAYS -->
-  <h2>7. Key Clinical & Nursing Takeaways</h2>
+  <h2>7. Key Nursing Takeaways & Clinical Application</h2>
   <ul>
-    <li><strong>Evaluate Organ Function:</strong> Always review renal labs (Serum Creatinine, BUN, GFR) and hepatic labs (AST, ALT, Bilirubin) before administering drugs cleared through these organs.</li>
-    <li><strong>Master Route Differences:</strong> Remember that intravenous administration achieves 100% bioavailability immediately, bypassing GI barriers and hepatic first-pass metabolism entirely.</li>
-    <li><strong>Anticipate CYP450 Interactions:</strong> Keep a close eye on multi-drug regimens when inducers or inhibitors are prescribed, preventing unexpected drug toxicities or treatment failures.</li>
-    <li><strong>Respect Administration Rules:</strong> Follow mealtime requirements carefully (e.g., empty stomach vs. with food) to ensure optimal drug absorption and consistent bioavailability.</li>
+    <li><strong>Check Organ Function Tests:</strong> Always review serum creatinine, creatinine clearance (GFR), AST, ALT, and bilirubin before administering medications cleared by the liver and kidneys.</li>
+    <li><strong>Watch for Protein-Binding Displacement:</strong> If two highly protein-bound drugs are given together, they can kick each other off albumin binding sites, suddenly increasing free drug levels and causing toxicity.</li>
+    <li><strong>Monitor Drug Interactions:</strong> Be extremely alert when combining CYP450 inducers or inhibitors with narrow therapeutic index drugs like warfarin or digoxin.</li>
+    <li><strong>Understand Zero-Order Dosing Risks:</strong> Recognize that drugs following zero-order elimination (like phenytoin) require careful dose adjustments because small increases can lead to disproportionately high, toxic blood levels.</li>
   </ul>
 
 </div>
