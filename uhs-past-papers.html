@@ -1,1 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSN Pharmacology Course Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
+    <!-- Header -->
+    <header class="bg-teal-700 text-white shadow-lg py-6 px-4 mb-8">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div>
+                <span class="bg-teal-800 text-teal-200 text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">BSN Curriculum</span>
+                <h1 class="text-3xl font-bold mt-2">Pharmacology Course Dashboard</h1>
+                <p class="text-teal-100 text-sm mt-1">Structured Study Units & Nursing Responsibilities</p>
+            </div>
+            <div class="mt-4 md:mt-0 bg-teal-800 px-4 py-2 rounded-lg text-sm shadow-inner">
+                <span id="unitCount" class="font-bold text-white">5</span> Units Loaded
+            </div>
+        </div>
+    </header>
 
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto px-4 pb-12">
+        <!-- Search and Filter Bar -->
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 mb-6 flex flex-col md:flex-row gap-4 justify-between items-center">
+            <div class="w-full md:w-1/2 relative">
+                <input type="text" id="searchInput" placeholder="Search units, drug categories, or topics..." 
+                    class="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-500 text-sm">
+                <svg class="w-5 h-5 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
+            <div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+                <button onclick="filterUnit('all')" class="filter-btn px-3 py-2 text-xs font-medium rounded-lg bg-teal-600 text-white transition hover:bg-teal-700 whitespace-nowrap">All Units</button>
+                <button onclick="filterUnit('Unit I')" class="filter-btn px-3 py-2 text-xs font-medium rounded-lg bg-slate-100 text-slate-600 transition hover:bg-slate-200 whitespace-nowrap">Unit I</button>
+                <button onclick="filterUnit('Unit II')" class="filter-btn px-3 py-2 text-xs font-medium rounded-lg bg-slate-100 text-slate-600 transition hover:bg-slate-200 whitespace-nowrap">Unit II</button>
+                <button onclick="filterUnit('Unit III')" class="filter-btn px-3 py-2 text-xs font-medium rounded-lg bg-slate-100 text-slate-600 transition hover:bg-slate-200 whitespace-nowrap">Unit III</button>
+                <button onclick="filterUnit('Unit IV')" class="filter-btn px-3 py-2 text-xs font-medium rounded-lg bg-slate-100 text-slate-600 transition hover:bg-slate-200 whitespace-nowrap">Unit IV</button>
+                <button onclick="filterUnit('Unit V')" class="filter-btn px-3 py-2 text-xs font-medium rounded-lg bg-slate-100 text-slate-600 transition hover:bg-slate-200 whitespace-nowrap">Unit V</button>
+            </div>
+        </div>
+
+        <!-- Units List Container -->
+        <div id="unitsContainer" class="space-y-6">
+            <!-- Dynamically injected via JS -->
+        </div>
+    </main>
+
+    <!-- JavaScript Data and App Logic -->
+    <script>
+        const courseUnits = [
+            {
+                unit: "Unit I",
+                title: "Introduction to Pharmacology",
+                topics: [
+                    "Discuss the terminologies related to pharmacology (Pharmacokinetics, pharmacodynamics, drug affinity, efficacy, agonists)",
+                    "Discuss the history of pharmacology briefly (Evolution from natural remedies to synthetic drug discovery)",
+                    "Identify the purposes of medication (Diagnosis, prevention, treatment, and cure of diseases)",
+                    "Identify the source of medication (Plant, animal, mineral, synthetic, and semi-synthetic sources)",
+                    "Discuss the classification of drugs (Based on therapeutic use, chemical structure, and physiological system)",
+                    "Describe the three types of drug supply system (Floor stock system, individual prescription order system, and unit-dose distribution system)",
+                    "Discuss the drugs standards and legislation (Role of regulatory bodies, purity, safety, and efficacy standards)",
+                    "Identify resource to collect and utilize drug information (Pharmacopoeias, formularies, drug handbooks, and clinical databases)",
+                    "Learn to prepare drug cards (Structuring key details: drug name, classification, action, uses, adverse reactions, and nursing responsibilities)"
+                ]
+            },
+            {
+                unit: "Unit II",
+                title: "Drugs used to Prevent and Treat Infection",
+                topics: [
+                    "Define major drug categories: Antibiotics, antifungal, antiparasitic, antimalarial, and antiviral drugs",
+                    "Discuss action and effects of selected drug categories (Cell wall synthesis inhibition, protein synthesis disruption, fungal membrane disruption)",
+                    "List commonly used drugs for each category (Penicillins, cephalosporins, fluconazole, chloroquine, acyclovir)",
+                    "Discuss nursing measures and patient education (Completing full course, monitoring for allergic reactions, hydration, and avoiding resistance)"
+                ]
+            },
+            {
+                unit: "Unit III",
+                title: "Drugs Affecting the Gastrointestinal System",
+                topics: [
+                    "Discuss common symptoms and disorders (Acidity, peptic ulcer disease, nausea, vomiting, constipation, and diarrhea)",
+                    "Describe uses and effects of gastrointestinal drugs (Antacids, proton pump inhibitors, antiemetics, laxatives, and antidiarrheals)",
+                    "Describe classification and action on the body (Neutralizing gastric acid, reducing acid secretion, altering GI motility)",
+                    "Identify expected and adverse reactions (Symptom relief, electrolyte imbalances, rebound hyperacidity, or GI upset)",
+                    "Discuss nursing responsibilities (Timing of administration relative to meals, monitoring bowel habits, patient teaching on diet)"
+                ]
+            },
+            {
+                unit: "Unit IV",
+                title: "Drugs Affecting Hematology System",
+                topics: [
+                    "Describe uses and effects of drugs affecting hematology (Prevention of thrombus formation, treatment of anemia, promoting hemostasis)",
+                    "Describe classification of drugs in hematology (Anticoagulants, antiplatelets, thrombolytics, erythropoiesis-stimulating agents, iron supplements)",
+                    "Discuss action of hematology drugs on the body (Inhibiting clotting factor synthesis, preventing platelet aggregation, dissolving existing clots)",
+                    "Identify expected and adverse reactions (Improved hemoglobin levels, bleeding risks, bruising, thrombocytopenia)",
+                    "Discuss nursing responsibilities (Monitoring laboratory coagulation profiles, assessing for signs of hemorrhage, client safety education)"
+                ]
+            },
+            {
+                unit: "Unit V",
+                title: "Anti-Neoplastic Drugs",
+                topics: [
+                    "Describe uses and effects of anti-neoplastic drugs (Treatment of malignancies, suppression of rapid cellular proliferation)",
+                    "Describe classification of anti-neoplastic drugs (Alkylating agents, antimetabolites, mitotic inhibitors, antitumor antibiotics)",
+                    "Discuss action on the body (Interfering with DNA replication, blocking cell division pathways)",
+                    "Identify expected and adverse reactions (Tumor reduction, bone marrow suppression, alopecia, nausea, mucositis)",
+                    "Discuss nursing responsibilities (Safe handling of cytotoxic agents, monitoring blood counts, managing nausea, providing supportive care and patient education)"
+                ]
+            }
+        ];
+
+        function renderUnits(data) {
+            const container = document.getElementById('unitsContainer');
+            document.getElementById('unitCount').innerText = data.length;
+            
+            if (data.length === 0) {
+                container.innerHTML = `<div class="bg-white p-8 rounded-xl text-center text-slate-500 shadow-sm border border-slate-200">No matching course units found.</div>`;
+                return;
+            }
+
+            container.innerHTML = data.map((item, index) => `
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 transition hover:shadow-md">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-teal-50 text-teal-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-teal-200">${item.unit}</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-4">${item.title}</h3>
+                    <ul class="space-y-2">
+                        ${item.topics.map(topic => `
+                            <li class="flex items-start gap-2 text-sm text-slate-700">
+                                <svg class="w-4 h-4 text-teal-600 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>${topic}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `).join('');
+        }
+
+        function filterUnit(unit) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-teal-600', 'text-white');
+                btn.classList.add('bg-slate-100', 'text-slate-600');
+            });
+            event.target.classList.remove('bg-slate-100', 'text-slate-600');
+            event.target.classList.add('bg-teal-600', 'text-white');
+
+            if (unit === 'all') {
+                renderUnits(courseUnits);
+            } else {
+                const filtered = courseUnits.filter(u => u.unit === unit);
+                renderUnits(filtered);
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = courseUnits.map(u => ({
+                ...u,
+                topics: u.topics.filter(t => t.toLowerCase().includes(query) || u.title.toLowerCase().includes(query) || u.unit.toLowerCase().includes(query))
+            })).filter(u => u.topics.length > 0 || u.title.toLowerCase().includes(query) || u.unit.toLowerCase().includes(query));
+            
+            // If main title or unit matches, show all topics of that unit
+            const finalFiltered = courseUnits.filter(u => 
+                u.unit.toLowerCase().includes(query) || 
+                u.title.toLowerCase().includes(query) || 
+                u.topics.some(t => t.toLowerCase().includes(query))
+            );
+            
+            renderUnits(finalFiltered);
+        });
+
+        renderUnits(courseUnits);
+    </script>
+</body>
+</html>
