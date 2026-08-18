@@ -28,6 +28,55 @@
 
     body { background: #f1f5f9; color: #0f172a; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; }
 
+    /* Eye-Catching Desktop Mode Banner */
+    .desktop-banner {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #f8fafc;
+      padding: 12px 20px;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-bottom: 3px solid #38bdf8;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+      position: relative;
+      z-index: 100;
+    }
+    .desktop-banner span.highlight {
+      background: #0284c7;
+      color: white;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    }
+    .desktop-banner .close-banner {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #cbd5e1;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+      margin-left: 8px;
+    }
+    .desktop-banner .close-banner:hover {
+      background: rgba(255, 255, 255, 0.25);
+      color: white;
+    }
+
     /* Header */
     header { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15); }
     .header-title h1 { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.5px; }
@@ -126,6 +175,12 @@
   </style>
 </head>
 <body>
+
+  <!-- Eye-Catching Desktop Mode Banner for Mobile Users -->
+  <div id="desktopBanner" class="desktop-banner">
+    <span>💡 <strong>Mobile View Tip:</strong> For the best study experience, tap the <span class="highlight">three dots (⋮)</span> in your browser menu and enable <span class="highlight">🖥️ Desktop Site</span>!</span>
+    <button class="close-banner" onclick="dismissBanner()" title="Close Banner">✕</button>
+  </div>
 
   <!-- Header -->
   <header>
@@ -322,6 +377,11 @@
   </footer>
 
   <script>
+    // --- BANNER DISMISS SCRIPT ---
+    function dismissBanner() {
+      document.getElementById('desktopBanner').style.display = 'none';
+    }
+
     // --- ADVANCED SECURITY LOCK SCRIPTS ---
 
     // 1. Disable Right-Click Context Menu Everywhere
