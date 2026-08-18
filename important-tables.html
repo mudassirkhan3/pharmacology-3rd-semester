@@ -1,152 +1,610 @@
-<style>
-    /* Professional Table Styles */
-    .table-section { margin-bottom: 50px; font-family: 'Inter', sans-serif; }
-    .table-container { overflow-x: auto; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb; }
-    .pro-table { width: 100%; border-collapse: collapse; min-width: 600px; background: white; }
-    .pro-table th { padding: 16px; text-align: left; font-size: 0.9rem; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 0.05em; }
-    .pro-table td { padding: 14px 16px; border-bottom: 1px solid #f3f4f6; font-size: 0.95rem; color: #374151; vertical-align: top; }
-    .pro-table tr:last-child td { border-bottom: none; }
-    .pro-table tr:nth-child(even) { background-color: #f9fafb; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lippincott Pharmacology Master Tables</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background: var(--bg-color); color: var(--text-main); padding: 40px 20px; line-height: 1.6; }
+
+    .master-container { max-width: 1200px; margin: 0 auto; }
     
-    /* Theme Colors */
-    .theme-intro { background: #334155; } /* Slate Blue */
-    .theme-infection { background: #059669; } /* Emerald */
-    .theme-gi { background: #2563eb; } /* Royal Blue */
-    .theme-hem { background: #0891b2; } /* Teal */
-    .theme-neo { background: #7c3aed; } /* Amethyst */
-</style>
+    .chapter-section {
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      padding: 36px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+      animation: fadeIn 0.6s ease-out forwards;
+    }
 
-<!-- UNIT I: INTRODUCTION -->
-<div class="table-section">
-    <h3>Unit I: Fundamental Pharmacodynamics</h3>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .chapter-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chapter-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* Table Styling */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 20px;
+    }
+
+    .lippincott-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+      text-align: left;
+    }
+
+    .lippincott-table th {
+      padding: 16px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .lippincott-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 0.92rem;
+      color: #334155;
+      vertical-align: top;
+      transition: background 0.2s ease;
+    }
+
+    .lippincott-table tr:hover td {
+      background-color: #f8fafc;
+    }
+
+    .lippincott-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Chapter Specific Themes */
+    .theme-cotrimoxazole th { background: #059669; }
+    .theme-tb th { background: #0d9488; }
+    .theme-antifungal th { background: #2563eb; }
+    .theme-interactions th { background: #7c3aed; }
+    .theme-antiviral th { background: #4f46e5; }
+    .theme-anticancer th { background: #db2777; }
+    .theme-tki th { background: #9333ea; }
+    .theme-antiemetic th { background: #ea580c; }
+
+    /* Animated Grid Cards for Sub-lists */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .info-card {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 18px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      border-color: #cbd5e1;
+    }
+
+    .info-card h4 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .info-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* Bar Chart Animation for Antiemetics */
+    .chart-container {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .chart-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .chart-label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .chart-bar-bg {
+      background: #f1f5f9;
+      border-radius: 8px;
+      height: 28px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border-color);
+    }
+
+    .chart-bar-fill {
+      background: linear-gradient(90deg, #ea580c 0%, #f97316 100%);
+      height: 100%;
+      width: 0;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 12px;
+      color: white;
+      font-size: 0.82rem;
+      font-weight: 800;
+      animation: fillBar 1.2s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+    }
+
+    @keyframes fillBar {
+      to { width: var(--target-width); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="master-container">
+
+  <!-- CHAPTER 31: COTRIMOXAZOLE APPLICATIONS (Figure 31.11) -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #059669;"><span>🦠</span> Chapter 31: Therapeutic Applications of Cotrimoxazole</h2>
+    <p class="chapter-desc">Summary of clinical indications and therapeutic targets for sulfamethoxazole plus trimethoprim.</p>
+    
+    <div class="grid-cards">
+      <div class="info-card">
+        <h4>MRSA Infections</h4>
+        <p>Highly effective for methicillin-resistant Staphylococcus aureus skin and soft-tissue infections.</p>
+      </div>
+      <div class="info-card">
+        <h4>Respiratory Infections</h4>
+        <p>Effective against <i>Haemophilus influenzae</i> and serves as an alternative treatment for <i>Legionella pneumophila</i>.</p>
+      </div>
+      <div class="info-card">
+        <h4>Pneumocystis jirovecii Pneumonia (PJP)</h4>
+        <p>Primary choice therapy for AIDS-related PJP; standard prophylaxis for HIV patients with CD4+ counts &lt;200 cells/mL.</p>
+      </div>
+      <div class="info-card">
+        <h4>Listeriosis</h4>
+        <p>Effective in treating septicemia and meningitis caused by <i>Listeria monocytogenes</i>.</p>
+      </div>
+      <div class="info-card">
+        <h4>Urinary Tract &amp; Prostate Infections</h4>
+        <p>Concentrates in prostatic and vaginal fluids; highly effective for chronic lower urinary tract infections.</p>
+      </div>
+      <div class="info-card">
+        <h4>Gastrointestinal Infections</h4>
+        <p>Indicated for shigellosis, nontyphoid salmonella, and chronic management of <i>S. typhi</i> carriers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 32: SECOND-LINE TB DRUGS (Figure 32.10) -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #0d9488;"><span>🫁</span> Chapter 32: Second-Line Antitubercular Agents</h2>
+    <p class="chapter-desc">Characteristics, toxicities, and monitoring parameters for second-line tuberculosis drugs.</p>
+    
     <div class="table-container">
-        <table class="pro-table">
-            <thead><tr class="theme-intro"><th>Concept</th><th>Pharmacological Rationale</th><th>Mechanism of Action</th></tr></thead>
-            <tbody>
-                <tr><td><strong>Agonist</strong></td><td>Initiates a biological response</td><td>Binds to receptor; mimics endogenous ligand.</td></tr>
-                <tr><td><strong>Antagonist</strong></td><td>Prevents a biological response</td><td>Binds to receptor; prevents activation.</td></tr>
-                <tr><td><strong>Bioavailability</strong></td><td>Fraction of drug reaching circulation</td><td>Affected by First-Pass metabolism.</td></tr>
-                <tr><td><strong>Half-Life (t½)</strong></td><td>Time to reduce concentration by 50%</td><td>Determines dosing interval.</td></tr>
-            </tbody>
-        </table>
+      <table class="lippincott-table">
+        <thead>
+          <tr class="theme-tb">
+            <th>Drug Class / Agent</th>
+            <th>Adverse Effects</th>
+            <th>Clinical Comments &amp; Monitoring</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Fluoroquinolones</strong></td>
+            <td>GI intolerance, tendonitis, CNS toxicity, caffeine-like effects.</td>
+            <td>Monitor LFTs, serum creatinine/BUN, and QT interval. Avoid concurrent ingestion with di- or trivalent cations (antacids/multivitamins).</td>
+          </tr>
+          <tr>
+            <td><strong>Aminoglycosides &amp; Capreomycin</strong></td>
+            <td>Nephrotoxicity, ototoxicity (vestibular and auditory).</td>
+            <td>Not available orally. Requires serial monitoring of renal function, vestibular function, and hearing.</td>
+          </tr>
+          <tr>
+            <td><strong>Macrolides</strong></td>
+            <td>GI intolerance, tinnitus.</td>
+            <td>Monitor LFTs, serum creatinine/BUN, and QT interval. Watch for drug interactions due to CYP inhibition.</td>
+          </tr>
+          <tr>
+            <td><strong>Ethionamide &amp; PAS</strong></td>
+            <td>GI intolerance, hepatotoxicity, hypothyroidism.</td>
+            <td>Monitor LFTs and TSH. High incidence of GI distress. Patients with G6PD deficiency face increased risk of hemolytic anemia with PAS.</td>
+          </tr>
+          <tr>
+            <td><strong>Cycloserine</strong></td>
+            <td>Severe CNS toxicity (depression, anxiety, confusion, seizures).</td>
+            <td>Requires strict psychiatric monitoring. Exacerbates seizures in epileptic patients. Monitor serum creatinine.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CHAPTER 33: TRIAZOLE ANTIFUNGALS (Figure 33.10) -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #2563eb;"><span>🍄</span> Chapter 33: Pharmacokinetic Profile of Triazole Antifungals</h2>
+    <p class="chapter-desc">Comparative analysis of spectrum, bioavailability, elimination, and therapeutic monitoring.</p>
+    
+    <div class="table-container">
+      <table class="lippincott-table">
+        <thead>
+          <tr class="theme-antifungal">
+            <th>Parameter</th>
+            <th>Fluconazole</th>
+            <th>Itraconazole</th>
+            <th>Isavuconazole</th>
+            <th>Voriconazole</th>
+            <th>Posaconazole</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Spectrum of Activity</strong></td>
+            <td>+</td>
+            <td>++</td>
+            <td>+++</td>
+            <td>+++</td>
+            <td>++++</td>
+          </tr>
+          <tr>
+            <td><strong>Route of Administration</strong></td>
+            <td>Oral, IV</td>
+            <td>Oral</td>
+            <td>Oral, IV</td>
+            <td>Oral, IV</td>
+            <td>Oral, IV</td>
+          </tr>
+          <tr>
+            <td><strong>Oral Bioavailability (%)</strong></td>
+            <td>95</td>
+            <td>55 (solution)</td>
+            <td>98</td>
+            <td>96</td>
+            <td>Variable</td>
+          </tr>
+          <tr>
+            <td><strong>Protein Binding (%)</strong></td>
+            <td>10</td>
+            <td>99</td>
+            <td>99</td>
+            <td>58</td>
+            <td>99</td>
+          </tr>
+          <tr>
+            <td><strong>Primary Elimination</strong></td>
+            <td>Renal</td>
+            <td>Hepatic (CYP3A4)</td>
+            <td>Hepatic (CYP3A4, UGT)</td>
+            <td>Hepatic (CYP2C19, 2C9, 3A4)</td>
+            <td>Hepatic Glucuronidation</td>
+          </tr>
+          <tr>
+            <td><strong>Half-Life ($t_{1/2}$)</strong></td>
+            <td>25 hours</td>
+            <td>30–40 hours</td>
+            <td>130 hours</td>
+            <td>Dose dependent</td>
+            <td>20–66 hours</td>
+          </tr>
+          <tr>
+            <td><strong>CSF Penetration</strong></td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><strong>TDM Recommended</strong></td>
+            <td>No</td>
+            <td>Yes (Efficacy)</td>
+            <td>Unknown</td>
+            <td>Yes (Efficacy &amp; Safety)</td>
+            <td>Yes (Efficacy)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CHAPTER 33: AZOLE DRUG INTERACTIONS (Figure 33.11) -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #7c3aed;"><span>⚠️</span> Chapter 33: Life-Threatening Azole Drug Interactions</h2>
+    <p class="chapter-desc">Primary clinical consequences of concurrent triazole administration with narrow therapeutic index drugs.</p>
+    
+    <div class="table-container">
+      <table class="lippincott-table">
+        <thead>
+          <tr class="theme-interactions">
+            <th>Interacting Drug</th>
+            <th>Involved Azoles</th>
+            <th>Effect on Drug Exposure</th>
+            <th>Main Clinical Consequence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Amiodarone, Quinidine</strong></td>
+            <td>Itraconazole, Voriconazole, Posaconazole</td>
+            <td>$\uparrow$ Interacting drug exposure</td>
+            <td>QT interval prolongation, risk of torsades de pointes.</td>
+          </tr>
+          <tr>
+            <td><strong>Carbamazepine</strong></td>
+            <td>Isavuconazole, Voriconazole</td>
+            <td>$\downarrow$ Voriconazole exposure</td>
+            <td>Treatment failure of voriconazole.</td>
+          </tr>
+          <tr>
+            <td><strong>Ergot Alkaloids</strong></td>
+            <td>Itraconazole, Voriconazole, Posaconazole</td>
+            <td>$\uparrow$ Ergot alkaloid exposure</td>
+            <td>Ergotism (vasospasm and ischemia).</td>
+          </tr>
+          <tr>
+            <td><strong>Statins (Simvastatin)</strong></td>
+            <td>Itraconazole, Voriconazole, Posaconazole</td>
+            <td>$\uparrow$ Statin exposure</td>
+            <td>Risk of severe rhabdomyolysis and myopathy.</td>
+          </tr>
+          <tr>
+            <td><strong>Phenytoin</strong></td>
+            <td>Itraconazole, Voriconazole, Posaconazole</td>
+            <td>$\uparrow$ or $\downarrow$ Variable</td>
+            <td>Phenytoin toxicity or voriconazole treatment failure.</td>
+          </tr>
+          <tr>
+            <td><strong>Sirolimus</strong></td>
+            <td>Itraconazole, Voriconazole, Posaconazole</td>
+            <td>$\uparrow$ Sirolimus exposure</td>
+            <td>Risk of severe sirolimus toxicity.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CHAPTER 34: ANTIVIRAL AGENTS & HIV ART (Figures 34.14 & 34.16) -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #4f46e5;"><span>🧬</span> Chapter 34: Antiviral &amp; Antiretroviral Regimens</h2>
+    <p class="chapter-desc">Mechanisms of systemic antiviral agents and combination therapy classes for HIV management.</p>
+    
+    <div class="table-container">
+      <table class="lippincott-table">
+        <thead>
+          <tr class="theme-antiviral">
+            <th>Antiviral Agent</th>
+            <th>Mechanism of Action</th>
+            <th>Viruses &amp; Diseases Affected</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Amantadine / Rimantadine</strong></td>
+            <td>Blockage of M2 protein ion channel; alters intracellular pH.</td>
+            <td>Influenza A virus.</td>
+          </tr>
+          <tr>
+            <td><strong>Ganciclovir / Valganciclovir</strong></td>
+            <td>Inhibition of viral DNA polymerase.</td>
+            <td>Cytomegalovirus (CMV infections and retinitis).</td>
+          </tr>
+          <tr>
+            <td><strong>Interferon-$\alpha$</strong></td>
+            <td>Induction of cellular enzymes inhibiting viral protein synthesis.</td>
+            <td>Hepatitis B &amp; C, Kaposi sarcoma, hairy cell leukemia.</td>
+          </tr>
+          <tr>
+            <td><strong>Oseltamivir / Zanamivir</strong></td>
+            <td>Inhibition of viral neuraminidase enzyme.</td>
+            <td>Influenza A and B.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <h3 style="margin-top:20px;">Unit I: Drug Standards & Distribution</h3>
-    <div class="table-container">
-        <table class="pro-table">
-            <thead><tr class="theme-intro"><th>System</th><th>Operating Mechanism</th><th>Risk Profile</th></tr></thead>
-            <tbody>
-                <tr><td><strong>Unit-Dose</strong></td><td>Individual packaging per dose</td><td>Low risk of calculation error.</td></tr>
-                <tr><td><strong>Controlled Substances</strong></td><td>Restricted access/tracking</td><td>High risk of diversion/abuse.</td></tr>
-                <tr><td><strong>Stock Supply</strong></td><td>Bulk storage of medications</td><td>High risk of administration error.</td></tr>
-            </tbody>
-        </table>
+    <h3 style="margin-top:24px; font-size:1.1rem; color:#4f46e5;">Antiretroviral Therapy (ART) Classes for HIV</h3>
+    <div class="grid-cards" style="margin-top:12px;">
+      <div class="info-card">
+        <h4>NRTIs</h4>
+        <p>Abacavir, Didanosine, Emtricitabine, Lamivudine, Stavudine, Tenofovir, Zidovudine.</p>
+      </div>
+      <div class="info-card">
+        <h4>NNRTIs</h4>
+        <p>Delavirdine, Efavirenz, Etravirine, Nevirapine, Rilpivirine.</p>
+      </div>
+      <div class="info-card">
+        <h4>Protease Inhibitors (PIs)</h4>
+        <p>Atazanavir, Darunavir, Fosamprenavir, Indinavir, Lopinavir/ritonavir, Nelfinavir, Saquinavir, Tipranavir.</p>
+      </div>
+      <div class="info-card">
+        <h4>Integrase Inhibitors</h4>
+        <p>Bictegravir, Dolutegravir, Elvitegravir (coformulated with cobicistat), Raltegravir.</p>
+      </div>
     </div>
+  </section>
+
+  <!-- CHAPTER 35: ANTICANCER DRUGS: ANTIMETABOLITES & ALKYLATING AGENTS (Figures 35.8 & 35.17) -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #db2777;"><span>⚗️</span> Chapter 35: Cytotoxic Chemotherapy Summary</h2>
+    <p class="chapter-desc">Comprehensive breakdown of antimetabolites and alkylating agents, toxicities, and drug interactions.</p>
+    
+    <div class="table-container">
+      <table class="lippincott-table">
+        <thead>
+          <tr class="theme-anticancer">
+            <th>Drug Name &amp; Class</th>
+            <th>Route</th>
+            <th>Dose-Limiting Adverse Effects</th>
+            <th>Notable Drug Interactions</th>
+            <th>Monitoring Parameters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Methotrexate</strong><br><small>Antimetabolite</small></td>
+            <td>IV / PO / IT</td>
+            <td>Stomatitis, myelosuppression, renal damage (high-dose), neurotoxicity (IT).</td>
+            <td>Omeprazole, NSAIDs, penicillins, cephalosporins, folic acid antagonists.</td>
+            <td>CBC, renal/hepatic function, methotrexate levels.</td>
+          </tr>
+          <tr>
+            <td><strong>5-Fluorouracil (5-FU)</strong><br><small>Antimetabolite</small></td>
+            <td>IV</td>
+            <td>Severe mucositis, myelosuppression, hand-foot syndrome, coronary vasospasm.</td>
+            <td>Methotrexate (antifolate analogs).</td>
+            <td>CBC, renal and hepatic function, diarrhea assessment.</td>
+          </tr>
+          <tr>
+            <td><strong>Cyclophosphamide</strong><br><small>Alkylating Agent</small></td>
+            <td>IV / PO</td>
+            <td>Myelosuppression, hemorrhagic cystitis, alopecia, secondary malignancies.</td>
+            <td>Phenobarbital, phenytoin, digoxin, anticoagulants.</td>
+            <td>Urinalysis, CBC, renal and hepatic function.</td>
+          </tr>
+          <tr>
+            <td><strong>Carmustine (BCNU)</strong><br><small>Alkylating Agent</small></td>
+            <td>IV / Wafer</td>
+            <td>Delayed myelosuppression, pulmonary fibrosis, hepatotoxicity, facial flushing.</td>
+            <td>Cimetidine, amphotericin B, phenytoin.</td>
+            <td>CBC, pulmonary function tests (PFTs), hepatic function.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CHAPTER 35: TYROSINE KINASE INHIBITORS (Figure 35.32) -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #9333ea;"><span>🎯</span> Chapter 35: Tyrosine Kinase Inhibitors (TKIs)</h2>
+    <p class="chapter-desc">Targeted kinase inhibitors, adverse effect profiles, and monitoring guidelines.</p>
+    
+    <div class="table-container">
+      <table class="lippincott-table">
+        <thead>
+          <tr class="theme-tki">
+            <th>Agent</th>
+            <th>Primary Kinase Target</th>
+            <th>Adverse Effects</th>
+            <th>Notable Drug Interactions</th>
+            <th>Monitoring Parameters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Erlotinib / Gefitinib</strong></td>
+            <td>EGFR tyrosine kinase</td>
+            <td>Rash, diarrhea, interstitial lung disease, liver toxicity.</td>
+            <td>CYP3A4 inhibitors and inducers.</td>
+            <td>LFTs, CBC, pulmonary symptom review.</td>
+          </tr>
+          <tr>
+            <td><strong>Imatinib</strong></td>
+            <td>BCR-ABL tyrosine kinase</td>
+            <td>Fluid retention, muscle cramps, diarrhea, neutropenia.</td>
+            <td>CYP3A4 substrates and inhibitors.</td>
+            <td>CBC, ECG, renal/hepatic function, BCR-ABL transcripts.</td>
+          </tr>
+          <tr>
+            <td><strong>Sunitinib / Sorafenib</strong></td>
+            <td>Multiple RTKs (VEGFR, PDGFR)</td>
+            <td>Hypertension, hand-foot syndrome, fatigue, thyroid dysfunction.</td>
+            <td>CYP3A4 inducers/inhibitors.</td>
+            <td>Blood pressure, CMP, thyroid-stimulating hormone (TSH).</td>
+          </tr>
+          <tr>
+            <td><strong>Vemurafenib</strong></td>
+            <td>Mutated BRAF kinase</td>
+            <td>Arthralgia, rash, photosensitivity, cutaneous squamous cell carcinomas.</td>
+            <td>CYP3A2 substrates.</td>
+            <td>Dermatologic exams, ECG, electrolytes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CHAPTER 40: ANTIEMETIC EFFICACY (Figure 40.11) -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #ea580c;"><span>📊</span> Chapter 40: Effectiveness of Antiemetic Drug Combinations</h2>
+    <p class="chapter-desc">Response rate (%) against emetic episodes within the first 24 hours after cisplatin chemotherapy.</p>
+    
+    <div class="chart-container">
+      <div class="chart-row">
+        <span class="chart-label">Dexamethasone + Ondansetron</span>
+        <div class="chart-bar-bg">
+          <div class="chart-bar-fill" style="--target-width: 91%;">91%</div>
+        </div>
+      </div>
+
+      <div class="chart-row">
+        <span class="chart-label">Dexamethasone + Diphenhydramine + Droperidol + Metoclopramide</span>
+        <div class="chart-bar-bg">
+          <div class="chart-bar-fill" style="--target-width: 76%;">76%</div>
+        </div>
+      </div>
+
+      <div class="chart-row">
+        <span class="chart-label">Dexamethasone + Lorazepam + Metoclopramide</span>
+        <div class="chart-bar-bg">
+          <div class="chart-bar-fill" style="--target-width: 63%;">63%</div>
+        </div>
+      </div>
+
+      <div class="chart-row">
+        <span class="chart-label">Dexamethasone + Diphenhydramine + Metoclopramide</span>
+        <div class="chart-bar-bg">
+          <div class="chart-bar-fill" style="--target-width: 58%;">58%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </div>
 
-<!-- UNIT II: INFECTION -->
-<div class="table-section">
-    <h3>Unit II: Antibiotic Classification</h3>
-    <div class="table-container">
-        <table class="pro-table">
-            <thead><tr class="theme-infection"><th>Class</th><th>Core Mechanism</th><th>Spectrum Type</th></tr></thead>
-            <tbody>
-                <tr><td><strong>Penicillins</strong></td><td>Inhibits Cell Wall Synthesis</td><td>Narrow to Broad.</td></tr>
-                <tr><td><strong>Aminoglycosides</strong></td><td>Inhibits Protein Synthesis (30S)</td><td>Broad (Gram-Negative).</td></tr>
-                <tr><td><strong>Fluoroquinolones</strong></td><td>Inhibits DNA Synthesis</td><td>Broad Spectrum.</td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <h3 style="margin-top:20px;">Unit II: Non-Antibiotic Anti-Infectives</h3>
-    <div class="table-container">
-        <table class="pro-table">
-            <thead><tr class="theme-infection"><th>Category</th><th>Target Organism</th><th>Pharmacological Goal</th></tr></thead>
-            <tbody>
-                <tr><td><strong>Antiviral</strong></td><td>DNA/RNA Viruses</td><td>Viral replication inhibition.</td></tr>
-                <tr><td><strong>Antifungal</strong></td><td>Ergosterol cell membrane</td><td>Fungal cell lysis.</td></tr>
-                <tr><td><strong>Antimalarial</strong></td><td>Plasmodium species</td><td>Destruction of blood-stage parasites.</td></tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<!-- UNIT III: GASTROINTESTINAL -->
-<div class="table-section">
-    <h3>Unit III: Gastric Acid Modulators</h3>
-    <div class="table-container">
-        <table class="pro-table">
-            <thead><tr class="theme-gi"><th>Drug Class</th><th>Primary Site of Action</th><th>Acid Effect</th></tr></thead>
-            <tbody>
-                <tr><td><strong>PPIs</strong></td><td>H+/K+ ATPase Pump</td><td>Potent suppression.</td></tr>
-                <tr><td><strong>H2 Blockers</strong></td><td>Histamine Receptor</td><td>Moderate suppression.</td></tr>
-                <tr><td><strong>Antacids</strong></td><td>Gastric Lumen</td><td>Chemical neutralization.</td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <h3 style="margin-top:20px;">Unit III: Motility & Emesis Control</h3>
-    <div class="table-container">
-        <table class="pro-table">
-            <thead><tr class="theme-gi"><th>Classification</th><th>Action Mechanism</th><th>Indication</th></tr></thead>
-            <tbody>
-                <tr><td><strong>5-HT3 Antagonist</strong></td><td>Blocks Serotonin receptors</td><td>Chemotherapy-induced emesis.</td></tr>
-                <tr><td><strong>Osmotic Laxative</strong></td><td>Creates osmotic gradient</td><td>Chronic constipation.</td></tr>
-                <tr><td><strong>Dopamine Antagonist</strong></td><td>Blocks D2 receptors</td><td>General nausea/gastric stasis.</td></tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<!-- UNIT IV: HEMATOLOGY -->
-<div class="table-section">
-    <h3>Unit IV: Coagulation Cascade Modulators</h3>
-    <div class="table-container">
-        <table class="pro-table">
-            <thead><tr class="theme-hem"><th>Drug</th><th>Primary Target</th><th>Reversal Agent</th></tr></thead>
-            <tbody>
-                <tr><td><strong>Heparin</strong></td><td>Antithrombin III</td><td>Protamine Sulfate.</td></tr>
-                <tr><td><strong>Warfarin</strong></td><td>Vitamin K Epoxide Reductase</td><td>Vitamin K.</td></tr>
-                <tr><td><strong>Aspirin</strong></td><td>COX-1 enzyme (Platelets)</td><td>None (Platelet transfusion).</td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <h3 style="margin-top:20px;">Unit IV: Hematopoietic Stimulants</h3>
-    <div class="table-container">
-        <table class="pro-table">
-            <thead><tr class="theme-hem"><th>Agent</th><th>Physiological Target</th><th>Clinical Outcome</th></tr></thead>
-            <tbody>
-                <tr><td><strong>Epoetin Alfa</strong></td><td>Bone Marrow Erythroid Cells</td><td>Increased RBC production.</td></tr>
-                <tr><td><strong>Iron Supplements</strong></td><td>Hemoglobin synthesis</td><td>Corrected Iron deficiency.</td></tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<!-- UNIT V: ANTI-NEOPLASTIC -->
-<div class="table-section">
-    <h3>Unit V: Chemotherapy Cell Targets</h3>
-    <div class="table-container">
-        <table class="pro-table">
-            <thead><tr class="theme-neo"><th>Cell Cycle Phase</th><th>Biological Process</th><th>Drug Target</th></tr></thead>
-            <tbody>
-                <tr><td><strong>S-Phase</strong></td><td>DNA Synthesis</td><td>Antimetabolites.</td></tr>
-                <tr><td><strong>M-Phase</strong></td><td>Mitosis (Cell Division)</td><td>Vinca Alkaloids.</td></tr>
-                <tr><td><strong>All Phases</strong></td><td>Non-specific</td><td>Alkylating agents.</td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <h3 style="margin-top:20px;">Unit V: Anti-Neoplastic Drug Classes</h3>
-    <div class="table-container">
-        <table class="pro-table">
-            <thead><tr class="theme-neo"><th>Drug Class</th><th>Mechanism of Action</th><th>Toxicological Target</th></tr></thead>
-            <tbody>
-                <tr><td><strong>Alkylating Agents</strong></td><td>DNA Cross-linking</td><td>Bone Marrow/Bladder.</td></tr>
-                <tr><td><strong>Anthracyclines</strong></td><td>Free Radical Formation</td><td>Myocardium (Heart).</td></tr>
-                <tr><td><strong>Antimetabolites</strong></td><td>Enzyme Inhibition</td><td>Mucosal lining (GI).</td></tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+</body>
+</html>
