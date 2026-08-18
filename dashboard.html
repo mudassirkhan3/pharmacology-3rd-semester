@@ -151,7 +151,6 @@
       </div>
       <div class="profile-info">
         <h3 id="student-name">Mudassir Hussain Khan</h3>
-        <p id="student-institute">New Life Institute of Nursing</p>
         <p id="student-email">rollno 002075</p>
         <span class="badge" id="student-semester">4th Semester</span>
       </div>
@@ -278,10 +277,6 @@
         <input type="text" id="editNameInput" class="form-input">
       </div>
       <div class="form-group">
-        <label>Institute Name</label>
-        <input type="text" id="editInstituteInput" class="form-input">
-      </div>
-      <div class="form-group">
         <label>Email / Roll Number</label>
         <input type="text" id="editEmailInput" class="form-input">
       </div>
@@ -318,7 +313,7 @@
 
   <!-- Footer -->
   <footer>
-    <p>Developed with clinical precision by <span>Mudassir Hussain Khan</span> • BSN Portal</p>
+    <p>Developed with clinical precision by <span>Mudassir Khan</span> • BSN Portal</p>
   </footer>
 
   <script>
@@ -386,7 +381,6 @@
       if (userJSON) {
         const user = JSON.parse(userJSON);
         document.getElementById('student-name').innerText = user.name || 'Mudassir Hussain Khan';
-        document.getElementById('student-institute').innerText = user.institute || 'New Life Institute of Nursing';
         document.getElementById('student-email').innerText = user.email || 'rollno 002075';
         document.getElementById('student-semester').innerText = user.semester || '4th Semester';
       }
@@ -396,13 +390,11 @@
       const userJSON = localStorage.getItem('pharmacologyUser');
       let user = userJSON ? JSON.parse(userJSON) : {
         name: 'Mudassir Hussain Khan',
-        institute: 'New Life Institute of Nursing',
         email: 'rollno 002075',
         semester: '4th Semester'
       };
 
       document.getElementById('editNameInput').value = user.name || '';
-      document.getElementById('editInstituteInput').value = user.institute || '';
       document.getElementById('editEmailInput').value = user.email || '';
       document.getElementById('editSemesterInput').value = user.semester || '';
 
@@ -416,7 +408,6 @@
     function saveProfileChanges() {
       const updatedUser = {
         name: document.getElementById('editNameInput').value.trim(),
-        institute: document.getElementById('editInstituteInput').value.trim(),
         email: document.getElementById('editEmailInput').value.trim(),
         semester: document.getElementById('editSemesterInput').value.trim()
       };
