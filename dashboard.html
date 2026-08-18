@@ -84,6 +84,22 @@
     .chapter-box p { font-size: 0.78rem; color: #475569; margin-bottom: 10px; }
     .chapter-link-text { font-size: 0.78rem; font-weight: 700; color: #0369a1; }
 
+    /* --- SPECIAL COLOR ACCENTS FOR NEW SECTIONS --- */
+    .table-box { border-top: 3px solid #6366f1; background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%); }
+    .table-box h4 { color: #4f46e5 !important; }
+    .table-box .chapter-link-text { color: #4f46e5; }
+    .table-box:hover { border-color: #4f46e5; box-shadow: 0 6px 16px rgba(99, 102, 241, 0.15); }
+
+    .papers-box { border-top: 3px solid #d97706; background: linear-gradient(135deg, #f8fafc 0%, #fffbeb 100%); }
+    .papers-box h4 { color: #b45309 !important; }
+    .papers-box .chapter-link-text { color: #b45309; }
+    .papers-box:hover { border-color: #b45309; box-shadow: 0 6px 16px rgba(217, 119, 6, 0.15); }
+
+    .mcqs-box { border-top: 3px solid #059669; background: linear-gradient(135deg, #f8fafc 0%, #ecfdf5 100%); }
+    .mcqs-box h4 { color: #047857 !important; }
+    .mcqs-box .chapter-link-text { color: #047857; }
+    .mcqs-box:hover { border-color: #047857; box-shadow: 0 6px 16px rgba(5, 150, 105, 0.15); }
+
     /* Lock Curtain */
     .content-lock-overlay { position: absolute; inset: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(6px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border-radius: 16px; z-index: 10; padding: 20px; }
     .content-lock-overlay h3 { font-size: 1.1rem; font-weight: 800; color: #dc2626; margin-bottom: 6px; }
@@ -218,8 +234,8 @@
               <span class="chapter-link-text">Read Notes →</span>
             </a>
 
-            <!-- NEW SECTIONS ADDED BELOW -->
-            <a href="important-tables.html" class="chapter-box" onclick="return checkAccess(event)">
+            <!-- 1. IMPORTANT TABLES (Indigo Accent) -->
+            <a href="important-tables.html" class="chapter-box table-box" onclick="return checkAccess(event)">
               <div>
                 <h4>IMPORTANT TABLES</h4>
                 <p>High-yield classification and dosage reference charts.</p>
@@ -227,7 +243,8 @@
               <span class="chapter-link-text">Open Tables →</span>
             </a>
 
-            <a href="uhs-past-papers.html" class="chapter-box" onclick="return checkAccess(event)">
+            <!-- 2. UHS PHARAMA PAST PAPERS (Amber/Gold Accent) -->
+            <a href="uhs-past-papers.html" class="chapter-box papers-box" onclick="return checkAccess(event)">
               <div>
                 <h4>UHS PHARAMA PAST PAPERS</h4>
                 <p>Previous years University of Health Sciences exam papers.</p>
@@ -235,7 +252,8 @@
               <span class="chapter-link-text">View Papers →</span>
             </a>
 
-            <a href="practice-mcqs.html" class="chapter-box" onclick="return checkAccess(event)">
+            <!-- 3. PRACTICE MCQS (Emerald Green Accent) -->
+            <a href="practice-mcqs.html" class="chapter-box mcqs-box" onclick="return checkAccess(event)">
               <div>
                 <h4>PRACTICE MCQS</h4>
                 <p>Test your knowledge with chapter-wise quizzes.</p>
