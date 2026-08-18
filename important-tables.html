@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lippincott Pharmacology: Aminoglycosides, Macrolides &amp; Cotrimoxazole</title>
+  <title>Lippincott Pharmacology Master Tables</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -48,10 +48,66 @@
       margin-bottom: 24px;
     }
 
-    /* Grid Cards for Sub-lists */
+    /* Table Styling */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 20px;
+    }
+
+    .lippincott-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+      text-align: left;
+    }
+
+    .lippincott-table th {
+      padding: 16px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .lippincott-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 0.92rem;
+      color: #334155;
+      vertical-align: top;
+      transition: background 0.2s ease;
+    }
+
+    .lippincott-table tr:hover td {
+      background-color: #f8fafc;
+    }
+
+    .lippincott-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Chapter Specific Themes */
+    .theme-cotrimoxazole th { background: #059669; }
+    .theme-tb th { background: #0d9488; }
+    .theme-antifungal th { background: #2563eb; }
+    .theme-interactions th { background: #7c3aed; }
+    .theme-antiviral th { background: #4f46e5; }
+    .theme-anticancer th { background: #db2777; }
+    .theme-tki th { background: #9333ea; }
+    .theme-antiemetic th { background: #ea580c; }
+    .theme-aminoglycosides th { background: #d97706; }
+    .theme-macrolides th { background: #0284c7; }
+    .theme-antiplatelet th { background: #0891b2; }
+    .theme-bleeding th { background: #dc2626; }
+    .theme-penicillin th { background: #4338ca; }
+
+    /* Animated Grid Cards for Sub-lists */
     .grid-cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 16px;
       margin-top: 16px;
     }
@@ -60,7 +116,7 @@
       background: #f8fafc;
       border: 1px solid var(--border-color);
       border-radius: 12px;
-      padding: 20px;
+      padding: 18px;
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
@@ -71,161 +127,729 @@
     }
 
     .info-card h4 {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 800;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: var(--text-main);
     }
 
     .info-card p {
       font-size: 0.88rem;
       color: var(--text-muted);
-      margin-bottom: 10px;
     }
 
-    .pathogen-tag {
-      display: inline-block;
-      background: #e2e8f0;
-      color: #334155;
-      font-size: 0.75rem;
+    /* Bar Chart Animation for Antiemetics */
+    .chart-container {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .chart-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .chart-label {
+      font-size: 0.88rem;
       font-weight: 700;
-      padding: 4px 8px;
-      border-radius: 6px;
-      margin-right: 4px;
-      margin-bottom: 4px;
+      color: var(--text-main);
     }
 
-    /* Theme accents */
-    .theme-amino { border-top: 5px solid #0284c7; }
-    .theme-macro { border-top: 5px solid #d97706; }
-    .theme-cotrim { border-top: 5px solid #059669; }
+    .chart-bar-bg {
+      background: #f1f5f9;
+      border-radius: 8px;
+      height: 28px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border-color);
+    }
+
+    .chart-bar-fill {
+      background: linear-gradient(90deg, #ea580c 0%, #f97316 100%);
+      height: 100%;
+      width: 0;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 12px;
+      color: white;
+      font-size: 0.82rem;
+      font-weight: 800;
+      animation: fillBar 1.2s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+    }
+
+    @keyframes fillBar {
+      to { width: var(--target-width); }
+    }
   </style>
 </head>
 <body>
 
 <div class="master-container">
 
-  <!-- AMINOGLYCOSIDES (Figure 30.7) -->
-  <section class="chapter-section theme-amino">
-    <h2 class="chapter-title" style="color: #0284c7;"><span>💉</span> Chapter 30: Therapeutic Applications of Aminoglycosides</h2>
-    <p class="chapter-desc">Summary of clinical indications, synergy regimens, and specialized pathogen targets.</p>
+  <!-- NEW TABLE: FIGURE 21.5 - PLATELET AGGREGATION INHIBITORS -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #0891b2;"><span>🩸</span> Chapter 21: Summary of Platelet Aggregation Inhibitors (Figure 21.5)</h2>
+    <p class="chapter-desc">Summary of characteristics, adverse effects, drug interactions, and monitoring parameters for antiplatelet agents.</p>
     
-    <div class="grid-cards">
-      <div class="info-card">
-        <h4>Tularemia</h4>
-        <p>Acquired during rabbit-hunting season by hunters skinning infected animals. Pneumonic tularemia results from respiratory transmission or bacteremic lung seeding.</p>
-        <span class="pathogen-tag">Gentamicin (Effective therapy)</span>
-      </div>
+    <div class="table-container">
+      <table class="lippincott-table">
+        <thead>
+          <tr class="theme-antiplatelet">
+            <th>Medication</th>
+            <th>Adverse Effects</th>
+            <th>Drug Interactions</th>
+            <th>Monitoring Parameters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Aspirin</strong><br><small>Oral Agent</small></td>
+            <td>Angioedema, bleeding, bronchospasm, GI disturbances, Reye syndrome, SJS</td>
+            <td>Anticoagulants, P2Y12 inhibitors, NSAIDs (increased bleeding); cidofovir (nephrotoxicity); probenecid (decreased uricosuric effects). Administer on empty stomach.</td>
+            <td>CBC, LFT</td>
+          </tr>
+          <tr>
+            <td><strong>Cilostazol</strong><br><small>Oral Agent</small></td>
+            <td>Bleeding, GI disturbances, headache, peripheral edema, SJS</td>
+            <td>Food (administer on empty stomach)</td>
+            <td>CBC</td>
+          </tr>
+          <tr>
+            <td><strong>Clopidogrel</strong><br><small>Oral Agent</small></td>
+            <td>Bleeding, SJS</td>
+            <td>Strong CYP2C19 inhibitors reduce antiplatelet effect (e.g., omeprazole)</td>
+            <td>CBC, LFT</td>
+          </tr>
+          <tr>
+            <td><strong>Dipyridamole</strong><br><small>Oral Agent</small></td>
+            <td>Bleeding, dizziness, GI discomfort, rash</td>
+            <td>Salicylates (increased bleeding); thrombolytic agents (increased bleeding)</td>
+            <td>None for oral administration</td>
+          </tr>
+          <tr>
+            <td><strong>Prasugrel</strong><br><small>Oral Agent</small></td>
+            <td>Angioedema, bleeding, headache, hyperlipidemia, hypertension</td>
+            <td>Anticoagulants (increased bleeding); other antiplatelets (increased bleeding)</td>
+            <td>CBC</td>
+          </tr>
+          <tr>
+            <td><strong>Ticagrelor</strong><br><small>Oral Agent</small></td>
+            <td>Bleeding, dyspnea, headache, raised SCr</td>
+            <td>Strong CYP3A4 inhibitors like ketoconazole (increased bleeding); strong CYP3A4 inducers like rifampin (decreased efficacy)</td>
+            <td>CBC, LFT</td>
+          </tr>
+          <tr>
+            <td><strong>Abciximab / Eptifibatide / Tirofiban</strong><br><small>Injectable Agents</small></td>
+            <td>Hypotension, nausea, vomiting, thrombocytopenia</td>
+            <td>Increased bleeding with Ginkgo biloba, antiplatelets, salicylates, SSRIs, and SNRIs</td>
+            <td>APTT clotting time, H/H, platelet count, thrombin time</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
+  <!-- NEW TABLE: FIGURE 21.19 - DRUGS USED TO TREAT BLEEDING -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #dc2626;"><span>🩹</span> Chapter 21: Summary of Drugs Used to Treat Bleeding (Figure 21.19)</h2>
+    <p class="chapter-desc">Summary of antidotes for bleeding, adverse effects, and monitoring parameters.</p>
+    
+    <div class="table-container">
+      <table class="lippincott-table">
+        <thead>
+          <tr class="theme-bleeding">
+            <th>Medication</th>
+            <th>Antidote for Bleeding Caused by</th>
+            <th>Adverse Effects</th>
+            <th>Monitoring Parameters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Aminocaproic acid / Tranexamic acid</strong></td>
+            <td>Fibrinolytic state</td>
+            <td>Muscle necrosis, thrombosis, CVA, seizure</td>
+            <td>CBC, muscle enzymes, blood pressure</td>
+          </tr>
+          <tr>
+            <td><strong>Idarucizumab</strong></td>
+            <td>Dabigatran</td>
+            <td>Hypokalemia, thrombosis</td>
+            <td>aPTT, clotting time, thrombin time</td>
+          </tr>
+          <tr>
+            <td><strong>Protamine sulfate</strong></td>
+            <td>Heparin</td>
+            <td>Flushing, nausea/vomiting, dyspnea, bradyarrhythmia, hypotension, anaphylaxis</td>
+            <td>Coagulation monitoring, blood pressure, heart rate</td>
+          </tr>
+          <tr>
+            <td><strong>Vitamin K1</strong></td>
+            <td>Warfarin</td>
+            <td>Skin reaction, anaphylaxis</td>
+            <td>PT/INR</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- NEW TABLE: FIGURE 29.6 - STABILITY OF PENICILLINS -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #4338ca;"><span>💊</span> Chapter 29: Stability of Penicillins to Acid or Penicillinase (Figure 29.6)</h2>
+    <p class="chapter-desc">Classification of penicillins based on acid stability and spectrum of activity.</p>
+    
+    <div class="table-container">
+      <table class="lippincott-table">
+        <thead>
+          <tr class="theme-penicillin">
+            <th>Penicillin Class</th>
+            <th>Specific Agents</th>
+            <th>Clinical &amp; Administration Characteristics</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Natural Penicillins</strong></td>
+            <td>Penicillin V</td>
+            <td>Stable to acid, permitting oral administration.</td>
+          </tr>
+          <tr>
+            <td><strong>Antistaphylococcal Penicillins</strong></td>
+            <td>Dicloxacillin, Methicillin, Nafcillin, Oxacillin</td>
+            <td>Resistant to penicillinase enzyme produced by staphylococci.</td>
+          </tr>
+          <tr>
+            <td><strong>Extended-Spectrum Penicillins</strong></td>
+            <td>Ampicillin, Amoxicillin, Amoxicillin + clavulanic acid, Ampicillin + sulbactam*</td>
+            <td>Broader Gram-negative coverage; *ampicillin + sulbactam available only as parenteral preparation.</td>
+          </tr>
+          <tr>
+            <td><strong>Antipseudomonal Penicillins</strong></td>
+            <td>Piperacillin, Piperacillin + tazobactam*</td>
+            <td>Expanded activity against <i>Pseudomonas aeruginosa</i>; *piperacillin + tazobactam available only as parenteral preparation.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CHAPTER 30 - AMINOGLYCOSIDES (Figure 30.7) -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #d97706;"><span>🧪</span> Chapter 30: Therapeutic Applications of Aminoglycosides (Figure 30.7)</h2>
+    <p class="chapter-desc">Summary of clinical indications, synergy targets, and infectious disease applications for aminoglycosides.</p>
+    
+    <div class="table-container">
+      <table class="lippincott-table">
+        <thead>
+          <tr class="theme-aminoglycosides">
+            <th>Indication / Category</th>
+            <th>Target Pathogens</th>
+            <th>Clinical Application &amp; Rationale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Tularemia</strong></td>
+            <td><i>Francisella tularensis</i></td>
+            <td>Acquired via rabbit-hunting season or skinning infected animals. Pneumonic tularemia results from respiratory infection or bacteremic lung seeding. Gentamicin is highly effective in treating this rare lymphoid disease.</td>
+          </tr>
+          <tr>
+            <td><strong>Synergistic Combinations</strong></td>
+            <td>Gram (+) cocci &amp; Gram (-) rods</td>
+            <td>May be added to $\beta$-lactams for synergy in select serious infections: <i>Enterococcus</i> spp. (ampicillin + gentamicin), <i>Streptococcus agalactiae</i> (ampicillin + gentamicin), <i>Acinetobacter baumannii</i>, <i>Brucella</i> spp. (gentamicin + doxycycline), and <i>Yersinia pestis</i> (streptomycin).</td>
+          </tr>
+          <tr>
+            <td><strong>Pseudomonas aeruginosa Infections</strong></td>
+            <td><i>Pseudomonas aeruginosa</i></td>
+            <td>Rarely attacks healthy individuals; affects patients with specific risk factors (recent antibiotic exposure, prolonged hospitalization, bronchiectasis). Treatment includes tobramycin alone (e.g., for UTI) or combined with an antipseudomonal $\beta$-lactam (e.g., for pneumonia).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CHAPTER 30 - MACROLIDES (Figure 30.10) -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #0284c7;"><span>💊</span> Chapter 30: Therapeutic Applications of Macrolides (Figure 30.10)</h2>
+    <p class="chapter-desc">Overview of therapeutic spectra, preferred options, and regimens for macrolide antibiotics.</p>
+    
+    <div class="table-container">
+      <table class="lippincott-table">
+        <thead>
+          <tr class="theme-macrolides">
+            <th>Clinical Condition</th>
+            <th>Preferred Agents / Alternatives</th>
+            <th>Key Clinical Details &amp; Pathogens</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Corynebacterium diphtheriae</strong></td>
+            <td>Erythromycin or Penicillin</td>
+            <td>Used specifically to eliminate the carrier state.</td>
+          </tr>
+          <tr>
+            <td><strong>Chlamydial Infections</strong></td>
+            <td>Azithromycin or Doxycycline</td>
+            <td>Effective against <i>Chlamydia pneumoniae</i>, <i>Chlamydia psittaci</i>, <i>Chlamydia trachomatis</i>, <i>Ureaplasma urealyticum</i>, and <i>Mycoplasma pneumoniae</i>.</td>
+          </tr>
+          <tr>
+            <td><strong>Legionnaires Disease (Legionellosis)</strong></td>
+            <td>Fluoroquinolones or Azithromycin</td>
+            <td>Undiagnosed and asymptomatic infections are common. Covers <i>Legionella pneumophila</i>, <i>Bordetella pertussis</i>, <i>Campylobacter jejuni</i>, <i>Haemophilus influenzae</i>, <i>Moraxella catarrhalis</i>, <i>Neisseria gonorrhoeae</i>, and <i>Streptococcus pneumoniae</i>.</td>
+          </tr>
+          <tr>
+            <td><strong>Mycoplasma Pneumonia</strong></td>
+            <td>Azithromycin or Doxycycline</td>
+            <td>Referred to as "atypical" pneumonia because causative mycoplasmas escape isolation by standard bacteriologic techniques.</td>
+          </tr>
+          <tr>
+            <td><strong>Mycobacterium Avium Complex (MAC)</strong></td>
+            <td>Clarithromycin + Rifampin + Ethambutol (Preferred)<br>Azithromycin (Alternative / Prophylaxis)</td>
+            <td>Combination therapy is preferred for active MAC infections. Once-weekly azithromycin is utilized for MAC prophylaxis in patients with AIDS.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CHAPTER 31 - COTRIMOXAZOLE APPLICATIONS (Figure 31.11) -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #059669;"><span>🦠</span> Chapter 31: Therapeutic Applications of Cotrimoxazole (Figure 31.11)</h2>
+    <p class="chapter-desc">Detailed clinical indications and therapeutic targets for sulfamethoxazole plus trimethoprim.</p>
+    
+    <div class="table-container">
+      <table class="lippincott-table">
+        <thead>
+          <tr class="theme-cotrimoxazole">
+            <th>Indication / Disease State</th>
+            <th>Primary Pathogen Targets</th>
+            <th>Clinical Rationale &amp; Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>MRSA Infections</strong></td>
+            <td><i>Staphylococcus aureus</i> (Methicillin-resistant)</td>
+            <td>Highly effective for MRSA skin and soft-tissue infections.</td>
+          </tr>
+          <tr>
+            <td><strong>Respiratory Infections</strong></td>
+            <td><i>Haemophilus influenzae</i>, <i>Legionella pneumophila</i></td>
+            <td>Effective against <i>H. influenzae</i> and serves as an alternative treatment option for <i>Legionella pneumophila</i>.</td>
+          </tr>
+          <tr>
+            <td><strong>Pneumocystis Jirovecii Pneumonia (PJP)</strong></td>
+            <td><i>Pneumocystis jirovecii</i></td>
+            <td>Common opportunistic infection complicating AIDS. Cotrimoxazole is the most effective therapy and standard prophylaxis for HIV patients with CD4+ counts &lt;200 cells/mL.</td>
+          </tr>
+          <tr>
+            <td><strong>Listeriosis</strong></td>
+            <td><i>Listeria monocytogenes</i></td>
+            <td>Ampicillin or cotrimoxazole is effective in treating septicemia and meningitis caused by <i>Listeria monocytogenes</i>.</td>
+          </tr>
+          <tr>
+            <td><strong>Prostate &amp; Urinary Tract Infections</strong></td>
+            <td>Gram (-) rods, lower urinary tract flora</td>
+            <td>Trimethoprim concentrates in prostatic and vaginal fluids. Chronic urinary tract infections respond effectively to cotrimoxazole.</td>
+          </tr>
+          <tr>
+            <td><strong>Gastrointestinal Infections</strong></td>
+            <td><i>Shigella</i> species, Nontyphoid Salmonella, <i>Salmonella typhi</i></td>
+            <td>Useful in treating shigellosis, nontyphoid salmonella, and managing chronic carriers of <i>S. typhi</i>.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CHAPTER 32: SECOND-LINE TB DRUGS (Figure 32.10) -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #0d9488;"><span>🫁</span> Chapter 32: Second-Line Antitubercular Agents</h2>
+    <p class="chapter-desc">Characteristics, toxicities, and monitoring parameters for second-line tuberculosis drugs.</p>
+    
+    <div class="table-container">
+      <table class="lippincott-table">
+        <thead>
+          <tr class="theme-tb">
+            <th>Drug Class / Agent</th>
+            <th>Adverse Effects</th>
+            <th>Clinical Comments &amp; Monitoring</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Fluoroquinolones</strong></td>
+            <td>GI intolerance, tendonitis, CNS toxicity, caffeine-like effects.</td>
+            <td>Monitor LFTs, serum creatinine/BUN, and QT interval. Avoid concurrent ingestion with di- or trivalent cations (antacids/multivitamins).</td>
+          </tr>
+          <tr>
+            <td><strong>Aminoglycosides &amp; Capreomycin</strong></td>
+            <td>Nephrotoxicity, ototoxicity (vestibular and auditory).</td>
+            <td>Not available orally. Requires serial monitoring of renal function, vestibular function, and hearing.</td>
+          </tr>
+          <tr>
+            <td><strong>Macrolides</strong></td>
+            <td>GI intolerance, tinnitus.</td>
+            <td>Monitor LFTs, serum creatinine/BUN, and QT interval. Watch for drug interactions due to CYP inhibition.</td>
+          </tr>
+          <tr>
+            <td><strong>Ethionamide &amp; PAS</strong></td>
+            <td>GI intolerance, hepatotoxicity, hypothyroidism.</td>
+            <td>Monitor LFTs and TSH. High incidence of GI distress. Patients with G6PD deficiency face increased risk of hemolytic anemia with PAS.</td>
+          </tr>
+          <tr>
+            <td><strong>Cycloserine</strong></td>
+            <td>Severe CNS toxicity (depression, anxiety, confusion, seizures).</td>
+            <td>Requires strict psychiatric monitoring. Exacerbates seizures in epileptic patients. Monitor serum creatinine.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CHAPTER 33: TRIAZOLE ANTIFUNGALS (Figure 33.10) -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #2563eb;"><span>🍄</span> Chapter 33: Pharmacokinetic Profile of Triazole Antifungals</h2>
+    <p class="chapter-desc">Comparative analysis of spectrum, bioavailability, elimination, and therapeutic monitoring.</p>
+    
+    <div class="table-container">
+      <table class="lippincott-table">
+        <thead>
+          <tr class="theme-antifungal">
+            <th>Parameter</th>
+            <th>Fluconazole</th>
+            <th>Itraconazole</th>
+            <th>Isavuconazole</th>
+            <th>Voriconazole</th>
+            <th>Posaconazole</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Spectrum of Activity</strong></td>
+            <td>+</td>
+            <td>++</td>
+            <td>+++</td>
+            <td>+++</td>
+            <td>++++</td>
+          </tr>
+          <tr>
+            <td><strong>Route of Administration</strong></td>
+            <td>Oral, IV</td>
+            <td>Oral</td>
+            <td>Oral, IV</td>
+            <td>Oral, IV</td>
+            <td>Oral, IV</td>
+          </tr>
+          <tr>
+            <td><strong>Oral Bioavailability (%)</strong></td>
+            <td>95</td>
+            <td>55 (solution)</td>
+            <td>98</td>
+            <td>96</td>
+            <td>Variable</td>
+          </tr>
+          <tr>
+            <td><strong>Protein Binding (%)</strong></td>
+            <td>10</td>
+            <td>99</td>
+            <td>99</td>
+            <td>58</td>
+            <td>99</td>
+          </tr>
+          <tr>
+            <td><strong>Primary Elimination</strong></td>
+            <td>Renal</td>
+            <td>Hepatic (CYP3A4)</td>
+            <td>Hepatic (CYP3A4, UGT)</td>
+            <td>Hepatic (CYP2C19, 2C9, 3A4)</td>
+            <td>Hepatic Glucuronidation</td>
+          </tr>
+          <tr>
+            <td><strong>Half-Life ($t_{1/2}$)</strong></td>
+            <td>25 hours</td>
+            <td>30–40 hours</td>
+            <td>130 hours</td>
+            <td>Dose dependent</td>
+            <td>20–66 hours</td>
+          </tr>
+          <tr>
+            <td><strong>CSF Penetration</strong></td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><strong>TDM Recommended</strong></td>
+            <td>No</td>
+            <td>Yes (Efficacy)</td>
+            <td>Unknown</td>
+            <td>Yes (Efficacy &amp; Safety)</td>
+            <td>Yes (Efficacy)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CHAPTER 33: AZOLE DRUG INTERACTIONS (Figure 33.11) -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #7c3aed;"><span>⚠️</span> Chapter 33: Life-Threatening Azole Drug Interactions</h2>
+    <p class="chapter-desc">Primary clinical consequences of concurrent triazole administration with narrow therapeutic index drugs.</p>
+    
+    <div class="table-container">
+      <table class="lippincott-table">
+        <thead>
+          <tr class="theme-interactions">
+            <th>Interacting Drug</th>
+            <th>Involved Azoles</th>
+            <th>Effect on Drug Exposure</th>
+            <th>Main Clinical Consequence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Amiodarone, Quinidine</strong></td>
+            <td>Itraconazole, Voriconazole, Posaconazole</td>
+            <td>$\uparrow$ Interacting drug exposure</td>
+            <td>QT interval prolongation, risk of torsades de pointes.</td>
+          </tr>
+          <tr>
+            <td><strong>Carbamazepine</strong></td>
+            <td>Isavuconazole, Voriconazole</td>
+            <td>$\downarrow$ Voriconazole exposure</td>
+            <td>Treatment failure of voriconazole.</td>
+          </tr>
+          <tr>
+            <td><strong>Ergot Alkaloids</strong></td>
+            <td>Itraconazole, Voriconazole, Posaconazole</td>
+            <td>$\uparrow$ Ergot alkaloid exposure</td>
+            <td>Ergotism (vasospasm and ischemia).</td>
+          </tr>
+          <tr>
+            <td><strong>Statins (Simvastatin)</strong></td>
+            <td>Itraconazole, Voriconazole, Posaconazole</td>
+            <td>$\uparrow$ Statin exposure</td>
+            <td>Risk of severe rhabdomyolysis and myopathy.</td>
+          </tr>
+          <tr>
+            <td><strong>Phenytoin</strong></td>
+            <td>Itraconazole, Voriconazole, Posaconazole</td>
+            <td>$\uparrow$ or $\downarrow$ Variable</td>
+            <td>Phenytoin toxicity or voriconazole treatment failure.</td>
+          </tr>
+          <tr>
+            <td><strong>Sirolimus</strong></td>
+            <td>Itraconazole, Voriconazole, Posaconazole</td>
+            <td>$\uparrow$ Sirolimus exposure</td>
+            <td>Risk of severe sirolimus toxicity.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CHAPTER 34: ANTIVIRAL AGENTS & HIV ART (Figures 34.14 & 34.16) -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #4f46e5;"><span>🧬</span> Chapter 34: Antiviral &amp; Antiretroviral Regimens</h2>
+    <p class="chapter-desc">Mechanisms of systemic antiviral agents and combination therapy classes for HIV management.</p>
+    
+    <div class="table-container">
+      <table class="lippincott-table">
+        <thead>
+          <tr class="theme-antiviral">
+            <th>Antiviral Agent</th>
+            <th>Mechanism of Action</th>
+            <th>Viruses &amp; Diseases Affected</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Amantadine / Rimantadine</strong></td>
+            <td>Blockage of M2 protein ion channel; alters intracellular pH.</td>
+            <td>Influenza A virus.</td>
+          </tr>
+          <tr>
+            <td><strong>Ganciclovir / Valganciclovir</strong></td>
+            <td>Inhibition of viral DNA polymerase.</td>
+            <td>Cytomegalovirus (CMV infections and retinitis).</td>
+          </tr>
+          <tr>
+            <td><strong>Interferon-$\alpha$</strong></td>
+            <td>Induction of cellular enzymes inhibiting viral protein synthesis.</td>
+            <td>Hepatitis B &amp; C, Kaposi sarcoma, hairy cell leukemia.</td>
+          </tr>
+          <tr>
+            <td><strong>Oseltamivir / Zanamivir</strong></td>
+            <td>Inhibition of viral neuraminidase enzyme.</td>
+            <td>Influenza A and B.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:24px; font-size:1.1rem; color:#4f46e5;">Antiretroviral Therapy (ART) Classes for HIV</h3>
+    <div class="grid-cards" style="margin-top:12px;">
       <div class="info-card">
-        <h4>Synergy with Beta-Lactams</h4>
-        <p>Aminoglycosides are combined with beta-lactams to achieve bactericidal synergy for select serious infections.</p>
-        <div>
-          <span class="pathogen-tag">Enterococcus (Ampicillin + Gentamicin)</span>
-          <span class="pathogen-tag">S. agalactiae (Ampicillin + Gentamicin)</span>
-          <span class="pathogen-tag">Brucella (Gentamicin + Doxycycline)</span>
-          <span class="pathogen-tag">Y. pestis (Streptomycin)</span>
-          <span class="pathogen-tag">F. tularensis (Gentamicin)</span>
+        <h4>NRTIs</h4>
+        <p>Abacavir, Didanosine, Emtricitabine, Lamivudine, Stavudine, Tenofovir, Zidovudine.</p>
+      </div>
+      <div class="info-card">
+        <h4>NNRTIs</h4>
+        <p>Delavirdine, Efavirenz, Etravirine, Nevirapine, Rilpivirine.</p>
+      </div>
+      <div class="info-card">
+        <h4>Protease Inhibitors (PIs)</h4>
+        <p>Atazanavir, Darunavir, Fosamprenavir, Indinavir, Lopinavir/ritonavir, Nelfinavir, Saquinavir, Tipranavir.</p>
+      </div>
+      <div class="info-card">
+        <h4>Integrase Inhibitors</h4>
+        <p>Bictegravir, Dolutegravir, Elvitegravir (coformulated with cobicistat), Raltegravir.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 35: ANTICANCER DRUGS: ANTIMETABOLITES & ALKYLATING AGENTS (Figures 35.8 & 35.17) -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #db2777;"><span>⚗️</span> Chapter 35: Cytotoxic Chemotherapy Summary</h2>
+    <p class="chapter-desc">Comprehensive breakdown of antimetabolites and alkylating agents, toxicities, and drug interactions.</p>
+    
+    <div class="table-container">
+      <table class="lippincott-table">
+        <thead>
+          <tr class="theme-anticancer">
+            <th>Drug Name &amp; Class</th>
+            <th>Route</th>
+            <th>Dose-Limiting Adverse Effects</th>
+            <th>Notable Drug Interactions</th>
+            <th>Monitoring Parameters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Methotrexate</strong><br><small>Antimetabolite</small></td>
+            <td>IV / PO / IT</td>
+            <td>Stomatitis, myelosuppression, renal damage (high-dose), neurotoxicity (IT).</td>
+            <td>Omeprazole, NSAIDs, penicillins, cephalosporins, folic acid antagonists.</td>
+            <td>CBC, renal/hepatic function, methotrexate levels.</td>
+          </tr>
+          <tr>
+            <td><strong>5-Fluorouracil (5-FU)</strong><br><small>Antimetabolite</small></td>
+            <td>IV</td>
+            <td>Severe mucositis, myelosuppression, hand-foot syndrome, coronary vasospasm.</td>
+            <td>Methotrexate (antifolate analogs).</td>
+            <td>CBC, renal and hepatic function, diarrhea assessment.</td>
+          </tr>
+          <tr>
+            <td><strong>Cyclophosphamide</strong><br><small>Alkylating Agent</small></td>
+            <td>IV / PO</td>
+            <td>Myelosuppression, hemorrhagic cystitis, alopecia, secondary malignancies.</td>
+            <td>Phenobarbital, phenytoin, digoxin, anticoagulants.</td>
+            <td>Urinalysis, CBC, renal and hepatic function.</td>
+          </tr>
+          <tr>
+            <td><strong>Carmustine (BCNU)</strong><br><small>Alkylating Agent</small></td>
+            <td>IV / Wafer</td>
+            <td>Delayed myelosuppression, pulmonary fibrosis, hepatotoxicity, facial flushing.</td>
+            <td>Cimetidine, amphotericin B, phenytoin.</td>
+            <td>CBC, pulmonary function tests (PFTs), hepatic function.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CHAPTER 35: TYROSINE KINASE INHIBITORS (Figure 35.32) -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #9333ea;"><span>🎯</span> Chapter 35: Tyrosine Kinase Inhibitors (TKIs)</h2>
+    <p class="chapter-desc">Targeted kinase inhibitors, adverse effect profiles, and monitoring guidelines.</p>
+    
+    <div class="table-container">
+      <table class="lippincott-table">
+        <thead>
+          <tr class="theme-tki">
+            <th>Agent</th>
+            <th>Primary Kinase Target</th>
+            <th>Adverse Effects</th>
+            <th>Notable Drug Interactions</th>
+            <th>Monitoring Parameters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Erlotinib / Gefitinib</strong></td>
+            <td>EGFR tyrosine kinase</td>
+            <td>Rash, diarrhea, interstitial lung disease, liver toxicity.</td>
+            <td>CYP3A4 inhibitors and inducers.</td>
+            <td>LFTs, CBC, pulmonary symptom review.</td>
+          </tr>
+          <tr>
+            <td><strong>Imatinib</strong></td>
+            <td>BCR-ABL tyrosine kinase</td>
+            <td>Fluid retention, muscle cramps, diarrhea, neutropenia.</td>
+            <td>CYP3A4 substrates and inhibitors.</td>
+            <td>CBC, ECG, renal/hepatic function, BCR-ABL transcripts.</td>
+          </tr>
+          <tr>
+            <td><strong>Sunitinib / Sorafenib</strong></td>
+            <td>Multiple RTKs (VEGFR, PDGFR)</td>
+            <td>Hypertension, hand-foot syndrome, fatigue, thyroid dysfunction.</td>
+            <td>CYP3A4 inducers/inhibitors.</td>
+            <td>Blood pressure, CMP, thyroid-stimulating hormone (TSH).</td>
+          </tr>
+          <tr>
+            <td><strong>Vemurafenib</strong></td>
+            <td>Mutated BRAF kinase</td>
+            <td>Arthralgia, rash, photosensitivity, cutaneous squamous cell carcinomas.</td>
+            <td>CYP3A2 substrates.</td>
+            <td>Dermatologic exams, ECG, electrolytes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CHAPTER 40: ANTIEMETIC EFFICACY (Figure 40.11) -->
+  <section class="chapter-section">
+    <h2 class="chapter-title" style="color: #ea580c;"><span>📊</span> Chapter 40: Effectiveness of Antiemetic Drug Combinations</h2>
+    <p class="chapter-desc">Response rate (%) against emetic episodes within the first 24 hours after cisplatin chemotherapy.</p>
+    
+    <div class="chart-container">
+      <div class="chart-row">
+        <span class="chart-label">Dexamethasone + Ondansetron</span>
+        <div class="chart-bar-bg">
+          <div class="chart-bar-fill" style="--target-width: 91%;">91%</div>
         </div>
       </div>
 
-      <div class="info-card">
-        <h4>Pseudomonas aeruginosa Infections</h4>
-        <p>Rarely attacks healthy individuals; occurs in patients with risk factors like recent antibiotic exposure, prolonged hospitalization, or bronchiectasis.</p>
-        <span class="pathogen-tag">Tobramycin (UTI)</span>
-        <span class="pathogen-tag">Tobramycin + Antipseudomonal Beta-Lactam (Pneumonia)</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- MACROLIDES (Figure 30.10) -->
-  <section class="chapter-section theme-macro">
-    <h2 class="chapter-title" style="color: #d97706;"><span>💊</span> Chapter 30: Therapeutic Applications of Macrolides</h2>
-    <p class="chapter-desc">Clinical indications and preferred regimens for atypical pathogens, respiratory infections, and MAC.</p>
-    
-    <div class="grid-cards">
-      <div class="info-card">
-        <h4>Corynebacterium diphtheriae</h4>
-        <p>Erythromycin or penicillin is utilized to successfully eliminate the carrier state.</p>
-        <span class="pathogen-tag">Corynebacterium diphtheriae</span>
+      <div class="chart-row">
+        <span class="chart-label">Dexamethasone + Diphenhydramine + Droperidol + Metoclopramide</span>
+        <div class="chart-bar-bg">
+          <div class="chart-bar-fill" style="--target-width: 76%;">76%</div>
+        </div>
       </div>
 
-      <div class="info-card">
-        <h4>Chlamydial Infections</h4>
-        <p>Azithromycin or doxycycline serve as the preferred therapeutic options across multiple chlamydial strains.</p>
-        <span class="pathogen-tag">C. pneumoniae</span>
-        <span class="pathogen-tag">C. psittaci</span>
-        <span class="pathogen-tag">C. trachomatis</span>
+      <div class="chart-row">
+        <span class="chart-label">Dexamethasone + Lorazepam + Metoclopramide</span>
+        <div class="chart-bar-bg">
+          <div class="chart-bar-fill" style="--target-width: 63%;">63%</div>
+        </div>
       </div>
 
-      <div class="info-card">
-        <h4>Legionnaires Disease (Legionellosis)</h4>
-        <p>Undiagnosed and asymptomatic infections are common. Treated with preferred macrolide or fluoroquinolone regimens.</p>
-        <span class="pathogen-tag">Legionella pneumophila</span>
-        <span class="pathogen-tag">Bordetella pertussis</span>
-        <span class="pathogen-tag">Campylobacter jejuni</span>
-      </div>
-
-      <div class="info-card">
-        <h4>Mycoplasma Pneumonia</h4>
-        <p>Referred to as "atypical" pneumonia because causative mycoplasmas escape isolation via standard bacteriologic techniques.</p>
-        <span class="pathogen-tag">Mycoplasma pneumoniae</span>
-        <span class="pathogen-tag">Ureaplasma urealyticum</span>
-      </div>
-
-      <div class="info-card">
-        <h4>Mycobacterium Avium Complex (MAC)</h4>
-        <p>Clarithromycin + rifampin + ethambutol is preferred. Azithromycin serves as an alternative or once-weekly prophylaxis for AIDS patients.</p>
-        <span class="pathogen-tag">Mycobacterium avium complex</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- COTRIMOXAZOLE (Figure 31.11) -->
-  <section class="chapter-section theme-cotrim">
-    <h2 class="chapter-title" style="color: #059669;"><span>🦠</span> Chapter 31: Therapeutic Applications of Cotrimoxazole</h2>
-    <p class="chapter-desc">Clinical spectrum of sulfamethoxazole plus trimethoprim in systemic, urinary, and opportunistic infections.</p>
-    
-    <div class="grid-cards">
-      <div class="info-card">
-        <h4>MRSA Infections</h4>
-        <p>Highly effective for methicillin-resistant Staphylococcus aureus skin and soft-tissue infections.</p>
-        <span class="pathogen-tag">S. aureus (MRSA)</span>
-      </div>
-
-      <div class="info-card">
-        <h4>Respiratory Infections</h4>
-        <p>Effective against Haemophilus influenzae; serves as an alternative treatment choice for Legionella pneumophila.</p>
-        <span class="pathogen-tag">H. influenzae</span>
-        <span class="pathogen-tag">Legionella pneumophila</span>
-      </div>
-
-      <div class="info-card">
-        <h4>Pneumocystis Jirovecii Pneumonia (PJP)</h4>
-        <p>Primary choice therapy for AIDS-related PJP; standard prophylaxis for HIV patients with CD4+ counts &lt;200 cells/mL.</p>
-        <span class="pathogen-tag">P. jirovecii</span>
-        <span class="pathogen-tag">Toxoplasmosis gondii</span>
-      </div>
-
-      <div class="info-card">
-        <h4>Listeriosis</h4>
-        <p>Ampicillin or cotrimoxazole is effective in treating septicemia and meningitis caused by Listeria monocytogenes.</p>
-        <span class="pathogen-tag">Listeria monocytogenes</span>
-      </div>
-
-      <div class="info-card">
-        <h4>Prostate &amp; Urinary Tract Infections</h4>
-        <p>Trimethoprim concentrates in prostatic and vaginal fluids. Chronic urinary tract infections respond well to cotrimoxazole.</p>
-        <span class="pathogen-tag">E. coli</span>
-        <span class="pathogen-tag">Proteus mirabilis</span>
-        <span class="pathogen-tag">Klebsiella</span>
-      </div>
-
-      <div class="info-card">
-        <h4>Gastrointestinal Infections</h4>
-        <p>Useful in treating shigellosis, nontyphoid salmonella, and managing chronic carriers of Salmonella typhi.</p>
-        <span class="pathogen-tag">Shigella species</span>
-        <span class="pathogen-tag">Salmonella typhi</span>
+      <div class="chart-row">
+        <span class="chart-label">Dexamethasone + Diphenhydramine + Metoclopramide</span>
+        <div class="chart-bar-bg">
+          <div class="chart-bar-fill" style="--target-width: 58%;">58%</div>
+        </div>
       </div>
     </div>
   </section>
