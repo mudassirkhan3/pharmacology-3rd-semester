@@ -28,20 +28,20 @@
 
     body { background: #f1f5f9; color: #0f172a; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow-x: hidden; }
 
-    /* --- PAGE BLUR EFFECT WHEN MODAL IS ACTIVE --- */
+    /* --- PAGE BLUR EFFECT WHEN WELCOME POPUP IS ACTIVE --- */
     .page-blurred {
-      filter: blur(10px);
+      filter: blur(12px);
       pointer-events: none;
       user-select: none;
       transition: filter 0.4s ease;
     }
 
-    /* --- EYE-CATCHING CENTERED WELCOME MODAL OVERLAY --- */
+    /* --- SIMPLE & BIG CENTERED WELCOME POPUP --- */
     .welcome-modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(15, 23, 42, 0.82);
-      backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(16px);
       z-index: 2000;
       display: flex;
       align-items: center;
@@ -51,16 +51,16 @@
     }
 
     @keyframes fadeInModal {
-      from { opacity: 0; transform: scale(0.9); }
+      from { opacity: 0; transform: scale(0.92); }
       to { opacity: 1; transform: scale(1); }
     }
 
     .welcome-modal-card {
-      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      background: #ffffff;
       width: 100%;
-      max-width: 460px;
+      max-width: 440px;
       border-radius: 28px;
-      box-shadow: 0 30px 60px -12px rgba(2, 132, 199, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.2);
+      box-shadow: 0 30px 60px -15px rgba(2, 132, 199, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2);
       overflow: hidden;
       text-align: center;
       position: relative;
@@ -69,73 +69,47 @@
     .welcome-modal-header {
       background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
       color: white;
-      padding: 36px 24px 28px;
-      position: relative;
+      padding: 40px 24px 32px;
     }
 
     .welcome-icon {
-      width: 72px;
-      height: 72px;
+      width: 80px;
+      height: 80px;
       background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(6px);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
-      margin: 0 auto 16px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-      border: 2px solid rgba(255, 255, 255, 0.5);
+      font-size: 2.2rem;
+      margin: 0 auto 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      border: 2px solid rgba(255, 255, 255, 0.6);
     }
 
     .welcome-modal-header h2 {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 800;
       letter-spacing: -0.5px;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .welcome-modal-header p {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       opacity: 0.95;
       font-weight: 600;
     }
 
     .welcome-modal-body {
-      padding: 28px 24px;
+      padding: 32px 24px;
     }
 
-    .tip-box {
-      background: #f0f9ff;
-      border: 1px solid #bae6fd;
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 24px;
-      text-align: left;
-    }
-
-    .tip-box h4 {
-      color: #0369a1;
-      font-size: 0.9rem;
-      font-weight: 800;
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .tip-box p {
+    .welcome-modal-body p {
       color: #334155;
-      font-size: 0.84rem;
-      line-height: 1.55;
-    }
-
-    .tip-box span.highlight {
-      background: #0284c7;
-      color: white;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-weight: 700;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      font-weight: 500;
     }
 
     .dismiss-welcome-btn {
@@ -257,25 +231,22 @@
 </head>
 <body>
 
-  <!-- Centered Eye-Catching Welcome & Dismissible Modal on Open -->
+  <!-- Big Simple Centered Welcome & Dismissible Popup Modal -->
   <div id="welcomeModal" class="welcome-modal-backdrop">
     <div class="welcome-modal-card">
       <div class="welcome-modal-header">
         <div class="welcome-icon">🚀</div>
-        <h2>Pharmacology-I Portal</h2>
-        <p>BSN Clinical Learning Hub</p>
+        <h2>Welcome to Dashboard</h2>
+        <p>Pharmacology-I Portal • BSN Hub</p>
       </div>
       <div class="welcome-modal-body">
-        <div class="tip-box">
-          <h4>💡 Mobile User Tip</h4>
-          <p>For the absolute best study experience and full formatting, tap the <span class="highlight">three dots (⋮)</span> in your browser menu and enable <span class="highlight">🖥️ Desktop Site</span>.</p>
-        </div>
-        <button class="dismiss-welcome-btn" onclick="dismissWelcomeModal()">Got It &amp; Enter Portal ✨</button>
+        <p>You have successfully opened your study portal. Tap the button below to clear the screen, remove the blur, and access all your chapters and resources.</p>
+        <button class="dismiss-welcome-btn" onclick="dismissWelcomeModal()">Enter Dashboard ✨</button>
       </div>
     </div>
   </div>
 
-  <!-- Wrapped Main Content Elements for Blur Effect -->
+  <!-- Wrapped Main Content Elements for Background Blur Effect -->
   <div id="pageContent" class="page-blurred">
     <!-- Header -->
     <header>
@@ -473,7 +444,7 @@
   </div>
 
   <script>
-    // --- CENTERED WELCOME MODAL DISMISS SCRIPT ---
+    // --- DISMISS WELCOME POPUP & REMOVE BACKGROUND BLUR ---
     function dismissWelcomeModal() {
       document.getElementById('welcomeModal').style.display = 'none';
       document.getElementById('pageContent').classList.remove('page-blurred');
