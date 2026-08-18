@@ -3,637 +3,674 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BSN Pharmacology - Solved Past Papers & Study Guide</title>
-    <!-- Web Icon / Logo -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'><path d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z'/></svg>">
+    <title>Pharmacology Solved Past Papers - BSN</title>
     <style>
-        :root {
-            --primary: #1e3a8a;
-            --secondary: #2563eb;
-            --accent: #0ea5e9;
-            --bg-light: #f8fafc;
-            --text-dark: #1e293b;
-            --card-bg: #ffffff;
-            --border: #e2e8f0;
-            --badge-bg: #eff6ff;
-            --badge-text: #1d4ed8;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
             line-height: 1.6;
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* Sidebar Navigation */
-        aside {
-            width: 280px;
-            background: var(--primary);
-            color: white;
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-            padding: 20px 15px;
-            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
-        }
-
-        aside .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            margin-bottom: 20px;
-        }
-
-        aside .logo-area svg {
-            width: 36px;
-            height: 36px;
-            fill: var(--accent);
-        }
-
-        aside .logo-area h1 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        aside ul {
-            list-style: none;
-        }
-
-        aside ul li {
-            margin-bottom: 12px;
-        }
-
-        aside ul li a {
-            color: #cbd5e1;
-            text-decoration: none;
-            display: block;
-            padding: 8px 12px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-        }
-
-        aside ul li a:hover {
-            background: rgba(255,255,255,0.1);
-            color: white;
-            padding-left: 16px;
-        }
-
-        /* Main Content */
-        main {
-            margin-left: 280px;
-            flex: 1;
-            padding: 40px;
-            max-width: 1100px;
-        }
-
-        header.main-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(37,99,235,0.2);
-        }
-
-        header.main-header h2 {
-            font-size: 2rem;
-            margin-bottom: 8px;
-        }
-
-        header.main-header p {
-            font-size: 1.05rem;
-            opacity: 0.9;
-        }
-
-        section.unit-section {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 35px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        h2.unit-title {
-            color: var(--primary);
-            font-size: 1.5rem;
-            border-bottom: 3px solid var(--accent);
-            padding-bottom: 10px;
-            margin-bottom: 25px;
-        }
-
-        .question-card {
-            background: #fafafa;
-            border-left: 4px solid var(--secondary);
+            color: #2c3e50;
+            background-color: #f4f6f7;
+            margin: 0;
             padding: 20px;
-            margin-bottom: 25px;
-            border-radius: 0 8px 8px 0;
-            border: 1px solid var(--border);
-            border-left-width: 5px;
         }
-
-        .question-title {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 1.1rem;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
-
-        .badge {
-            background: var(--badge-bg);
-            color: var(--badge-text);
-            font-size: 0.8rem;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-weight: 500;
-            border: 1px solid #bfdbfe;
-        }
-
-        p, li {
+        h1 {
+            text-align: center;
+            color: #1abc9c;
             margin-bottom: 10px;
-            color: #334155;
+            font-size: 2.2em;
         }
-
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        .unit-header {
+            background-color: #34495e;
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 6px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+        .question-box {
+            background-color: #ecf0f1;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            border-radius: 0 6px 6px 0;
+            font-weight: bold;
+            color: #2980b9;
+        }
+        .year {
+            color: #e74c3c;
+            float: right;
+            font-weight: bold;
+        }
+        .answer-content {
+            margin-bottom: 25px;
+            padding-left: 10px;
+        }
+        h4 {
+            color: #16a085;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
         ul, ol {
-            margin-left: 20px;
-            margin-bottom: 15px;
+            margin-top: 5px;
+            margin-bottom: 10px;
         }
-
+        li {
+            margin-bottom: 6px;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 0.95rem;
+            margin: 15px 0;
         }
-
         th, td {
-            border: 1px solid var(--border);
-            padding: 12px;
+            border: 1px solid #bdc3c7;
+            padding: 10px;
             text-align: left;
         }
-
         th {
-            background-color: var(--badge-bg);
-            color: var(--primary);
-            font-weight: 600;
+            background-color: #2980b9;
+            color: white;
         }
-
         tr:nth-child(even) {
-            background-color: #f8fafc;
+            background-color: #f9f9f9;
         }
-
-        /* Graph Container Styles */
         .graph-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .graph-box {
             background: #ffffff;
-            border: 1px solid var(--border);
+            border: 1px solid #bdc3c7;
             border-radius: 8px;
-            padding: 15px;
+            padding: 20px;
+            margin: 20px 0;
             text-align: center;
         }
-
-        .graph-box h4 {
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-size: 1rem;
-        }
-
-        svg.kinetic-svg {
-            width: 100%;
-            height: 180px;
-            background: #fdfdfd;
-            border: 1px solid #e2e8f0;
-            border-radius: 4px;
-        }
-
-        @media (max-width: 900px) {
-            aside {
-                width: 70px;
-                padding: 15px 5px;
-            }
-            aside .logo-area h1, aside ul li a span {
-                display: none;
-            }
-            main {
-                margin-left: 70px;
-                padding: 20px;
-            }
-            .graph-container {
-                grid-template-columns: 1fr;
-            }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            border-top: 1px solid #bdc3c7;
+            color: #7f8c8d;
+            font-size: 0.95em;
         }
     </style>
 </head>
 <body>
 
-    <!-- Sidebar Navigation -->
-    <aside>
-        <div class="logo-area">
-            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-            <h1>BSN Pharmacology<br><span style="font-size:0.75rem; font-weight:400; color:#93c5fd;">Solved Past Papers</span></h1>
+<div class="container">
+    <h1>Pharmacology Solved Past Papers</h1>
+    <div class="subtitle">Based on Recommended Books (Lippincott & Mini Katzung) | Customized for BSN Nursing Curriculum</div>
+
+    <!-- UNIT I -->
+    <div class="unit-header">Unit I: Introduction to Pharmacology</div>
+
+    <div class="question-box">
+        Q1. Name the factors affecting the rate of absorption and distribution. <span class="year">(2021 Annual)</span>
+    </div>
+    <div class="answer-content">
+        <h4>Factors Affecting Absorption:</h4>
+        <ol>
+            <li><strong>Area of absorptive surface:</strong> A larger surface area (such as the microvilli of the small intestine) greatly increases the rate of drug absorption.</li>
+            <li><strong>Route of administration:</strong> Intravenous administration bypasses absorption entirely, whereas oral or topical routes depend on membrane barriers.</li>
+            <li><strong>Vascularity (Blood flow):</strong> High blood flow at the site of administration maintains a steep concentration gradient, enhancing absorption.</li>
+            <li><strong>pH environment:</strong> Non-ionized (lipophilic) drugs pass through lipid cell membranes much faster than ionized drugs depending on the local pH and drug pKa.</li>
+            <li><strong>Presence of other substances:</strong> Food, heavy metals, or chelating agents in the GI tract can bind drugs and alter their absorption rate.</li>
+            <li><strong>Gastrointestinal motility:</strong> Rapid peristalsis may decrease absorption time, whereas delayed gastric emptying generally slows absorption.</li>
+            <li><strong>Functional integrity of absorptive surface:</strong> Damage or disease of the mucosal lining impairs absorption.</li>
+            <li><strong>Disease states:</strong> Conditions like malabsorption syndromes alter drug uptake.</li>
+        </ol>
+        <h4>Factors Affecting Distribution:</h4>
+        <ol>
+            <li><strong>Cardiac output and local blood flow:</strong> Organs with high perfusion (brain, liver, kidneys) receive drugs much faster than poorly perfused tissues (adipose tissue, skin).</li>
+            <li><strong>Capillary permeability:</strong> Structural differences in capillary endothelial junctions (e.g., blood-brain barrier vs. liver sinusoids) affect drug exit from circulation.</li>
+            <li><strong>Size of the organ:</strong> Larger tissue mass impacts the extent of distribution.</li>
+            <li><strong>Binding of drugs to plasma proteins:</strong> Only free (unbound) drugs are pharmacologically active and able to cross membranes; albumin binding restricts distribution.</li>
+            <li><strong>Lipid solubility:</strong> Highly lipophilic drugs easily cross cell membranes and accumulate in adipose tissue.</li>
+        </ol>
+    </div>
+
+    <div class="question-box">
+        Q2. Define bioavailability. Discuss the factors that influence bioavailability. What do you mean by the term zero-order kinetics of elimination? <span class="year">(2020 Supplementary & 2019 Supplementary)</span>
+    </div>
+    <div class="answer-content">
+        <h4>Definition of Bioavailability:</h4>
+        <p>Bioavailability is defined as the rate and extent to which an administered drug reaches the systemic circulation in an unchanged form.</p>
+        
+        <h4>Factors Influencing Bioavailability:</h4>
+        <ol>
+            <li><strong>First-pass hepatic metabolism:</strong> Drugs absorbed from the GI tract pass through the portal circulation to the liver, where a significant fraction may be metabolized before reaching systemic circulation.</li>
+            <li><strong>Solubility of drugs:</strong> Highly hydrophilic drugs cannot cross lipid cell membranes easily, while extremely hydrophobic drugs are insoluble in aqueous body fluids; both limit absorption.</li>
+            <li><strong>Chemical instability:</strong> Certain drugs (such as insulin or penicillin G) are unstable in the acidic pH of the stomach or degraded by digestive enzymes.</li>
+            <li><strong>Nature of the drug formulation:</strong> Particle size, crystal form, binders, and coatings (enteric or sustained release) greatly influence dissolution and absorption rates.</li>
+        </ol>
+
+        <h4>Zero-Order Kinetics of Elimination:</h4>
+        <p>If a constant amount of drug is metabolized and eliminated per unit of time, the rate of elimination is constant and does not depend on the drug concentration. This is called zero-order kinetics (also called nonlinear kinetics). The elimination rate is independent of plasma concentration. Examples include ethanol, phenytoin, and high-dose aspirin.</p>
+
+        <!-- Graph Comparing Zero-Order and First-Order Kinetics -->
+        <div class="graph-container">
+            <h4>Graphical Comparison: Zero-Order vs. First-Order Elimination Kinetics</h4>
+            <svg viewBox="0 0 500 240" width="100%" style="max-width: 480px; height: auto;">
+                <!-- Axes -->
+                <line x1="50" y1="200" x2="450" y2="200" stroke="#2c3e50" stroke-width="2"/>
+                <line x1="50" y1="30" x2="50" y2="200" stroke="#2c3e50" stroke-width="2"/>
+                <!-- Axis Labels -->
+                <text x="250" y="230" font-size="12" text-anchor="middle" fill="#2c3e50" font-weight="bold">Time (t)</text>
+                <text x="18" y="115" font-size="12" text-anchor="middle" fill="#2c3e50" font-weight="bold" transform="rotate(-90, 18, 115)">Plasma Concentration</text>
+                
+                <!-- Zero Order Line (Linear) -->
+                <line x1="50" y1="50" x2="400" y2="200" stroke="#e74c3c" stroke-width="3"/>
+                <text x="280" y="105" font-size="11" fill="#e74c3c" font-weight="bold">Zero-Order (Linear)</text>
+
+                <!-- First Order Curve (Exponential decay) -->
+                <path d="M 50 50 Q 150 160 400 192" fill="none" stroke="#3498db" stroke-width="3"/>
+                <text x="160" y="75" font-size="11" fill="#3498db" font-weight="bold">First-Order (Exponential)</text>
+            </svg>
         </div>
+    </div>
+
+    <div class="question-box">
+        Q3. Enlist three merits and demerits of oral route of drug administration. Define volume of distribution. How is it calculated? <span class="year">(2019 Annual)</span>
+    </div>
+    <div class="answer-content">
+        <h4>Merits of Oral Route:</h4>
         <ul>
-            <li><a href="#unit1"><span>Unit I: General Pharmacology</span></a></li>
-            <li><a href="#unit2"><span>Unit II: Infection & Malaria</span></a></li>
-            <li><a href="#unit3"><span>Unit III: Gastrointestinal System</span></a></li>
-            <li><a href="#unit4"><span>Unit V: Hematology System</span></a></li>
-            <li><a href="#unit5"><span>Unit V: Anti-Neoplastic Drugs</span></a></li>
+            <li>Safest route of drug administration.</li>
+            <li>Most common and convenient route for patients.</li>
+            <li>Economical and painless, requiring no special equipment.</li>
         </ul>
-    </aside>
+        <h4>Demerits of Oral Route:</h4>
+        <ul>
+            <li>Limited absorption of certain drugs due to food or chemical characteristics.</li>
+            <li>First-pass metabolism in the liver can significantly reduce active drug levels.</li>
+            <li>Patient compliance is necessary; cannot be used in unconscious or vomiting patients.</li>
+        </ul>
+        <h4>Volume of Distribution (Vd):</h4>
+        <p>The apparent volume of distribution is defined as the fluid volume that is required to contain the entire drug in the body at the same concentration measured in the plasma, or a hypothetical volume required to contain the drug homogeneously at the same concentration measured in blood or plasma.</p>
+        <h4>Calculation:</h4>
+        <p>It is calculated by dividing the total amount of drug in the body by the plasma concentration at time zero.</p>
+        <p><strong>Formula:</strong> Vd = Amount of Drug in the Body / Plasma Concentration at Time Zero</p>
+    </div>
 
-    <!-- Main Content Area -->
-    <main>
-        <header class="main-header">
-            <h2>2nd Year BSN Pharmacology Master Exam Guide</h2>
-            <p>Comprehensive Solved Past Papers structured for academic excellence, designed to ensure top examiner scores.</p>
-        </header>
+    <div class="question-box">
+        Q4. Enlist four names of routes of drug administration. Define receptor and enlist different receptor families or signaling mechanisms. <span class="year">(2018 Supplementary)</span>
+    </div>
+    <div class="answer-content">
+        <h4>Routes of Drug Administration:</h4>
+        <ol>
+            <li>Oral route (given by mouth)</li>
+            <li>Subcutaneous route (into the subcutaneous tissue just below the skin)</li>
+            <li>Intramuscular (IM) route (into muscle)</li>
+            <li>Intravenous (IV) route (directly into a vein)</li>
+        </ol>
 
-        <!-- UNIT I: INTRODUCTION TO PHARMACOLOGY -->
-        <section id="unit1" class="unit-section">
-            <h2 class="unit-title">Unit I: Introduction to Pharmacology & General Pharmacology</h2>
+        <h4>Definition of Receptor:</h4>
+        <p>Receptors are specific macromolecular components in a biologic system with which drugs interact to produce changes in the function of the system.</p>
 
-            <!-- Question 1 -->
-            <div class="question-card">
-                <div class="question-title">
-                    <span>Q1. Name the factors affecting the rate of absorption and distribution.</span>
-                    <span class="badge">2021 Annual</span>
-                </div>
-                <p><strong>Factors Affecting Absorption:</strong></p>
+        <h4>Major Receptor Families / Signaling Mechanisms:</h4>
+        <ol>
+            <li><strong>Transmembrane ligand-gated ion channels:</strong> Increase transmembrane conductance of ions and mediate rapid synaptic transmission (e.g., Nicotinic receptors).</li>
+            <li><strong>Transmembrane G protein-coupled receptors (GPCRs):</strong> Activate G proteins (Gs, Gi, Gq), which in turn regulate intracellular second messengers like cAMP or IP3.</li>
+            <li><strong>Enzyme-linked receptors:</strong> Possess intracellular enzymatic activity linked to extracellular binding domains (e.g., Receptor tyrosine kinases for insulin and growth factors).</li>
+            <li><strong>Intracellular receptors:</strong> Lipid-soluble ligands cross the cell membrane to bind intracellular receptors that regulate gene transcription (e.g., Steroid and thyroid hormone receptors).</li>
+        </ol>
+    </div>
+
+    <div class="question-box">
+        Q5. Enumerate phase 2 drug metabolizing reactions with typical drug substrate examples and characteristics. <span class="year">(2018 Annual)</span>
+    </div>
+    <div class="answer-content">
+        <h4>Phase II Reactions (Conjugation Reactions):</h4>
+        <table>
+            <tr>
+                <th>Phase II Reaction</th>
+                <th>Typical Drug Substrate</th>
+            </tr>
+            <tr>
+                <td>Glucuronidation</td>
+                <td>Acetaminophen, Diazepam, Morphine</td>
+            </tr>
+            <tr>
+                <td>Acetylation</td>
+                <td>Clonazepam, Isoniazid, Sulfonamides</td>
+            </tr>
+            <tr>
+                <td>Glutathione conjugation</td>
+                <td>Ethacrynic acid, reactive phase metabolites</td>
+            </tr>
+            <tr>
+                <td>Glycine conjugation</td>
+                <td>Salicylic acid, Nicotinic acid</td>
+            </tr>
+        </table>
+        <h4>Characteristics of Phase II Reactions:</h4>
+        <ul>
+            <li>Catalyze the conjugation of drug substrates with endogenous hydrophilic compounds.</li>
+            <li>Always produce highly water-soluble metabolites.</li>
+            <li>Facilitate rapid renal or biliary excretion of drugs from the body.</li>
+            <li>Inactivate toxic intermediates produced during Phase I oxidation reactions.</li>
+        </ul>
+    </div>
+
+    <div class="question-box">
+        Q6. What is the First Pass Effect? Give its relationship with bioavailability. Differentiate first order kinetics with zero order kinetics. <span class="year">(2016 Annual)</span>
+    </div>
+    <div class="answer-content">
+        <h4>First Pass Effect:</h4>
+        <p>When a drug is absorbed from the gastrointestinal tract, it enters the portal circulation before entering the systemic circulation. If the drug is rapidly metabolized in the liver or gut wall during this initial passage, the amount of unchanged drug entering the systemic circulation is substantially decreased. This is referred to as first-pass metabolism.</p>
+        <h4>Relationship with Bioavailability:</h4>
+        <p>Extensive first-pass metabolism extracts a large portion of the active drug before it reaches systemic targets, directly reducing bioavailability and potentially resulting in subtherapeutic clinical action.</p>
+
+        <h4>Difference between First-Order Kinetics and Zero-Order Kinetics:</h4>
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>First-Order Kinetics</th>
+                <th>Zero-Order Kinetics</th>
+            </tr>
+            <tr>
+                <td>Rate of Elimination</td>
+                <td>Proportional to drug concentration (varies with concentration).</td>
+                <td>Constant amount eliminated per unit time (independent of concentration).</td>
+            </tr>
+            <tr>
+                <td>Graph Representation</td>
+                <td>Curved exponential graph on linear scale.</td>
+                <td>Linear straight-line graph.</td>
+            </tr>
+            <tr>
+                <td>Saturation</td>
+                <td>Metabolizing enzymes are not saturated.</td>
+                <td>Metabolizing enzymes are saturated.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="question-box">
+        Q7. Discuss major drug receptor families. <span class="year">(2014 Annual)</span>
+    </div>
+    <div class="answer-content">
+        <p>Receptors are categorized into four major superfamilies based on their molecular structure and transduction mechanisms:</p>
+        <ol>
+            <li><strong>G-Protein Coupled Receptors (GPCRs):</strong> Comprise an extracellular ligand-binding domain coupled to intracellular G-proteins (Gs, Gi, Gq). Agonist binding causes GDP-GTP exchange on the alpha subunit, triggering downstream second messenger cascades.</li>
+            <li><strong>Transmembrane Receptor Tyrosine Kinases:</strong> Feature extracellular ligand-binding domains linked via a peptide chain to an intracellular kinase domain. Ligand binding induces dimerization and autophosphorylation of tyrosine residues, stimulating growth and metabolic pathways (e.g., Insulin receptor).</li>
+            <li><strong>Cytokine Receptors:</strong> Receptors lacking intrinsic enzymatic activity that recruit separate intracellular tyrosine kinase enzymes like JAK (Janus Kinase) to phosphorylate STAT proteins for transcriptional regulation.</li>
+            <li><strong>Ligand-Gated Ion Channels:</strong> Channel proteins that open upon agonist binding, rapidly altering transmembrane ion conductance and cellular polarization (e.g., Nicotinic acetylcholine receptors).</li>
+            <li><strong>Intracellular Receptors:</strong> Located within the cytoplasm or nucleus, activated by lipophilic ligands that diffuse across membranes to modify gene expression with a characteristic delayed onset.</li>
+        </ol>
+    </div>
+
+    <div class="question-box">
+        Q8. Write advantages, disadvantages, indications, and risks of the parenteral route. <span class="year">(2014 Annual & 2008 Annual)</span>
+    </div>
+    <div class="answer-content">
+        <h4>Advantages of Parenteral Route:</h4>
+        <ul>
+            <li>Immediate physiological response can be achieved.</li>
+            <li>Essential for drugs that are poorly absorbed orally or destroyed by digestive secretions (e.g., insulin).</li>
+            <li>Ideal for uncooperative, nauseated, or unconscious patients.</li>
+            <li>Allows precise control over circulating drug concentrations.</li>
+        </ul>
+        <h4>Disadvantages of Parenteral Route:</h4>
+        <ul>
+            <li>Requires trained personnel and aseptic technique.</li>
+            <li>Injections can be painful and cause local tissue irritation.</li>
+            <li>Once administered, drug action is difficult to reverse in cases of toxicity.</li>
+            <li>Manufacturing and packaging requirements make parenteral formulations more expensive.</li>
+        </ul>
+        <h4>Indications:</h4>
+        <ul>
+            <li>Emergency situations requiring rapid onset of action.</li>
+            <li>Patients unable to take oral medications.</li>
+            <li>Drugs with very low oral bioavailability.</li>
+        </ul>
+        <h4>Risks of Intravenous Administration:</h4>
+        <ul>
+            <li>Infection and sepsis at the injection site.</li>
+            <li>Direct damage to veins and surrounding vascular tissue.</li>
+            <li>Risk of air embolism.</li>
+            <li>Thrombophlebitis and blood clot formation.</li>
+        </ul>
+    </div>
+
+    <div class="question-box">
+        Q9. Define antagonist and discuss different types of antagonism with examples. <span class="year">(2007 Annual & 2017 Supplementary)</span>
+    </div>
+    <div class="answer-content">
+        <h4>Definition of Antagonist:</h4>
+        <p>An antagonist is a drug that has affinity for a receptor but possesses no intrinsic activity. It produces no biological effect in the absence of an agonist, but decreases or prevents the action of an agonist.</p>
+
+        <h4>Types of Antagonism:</h4>
+        <ol>
+            <li><strong>Physical Antagonism:</strong> Based on the physical property of a drug (e.g., activated charcoal binding to ingested alkaloids in the GI tract to prevent systemic absorption).</li>
+            <li><strong>Chemical Antagonism:</strong> A chemical reaction between two compounds that neutralizes the active drug without receptor involvement (e.g., chelating agents binding toxic heavy metals).</li>
+            <li><strong>Physiological / Functional Antagonism:</strong> Two agonist drugs act on completely independent receptors and physiological systems to produce opposing effects (e.g., adrenaline causing bronchodilation via beta receptors versus histamine causing bronchoconstriction via H1 receptors).</li>
+            <li><strong>Pharmacological Antagonism:</strong> Competes for or blocks the same receptor site as the agonist.
                 <ul>
-                    <li><strong>Area of Absorptive Surface:</strong> A larger surface area (such as the microvilli of the small intestine) significantly increases the rate of drug absorption.</li>
-                    <li><strong>Route of Administration:</strong> Intravenous administration bypasses absorption entirely, whereas oral, subcutaneous, and intramuscular routes depend heavily on local blood flow and membrane barriers.</li>
-                    <li><strong>Vascularity:</strong> High blood flow at the site of administration maintains a steep concentration gradient, accelerating absorption.</li>
-                    <li><strong>pH and Ionization State:</strong> Weak acids are better absorbed in the acidic environment of the stomach, whereas weak bases are absorbed primarily in the alkaline environment of the intestine. Non-ionized drugs cross lipid bilayers much faster than ionized drugs.</li>
-                    <li><strong>Presence of Other Substances:</strong> Food, concurrent medications, or chelating agents can bind to drugs or alter gastric emptying time, thereby decreasing or delaying absorption.</li>
-                    <li><strong>Gastrointestinal (GI) Motility:</strong> Extremely rapid motility reduces contact time with absorptive surfaces, whereas slowed motility can enhance or alter absorption extent.</li>
-                    <li><strong>Functional Integrity of Absorptive Surface:</strong> Pathological conditions affecting mucosal integrity can impair absorption.</li>
-                    <li><strong>Disease States:</strong> Conditions affecting splanchnic blood flow or absorptive epithelium alter overall drug uptake.</li>
+                    <li><em>Competitive (Reversible) Antagonism:</em> Binds reversibly to the receptor site; can be overcome by increasing the concentration of the agonist.</li>
+                    <li><em>Non-competitive (Irreversible) Antagonism:</em> Binds covalently or to an allosteric site on the receptor, permanently preventing agonist binding regardless of concentration.</li>
                 </ul>
-                <p><strong>Factors Affecting Distribution:</strong></p>
+            </li>
+        </ol>
+    </div>
+
+    <div class="question-box">
+        Q10. Define Therapeutic Index, its clinical importance, and antibiotics avoided in older adults. <span class="year">(2009 Annual)</span>
+    </div>
+    <div class="answer-content">
+        <h4>Therapeutic Index (TI):</h4>
+        <p>The therapeutic index is the ratio of the toxic dose (TD50) to the effective dose (ED50), serving as a quantitative indicator of a drug's safety margin in achieving desired therapeutic effects without toxicity.</p>
+        <p><strong>Formula:</strong> Therapeutic Index = TD50 / ED50</p>
+
+        <h4>Clinical Importance of Therapeutic Index:</h4>
+        <p>A large therapeutic index indicates a wide margin of safety between therapeutic and toxic levels. Conversely, drugs with a narrow therapeutic index (such as digoxin) require strict patient monitoring and blood level testing to prevent severe toxicity.</p>
+
+        <h4>Antibiotics Avoided in Older Adults and Reasons:</h4>
+        <ol>
+            <li><strong>Ciprofloxacin (Fluoroquinolones):</strong> Avoided or used with extreme caution in older adults due to elevated risks of tendinitis, tendon rupture, and central nervous system disturbances.</li>
+            <li><strong>Augmentin (Amoxicillin/Clavulanic acid):</strong> Increased risk of cholestatic jaundice and hepatic dysfunction in older patients, alongside prolonged gastrointestinal adverse effects.</li>
+        </ol>
+    </div>
+
+    <!-- UNIT II -->
+    <div class="unit-header">Unit II: Drugs Used to Prevent and Treat Infection (Malaria)</div>
+
+    <div class="question-box">
+        Q1. Classify antimalarial drugs based on their clinical use and life cycle stages. <span class="year">(2021 Annual)</span>
+    </div>
+    <div class="answer-content">
+        <p>Antimalarial drugs are classified according to their activity against specific stages of the Plasmodium parasite life cycle:</p>
+        <ol>
+            <li><strong>Tissue Schizonticides (Prophylactic agents):</strong> Act on pre-erythrocytic liver stages to prevent infection (e.g., Primaquine, Atovaquone).</li>
+            <li><strong>Blood Schizonticides (Suppressive / Curative agents):</strong> Eliminate asexual parasites in red blood cells to treat clinical malaria attacks (e.g., Chloroquine, Artemisinin derivatives, Quinine).</li>
+            <li><strong>Gametocides:</strong> Destroy sexual stage parasites in the blood to prevent transmission to mosquitoes (e.g., Primaquine).</li>
+            <li><strong>Radical Cure Agents:</strong> Eradicate dormant liver-stage hypnozoites of Plasmodium vivax and ovale (e.g., Primaquine).</li>
+        </ol>
+    </div>
+
+    <div class="question-box">
+        Q2. Discuss the mechanism of action, therapeutic uses, and adverse effects of Chloroquine. <span class="year">(2020 Annual)</span>
+    </div>
+    <div class="answer-content">
+        <h4>Mechanism of Action:</h4>
+        <p>Chloroquine concentrates within the acidic food vacuoles of the malaria parasite. It inhibits the enzyme heme polymerase, preventing the conversion of toxic free heme into insoluble hemozoin. The accumulation of free heme results in parasite lysis and death.</p>
+        <h4>Therapeutic Uses:</h4>
+        <ul>
+            <li>Treatment of acute uncomplicated malaria caused by susceptible strains of Plasmodium species.</li>
+            <li>Chemoprophylaxis in sensitive malarial endemic regions.</li>
+            <li>Anti-inflammatory properties utilized in autoimmune disorders like rheumatoid arthritis and systemic lupus erythematosus.</li>
+        </ul>
+        <h4>Adverse Effects:</h4>
+        <ul>
+            <li>Gastrointestinal distress, nausea, and abdominal cramps.</li>
+            <li>Headache, dizziness, and mild blurred vision.</li>
+            <li>Long-term use can cause retinopathy and corneal deposits.</li>
+            <li>Pruritus, especially in darker-skinned patient populations.</li>
+        </ul>
+    </div>
+
+    <div class="question-box">
+        Q3. Write a note on Artemisinin-based combination therapies (ACTs). <span class="year">(2021 Supplementary)</span>
+    </div>
+    <div class="answer-content">
+        <p>Artemisinin-based combination therapies are currently recommended by health organizations as first-line treatment for uncomplicated Plasmodium falciparum malaria.</p>
+        <ul>
+            <li><strong>Combination Rationale:</strong> Combines a fast-acting artemisinin derivative (e.g., Artemether, Artesunate) with a longer-acting partner drug (e.g., Lumefantrine, Amodiaquine) to ensure complete parasite clearance and prevent drug resistance.</li>
+            <li><strong>Mechanism:</strong> Artemisinins contain an endoperoxide bridge that interacts with intracellular iron to generate reactive free radicals that damage parasite proteins and membranes.</li>
+            <li><strong>Benefits:</strong> Rapid symptom relief, high cure rates, and reduced risk of treatment failure.</li>
+        </ul>
+    </div>
+
+    <!-- UNIT III -->
+    <div class="unit-header">Unit III: Drugs Affecting the Gastrointestinal System</div>
+
+    <div class="question-box">
+        Q1. Classify anti-ulcer drugs used in Peptic Ulcer Disease (PUD). <span class="year">(2021 Annual)</span>
+    </div>
+    <div class="answer-content">
+        <p>Anti-ulcer drugs are categorized based on their mechanism of reducing gastric acidity or protecting the mucosal lining:</p>
+        <ol>
+            <li><strong>Proton Pump Inhibitors (PPIs):</strong> Omeprazole, Esomeprazole, Pantoprazole.</li>
+            <li><strong>H2-Receptor Antagonists:</strong> Ranitidine, Famotidine.</li>
+            <li><strong>Antacids:</strong> Aluminum hydroxide, Magnesium hydroxide, Calcium carbonate.</li>
+            <li><strong>Mucosal Protective Agents:</strong> Sucralfate, Bismuth subsalicylate, Misoprostol.</li>
+            <li><strong>Anti-Helicobacter pylori Regimens:</strong> Combinations of antibiotics (Amoxicillin, Clarithromycin, Metronidazole) with PPIs.</li>
+        </ol>
+    </div>
+
+    <div class="question-box">
+        Q2. Discuss the mechanism of action and clinical uses of Proton Pump Inhibitors (PPIs). <span class="year">(2020 Annual)</span>
+    </div>
+    <div class="answer-content">
+        <h4>Mechanism of Action:</h4>
+        <p>Proton pump inhibitors are prodrugs that diffuse into the secretory canaliculi of parietal cells, where they are converted into active sulfenamide forms in an acidic environment. This active form binds irreversibly to the hydrogen-potassium ATPase pump enzyme, halting gastric acid secretion until new enzyme pumps are synthesized.</p>
+        <h4>Clinical Uses:</h4>
+        <ul>
+            <li>Treatment and prevention of gastric and duodenal ulcers.</li>
+            <li>Gastroesophageal Reflux Disease (GERD) and erosive esophagitis.</li>
+            <li>Zollinger-Ellison syndrome and pathological hypersecretory states.</li>
+            <li>Eradication protocols for Helicobacter pylori infections.</li>
+        </ul>
+    </div>
+
+    <div class="question-box">
+        Q3. Classify antiemetics and write their clinical indications. <span class="year">(2019 Supplementary)</span>
+    </div>
+    <div class="answer-content">
+        <h4>Classification of Antiemetics:</h4>
+        <ol>
+            <li><strong>Serotonin (5-HT3) Receptor Antagonists:</strong> Ondansetron, Granisetron.</li>
+            <li><strong>Dopamine Receptor Antagonists:</strong> Metoclopramide, Domperidone, Prochlorperazine.</li>
+            <li><strong>H1 Antihistamines and Anticholinergics:</strong> Dimenhydrinate, Promethazine, Scopolamine.</li>
+            <li><strong>Neurokinin-1 (NK1) Receptor Antagonists:</strong> Aprepitant.</li>
+            <li><strong>Corticosteroids:</strong> Dexamethasone (used as an adjuvant).</li>
+        </ol>
+        <h4>Clinical Indications:</h4>
+        <ul>
+            <li>Prevention of chemotherapy-induced and postoperative nausea and vomiting.</li>
+            <li>Management of motion sickness and vestibular disorders.</li>
+            <li>Relief of delayed gastric emptying and diabetic gastroparesis.</li>
+        </ul>
+    </div>
+
+    <div class="question-box">
+        Q4. Write a note on laxatives and cathartics with their classification. <span class="year">(2018 Annual)</span>
+    </div>
+    <div class="answer-content">
+        <p>Laxatives and cathartics are agents used to facilitate defecation and relieve constipation by softening stool or stimulating bowel motility.</p>
+        <h4>Classification:</h4>
+        <ol>
+            <li><strong>Bulk-Forming Laxatives:</strong> Dietary fiber, Psyllium, Methylcellulose (absorb water to form a gel, stimulating peristalsis).</li>
+            <li><strong>Osmotic Laxatives:</strong> Magnesium hydroxide, Polyethylene glycol, Lactulose (draw water into the intestinal lumen via osmotic pressure).</li>
+            <li><strong>Stimulant Laxatives:</strong> Senna, Bisacodyl (directly stimulate enteric nerves and intestinal mucosal secretion).</li>
+            <li><strong>Stool Softeners (Emollients):</strong> Docusate sodium (lower surface tension to allow water and lipids to penetrate stool).</li>
+            <li><strong>Lubricant Laxatives:</strong> Mineral oil (lubricates stool and intestinal mucosa).</li>
+        </ol>
+    </div>
+
+    <!-- UNIT IV -->
+    <div class="unit-header">Unit IV: Drugs Affecting Hematology System</div>
+
+    <div class="question-box">
+        Q1. Classify anticoagulants and discuss the mechanism of action of Heparin. <span class="year">(2021 Annual)</span>
+    </div>
+    <div class="answer-content">
+        <h4>Classification of Anticoagulants:</h4>
+        <ol>
+            <li><strong>Parenteral Anticoagulants:</strong> Unfractionated Heparin (UFH), Low Molecular Weight Heparins (Enoxaparin), Fondaparinux.</li>
+            <li><strong>Oral Anticoagulants:</strong>
                 <ul>
-                    <li><strong>Cardiac Output and Local Blood Flow:</strong> Well-perfused organs (brain, liver, kidneys) receive drugs much faster than poorly perfused tissues (adipose tissue, resting skeletal muscle).</li>
-                    <li><strong>Capillary Permeability:</strong> Differences in capillary structure (e.g., tight junctions in the blood-brain barrier versus fenestrated capillaries in hepatic sinusoids) dictate how easily drugs leave circulation.</li>
-                    <li><strong>Size and Mass of the Organ:</strong> Larger tissue mass increases the distribution capacity for lipophilic drugs.</li>
-                    <li><strong>Binding of Drugs to Plasma Proteins:</strong> Drugs extensively bound to plasma proteins (such as albumin) have a restricted volume of distribution because only the free, unbound fraction can diffuse across membranes to exert pharmacological effects.</li>
-                    <li><strong>Lipid Solubility:</strong> Highly lipid-soluble drugs easily cross cell membranes and accumulate readily in adipose tissue and the central nervous system.</li>
+                    <li>Vitamin K Antagonists: Warfarin.</li>
+                    <li>Direct Oral Anticoagulants (DOACs): Dabigatran, Rivaroxaban, Apixaban.</li>
                 </ul>
-            </div>
+            </li>
+        </ol>
+        <h4>Mechanism of Action of Heparin:</h4>
+        <p>Heparin binds to plasma antithrombin III via a specific pentasaccharide sequence. This binding induces a conformational change in antithrombin III, accelerating its ability to inactive clotting factors, primarily thrombin (Factor IIa) and Factor Xa, thereby preventing fibrin clot formation.</p>
+    </div>
 
-            <!-- Question 2 -->
-            <div class="question-card">
-                <div class="question-title">
-                    <span>Q2. Define bioavailability. Discuss the factors that influence bioavailability, and define zero-order kinetics.</span>
-                    <span class="badge">2020 Supplementary & 2019 Supplementary</span>
-                </div>
-                <p><strong>Bioavailability Definition:</strong> Bioavailability is defined as the rate and extent to which an administered drug reaches the systemic circulation in an unchanged active form. For intravenous administration, bioavailability is absolute (100 percent), whereas oral administration is subject to incomplete absorption and first-pass metabolism.</p>
-                <p><strong>Methods to Improve Bioavailability:</strong></p>
-                <ol>
-                    <li>Utilizing specialized prodrug formulations that enhance lipophilicity and membrane permeability.</li>
-                    <li>Employing micronization or nanoparticle technology to increase dissolution rates for poorly water-soluble drugs.</li>
-                    <li>Using enteric coatings or absorption enhancers to prevent degradation in the gastrointestinal tract.</li>
-                </ol>
-                <p><strong>Factors Influencing Bioavailability:</strong></p>
+    <div class="question-box">
+        Q2. Differentiate between Unfractionated Heparin (UFH) and Low Molecular Weight Heparin (LMWH). <span class="year">(2020 Supplementary)</span>
+    </div>
+    <div class="answer-content">
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Unfractionated Heparin (UFH)</th>
+                <th>Low Molecular Weight Heparin (LMWH)</th>
+            </tr>
+            <tr>
+                <th>Molecular Weight</th>
+                <td>High and variable molecular weight.</td>
+                <td>Lower, more uniform molecular weight fractions.</td>
+            </tr>
+            <tr>
+                <th>Enzyme Inhibition</th>
+                <td>Inhibits both Thrombin (Factor IIa) and Factor Xa equally.</td>
+                <td>Preferentially inhibits Factor Xa over Thrombin.</td>
+            </tr>
+            <tr>
+                <th>Monitoring</th>
+                <td>Requires frequent laboratory monitoring via Activated Partial Thromboplastin Time (aPTT).</td>
+                <td>Does not routinely require coagulation monitoring in standard clinical settings.</td>
+            </tr>
+            <tr>
+                <th>Administration</th>
+                <td>Administered via continuous IV infusion or deep subcutaneous injection.</td>
+                <td>Administered via fixed subcutaneous injections.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="question-box">
+        Q3. Classify antiplatelet drugs and give their clinical indications. <span class="year">(2019 Annual)</span>
+    </div>
+    <div class="answer-content">
+        <h4>Classification of Antiplatelet Drugs:</h4>
+        <ol>
+            <li><strong>Cyclooxygenase Inhibitors:</strong> Aspirin.</li>
+            <li><strong>P2Y12 ADP Receptor Blockers:</strong> Clopidogrel, Ticagrelor, Prasugrel.</li>
+            <li><strong>Glycoprotein IIb/IIIa Receptor Inhibitors:</strong> Abciximab, Tirofiban.</li>
+            <li><strong>Phosphodiesterase Inhibitors:</strong> Dipyridamole.</li>
+        </ol>
+        <h4>Clinical Indications:</h4>
+        <ul>
+            <li>Prevention and treatment of myocardial infarction and ischemic stroke.</li>
+            <li>Management of acute coronary syndromes (ACS).</li>
+            <li>Maintenance of vascular graft and coronary stent patency.</li>
+            <li>Prevention of thromboembolic complications following vascular procedures.</li>
+        </ul>
+    </div>
+
+    <div class="question-box">
+        Q4. Write a note on thrombolytics (fibrinolytics) and their role in acute myocardial infarction. <span class="year">(2018 Annual)</span>
+    </div>
+    <div class="answer-content">
+        <p>Thrombolytic agents are powerful medications designed to dissolve existing blood clots rapidly and restore blood flow through occluded vessels.</p>
+        <ul>
+            <li><strong>Mechanism of Action:</strong> They act directly or indirectly as serine proteases to convert inactive plasminogen into active plasmin, which then cleaves fibrin matrices within thrombi.</li>
+            <li><strong>Common Agents:</strong> Alteplase (tPA), Streptokinase, Reteplase.</li>
+            <li><strong>Role in Acute Myocardial Infarction (AMI):</strong> Administered during acute coronary occlusion to achieve prompt coronary reperfusion, salvage ischemic myocardial tissue, and reduce mortality, especially when primary percutaneous coronary intervention (PCI) is unavailable.</li>
+            <li><strong>Major Risk:</strong> Bleeding complications and intracranial hemorrhage.</li>
+        </ul>
+    </div>
+
+    <!-- UNIT V -->
+    <div class="unit-header">Unit V: Anti-Neoplastic-Drugs</div>
+
+    <div class="question-box">
+        Q1. Classify antineoplastic (chemotherapeutic) agents with examples in each class. <span class="year">(2021 Annual)</span>
+    </div>
+    <div class="answer-content">
+        <p>Antineoplastic drugs are classified based on their mechanism of action and chemical structure:</p>
+        <ol>
+            <li><strong>Alkylating Agents:</strong> Cyclophosphamide, Chlorambucil, Cisplatin.</li>
+            <li><strong>Antimetabolites:</strong>
                 <ul>
-                    <li>First-pass hepatic metabolism.</li>
-                    <li>Physicochemical solubility and chemical stability of the drug.</li>
-                    <li>Nature of the drug formulation and excipients used.</li>
+                    <li>Folic acid analogs: Methotrexate.</li>
+                    <li>Pyrimidine analogs: 5-Fluorouracil, Cytarabine.</li>
+                    <li>Purine analogs: 6-Mercaptopurine.</li>
                 </ul>
-                <p><strong>Zero-Order Kinetics of Elimination:</strong></p>
-                <p>If a constant amount of drug is metabolized per unit of time, the rate of elimination is constant and does not depend on the drug concentration. This is called zero-order kinetics (also referred to as nonlinear kinetics). Clearance saturates at high concentrations. Classic examples of drugs following zero-order kinetics include ethanol, phenytoin, and high-dose aspirin.</p>
-            </div>
-
-            <!-- Question 3 -->
-            <div class="question-card">
-                <div class="question-title">
-                    <span>Q3. Enlist merits and demerits of oral route of drug administration, and define volume of distribution.</span>
-                    <span class="badge">2019 Annual</span>
-                </div>
-                <p><strong>Merits of Oral Route:</strong> Safest route, most common route, convenient for patients, and highly economical.</p>
-                <p><strong>Demerits of Oral Route:</strong> Limited absorption of certain drugs, food interactions can alter efficacy, patient compliance is required, and drugs may undergo significant metabolism before reaching systemic circulation.</p>
-                <p><strong>Volume of Distribution (Vd):</strong> It is defined as the hypothetical fluid volume that is required to contain the entire drug in the body at the same concentration measured in the plasma. It reflects the extent of drug distribution into body tissues and fluids.</p>
-                <p><strong>Calculation Formula:</strong></p>
-                <p style="text-align: center; font-weight: bold; background: #e0f2fe; padding: 10px; border-radius: 6px;">Vd = (Amount of Drug in the Body) / (Plasma Concentration at Time Zero)</p>
-            </div>
-
-            <!-- Question 4 -->
-            <div class="question-card">
-                <div class="question-title">
-                    <span>Q4. Enlist routes of drug administration and define receptors with major receptor families.</span>
-                    <span class="badge">2018 Supplementary & 2014 Annual</span>
-                </div>
-                <p><strong>Routes of Drug Administration:</strong></p>
-                <ol>
-                    <li><strong>Oral Route:</strong> Administration by mouth.</li>
-                    <li><strong>Subcutaneous (Hypodermic):</strong> Injection into the subcutaneous tissue just below the skin.</li>
-                    <li><strong>Intramuscular (IM):</strong> Injection directly into deep skeletal muscle tissue.</li>
-                    <li><strong>Intradermal (ID):</strong> Injection into the dermal layer just beneath the epidermis.</li>
-                    <li><strong>Intravenous (IV):</strong> Direct injection into the venous bloodstream for immediate systemic effect.</li>
-                </ol>
-                <p><strong>Receptors:</strong> Receptors are specialized macromolecular biological molecules with which active drugs interact to initiate a chain of biochemical events producing a functional change in the system.</p>
-                <p><strong>Major Receptor Families & Signaling Mechanisms:</strong></p>
+            </li>
+            <li><strong>Plant Alkaloids & Natural Products:</strong>
                 <ul>
-                    <li><strong>Transmembrane Ligand-Gated Ion Channels:</strong> Regulate ion conductance across cell membranes, operating in milliseconds (e.g., Nicotinic acetylcholine receptors).</li>
-                    <li><strong>Transmembrane G Protein-Coupled Receptors (GPCRs):</strong> Coupled to intracellular G proteins (Gs, Gi, Gq) that activate effector enzymes or second messengers.</li>
-                    <li><strong>Enzyme-Linked Receptors:</strong> Possess intrinsic enzymatic activity or associate directly with kinases (e.g., Insulin and growth factor receptors).</li>
-                    <li><strong>Intracellular Receptors:</strong> Located within the cytoplasm or nucleus, activated by lipid-soluble ligands (e.g., steroid and thyroid hormones) to regulate gene transcription.</li>
+                    <li>Vinca alkaloids: Vincristine, Vinblastine.</li>
+                    <li>Taxanes: Paclitaxel.</li>
+                    <li>Topoisomerase inhibitors: Doxorubicin, Etoposide.</li>
                 </ul>
-            </div>
+            </li>
+            <li><strong>Hormonal Agents & Antagonists:</strong> Tamoxifen, Anastrazole, Flutamide.</li>
+            <li><strong>Targeted Monoclonal Antibodies & Kinase Inhibitors:</strong> Trastuzumab, Imatinib.</li>
+        </ol>
+    </div>
 
-            <!-- Question 5 -->
-            <div class="question-card">
-                <div class="question-title">
-                    <span>Q5. Enumerate phase 2 drug metabolizing reactions with typical drug substrate examples and characteristics.</span>
-                    <span class="badge">2018 Annual</span>
-                </div>
-                <p>Phase 2 reactions primarily involve synthetic conjugation processes that attach polar groups to drug molecules or phase 1 metabolites to render them water-soluble and easily excretable.</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Phase II Reaction</th>
-                            <th>Typical Drug Substrate Example</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Glucuronidation</td>
-                            <td>Acetaminophen, Diazepam, Morphine</td>
-                        </tr>
-                        <tr>
-                            <td>Acetylation</td>
-                            <td>Clonazepam, Isoniazid, Sulfonamides</td>
-                        </tr>
-                        <tr>
-                            <td>Glutathione Conjugation</td>
-                            <td>Ethacrynic Acid, Reactive Phase 1 metabolites of acetaminophen</td>
-                        </tr>
-                        <tr>
-                            <td>Glycine Conjugation</td>
-                            <td>Nicotinic Acid (Niacin), Salicylic Acid</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p><strong>Characteristics of Phase 2 Reactions:</strong></p>
-                <ul>
-                    <li>Catalyze the conjugation of drug substrates with endogenous hydrophilic moieties.</li>
-                    <li>Consistently produce water-soluble metabolites.</li>
-                    <li>Facilitate rapid renal or biliary excretion from the body.</li>
-                    <li>Inactivate toxic intermediate metabolites produced during phase 1 oxidation reactions.</li>
-                </ul>
-            </div>
+    <div class="question-box">
+        Q2. Discuss the mechanism of action and adverse effects of Alkylating Agents. <span class="year">(2020 Annual)</span>
+    </div>
+    <div class="answer-content">
+        <h4>Mechanism of Action:</h4>
+        <p>Alkylating agents work by transferring alkyl groups to DNA nucleotide bases (specifically the N7 position of guanine). This causes cross-linking of DNA strands, abnormal DNA base pairing, and single- or double-strand breaks, which inhibit DNA replication, transcription, and trigger cellular apoptosis in rapidly dividing cancer cells.</p>
+        <h4>Adverse Effects:</h4>
+        <ul>
+            <li>Bone marrow suppression leading to neutropenia, thrombocytopenia, and anemia.</li>
+            <li>Gastrointestinal mucosal damage resulting in severe nausea, vomiting, and stomatitis.</li>
+            <li>Alopecia (hair loss) due to damage to hair follicle cells.</li>
+            <li>Gonadal dysfunction, infertility, and secondary malignancies.</li>
+            <li>Cystitis and hemorrhagic cystitis (specifically associated with cyclophosphamide).</li>
+        </ul>
+    </div>
 
-            <!-- Question 6 -->
-            <div class="question-card">
-                <div class="question-title">
-                    <span>Q6. Explain the First Pass Effect and differentiate between First-Order Kinetics and Zero-Order Kinetics (with separate graphs).</span>
-                    <span class="badge">2016 Annual</span>
-                </div>
-                <p><strong>First-Pass Effect:</strong> When a drug is absorbed from the gastrointestinal tract, it enters the portal circulation and passes through the liver before reaching the systemic circulation. If the liver rapidly metabolizes the drug during this initial passage, the amount of unchanged drug entering systemic circulation is drastically reduced, leading to subtherapeutic action unless adjusted.</p>
-                <p><strong>Kinetics of Reaction Comparison:</strong></p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>First-Order Kinetics</th>
-                            <th>Zero-Order Kinetics</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Rate Dependency</td>
-                            <td>Rate of reaction is directly proportional to the concentration of reactants.</td>
-                            <td>Rate of reaction is constant and independent of reactant concentration.</td>
-                        </tr>
-                        <tr>
-                            <td>Graph Shape</td>
-                            <td>Curved exponential graph between concentration and time.</td>
-                            <td>Linear graph with a constant negative slope between concentration and time.</td>
-                        </tr>
-                        <tr>
-                            <td>Elimination Nature</td>
-                            <td>Constant fraction of drug is eliminated per unit time.</td>
-                            <td>Constant amount of drug is eliminated per unit time.</td>
-                        </tr>
-                    </tbody>
-                </table>
+    <div class="question-box">
+        Q3. Write a comprehensive note on Antimetabolites used in cancer chemotherapy. <span class="year">(2019 Supplementary)</span>
+    </div>
+    <div class="answer-content">
+        <p>Antimetabolites are structural analogs of normal cellular metabolites involved in DNA and RNA synthesis. They disrupt cell division during the S-phase of the cell cycle.</p>
+        <h4>Key Subclasses and Examples:</h4>
+        <ol>
+            <li><strong>Folic Acid Analogs (Methotrexate):</strong> Inhibit dihydrofolate reductase, preventing the synthesis of reduced folates required for purine and thymidine synthesis.</li>
+            <li><strong>Pyrimidine Analogs (5-Fluorouracil, Cytarabine):</strong> Inhibit thymidylate synthase or incorporate into RNA and DNA to halt nucleic acid elongation.</li>
+            <li><strong>Purine Analogs (6-Mercaptopurine):</strong> Block purine nucleotide synthesis pathways.</li>
+        </ol>
+        <h4>Clinical Applications:</h4>
+        <p>Widely utilized in treating leukemias, lymphomas, breast cancer, colorectal cancer, and choriocarcinoma.</p>
+    </div>
 
-                <!-- Separate Graphs for First Order and Zero Order Kinetics -->
-                <div class="graph-container">
-                    <div class="graph-box">
-                        <h4>First-Order Kinetics Graph</h4>
-                        <svg class="kinetic-svg" viewBox="0 0 200 150">
-                            <!-- Axes -->
-                            <line x1="20" y1="130" x2="180" y2="130" stroke="#334155" stroke-width="2"/>
-                            <line x1="20" y1="20" x2="20" y2="130" stroke="#334155" stroke-width="2"/>
-                            <!-- Labels -->
-                            <text x="90" y="145" font-size="10" fill="#334155">Time</text>
-                            <text x="5" y="75" font-size="10" fill="#334155" transform="rotate(-90 5 75)">Conc.</text>
-                            <!-- Exponential Curve -->
-                            <path d="M 30 35 Q 60 115 170 125" fill="none" stroke="#2563eb" stroke-width="2.5"/>
-                        </svg>
-                    </div>
-                    <div class="graph-box">
-                        <h4>Zero-Order Kinetics Graph</h4>
-                        <svg class="kinetic-svg" viewBox="0 0 200 150">
-                            <!-- Axes -->
-                            <line x1="20" y1="130" x2="180" y2="130" stroke="#334155" stroke-width="2"/>
-                            <line x1="20" y1="20" x2="20" y2="130" stroke="#334155" stroke-width="2"/>
-                            <!-- Labels -->
-                            <text x="90" y="145" font-size="10" fill="#334155">Time</text>
-                            <text x="5" y="75" font-size="10" fill="#334155" transform="rotate(-90 5 75)">Conc.</text>
-                            <!-- Linear Straight Line -->
-                            <line x1="30" y1="35" x2="170" y2="120" stroke="#dc2626" stroke-width="2.5"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
+    <div class="question-box">
+        Q4. Discuss the general principles of cancer chemotherapy and management of chemotherapy-induced toxicities. <span class="year">(2018 Annual)</span>
+    </div>
+    <div class="answer-content">
+        <h4>General Principles of Cancer Chemotherapy:</h4>
+        <ul>
+            <li><strong>Combination Therapy:</strong> Utilizing drugs with different mechanisms of action and non-overlapping toxicities to maximize tumor cell destruction and prevent drug resistance.</li>
+            <li><strong>Cyclic Administration:</strong> Administered in scheduled cycles with rest intervals to allow normal healthy tissues (bone marrow, GI mucosa) time to recover.</li>
+            <li><strong>Cell Cycle Specificity:</strong> Agents are targeted to specific phases of cell replication (e.g., S-phase or M-phase) or act in a cell-cycle nonspecific manner.</li>
+        </ul>
+        <h4>Management of Chemotherapy-Induced Toxicities:</h4>
+        <ul>
+            <li><strong>Nausea and Vomiting:</strong> Prophylactic administration of 5-HT3 antagonists and corticosteroids.</li>
+            <li><strong>Myelosuppression and Neutropenia:</strong> Use of colony-stimulating factors (G-CSF) and strict infection control precautions.</li>
+            <li><strong>Anemia:</strong> Blood transfusion support or erythropoiesis-stimulating agents when indicated.</li>
+            <li><strong>Urothelial Protection:</strong> Hydration and protective agents like mesna to prevent hemorrhagic cystitis during alkylating therapy.</li>
+        </ul>
+    </div>
 
-            <!-- Question 7 -->
-            <div class="question-card">
-                <div class="question-title">
-                    <span>Q7. Discuss major drug receptor families and signaling mechanisms.</span>
-                    <span class="badge">2014 Annual</span>
-                </div>
-                <p>Receptor families mediate cellular signaling through distinct molecular architectures:</p>
-                <ul>
-                    <li><strong>G Protein-Coupled Receptors (GPCRs):</strong> Comprise extracellular ligand-binding domains linked to heterotrimeric G proteins (alpha, beta, gamma subunits). Agonist binding induces GTP binding and dissociation of subunits to regulate downstream effectors.</li>
-                    <li><strong>Transmembrane Receptor Tyrosine Kinases:</strong> Feature extracellular ligand-binding domains linked via peptide chains to intracellular protein kinase domains.</li>
-                    <li><strong>Cytokine Receptors:</strong> Agonist-induced dimerization alters intracellular conformation, recruiting and activating JAK kinases and STAT transcription factors.</li>
-                    <li><strong>Ligand and Voltage-Gated Channels:</strong> Increase transmembrane ionic conductance across synapses, eliciting rapid cellular depolarization or hyperpolarization within milliseconds.</li>
-                    <li><strong>Intracellular Receptors:</strong> Stimulate gene transcription by binding directly to specific DNA sequences following prolonged lag periods.</li>
-                </ul>
-            </div>
-
-            <!-- Question 8 -->
-            <div class="question-card">
-                <div class="question-title">
-                    <span>Q8. Discuss parenteral route advantages, disadvantages, indications, and risks of intravenous administration.</span>
-                    <span class="badge">2014 Annual & 2008 Annual</span>
-                </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parenteral Advantages</th>
-                            <th>Parenteral Disadvantages</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Immediate physiological response achieved.</td>
-                            <td>Must be administered by trained personnel; requires aseptic technique.</td>
-                        </tr>
-                        <tr>
-                            <td>Indispensable for drugs destroyed by GI secretions (e.g., insulin, certain antibiotics).</td>
-                            <td>Pain on injection is common and difficult to reverse once administered.</td>
-                        </tr>
-                        <tr>
-                            <td>Ideal for uncooperative, nauseous, or unconscious patients.</td>
-                            <td>Manufacturing and packaging standards make preparations more costly.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p><strong>Indications for Parenteral Administration:</strong> Used for drugs poorly absorbed from the GI tract (e.g., heparin) or unstable in digestive acids, and for patients requiring rapid onset of action.</p>
-                <p><strong>Risks of Intravenous Drug Administration:</strong></p>
-                <ul>
-                    <li>Infection and contamination at the injection site.</li>
-                    <li>Vascular damage, phlebitis, or infiltration.</li>
-                    <li>Air embolism.</li>
-                    <li>Thrombosis and blood clot formation.</li>
-                </ul>
-            </div>
-
-            <!-- Question 9 -->
-            <div class="question-card">
-                <div class="question-title">
-                    <span>Q9. What is an antagonist? Discuss different types of antagonism with examples.</span>
-                    <span class="badge">2007 Annual & 2017 Supplementary</span>
-                </div>
-                <p><strong>Antagonist Definition:</strong> A drug that possesses affinity for a specific receptor but lacks intrinsic activity. It produces no biological effect in the absence of an agonist, but decreases or blocks the effect of an agonist when co-administered.</p>
-                <p><strong>Types of Antagonism:</strong></p>
-                <ol>
-                    <li><strong>Physical Antagonism:</strong> Based on physical properties; for example, medicinal charcoal binds alkaloids physically in the GI tract to prevent systemic absorption.</li>
-                    <li><strong>Chemical Antagonism:</strong> Chemical interaction between two substances without receptor involvement; for example, chelating agents binding heavy metal ions.</li>
-                    <li><strong>Physiological / Functional Antagonism:</strong> Occurs when two agonists act on separate independent receptors to produce opposite physiological effects (e.g., histamine causing bronchoconstriction versus adrenaline causing bronchodilation).</li>
-                    <li><strong>Pharmacological Antagonism:</strong> Competes for the same receptor site:
-                        <ul>
-                            <li><em>Competitive (Reversible) Antagonism:</em> Binds reversibly to the receptor site and can be overcome by increasing agonist concentration.</li>
-                            <li><em>Non-Competitive (Irreversible) Antagonism:</em> Binds to allosteric or receptor sites permanently, preventing activation regardless of agonist concentration.</li>
-                        </ul>
-                    </li>
-                </ol>
-            </div>
-        </section>
-
-        <!-- UNIT II: DRUGS USED TO PREVENT AND TREAT INFECTION & MALARIA -->
-        <section id="unit2" class="unit-section">
-            <h2 class="unit-title">Unit II: Drugs Used to Prevent and Treat Infection & Malaria</h2>
-            <div class="question-card">
-                <div class="question-title">
-                    <span>Core Overview & Clinical Management</span>
-                    <span class="badge">UHS Curriculum</span>
-                </div>
-                <p><strong>Antimicrobial & Antimalarial Categories:</strong> Anti-infective therapy encompasses bactericidal and bacteriostatic agents designed to eliminate pathogenic microorganisms without causing undue host toxicity.</p>
-                <ul>
-                    <li><strong>Antibacterial Agents:</strong> Target bacterial cell wall synthesis, protein synthesis, or nucleic acid replication (e.g., penicillins, cephalosporins, macrolides).</li>
-                    <li><strong>Antimalarial Drugs:</strong> Designed to eradicate plasmodium parasites within erythrocytes and hepatic stages (e.g., chloroquine, artemisinin-based combination therapies).</li>
-                    <li><strong>Antifungal & Antiviral Agents:</strong> Disrupt fungal cell membrane ergosterol synthesis or viral polymerase enzymes.</li>
-                </ul>
-                <p><strong>Nursing Measures & Patient Education:</strong></p>
-                <ul>
-                    <li>Instruct patients to complete the full prescribed course of anti-infective therapy to prevent microbial resistance.</li>
-                    <li>Monitor for hypersensitivity reactions, gastrointestinal distress, and secondary superinfections.</li>
-                    <li>Ensure proper hydration and baseline renal/hepatic function laboratory monitoring.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- UNIT III: DRUGS AFFECTING THE GASTROINTESTINAL SYSTEM -->
-        <section id="unit3" class="unit-section">
-            <h2 class="unit-title">Unit III: Drugs Affecting the Gastrointestinal System</h2>
-            <div class="question-card">
-                <div class="question-title">
-                    <span>Gastrointestinal Pharmacotherapy & Nursing Care</span>
-                    <span class="badge">UHS Curriculum</span>
-                </div>
-                <p><strong>Common Gastrointestinal Disorders & Symptoms:</strong> Peptic ulcer disease, gastroesophageal reflux disease (GERD), nausea, vomiting, constipation, and diarrhea.</p>
-                <p><strong>Classification of GI Drugs:</strong></p>
-                <ul>
-                    <li><strong>Antacids & Acid Suppressants:</strong> Neutralize gastric acid or inhibit acid secretion (Proton Pump Inhibitors, H2 receptor antagonists).</li>
-                    <li><strong>Antiemetics:</strong> Prevent or relieve nausea and vomiting by acting on central and peripheral emetic pathways.</li>
-                    <li><strong>Laxatives & Cathartics:</strong> Promote bowel evacuation for constipation or diagnostic preparation.</li>
-                    <li><strong>Antidiarrheals:</strong> Reduce intestinal motility and fluid secretion.</li>
-                </ul>
-                <p><strong>Nursing Responsibilities:</strong> Monitor electrolyte balance, assess bowel sounds and abdominal pain, evaluate therapeutic response, and educate patients regarding medication timing relative to meals.</p>
-            </div>
-        </section>
-
-        <!-- UNIT IV: DRUGS AFFECTING HEMATOLOGY SYSTEM -->
-        <section id="unit4" class="unit-section">
-            <h2 class="unit-title">Unit IV: Drugs Affecting Hematology System</h2>
-            <div class="question-card">
-                <div class="question-title">
-                    <span>Hematological Agents & Therapeutic Uses</span>
-                    <span class="badge">UHS Curriculum</span>
-                </div>
-                <p><strong>Uses and Effects:</strong> Drugs affecting the hematological system regulate coagulation, platelet aggregation, and erythropoiesis to manage thromboembolic disorders and anemias.</p>
-                <p><strong>Classification & Mechanisms:</strong></p>
-                <ul>
-                    <li><strong>Anticoagulants:</strong> Prevent thrombus formation by inhibiting clotting factor cascades (e.g., heparin, warfarin).</li>
-                    <li><strong>Antiplatelet Agents:</strong> Inhibit platelet aggregation and plug formation (e.g., aspirin).</li>
-                    <li><strong>Thrombolytics:</strong> Dissolve existing blood clots by converting plasminogen to plasmin.</li>
-                    <li><strong>Hematinics:</strong> Provide essential building blocks like iron, vitamin B12, and folic acid for red blood cell synthesis.</li>
-                </ul>
-                <p><strong>Expected & Adverse Reactions:</strong> Primary adverse reactions include bleeding tendencies, bruising, and thrombocytopenia. Rigorous nursing monitoring of coagulation profiles (PT/INR, aPTT) and vital signs is essential.</p>
-            </div>
-        </section>
-
-        <!-- UNIT V: ANTI-NEOPLASTIC DRUGS -->
-        <section id="unit5" class="unit-section">
-            <h2 class="unit-title">Unit V: Anti-Neoplastic Drugs</h2>
-            <div class="question-card">
-                <div class="question-title">
-                    <span>Oncological Pharmacology & Cytotoxic Agents</span>
-                    <span class="badge">UHS Curriculum</span>
-                </div>
-                <p><strong>Description & Therapeutic Uses:</strong> Anti-neoplastic agents are cytotoxic drugs utilized in cancer chemotherapy to inhibit rapid cellular proliferation and tumor progression.</p>
-                <p><strong>Classification of Anti-Neoplastic Drugs:</strong></p>
-                <ul>
-                    <li><strong>Alkylating Agents:</strong> Cross-link DNA strands to prevent cellular replication.</li>
-                    <li><strong>Antimetabolites:</strong> Mimic cellular metabolites to disrupt DNA synthesis pathways.</li>
-                    <li><strong>Plant Alkaloids & Mitotic Inhibitors:</strong> Arrest cell division by interfering with microtubule assembly during mitosis.</li>
-                    <li><strong>Antitumor Antibiotics:</strong> Intercalate into DNA and generate free radicals to damage malignant cells.</li>
-                </ul>
-                <p><strong>Adverse Toxicities & Nursing Responsibilities:</strong></p>
-                <ul>
-                    <li>Bone marrow suppression leading to neutropenia, anemia, and thrombocytopenia.</li>
-                    <li>Gastrointestinal mucosal inflammation (mucositis, nausea).</li>
-                    <li>Alopecia and organ-specific toxicities (cardiotoxicity, nephrotoxicity).</li>
-                    <li>Rigorous aseptic nursing care, monitoring complete blood counts (CBC), and providing supportive emetogenic prophylaxis.</li>
-                </ul>
-            </div>
-        </section>
-    </main>
+    <!-- Footer -->
+    <footer>
+        Pharmacology Solved Past Papers &bull; BSN Curriculum &bull; Maintained by Mudassir Khan
+    </footer>
+</div>
 
 </body>
 </html>
