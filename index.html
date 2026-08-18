@@ -27,18 +27,27 @@
     body { background: var(--bg-main); color: var(--text-dark); line-height: 1.65; padding-bottom: 80px; }
 
     /* Top Header */
-    .header { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; padding: 45px 24px 60px; text-align: center; position: relative; box-shadow: 0 10px 30px rgba(2, 132, 199, 0.2); }
+    .header { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; padding: 50px 24px 60px; text-align: center; position: relative; box-shadow: 0 10px 30px rgba(2, 132, 199, 0.2); }
     
-    /* Top Right Action Buttons */
-    .header-actions {
+    /* Top Left Header Button (Instagram) */
+    .header-left {
+      position: absolute;
+      top: 20px;
+      left: 24px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Top Right Header Buttons */
+    .header-right {
       position: absolute;
       top: 20px;
       right: 24px;
       display: flex;
       gap: 10px;
       align-items: center;
-      flex-wrap: wrap;
     }
+
     .header-btn {
       background: rgba(255, 255, 255, 0.15);
       border: 1px solid rgba(255, 255, 255, 0.3);
@@ -62,7 +71,7 @@
     }
     .header-btn.wa { background: rgba(37, 211, 102, 0.25); border-color: rgba(37, 211, 102, 0.5); }
     .header-btn.wa:hover { background: var(--whatsapp); color: white; }
-    .header-btn.ig { background: rgba(225, 48, 108, 0.25); border-color: rgba(225, 48, 108, 0.5); }
+    .header-btn.ig { background: rgba(225, 48, 108, 0.3); border-color: rgba(225, 48, 108, 0.6); }
     .header-btn.ig:hover { background: var(--instagram); color: white; }
 
     .header-badge { background: rgba(255, 255, 255, 0.2); padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; margin-bottom: 12px; margin-top: 10px; }
@@ -132,7 +141,7 @@
     .custom-table th { background-color: #e0f2fe; color: var(--primary-dark); font-weight: 700; }
     .custom-table tr:nth-child(even) { background-color: #f8fafc; }
 
-    /* FLOATING ASK ADMIN BUTTON */
+    /* FLOATING ASK ADMIN BUTTON (WHATSAPP) */
     .fab-container {
       position: fixed;
       bottom: 25px;
@@ -221,25 +230,19 @@
       box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); transition: background 0.2s, transform 0.1s; width: 100%; border: none; cursor: pointer;
     }
     .modal-btn:hover { background: #20ba5a; transform: translateY(-1px); }
-    .modal-btn.admin-btn { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3); }
-    .modal-btn.admin-btn:hover { background: #0369a1; }
 
     /* Footer */
     footer { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-top: 60px; border-top: 1px solid #e2e8f0; padding-top: 30px; }
     footer .author-credit { font-size: 1.1rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 6px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-    .footer-socials { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
-    .social-link {
-      display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-decoration: none; color: white; transition: transform 0.2s;
-      box-shadow: var(--shadow-sm);
-    }
-    .social-link.wa { background: var(--whatsapp); }
-    .social-link.ig { background: var(--instagram); }
-    .social-link:hover { transform: translateY(-2px); }
 
     /* Mobile Responsive Header Tweaks */
     @media (max-width: 640px) {
-      .header { padding: 75px 16px 35px; }
-      .header-actions {
+      .header { padding: 80px 16px 35px; }
+      .header-left {
+        top: 12px;
+        left: 12px;
+      }
+      .header-right {
         top: 12px;
         right: 12px;
         gap: 6px;
@@ -260,15 +263,18 @@
 
   <!-- Top Header -->
   <header class="header">
-    <div class="header-actions">
+    <div class="header-left">
+      <a href="https://instagram.com/mudassirkhan43_?igsh=MTZiMTBzNmNucDJ1YQ==" target="_blank" class="header-btn ig">
+        <span>📸</span> Instagram
+      </a>
+    </div>
+
+    <div class="header-right">
       <a href="login.html" class="header-btn">
         <span>🔐</span> Login
       </a>
       <a href="#" class="header-btn wa" onclick="openAdminModal(); return false;">
         <span>💬</span> Ask Admin
-      </a>
-      <a href="https://instagram.com/mudassirkhan43_?igsh=MTZiMTBzNmNucDJ1YQ==" target="_blank" class="header-btn ig">
-        <span>📸</span> Instagram
       </a>
     </div>
 
@@ -338,7 +344,7 @@
       <div class="modal-box">
         <button class="close-btn" onclick="closeAdminModal()">×</button>
         <h2 style="font-size:1.25rem; color:var(--text-dark);">Connect with Admin</h2>
-        <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Have questions regarding notes, portal access, or study guides? Reach out directly.</p>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Have questions regarding notes, portal access, or study guides? Reach out directly via WhatsApp.</p>
         
         <div class="payment-methods" style="margin-top: 18px;">
           <strong>📞 Direct Contact</strong>
@@ -346,14 +352,9 @@
           <p style="margin-top:4px;">Admin: <strong>Mudassir Khan</strong></p>
         </div>
 
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-          <a href="https://wa.me/923241064487?text=Hello%20Mudassir%20Khan,%20I%20have%20a%20question%20regarding%20the%20Pharmacology%20Portal." target="_blank" class="modal-btn">
-            💬 Chat on WhatsApp (03241064487)
-          </a>
-          <a href="https://instagram.com/mudassirkhan43_?igsh=MTZiMTBzNmNucDJ1YQ==" target="_blank" class="modal-btn admin-btn">
-            📸 Message on Instagram
-          </a>
-        </div>
+        <a href="https://wa.me/923241064487?text=Hello%20Mudassir%20Khan,%20I%20have%20a%20question%20regarding%20the%20Pharmacology%20Portal." target="_blank" class="modal-btn">
+          💬 Chat on WhatsApp (03241064487)
+        </a>
       </div>
     </div>
 
@@ -502,15 +503,6 @@
         <span>✨</span> Crafted with excellence by Mudassir Khan
       </div>
       <p>Professional Health Educator &amp; Web Developer</p>
-      
-      <div class="footer-socials">
-        <a href="https://wa.me/923241064487?text=Hello%20Mudassir%20Khan,%20I%20am%20visiting%20the%20Pharmacology%20Portal." target="_blank" class="social-link wa">
-          <span>💬</span> WhatsApp (03241064487)
-        </a>
-        <a href="https://instagram.com/mudassirkhan43_?igsh=MTZiMTBzNmNucDJ1YQ==" target="_blank" class="social-link ig">
-          <span>📸</span> Instagram Profile
-        </a>
-      </div>
       <p style="margin-top: 15px; font-size: 0.8rem; opacity: 0.7;">&copy; 2026 Pharmacology-I Portal. All rights reserved.</p>
     </div>
   </footer>
