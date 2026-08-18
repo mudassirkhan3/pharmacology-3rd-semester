@@ -26,114 +26,116 @@
       user-select: text;
     }
 
-    body { background: #f1f5f9; color: #0f172a; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow-x: hidden; }
+    body { background: #f1f5f9; color: #0f172a; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; }
 
-    /* --- PAGE BLUR EFFECT WHEN WELCOME POPUP IS ACTIVE --- */
-    .page-blurred {
-      filter: blur(12px);
-      pointer-events: none;
-      user-select: none;
-      transition: filter 0.4s ease;
-    }
-
-    /* --- SIMPLE & BIG CENTERED WELCOME POPUP --- */
-    .welcome-modal-backdrop {
+    /* --- EYE-CATCHING CENTERED DESKTOP MODE WELCOME MODAL --- */
+    .desktop-welcome-backdrop {
       position: fixed;
       inset: 0;
       background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(16px);
-      z-index: 2000;
+      backdrop-filter: blur(8px);
+      z-index: 9999;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      animation: fadeInModal 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: fadeIn 0.3s ease;
     }
-
-    @keyframes fadeInModal {
-      from { opacity: 0; transform: scale(0.92); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    .welcome-modal-card {
-      background: #ffffff;
+    .desktop-welcome-card {
+      background: white;
       width: 100%;
       max-width: 440px;
-      border-radius: 28px;
-      box-shadow: 0 30px 60px -15px rgba(2, 132, 199, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2);
-      overflow: hidden;
+      border-radius: 24px;
+      padding: 32px 24px;
       text-align: center;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+      border-top: 6px solid #0284c7;
       position: relative;
+      animation: scaleUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
-    .welcome-modal-header {
-      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-      color: white;
-      padding: 40px 24px 32px;
-    }
-
-    .welcome-icon {
-      width: 80px;
-      height: 80px;
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(6px);
+    .desktop-welcome-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+      color: #0284c7;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.2rem;
+      font-size: 2rem;
       margin: 0 auto 18px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      border: 2px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 8px 20px rgba(2, 132, 199, 0.2);
     }
-
-    .welcome-modal-header h2 {
-      font-size: 1.6rem;
+    .desktop-welcome-card h3 {
+      font-size: 1.35rem;
       font-weight: 800;
-      letter-spacing: -0.5px;
+      color: #0f172a;
       margin-bottom: 8px;
+      letter-spacing: -0.5px;
     }
-
-    .welcome-modal-header p {
-      font-size: 0.95rem;
-      opacity: 0.95;
-      font-weight: 600;
-    }
-
-    .welcome-modal-body {
-      padding: 32px 24px;
-    }
-
-    .welcome-modal-body p {
-      color: #334155;
-      font-size: 0.92rem;
+    .desktop-welcome-card p {
+      font-size: 0.88rem;
+      color: #475569;
       line-height: 1.6;
-      margin-bottom: 24px;
-      font-weight: 500;
+      margin-bottom: 20px;
     }
-
-    .dismiss-welcome-btn {
+    .steps-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 14px;
+      padding: 16px;
+      text-align: left;
+      margin-bottom: 24px;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+    }
+    .step-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 10px;
+    }
+    .step-row:last-child {
+      margin-bottom: 0;
+    }
+    .step-badge {
+      background: #0284c7;
+      color: white;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      box-shadow: 0 2px 5px rgba(2, 132, 199, 0.3);
+    }
+    .proceed-btn {
       width: 100%;
       background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
       color: white;
       border: none;
-      padding: 16px;
+      padding: 14px;
       border-radius: 14px;
       font-weight: 800;
-      font-size: 1rem;
+      font-size: 0.95rem;
       cursor: pointer;
-      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4);
-      transition: all 0.2s ease;
+      box-shadow: 0 6px 16px rgba(2, 132, 199, 0.35);
+      transition: transform 0.2s, opacity 0.2s;
     }
-
-    .dismiss-welcome-btn:hover {
-      opacity: 0.95;
+    .proceed-btn:hover {
+      opacity: 0.92;
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.5);
     }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes scaleUp { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
     /* Header */
-    header { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15); transition: filter 0.4s ease; }
+    header { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15); }
     .header-title h1 { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.5px; }
     .header-title p { font-size: 0.8rem; opacity: 0.9; font-weight: 500; }
     .header-actions { display: flex; gap: 8px; align-items: center; }
@@ -141,7 +143,7 @@
     .action-btn:hover { background: rgba(255, 255, 255, 0.3); }
 
     /* Dashboard Layout */
-    .container { max-width: 1100px; margin: 24px auto; padding: 0 16px; width: 100%; display: grid; grid-template-columns: 320px 1fr; gap: 20px; transition: filter 0.4s ease; }
+    .container { max-width: 1100px; margin: 24px auto; padding: 0 16px; width: 100%; display: grid; grid-template-columns: 320px 1fr; gap: 20px; }
     @media(max-width: 768px) { .container { grid-template-columns: 1fr; margin: 16px auto; } }
 
     /* Sidebar Profile Card */
@@ -188,7 +190,7 @@
     .chapter-box p { font-size: 0.78rem; color: #475569; margin-bottom: 10px; }
     .chapter-link-text { font-size: 0.78rem; font-weight: 700; color: #0369a1; }
 
-    /* --- SPECIAL COLOR ACCENTS FOR SECTIONS --- */
+    /* --- SPECIAL COLOR ACCENTS FOR NEW SECTIONS --- */
     .table-box { border-top: 3px solid #6366f1; background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%); }
     .table-box h4 { color: #4f46e5 !important; }
     .table-box .chapter-link-text { color: #4f46e5; }
@@ -225,175 +227,178 @@
     .btn-secondary:hover { background: #cbd5e1; }
 
     /* Footer */
-    footer { text-align: center; font-size: 0.8rem; color: #64748b; padding: 24px 0; border-top: 1px solid #e2e8f0; background: white; margin-top: 30px; font-weight: 500; transition: filter 0.4s ease; }
+    footer { text-align: center; font-size: 0.8rem; color: #64748b; padding: 24px 0; border-top: 1px solid #e2e8f0; background: white; margin-top: 30px; font-weight: 500; }
     footer span { color: #0284c7; font-weight: 700; }
   </style>
 </head>
 <body>
 
-  <!-- Big Simple Centered Welcome & Dismissible Popup Modal -->
-  <div id="welcomeModal" class="welcome-modal-backdrop">
-    <div class="welcome-modal-card">
-      <div class="welcome-modal-header">
-        <div class="welcome-icon">🚀</div>
-        <h2>Welcome to Dashboard</h2>
-        <p>Pharmacology-I Portal • BSN Hub</p>
+  <!-- --- CENTERED DESKTOP MODE WELCOME MODAL --- -->
+  <div id="desktopWelcomeModal" class="desktop-welcome-backdrop">
+    <div class="desktop-welcome-card">
+      <div class="desktop-welcome-icon">🖥️</div>
+      <h3>Switch to Desktop Site</h3>
+      <p>For the ultimate learning experience with complete pharmacology notes, tables, and crystal-clear layouts on mobile, please switch to Desktop View:</p>
+      
+      <div class="steps-box">
+        <div class="step-row">
+          <span class="step-badge">1</span>
+          <span>Tap the <strong>three dots (⋮)</strong> in your browser menu.</span>
+        </div>
+        <div class="step-row">
+          <span class="step-badge">2</span>
+          <span>Check the box for <strong>"Desktop site"</strong>.</span>
+        </div>
+        <div class="step-row">
+          <span class="step-badge">3</span>
+          <span>Enjoy seamless studying! 🚀</span>
+        </div>
       </div>
-      <div class="welcome-modal-body">
-        <p>You have successfully opened your study portal. Tap the button below to clear the screen, remove the blur, and access all your chapters and resources.</p>
-        <button class="dismiss-welcome-btn" onclick="dismissWelcomeModal()">Enter Dashboard ✨</button>
-      </div>
+
+      <button class="proceed-btn" onclick="dismissWelcomeModal()">Got it, Open Dashboard! ✨</button>
     </div>
   </div>
 
-  <!-- Wrapped Main Content Elements for Background Blur Effect -->
-  <div id="pageContent" class="page-blurred">
-    <!-- Header -->
-    <header>
-      <div class="header-title">
-        <h1>Pharmacology-I Portal</h1>
-        <p>BSN Clinical Learning Hub</p>
+  <!-- Header -->
+  <header>
+    <div class="header-title">
+      <h1>Pharmacology-I Portal</h1>
+      <p>BSN Clinical Learning Hub</p>
+    </div>
+    <div class="header-actions">
+      <button onclick="openForgotPasswordModal()" class="action-btn">🔑 Forgot Password</button>
+      <button onclick="logout()" class="action-btn">Log Out</button>
+    </div>
+  </header>
+
+  <!-- Dashboard Container -->
+  <div class="container">
+
+    <!-- Sidebar Profile Section -->
+    <div class="profile-card">
+      <div class="avatar-wrapper">
+        <img id="profile-pic" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250" alt="Student Profile Picture" class="avatar-img">
+        <label for="file-input" class="upload-label" title="Upload Profile Picture">📷</label>
+        <input type="file" id="file-input" accept="image/*" onchange="previewImage(event)">
       </div>
-      <div class="header-actions">
-        <button onclick="openForgotPasswordModal()" class="action-btn">🔑 Forgot Password</button>
-        <button onclick="logout()" class="action-btn">Log Out</button>
+      <div class="profile-info">
+        <h3 id="student-name">Mudassir Hussain Khan</h3>
+        <p id="student-institute">New Life Institute of Nursing</p>
+        <p id="student-email">rollno 002075</p>
+        <span class="badge" id="student-semester">4th Semester</span>
       </div>
-    </header>
 
-    <!-- Dashboard Container -->
-    <div class="container">
+      <button onclick="openEditProfileModal()" class="edit-profile-btn">✏️ Edit Profile</button>
 
-      <!-- Sidebar Profile Section -->
-      <div class="profile-card">
-        <div class="avatar-wrapper">
-          <img id="profile-pic" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250" alt="Student Profile Picture" class="avatar-img">
-          <label for="file-input" class="upload-label" title="Upload Profile Picture">📷</label>
-          <input type="file" id="file-input" accept="image/*" onchange="previewImage(event)">
+      <!-- Single-Use Access Code Box -->
+      <div class="access-box">
+        <label>🔒 Single-Use Access Code</label>
+        <div class="access-input-row">
+          <input type="password" id="sidebarAccessInput" class="access-input" placeholder="Enter code">
+          <button class="verify-btn" onclick="verifySingleUseCode()">Verify</button>
         </div>
-        <div class="profile-info">
-          <h3 id="student-name">Mudassir Hussain Khan</h3>
-          <p id="student-institute">New Life Institute of Nursing</p>
-          <p id="student-email">rollno 002075</p>
-          <span class="badge" id="student-semester">4th Semester</span>
-        </div>
+        <div id="accessStatusText" class="access-status status-locked">Status: Content Locked</div>
+        <a href="https://wa.me/923241064487?text=Hello%20Mudassir,%20I%20have%20paid%20for%20the%20Pharmacology%20portal.%20Kindly%20provide%20my%20single-use%20access%20code." target="_blank" class="whatsapp-mini">
+          💬 Pay via WhatsApp &amp; Get Code
+        </a>
+      </div>
+    </div>
 
-        <button onclick="openEditProfileModal()" class="edit-profile-btn">✏️ Edit Profile</button>
+    <!-- Main Content Panel -->
+    <div class="main-content">
+      
+      <!-- Welcome Card -->
+      <div class="card">
+        <h2>Welcome Back!</h2>
+        <p>Access your complete Pharmacology-I curriculum, chapters, and clinical notes below. Enter your unique single-use access code in the sidebar to permanently unlock all study units and resources.</p>
+      </div>
 
-        <!-- Single-Use Access Code Box -->
-        <div class="access-box">
-          <label>🔒 Single-Use Access Code</label>
-          <div class="access-input-row">
-            <input type="password" id="sidebarAccessInput" class="access-input" placeholder="Enter code">
-            <button class="verify-btn" onclick="verifySingleUseCode()">Verify</button>
+      <!-- Chapters Portal Links (Locked by Default) -->
+      <div class="card">
+        <h2>Pharmacology Chapters &amp; Units</h2>
+        <div class="chapters-wrapper">
+          
+          <!-- Lock Overlay -->
+          <div id="lockOverlay" class="content-lock-overlay">
+            <h3>🔒 Chapters Locked</h3>
+            <p>Please enter your verified single-use access code in the sidebar to unlock all chapter resources.</p>
           </div>
-          <div id="accessStatusText" class="access-status status-locked">Status: Content Locked</div>
-          <a href="https://wa.me/923241064487?text=Hello%20Mudassir,%20I%20have%20paid%20for%20the%20Pharmacology%20portal.%20Kindly%20provide%20my%20single-use%20access%20code." target="_blank" class="whatsapp-mini">
-            💬 Pay via WhatsApp &amp; Get Code
-          </a>
-        </div>
-      </div>
 
-      <!-- Main Content Panel -->
-      <div class="main-content">
-        
-        <!-- Welcome Card -->
-        <div class="card">
-          <h2>Welcome Back!</h2>
-          <p>Access your complete Pharmacology-I curriculum, chapters, and clinical notes below. Enter your unique single-use access code in the sidebar to permanently unlock all study units and resources.</p>
-        </div>
+          <!-- Chapters Grid -->
+          <div class="chapters-grid">
+            <a href="chapter1.html" class="chapter-box" onclick="return checkAccess(event)">
+              <div>
+                <h4>Unit I: Basics</h4>
+                <p>Terminologies, history, sources, &amp; drug classifications.</p>
+              </div>
+              <span class="chapter-link-text">Read Notes →</span>
+            </a>
 
-        <!-- Chapters Portal Links (Locked by Default) -->
-        <div class="card">
-          <h2>Pharmacology Chapters &amp; Units</h2>
-          <div class="chapters-wrapper">
-            
-            <!-- Lock Overlay -->
-            <div id="lockOverlay" class="content-lock-overlay">
-              <h3>🔒 Chapters Locked</h3>
-              <p>Please enter your verified single-use access code in the sidebar to unlock all chapter resources.</p>
-            </div>
+            <a href="chapter2.html" class="chapter-box" onclick="return checkAccess(event)">
+              <div>
+                <h4>Unit II: Infections</h4>
+                <p>Antibiotics, antifungals, antivirals &amp; patient care.</p>
+              </div>
+              <span class="chapter-link-text">Read Notes →</span>
+            </a>
 
-            <!-- Chapters Grid -->
-            <div class="chapters-grid">
-              <a href="chapter1.html" class="chapter-box" onclick="return checkAccess(event)">
-                <div>
-                  <h4>Unit I: Basics</h4>
-                  <p>Terminologies, history, sources, &amp; drug classifications.</p>
-                </div>
-                <span class="chapter-link-text">Read Notes →</span>
-              </a>
+            <a href="chapter3.html" class="chapter-box" onclick="return checkAccess(event)">
+              <div>
+                <h4>Unit III: Gastrointestinal</h4>
+                <p>GI symptoms, disorder medications &amp; dosages.</p>
+              </div>
+              <span class="chapter-link-text">Read Notes →</span>
+            </a>
 
-              <a href="chapter2.html" class="chapter-box" onclick="return checkAccess(event)">
-                <div>
-                  <h4>Unit II: Infections</h4>
-                  <p>Antibiotics, antifungals, antivirals &amp; patient care.</p>
-                </div>
-                <span class="chapter-link-text">Read Notes →</span>
-              </a>
+            <a href="chapter4.html" class="chapter-box" onclick="return checkAccess(event)">
+              <div>
+                <h4>Unit IV: Hematology</h4>
+                <p>Blood disorders, anticoagulants &amp; monitoring.</p>
+              </div>
+              <span class="chapter-link-text">Read Notes →</span>
+            </a>
 
-              <a href="chapter3.html" class="chapter-box" onclick="return checkAccess(event)">
-                <div>
-                  <h4>Unit III: Gastrointestinal</h4>
-                  <p>GI symptoms, disorder medications &amp; dosages.</p>
-                </div>
-                <span class="chapter-link-text">Read Notes →</span>
-              </a>
+            <a href="chapter5.html" class="chapter-box" onclick="return checkAccess(event)">
+              <div>
+                <h4>Unit V: Anti-Neoplastic</h4>
+                <p>Chemotherapy drugs, actions &amp; safety protocols.</p>
+              </div>
+              <span class="chapter-link-text">Read Notes →</span>
+            </a>
 
-              <a href="chapter4.html" class="chapter-box" onclick="return checkAccess(event)">
-                <div>
-                  <h4>Unit IV: Hematology</h4>
-                  <p>Blood disorders, anticoagulants &amp; monitoring.</p>
-                </div>
-                <span class="chapter-link-text">Read Notes →</span>
-              </a>
+            <!-- 1. IMPORTANT TABLES (Indigo Accent) -->
+            <a href="important-tables.html" class="chapter-box table-box" onclick="return checkAccess(event)">
+              <div>
+                <h4>IMPORTANT TABLES</h4>
+                <p>High-yield classification and dosage reference charts.</p>
+              </div>
+              <span class="chapter-link-text">Open Tables →</span>
+            </a>
 
-              <a href="chapter5.html" class="chapter-box" onclick="return checkAccess(event)">
-                <div>
-                  <h4>Unit V: Anti-Neoplastic</h4>
-                  <p>Chemotherapy drugs, actions &amp; safety protocols.</p>
-                </div>
-                <span class="chapter-link-text">Read Notes →</span>
-              </a>
+            <!-- 2. UHS PHARAMA PAST PAPERS (Amber/Gold Accent) -->
+            <a href="uhs-past-papers.html" class="chapter-box papers-box" onclick="return checkAccess(event)">
+              <div>
+                <h4>UHS PHARAMA PAST PAPERS</h4>
+                <p>Previous years University of Health Sciences exam papers.</p>
+              </div>
+              <span class="chapter-link-text">View Papers →</span>
+            </a>
 
-              <!-- 1. IMPORTANT TABLES (Indigo Accent) -->
-              <a href="important-tables.html" class="chapter-box table-box" onclick="return checkAccess(event)">
-                <div>
-                  <h4>IMPORTANT TABLES</h4>
-                  <p>High-yield classification and dosage reference charts.</p>
-                </div>
-                <span class="chapter-link-text">Open Tables →</span>
-              </a>
-
-              <!-- 2. UHS PHARAMA PAST PAPERS (Amber/Gold Accent) -->
-              <a href="uhs-past-papers.html" class="chapter-box papers-box" onclick="return checkAccess(event)">
-                <div>
-                  <h4>UHS PHARAMA PAST PAPERS</h4>
-                  <p>Previous years University of Health Sciences exam papers.</p>
-                </div>
-                <span class="chapter-link-text">View Papers →</span>
-              </a>
-
-              <!-- 3. PRACTICE MCQS (Emerald Green Accent) -->
-              <a href="practice-mcqs.html" class="chapter-box mcqs-box" onclick="return checkAccess(event)">
-                <div>
-                  <h4>PRACTICE MCQS</h4>
-                  <p>Test your knowledge with chapter-wise quizzes.</p>
-                </div>
-                <span class="chapter-link-text">Start Quiz →</span>
-              </a>
-            </div>
-
+            <!-- 3. PRACTICE MCQS (Emerald Green Accent) -->
+            <a href="practice-mcqs.html" class="chapter-box mcqs-box" onclick="return checkAccess(event)">
+              <div>
+                <h4>PRACTICE MCQS</h4>
+                <p>Test your knowledge with chapter-wise quizzes.</p>
+              </div>
+              <span class="chapter-link-text">Start Quiz →</span>
+            </a>
           </div>
-        </div>
 
+        </div>
       </div>
 
     </div>
 
-    <!-- Footer -->
-    <footer>
-      <p>Developed with clinical precision by <span>Mudassir Khan</span> • BSN Portal</p>
-    </footer>
   </div>
 
   <!-- Edit Profile Modal -->
@@ -443,11 +448,15 @@
     </div>
   </div>
 
+  <!-- Footer -->
+  <footer>
+    <p>Developed with clinical precision by <span>Mudassir Khan</span> • BSN Portal</p>
+  </footer>
+
   <script>
-    // --- DISMISS WELCOME POPUP & REMOVE BACKGROUND BLUR ---
+    // --- DISMISS WELCOME MODAL SCRIPT ---
     function dismissWelcomeModal() {
-      document.getElementById('welcomeModal').style.display = 'none';
-      document.getElementById('pageContent').classList.remove('page-blurred');
+      document.getElementById('desktopWelcomeModal').style.display = 'none';
     }
 
     // --- ADVANCED SECURITY LOCK SCRIPTS ---
