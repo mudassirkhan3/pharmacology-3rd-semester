@@ -69,28 +69,41 @@
     .cascade-step small { color: var(--text-muted); display: block; margin-top: 5px; font-weight: normal; }
     .cascade-step:hover small { color: #f8fafc; }
 
-    /* ANIMATION STAGE 2: INTERACTIVE RECEPTOR COMPETITION SIMULATOR */
-    .sim-stage { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border: 2px solid #cbd5e1; border-radius: 20px; padding: 30px; margin: 35px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
+    /* UPGRADED ANIMATION STAGE 2: RECEPTOR ARENA & COMPETITION SIMULATOR */
+    .sim-stage { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; border: 2px solid #3b82f6; border-radius: 24px; padding: 35px; margin: 35px 0; box-shadow: 0 20px 50px rgba(37, 99, 235, 0.25); position: relative; overflow: hidden; }
+    .sim-stage h3 { color: #60a5fa !important; }
+    .sim-stage p { color: #94a3b8 !important; }
+
+    .scenario-toolbar { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+    .scenario-btn { background: rgba(59, 130, 246, 0.2); border: 1px solid #60a5fa; color: #93c5fd; padding: 7px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: 0.2s; }
+    .scenario-btn:hover { background: #3b82f6; color: white; transform: translateY(-1px); }
+
     .sim-controls { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 25px; }
-    .sim-btn { padding: 10px 18px; border-radius: 10px; border: none; font-weight: 700; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.08); font-size: 0.95rem; }
+    .sim-btn { padding: 11px 20px; border-radius: 12px; border: none; font-weight: 700; cursor: pointer; transition: 0.25s; box-shadow: 0 4px 15px rgba(0,0,0,0.3); font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
     .btn-agonist { background: #2563eb; color: white; }
-    .btn-agonist:hover { background: #1d4ed8; }
-    .btn-comp { background: #f59e0b; color: white; }
-    .btn-comp:hover { background: #d97706; }
+    .btn-agonist:hover { background: #1d4ed8; transform: translateY(-2px); }
+    .btn-comp { background: #f59e0b; color: #0f172a; font-weight: 800; }
+    .btn-comp:hover { background: #d97706; transform: translateY(-2px); }
     .btn-irrev { background: #dc2626; color: white; }
-    .btn-irrev:hover { background: #b91c1c; }
-    .btn-reset { background: #64748b; color: white; }
-    .btn-reset:hover { background: #475569; }
+    .btn-irrev:hover { background: #b91c1c; transform: translateY(-2px); }
+    .btn-reset { background: #475569; color: white; }
+    .btn-reset:hover { background: #334155; transform: translateY(-2px); }
 
-    .receptor-slots { display: flex; justify-content: center; gap: 16px; margin: 25px 0; flex-wrap: wrap; }
-    .slot { width: 65px; height: 65px; background: white; border: 3px dashed #94a3b8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; transition: 0.3s; box-shadow: inset 0 2px 5px rgba(0,0,0,0.05); }
-    .slot.occupied-agonist { border-color: #2563eb; background: #eff6ff; transform: scale(1.08); }
-    .slot.occupied-comp { border-color: #f59e0b; background: #fef3c7; transform: scale(1.08); }
-    .slot.occupied-irrev { border-color: #dc2626; background: #fee2e2; transform: scale(1.08); }
+    .receptor-arena { display: grid; grid-template-columns: repeat(auto-fit, minmax(95px, 1fr)); gap: 16px; margin: 25px 0; }
+    .receptor-pod { background: rgba(255, 255, 255, 0.04); border: 2px dashed #475569; border-radius: 16px; padding: 16px 8px; text-align: center; transition: 0.35s; position: relative; min-height: 110px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .receptor-pod.bound-agonist { background: rgba(37, 99, 235, 0.25); border: 2px solid #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.35); transform: scale(1.03); }
+    .receptor-pod.bound-comp { background: rgba(245, 158, 11, 0.25); border: 2px solid #f59e0b; box-shadow: 0 0 20px rgba(245, 158, 11, 0.35); transform: scale(1.03); }
+    .receptor-pod.bound-irrev { background: rgba(220, 38, 38, 0.25); border: 2px solid #dc2626; box-shadow: 0 0 20px rgba(220, 38, 38, 0.35); transform: scale(1.03); }
+    
+    .pod-icon { font-size: 1.8rem; margin-bottom: 4px; }
+    .pod-label { font-size: 0.75rem; font-weight: 700; color: #cbd5e1; letter-spacing: 0.5px; }
 
-    .response-meter-box { background: white; border-radius: 12px; padding: 15px 20px; border: 1px solid #cbd5e1; margin-top: 20px; }
-    .response-bar-bg { width: 100%; background: #e2e8f0; height: 22px; border-radius: 11px; overflow: hidden; margin-top: 8px; position: relative; }
-    .response-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #2563eb, #10b981); transition: width 0.4s ease-in-out; border-radius: 11px; }
+    .sim-status-box { background: rgba(15, 23, 42, 0.7); border: 1px solid #334155; border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; font-size: 0.9rem; color: #e2e8f0; display: flex; align-items: center; gap: 12px; }
+    .status-dot { width: 10px; height: 10px; background: #10b981; border-radius: 50%; box-shadow: 0 0 8px #10b981; flex-shrink: 0; }
+
+    .response-meter-box { background: rgba(255, 255, 255, 0.05); border-radius: 14px; padding: 18px 22px; border: 1px solid rgba(255, 255, 255, 0.1); margin-top: 20px; }
+    .response-bar-bg { width: 100%; background: rgba(255, 255, 255, 0.1); height: 24px; border-radius: 12px; overflow: hidden; margin-top: 8px; position: relative; }
+    .response-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #3b82f6, #10b981); transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 12px; }
 
     .mnemonic-box { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-left: 6px solid var(--accent); padding: 25px; border-radius: 14px; margin: 30px 0; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.1); border: 1px solid #fde68a; }
     .mnemonic-box h4 { color: #b45309; font-size: 1.15rem; margin-bottom: 10px; font-weight: 800; display: flex; align-items: center; gap: 12px; }
@@ -231,30 +244,36 @@
     </div>
   </div>
 
-  <!-- RECOMMENDED NEW ANIMATION: INTERACTIVE RECEPTOR COMPETITION SIMULATOR -->
+  <!-- NEW UPGRADED ANIMATION 2: THE RECEPTOR COMPETITION & DRUG CLASH ARENA -->
   <div class="sim-stage">
-    <h3 style="color: var(--primary-dark); text-align: center; margin-bottom: 6px;">Animation 2: Interactive Receptor Competition Simulator</h3>
-    <p style="text-align: center; font-size: 0.95rem; margin-bottom: 20px;">Test how Agonists (💊), Competitive Antagonists (🛡️), and Irreversible Blockers (🔒) compete for available cell receptors:</p>
+    <h3 style="text-align: center; margin-bottom: 6px;">Animation 2: The Receptor Competition & Drug Clash Arena</h3>
+    <p style="text-align: center; font-size: 0.95rem; margin-bottom: 18px;">Test drug competition in real-time. Notice how <strong>Competitive Antagonists</strong> can be displaced by flooding with Agonists, whereas <strong>Irreversible Blockers</strong> permanently paralyze the receptor!</p>
 
-    <div class="sim-controls">
-      <button class="sim-btn btn-agonist" onclick="addDrug('agonist')">+ Add Agonist (💊)</button>
-      <button class="sim-btn btn-comp" onclick="addDrug('competitive')">+ Add Competitive Antagonist (🛡️)</button>
-      <button class="sim-btn btn-irrev" onclick="addDrug('irreversible')">+ Add Irreversible Blocker (🔒)</button>
-      <button class="sim-btn btn-reset" onclick="resetSim()">Reset Receptors</button>
+    <div class="scenario-toolbar">
+      <button class="scenario-btn" onclick="loadScenario('normal')">✨ Normal Agonist Drive</button>
+      <button class="scenario-btn" onclick="loadScenario('competitive')">🛡️ Competitive Block</button>
+      <button class="scenario-btn" onclick="loadScenario('irrev')">🔒 Irreversible Paralysis</button>
     </div>
 
-    <div class="receptor-slots" id="receptorContainer">
-      <div class="slot" id="slot-0">○</div>
-      <div class="slot" id="slot-1">○</div>
-      <div class="slot" id="slot-2">○</div>
-      <div class="slot" id="slot-3">○</div>
-      <div class="slot" id="slot-4">○</div>
-      <div class="slot" id="slot-5">○</div>
+    <div class="sim-controls">
+      <button class="sim-btn btn-agonist" onclick="applyDrug('agonist')">💊 Inject Agonist</button>
+      <button class="sim-btn btn-comp" onclick="applyDrug('competitive')">🛡️ Add Competitive Block</button>
+      <button class="sim-btn btn-irrev" onclick="applyDrug('irreversible')">🔒 Add Irreversible Blocker</button>
+      <button class="sim-btn btn-reset" onclick="resetArena()">🔄 Reset Arena</button>
+    </div>
+
+    <div class="sim-status-box">
+      <div class="status-dot" id="statusDot"></div>
+      <span id="simStatusText">Arena ready. Inject drugs into the cell membrane below to observe cellular activation.</span>
+    </div>
+
+    <div class="receptor-arena" id="receptorArena">
+      <!-- 6 dynamic receptor pods generated by JS -->
     </div>
 
     <div class="response-meter-box">
-      <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 0.95rem; color: var(--primary-dark);">
-        <span>Cellular Response Output:</span>
+      <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 0.95rem; color: #f8fafc;">
+        <span>Cellular Activation Output ($E_{max}$):</span>
         <span id="responsePercentage">0%</span>
       </div>
       <div class="response-bar-bg">
@@ -402,55 +421,137 @@
 
 </div>
 
-<!-- SIMULATOR JAVASCRIPT LOGIC -->
+<!-- UPGRADED SIMULATOR JAVASCRIPT LOGIC -->
 <script>
-  const totalSlots = 6;
-  let receptors = Array(totalSlots).fill(null); // null, 'agonist', 'competitive', 'irreversible'
+  const totalReceptors = 6;
+  // Each receptor state: null, 'agonist', 'competitive', 'irreversible'
+  let receptorState = Array(totalReceptors).fill(null);
 
-  function addDrug(type) {
-    // Find first empty slot
-    const emptyIndex = receptors.findIndex(r => r === null);
-    if (emptyIndex === -1) {
-      alert("All receptors are fully occupied! Reset to test new drug combinations.");
-      return;
-    }
-    receptors[emptyIndex] = type;
-    updateSimUI();
-  }
+  function renderArena() {
+    const arena = document.getElementById("receptorArena");
+    arena.innerHTML = "";
 
-  function resetSim() {
-    receptors = Array(totalSlots).fill(null);
-    updateSimUI();
-  }
-
-  function updateSimUI() {
-    let agonistCount = 0;
-    for (let i = 0; i < totalSlots; i++) {
-      const slotEl = document.getElementById(`slot-${i}`);
-      slotEl.className = "slot";
-      const state = receptors[i];
+    receptorState.forEach((state, i) => {
+      const pod = document.createElement("div");
+      pod.className = "receptor-pod";
       
-      if (state === null) {
-        slotEl.textContent = "○";
-      } else if (state === 'agonist') {
-        slotEl.textContent = "💊";
-        slotEl.classList.add("occupied-agonist");
-        agonistCount++;
+      let icon = "○";
+      let label = "Unbound";
+
+      if (state === 'agonist') {
+        pod.classList.add("bound-agonist");
+        icon = "💊";
+        label = "Agonist Bound";
       } else if (state === 'competitive') {
-        slotEl.textContent = "🛡️";
-        slotEl.classList.add("occupied-comp");
+        pod.classList.add("bound-comp");
+        icon = "🛡️";
+        label = "Competitive Block";
       } else if (state === 'irreversible') {
-        slotEl.textContent = "🔒";
-        slotEl.classList.add("occupied-irrev");
+        pod.classList.add("bound-irrev");
+        icon = "🔒";
+        label = "Irreversible Lock";
+      }
+
+      pod.innerHTML = `
+        <div class="pod-icon">${icon}</div>
+        <div class="pod-label">R${i+1}: ${label}</div>
+      `;
+      arena.appendChild(pod);
+    });
+
+    updateMetrics();
+  }
+
+  function applyDrug(type) {
+    const statusText = document.getElementById("simStatusText");
+    const statusDot = document.getElementById("statusDot");
+
+    if (type === 'agonist') {
+      // Check if there is an empty slot
+      const emptyIdx = receptorState.indexOf(null);
+      if (emptyIdx !== -1) {
+        receptorState[emptyIdx] = 'agonist';
+        statusText.textContent = `Agonist successfully bound to receptor R${emptyIdx+1}! Signal generated.`;
+        statusDot.style.background = "#3b82f6";
+        statusDot.style.boxShadow = "0 0 8px #3b82f6";
+      } else {
+        // If full, check if any slot has a competitive antagonist to displace!
+        const compIdx = receptorState.indexOf('competitive');
+        if (compIdx !== -1) {
+          receptorState[compIdx] = 'agonist';
+          statusText.textContent = `High Agonist concentration successfully DISPLACED Competitive Antagonist at R${compIdx+1}!`;
+          statusDot.style.background = "#10b981";
+          statusDot.style.boxShadow = "0 0 8px #10b981";
+        } else {
+          statusText.textContent = `All receptors are fully occupied or irreversibly blocked. Cannot bind more agonists!`;
+          statusDot.style.background = "#ef4444";
+          statusDot.style.boxShadow = "0 0 8px #ef4444";
+        }
+      }
+    } else if (type === 'competitive') {
+      const emptyIdx = receptorState.indexOf(null);
+      if (emptyIdx !== -1) {
+        receptorState[emptyIdx] = 'competitive';
+        statusText.textContent = `Competitive Antagonist bound reversibly at R${emptyIdx+1}. Can be overcome by more agonists!`;
+        statusDot.style.background = "#f59e0b";
+        statusDot.style.boxShadow = "0 0 8px #f59e0b";
+      } else {
+        statusText.textContent = `All receptor pods are fully occupied!`;
+        statusDot.style.background = "#ef4444";
+        statusDot.style.boxShadow = "0 0 8px #ef4444";
+      }
+    } else if (type === 'irreversible') {
+      const emptyIdx = receptorState.indexOf(null);
+      if (emptyIdx !== -1) {
+        receptorState[emptyIdx] = 'irreversible';
+        statusText.textContent = `Irreversible Blocker bound permanently at R${emptyIdx+1}! Receptor function destroyed.`;
+        statusDot.style.background = "#dc2626";
+        statusDot.style.boxShadow = "0 0 8px #dc2626";
+      } else {
+        statusText.textContent = `All receptor pods are fully occupied!`;
+        statusDot.style.background = "#ef4444";
+        statusDot.style.boxShadow = "0 0 8px #ef4444";
       }
     }
 
-    // Calculate response percentage (each agonist contributes ~16.6%)
-    const percentage = Math.round((agonistCount / totalSlots) * 100);
+    renderArena();
+  }
+
+  function resetArena() {
+    receptorState = Array(totalReceptors).fill(null);
+    document.getElementById("simStatusText").textContent = "Arena reset. Ready for new pharmacological testing.";
+    document.getElementById("statusDot").style.background = "#10b981";
+    document.getElementById("statusDot").style.boxShadow = "0 0 8px #10b981";
+    renderArena();
+  }
+
+  function loadScenario(scenario) {
+    if (scenario === 'normal') {
+      receptorState = ['agonist', 'agonist', 'agonist', 'agonist', 'agonist', 'agonist'];
+      document.getElementById("simStatusText").textContent = "Scenario Loaded: Normal Agonist Drive. 100% maximum cellular response ($E_{max}$).";
+    } else if (scenario === 'competitive') {
+      receptorState = ['agonist', 'competitive', 'competitive', 'agonist', 'competitive', 'agonist'];
+      document.getElementById("simStatusText").textContent = "Scenario Loaded: Competitive Blockade. Notice reduced response, but flooding with agonists will overcome it!";
+    } else if (scenario === 'irrev') {
+      receptorState = ['agonist', 'irreversible', 'irreversible', 'agonist', 'irreversible', 'agonist'];
+      document.getElementById("simStatusText").textContent = "Scenario Loaded: Irreversible Paralysis. Maximum efficacy ($E_{max}$) is permanently reduced because receptors are destroyed.";
+    }
+    renderArena();
+  }
+
+  function updateMetrics() {
+    const agonistCount = receptorState.filter(s => s === 'agonist').length;
+    const percentage = Math.round((agonistCount / totalReceptors) * 100);
     document.getElementById("responsePercentage").textContent = percentage + "%";
     document.getElementById("responseFill").style.width = percentage + "%";
   }
+
+  // Initialize on page load
+  window.onload = function() {
+    renderArena();
+  };
 </script>
+
   <footer>
     <div class="container">
       <div class="author-credit">
