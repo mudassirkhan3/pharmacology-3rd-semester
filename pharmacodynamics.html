@@ -3,562 +3,217 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pharmacodynamics: Signal Transduction, Receptors & Dose-Response | Elite Masterclass</title>
+  <title>Pharmacodynamics: Interactive Dose-Response Lab</title>
   <style>
     :root {
-      --bg-gradient: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #faf5ff 100%);
+      --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
       --primary: #2563eb;
       --primary-dark: #1e40af;
-      --primary-light: #60a5fa;
-      --accent: #f59e0b;
-      --accent-green: #10b981;
-      --card-bg: rgba(255, 255, 255, 0.95);
-      --card-border: rgba(37, 99, 235, 0.2);
+      --accent: #10b981;
+      --warning: #f59e0b;
+      --danger: #dc2626;
+      --card-bg: #ffffff;
       --text-main: #0f172a;
       --text-muted: #475569;
-      --shadow-glow: 0 20px 40px -15px rgba(37, 99, 235, 0.15);
-      --radius: 24px;
+      --radius: 20px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.8; padding: 40px 16px; min-height: 100vh; }
+    body { background: var(--bg-gradient); color: var(--text-main); line-height: 1.7; padding: 40px 16px; min-height: 100vh; }
     
-    .container { max-width: 1050px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(20px); padding: 55px 50px; border-radius: var(--radius); border: 1px solid var(--card-border); box-shadow: var(--shadow-glow); position: relative; overflow: hidden; }
-    .container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #2563eb, #10b981, #f59e0b); }
+    .container { max-width: 900px; margin: 0 auto; background: var(--card-bg); padding: 45px 40px; border-radius: var(--radius); border: 1px solid #e2e8f0; box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.1); position: relative; }
+    .container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #2563eb, #10b981, #f59e0b); border-radius: 20px 20px 0 0; }
+
+    .badge { display: inline-block; padding: 6px 14px; background: #dbeafe; color: var(--primary-dark); font-weight: 800; font-size: 0.75rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+
+    h1 { font-size: 2.3rem; font-weight: 900; color: #0f172a; margin-bottom: 15px; }
+    p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 25px; }
+
+    /* SIMULATOR STAGE */
+    .lab-stage { background: #0f172a; color: white; border-radius: 18px; padding: 30px; margin: 30px 0; box-shadow: 0 15px 35px rgba(15, 23, 42, 0.2); }
+    .lab-stage h3 { color: #60a5fa; margin-bottom: 8px; font-size: 1.3rem; }
+    .lab-stage p { color: #94a3b8; font-size: 0.95rem; margin-bottom: 20px; }
+
+    .control-panel { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 25px; }
+    .mode-btn { background: #1e293b; border: 2px solid #334155; color: #cbd5e1; padding: 10px 18px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.2s; font-size: 0.9rem; }
+    .mode-btn.active { background: var(--primary); border-color: #60a5fa; color: white; box-shadow: 0 0 15px rgba(37, 99, 235, 0.4); }
+
+    .slider-box { background: rgba(255, 255, 255, 0.05); border: 1px solid #334155; padding: 20px; border-radius: 14px; margin-bottom: 25px; }
+    .slider-header { display: flex; justify-content: space-between; font-weight: 800; margin-bottom: 10px; font-size: 1rem; color: #f8fafc; }
     
-    .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; margin-bottom: 30px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25); }
-    .back-btn:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35); }
+    input[type=range] { width: 100%; height: 8px; background: #334155; border-radius: 4px; outline: none; -webkit-appearance: none; }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); cursor: pointer; box-shadow: 0 0 10px #10b981; transition: 0.2s; }
+    input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 
-    .badge { display: inline-block; padding: 6px 16px; background: #dbeafe; color: var(--primary-dark); font-weight: 800; font-size: 0.8rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px; border: 1px solid #bfdbfe; }
-    
-    .high-yield-badge { display: inline-block; background: linear-gradient(135deg, #d97706, #b45309); color: #fff; font-size: 0.75rem; font-weight: 900; padding: 2px 10px; border-radius: 6px; margin-left: 8px; text-transform: uppercase; letter-spacing: 0.5px; vertical-align: middle; box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3); }
+    /* VISUAL CELL & RECEPTORS */
+    .cell-preview { background: rgba(30, 41, 59, 0.8); border: 2px dashed #475569; border-radius: 14px; padding: 20px; text-align: center; margin-bottom: 25px; }
+    .receptors-row { display: flex; justify-content: center; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+    .rec-slot { width: 45px; height: 45px; background: rgba(255,255,255,0.05); border: 2px solid #64748b; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: 0.3s; }
+    .rec-slot.filled { background: rgba(16, 185, 129, 0.25); border-color: var(--accent); box-shadow: 0 0 12px rgba(16, 185, 129, 0.4); transform: scale(1.1); }
+    .rec-slot.blocked { background: rgba(220, 38, 38, 0.25); border-color: var(--danger); box-shadow: 0 0 12px rgba(220, 38, 38, 0.4); }
 
-    h1 { font-size: 2.7rem; font-weight: 900; background: linear-gradient(135deg, #0f172a 0%, #1e40af 50%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; line-height: 1.2; }
-    
-    h2 { font-size: 1.6rem; margin: 45px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #e2e8f0; padding-bottom: 12px; }
-    h2::before { content: ''; display: inline-block; width: 6px; height: 26px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; }
+    /* GRAPH CONTAINER */
+    .graph-box { background: #ffffff; border-radius: 14px; padding: 20px; color: var(--text-main); text-align: center; margin-top: 20px; border: 1px solid #e2e8f0; }
+    .graph-box h4 { color: var(--primary-dark); margin-bottom: 10px; font-size: 1.1rem; }
 
-    h3 { font-size: 1.25rem; color: var(--primary-dark); margin: 20px 0 10px; }
+    .insight-box { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-left: 6px solid var(--accent); padding: 20px; border-radius: 12px; margin-top: 25px; }
+    .insight-box h4 { color: #065f46; font-size: 1.05rem; margin-bottom: 6px; font-weight: 800; }
+    .insight-box p { color: #047857; margin-bottom: 0; font-size: 0.95rem; }
 
-    p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 20px; }
-    p strong { color: var(--text-main); }
-
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin: 25px 0; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: 25px 0; }
-    
-    .card-box { background: #ffffff; border: 2px solid #e2e8f0; border-radius: 18px; padding: 28px; box-shadow: 0 10px 25px rgba(0,0,0,0.03); transition: 0.3s; position: relative; }
-    .card-box:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 15px 30px rgba(37, 99, 235, 0.1); }
-    .card-box h3 { color: var(--primary); margin-bottom: 12px; font-size: 1.25rem; display: flex; align-items: center; gap: 10px; }
-
-    /* ANIMATION STAGE 1: MOLECULAR BINDING */
-    .animation-stage { background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%); border: 2px solid #93c5fd; border-radius: 20px; padding: 35px; margin: 35px 0; text-align: center; box-shadow: 0 15px 35px rgba(37, 99, 235, 0.08); position: relative; overflow: hidden; }
-    .receptor-membrane { display: flex; justify-content: space-around; align-items: center; background: #dbeafe; border-radius: 16px; padding: 20px; position: relative; margin: 25px 0; border: 2px dashed #3b82f6; }
-    
-    .animated-drug { font-size: 2rem; position: absolute; top: -10px; left: 10%; animation: bindReceptor 4s infinite ease-in-out; }
-    @keyframes bindReceptor {
-      0% { left: 5%; top: -20px; opacity: 0; transform: scale(0.5) rotate(0deg); }
-      20% { opacity: 1; transform: scale(1) rotate(45deg); }
-      50% { left: 45%; top: 25px; transform: scale(1.2) rotate(180deg); }
-      70% { left: 65%; top: 60px; opacity: 1; transform: scale(1) rotate(270deg); }
-      100% { left: 90%; top: 20px; opacity: 0; transform: scale(0.5) rotate(360deg); }
-    }
-
-    .cascade-flow { display: flex; justify-content: space-between; gap: 15px; margin-top: 25px; flex-wrap: wrap; }
-    .cascade-step { background: white; border: 2px solid var(--primary); border-radius: 12px; padding: 15px; flex: 1; min-width: 140px; font-weight: 700; color: var(--primary-dark); box-shadow: 0 5px 15px rgba(0,0,0,0.04); transition: 0.3s; }
-    .cascade-step:hover { background: var(--primary); color: white; transform: translateY(-3px); }
-    .cascade-step small { color: var(--text-muted); display: block; margin-top: 5px; font-weight: normal; }
-    .cascade-step:hover small { color: #f8fafc; }
-
-    /* UPGRADED ANIMATION STAGE 2: RECEPTOR ARENA & COMPETITION SIMULATOR */
-    .sim-stage { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; border: 2px solid #3b82f6; border-radius: 24px; padding: 35px; margin: 35px 0; box-shadow: 0 20px 50px rgba(37, 99, 235, 0.25); position: relative; overflow: hidden; }
-    .sim-stage h3 { color: #60a5fa !important; }
-    .sim-stage p { color: #94a3b8 !important; }
-
-    .scenario-toolbar { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
-    .scenario-btn { background: rgba(59, 130, 246, 0.2); border: 1px solid #60a5fa; color: #93c5fd; padding: 7px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: 0.2s; }
-    .scenario-btn:hover { background: #3b82f6; color: white; transform: translateY(-1px); }
-
-    .sim-controls { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 25px; }
-    .sim-btn { padding: 11px 20px; border-radius: 12px; border: none; font-weight: 700; cursor: pointer; transition: 0.25s; box-shadow: 0 4px 15px rgba(0,0,0,0.3); font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
-    .btn-agonist { background: #2563eb; color: white; }
-    .btn-agonist:hover { background: #1d4ed8; transform: translateY(-2px); }
-    .btn-comp { background: #f59e0b; color: #0f172a; font-weight: 800; }
-    .btn-comp:hover { background: #d97706; transform: translateY(-2px); }
-    .btn-irrev { background: #dc2626; color: white; }
-    .btn-irrev:hover { background: #b91c1c; transform: translateY(-2px); }
-    .btn-reset { background: #475569; color: white; }
-    .btn-reset:hover { background: #334155; transform: translateY(-2px); }
-
-    .receptor-arena { display: grid; grid-template-columns: repeat(auto-fit, minmax(95px, 1fr)); gap: 16px; margin: 25px 0; }
-    .receptor-pod { background: rgba(255, 255, 255, 0.04); border: 2px dashed #475569; border-radius: 16px; padding: 16px 8px; text-align: center; transition: 0.35s; position: relative; min-height: 110px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .receptor-pod.bound-agonist { background: rgba(37, 99, 235, 0.25); border: 2px solid #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.35); transform: scale(1.03); }
-    .receptor-pod.bound-comp { background: rgba(245, 158, 11, 0.25); border: 2px solid #f59e0b; box-shadow: 0 0 20px rgba(245, 158, 11, 0.35); transform: scale(1.03); }
-    .receptor-pod.bound-irrev { background: rgba(220, 38, 38, 0.25); border: 2px solid #dc2626; box-shadow: 0 0 20px rgba(220, 38, 38, 0.35); transform: scale(1.03); }
-    
-    .pod-icon { font-size: 1.8rem; margin-bottom: 4px; }
-    .pod-label { font-size: 0.75rem; font-weight: 700; color: #cbd5e1; letter-spacing: 0.5px; }
-
-    .sim-status-box { background: rgba(15, 23, 42, 0.7); border: 1px solid #334155; border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; font-size: 0.9rem; color: #e2e8f0; display: flex; align-items: center; gap: 12px; }
-    .status-dot { width: 10px; height: 10px; background: #10b981; border-radius: 50%; box-shadow: 0 0 8px #10b981; flex-shrink: 0; }
-
-    .response-meter-box { background: rgba(255, 255, 255, 0.05); border-radius: 14px; padding: 18px 22px; border: 1px solid rgba(255, 255, 255, 0.1); margin-top: 20px; }
-    .response-bar-bg { width: 100%; background: rgba(255, 255, 255, 0.1); height: 24px; border-radius: 12px; overflow: hidden; margin-top: 8px; position: relative; }
-    .response-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #3b82f6, #10b981); transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 12px; }
-
-    .mnemonic-box { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-left: 6px solid var(--accent); padding: 25px; border-radius: 14px; margin: 30px 0; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.1); border: 1px solid #fde68a; }
-    .mnemonic-box h4 { color: #b45309; font-size: 1.15rem; margin-bottom: 10px; font-weight: 800; display: flex; align-items: center; gap: 12px; }
-    .mnemonic-box p { color: var(--text-main); margin-bottom: 0; font-weight: 500; }
-
-    ul { list-style-type: none; padding-left: 0; margin-bottom: 20px; }
-    ul li { position: relative; padding-left: 30px; margin-bottom: 14px; color: var(--text-muted); font-size: 1.05rem; }
-    ul li::before { content: '✦'; position: absolute; left: 6px; color: var(--primary); font-size: 0.9rem; }
-    ul li strong { color: var(--text-main); }
-
-    .formula-box { background: #f8fafc; border: 2px dashed var(--primary); padding: 20px; border-radius: 14px; margin: 20px 0; font-family: monospace; font-weight: bold; color: var(--primary-dark); text-align: center; box-shadow: inset 0 2px 6px rgba(0,0,0,0.02); font-size: 1.15rem; }
-    
-    .graph-card { background: white; border: 2px solid #e2e8f0; border-radius: 18px; padding: 28px; margin: 30px 0; box-shadow: 0 10px 25px rgba(0,0,0,0.04); text-align: center; }
-    .graph-card h3 { color: var(--primary-dark); margin-bottom: 10px; }
-    .graph-container { margin: 20px auto; max-width: 600px; background: #f8fafc; border-radius: 12px; padding: 15px; border: 1px solid #e2e8f0; }
+    footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0; color: var(--text-muted); font-size: 0.9rem; }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <a href="chapter1.html" class="back-btn">&larr; Back to Chapter 1 Hub</a>
-  
-  <div class="badge">Elite Medical Masterclass Series</div>
-  <h1>Pharmacodynamics: Signal Transduction, Receptors & Dose-Response</h1>
-  <p>Pharmacodynamics examines <strong>what drugs do to the body and how they do it</strong>. It investigates molecular receptor interactions, signal amplification cascades, cellular adaptation mechanisms, and the quantitative mathematical relationship between drug concentration and pharmacological response.</p>
+  <div class="badge">Interactive Learning Module</div>
+  <h1>Dose-Response & Receptor Binding Lab</h1>
+  <p>Explore how drug dosage and receptor antagonism interact in real time. Drag the slider to adjust concentration and observe the cellular response instantly.</p>
 
-  <!-- ANIMATION STAGE 1: MOLECULAR BINDING -->
-  <div class="animation-stage">
-    <h3 style="color: var(--primary-dark); margin-bottom: 8px;">Animation 1: Molecular Binding & Signal Cascade</h3>
-    <p style="font-size: 0.95rem; margin-bottom: 20px;">Observe how a drug molecule binds to a cell surface receptor and triggers a biological response:</p>
-    
-    <div style="position: relative; height: 70px;">
-      <div class="animated-drug">💊</div>
-    </div>
+  <div class="lab-stage">
+    <h3>Live Pharmacology Simulator</h3>
+    <p>Select your pharmacological condition below, then slide the concentration bar to test receptor binding and cellular output.</p>
 
-    <div class="receptor-membrane">
-      <div style="font-weight: 800; color: #1e40af;">Extracellular Space (Drug Arrival)</div>
-      <div style="background: white; padding: 8px 16px; border-radius: 8px; border: 2px solid #3b82f6; font-weight: 800; color: #1e40af;">Cell Membrane Receptor</div>
-      <div style="font-weight: 800; color: #047857;">Intracellular Cytoplasm</div>
+    <div class="control-panel">
+      <button class="mode-btn active" id="btnNormal" onclick="setMode('normal')">Pure Agonist</button>
+      <button class="mode-btn" id="btnComp" onclick="setMode('competitive')">Plus Competitive Antagonist</button>
+      <button class="mode-btn" id="btnIrrev" onclick="setMode('irrev')">Plus Irreversible Blocker</button>
     </div>
 
-    <div class="cascade-flow">
-      <div class="cascade-step">1. Recognition<br><small>Drug binds active site</small></div>
-      <div class="cascade-step">2. Activation<br><small>Receptor conformation shift</small></div>
-      <div class="cascade-step">3. Amplification<br><small>Second messengers generated</small></div>
-      <div class="cascade-step">4. Response<br><small>Physiologic change</small></div>
-    </div>
-  </div>
-
-  <!-- SECTION 1: SIGNAL TRANSDUCTION & CHARACTERISTICS -->
-  <h2>1. Characteristics of Signal Transduction <span class="high-yield-badge">Core Concept</span></h2>
-  <p>When a drug binds to its specific cellular receptor, it initiates a precise sequence of biochemical events known as <strong>signal transduction</strong>. This system operates through several vital characteristics:</p>
-
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>Signal Amplification</h3>
-      <p>A single drug molecule binding to a single surface receptor can activate multiple G-proteins, which in turn stimulate enzymes like adenylate cyclase to produce thousands of <strong>cyclic AMP (cAMP)</strong> second messenger molecules. This exponentially multiplies the initial signal, creating a massive cellular response from minimal drug input.</p>
-    </div>
-    <div class="card-box">
-      <h3>Desensitization & Down-Regulation</h3>
-      <p>Continuous or prolonged exposure to an agonist diminishes the receptor response over time, known as <strong>desensitization or tachyphylaxis</strong>. To protect the cell from overstimulation, receptors are internalized and destroyed via <strong>down-regulation</strong>, directly causing clinical drug tolerance.</p>
-    </div>
-  </div>
-
-  <!-- SECTION 2: MAJOR RECEPTOR FAMILIES -->
-  <h2>2. The 4 Major Receptor Families / Types <span class="high-yield-badge">High Yield</span></h2>
-  <p>Receptors are categorized into four major superfamilies based on their macromolecular structure and the speed of their signal transduction pathways:</p>
-
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>1 = Ligand-Gated Ion Channels</h3>
-      <p><strong>Speed:</strong> Milliseconds (Fastest)</p>
-      <p><strong>Mechanism:</strong> Binding of an agonist opens or closes ion channels directly, instantly altering transmembrane electrical potential and ion flux.</p>
-      <p><strong>Example:</strong> Nicotinic acetylcholine receptors at the neuromuscular junction; GABA-A chloride channels.</p>
-    </div>
-    <div class="card-box">
-      <h3>2 = G Protein-Coupled Receptors (GPCRs)</h3>
-      <p><strong>Speed:</strong> Seconds</p>
-      <p><strong>Mechanism:</strong> Seven-transmembrane spanning receptors coupled with intracellular G-proteins (Gs, Gi, Gq) that activate second messengers like cAMP, IP3, and DAG.</p>
-      <p><strong>Example:</strong> Beta-adrenoreceptors, muscarinic acetylcholine receptors.</p>
-    </div>
-    <div class="card-box">
-      <h3>3 = Enzyme-Linked Receptors</h3>
-      <p><strong>Speed:</strong> Hours</p>
-      <p><strong>Mechanism:</strong> Receptors possess intrinsic enzymatic activity (typically tyrosine kinase) or bind directly to intracellular enzymes that phosphorylate key regulatory proteins.</p>
-      <p><strong>Example:</strong> Insulin receptors, epidermal growth factor receptors.</p>
-    </div>
-    <div class="card-box">
-      <h3>4 = Intracellular / Nuclear Receptors</h3>
-      <p><strong>Speed:</strong> Hours to Days (Slowest)</p>
-      <p><strong>Mechanism:</strong> Lipophilic drugs cross the plasma membrane, bind intracellular receptors in the cytoplasm or nucleus, and directly regulate gene transcription.</p>
-      <p><strong>Example:</strong> Corticosteroids, sex hormones, thyroid hormone receptors.</p>
-    </div>
-  </div>
-
-  <!-- SECTION 3: INTRINSIC ACTIVITY & AGONIST TYPES -->
-  <h2>3. Intrinsic Activity & Agonist Types <span class="high-yield-badge">Exam Favorite</span></h2>
-  <p><strong>Intrinsic Activity (Alpha):</strong> The quantitative measure of a drug's ability to activate a receptor and produce a biological response after binding (ranges from 0 to 1 or higher).</p>
-
-  <div class="grid-3">
-    <div class="card-box">
-      <h3>A = Full Agonist</h3>
-      <p><strong>Intrinsic Activity = 1</strong></p>
-      <p>Binds to receptors, fully activates them, and produces the <strong>maximum possible physiological response</strong> (e.g., Morphine at mu-opioid receptors).</p>
-    </div>
-    <div class="card-box">
-      <h3>B = Partial Agonist</h3>
-      <p><strong>Intrinsic Activity between 0 and 1</strong></p>
-      <p>Produces submaximal efficacy even when 100 percent of receptors are occupied. Can act as a competitive antagonist if administered alongside a full agonist (e.g., Buprenorphine).</p>
-    </div>
-    <div class="card-box">
-      <h3>C = Inverse Agonist</h3>
-      <p><strong>Intrinsic Activity less than 0 (Negative)</strong></p>
-      <p>Binds to constitutively active receptors and suppresses their basal baseline activity below zero, producing an effect <strong>opposite</strong> to an agonist (e.g., Certain benzodiazepine inverse agonists).</p>
-    </div>
-  </div>
-
-  <!-- SECTION 4: ANTAGONIST TYPES -->
-  <h2>4. Antagonists & Their Mechanisms <span class="high-yield-badge">Must Know</span></h2>
-  <p>Antagonists bind to receptors without activating them (Intrinsic Activity = 0), effectively blocking the action of endogenous agonists or drugs.</p>
-
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>Competitive Antagonist</h3>
-      <p>Binds reversibly to the <em>same active site</em> as the agonist. High concentrations of agonist can overcome the block. <strong>Effect:</strong> Shifts the dose-response curve to the right without reducing maximum efficacy (e.g., Naloxone blocking opioids).</p>
-    </div>
-    <div class="card-box">
-      <h3>Irreversible Antagonist</h3>
-      <p>Binds covalently to the active site, permanently neutralizing the receptor. Adding more agonist cannot overcome the block. <strong>Effect:</strong> Reduces maximum efficacy (Emax) because functional receptors are destroyed (e.g., Phenoxybenzamine).</p>
-    </div>
-    <div class="card-box">
-      <h3>Allosteric Antagonist</h3>
-      <p>Binds to a distinct, separate site (allosteric site) on the receptor protein, inducing a conformational change that prevents agonists from binding or activating the receptor successfully.</p>
-    </div>
-    <div class="card-box">
-      <h3>Functional / Physiological Antagonist</h3>
-      <p>Two drugs act on completely different receptors and organ systems to produce opposing physiological effects. <strong>Example:</strong> Epinephrine relaxing bronchial smooth muscle via Beta-2 receptors, counteracting histamine during anaphylaxis.</p>
-    </div>
-  </div>
-
-  <!-- NEW UPGRADED ANIMATION 2: THE RECEPTOR COMPETITION & DRUG CLASH ARENA -->
-  <div class="sim-stage">
-    <h3 style="text-align: center; margin-bottom: 6px;">Animation 2: The Receptor Competition & Drug Clash Arena</h3>
-    <p style="text-align: center; font-size: 0.95rem; margin-bottom: 18px;">Test drug competition in real-time. Notice how <strong>Competitive Antagonists</strong> can be displaced by flooding with Agonists, whereas <strong>Irreversible Blockers</strong> permanently paralyze the receptor!</p>
-
-    <div class="scenario-toolbar">
-      <button class="scenario-btn" onclick="loadScenario('normal')">✨ Normal Agonist Drive</button>
-      <button class="scenario-btn" onclick="loadScenario('competitive')">🛡️ Competitive Block</button>
-      <button class="scenario-btn" onclick="loadScenario('irrev')">🔒 Irreversible Paralysis</button>
-    </div>
-
-    <div class="sim-controls">
-      <button class="sim-btn btn-agonist" onclick="applyDrug('agonist')">💊 Inject Agonist</button>
-      <button class="sim-btn btn-comp" onclick="applyDrug('competitive')">🛡️ Add Competitive Block</button>
-      <button class="sim-btn btn-irrev" onclick="applyDrug('irreversible')">🔒 Add Irreversible Blocker</button>
-      <button class="sim-btn btn-reset" onclick="resetArena()">🔄 Reset Arena</button>
-    </div>
-
-    <div class="sim-status-box">
-      <div class="status-dot" id="statusDot"></div>
-      <span id="simStatusText">Arena ready. Inject drugs into the cell membrane below to observe cellular activation.</span>
-    </div>
-
-    <div class="receptor-arena" id="receptorArena">
-      <!-- 6 dynamic receptor pods generated by JS -->
-    </div>
-
-    <div class="response-meter-box">
-      <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 0.95rem; color: #f8fafc;">
-        <span>Cellular Activation Output ($E_{max}$):</span>
-        <span id="responsePercentage">0%</span>
+    <div class="slider-box">
+      <div class="slider-header">
+        <span id="sliderLabel">Drug Concentration: 0 percent</span>
+        <span id="responseLabel">Cellular Response: 0 percent</span>
       </div>
-      <div class="response-bar-bg">
-        <div class="response-bar-fill" id="responseFill"></div>
+      <input type="range" id="doseSlider" min="0" max="100" value="0" oninput="updateLab()">
+    </div>
+
+    <div class="cell-preview">
+      <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Cell Membrane Receptor Occupancy</div>
+      <div class="receptors-row" id="receptorRow">
+        <!-- Generated by JavaScript -->
       </div>
     </div>
-  </div>
 
-  <!-- SECTION 5: DOSE-RESPONSE RELATIONSHIPS & GRAPHS -->
-  <h2>5. Dose-Response Relations & Curves <span class="high-yield-badge">Core Concept</span></h2>
-
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>Graded Dose-Response Relationship</h3>
-      <p>As the dose of a drug increases, the pharmacological effect increases in a graded manner until all available receptors are saturated, reaching <strong>Maximum Efficacy (Emax)</strong>.</p>
-      <p><strong>Potency (EC50):</strong> The concentration of drug producing 50 percent of its maximum effect. A <strong>lower EC50 indicates higher potency</strong>.</p>
-      <p><strong>Example:</strong> Comparing blood pressure reduction efficacy between different antihypertensive agents.</p>
-    </div>
-    <div class="card-box">
-      <h3>Quantal Dose-Response Relationship</h3>
-      <p>Measures the percentage of a patient population that exhibits a specified, all-or-none response (such as therapeutic cure, toxic reaction, or lethality) at various administered doses.</p>
-      <p>Essential for establishing population safety margins, therapeutic windows, and clinical dosing guidelines.</p>
-    </div>
-  </div>
-
-  <!-- EMBEDDED GRAPH 1: GRADED DOSE-RESPONSE -->
-  <div class="graph-card">
-    <h3>Figure 1: Graded Dose-Response Curve (Competitive vs Irreversible Antagonism)</h3>
-    <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 15px;">Showing rightward shift for competitive antagonism and reduced Emax for irreversible antagonism.</p>
-    <div class="graph-container">
-      <svg viewBox="0 0 500 250" width="100%" height="auto">
+    <div class="graph-box">
+      <h4>Real-Time Dose-Response Curve</h4>
+      <svg viewBox="0 0 500 200" width="100%" height="auto">
         <!-- Axes -->
-        <line x1="50" y1="210" x2="470" y2="210" stroke="#475569" stroke-width="2" />
-        <line x1="50" y1="30" x2="50" y2="210" stroke="#475569" stroke-width="2" />
-        <text x="240" y="240" font-size="12" fill="#0f172a" font-weight="bold">Log Drug Concentration</text>
-        <text x="10" y="120" font-size="12" fill="#0f172a" font-weight="bold" transform="rotate(-90 10 120)">Effect (% Max)</text>
+        <line x1="40" y1="160" x2="470" y2="160" stroke="#cbd5e1" stroke-width="2" />
+        <line x1="40" y1="20" x2="40" y2="160" stroke="#cbd5e1" stroke-width="2" />
+        <text x="230" y="190" font-size="11" fill="#475569" font-weight="bold">Dose Concentration</text>
+        <text x="10" y="90" font-size="11" fill="#475569" font-weight="bold" transform="rotate(-90 10 90)">Effect</text>
         
-        <!-- Curves -->
-        <!-- Control Agonist -->
-        <path d="M 50 205 Q 150 200 220 120 T 450 45" fill="none" stroke="#2563eb" stroke-width="3.5" />
-        <text x="320" y="35" font-size="11" fill="#2563eb" font-weight="bold">Control Agonist</text>
-
-        <!-- Competitive Antagonist (Shift right) -->
-        <path d="M 50 205 Q 220 200 300 120 T 450 45" fill="none" stroke="#10b981" stroke-width="3" stroke-dasharray="5,5" />
-        <text x="320" y="55" font-size="11" fill="#10b981" font-weight="bold">+ Competitive Antagonist</text>
-
-        <!-- Irreversible Antagonist (Lower Emax) -->
-        <path d="M 50 205 Q 150 200 220 160 T 450 140" fill="none" stroke="#f59e0b" stroke-width="3" />
-        <text x="320" y="75" font-size="11" fill="#b45309" font-weight="bold">+ Irreversible Antagonist</text>
+        <!-- Background Curve -->
+        <path d="M 40 155 Q 180 150 250 90 T 460 30" fill="none" stroke="#e2e8f0" stroke-width="3" />
+        
+        <!-- Active Dynamic Curve -->
+        <path id="activeCurve" d="M 40 155 Q 180 150 250 90 T 460 30" fill="none" stroke="#2563eb" stroke-width="4" />
+        
+        <!-- Tracker Dot -->
+        <circle id="trackerDot" cx="40" cy="155" r="7" fill="#10b981" stroke="#ffffff" stroke-width="2" />
       </svg>
     </div>
-  </div>
 
-  <!-- EMBEDDED GRAPH 2: QUANTAL DOSE-RESPONSE & SAFETY -->
-  <div class="graph-card">
-    <h3>Figure 2: Quantal Dose-Response Curve (Therapeutic Window & Toxicity)</h3>
-    <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 15px;">Comparing Median Effective Dose (ED50) against Median Toxic Dose (TD50).</p>
-    <div class="graph-container">
-      <svg viewBox="0 0 500 250" width="100%" height="auto">
-        <!-- Axes -->
-        <line x1="50" y1="210" x2="470" y2="210" stroke="#475569" stroke-width="2" />
-        <line x1="50" y1="30" x2="50" y2="210" stroke="#475569" stroke-width="2" />
-        <text x="240" y="240" font-size="12" fill="#0f172a" font-weight="bold">Log Dose</text>
-        <text x="15" y="120" font-size="12" fill="#0f172a" font-weight="bold" transform="rotate(-90 15 120)">Population (%)</text>
-        
-        <!-- ED50 Bell Curve (Therapeutic) -->
-        <path d="M 60 210 Q 150 40 240 210" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" stroke-width="3" />
-        <text x="130" y="110" font-size="11" fill="#047857" font-weight="bold">ED50 (Therapeutic)</text>
-
-        <!-- TD50 Bell Curve (Toxic) -->
-        <path d="M 220 210 Q 330 30 440 210" fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" stroke-width="3" />
-        <text x="310" y="100" font-size="11" fill="#b45309" font-weight="bold">TD50 (Toxic)</text>
-      </svg>
+    <div class="insight-box" id="insightBox">
+      <h4>Clinical Observation</h4>
+      <p id="insightText">At zero concentration, receptors are vacant and cellular response is at baseline resting state.</p>
     </div>
   </div>
-
-  <!-- SECTION 6: THERAPEUTIC INDEX -->
-  <h2>6. Therapeutic Index (TI) & Safety Margin <span class="high-yield-badge">Clinical Pearl</span></h2>
-  <p>The <strong>Therapeutic Index</strong> is a vital quantitative measurement of relative drug safety. It compares the dosage that produces toxicity to the dosage that produces the desired therapeutic effect.</p>
-
-  <div class="formula-box">
-    Therapeutic Index (TI) = TD50 / ED50<br>
-    (Or LD50 / ED50 in preclinical animal trials)
-  </div>
-  <p style="font-size: 0.95rem; text-align: center; color: var(--text-muted); margin-top: -10px;">ED50 = Median Effective Dose | TD50 = Median Toxic Dose | LD50 = Median Lethal Dose</p>
-
-  <!-- EMBEDDED GRAPH 3: WIDE VS NARROW THERAPEUTIC INDEX -->
-  <div class="graph-card">
-    <h3>Figure 3: Wide vs. Narrow Therapeutic Index Comparison</h3>
-    <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 6px;">Visualizing the safety margin gap between effective dose (ED50) and toxic dose (TD50).</p>
-    <div class="graph-container">
-      <svg viewBox="0 0 500 180" width="100%" height="auto">
-        <!-- Axes -->
-        <line x1="40" y1="150" x2="470" y2="150" stroke="#475569" stroke-width="2" />
-        <text x="255" y="172" font-size="11" fill="#0f172a" font-weight="bold" text-anchor="middle">Dosage Scale &rarr;</text>
-        
-        <!-- Wide TI (Safe) -->
-        <text x="40" y="25" font-size="11" fill="#047857" font-weight="bold">Wide TI (e.g., Penicillin): Large safety window</text>
-        <line x1="100" y1="42" x2="380" y2="42" stroke="#e2e8f0" stroke-width="6" stroke-linecap="round" />
-        <circle cx="120" cy="42" r="7" fill="#10b981" />
-        <text x="120" y="65" font-size="10" fill="#047857" text-anchor="middle">ED50</text>
-        <circle cx="360" cy="42" r="7" fill="#ef4444" />
-        <text x="360" y="65" font-size="10" fill="#b91c1c" text-anchor="middle">TD50</text>
-        <line x1="120" y1="42" x2="360" y2="42" stroke="#10b981" stroke-width="3" />
-        <text x="240" y="35" font-size="9" fill="#0f172a" font-weight="bold" text-anchor="middle">Safe Gap</text>
-
-        <!-- Narrow TI (Risky) -->
-        <text x="40" y="95" font-size="11" fill="#b45309" font-weight="bold">Narrow TI (e.g., Digoxin): Small safety window</text>
-        <line x1="100" y1="112" x2="190" y2="112" stroke="#e2e8f0" stroke-width="6" stroke-linecap="round" />
-        <circle cx="115" cy="112" r="7" fill="#10b981" />
-        <text x="115" y="135" font-size="10" fill="#047857" text-anchor="middle">ED50</text>
-        <circle cx="165" cy="112" r="7" fill="#ef4444" />
-        <text x="165" y="135" font-size="10" fill="#b91c1c" text-anchor="middle">TD50</text>
-        <line x1="115" y1="112" x2="165" y2="112" stroke="#f59e0b" stroke-width="3" />
-        <text x="140" y="105" font-size="9" fill="#b45309" font-weight="bold" text-anchor="middle">Narrow Gap</text>
-      </svg>
-    </div>
-  </div>
-
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>Wide Therapeutic Index (Safe Medications)</h3>
-      <p>A high ratio indicates a wide margin of safety between the therapeutic dose and toxic dose. <strong>Example:</strong> Penicillin. Safe to administer with minimal routine laboratory monitoring.</p>
-    </div>
-    <div class="card-box">
-      <h3>Narrow Therapeutic Index (High-Risk Medications)</h3>
-      <p>A low ratio (close to 1) means slight dosage increments can trigger severe toxicity or death. <strong>Example:</strong> Warfarin, Digoxin, Lithium. Requires strict therapeutic drug monitoring (TDM) and routine lab testing.</p>
-    </div>
-  </div>
-
-  <!-- MNEUMONIC BOX -->
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for Agonist vs Antagonist Efficacy: "Full Power, Half Power, Zero Block"</h4>
-    <p><strong>Full Agonist:</strong> 100 percent efficacy ➔ <strong>Partial Agonist:</strong> Submaximal efficacy ➔ <strong>Antagonist:</strong> Zero intrinsic activity (blocks receptor effects).</p>
-  </div>
-
-  <!-- KEY NURSING TAKEAWAYS -->
-  <h2>7. Key Nursing Takeaways & Clinical Application</h2>
-  <ul>
-    <li><strong>Monitor Drug Levels for Narrow TI Drugs:</strong> Always review peak and trough laboratory levels for medications like digoxin, warfarin, and lithium to prevent catastrophic toxicity.</li>
-    <li><strong>Understand Receptor Down-Regulation:</strong> Educate patients on why long-term use of agonist medications may lead to drug tolerance due to receptor internalization.</li>
-    <li><strong>Anticipate Competitive Reversals:</strong> Recognize that competitive antagonists like naloxone can be overcome with higher agonist concentrations in acute overdose settings.</li>
-    <li><strong>Appreciate Signal Transduction Speeds:</strong> Understand that fast responses (ion channels) occur in milliseconds, whereas genomic responses (steroids) take days to manifest fully.</li>
-  </ul>
-
-</div>
-
-<!-- UPGRADED SIMULATOR JAVASCRIPT LOGIC -->
-<script>
-  const totalReceptors = 6;
-  // Each receptor state: null, 'agonist', 'competitive', 'irreversible'
-  let receptorState = Array(totalReceptors).fill(null);
-
-  function renderArena() {
-    const arena = document.getElementById("receptorArena");
-    arena.innerHTML = "";
-
-    receptorState.forEach((state, i) => {
-      const pod = document.createElement("div");
-      pod.className = "receptor-pod";
-      
-      let icon = "○";
-      let label = "Unbound";
-
-      if (state === 'agonist') {
-        pod.classList.add("bound-agonist");
-        icon = "💊";
-        label = "Agonist Bound";
-      } else if (state === 'competitive') {
-        pod.classList.add("bound-comp");
-        icon = "🛡️";
-        label = "Competitive Block";
-      } else if (state === 'irreversible') {
-        pod.classList.add("bound-irrev");
-        icon = "🔒";
-        label = "Irreversible Lock";
-      }
-
-      pod.innerHTML = `
-        <div class="pod-icon">${icon}</div>
-        <div class="pod-label">R${i+1}: ${label}</div>
-      `;
-      arena.appendChild(pod);
-    });
-
-    updateMetrics();
-  }
-
-  function applyDrug(type) {
-    const statusText = document.getElementById("simStatusText");
-    const statusDot = document.getElementById("statusDot");
-
-    if (type === 'agonist') {
-      // Check if there is an empty slot
-      const emptyIdx = receptorState.indexOf(null);
-      if (emptyIdx !== -1) {
-        receptorState[emptyIdx] = 'agonist';
-        statusText.textContent = `Agonist successfully bound to receptor R${emptyIdx+1}! Signal generated.`;
-        statusDot.style.background = "#3b82f6";
-        statusDot.style.boxShadow = "0 0 8px #3b82f6";
-      } else {
-        // If full, check if any slot has a competitive antagonist to displace!
-        const compIdx = receptorState.indexOf('competitive');
-        if (compIdx !== -1) {
-          receptorState[compIdx] = 'agonist';
-          statusText.textContent = `High Agonist concentration successfully DISPLACED Competitive Antagonist at R${compIdx+1}!`;
-          statusDot.style.background = "#10b981";
-          statusDot.style.boxShadow = "0 0 8px #10b981";
-        } else {
-          statusText.textContent = `All receptors are fully occupied or irreversibly blocked. Cannot bind more agonists!`;
-          statusDot.style.background = "#ef4444";
-          statusDot.style.boxShadow = "0 0 8px #ef4444";
-        }
-      }
-    } else if (type === 'competitive') {
-      const emptyIdx = receptorState.indexOf(null);
-      if (emptyIdx !== -1) {
-        receptorState[emptyIdx] = 'competitive';
-        statusText.textContent = `Competitive Antagonist bound reversibly at R${emptyIdx+1}. Can be overcome by more agonists!`;
-        statusDot.style.background = "#f59e0b";
-        statusDot.style.boxShadow = "0 0 8px #f59e0b";
-      } else {
-        statusText.textContent = `All receptor pods are fully occupied!`;
-        statusDot.style.background = "#ef4444";
-        statusDot.style.boxShadow = "0 0 8px #ef4444";
-      }
-    } else if (type === 'irreversible') {
-      const emptyIdx = receptorState.indexOf(null);
-      if (emptyIdx !== -1) {
-        receptorState[emptyIdx] = 'irreversible';
-        statusText.textContent = `Irreversible Blocker bound permanently at R${emptyIdx+1}! Receptor function destroyed.`;
-        statusDot.style.background = "#dc2626";
-        statusDot.style.boxShadow = "0 0 8px #dc2626";
-      } else {
-        statusText.textContent = `All receptor pods are fully occupied!`;
-        statusDot.style.background = "#ef4444";
-        statusDot.style.boxShadow = "0 0 8px #ef4444";
-      }
-    }
-
-    renderArena();
-  }
-
-  function resetArena() {
-    receptorState = Array(totalReceptors).fill(null);
-    document.getElementById("simStatusText").textContent = "Arena reset. Ready for new pharmacological testing.";
-    document.getElementById("statusDot").style.background = "#10b981";
-    document.getElementById("statusDot").style.boxShadow = "0 0 8px #10b981";
-    renderArena();
-  }
-
-  function loadScenario(scenario) {
-    if (scenario === 'normal') {
-      receptorState = ['agonist', 'agonist', 'agonist', 'agonist', 'agonist', 'agonist'];
-      document.getElementById("simStatusText").textContent = "Scenario Loaded: Normal Agonist Drive. 100% maximum cellular response ($E_{max}$).";
-    } else if (scenario === 'competitive') {
-      receptorState = ['agonist', 'competitive', 'competitive', 'agonist', 'competitive', 'agonist'];
-      document.getElementById("simStatusText").textContent = "Scenario Loaded: Competitive Blockade. Notice reduced response, but flooding with agonists will overcome it!";
-    } else if (scenario === 'irrev') {
-      receptorState = ['agonist', 'irreversible', 'irreversible', 'agonist', 'irreversible', 'agonist'];
-      document.getElementById("simStatusText").textContent = "Scenario Loaded: Irreversible Paralysis. Maximum efficacy ($E_{max}$) is permanently reduced because receptors are destroyed.";
-    }
-    renderArena();
-  }
-
-  function updateMetrics() {
-    const agonistCount = receptorState.filter(s => s === 'agonist').length;
-    const percentage = Math.round((agonistCount / totalReceptors) * 100);
-    document.getElementById("responsePercentage").textContent = percentage + "%";
-    document.getElementById("responseFill").style.width = percentage + "%";
-  }
-
-  // Initialize on page load
-  window.onload = function() {
-    renderArena();
-  };
-</script>
 
   <footer>
-    <div class="container">
-      <div class="author-credit">
-        <span>✨</span> Crafted with excellence by Mudassir Khan
-      </div>
-      <p style="margin-top: 15px; font-size: 0.8rem; opacity: 0.7;">&copy; 2026 Pharmacology-I Portal. All rights reserved.</p>
-    </div>
+    Crafted with precision for interactive nursing coursework.
   </footer>
+</div>
+
+<script>
+  let currentMode = 'normal';
+
+  function setMode(mode) {
+    currentMode = mode;
+    document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+    
+    if(mode === 'normal') document.getElementById('btnNormal').classList.add('active');
+    if(mode === 'competitive') document.getElementById('btnComp').classList.add('active');
+    if(mode === 'irrev') document.getElementById('btnIrrev').classList.add('active');
+
+    updateLab();
+  }
+
+  function updateLab() {
+    const dose = parseInt(document.getElementById('doseSlider').value);
+    document.getElementById('sliderLabel').textContent = `Drug Concentration: ${dose} percent`;
+
+    let response = 0;
+    let curvePath = "";
+    let insight = "";
+
+    const totalReceptors = 8;
+    let filledCount = 0;
+    let blockedCount = 0;
+
+    if (currentMode === 'normal') {
+      response = Math.round(100 * (dose / (dose + 25))); // Standard Hill equation curve approximation
+      curvePath = "M 40 155 Q 180 150 250 90 T 460 30";
+      filledCount = Math.round((dose / 100) * totalReceptors);
+      insight = `Pure Agonist Mode: As concentration rises to ${dose} percent, receptors bind smoothly, leading to normal maximum Emax of ${response} percent.`;
+    } 
+    else if (currentMode === 'competitive') {
+      // Right shift of curve
+      response = Math.round(100 * (dose / (dose + 60)));
+      curvePath = "M 40 155 Q 240 150 320 95 T 460 35";
+      blockedCount = 2; // Fixed competitive blocks
+      let availableSlots = totalReceptors - blockedCount;
+      filledCount = Math.min(availableSlots, Math.round((dose / 100) * availableSlots));
+      insight = `Competitive Antagonist Mode: Receptors are partially blocked, requiring a higher dose to achieve the same effect, but maximum Emax can still reach 100 percent if flooded with agonist.`;
+    } 
+    else if (currentMode === 'irrev') {
+      // Reduced Emax
+      response = Math.round(60 * (dose / (dose + 20)));
+      curvePath = "M 40 155 Q 160 150 220 120 T 460 100";
+      blockedCount = 3; // Permanent irreversible blocks
+      let availableSlots = totalReceptors - blockedCount;
+      filledCount = Math.min(availableSlots, Math.round((dose / 100) * availableSlots));
+      insight = `Irreversible Blocker Mode: Permanent covalent binding destroys receptor sites, causing a permanent reduction in maximum Emax regardless of how much agonist is added.`;
+    }
+
+    document.getElementById('responseLabel').textContent = `Cellular Response: ${response} percent`;
+    document.getElementById('activeCurve').setAttribute('d', curvePath);
+    document.getElementById('insightText').textContent = insight;
+
+    // Move tracker dot along SVG curve approximation
+    // Mapping dose (0-100) to X (40 to 460) and response (0-100) to Y (155 to 30)
+    let dotX = 40 + (dose / 100) * 420;
+    let dotY = 155 - (response / 100) * 125;
+    const dot = document.getElementById('trackerDot');
+    dot.setAttribute('cx', dotX);
+    dot.setAttribute('cy', dotY);
+
+    // Render Receptor Sockets
+    const row = document.getElementById('receptorRow');
+    row.innerHTML = "";
+    for(let i=0; i<totalReceptors; i++) {
+      const slot = document.createElement('div');
+      slot.className = "rec-slot";
+      if (i < blockedCount && currentMode !== 'normal') {
+        slot.classList.add('blocked');
+        slot.textContent = currentMode === 'competitive' ? 'S' : 'X'; // S for Shielded, X for eXcluded
+        slot.title = "Blocked Receptor";
+      } else if (i < blockedCount + filledCount) {
+        slot.classList.add('filled');
+        slot.textContent = 'P'; // P for Productive bind
+        slot.title = "Active Bound Agonist";
+      } else {
+        slot.textContent = 'o';
+        slot.title = "Vacant Receptor";
+      }
+      row.appendChild(slot);
+    }
+  }
+
+  // Initialize
+  window.onload = updateLab;
+</script>
+
 </body>
 </html>
