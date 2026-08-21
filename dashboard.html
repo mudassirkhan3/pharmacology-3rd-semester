@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Dashboard | Pharmacology-I Portal</title>
+  <title>BSN Clinical Study Portal | Pharmacology-I</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     /* Security & Reset */
@@ -208,13 +208,13 @@
     .plan-task-item.completed .plan-task-text { text-decoration: line-through; color: #94a3b8; }
 
     /* Chapters */
-    .chapters-wrapper { position: relative; }
     .chapters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
-    .chapter-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; text-decoration: none; color: inherit; transition: all 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
+    .chapter-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; text-decoration: none; color: inherit; transition: all 0.2s; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
     .chapter-box:hover { border-color: #0284c7; transform: translateY(-2px); background: white; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08); }
     .chapter-box h4 { color: #0284c7; font-size: 0.88rem; font-weight: 800; margin-bottom: 4px; }
     .chapter-box p { font-size: 0.76rem; color: #475569; margin-bottom: 10px; }
     .chapter-link-text { font-size: 0.76rem; font-weight: 700; color: #0369a1; }
+    .chapter-badge-lock { position: absolute; top: 12px; right: 12px; font-size: 0.75rem; background: #fee2e2; color: #dc2626; padding: 2px 8px; border-radius: 10px; font-weight: 800; }
 
     .table-box { border-top: 3px solid #6366f1; background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%); }
     .table-box h4 { color: #4f46e5 !important; }
@@ -222,10 +222,6 @@
     .papers-box h4 { color: #b45309 !important; }
     .mcqs-box { border-top: 3px solid #059669; background: linear-gradient(135deg, #f8fafc 0%, #ecfdf5 100%); }
     .mcqs-box h4 { color: #047857 !important; }
-
-    .content-lock-overlay { position: absolute; inset: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(6px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border-radius: 16px; z-index: 10; padding: 20px; }
-    .content-lock-overlay h3 { font-size: 1.05rem; font-weight: 800; color: #dc2626; margin-bottom: 6px; }
-    .content-lock-overlay p { font-size: 0.8rem; color: #475569; margin-bottom: 14px; max-width: 300px; }
 
     /* Modals */
     .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; padding: 16px; backdrop-filter: blur(3px); }
@@ -268,8 +264,8 @@
   <!-- Header -->
   <header>
     <div class="header-title">
-      <h1>Pharmacology-I Portal</h1>
-      <p>BSN Clinical Learning Hub</p>
+      <h1>BSN Clinical Study Portal</h1>
+      <p>Pharmacology-I Learning Hub</p>
     </div>
 
     <!-- Top Header Search Finder -->
@@ -312,7 +308,7 @@
           <input type="password" id="sidebarAccessInput" class="access-input" placeholder="Enter code">
           <button class="verify-btn" onclick="verifySingleUseCode()">Verify</button>
         </div>
-        <div id="accessStatusText" class="access-status status-locked">Status: Content Locked</div>
+        <div id="accessStatusText" class="access-status status-locked">Status: Chapters 2-8 Locked</div>
         <a href="https://wa.me/923241064487?text=Hello%20Mudassir,%20I%20have%20paid%20for%20the%20Pharmacology%20portal.%20Kindly%20provide%20my%20single-use%20access%20code." target="_blank" class="whatsapp-mini">
           💬 Pay via WhatsApp &amp; Get Code
         </a>
@@ -392,82 +388,82 @@
         </div>
       </div>
 
-      <!-- Chapters Portal Links (Locked by Default) -->
+      <!-- Chapters Portal Links (Chapter 1 Open, 2-8 Locked) -->
       <div class="card">
         <h2>Pharmacology Chapters &amp; Units</h2>
-        <div class="chapters-wrapper">
+        <p style="margin-bottom: 14px; font-size: 0.82rem;">Unit I is open for everyone. Unlock Units II-VIII and special resources using your access code in the sidebar.</p>
+        <div class="chapters-grid">
           
-          <div id="lockOverlay" class="content-lock-overlay">
-            <h3>🔒 Chapters Locked</h3>
-            <p>Please enter your verified single-use access code in the sidebar to unlock all chapter resources.</p>
-          </div>
+          <a href="chapter1.html" class="chapter-box" onclick="return markUnitRead(event, 1)">
+            <div>
+              <h4>Unit I: Basics</h4>
+              <p>Terminologies, history, sources, &amp; drug classifications.</p>
+            </div>
+            <span class="chapter-link-text">Read Notes (Open) →</span>
+          </a>
 
-          <div class="chapters-grid">
-            <a href="chapter1.html" class="chapter-box" onclick="return markUnitRead(event, 1)">
-              <div>
-                <h4>Unit I: Basics</h4>
-                <p>Terminologies, history, sources, &amp; drug classifications.</p>
-              </div>
-              <span class="chapter-link-text">Read Notes →</span>
-            </a>
+          <a href="chapter2.html" class="chapter-box" onclick="return checkChapterAccess(event, 2)">
+            <div>
+              <span id="lockBadge2" class="chapter-badge-lock">🔒 Locked</span>
+              <h4>Unit II: Infections</h4>
+              <p>Antibiotics, antifungals, antivirals &amp; patient care.</p>
+            </div>
+            <span class="chapter-link-text">Read Notes →</span>
+          </a>
 
-            <a href="chapter2.html" class="chapter-box" onclick="return markUnitRead(event, 2)">
-              <div>
-                <h4>Unit II: Infections</h4>
-                <p>Antibiotics, antifungals, antivirals &amp; patient care.</p>
-              </div>
-              <span class="chapter-link-text">Read Notes →</span>
-            </a>
+          <a href="chapter3.html" class="chapter-box" onclick="return checkChapterAccess(event, 3)">
+            <div>
+              <span id="lockBadge3" class="chapter-badge-lock">🔒 Locked</span>
+              <h4>Unit III: Gastrointestinal</h4>
+              <p>GI symptoms, antidiarrheals, laxatives &amp; dosages.</p>
+            </div>
+            <span class="chapter-link-text">Read Notes →</span>
+          </a>
 
-            <a href="chapter3.html" class="chapter-box" onclick="return markUnitRead(event, 3)">
-              <div>
-                <h4>Unit III: Gastrointestinal</h4>
-                <p>GI symptoms, antidiarrheals, laxatives &amp; dosages.</p>
-              </div>
-              <span class="chapter-link-text">Read Notes →</span>
-            </a>
+          <a href="chapter4.html" class="chapter-box" onclick="return checkChapterAccess(event, 4)">
+            <div>
+              <span id="lockBadge4" class="chapter-badge-lock">🔒 Locked</span>
+              <h4>Unit IV: Hematology</h4>
+              <p>Blood disorders, anticoagulants &amp; monitoring.</p>
+            </div>
+            <span class="chapter-link-text">Read Notes →</span>
+          </a>
 
-            <a href="chapter4.html" class="chapter-box" onclick="return markUnitRead(event, 4)">
-              <div>
-                <h4>Unit IV: Hematology</h4>
-                <p>Blood disorders, anticoagulants &amp; monitoring.</p>
-              </div>
-              <span class="chapter-link-text">Read Notes →</span>
-            </a>
+          <a href="chapter5.html" class="chapter-box" onclick="return checkChapterAccess(event, 5)">
+            <div>
+              <span id="lockBadge5" class="chapter-badge-lock">🔒 Locked</span>
+              <h4>Unit V: Anti-Neoplastic</h4>
+              <p>Chemotherapy drugs, actions &amp; safety protocols.</p>
+            </div>
+            <span class="chapter-link-text">Read Notes →</span>
+          </a>
 
-            <a href="chapter5.html" class="chapter-box" onclick="return markUnitRead(event, 5)">
-              <div>
-                <h4>Unit V: Anti-Neoplastic</h4>
-                <p>Chemotherapy drugs, actions &amp; safety protocols.</p>
-              </div>
-              <span class="chapter-link-text">Read Notes →</span>
-            </a>
+          <a href="important-tables.html" class="chapter-box table-box" onclick="return checkChapterAccess(event, 6)">
+            <div>
+              <span id="lockBadge6" class="chapter-badge-lock">🔒 Locked</span>
+              <h4>IMPORTANT TABLES</h4>
+              <p>High-yield classification and dosage reference charts.</p>
+            </div>
+            <span class="chapter-link-text">Open Tables →</span>
+          </a>
 
-            <a href="important-tables.html" class="chapter-box table-box" onclick="return markUnitRead(event, 6)">
-              <div>
-                <h4>IMPORTANT TABLES</h4>
-                <p>High-yield classification and dosage reference charts.</p>
-              </div>
-              <span class="chapter-link-text">Open Tables →</span>
-            </a>
+          <a href="uhs-past-papers.html" class="chapter-box papers-box" onclick="return checkChapterAccess(event, 7)">
+            <div>
+              <span id="lockBadge7" class="chapter-badge-lock">🔒 Locked</span>
+              <h4>UHS PHARMA PAST PAPERS</h4>
+              <p>Previous years University of Health Sciences exam papers.</p>
+            </div>
+            <span class="chapter-link-text">View Papers →</span>
+          </a>
 
-            <a href="uhs-past-papers.html" class="chapter-box papers-box" onclick="return markUnitRead(event, 7)">
-              <div>
-                <h4>UHS PHARMA PAST PAPERS</h4>
-                <p>Previous years University of Health Sciences exam papers.</p>
-              </div>
-              <span class="chapter-link-text">View Papers →</span>
-            </a>
-
-            <a href="practice-mcqs.html" class="chapter-box mcqs-box" onclick="return markUnitRead(event, 8)">
-              <div>
-                <h4>PRACTICE MCQS</h4>
-                <p>Test your knowledge with chapter-wise quizzes.</p>
-              </div>
-              <span class="chapter-link-text">Start Quiz →</span>
-            </a>
-          </div>
-
+          <a href="practice-mcqs.html" class="chapter-box mcqs-box" onclick="return checkChapterAccess(event, 8)">
+            <div>
+              <span id="lockBadge8" class="chapter-badge-lock">🔒 Locked</span>
+              <h4>PRACTICE MCQS</h4>
+              <p>Test your knowledge with chapter-wise quizzes.</p>
+            </div>
+            <span class="chapter-link-text">Start Quiz →</span>
+          </a>
         </div>
       </div>
 
@@ -538,36 +534,25 @@
   <script>
     /* Comprehensive Drug Database Covering All Chapters & Classes */
     var drugDatabase = [
-      // Antifungals & Antivirals
       { name: "Fluconazole", classTag: "Antifungal (Triazole)", chapter: "Unit II: Infections", moa: "Inhibits fungal CYP450 sterol C-14 alpha-demethylation.", uses: "Candidiasis, cryptococcal meningitis.", sideEffects: "Headache, nausea, elevated liver enzymes." },
       { name: "Amphotericin B", classTag: "Antifungal (Polyene)", chapter: "Unit II: Infections", moa: "Binds to ergosterol in fungal cell membranes, forming pores.", uses: "Severe systemic fungal infections.", sideEffects: "Fever, chills, nephrotoxicity, hypokalemia." },
       { name: "Acyclovir", classTag: "Antiviral (Nucleoside Analogue)", chapter: "Unit II: Infections", moa: "Inhibits viral DNA polymerase after phosphorylation by thymidine kinase.", uses: "Herpes simplex and varicella-zoster infections.", sideEffects: "Nausea, headache, transient renal impairment." },
       { name: "Valacyclovir", classTag: "Antiviral (Prodrug)", chapter: "Unit II: Infections", moa: "Converted to acyclovir; inhibits viral DNA replication.", uses: "Genital herpes, shingles, cold sores.", sideEffects: "Headache, abdominal pain, nausea." },
       { name: "Oseltamivir", classTag: "Antiviral (Neuraminidase Inhibitor)", chapter: "Unit II: Infections", moa: "Inhibits influenza neuraminidase, preventing viral release.", uses: "Treatment and prophylaxis of Influenza A and B.", sideEffects: "Nausea, vomiting, neuropsychiatric events." },
-
-      // GI, Antidiarrheals, Laxatives, PPIs
       { name: "Loperamide", classTag: "Antidiarrheal (Opioid Agonist)", chapter: "Unit III: Gastrointestinal", moa: "Binds to gut opioid receptors, inhibiting peristalsis and prolonging transit time.", uses: "Symptomatic control of acute non-specific diarrhea.", sideEffects: "Constipation, abdominal cramps, dizziness." },
       { name: "Bisacodyl", classTag: "Laxative (Stimulant)", chapter: "Unit III: Gastrointestinal", moa: "Stimulates colonic peristalsis and increases fluid/electrolyte secretion.", uses: "Treatment of constipation and bowel evacuation before procedures.", sideEffects: "Abdominal cramps, nausea, electrolyte imbalance." },
       { name: "Lactulose", classTag: "Laxative (Osmotic Agent)", chapter: "Unit III: Gastrointestinal", moa: "Draws water into bowel by osmosis and lowers colon pH to reduce ammonia.", uses: "Constipation and hepatic encephalopathy.", sideEffects: "Flatulence, abdominal cramps, diarrhea, nausea." },
       { name: "Omeprazole", classTag: "Proton Pump Inhibitor (PPI)", chapter: "Unit III: Gastrointestinal", moa: "Inhibits gastric H+/K+ ATPase pump.", uses: "GERD, peptic ulcer disease, Zollinger-Ellison syndrome.", sideEffects: "Headache, abdominal pain, flatulence, diarrhea." },
       { name: "Metoclopramide", classTag: "Prokinetic / Anti-emetic", chapter: "Unit III: Gastrointestinal", moa: "Dopamine receptor antagonist, increases upper GI motility.", uses: "Gastroparesis, chemotherapy nausea, GERD.", sideEffects: "Drowsiness, restlessness, extrapyramidal symptoms." },
-
-      // Antibacterial
       { name: "Amoxicillin", classTag: "Antibiotic (Penicillin)", chapter: "Unit II: Infections", moa: "Inhibits bacterial cell wall synthesis by binding to PBPs.", uses: "Respiratory tract infections, otitis media, sinusitis.", sideEffects: "Nausea, diarrhea, skin rash." },
       { name: "Azithromycin", classTag: "Antibiotic (Macrolide)", chapter: "Unit II: Infections", moa: "Binds to 50S ribosomal subunit, inhibiting protein synthesis.", uses: "Pneumonia, pharyngitis, chlamydia.", sideEffects: "Abdominal pain, nausea, QT prolongation." },
       { name: "Ciprofloxacin", classTag: "Antibiotic (Fluoroquinolone)", chapter: "Unit II: Infections", moa: "Inhibits DNA gyrase and topoisomerase IV.", uses: "Urinary tract infections, pyelonephritis, infectious diarrhea.", sideEffects: "Nausea, tendonitis, photosensitivity." },
-
-      // Basics & Autonomics
       { name: "Digoxin", classTag: "Cardiac Glycoside", chapter: "Unit I: Basics", moa: "Inhibits Na+/K+ ATPase pump, increasing intracellular calcium.", uses: "Heart failure, atrial fibrillation.", sideEffects: "Bradycardia, yellow vision, arrhythmias." },
       { name: "Atropine", classTag: "Anticholinergic", chapter: "Unit I: Basics", moa: "Competitive antagonist at muscarinic acetylcholine receptors.", uses: "Symptomatic bradycardia, organophosphate poisoning.", sideEffects: "Dry mouth, blurred vision, tachycardia." },
       { name: "Epinephrine", classTag: "Adrenergic Agonist", chapter: "Unit I: Basics", moa: "Stimulates alpha-1, beta-1, and beta-2 adrenergic receptors.", uses: "Acute anaphylaxis, cardiac arrest, severe asthma.", sideEffects: "Tachycardia, hypertension, anxiety." },
-
-      // Hematology
       { name: "Warfarin", classTag: "Anticoagulant (Vitamin K Antagonist)", chapter: "Unit IV: Hematology", moa: "Inhibits synthesis of vitamin K-dependent clotting factors.", uses: "Prevention of DVT, pulmonary embolism, atrial fibrillation strokes.", sideEffects: "Bleeding tendencies, bruising." },
       { name: "Heparin", classTag: "Anticoagulant (Indirect Thrombin Inhibitor)", chapter: "Unit IV: Hematology", moa: "Potentiates antithrombin III.", uses: "Acute thrombosis, cardiac surgery anticoagulation.", sideEffects: "Bleeding, thrombocytopenia." },
-      { name: "Aspirin", classTag: "Antiplatelet / NSAID", classTag: "Antiplatelet", chapter: "Unit IV: Hematology", moa: "Irreversibly inhibits COX-1 and COX-2.", uses: "Prevention of myocardial infarction and ischemic stroke.", sideEffects: "GI bleeding, heartburn." },
-
-      // Anti-Neoplastic
+      { name: "Aspirin", classTag: "Antiplatelet", chapter: "Unit IV: Hematology", moa: "Irreversibly inhibits COX-1 and COX-2.", uses: "Prevention of myocardial infarction and ischemic stroke.", sideEffects: "GI bleeding, heartburn." },
       { name: "Cisplatin", classTag: "Alkylating Agent", chapter: "Unit V: Anti-Neoplastic", moa: "Cross-links DNA strands.", uses: "Testicular, ovarian, and bladder cancers.", sideEffects: "Nephrotoxicity, ototoxicity, severe nausea." },
       { name: "Doxorubicin", classTag: "Anthracycline Antibiotic", chapter: "Unit V: Anti-Neoplastic", moa: "Intercalates DNA and inhibits topoisomerase II.", uses: "Breast cancer, lymphomas, leukemias.", sideEffects: "Cardiotoxicity, alopecia, red urine." }
     ];
@@ -658,23 +643,30 @@
       for (var i = 0; i < 5; i++) {
         todaysMCQList.push(fullMCQBank[(dayOfYear * 5 + i) % fullMCQBank.length]);
       }
-      currentMCQStep = 0;
+      
       dailyQuizScore = parseInt(localStorage.getItem('pharmacologyDailyQuizScore_' + dayOfYear)) || 0;
       quizCompletedToday = localStorage.getItem('pharmacologyQuizDone_' + dayOfYear) === 'true';
-      renderCurrentMCQ();
+      currentMCQStep = parseInt(localStorage.getItem('pharmacologyMCQStep_' + dayOfYear)) || 0;
+
+      if (quizCompletedToday || currentMCQStep >= 5) {
+        renderCompletedMCQState();
+      } else {
+        renderCurrentMCQ();
+      }
+    }
+
+    function renderCompletedMCQState() {
+      var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+      document.getElementById('srIntervalLabel').innerText = "Status: Completed Today";
+      document.getElementById('mcqCounterStatus').innerText = "All 5 Questions Done";
+      document.getElementById('mcqStreakCount').innerText = "Score: " + dailyQuizScore + " / 5";
+      document.getElementById('mcqQuestionText').innerText = "Fantastic job! You have completed today's 5-question daily challenge. Your final score is " + dailyQuizScore + " out of 5.";
+      document.getElementById('mcqOptionsContainer').innerHTML = '<button class="mcq-opt-btn" style="background:#f0fdf4; color:#065f46; font-weight:800; text-align:center;">Review completed successfully ✓ Locked for today! Come back tomorrow for 5 new questions.</button>';
+      document.getElementById('mcqExplanationBox').style.display = 'none';
+      document.getElementById('nextMCQBtn').style.display = 'none';
     }
 
     function renderCurrentMCQ() {
-      if (currentMCQStep >= todaysMCQList.length) {
-        document.getElementById('srIntervalLabel').innerText = "Status: Completed Today";
-        document.getElementById('mcqCounterStatus').innerText = "All 5 Questions Done";
-        document.getElementById('mcqQuestionText').innerText = "Fantastic job! You have completed today's 5-question daily challenge. Your final score is " + dailyQuizScore + " out of 5.";
-        document.getElementById('mcqOptionsContainer').innerHTML = '<button class="mcq-opt-btn" style="background:#f0fdf4; color:#065f46; font-weight:800; text-align:center;">Review completed successfully ✓ Come back tomorrow for 5 new questions!</button>';
-        document.getElementById('mcqExplanationBox').style.display = 'none';
-        document.getElementById('nextMCQBtn').style.display = 'none';
-        return;
-      }
-
       var mcq = todaysMCQList[currentMCQStep];
       document.getElementById('srIntervalLabel').innerText = "Interval: Day " + ((currentMCQStep * 3) + 1) + " Spaced Review";
       document.getElementById('mcqCounterStatus').innerText = "Question " + (currentMCQStep + 1) + " of 5";
@@ -709,11 +701,13 @@
 
       var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
       localStorage.setItem('pharmacologyDailyQuizScore_' + dayOfYear, dailyQuizScore);
-      
       document.getElementById('mcqStreakCount').innerText = "Score: " + dailyQuizScore + " / 5";
       document.getElementById('mcqExplanationBox').style.display = 'block';
 
-      if (currentMCQStep === todaysMCQList.length - 1) {
+      currentMCQStep++;
+      localStorage.setItem('pharmacologyMCQStep_' + dayOfYear, currentMCQStep);
+
+      if (currentMCQStep >= 5) {
         localStorage.setItem('pharmacologyQuizDone_' + dayOfYear, 'true');
       }
 
@@ -722,8 +716,12 @@
     }
 
     function nextMCQQuestion() {
-      currentMCQStep++;
-      renderCurrentMCQ();
+      var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+      if (currentMCQStep >= 5 || localStorage.getItem('pharmacologyQuizDone_' + dayOfYear) === 'true') {
+        renderCompletedMCQState();
+      } else {
+        renderCurrentMCQ();
+      }
     }
 
     function filterDrugs() {
@@ -792,16 +790,10 @@
       }
     });
 
-    /* Real-Time Progress Tracker Logic (Defaults to 0) */
+    /* Progress Tracker Logic */
     var unitsReadSet = JSON.parse(localStorage.getItem('pharmacologyUnitsReadSet')) || [];
 
     function markUnitRead(event, unitNum) {
-      if (localStorage.getItem('pharmacologyUnlocked') !== 'true') {
-        event.preventDefault();
-        alert('Locked! Please enter your valid single-use access code first.');
-        return false;
-      }
-
       if (unitsReadSet.indexOf(unitNum) === -1) {
         unitsReadSet.push(unitNum);
         localStorage.setItem('pharmacologyUnitsReadSet', JSON.stringify(unitsReadSet));
@@ -810,11 +802,20 @@
       return true;
     }
 
+    function checkChapterAccess(event, unitNum) {
+      if (localStorage.getItem('pharmacologyUnlocked') !== 'true') {
+        event.preventDefault();
+        alert('🔒 This chapter is locked! Please enter your valid single-use access code in the sidebar to unlock all advanced chapters.');
+        return false;
+      }
+      return markUnitRead(event, unitNum);
+    }
+
     function saveAndUpdateProgress() {
       var checkboxes = [
         document.getElementById('taskCheckbox0'),
         document.getElementById('taskCheckbox1'),
-        document.getElementById('taskCheckbox2')
+        document.getElementById('taskCheckbox2']
       ];
 
       var checkedCount = 0;
@@ -839,7 +840,6 @@
       var unitsReadCount = unitsReadSet.length;
       var masteredMCQs = dailyQuizScore;
 
-      // Total weight: 3 tasks + 8 units + 5 quiz points = 16 max score
       var totalPossibleScore = 16;
       var currentScore = checkedCount + unitsReadCount + masteredMCQs;
       var percent = Math.round((currentScore / totalPossibleScore) * 100);
@@ -894,7 +894,7 @@
       if (savedPic) document.getElementById('profile-pic').src = savedPic;
 
       if (localStorage.getItem('pharmacologyUnlocked') === 'true') {
-        unlockContentUI();
+        unlockAllChaptersUI();
       }
     };
 
@@ -950,18 +950,25 @@
           validCodes[enteredCode] = true;
           localStorage.setItem('pharmacologyDatabaseCodes', JSON.stringify(validCodes));
           localStorage.setItem('pharmacologyUnlocked', 'true');
-          unlockContentUI();
-          alert('Success! All chapters unlocked.');
+          unlockAllChaptersUI();
+          alert('Success! All advanced chapters and resources are now unlocked.');
         }
       } else {
         alert('Invalid Access Code! Contact admin via WhatsApp (03241064487).');
       }
     }
 
-    function unlockContentUI() {
-      document.getElementById('lockOverlay').style.display = 'none';
+    function unlockAllChaptersUI() {
+      for (var i = 2; i <= 8; i++) {
+        var badge = document.getElementById('lockBadge' + i);
+        if (badge) {
+          badge.innerText = "✓ Unlocked";
+          badge.style.background = "#dcfce7";
+          badge.style.color = "#065f46";
+        }
+      }
       var statusText = document.getElementById('accessStatusText');
-      statusText.innerText = "Status: Unlocked ✓";
+      statusText.innerText = "Status: All Chapters Unlocked ✓";
       statusText.className = "access-status status-unlocked";
       document.getElementById('sidebarAccessInput').value = "VERIFIED";
       document.getElementById('sidebarAccessInput').disabled = true;
