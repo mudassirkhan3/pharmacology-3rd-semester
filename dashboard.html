@@ -19,7 +19,7 @@
     }
 
     /* Allow typing inside input fields */
-    input {
+    input, textarea {
       -webkit-user-select: text;
       -moz-user-select: text;
       -ms-user-select: text;
@@ -39,7 +39,6 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
-      animation: fadeIn 0.3s ease;
     }
     .desktop-welcome-card {
       background: white;
@@ -51,7 +50,6 @@
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
       border-top: 6px solid #0284c7;
       position: relative;
-      animation: scaleUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .desktop-welcome-icon {
       width: 70px;
@@ -71,7 +69,6 @@
       font-weight: 800;
       color: #0f172a;
       margin-bottom: 8px;
-      letter-spacing: -0.5px;
     }
     .desktop-welcome-card p {
       font-size: 0.88rem;
@@ -86,7 +83,6 @@
       padding: 16px;
       text-align: left;
       margin-bottom: 24px;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
     }
     .step-row {
       display: flex;
@@ -97,9 +93,7 @@
       color: #1e293b;
       margin-bottom: 10px;
     }
-    .step-row:last-child {
-      margin-bottom: 0;
-    }
+    .step-row:last-child { margin-bottom: 0; }
     .step-badge {
       background: #0284c7;
       color: white;
@@ -112,7 +106,6 @@
       font-size: 0.78rem;
       font-weight: 800;
       flex-shrink: 0;
-      box-shadow: 0 2px 5px rgba(2, 132, 199, 0.3);
     }
     .proceed-btn {
       width: 100%;
@@ -127,12 +120,7 @@
       box-shadow: 0 6px 16px rgba(2, 132, 199, 0.35);
       transition: transform 0.2s, opacity 0.2s;
     }
-    .proceed-btn:hover {
-      opacity: 0.92;
-      transform: translateY(-2px);
-    }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes scaleUp { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .proceed-btn:hover { opacity: 0.92; transform: translateY(-2px); }
 
     /* Header */
     header { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15); }
@@ -165,9 +153,9 @@
     .access-box { margin-top: 20px; padding-top: 18px; border-top: 1px solid #e2e8f0; text-align: left; }
     .access-box label { display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 6px; }
     .access-input-row { display: flex; gap: 6px; }
-    .access-input { flex: 1; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.85rem; font-weight: 700; outline: none; background: #f8fafc; transition: border-color 0.2s; }
+    .access-input { flex: 1; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.85rem; font-weight: 700; outline: none; background: #f8fafc; }
     .access-input:focus { border-color: #0284c7; background: white; }
-    .verify-btn { background: #0284c7; color: white; border: none; padding: 10px 14px; border-radius: 10px; font-weight: 700; font-size: 0.82rem; cursor: pointer; transition: opacity 0.2s; }
+    .verify-btn { background: #0284c7; color: white; border: none; padding: 10px 14px; border-radius: 10px; font-weight: 700; font-size: 0.82rem; cursor: pointer; }
     .verify-btn:hover { opacity: 0.9; }
     .access-status { margin-top: 8px; font-size: 0.78rem; font-weight: 700; }
     .status-locked { color: #dc2626; }
@@ -181,6 +169,36 @@
     .card h2 { font-size: 1.15rem; font-weight: 800; color: #0369a1; border-left: 4px solid #0284c7; padding-left: 10px; margin-bottom: 14px; }
     .card p { font-size: 0.9rem; color: #475569; line-height: 1.6; }
 
+    /* --- DRUG FINDER SEARCH ENGINE STYLES --- */
+    .search-box-wrapper { position: relative; margin-top: 8px; }
+    .drug-search-input { width: 100%; padding: 12px 16px 12px 42px; border: 2px solid #cbd5e1; border-radius: 12px; font-size: 0.92rem; font-weight: 600; outline: none; background: #f8fafc; transition: all 0.2s; }
+    .drug-search-input:focus { border-color: #0284c7; background: white; box-shadow: 0 0 10px rgba(2, 132, 199, 0.15); }
+    .search-icon-abs { position: absolute; left: 14px; top: 14px; font-size: 1rem; color: #64748b; }
+    .drug-results-dropdown { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid #cbd5e1; border-radius: 12px; margin-top: 6px; max-height: 240px; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 50; }
+    .drug-result-item { padding: 12px 16px; border-bottom: 1px solid #f1f5f9; text-decoration: none; display: flex; justify-content: space-between; align-items: center; transition: background 0.15s; }
+    .drug-result-item:last-child { border-bottom: none; }
+    .drug-result-item:hover { background: #f0f9ff; }
+    .drug-name-main { font-weight: 800; color: #0f172a; font-size: 0.88rem; }
+    .drug-chapter-tag { background: #e0f2fe; color: #0369a1; padding: 3px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; }
+
+    /* --- MY PROGRESS TRACKER STYLES --- */
+    .progress-container { margin-top: 10px; }
+    .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-weight: 800; font-size: 0.9rem; color: #1e293b; }
+    .progress-bar-bg { width: 100%; height: 12px; background: #e2e8f0; border-radius: 6px; overflow: hidden; margin-bottom: 14px; }
+    .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #0284c7, #10b981); border-radius: 6px; transition: width 0.5s ease; }
+    .progress-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; }
+    .stat-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px; }
+    .stat-num { font-size: 1.1rem; font-weight: 900; color: #0284c7; }
+    .stat-label { font-size: 0.72rem; color: #64748b; font-weight: 700; text-transform: uppercase; margin-top: 2px; }
+
+    /* --- TODAY'S STUDY PLAN STYLES --- */
+    .study-plan-list { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+    .plan-task-item { display: flex; align-items: center; gap: 12px; background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px 14px; border-radius: 12px; cursor: pointer; transition: all 0.2s; }
+    .plan-task-item:hover { border-color: #0284c7; background: #f0f9ff; }
+    .plan-task-item input[type=checkbox] { width: 18px; height: 18px; accent-color: #0284c7; cursor: pointer; }
+    .plan-task-text { font-size: 0.86rem; font-weight: 700; color: #1e293b; flex: 1; }
+    .plan-task-item.completed .plan-task-text { text-decoration: line-through; color: #94a3b8; }
+
     /* Chapters Grid & Lock Overlay */
     .chapters-wrapper { position: relative; }
     .chapters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
@@ -190,21 +208,18 @@
     .chapter-box p { font-size: 0.78rem; color: #475569; margin-bottom: 10px; }
     .chapter-link-text { font-size: 0.78rem; font-weight: 700; color: #0369a1; }
 
-    /* --- SPECIAL COLOR ACCENTS FOR NEW SECTIONS --- */
+    /* Special Color Accents */
     .table-box { border-top: 3px solid #6366f1; background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%); }
     .table-box h4 { color: #4f46e5 !important; }
     .table-box .chapter-link-text { color: #4f46e5; }
-    .table-box:hover { border-color: #4f46e5; box-shadow: 0 6px 16px rgba(99, 102, 241, 0.15); }
-
+    
     .papers-box { border-top: 3px solid #d97706; background: linear-gradient(135deg, #f8fafc 0%, #fffbeb 100%); }
     .papers-box h4 { color: #b45309 !important; }
     .papers-box .chapter-link-text { color: #b45309; }
-    .papers-box:hover { border-color: #b45309; box-shadow: 0 6px 16px rgba(217, 119, 6, 0.15); }
 
     .mcqs-box { border-top: 3px solid #059669; background: linear-gradient(135deg, #f8fafc 0%, #ecfdf5 100%); }
     .mcqs-box h4 { color: #047857 !important; }
     .mcqs-box .chapter-link-text { color: #047857; }
-    .mcqs-box:hover { border-color: #047857; box-shadow: 0 6px 16px rgba(5, 150, 105, 0.15); }
 
     /* Lock Curtain */
     .content-lock-overlay { position: absolute; inset: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(6px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border-radius: 16px; z-index: 10; padding: 20px; }
@@ -213,8 +228,7 @@
 
     /* Modals */
     .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100; align-items: center; justify-content: center; padding: 16px; backdrop-filter: blur(3px); }
-    .modal-box { background: white; border-radius: 16px; padding: 24px; width: 100%; max-width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); animation: modalPopup 0.2s ease; }
-    @keyframes modalPopup { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .modal-box { background: white; border-radius: 16px; padding: 24px; width: 100%; max-width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
     .modal-box h3 { font-size: 1.15rem; font-weight: 800; color: #0f172a; margin-bottom: 16px; }
     .form-group { margin-bottom: 14px; text-align: left; }
     .form-group label { display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 4px; }
@@ -224,7 +238,6 @@
     .btn-primary { flex: 1; background: #0284c7; color: white; border: none; padding: 10px; border-radius: 10px; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
     .btn-primary:hover { opacity: 0.9; }
     .btn-secondary { flex: 1; background: #e2e8f0; color: #334155; border: none; padding: 10px; border-radius: 10px; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
-    .btn-secondary:hover { background: #cbd5e1; }
 
     /* Footer */
     footer { text-align: center; font-size: 0.8rem; color: #64748b; padding: 24px 0; border-top: 1px solid #e2e8f0; background: white; margin-top: 30px; font-weight: 500; }
@@ -233,7 +246,7 @@
 </head>
 <body>
 
-  <!-- --- CENTERED DESKTOP MODE WELCOME MODAL --- -->
+  <!-- Desktop Welcome Modal -->
   <div id="desktopWelcomeModal" class="desktop-welcome-backdrop">
     <div class="desktop-welcome-card">
       <div class="desktop-welcome-icon">🖥️</div>
@@ -310,7 +323,69 @@
       <!-- Welcome Card -->
       <div class="card">
         <h2>Welcome Back!</h2>
-        <p>Access your complete Pharmacology-I curriculum, chapters, and clinical notes below. Enter your unique single-use access code in the sidebar to permanently unlock all study units and resources.</p>
+        <p>Access your complete Pharmacology-I curriculum, chapters, and clinical notes below. Use the instant drug finder or review your daily study goals to stay on track.</p>
+      </div>
+
+      <!-- NEW: Drug Finder Search Engine Card -->
+      <div class="card">
+        <h2>Instant Drug Finder</h2>
+        <p>Search any medication across all curriculum chapters instantly to find classifications and clinical details:</p>
+        <div class="search-box-wrapper">
+          <span class="search-icon-abs">🔍</span>
+          <input type="text" id="drugSearchInput" class="drug-search-input" placeholder="Type drug name (e.g. Amoxicillin, Omeprazole, Warfarin)..." oninput="filterDrugs()">
+          <div id="drugResultsDropdown" class="drug-results-dropdown">
+            <!-- Dynamically populated via JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW: My Progress Tracker Card -->
+      <div class="card">
+        <h2>My Progress Tracker</h2>
+        <p>Monitor your pharmacology mastery and chapter completion in real-time:</p>
+        <div class="progress-container">
+          <div class="progress-header">
+            <span id="progressText">Course Completion: 62 percent</span>
+            <span id="progressPercentNum">62%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div id="progressBarFill" class="progress-bar-fill" style="width: 62%;"></div>
+          </div>
+          <div class="progress-stats-grid">
+            <div class="stat-box">
+              <div class="stat-num">5 / 8</div>
+              <div class="stat-label">Units Read</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">124</div>
+              <div class="stat-label">MCQs Solved</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">4 Days</div>
+              <div class="stat-label">Study Streak</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW: Today's Study Plan Card -->
+      <div class="card">
+        <h2>Today's Study Plan</h2>
+        <p>Check off your daily tasks to maintain your clinical preparation schedule:</p>
+        <div class="study-plan-list">
+          <label class="plan-task-item">
+            <input type="checkbox" onchange="updateProgressTask(this)">
+            <span class="plan-task-text">Review Unit I basic pharmacokinetics &amp; half-life formulas</span>
+          </label>
+          <label class="plan-task-item">
+            <input type="checkbox" onchange="updateProgressTask(this)">
+            <span class="plan-task-text">Read Unit II antimicrobial spectrum charts</span>
+          </label>
+          <label class="plan-task-item">
+            <input type="checkbox" onchange="updateProgressTask(this)">
+            <span class="plan-task-text">Practice 25 MCQs from Practice Quizzes section</span>
+          </label>
+        </div>
       </div>
 
       <!-- Chapters Portal Links (Locked by Default) -->
@@ -366,7 +441,7 @@
               <span class="chapter-link-text">Read Notes →</span>
             </a>
 
-            <!-- 1. IMPORTANT TABLES (Indigo Accent) -->
+            <!-- 1. IMPORTANT TABLES -->
             <a href="important-tables.html" class="chapter-box table-box" onclick="return checkAccess(event)">
               <div>
                 <h4>IMPORTANT TABLES</h4>
@@ -375,16 +450,16 @@
               <span class="chapter-link-text">Open Tables →</span>
             </a>
 
-            <!-- 2. UHS PHARAMA PAST PAPERS (Amber/Gold Accent) -->
+            <!-- 2. UHS PAST PAPERS -->
             <a href="uhs-past-papers.html" class="chapter-box papers-box" onclick="return checkAccess(event)">
               <div>
-                <h4>UHS PHARAMA PAST PAPERS</h4>
+                <h4>UHS PHARMA PAST PAPERS</h4>
                 <p>Previous years University of Health Sciences exam papers.</p>
               </div>
               <span class="chapter-link-text">View Papers →</span>
             </a>
 
-            <!-- 3. PRACTICE MCQS (Emerald Green Accent) -->
+            <!-- 3. PRACTICE MCQS -->
             <a href="practice-mcqs.html" class="chapter-box mcqs-box" onclick="return checkAccess(event)">
               <div>
                 <h4>PRACTICE MCQS</h4>
@@ -454,20 +529,96 @@
   </footer>
 
   <script>
+    // --- DRUG DATABASE FOR SEARCH ENGINE ---
+    const drugDatabase = [
+      { name: "Amoxicillin", category: "Unit II: Infections", link: "chapter2.html" },
+      { name: "Azithromycin", category: "Unit II: Infections", link: "chapter2.html" },
+      { name: "Ceftriaxone", category: "Unit II: Infections", link: "chapter2.html" },
+      { name: "Omeprazole", category: "Unit III: Gastrointestinal", link: "chapter3.html" },
+      { name: "Ranitidine", category: "Unit III: Gastrointestinal", link: "chapter3.html" },
+      { name: "Metoclopramide", category: "Unit III: Gastrointestinal", link: "chapter3.html" },
+      { name: "Warfarin", category: "Unit IV: Hematology", link: "chapter4.html" },
+      { name: "Heparin", category: "Unit IV: Hematology", link: "chapter4.html" },
+      { name: "Aspirin", category: "Unit IV: Hematology", link: "chapter4.html" },
+      { name: "Cisplatin", category: "Unit V: Anti-Neoplastic", link: "chapter5.html" },
+      { name: "Doxorubicin", category: "Unit V: Anti-Neoplastic", link: "chapter5.html" },
+      { name: "Methotrexate", category: "Unit V: Anti-Neoplastic", link: "chapter5.html" },
+      { name: "Digoxin", category: "Unit I: Basics", link: "chapter1.html" },
+      { name: "Atropine", category: "Unit I: Basics", link: "chapter1.html" },
+      { name: "Adrenaline", category: "Unit I: Basics", link: "chapter1.html" }
+    ];
+
+    function filterDrugs() {
+      const query = document.getElementById('drugSearchInput').value.toLowerCase().trim();
+      const dropdown = document.getElementById('drugResultsDropdown');
+      
+      if (!query) {
+        dropdown.style.display = 'none';
+        return;
+      }
+
+      const matches = drugDatabase.filter(drug => drug.name.toLowerCase().includes(query));
+      
+      if (matches.length === 0) {
+        dropdown.innerHTML = '<div class="drug-result-item"><span class="drug-name-main" style="color: #64748b;">No matching medications found</span></div>';
+        dropdown.style.display = 'block';
+        return;
+      }
+
+      let html = '';
+      for (let i = 0; i < matches.length; i++) {
+        html += '<a href="' + matches[i].link + '" class="drug-result-item" onclick="return checkAccess(event)">' +
+                '<span class="drug-name-main">' + matches[i].name + '</span>' +
+                '<span class="drug-chapter-tag">' + matches[i].category + '</span>' +
+                '</a>';
+      }
+      dropdown.innerHTML = html;
+      dropdown.style.display = 'block';
+    }
+
+    // Hide dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.search-box-wrapper')) {
+        document.getElementById('drugResultsDropdown').style.display = 'none';
+      }
+    });
+
+    // --- STUDY PLAN PROGRESS UPDATE ---
+    function updateProgressTask(checkbox) {
+      const item = checkbox.closest('.plan-task-item');
+      if (checkbox.checked) {
+        item.classList.add('completed');
+      } else {
+        item.classList.remove('completed');
+      }
+
+      // Dynamically calculate progress based on checked tasks
+      const checkboxes = document.querySelectorAll('.plan-task-item input[type=checkbox]');
+      let checkedCount = 0;
+      for (let i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) checkedCount++;
+      }
+      
+      let basePercent = 62;
+      let addedPercent = Math.round((checkedCount / checkboxes.length) * 38);
+      let totalPercent = Math.min(100, basePercent + addedPercent);
+
+      document.getElementById('progressText').innerText = "Course Completion: " + totalPercent + " percent";
+      document.getElementById('progressPercentNum').innerText = totalPercent + "%";
+      document.getElementById('progressBarFill').style.width = totalPercent + "%";
+    }
+
     // --- DISMISS WELCOME MODAL SCRIPT ---
     function dismissWelcomeModal() {
       document.getElementById('desktopWelcomeModal').style.display = 'none';
     }
 
-    // --- ADVANCED SECURITY LOCK SCRIPTS ---
-
-    // 1. Disable Right-Click Context Menu Everywhere
+    // --- SECURITY LOCK SCRIPTS ---
     document.addEventListener('contextmenu', function(e) {
       e.preventDefault();
       alert('⚠️ Right-click is disabled to protect copyrighted study materials.');
     });
 
-    // 2. Disable Developer Shortcuts (F12, Ctrl+Shift+I, Ctrl+U, Ctrl+S)
     document.addEventListener('keydown', function(e) {
       if (
         e.keyCode === 123 || 
@@ -481,7 +632,6 @@
       }
     });
 
-    // 3. Prevent Chapter Access if Code is Not Verified
     function checkAccess(event) {
       if (localStorage.getItem('pharmacologyUnlocked') !== 'true') {
         event.preventDefault();
@@ -492,7 +642,6 @@
     }
 
     // --- DATABASE & APP LOGIC ---
-
     let validCodes = JSON.parse(localStorage.getItem('pharmacologyDatabaseCodes')) || {
       "PHARMA-101": false,
       "PHARMA-102": false,
