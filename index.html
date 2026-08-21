@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BSN Pharmacology 3rd Semester | Educational Portal</title>
-    <meta name="description" content="Interactive, exam-focused BSN 3rd Semester Pharmacology portal with animations, MCQs, past papers, and memory aids.">
+    <meta name="description" content="Interactive, exam-focused BSN 3rd Semester Pharmacology portal engineered by Mudassir Khan.">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -114,7 +114,7 @@
                     <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
                         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100/80 border border-brand-200 text-brand-700 text-xs font-semibold uppercase tracking-wider">
                             <i data-lucide="graduation-cap" class="w-4 h-4 text-brand-600"></i>
-                            3rd Semester BSN
+                            3rd Semester BSN • By Mudassir Khan
                         </div>
                         
                         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
@@ -124,10 +124,10 @@
                             </span>
                         </h1>
 
-                        <!-- Typewriter Dynamic Line -->
-                        <div class="text-lg sm:text-xl font-bold text-slate-700 flex items-center justify-center lg:justify-start gap-1">
-                            <span>Together we:</span>
-                            <span id="typewriterText" class="text-medical-600 font-mono"></span><span class="inline-block w-2 h-5 bg-medical-500 animate-blink"></span>
+                        <!-- Clean & Fast Typewriter Animation -->
+                        <div class="text-lg sm:text-xl font-bold text-slate-700 flex items-center justify-center lg:justify-start gap-1.5 h-8">
+                            <span class="text-slate-500 font-medium">Ready to:</span>
+                            <span id="typewriterText" class="text-medical-600 font-mono font-bold"></span><span class="w-2 h-5 bg-medical-500 animate-blink"></span>
                         </div>
 
                         <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
@@ -171,11 +171,11 @@
                             <div class="bg-slate-950 rounded-xl p-6 text-slate-100 font-sans space-y-4">
                                 <div class="flex items-center gap-3">
                                     <div class="w-10 h-10 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center">
-                                        <i data-lucide="book-open" class="w-5 h-5"></i>
+                                        <i data-lucide="user-check" class="w-5 h-5"></i>
                                     </div>
                                     <div>
-                                        <div class="text-xs text-slate-400">BSN 3rd Semester</div>
-                                        <div class="text-sm font-bold text-white">Pharmacology Learning Suite</div>
+                                        <div class="text-xs text-slate-400">Created by BSN Student</div>
+                                        <div class="text-sm font-bold text-white">Mudassir Khan</div>
                                     </div>
                                 </div>
 
@@ -800,7 +800,7 @@
                         Pharmacology — 3rd Semester
                     </div>
                     <p class="text-slate-400 text-xs max-w-sm">
-                        Student-developed educational resource engineered for 3rd semester nursing students.
+                        Engineered and curated by Mudassir Khan for 3rd semester nursing students.
                     </p>
                 </div>
 
@@ -826,7 +826,7 @@
 
             <div class="pt-8 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
                 <p>This portal is an educational study resource and does not replace prescribed textbooks, faculty instruction, or professional clinical guidance.</p>
-                <p>© 2026 Pharmacology BSN Portal. All rights reserved.</p>
+                <p>© 2026 Pharmacology BSN Portal. Developed by Mudassir Khan.</p>
             </div>
         </div>
     </footer>
@@ -843,7 +843,7 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Typewriter Effect for Hero Section Tagline
+        // Fast & Short Typewriter Effect
         const phrases = [
             "Understand it.",
             "Visualize it.",
@@ -852,38 +852,38 @@
             "Master it."
         ];
         
-        let phraseIndex = 0;
-        let charIndex = 0;
+        let phraseIdx = 0;
+        let charIdx = 0;
         let isDeleting = false;
-        const typewriterElement = document.getElementById("typewriterText");
+        const typewriterEl = document.getElementById("typewriterText");
 
-        function typeLoop() {
-            const currentPhrase = phrases[phraseIndex];
+        function playTypewriter() {
+            const current = phrases[phraseIdx];
             
             if (isDeleting) {
-                typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
+                typewriterEl.textContent = current.substring(0, charIdx - 1);
+                charIdx--;
             } else {
-                typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
+                typewriterEl.textContent = current.substring(0, charIdx + 1);
+                charIdx++;
             }
 
-            let typeSpeed = isDeleting ? 40 : 80;
+            let speed = isDeleting ? 30 : 60; // Fast typing speed
 
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                typeSpeed = 1800; // Pause at end
+            if (!isDeleting && charIdx === current.length) {
+                speed = 1200; // Short pause at end of word
                 isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
+            } else if (isDeleting && charIdx === 0) {
                 isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                typeSpeed = 300; // Pause before typing next phrase
+                phraseIdx = (phraseIdx + 1) % phrases.length;
+                speed = 200; // Short pause before starting next word
             }
 
-            setTimeout(typeLoop, typeSpeed);
+            setTimeout(playTypewriter, speed);
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-            if (typewriterElement) typeLoop();
+            if (typewriterEl) playTypewriter();
         });
     </script>
 </body>
