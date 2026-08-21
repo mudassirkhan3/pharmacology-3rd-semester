@@ -28,7 +28,7 @@
 
     body { background: #f1f5f9; color: #0f172a; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; }
 
-    /* --- EYE-CATCHING CENTERED DESKTOP MODE WELCOME MODAL --- */
+    /* Welcome Modal */
     .desktop-welcome-backdrop {
       position: fixed;
       inset: 0;
@@ -166,32 +166,36 @@
     /* Main Content Area */
     .main-content { display: flex; flex-direction: column; gap: 20px; }
     .card { background: white; border: 1px solid #e2e8f0; border-radius: 20px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); position: relative; overflow: hidden; }
+    
+    /* Allow Search Card to display dropdown without clipping */
+    .card-search { overflow: visible !important; }
+
     .card h2 { font-size: 1.15rem; font-weight: 800; color: #0369a1; border-left: 4px solid #0284c7; padding-left: 10px; margin-bottom: 14px; }
     .card p { font-size: 0.9rem; color: #475569; line-height: 1.6; }
 
-    /* --- DRUG FINDER SEARCH ENGINE STYLES --- */
+    /* Drug Finder Search Engine Styles */
     .search-box-wrapper { position: relative; margin-top: 8px; }
     .drug-search-input { width: 100%; padding: 12px 16px 12px 42px; border: 2px solid #cbd5e1; border-radius: 12px; font-size: 0.92rem; font-weight: 600; outline: none; background: #f8fafc; transition: all 0.2s; }
     .drug-search-input:focus { border-color: #0284c7; background: white; box-shadow: 0 0 10px rgba(2, 132, 199, 0.15); }
     .search-icon-abs { position: absolute; left: 14px; top: 14px; font-size: 1rem; color: #64748b; }
-    .drug-results-dropdown { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid #cbd5e1; border-radius: 12px; margin-top: 6px; max-height: 240px; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 50; }
+    .drug-results-dropdown { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid #cbd5e1; border-radius: 12px; margin-top: 6px; max-height: 240px; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.15); z-index: 999; }
     .drug-result-item { padding: 12px 16px; border-bottom: 1px solid #f1f5f9; text-decoration: none; display: flex; justify-content: space-between; align-items: center; transition: background 0.15s; }
     .drug-result-item:last-child { border-bottom: none; }
     .drug-result-item:hover { background: #f0f9ff; }
     .drug-name-main { font-weight: 800; color: #0f172a; font-size: 0.88rem; }
     .drug-chapter-tag { background: #e0f2fe; color: #0369a1; padding: 3px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; }
 
-    /* --- MY PROGRESS TRACKER STYLES --- */
+    /* My Progress Tracker Styles */
     .progress-container { margin-top: 10px; }
     .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-weight: 800; font-size: 0.9rem; color: #1e293b; }
     .progress-bar-bg { width: 100%; height: 12px; background: #e2e8f0; border-radius: 6px; overflow: hidden; margin-bottom: 14px; }
-    .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #0284c7, #10b981); border-radius: 6px; transition: width 0.5s ease; }
+    .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #0284c7, #10b981); border-radius: 6px; transition: width 0.4s ease; width: 0%; }
     .progress-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; }
     .stat-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px; }
     .stat-num { font-size: 1.1rem; font-weight: 900; color: #0284c7; }
     .stat-label { font-size: 0.72rem; color: #64748b; font-weight: 700; text-transform: uppercase; margin-top: 2px; }
 
-    /* --- TODAY'S STUDY PLAN STYLES --- */
+    /* Today's Study Plan Styles */
     .study-plan-list { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
     .plan-task-item { display: flex; align-items: center; gap: 12px; background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px 14px; border-radius: 12px; cursor: pointer; transition: all 0.2s; }
     .plan-task-item:hover { border-color: #0284c7; background: #f0f9ff; }
@@ -256,7 +260,7 @@
       <div class="steps-box">
         <div class="step-row">
           <span class="step-badge">1</span>
-          <span>Tap the <strong>three dots (⋮)</strong> in your browser menu.</span>
+          <span>Tap the <strong>three dots</strong> in your browser menu.</span>
         </div>
         <div class="step-row">
           <span class="step-badge">2</span>
@@ -264,11 +268,11 @@
         </div>
         <div class="step-row">
           <span class="step-badge">3</span>
-          <span>Enjoy seamless studying! 🚀</span>
+          <span>Enjoy seamless studying!</span>
         </div>
       </div>
 
-      <button class="proceed-btn" onclick="dismissWelcomeModal()">Got it, Open Dashboard! ✨</button>
+      <button class="proceed-btn" onclick="dismissWelcomeModal()">Got it, Open Dashboard!</button>
     </div>
   </div>
 
@@ -326,8 +330,8 @@
         <p>Access your complete Pharmacology-I curriculum, chapters, and clinical notes below. Use the instant drug finder or review your daily study goals to stay on track.</p>
       </div>
 
-      <!-- NEW: Drug Finder Search Engine Card -->
-      <div class="card">
+      <!-- Instant Drug Finder Search Engine Card (card-search prevents dropdown clipping) -->
+      <div class="card card-search">
         <h2>Instant Drug Finder</h2>
         <p>Search any medication across all curriculum chapters instantly to find classifications and clinical details:</p>
         <div class="search-box-wrapper">
@@ -339,19 +343,23 @@
         </div>
       </div>
 
-      <!-- NEW: My Progress Tracker Card -->
+      <!-- Real-Time Progress Tracker Card -->
       <div class="card">
         <h2>My Progress Tracker</h2>
-        <p>Monitor your pharmacology mastery and chapter completion in real-time:</p>
+        <p>Monitor your pharmacology mastery and task completion in real-time:</p>
         <div class="progress-container">
           <div class="progress-header">
-            <span id="progressText">Course Completion: 62 percent</span>
-            <span id="progressPercentNum">62%</span>
+            <span id="progressText">Tasks Completed: 0 percent</span>
+            <span id="progressPercentNum">0%</span>
           </div>
           <div class="progress-bar-bg">
-            <div id="progressBarFill" class="progress-bar-fill" style="width: 62%;"></div>
+            <div id="progressBarFill" class="progress-bar-fill"></div>
           </div>
           <div class="progress-stats-grid">
+            <div class="stat-box">
+              <div class="stat-num" id="completedCountNum">0 / 3</div>
+              <div class="stat-label">Tasks Done</div>
+            </div>
             <div class="stat-box">
               <div class="stat-num">5 / 8</div>
               <div class="stat-label">Units Read</div>
@@ -360,29 +368,25 @@
               <div class="stat-num">124</div>
               <div class="stat-label">MCQs Solved</div>
             </div>
-            <div class="stat-box">
-              <div class="stat-num">4 Days</div>
-              <div class="stat-label">Study Streak</div>
-            </div>
           </div>
         </div>
       </div>
 
-      <!-- NEW: Today's Study Plan Card -->
+      <!-- Today's Study Plan Card -->
       <div class="card">
         <h2>Today's Study Plan</h2>
-        <p>Check off your daily tasks to maintain your clinical preparation schedule:</p>
+        <p>Check off your daily tasks to update your real-time progress tracker:</p>
         <div class="study-plan-list">
-          <label class="plan-task-item">
-            <input type="checkbox" onchange="updateProgressTask(this)">
+          <label class="plan-task-item" id="taskItem0">
+            <input type="checkbox" id="taskCheckbox0" onchange="saveAndUpdateProgress()">
             <span class="plan-task-text">Review Unit I basic pharmacokinetics &amp; half-life formulas</span>
           </label>
-          <label class="plan-task-item">
-            <input type="checkbox" onchange="updateProgressTask(this)">
+          <label class="plan-task-item" id="taskItem1">
+            <input type="checkbox" id="taskCheckbox1" onchange="saveAndUpdateProgress()">
             <span class="plan-task-text">Read Unit II antimicrobial spectrum charts</span>
           </label>
-          <label class="plan-task-item">
-            <input type="checkbox" onchange="updateProgressTask(this)">
+          <label class="plan-task-item" id="taskItem2">
+            <input type="checkbox" id="taskCheckbox2" onchange="saveAndUpdateProgress()">
             <span class="plan-task-text">Practice 25 MCQs from Practice Quizzes section</span>
           </label>
         </div>
@@ -441,7 +445,7 @@
               <span class="chapter-link-text">Read Notes →</span>
             </a>
 
-            <!-- 1. IMPORTANT TABLES -->
+            <!-- IMPORTANT TABLES -->
             <a href="important-tables.html" class="chapter-box table-box" onclick="return checkAccess(event)">
               <div>
                 <h4>IMPORTANT TABLES</h4>
@@ -450,7 +454,7 @@
               <span class="chapter-link-text">Open Tables →</span>
             </a>
 
-            <!-- 2. UHS PAST PAPERS -->
+            <!-- UHS PAST PAPERS -->
             <a href="uhs-past-papers.html" class="chapter-box papers-box" onclick="return checkAccess(event)">
               <div>
                 <h4>UHS PHARMA PAST PAPERS</h4>
@@ -459,7 +463,7 @@
               <span class="chapter-link-text">View Papers →</span>
             </a>
 
-            <!-- 3. PRACTICE MCQS -->
+            <!-- PRACTICE MCQS -->
             <a href="practice-mcqs.html" class="chapter-box mcqs-box" onclick="return checkAccess(event)">
               <div>
                 <h4>PRACTICE MCQS</h4>
@@ -529,8 +533,8 @@
   </footer>
 
   <script>
-    // --- DRUG DATABASE FOR SEARCH ENGINE ---
-    const drugDatabase = [
+    // Drug Database for Search Engine
+    var drugDatabase = [
       { name: "Amoxicillin", category: "Unit II: Infections", link: "chapter2.html" },
       { name: "Azithromycin", category: "Unit II: Infections", link: "chapter2.html" },
       { name: "Ceftriaxone", category: "Unit II: Infections", link: "chapter2.html" },
@@ -549,15 +553,20 @@
     ];
 
     function filterDrugs() {
-      const query = document.getElementById('drugSearchInput').value.toLowerCase().trim();
-      const dropdown = document.getElementById('drugResultsDropdown');
+      var query = document.getElementById('drugSearchInput').value.toLowerCase().trim();
+      var dropdown = document.getElementById('drugResultsDropdown');
       
       if (!query) {
         dropdown.style.display = 'none';
         return;
       }
 
-      const matches = drugDatabase.filter(drug => drug.name.toLowerCase().includes(query));
+      var matches = [];
+      for (var i = 0; i < drugDatabase.length; i++) {
+        if (drugDatabase[i].name.toLowerCase().indexOf(query) !== -1) {
+          matches.push(drugDatabase[i]);
+        }
+      }
       
       if (matches.length === 0) {
         dropdown.innerHTML = '<div class="drug-result-item"><span class="drug-name-main" style="color: #64748b;">No matching medications found</span></div>';
@@ -565,11 +574,11 @@
         return;
       }
 
-      let html = '';
-      for (let i = 0; i < matches.length; i++) {
-        html += '<a href="' + matches[i].link + '" class="drug-result-item" onclick="return checkAccess(event)">' +
-                '<span class="drug-name-main">' + matches[i].name + '</span>' +
-                '<span class="drug-chapter-tag">' + matches[i].category + '</span>' +
+      var html = '';
+      for (var j = 0; j < matches.length; j++) {
+        html += '<a href="' + matches[j].link + '" class="drug-result-item" onclick="return checkAccess(event)">' +
+                '<span class="drug-name-main">' + matches[j].name + '</span>' +
+                '<span class="drug-chapter-tag">' + matches[j].category + '</span>' +
                 '</a>';
       }
       dropdown.innerHTML = html;
@@ -583,40 +592,61 @@
       }
     });
 
-    // --- STUDY PLAN PROGRESS UPDATE ---
-    function updateProgressTask(checkbox) {
-      const item = checkbox.closest('.plan-task-item');
-      if (checkbox.checked) {
-        item.classList.add('completed');
-      } else {
-        item.classList.remove('completed');
+    // Real-Time Progress Tracker Logic (Persisted in localStorage)
+    function saveAndUpdateProgress() {
+      var checkboxes = [
+        document.getElementById('taskCheckbox0'),
+        document.getElementById('taskCheckbox1'),
+        document.getElementById('taskCheckbox2')
+      ];
+
+      var checkedCount = 0;
+      var taskStates = [];
+
+      for (var i = 0; i < checkboxes.length; i++) {
+        var isChecked = checkboxes[i].checked;
+        taskStates.push(isChecked);
+        var taskItem = document.getElementById('taskItem' + i);
+        if (isChecked) {
+          checkedCount++;
+          taskItem.classList.add('completed');
+        } else {
+          taskItem.classList.remove('completed');
+        }
       }
 
-      // Dynamically calculate progress based on checked tasks
-      const checkboxes = document.querySelectorAll('.plan-task-item input[type=checkbox]');
-      let checkedCount = 0;
-      for (let i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked) checkedCount++;
-      }
-      
-      let basePercent = 62;
-      let addedPercent = Math.round((checkedCount / checkboxes.length) * 38);
-      let totalPercent = Math.min(100, basePercent + addedPercent);
+      localStorage.setItem('pharmacologyStudyTasks', JSON.stringify(taskStates));
 
-      document.getElementById('progressText').innerText = "Course Completion: " + totalPercent + " percent";
-      document.getElementById('progressPercentNum').innerText = totalPercent + "%";
-      document.getElementById('progressBarFill').style.width = totalPercent + "%";
+      var totalTasks = checkboxes.length;
+      var percent = Math.round((checkedCount / totalTasks) * 100);
+
+      document.getElementById('progressText').innerText = "Tasks Completed: " + percent + " percent";
+      document.getElementById('progressPercentNum').innerText = percent + "%";
+      document.getElementById('progressBarFill').style.width = percent + "%";
+      document.getElementById('completedCountNum').innerText = checkedCount + " / " + totalTasks;
     }
 
-    // --- DISMISS WELCOME MODAL SCRIPT ---
+    function loadSavedProgress() {
+      var savedStates = JSON.parse(localStorage.getItem('pharmacologyStudyTasks'));
+      if (savedStates) {
+        for (var i = 0; i < savedStates.length; i++) {
+          var cb = document.getElementById('taskCheckbox' + i);
+          if (cb) {
+            cb.checked = savedStates[i];
+          }
+        }
+      }
+      saveAndUpdateProgress();
+    }
+
     function dismissWelcomeModal() {
       document.getElementById('desktopWelcomeModal').style.display = 'none';
     }
 
-    // --- SECURITY LOCK SCRIPTS ---
+    // Security Lock Scripts
     document.addEventListener('contextmenu', function(e) {
       e.preventDefault();
-      alert('⚠️ Right-click is disabled to protect copyrighted study materials.');
+      alert('Right-click is disabled to protect copyrighted study materials.');
     });
 
     document.addEventListener('keydown', function(e) {
@@ -627,7 +657,7 @@
         (e.ctrlKey && e.keyCode === 83)
       ) {
         e.preventDefault();
-        alert('⚠️ Unauthorized action blocked.');
+        alert('Unauthorized action blocked.');
         return false;
       }
     });
@@ -635,14 +665,13 @@
     function checkAccess(event) {
       if (localStorage.getItem('pharmacologyUnlocked') !== 'true') {
         event.preventDefault();
-        alert('❌ Locked! Please enter your valid single-use access code first.');
+        alert('Locked! Please enter your valid single-use access code first.');
         return false;
       }
       return true;
     }
 
-    // --- DATABASE & APP LOGIC ---
-    let validCodes = JSON.parse(localStorage.getItem('pharmacologyDatabaseCodes')) || {
+    var validCodes = JSON.parse(localStorage.getItem('pharmacologyDatabaseCodes')) || {
       "PHARMA-101": false,
       "PHARMA-102": false,
       "PHARMA-103": false,
@@ -656,8 +685,9 @@
       }
 
       loadUserDataToUI();
+      loadSavedProgress();
 
-      const savedPic = localStorage.getItem('pharmacologyUserPic');
+      var savedPic = localStorage.getItem('pharmacologyUserPic');
       if (savedPic) {
         document.getElementById('profile-pic').src = savedPic;
       }
@@ -668,9 +698,9 @@
     };
 
     function loadUserDataToUI() {
-      const userJSON = localStorage.getItem('pharmacologyUser');
+      var userJSON = localStorage.getItem('pharmacologyUser');
       if (userJSON) {
-        const user = JSON.parse(userJSON);
+        var user = JSON.parse(userJSON);
         document.getElementById('student-name').innerText = user.name || 'Mudassir Hussain Khan';
         document.getElementById('student-institute').innerText = user.institute || 'New Life Institute of Nursing';
         document.getElementById('student-email').innerText = user.email || 'rollno 002075';
@@ -679,8 +709,8 @@
     }
 
     function openEditProfileModal() {
-      const userJSON = localStorage.getItem('pharmacologyUser');
-      let user = userJSON ? JSON.parse(userJSON) : {
+      var userJSON = localStorage.getItem('pharmacologyUser');
+      var user = userJSON ? JSON.parse(userJSON) : {
         name: 'Mudassir Hussain Khan',
         institute: 'New Life Institute of Nursing',
         email: 'rollno 002075',
@@ -700,7 +730,7 @@
     }
 
     function saveProfileChanges() {
-      const updatedUser = {
+      var updatedUser = {
         name: document.getElementById('editNameInput').value.trim(),
         institute: document.getElementById('editInstituteInput').value.trim(),
         email: document.getElementById('editEmailInput').value.trim(),
@@ -710,7 +740,7 @@
       localStorage.setItem('pharmacologyUser', JSON.stringify(updatedUser));
       loadUserDataToUI();
       closeEditProfileModal();
-      alert('✅ Profile updated successfully!');
+      alert('Profile updated successfully!');
     }
 
     function openForgotPasswordModal() {
@@ -724,18 +754,18 @@
     }
 
     function submitPasswordReset() {
-      const email = document.getElementById('resetEmailInput').value.trim();
-      const newPassword = document.getElementById('newPasswordInput').value.trim();
+      var email = document.getElementById('resetEmailInput').value.trim();
+      var newPassword = document.getElementById('newPasswordInput').value.trim();
 
       if (!email || !newPassword) {
         alert('Please fill in both fields.');
         return;
       }
 
-      let usersDB = JSON.parse(localStorage.getItem('pharmacologyRegisteredUsers')) || [];
-      let found = false;
+      var usersDB = JSON.parse(localStorage.getItem('pharmacologyRegisteredUsers')) || [];
+      var found = false;
 
-      for (let i = 0; i < usersDB.length; i++) {
+      for (var i = 0; i < usersDB.length; i++) {
         if (usersDB[i].email === email) {
           usersDB[i].password = newPassword;
           found = true;
@@ -745,16 +775,16 @@
 
       if (found) {
         localStorage.setItem('pharmacologyRegisteredUsers', JSON.stringify(usersDB));
-        alert('🎉 Password updated successfully! You can now log in with your new password.');
+        alert('Password updated successfully! You can now log in with your new password.');
         closeForgotPasswordModal();
       } else {
-        alert('🎉 Password reset instructions/update completed successfully!');
+        alert('Password reset instructions/update completed successfully!');
         closeForgotPasswordModal();
       }
     }
 
     function verifySingleUseCode() {
-      const enteredCode = document.getElementById('sidebarAccessInput').value.trim();
+      var enteredCode = document.getElementById('sidebarAccessInput').value.trim();
 
       if (!enteredCode) {
         alert('Please enter an access code.');
@@ -763,23 +793,23 @@
 
       if (validCodes.hasOwnProperty(enteredCode)) {
         if (validCodes[enteredCode] === true) {
-          alert('❌ Access Denied: This code has already been used by another student and cannot be reused!');
+          alert('Access Denied: This code has already been used by another student and cannot be reused!');
         } else {
           validCodes[enteredCode] = true;
           localStorage.setItem('pharmacologyDatabaseCodes', JSON.stringify(validCodes));
           
           localStorage.setItem('pharmacologyUnlocked', 'true');
           unlockContentUI();
-          alert('🎉 Success! Code verified. All chapter notes are now unlocked.');
+          alert('Success! Code verified. All chapter notes are now unlocked.');
         }
       } else {
-        alert('❌ Invalid Access Code! Please check your code or contact admin via WhatsApp (03241064487).');
+        alert('Invalid Access Code! Please check your code or contact admin via WhatsApp (03241064487).');
       }
     }
 
     function unlockContentUI() {
       document.getElementById('lockOverlay').style.display = 'none';
-      const statusText = document.getElementById('accessStatusText');
+      var statusText = document.getElementById('accessStatusText');
       statusText.innerText = "Status: Unlocked ✓";
       statusText.className = "access-status status-unlocked";
       document.getElementById('sidebarAccessInput').value = "VERIFIED";
@@ -787,11 +817,11 @@
     }
 
     function previewImage(event) {
-      const file = event.target.files[0];
+      var file = event.target.files[0];
       if (file) {
-        const reader = new FileReader();
+        var reader = new FileReader();
         reader.onload = function(e) {
-          const base64Image = e.target.result;
+          var base64Image = e.target.result;
           document.getElementById('profile-pic').src = base64Image;
           localStorage.setItem('pharmacologyUserPic', base64Image);
         };
