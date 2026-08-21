@@ -1,380 +1,760 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Portal Access | Pharmacology-I BSN</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
-    
-    body { 
-      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); 
-      color: #0f172a; 
-      min-height: 100vh; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      padding: 16px; 
-    }
-
-    /* Login Box Container */
-    .login-container { 
-      background: white; 
-      width: 100%; 
-      max-width: 440px; 
-      padding: 36px 28px; 
-      border-radius: 28px; 
-      box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04); 
-      border: 1px solid rgba(226, 232, 240, 0.8); 
-      position: relative; 
-    }
-
-    .login-header { text-align: center; margin-bottom: 24px; }
-    .login-header h1 { font-size: 1.5rem; font-weight: 800; color: #0284c7; letter-spacing: -0.5px; margin-bottom: 6px; }
-    .login-header p { font-size: 0.85rem; color: #64748b; font-weight: 500; }
-
-    /* Tab Switcher */
-    .tab-switcher { display: flex; background: #f1f5f9; border-radius: 14px; padding: 5px; margin-bottom: 22px; }
-    .tab-btn { flex: 1; text-align: center; padding: 11px; font-size: 0.85rem; font-weight: 700; border: none; background: transparent; cursor: pointer; border-radius: 10px; color: #64748b; transition: all 0.25s ease; }
-    .tab-btn.active { background: white; color: #0284c7; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
-
-    /* Form Styles */
-    .form-group { margin-bottom: 16px; }
-    .form-group label { display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 6px; }
-    .form-input { width: 100%; padding: 13px 16px; border: 1.5px solid #cbd5e1; border-radius: 14px; font-size: 0.95rem; font-weight: 600; outline: none; background: #f8fafc; color: #0f172a; transition: all 0.2s; }
-    .form-input:focus { border-color: #0284c7; background: white; box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.12); }
-
-    .auth-btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; border: none; border-radius: 14px; font-weight: 700; font-size: 1rem; cursor: pointer; margin-top: 8px; box-shadow: 0 6px 16px rgba(2, 132, 199, 0.25); transition: transform 0.1s, opacity 0.2s; }
-    .auth-btn:hover { opacity: 0.94; }
-    .auth-btn:active { transform: scale(0.98); }
-
-    /* Forgot Password Row */
-    .forgot-row { display: flex; justify-content: flex-end; margin-top: -8px; margin-bottom: 12px; }
-    .forgot-link { font-size: 0.8rem; font-weight: 700; color: #0284c7; text-decoration: none; cursor: pointer; transition: color 0.2s; }
-    .forgot-link:hover { color: #0369a1; text-decoration: underline; }
-
-    /* Gorgeous Help Admin WhatsApp Button */
-    .help-admin-btn { 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      gap: 10px; 
-      width: 100%; 
-      margin-top: 16px; 
-      padding: 13px; 
-      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); 
-      color: white; 
-      border: none; 
-      border-radius: 14px; 
-      font-size: 0.9rem; 
-      font-weight: 700; 
-      text-decoration: none; 
-      box-shadow: 0 6px 16px rgba(34, 197, 94, 0.25);
-      transition: all 0.2s ease; 
-    }
-    .help-admin-btn:hover { 
-      opacity: 0.92;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(34, 197, 94, 0.35);
-    }
-    .help-admin-btn:active { transform: scale(0.98); }
-    .whatsapp-icon { font-size: 1.1rem; }
-
-    .help-text { text-align: center; margin-top: 20px; font-size: 0.8rem; color: #64748b; }
-    .help-text span { color: #0284c7; font-weight: 700; }
-    
-    .hidden { display: none; }
-
-    /* Modal Backdrop */
-    .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100; align-items: center; justify-content: center; padding: 16px; backdrop-filter: blur(3px); }
-    .modal-box { background: white; border-radius: 20px; padding: 24px; width: 100%; max-width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); animation: modalPopup 0.2s ease; }
-    @keyframes modalPopup { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    .modal-box h3 { font-size: 1.15rem; font-weight: 800; color: #0f172a; margin-bottom: 6px; }
-    .modal-box p { font-size: 0.82rem; color: #64748b; margin-bottom: 16px; line-height: 1.4; }
-    .modal-actions { display: flex; gap: 8px; margin-top: 20px; }
-    .btn-primary { flex: 1; background: #0284c7; color: white; border: none; padding: 11px; border-radius: 12px; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
-    .btn-primary:hover { opacity: 0.9; }
-    .btn-secondary { flex: 1; background: #e2e8f0; color: #334155; border: none; padding: 11px; border-radius: 12px; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
-    .btn-secondary:hover { background: #cbd5e1; }
-
-    @media (max-width: 480px) {
-      body { padding: 12px; }
-      .login-container { padding: 28px 20px; border-radius: 24px; }
-      .login-header h1 { font-size: 1.35rem; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSN Pharmacology 3rd Semester | Educational Portal</title>
+    <meta name="description" content="Interactive, exam-focused BSN 3rd Semester Pharmacology portal with animations, MCQs, past papers, and memory aids.">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                            800: '#1e3a8a',
+                        },
+                        medical: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        },
+                        blink: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0' },
+                        }
+                    },
+                    animation: {
+                        float: 'float 4s ease-in-out infinite',
+                        blink: 'blink 0.8s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .backdrop-blur-md { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        details summary::-webkit-details-marker { display: none; }
+    </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
 
-  <div class="login-container">
-    <div class="login-header">
-      <h1>Pharmacology-I Portal</h1>
-      <p id="headerSubtitle">Sign in with your email &amp; password</p>
-    </div>
+    <!-- NAVIGATION HEADER -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2.5 text-brand-700 font-bold text-lg tracking-tight hover:opacity-90 transition">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-medical-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+                    <i data-lucide="pill" class="w-5 h-5"></i>
+                </div>
+                <span>Pharma<span class="text-medical-600">BSN</span></span>
+            </a>
 
-    <!-- Switch Tabs for Login / Register -->
-    <div class="tab-switcher">
-      <button type="button" id="loginTabBtn" class="tab-btn active" onclick="switchMode('login')">Log In</button>
-      <button type="button" id="registerTabBtn" class="tab-btn" onclick="switchMode('register')">Register</button>
-    </div>
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+                <a href="#features" class="hover:text-brand-600 transition">Features</a>
+                <a href="#demo" class="hover:text-brand-600 transition">Free Demo</a>
+                <a href="#pricing" class="hover:text-brand-600 transition">Pricing</a>
+                <a href="#faq" class="hover:text-brand-600 transition">FAQ</a>
+            </nav>
 
-    <!-- Auth Form -->
-    <form id="authForm" onsubmit="handleAuth(event)">
-      
-      <!-- Extra fields shown only during Register -->
-      <div id="registerFields" class="hidden">
-        <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" id="studentName" class="form-input" placeholder="e.g. Mudassir Hussain Khan">
+            <div class="hidden md:flex items-center gap-3">
+                <a href="chapter1.html" class="px-4 py-2 rounded-lg text-sm font-semibold text-brand-600 hover:bg-brand-50 transition">
+                    Try Demo
+                </a>
+                <a href="login.html" class="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-md shadow-brand-600/20 transition active:scale-95 inline-flex items-center gap-2">
+                    <i data-lucide="log-in" class="w-4 h-4"></i>
+                    Student Login
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-600 hover:text-slate-900 focus:outline-none">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
         </div>
 
-        <div class="form-group">
-          <label>Institute Name</label>
-          <input type="text" id="studentInstitute" class="form-input" value="New Life Institute of Nursing Multan">
+        <!-- Mobile Nav Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-4 space-y-3">
+            <a href="#features" class="block py-2 text-sm font-medium text-slate-600">Features</a>
+            <a href="#demo" class="block py-2 text-sm font-medium text-slate-600">Free Demo</a>
+            <a href="#pricing" class="block py-2 text-sm font-medium text-slate-600">Pricing</a>
+            <a href="#faq" class="block py-2 text-sm font-medium text-slate-600">FAQ</a>
+            <div class="pt-2 border-t border-slate-100 flex flex-col gap-2">
+                <a href="chapter1.html" class="w-full text-center py-2 rounded-lg text-sm font-semibold text-brand-600 border border-brand-200">Try Demo</a>
+                <a href="login.html" class="w-full text-center py-2 rounded-lg text-sm font-semibold text-white bg-brand-600">Student Login</a>
+            </div>
         </div>
+    </header>
 
-        <div class="form-group">
-          <label>Semester</label>
-          <input type="text" id="studentSemester" class="form-input" value="4th Semester">
+    <main>
+        <!-- SECTION 1 — HERO -->
+        <section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
+            <div class="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.brand.100),theme(colors.slate.50))] opacity-60"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                    
+                    <!-- Left Column -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100/80 border border-brand-200 text-brand-700 text-xs font-semibold uppercase tracking-wider">
+                            <i data-lucide="graduation-cap" class="w-4 h-4 text-brand-600"></i>
+                            3rd Semester BSN
+                        </div>
+                        
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
+                            PHARMACOLOGY
+                            <span class="block text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-600 mt-2">
+                                Understand. Remember. Practice. Excel.
+                            </span>
+                        </h1>
+
+                        <p class="text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                            An interactive, exam-focused Pharmacology learning portal designed to make a vast syllabus simple, visual, and easier to revise for BSN students.
+                        </p>
+
+                        <div class="pt-2 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <a href="chapter1.html" class="px-6 py-3.5 rounded-xl font-bold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/30 flex items-center justify-center gap-2 transition active:scale-95">
+                                <i data-lucide="play-circle" class="w-5 h-5"></i>
+                                Explore Free Demo
+                            </a>
+                            <a href="login.html" class="px-6 py-3.5 rounded-xl font-bold text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 shadow-sm flex items-center justify-center gap-2 transition active:scale-95">
+                                <i data-lucide="lock" class="w-5 h-5 text-slate-500"></i>
+                                Student Login
+                            </a>
+                        </div>
+
+                        <!-- Trust Line -->
+                        <div class="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-y-2 gap-x-6 text-xs font-semibold text-slate-500">
+                            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-medical-600"></i> Syllabus-focused</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-medical-600"></i> Easy learning</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-medical-600"></i> Practice</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-medical-600"></i> Past Papers</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Visual Dashboard with Typewriter Console -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative mx-auto max-w-md lg:max-w-none rounded-2xl bg-slate-900 p-4 shadow-2xl shadow-brand-900/20 ring-1 ring-slate-800 animate-float">
+                            <!-- Visual Header Bar -->
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-3 px-2 mb-3">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                                </div>
+                                <div class="flex items-center gap-1.5 text-xs text-medical-400 font-mono bg-medical-500/10 px-2.5 py-1 rounded-full border border-medical-500/20">
+                                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> High-Yield Live
+                                </div>
+                            </div>
+                            
+                            <!-- Typewriter Console Box -->
+                            <div class="bg-slate-950 rounded-xl p-5 text-slate-100 font-mono text-sm leading-relaxed border border-slate-800 min-h-[220px] flex flex-col justify-between">
+                                <div class="space-y-3">
+                                    <div class="text-xs text-brand-400 font-semibold flex items-center gap-1.5">
+                                        <i data-lucide="terminal" class="w-4 h-4"></i> Pharmacology High-Yield Review
+                                    </div>
+                                    <div class="text-emerald-400">
+                                        &gt; <span id="typewriterText" class="text-slate-200"></span><span class="inline-block w-2 h-4 bg-emerald-400 ml-1 animate-blink align-middle"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Interactive Micro Indicators -->
+                                <div class="pt-4 border-t border-slate-900 grid grid-cols-2 gap-2 text-xs font-sans">
+                                    <div class="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800 flex items-center gap-2">
+                                        <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
+                                        <span class="text-slate-300">Fast Concept Recall</span>
+                                    </div>
+                                    <div class="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800 flex items-center gap-2">
+                                        <i data-lucide="brain" class="w-4 h-4 text-brand-400"></i>
+                                        <span class="text-slate-300">Smart Mnemonics</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2 — THE PROBLEM -->
+        <section class="py-16 bg-white border-y border-slate-200/60">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-8">
+                    Pharmacology shouldn't feel overwhelming.
+                </h2>
+
+                <div class="grid sm:grid-cols-3 gap-6 mb-10">
+                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+                        <div class="w-10 h-10 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mx-auto mb-3">
+                            <i data-lucide="book-open" class="w-5 h-5"></i>
+                        </div>
+                        <p class="text-sm font-semibold text-slate-800">Huge amount of information</p>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mx-auto mb-3">
+                            <i data-lucide="git-fork" class="w-5 h-5"></i>
+                        </div>
+                        <p class="text-sm font-semibold text-slate-800">Difficult classifications and drug facts</p>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+                        <div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mx-auto mb-3">
+                            <i data-lucide="clock" class="w-5 h-5"></i>
+                        </div>
+                        <p class="text-sm font-semibold text-slate-800">Limited time for revision</p>
+                    </div>
+                </div>
+
+                <div class="inline-block p-4 rounded-xl bg-brand-50 border border-brand-200 text-brand-800 font-semibold text-base sm:text-lg">
+                    💡 So I built a simpler way to study — designed directly from a BSN student's perspective.
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3 — THE SOLUTION -->
+        <section id="features" class="py-20 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                        Everything you need for Pharmacology, in one place.
+                    </h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Feature 1 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center mb-4">
+                            <i data-lucide="book" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">COMPLETE CHAPTERS</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Easy explanations following the relevant textbook/syllabus headings.</p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-medical-100 text-medical-600 flex items-center justify-center mb-4">
+                            <i data-lucide="lightbulb" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">MNEMONICS</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Simple memory aids for difficult classifications and drug information.</p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-4">
+                            <i data-lucide="sparkles" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">ANIMATIONS</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Visual explanations for difficult medical and mechanism concepts.</p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-4">
+                            <i data-lucide="sliders" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">INTERACTIVE SIMULATORS</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">For example, the ADME simulator in Chapter 1.</p>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-100 text-cyan-600 flex items-center justify-center mb-4">
+                            <i data-lucide="table" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">QUICK TABLES</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Short high-yield tables for rapid revision before exams.</p>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4">
+                            <i data-lucide="help-circle" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">MCQ PRACTICE</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Practice questions with detailed answers and rationales.</p>
+                    </div>
+
+                    <!-- Feature 7 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center mb-4">
+                            <i data-lucide="history" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">PAST PAPERS</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Past-paper questions organized specifically for targeted preparation.</p>
+                    </div>
+
+                    <!-- Feature 8 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center mb-4">
+                            <i data-lucide="zap" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">HIGH-YIELD REVISION</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Laser focus on high-yield core concepts before examinations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4 — FREE DEMO -->
+        <section id="demo" class="py-20 bg-gradient-to-b from-brand-900 to-slate-900 text-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-medical-500/20 text-medical-400 border border-medical-500/30 text-xs font-bold uppercase tracking-wider">
+                        <i data-lucide="unlock" class="w-3.5 h-3.5"></i>
+                        Free Access
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-black tracking-tight">
+                        EXPERIENCE THE PORTAL BEFORE YOU BUY
+                    </h2>
+                    <p class="text-xl font-semibold text-brand-300">
+                        Start with Chapter 1 — Basic Principles of Pharmacology
+                    </p>
+                    <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto pt-2">
+                        Explore the ADME concept through interactive animation and simulation, then test your understanding with practice questions.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-slate-800/80 backdrop-blur border border-slate-700/60 p-6 rounded-2xl text-center">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="film" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-white mb-2">ADME ANIMATION</h3>
+                        <p class="text-slate-400 text-sm">See the journey of a drug through the body visually represented.</p>
+                    </div>
+
+                    <div class="bg-slate-800/80 backdrop-blur border border-slate-700/60 p-6 rounded-2xl text-center">
+                        <div class="w-12 h-12 rounded-xl bg-medical-500/20 text-medical-400 flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="activity" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-white mb-2">ADME SIMULATOR</h3>
+                        <p class="text-slate-400 text-sm">Interact and understand mechanisms instead of blind memorizing.</p>
+                    </div>
+
+                    <div class="bg-slate-800/80 backdrop-blur border border-slate-700/60 p-6 rounded-2xl text-center">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="check-square" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-white mb-2">QUICK MCQ</h3>
+                        <p class="text-slate-400 text-sm">Immediately test what you just learned with real-time feedback.</p>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a href="chapter1.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-extrabold text-white bg-medical-600 hover:bg-medical-500 shadow-xl shadow-medical-600/30 transition text-lg active:scale-95">
+                        <i data-lucide="rocket" class="w-5 h-5"></i>
+                        TRY CHAPTER 1 FREE
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 5 — HOW THE PORTAL WORKS -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                        From learning to exam preparation.
+                    </h2>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+                    <!-- Step 1 -->
+                    <div class="relative flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-brand-50 border-2 border-brand-500 text-brand-700 text-xl font-black flex items-center justify-center mb-4 shadow-sm">
+                            01
+                        </div>
+                        <h3 class="font-extrabold text-slate-900 text-lg">LEARN</h3>
+                        <p class="text-slate-600 text-sm mt-1">Easy explanations</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-brand-50 border-2 border-brand-500 text-brand-700 text-xl font-black flex items-center justify-center mb-4 shadow-sm">
+                            02
+                        </div>
+                        <h3 class="font-extrabold text-slate-900 text-lg">UNDERSTAND</h3>
+                        <p class="text-slate-600 text-sm mt-1">Animations + visual concepts</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-brand-50 border-2 border-brand-500 text-brand-700 text-xl font-black flex items-center justify-center mb-4 shadow-sm">
+                            03
+                        </div>
+                        <h3 class="font-extrabold text-slate-900 text-lg">PRACTICE</h3>
+                        <p class="text-slate-600 text-sm mt-1">MCQs + past papers</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-medical-50 border-2 border-medical-500 text-medical-700 text-xl font-black flex items-center justify-center mb-4 shadow-sm">
+                            04
+                        </div>
+                        <h3 class="font-extrabold text-slate-900 text-lg">REVISE</h3>
+                        <p class="text-slate-600 text-sm mt-1">Mnemonics + quick tables + high-yield review</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6 — WHY THIS IS DIFFERENT -->
+        <section class="py-20 bg-slate-50 border-t border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                        More than notes.
+                    </h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- Traditional Card -->
+                    <div class="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                        <h3 class="text-xl font-bold text-slate-700 mb-6 flex items-center gap-2">
+                            <i data-lucide="x-circle" class="w-5 h-5 text-rose-500"></i>
+                            Traditional Study
+                        </h3>
+                        <ul class="space-y-4 text-slate-600 font-medium">
+                            <li class="flex items-start gap-3"><i data-lucide="minus" class="w-5 h-5 text-slate-400 shrink-0 mt-0.5"></i> Huge, dense textbook paragraphs</li>
+                            <li class="flex items-start gap-3"><i data-lucide="minus" class="w-5 h-5 text-slate-400 shrink-0 mt-0.5"></i> Searching everywhere for scattered topics</li>
+                            <li class="flex items-start gap-3"><i data-lucide="minus" class="w-5 h-5 text-slate-400 shrink-0 mt-0.5"></i> Spending hours writing out basic notes</li>
+                            <li class="flex items-start gap-3"><i data-lucide="minus" class="w-5 h-5 text-slate-400 shrink-0 mt-0.5"></i> Searching for past questions separately</li>
+                            <li class="flex items-start gap-3"><i data-lucide="minus" class="w-5 h-5 text-slate-400 shrink-0 mt-0.5"></i> Memorizing complex mechanisms without visual aid</li>
+                        </ul>
+                    </div>
+
+                    <!-- My Portal Card -->
+                    <div class="p-8 rounded-2xl bg-brand-50/50 border-2 border-brand-500/30 shadow-md">
+                        <h3 class="text-xl font-bold text-brand-800 mb-6 flex items-center gap-2">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-medical-600"></i>
+                            My Portal
+                        </h3>
+                        <ul class="space-y-4 text-slate-800 font-semibold">
+                            <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-medical-600 shrink-0 mt-0.5"></i> Perfectly organized syllabus content</li>
+                            <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-medical-600 shrink-0 mt-0.5"></i> Clear & easy topic explanations</li>
+                            <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-medical-600 shrink-0 mt-0.5"></i> Custom mnemonics for drug classes</li>
+                            <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-medical-600 shrink-0 mt-0.5"></i> Interactive learning & visual simulators</li>
+                            <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-medical-600 shrink-0 mt-0.5"></i> High-yield MCQs & integrated past papers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center text-slate-500 text-sm max-w-xl mx-auto font-medium">
+                    "Use the tools you like. This portal simply saves you the time of organizing everything yourself."
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 7 & 8 — FACULTY & STUDENT REVIEWS -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+                
+                <!-- FACULTY REVIEW -->
+                <div>
+                    <div class="text-center max-w-2xl mx-auto mb-8">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-bold uppercase mb-2">
+                            <i data-lucide="award" class="w-3.5 h-3.5"></i>
+                            Faculty Review
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Academic Feedback</h2>
+                    </div>
+
+                    <div class="max-w-xl mx-auto p-8 rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-center text-slate-500 font-medium">
+                        <i data-lucide="clock" class="w-8 h-8 text-slate-400 mx-auto mb-2"></i>
+                        Faculty review coming soon
+                    </div>
+                </div>
+
+                <!-- STUDENT REVIEWS -->
+                <div>
+                    <div class="text-center max-w-2xl mx-auto mb-8">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-bold uppercase mb-2">
+                            <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
+                            What Students Say
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Student Reviews</h2>
+                    </div>
+
+                    <div class="max-w-xl mx-auto p-8 rounded-2xl border border-slate-200 bg-slate-50 text-center space-y-4">
+                        <p class="text-slate-500 font-medium">Student reviews coming soon.</p>
+                        <div>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfmCoyJkxUlfrv3ZdPm5HN9gNh5HsoopQNpMyaxPgY9UqFZNQ/viewform" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-brand-600 bg-white border border-brand-200 hover:bg-brand-50 transition shadow-sm">
+                                <i data-lucide="message-circle-plus" class="w-4 h-4"></i>
+                                Leave a Review
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 9 — PRICING -->
+        <section id="pricing" class="py-20 bg-slate-50 border-t border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="max-w-lg mx-auto bg-gradient-to-b from-white to-brand-50/40 border-2 border-brand-500 rounded-3xl p-8 shadow-xl shadow-brand-500/10 relative">
+                    
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-brand-600 text-white font-bold text-xs uppercase tracking-wider shadow-sm">
+                        Founding Batch
+                    </div>
+
+                    <div class="text-center pt-2 mb-6">
+                        <div class="text-5xl font-black text-slate-900 tracking-tight mb-1">
+                            Rs.399
+                        </div>
+                        <div class="text-sm font-semibold text-brand-700">
+                            Access until the December final examination
+                        </div>
+                    </div>
+
+                    <ul class="space-y-3.5 mb-8 text-sm text-slate-700 font-medium">
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-medical-600 shrink-0"></i> Complete Pharmacology chapters</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-medical-600 shrink-0"></i> Mnemonics & classification aids</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-medical-600 shrink-0"></i> Visual concept animations</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-medical-600 shrink-0"></i> Interactive ADME simulator</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-medical-600 shrink-0"></i> Quick tables for rapid revision</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-medical-600 shrink-0"></i> Comprehensive MCQ practice</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-medical-600 shrink-0"></i> Categorized past paper questions</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-medical-600 shrink-0"></i> High-yield pre-exam summaries</li>
+                    </ul>
+
+                    <a href="login.html" class="w-full py-4 rounded-xl font-extrabold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/25 flex items-center justify-center gap-2 transition active:scale-95 text-base">
+                        <i data-lucide="key" class="w-5 h-5"></i>
+                        GET ACCESS
+                    </a>
+
+                    <div class="text-center mt-4 text-xs font-semibold text-slate-500">
+                        Limited founding-batch pricing
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 10 — FAQ -->
+        <section id="faq" class="py-20 bg-white">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">
+                        Frequently Asked Questions
+                    </h2>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- FAQ 1 -->
+                    <details class="group bg-slate-50 p-5 rounded-2xl border border-slate-200/80 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
+                            <span>What is included?</span>
+                            <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+                            Full access includes syllabus-aligned chapter notes, high-yield tables, drug mnemonics, concept animations, interactive simulators, chapter MCQs, and past examination papers.
+                        </p>
+                    </details>
+
+                    <!-- FAQ 2 -->
+                    <details class="group bg-slate-50 p-5 rounded-2xl border border-slate-200/80 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
+                            <span>Who is this portal for?</span>
+                            <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+                            It is built specifically for 3rd semester BSN (Bachelor of Science in Nursing) students preparing for their Pharmacology term and semester final examinations.
+                        </p>
+                    </details>
+
+                    <!-- FAQ 3 -->
+                    <details class="group bg-slate-50 p-5 rounded-2xl border border-slate-200/80 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
+                            <span>Is Chapter 1 available as a demo?</span>
+                            <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+                            Yes! Chapter 1 (Basic Principles & ADME) is 100% free to explore without needing any login or access code.
+                        </p>
+                    </details>
+
+                    <!-- FAQ 4 -->
+                    <details class="group bg-slate-50 p-5 rounded-2xl border border-slate-200/80 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
+                            <span>How long is access?</span>
+                            <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+                            Your one-time access remains active right up until your December final examinations.
+                        </p>
+                    </details>
+
+                    <!-- FAQ 5 -->
+                    <details class="group bg-slate-50 p-5 rounded-2xl border border-slate-200/80 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
+                            <span>How do I get my access code?</span>
+                            <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+                            Go to the Student Login page, access your dashboard, and enter your key in the access code field.
+                        </p>
+                    </details>
+
+                    <!-- FAQ 6 -->
+                    <details class="group bg-slate-50 p-5 rounded-2xl border border-slate-200/80 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
+                            <span>Is this an official UHS website?</span>
+                            <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+                            No. This is a student-developed educational resource designed to support BSN Pharmacology learning and examination preparation.
+                        </p>
+                    </details>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 11 — FINAL CALL TO ACTION -->
+        <section class="py-20 bg-gradient-to-tr from-brand-700 to-brand-900 text-white text-center relative overflow-hidden">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
+                    Ready to make Pharmacology easier?
+                </h2>
+                <p class="text-xl text-brand-200 font-medium">
+                    Learn smarter. Revise faster. Practice better.
+                </p>
+                <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="chapter1.html" class="px-8 py-4 rounded-xl font-extrabold text-brand-900 bg-white hover:bg-brand-50 shadow-xl transition active:scale-95 text-base">
+                        TRY FREE DEMO
+                    </a>
+                    <a href="login.html" class="px-8 py-4 rounded-xl font-extrabold text-white bg-medical-600 hover:bg-medical-500 shadow-xl transition active:scale-95 text-base inline-flex items-center justify-center gap-2">
+                        <i data-lucide="log-in" class="w-5 h-5"></i>
+                        STUDENT LOGIN
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                
+                <div class="space-y-3 lg:col-span-2">
+                    <div class="text-white font-bold text-lg flex items-center gap-2">
+                        <i data-lucide="pill" class="w-5 h-5 text-brand-500"></i>
+                        Pharmacology — 3rd Semester
+                    </div>
+                    <p class="text-slate-400 text-xs max-w-sm">
+                        Student-developed educational resource engineered for 3rd semester nursing students.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Quick Navigation</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#" class="hover:text-white transition">Home</a></li>
+                        <li><a href="chapter1.html" class="hover:text-white transition">Free Demo</a></li>
+                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfmCoyJkxUlfrv3ZdPm5HN9gNh5HsoopQNpMyaxPgY9UqFZNQ/viewform" target="_blank" class="hover:text-white transition">Reviews</a></li>
+                        <li><a href="login.html" class="hover:text-white transition">Login</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Portal Access</h4>
+                    <p class="text-xs text-slate-400 mb-3">Login to access your dashboard & active modules.</p>
+                    <a href="login.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs border border-slate-700 transition">
+                        <i data-lucide="lock" class="w-3.5 h-3.5 text-brand-400"></i> Login Page
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <p>This portal is an educational study resource and does not replace prescribed textbooks, faculty instruction, or professional clinical guidance.</p>
+                <p>© 2026 Pharmacology BSN Portal. All rights reserved.</p>
+            </div>
         </div>
+    </footer>
 
-        <div class="form-group">
-          <label>🔐 Security Recovery Question</label>
-          <input type="text" id="studentSecurityAnswer" class="form-input" placeholder="e.g. Your first pet's name or city">
-          <p style="font-size: 0.72rem; color: #64748b; margin-top: 4px;">Remember this answer! It is required if you ever forget your password.</p>
-        </div>
-      </div>
+    <!-- SCRIPT INITIALIZATION -->
+    <script>
+        // Render Lucide Icons
+        lucide.createIcons();
 
-      <!-- Common Field: Email -->
-      <div class="form-group">
-        <label>Student Email</label>
-        <input type="email" id="studentEmail" class="form-input" placeholder="e.g. student@nursing.edu" required>
-      </div>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" id="studentPassword" class="form-input" placeholder="Enter your password" required>
-      </div>
-
-      <!-- Forgot Password Link (Only visible in Login mode) -->
-      <div id="forgotPasswordRow" class="forgot-row">
-        <a class="forgot-link" onclick="openForgotModal()">Forgot Password?</a>
-      </div>
-
-      <button type="submit" id="submitBtn" class="auth-btn">Log In to Dashboard →</button>
-    </form>
-
-    <!-- Gorgeous Need Help? Ask Admin WhatsApp Pop Button -->
-    <a href="https://wa.me/923241064487?text=Hello%20Mudassir,%20I%20need%20help%20with%20my%20Pharmacology-I%20portal%20account." target="_blank" class="help-admin-btn">
-      <span class="whatsapp-icon">💬</span> Need Help? Ask Admin
-    </a>
-
-    <div class="help-text">
-      <p>Protected Student Portal • Developed by <span>Mudassir Hussain Khan</span></p>
-    </div>
-  </div>
-
-  <!-- Secure Local Forgot Password Modal -->
-  <div id="forgotModal" class="modal-backdrop">
-    <div class="modal-box">
-      <h3>Reset Password</h3>
-      <p>Enter your registered account email and your secret security answer to safely reset your password locally.</p>
-      
-      <div class="form-group">
-        <label>Registered Student Email</label>
-        <input type="email" id="recoveryEmail" class="form-input" placeholder="student@nursing.edu">
-      </div>
-
-      <div class="form-group">
-        <label>Your Security Answer</label>
-        <input type="text" id="recoveryAnswer" class="form-input" placeholder="Secret answer provided at registration">
-      </div>
-
-      <div class="form-group">
-        <label>New Password</label>
-        <input type="password" id="recoveryNewPassword" class="form-input" placeholder="Enter new password">
-      </div>
-
-      <div class="modal-actions">
-        <button onclick="executePasswordReset()" class="btn-primary">Reset Password</button>
-        <button onclick="closeForgotModal()" class="btn-secondary">Cancel</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    let currentMode = 'login';
-    
-    // YOUR GOOGLE APPS SCRIPT WEB APP URL INTEGRATED
-    const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycby_9qujjFnAovZHwnKQML2t9nGjKZkMnI9Wd5574oedSLAxkEH_2LMBM5rvH-u62B3Mow/exec';
-
-    window.onload = function() {
-      if (localStorage.getItem('pharmacologyLoggedIn') === 'true') {
-        window.location.href = 'dashboard.html';
-      }
-    };
-
-    function switchMode(mode) {
-      currentMode = mode;
-      const regFields = document.getElementById('registerFields');
-      const submitBtn = document.getElementById('submitBtn');
-      const headerSubtitle = document.getElementById('headerSubtitle');
-      const loginTab = document.getElementById('loginTabBtn');
-      const regTab = document.getElementById('registerTabBtn');
-      const forgotRow = document.getElementById('forgotPasswordRow');
-
-      if (mode === 'register') {
-        regFields.classList.remove('hidden');
-        forgotRow.classList.add('hidden');
-        submitBtn.innerText = 'Create Account & Register →';
-        headerSubtitle.innerText = 'Create your student account';
-        regTab.classList.add('active');
-        loginTab.classList.remove('active');
-        document.getElementById('studentName').required = true;
-        document.getElementById('studentSecurityAnswer').required = true;
-      } else {
-        regFields.classList.add('hidden');
-        forgotRow.classList.remove('hidden');
-        submitBtn.innerText = 'Log In to Dashboard →';
-        headerSubtitle.innerText = 'Sign in with your email & password';
-        loginTab.classList.add('active');
-        regTab.classList.remove('active');
-        document.getElementById('studentName').required = false;
-        document.getElementById('studentSecurityAnswer').required = false;
-      }
-    }
-
-    // Safe fetch function utilizing no-cors mode to communicate with Google Apps Script
-    function logDataToSheet(payload) {
-      if (!GOOGLE_SHEET_URL) return;
-      
-      fetch(GOOGLE_SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 
-          'Content-Type': 'text/plain;charset=utf-8' 
-        },
-        body: JSON.stringify(payload)
-      }).catch(err => console.log('Sheet Sync Warning:', err));
-    }
-
-    function openForgotModal() {
-      const typedEmail = document.getElementById('studentEmail').value.trim();
-      if(typedEmail) {
-        document.getElementById('recoveryEmail').value = typedEmail;
-      }
-      document.getElementById('recoveryAnswer').value = '';
-      document.getElementById('recoveryNewPassword').value = '';
-      document.getElementById('forgotModal').style.display = 'flex';
-    }
-
-    function closeForgotModal() {
-      document.getElementById('forgotModal').style.display = 'none';
-    }
-
-    function executePasswordReset() {
-      const email = document.getElementById('recoveryEmail').value.trim().toLowerCase();
-      const answer = document.getElementById('recoveryAnswer').value.trim().toLowerCase();
-      const newPassword = document.getElementById('recoveryNewPassword').value.trim();
-
-      if (!email || !answer || !newPassword) {
-        alert('❌ Please fill in all fields to verify your identity.');
-        return;
-      }
-
-      let usersDB = JSON.parse(localStorage.getItem('pharmacologyRegisteredUsers')) || {};
-
-      if (!usersDB.hasOwnProperty(email)) {
-        alert('❌ No account found with this email address.');
-        return;
-      }
-
-      const userRecord = usersDB[email];
-
-      if (!userRecord.securityAnswer || userRecord.securityAnswer.toLowerCase() !== answer) {
-        alert('❌ Incorrect security answer! Identity verification failed.');
-        return;
-      }
-
-      userRecord.password = newPassword;
-      usersDB[email] = userRecord;
-      localStorage.setItem('pharmacologyRegisteredUsers', JSON.stringify(usersDB));
-
-      alert('🎉 Password reset successfully! You can now log in with your new password.');
-      closeForgotModal();
-      document.getElementById('studentEmail').value = email;
-      document.getElementById('studentPassword').value = '';
-    }
-
-    function handleAuth(event) {
-      event.preventDefault();
-
-      const email = document.getElementById('studentEmail').value.trim().toLowerCase();
-      const password = document.getElementById('studentPassword').value.trim();
-
-      let usersDB = JSON.parse(localStorage.getItem('pharmacologyRegisteredUsers')) || {};
-
-      if (currentMode === 'register') {
-        const name = document.getElementById('studentName').value.trim();
-        const institute = document.getElementById('studentInstitute').value.trim();
-        const semester = document.getElementById('studentSemester').value.trim();
-        const securityAnswer = document.getElementById('studentSecurityAnswer').value.trim();
-
-        if (usersDB.hasOwnProperty(email)) {
-          alert('❌ This email is already registered! Please log in instead.');
-          return;
-        }
-
-        usersDB[email] = {
-          name: name,
-          institute: institute,
-          email: email,
-          password: password,
-          semester: semester,
-          securityAnswer: securityAnswer
-        };
-        localStorage.setItem('pharmacologyRegisteredUsers', JSON.stringify(usersDB));
+        // Typewriter Effect for Hero Visual
+        const phrases = [
+            "Pharmacokinetics: What body does to drug.",
+            "Pharmacodynamics: What drug does to body.",
+            "ADME: Absorption, Distribution, Metabolism, Excretion.",
+            "Bioavailability (F) = (AUC oral / AUC IV) * 100",
+            "First-pass metabolism reduces active drug bioavailability."
+        ];
         
-        // Sends registration info to Google Sheets
-        logDataToSheet({
-          fullName: name,
-          institute: institute,
-          email: email,
-          semester: semester
-        });
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterElement = document.getElementById("typewriterText");
 
-        alert('🎉 Registration successful! You can now log in with your email and password.');
-        switchMode('login');
-        document.getElementById('authForm').reset();
+        function typeLoop() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
 
-      } else {
-        if (!usersDB.hasOwnProperty(email)) {
-          alert('❌ Account not found! Please register first by clicking the Register tab.');
-          return;
+            let typeSpeed = isDeleting ? 30 : 60;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typeSpeed = 2200; // Pause at end of sentence
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 400; // Pause before typing next
+            }
+
+            setTimeout(typeLoop, typeSpeed);
         }
 
-        const userRecord = usersDB[email];
-        if (userRecord.password !== password) {
-          alert('❌ Incorrect password! Please check your credentials and try again.');
-          return;
-        }
-
-        localStorage.setItem('pharmacologyUser', JSON.stringify(userRecord));
-        localStorage.setItem('pharmacologyLoggedIn', 'true');
-
-        // Sends login info to Google Sheets
-        logDataToSheet({
-          fullName: userRecord.name || 'N/A',
-          institute: userRecord.institute || 'N/A',
-          email: email,
-          semester: userRecord.semester || 'N/A'
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typewriterElement) typeLoop();
         });
-
-        window.location.href = 'dashboard.html';
-      }
-    }
-  </script>
-
+    </script>
 </body>
 </html>
