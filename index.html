@@ -33,14 +33,14 @@
                             '0%, 100%': { transform: 'translateY(0px)' },
                             '50%': { transform: 'translateY(-8px)' },
                         },
-                        pulseGlow: {
-                            '0%, 100%': { opacity: '0.4' },
-                            '50%': { opacity: '0.8' },
+                        blink: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0' },
                         }
                     },
                     animation: {
                         float: 'float 4s ease-in-out infinite',
-                        pulseGlow: 'pulseGlow 3s ease-in-out infinite',
+                        blink: 'blink 0.8s infinite',
                     }
                 }
             }
@@ -69,18 +69,18 @@
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
                 <a href="#features" class="hover:text-brand-600 transition">Features</a>
                 <a href="#demo" class="hover:text-brand-600 transition">Free Demo</a>
-                <a href="#syllabus" class="hover:text-brand-600 transition">Syllabus</a>
                 <a href="#pricing" class="hover:text-brand-600 transition">Pricing</a>
                 <a href="#faq" class="hover:text-brand-600 transition">FAQ</a>
             </nav>
 
             <div class="hidden md:flex items-center gap-3">
-                <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/chapter1.html" class="px-4 py-2 rounded-lg text-sm font-semibold text-brand-600 hover:bg-brand-50 transition">
+                <a href="chapter1.html" class="px-4 py-2 rounded-lg text-sm font-semibold text-brand-600 hover:bg-brand-50 transition">
                     Try Demo
                 </a>
-                <button onclick="openLoginModal()" class="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-md shadow-brand-600/20 transition active:scale-95">
+                <a href="login.html" class="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-md shadow-brand-600/20 transition active:scale-95 inline-flex items-center gap-2">
+                    <i data-lucide="log-in" class="w-4 h-4"></i>
                     Student Login
-                </button>
+                </a>
             </div>
 
             <!-- Mobile Menu Toggle -->
@@ -93,12 +93,11 @@
         <div id="mobileMenu" class="hidden md:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-4 space-y-3">
             <a href="#features" class="block py-2 text-sm font-medium text-slate-600">Features</a>
             <a href="#demo" class="block py-2 text-sm font-medium text-slate-600">Free Demo</a>
-            <a href="#syllabus" class="block py-2 text-sm font-medium text-slate-600">Syllabus</a>
             <a href="#pricing" class="block py-2 text-sm font-medium text-slate-600">Pricing</a>
             <a href="#faq" class="block py-2 text-sm font-medium text-slate-600">FAQ</a>
             <div class="pt-2 border-t border-slate-100 flex flex-col gap-2">
-                <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/chapter1.html" class="w-full text-center py-2 rounded-lg text-sm font-semibold text-brand-600 border border-brand-200">Try Demo</a>
-                <button onclick="openLoginModal()" class="w-full text-center py-2 rounded-lg text-sm font-semibold text-white bg-brand-600">Student Login</button>
+                <a href="chapter1.html" class="w-full text-center py-2 rounded-lg text-sm font-semibold text-brand-600 border border-brand-200">Try Demo</a>
+                <a href="login.html" class="w-full text-center py-2 rounded-lg text-sm font-semibold text-white bg-brand-600">Student Login</a>
             </div>
         </div>
     </header>
@@ -130,14 +129,14 @@
                         </p>
 
                         <div class="pt-2 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                            <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/chapter1.html" class="px-6 py-3.5 rounded-xl font-bold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/30 flex items-center justify-center gap-2 transition active:scale-95">
+                            <a href="chapter1.html" class="px-6 py-3.5 rounded-xl font-bold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/30 flex items-center justify-center gap-2 transition active:scale-95">
                                 <i data-lucide="play-circle" class="w-5 h-5"></i>
                                 Explore Free Demo
                             </a>
-                            <button onclick="openLoginModal()" class="px-6 py-3.5 rounded-xl font-bold text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 shadow-sm flex items-center justify-center gap-2 transition active:scale-95">
+                            <a href="login.html" class="px-6 py-3.5 rounded-xl font-bold text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 shadow-sm flex items-center justify-center gap-2 transition active:scale-95">
                                 <i data-lucide="lock" class="w-5 h-5 text-slate-500"></i>
                                 Student Login
-                            </button>
+                            </a>
                         </div>
 
                         <!-- Trust Line -->
@@ -149,57 +148,41 @@
                         </div>
                     </div>
 
-                    <!-- Right Column: Visual Dashboard Demo -->
+                    <!-- Right Column: Visual Dashboard with Typewriter Console -->
                     <div class="lg:col-span-5 relative">
-                        <div class="relative mx-auto max-w-md lg:max-w-none rounded-2xl bg-slate-900 p-3 shadow-2xl shadow-brand-900/20 ring-1 ring-slate-800 animate-float">
-                            <!-- Window Bar -->
-                            <div class="flex items-center justify-between border-b border-slate-800 pb-2.5 px-3 mb-3">
-                                <div class="flex items-center gap-1.5">
-                                    <div class="w-2.5 h-2.5 rounded-full bg-rose-500"></div>
-                                    <div class="w-2.5 h-2.5 rounded-full bg-amber-500"></div>
-                                    <div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
+                        <div class="relative mx-auto max-w-md lg:max-w-none rounded-2xl bg-slate-900 p-4 shadow-2xl shadow-brand-900/20 ring-1 ring-slate-800 animate-float">
+                            <!-- Visual Header Bar -->
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-3 px-2 mb-3">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
                                 </div>
-                                <span class="text-[10px] font-mono text-slate-400">portal.pharma-bsn.internal</span>
+                                <div class="flex items-center gap-1.5 text-xs text-medical-400 font-mono bg-medical-500/10 px-2.5 py-1 rounded-full border border-medical-500/20">
+                                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> High-Yield Live
+                                </div>
                             </div>
                             
-                            <!-- Visual Graphic Canvas -->
-                            <div class="bg-slate-950 rounded-xl p-4 text-slate-100 space-y-4 font-sans">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <div class="text-xs text-slate-400">Active Module</div>
-                                        <div class="text-sm font-bold text-white">Ch 1: Pharmacokinetics (ADME)</div>
+                            <!-- Typewriter Console Box -->
+                            <div class="bg-slate-950 rounded-xl p-5 text-slate-100 font-mono text-sm leading-relaxed border border-slate-800 min-h-[220px] flex flex-col justify-between">
+                                <div class="space-y-3">
+                                    <div class="text-xs text-brand-400 font-semibold flex items-center gap-1.5">
+                                        <i data-lucide="terminal" class="w-4 h-4"></i> Pharmacology High-Yield Review
                                     </div>
-                                    <span class="px-2 py-1 rounded bg-medical-500/20 text-medical-500 text-[10px] font-bold uppercase">Live Interactive</span>
-                                </div>
-
-                                <!-- Animated ADME Bar Diagram -->
-                                <div class="space-y-2 pt-2">
-                                    <div class="flex justify-between text-xs font-mono">
-                                        <span class="text-brand-400">Absorption Rate</span>
-                                        <span>88%</span>
-                                    </div>
-                                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                                        <div class="bg-brand-500 h-full rounded-full w-[88%] transition-all duration-1000"></div>
-                                    </div>
-
-                                    <div class="flex justify-between text-xs font-mono pt-1">
-                                        <span class="text-medical-500">Bioavailability</span>
-                                        <span>72%</span>
-                                    </div>
-                                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                                        <div class="bg-medical-500 h-full rounded-full w-[72%] transition-all duration-1000"></div>
+                                    <div class="text-emerald-400">
+                                        &gt; <span id="typewriterText" class="text-slate-200"></span><span class="inline-block w-2 h-4 bg-emerald-400 ml-1 animate-blink align-middle"></span>
                                     </div>
                                 </div>
 
-                                <!-- Card Micro Preview -->
-                                <div class="grid grid-cols-2 gap-2 pt-2">
-                                    <div class="bg-slate-900 border border-slate-800 rounded-lg p-2.5 flex items-center gap-2">
-                                        <i data-lucide="brain text-brand-400" class="w-4 h-4"></i>
-                                        <span class="text-xs font-medium">12 Mnemonics</span>
+                                <!-- Interactive Micro Indicators -->
+                                <div class="pt-4 border-t border-slate-900 grid grid-cols-2 gap-2 text-xs font-sans">
+                                    <div class="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800 flex items-center gap-2">
+                                        <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
+                                        <span class="text-slate-300">Fast Concept Recall</span>
                                     </div>
-                                    <div class="bg-slate-900 border border-slate-800 rounded-lg p-2.5 flex items-center gap-2">
-                                        <i data-lucide="file-check-2 text-medical-400" class="w-4 h-4"></i>
-                                        <span class="text-xs font-medium">45 High-Yield MCQs</span>
+                                    <div class="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800 flex items-center gap-2">
+                                        <i data-lucide="brain" class="w-4 h-4 text-brand-400"></i>
+                                        <span class="text-slate-300">Smart Mnemonics</span>
                                     </div>
                                 </div>
                             </div>
@@ -378,7 +361,7 @@
                 </div>
 
                 <div class="text-center">
-                    <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/chapter1.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-extrabold text-white bg-medical-600 hover:bg-medical-500 shadow-xl shadow-medical-600/30 transition text-lg active:scale-95">
+                    <a href="chapter1.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-extrabold text-white bg-medical-600 hover:bg-medical-500 shadow-xl shadow-medical-600/30 transition text-lg active:scale-95">
                         <i data-lucide="rocket" class="w-5 h-5"></i>
                         TRY CHAPTER 1 FREE
                     </a>
@@ -436,134 +419,8 @@
             </div>
         </section>
 
-        <!-- SECTION 6 — SYLLABUS -->
-        <section id="syllabus" class="py-20 bg-slate-50 border-t border-slate-200/60">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-                    <div>
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-bold uppercase mb-2">
-                            <i data-lucide="book-marked" class="w-3.5 h-3.5"></i>
-                            Organized for 3rd Semester BSN preparation
-                        </span>
-                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                            3rd Semester Pharmacology Syllabus
-                        </h2>
-                    </div>
-                </div>
-
-                <!-- Preserved Actual Chapters Grid -->
-                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    
-                    <!-- Chapter 1 (Free Demo) -->
-                    <div class="bg-white rounded-2xl p-6 border-2 border-medical-500/40 shadow-sm relative flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between mb-4">
-                                <span class="text-2xl font-black text-brand-600">01</span>
-                                <span class="px-2.5 py-1 rounded-full bg-medical-100 text-medical-700 font-bold text-xs">FREE DEMO</span>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-lg mb-2">Basic Principles of Pharmacology</h3>
-                            <p class="text-slate-600 text-sm">Pharmacokinetics, ADME, Bioavailability, Pharmacodynamics, and Receptors.</p>
-                        </div>
-                        <div class="pt-6">
-                            <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/chapter1.html" class="w-full py-2.5 rounded-xl font-bold text-sm text-medical-700 bg-medical-50 hover:bg-medical-100 border border-medical-200 flex items-center justify-center gap-2 transition">
-                                Access Demo Chapter
-                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Chapter 2 -->
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between mb-4">
-                                <span class="text-2xl font-black text-slate-400">02</span>
-                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold text-xs"><i data-lucide="lock" class="w-3 h-3 inline"></i> Locked</span>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-lg mb-2">Autonomic Nervous System</h3>
-                            <p class="text-slate-600 text-sm">Sympathetic & Parasympathetic Drugs, Agonists and Antagonists.</p>
-                        </div>
-                        <div class="pt-6">
-                            <button onclick="openLoginModal()" class="w-full py-2.5 rounded-xl font-bold text-sm text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 flex items-center justify-center gap-2 transition">
-                                Unlock with Portal Access
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Chapter 3 -->
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between mb-4">
-                                <span class="text-2xl font-black text-slate-400">03</span>
-                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold text-xs"><i data-lucide="lock" class="w-3 h-3 inline"></i> Locked</span>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-lg mb-2">Cardiovascular System</h3>
-                            <p class="text-slate-600 text-sm">Antihypertensives, Antiarrhythmics, Antianginals, and Diuretics.</p>
-                        </div>
-                        <div class="pt-6">
-                            <button onclick="openLoginModal()" class="w-full py-2.5 rounded-xl font-bold text-sm text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 flex items-center justify-center gap-2 transition">
-                                Unlock with Portal Access
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Chapter 4 -->
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between mb-4">
-                                <span class="text-2xl font-black text-slate-400">04</span>
-                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold text-xs"><i data-lucide="lock" class="w-3 h-3 inline"></i> Locked</span>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-lg mb-2">Central Nervous System</h3>
-                            <p class="text-slate-600 text-sm">Sedatives, Hypnotics, Antipsychotics, Antidepressants, and Anesthetics.</p>
-                        </div>
-                        <div class="pt-6">
-                            <button onclick="openLoginModal()" class="w-full py-2.5 rounded-xl font-bold text-sm text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 flex items-center justify-center gap-2 transition">
-                                Unlock with Portal Access
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Chapter 5 -->
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between mb-4">
-                                <span class="text-2xl font-black text-slate-400">05</span>
-                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold text-xs"><i data-lucide="lock" class="w-3 h-3 inline"></i> Locked</span>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-lg mb-2">Chemotherapeutic Agents</h3>
-                            <p class="text-slate-600 text-sm">Antibiotics, Antifungals, Antivirals, and Antineoplastics.</p>
-                        </div>
-                        <div class="pt-6">
-                            <button onclick="openLoginModal()" class="w-full py-2.5 rounded-xl font-bold text-sm text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 flex items-center justify-center gap-2 transition">
-                                Unlock with Portal Access
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Chapter 6 -->
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between mb-4">
-                                <span class="text-2xl font-black text-slate-400">06</span>
-                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold text-xs"><i data-lucide="lock" class="w-3 h-3 inline"></i> Locked</span>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-lg mb-2">Endocrine & Gastrointestinal</h3>
-                            <p class="text-slate-600 text-sm">Insulin, Hypoglycemics, Steroids, Antiulcer, and Antiemetics.</p>
-                        </div>
-                        <div class="pt-6">
-                            <button onclick="openLoginModal()" class="w-full py-2.5 rounded-xl font-bold text-sm text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 flex items-center justify-center gap-2 transition">
-                                Unlock with Portal Access
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 7 — WHY THIS IS DIFFERENT -->
-        <section class="py-20 bg-white">
+        <!-- SECTION 6 — WHY THIS IS DIFFERENT -->
+        <section class="py-20 bg-slate-50 border-t border-slate-200/60">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto mb-16">
@@ -574,7 +431,7 @@
 
                 <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                     <!-- Traditional Card -->
-                    <div class="p-8 rounded-2xl bg-slate-50 border border-slate-200">
+                    <div class="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
                         <h3 class="text-xl font-bold text-slate-700 mb-6 flex items-center gap-2">
                             <i data-lucide="x-circle" class="w-5 h-5 text-rose-500"></i>
                             Traditional Study
@@ -611,11 +468,11 @@
             </div>
         </section>
 
-        <!-- SECTION 8 & 9 — FACULTY & STUDENT REVIEWS -->
-        <section class="py-20 bg-slate-50 border-t border-slate-200/60">
+        <!-- SECTION 7 & 8 — FACULTY & STUDENT REVIEWS -->
+        <section class="py-20 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
                 
-                <!-- SECTION 8 — FACULTY REVIEW -->
+                <!-- FACULTY REVIEW -->
                 <div>
                     <div class="text-center max-w-2xl mx-auto mb-8">
                         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-bold uppercase mb-2">
@@ -625,13 +482,13 @@
                         <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Academic Feedback</h2>
                     </div>
 
-                    <div class="max-w-xl mx-auto p-8 rounded-2xl border border-dashed border-slate-300 bg-white text-center text-slate-500 font-medium">
+                    <div class="max-w-xl mx-auto p-8 rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-center text-slate-500 font-medium">
                         <i data-lucide="clock" class="w-8 h-8 text-slate-400 mx-auto mb-2"></i>
                         Faculty review coming soon
                     </div>
                 </div>
 
-                <!-- SECTION 9 — STUDENT REVIEWS -->
+                <!-- STUDENT REVIEWS -->
                 <div>
                     <div class="text-center max-w-2xl mx-auto mb-8">
                         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-bold uppercase mb-2">
@@ -641,10 +498,10 @@
                         <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Student Reviews</h2>
                     </div>
 
-                    <div class="max-w-xl mx-auto p-8 rounded-2xl border border-slate-200 bg-white text-center space-y-4">
+                    <div class="max-w-xl mx-auto p-8 rounded-2xl border border-slate-200 bg-slate-50 text-center space-y-4">
                         <p class="text-slate-500 font-medium">Student reviews coming soon.</p>
                         <div>
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfmCoyJkxUlfrv3ZdPm5HN9gNh5HsoopQNpMyaxPgY9UqFZNQ/viewform" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-brand-600 bg-brand-50 border border-brand-200 hover:bg-brand-100 transition">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfmCoyJkxUlfrv3ZdPm5HN9gNh5HsoopQNpMyaxPgY9UqFZNQ/viewform" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-brand-600 bg-white border border-brand-200 hover:bg-brand-50 transition shadow-sm">
                                 <i data-lucide="message-circle-plus" class="w-4 h-4"></i>
                                 Leave a Review
                             </a>
@@ -655,8 +512,8 @@
             </div>
         </section>
 
-        <!-- SECTION 10 — PRICING -->
-        <section id="pricing" class="py-20 bg-white">
+        <!-- SECTION 9 — PRICING -->
+        <section id="pricing" class="py-20 bg-slate-50 border-t border-slate-200/60">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="max-w-lg mx-auto bg-gradient-to-b from-white to-brand-50/40 border-2 border-brand-500 rounded-3xl p-8 shadow-xl shadow-brand-500/10 relative">
@@ -685,10 +542,10 @@
                         <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-medical-600 shrink-0"></i> High-yield pre-exam summaries</li>
                     </ul>
 
-                    <button onclick="openLoginModal()" class="w-full py-4 rounded-xl font-extrabold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/25 flex items-center justify-center gap-2 transition active:scale-95 text-base">
+                    <a href="login.html" class="w-full py-4 rounded-xl font-extrabold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/25 flex items-center justify-center gap-2 transition active:scale-95 text-base">
                         <i data-lucide="key" class="w-5 h-5"></i>
                         GET ACCESS
-                    </button>
+                    </a>
 
                     <div class="text-center mt-4 text-xs font-semibold text-slate-500">
                         Limited founding-batch pricing
@@ -699,8 +556,8 @@
             </div>
         </section>
 
-        <!-- SECTION 11 — FAQ -->
-        <section id="faq" class="py-20 bg-slate-50 border-t border-slate-200/60">
+        <!-- SECTION 10 — FAQ -->
+        <section id="faq" class="py-20 bg-white">
             <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center mb-12">
@@ -711,7 +568,7 @@
 
                 <div class="space-y-4">
                     <!-- FAQ 1 -->
-                    <details class="group bg-white p-5 rounded-2xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                    <details class="group bg-slate-50 p-5 rounded-2xl border border-slate-200/80 shadow-sm [&_summary::-webkit-details-marker]:hidden">
                         <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
                             <span>What is included?</span>
                             <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
@@ -722,7 +579,7 @@
                     </details>
 
                     <!-- FAQ 2 -->
-                    <details class="group bg-white p-5 rounded-2xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                    <details class="group bg-slate-50 p-5 rounded-2xl border border-slate-200/80 shadow-sm [&_summary::-webkit-details-marker]:hidden">
                         <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
                             <span>Who is this portal for?</span>
                             <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
@@ -733,7 +590,7 @@
                     </details>
 
                     <!-- FAQ 3 -->
-                    <details class="group bg-white p-5 rounded-2xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                    <details class="group bg-slate-50 p-5 rounded-2xl border border-slate-200/80 shadow-sm [&_summary::-webkit-details-marker]:hidden">
                         <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
                             <span>Is Chapter 1 available as a demo?</span>
                             <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
@@ -744,7 +601,7 @@
                     </details>
 
                     <!-- FAQ 4 -->
-                    <details class="group bg-white p-5 rounded-2xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                    <details class="group bg-slate-50 p-5 rounded-2xl border border-slate-200/80 shadow-sm [&_summary::-webkit-details-marker]:hidden">
                         <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
                             <span>How long is access?</span>
                             <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
@@ -755,18 +612,18 @@
                     </details>
 
                     <!-- FAQ 5 -->
-                    <details class="group bg-white p-5 rounded-2xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                    <details class="group bg-slate-50 p-5 rounded-2xl border border-slate-200/80 shadow-sm [&_summary::-webkit-details-marker]:hidden">
                         <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
                             <span>How do I get my access code?</span>
                             <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
                         </summary>
                         <p class="mt-3 text-sm text-slate-600 leading-relaxed">
-                            Click on "Get Access" or "Student Login", enter your access code, or follow the payment instructions provided in the access prompt.
+                            Go to the Student Login page, access your dashboard, and enter your key in the access code field.
                         </p>
                     </details>
 
                     <!-- FAQ 6 -->
-                    <details class="group bg-white p-5 rounded-2xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                    <details class="group bg-slate-50 p-5 rounded-2xl border border-slate-200/80 shadow-sm [&_summary::-webkit-details-marker]:hidden">
                         <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
                             <span>Is this an official UHS website?</span>
                             <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
@@ -780,7 +637,7 @@
             </div>
         </section>
 
-        <!-- SECTION 12 — FINAL CALL TO ACTION -->
+        <!-- SECTION 11 — FINAL CALL TO ACTION -->
         <section class="py-20 bg-gradient-to-tr from-brand-700 to-brand-900 text-white text-center relative overflow-hidden">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
                 <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
@@ -790,12 +647,13 @@
                     Learn smarter. Revise faster. Practice better.
                 </p>
                 <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/chapter1.html" class="px-8 py-4 rounded-xl font-extrabold text-brand-900 bg-white hover:bg-brand-50 shadow-xl transition active:scale-95 text-base">
+                    <a href="chapter1.html" class="px-8 py-4 rounded-xl font-extrabold text-brand-900 bg-white hover:bg-brand-50 shadow-xl transition active:scale-95 text-base">
                         TRY FREE DEMO
                     </a>
-                    <button onclick="openLoginModal()" class="px-8 py-4 rounded-xl font-extrabold text-white bg-medical-600 hover:bg-medical-500 shadow-xl transition active:scale-95 text-base">
+                    <a href="login.html" class="px-8 py-4 rounded-xl font-extrabold text-white bg-medical-600 hover:bg-medical-500 shadow-xl transition active:scale-95 text-base inline-flex items-center justify-center gap-2">
+                        <i data-lucide="log-in" class="w-5 h-5"></i>
                         STUDENT LOGIN
-                    </button>
+                    </a>
                 </div>
             </div>
         </section>
@@ -820,19 +678,18 @@
                     <h4 class="text-white font-semibold mb-3">Quick Navigation</h4>
                     <ul class="space-y-2 text-xs">
                         <li><a href="#" class="hover:text-white transition">Home</a></li>
-                        <li><a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/chapter1.html" class="hover:text-white transition">Free Demo</a></li>
-                        <li><a href="#syllabus" class="hover:text-white transition">Syllabus</a></li>
+                        <li><a href="chapter1.html" class="hover:text-white transition">Free Demo</a></li>
                         <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfmCoyJkxUlfrv3ZdPm5HN9gNh5HsoopQNpMyaxPgY9UqFZNQ/viewform" target="_blank" class="hover:text-white transition">Reviews</a></li>
-                        <li><button onclick="openLoginModal()" class="hover:text-white transition text-left">Login</button></li>
+                        <li><a href="login.html" class="hover:text-white transition">Login</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h4 class="text-white font-semibold mb-3">Portal Access</h4>
-                    <p class="text-xs text-slate-400 mb-3">Have an access code?</p>
-                    <button onclick="openLoginModal()" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs border border-slate-700 transition">
-                        Enter Code
-                    </button>
+                    <p class="text-xs text-slate-400 mb-3">Login to access your dashboard & active modules.</p>
+                    <a href="login.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs border border-slate-700 transition">
+                        <i data-lucide="lock" class="w-3.5 h-3.5 text-brand-400"></i> Login Page
+                    </a>
                 </div>
 
             </div>
@@ -843,40 +700,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- ACCESS / LOGIN MODAL (Preserving existing functional login mechanics) -->
-    <div id="loginModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm hidden">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative border border-slate-100">
-            <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-            
-            <div class="text-center mb-6">
-                <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center mx-auto mb-3">
-                    <i data-lucide="key-round" class="w-6 h-6"></i>
-                </div>
-                <h3 class="text-xl font-bold text-slate-900">Student Access</h3>
-                <p class="text-slate-500 text-xs mt-1">Enter your access code to unlock all chapters</p>
-            </div>
-
-            <form id="accessForm" onsubmit="handleAccessSubmit(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Access Code</label>
-                    <input type="text" id="accessCodeInput" placeholder="Enter code..." required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-slate-900 font-mono text-sm outline-none">
-                </div>
-                <button type="submit" class="w-full py-3 rounded-xl font-bold text-white bg-brand-600 hover:bg-brand-700 transition shadow-md">
-                    Unlock Portal
-                </button>
-            </form>
-
-            <div class="mt-6 pt-4 border-t border-slate-100 text-center">
-                <p class="text-xs text-slate-500 mb-2">Don't have an access code?</p>
-                <a href="https://wa.me/?text=Hi,%20I%20want%20to%20get%20access%20to%20the%20BSN%20Pharmacology%20Portal" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-medical-600 hover:text-medical-700">
-                    <i data-lucide="message-square" class="w-4 h-4"></i> Get Access Code via WhatsApp
-                </a>
-            </div>
-        </div>
-    </div>
 
     <!-- SCRIPT INITIALIZATION -->
     <script>
@@ -890,28 +713,48 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Login Modal Controls
-        function openLoginModal() {
-            document.getElementById('loginModal').classList.remove('hidden');
-        }
+        // Typewriter Effect for Hero Visual
+        const phrases = [
+            "Pharmacokinetics: What body does to drug.",
+            "Pharmacodynamics: What drug does to body.",
+            "ADME: Absorption, Distribution, Metabolism, Excretion.",
+            "Bioavailability (F) = (AUC oral / AUC IV) * 100",
+            "First-pass metabolism reduces active drug bioavailability."
+        ];
+        
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterElement = document.getElementById("typewriterText");
 
-        function closeLoginModal() {
-            document.getElementById('loginModal').classList.add('hidden');
-        }
-
-        // Handle Form Submission (Preserving access code handling logic)
-        function handleAccessSubmit(e) {
-            e.preventDefault();
-            const code = document.getElementById('accessCodeInput').value.trim();
-            if (code) {
-                // Save access session in local storage
-                localStorage.setItem('pharma_access_code', code);
-                alert('Access Granted! Redirecting to Dashboard...');
-                closeLoginModal();
-                // Redirect to main portal dashboard/chapters if applicable
-                window.location.href = "chapter1.html";
+        function typeLoop() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
             }
+
+            let typeSpeed = isDeleting ? 30 : 60;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typeSpeed = 2200; // Pause at end of sentence
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 400; // Pause before typing next
+            }
+
+            setTimeout(typeLoop, typeSpeed);
         }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typewriterElement) typeLoop();
+        });
     </script>
 </body>
 </html>
