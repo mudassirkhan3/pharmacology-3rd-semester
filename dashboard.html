@@ -179,13 +179,22 @@
     .drug-search-input:focus { border-color: #0284c7; background: white; box-shadow: 0 0 10px rgba(2, 132, 199, 0.15); }
     .search-icon-abs { position: absolute; left: 14px; top: 14px; font-size: 1rem; color: #64748b; }
     .drug-results-dropdown { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid #cbd5e1; border-radius: 12px; margin-top: 6px; max-height: 240px; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.15); z-index: 999; }
-    .drug-result-item { padding: 12px 16px; border-bottom: 1px solid #f1f5f9; text-decoration: none; display: flex; justify-content: space-between; align-items: center; transition: background 0.15s; }
+    .drug-result-item { padding: 12px 16px; border-bottom: 1px solid #f1f5f9; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.15s; }
     .drug-result-item:last-child { border-bottom: none; }
     .drug-result-item:hover { background: #f0f9ff; }
     .drug-name-main { font-weight: 800; color: #0f172a; font-size: 0.88rem; }
     .drug-chapter-tag { background: #e0f2fe; color: #0369a1; padding: 3px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; }
 
-    /* My Progress Tracker Styles */
+    /* NEW FEATURE: Mnemonics Flashcard Widget Styles */
+    .mnemonic-card-box { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1px solid #bbf7d0; border-radius: 16px; padding: 20px; margin-top: 10px; text-align: center; position: relative; }
+    .mnemonic-badge { display: inline-block; background: #10b981; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.72rem; font-weight: 800; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .mnemonic-title { font-size: 1.05rem; font-weight: 800; color: #065f46; margin-bottom: 6px; }
+    .mnemonic-text { font-size: 0.9rem; color: #047857; font-weight: 600; line-height: 1.5; margin-bottom: 16px; }
+    .mnemonic-btn-row { display: flex; justify-content: center; gap: 10px; }
+    .mnemonic-next-btn { background: #059669; color: white; border: none; padding: 8px 16px; border-radius: 10px; font-weight: 700; font-size: 0.82rem; cursor: pointer; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2); transition: background 0.2s; }
+    .mnemonic-next-btn:hover { background: #047857; }
+
+    /* Real-Time Progress Tracker Styles */
     .progress-container { margin-top: 10px; }
     .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-weight: 800; font-size: 0.9rem; color: #1e293b; }
     .progress-bar-bg { width: 100%; height: 12px; background: #e2e8f0; border-radius: 6px; overflow: hidden; margin-bottom: 14px; }
@@ -232,8 +241,13 @@
 
     /* Modals */
     .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100; align-items: center; justify-content: center; padding: 16px; backdrop-filter: blur(3px); }
-    .modal-box { background: white; border-radius: 16px; padding: 24px; width: 100%; max-width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-    .modal-box h3 { font-size: 1.15rem; font-weight: 800; color: #0f172a; margin-bottom: 16px; }
+    .modal-box { background: white; border-radius: 20px; padding: 24px; width: 100%; max-width: 460px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); text-align: left; }
+    .modal-box h3 { font-size: 1.2rem; font-weight: 800; color: #0f172a; margin-bottom: 12px; }
+    .drug-detail-tag { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; margin-bottom: 14px; }
+    .drug-detail-section { margin-bottom: 12px; }
+    .drug-detail-section strong { display: block; font-size: 0.82rem; color: #0284c7; font-weight: 800; margin-bottom: 3px; }
+    .drug-detail-section p { font-size: 0.85rem; color: #334155; line-height: 1.5; }
+    
     .form-group { margin-bottom: 14px; text-align: left; }
     .form-group label { display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 4px; }
     .form-input { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.88rem; outline: none; }
@@ -327,18 +341,32 @@
       <!-- Welcome Card -->
       <div class="card">
         <h2>Welcome Back!</h2>
-        <p>Access your complete Pharmacology-I curriculum, chapters, and clinical notes below. Use the instant drug finder or review your daily study goals to stay on track.</p>
+        <p>Access your complete Pharmacology-I curriculum, chapters, and clinical notes below. Use the instant drug finder for direct clinical explanations or review your daily study goals.</p>
       </div>
 
-      <!-- Instant Drug Finder Search Engine Card (card-search prevents dropdown clipping) -->
+      <!-- Instant Drug Finder Search Engine Card -->
       <div class="card card-search">
         <h2>Instant Drug Finder</h2>
-        <p>Search any medication across all curriculum chapters instantly to find classifications and clinical details:</p>
+        <p>Search any medication to instantly open its complete clinical explanation and nursing notes:</p>
         <div class="search-box-wrapper">
           <span class="search-icon-abs">🔍</span>
           <input type="text" id="drugSearchInput" class="drug-search-input" placeholder="Type drug name (e.g. Amoxicillin, Omeprazole, Warfarin)..." oninput="filterDrugs()">
           <div id="drugResultsDropdown" class="drug-results-dropdown">
             <!-- Dynamically populated via JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW STUDENT FEATURE: High-Yield Clinical Mnemonics Widget -->
+      <div class="card">
+        <h2>High-Yield Clinical Mnemonics</h2>
+        <p>Master exam questions instantly with smart memory tricks:</p>
+        <div class="mnemonic-card-box">
+          <span class="mnemonic-badge" id="mnemonicCategory">Unit II: Antibiotics</span>
+          <div class="mnemonic-title" id="mnemonicTitle">The "CYN" Rule for Macrolides</div>
+          <div class="mnemonic-text" id="mnemonicText">Erythromycin, Azithromycin, Clarithromycin cause Cardiotoxicity (QT prolongation), GI distress, and CYP450 enzyme inhibition!</div>
+          <div class="mnemonic-btn-row">
+            <button class="mnemonic-next-btn" onclick="nextMnemonic()">Next Mnemonic ⚡</button>
           </div>
         </div>
       </div>
@@ -480,6 +508,33 @@
 
   </div>
 
+  <!-- INSTANT DRUG DETAIL EXPLANATION MODAL -->
+  <div id="drugDetailModal" class="modal-backdrop">
+    <div class="modal-box">
+      <span id="modalDrugCategory" class="drug-detail-tag">Unit II: Infections</span>
+      <h3 id="modalDrugName">Amoxicillin</h3>
+      
+      <div class="drug-detail-section">
+        <strong>Mechanism of Action (MOA):</strong>
+        <p id="modalDrugMoa">Inhibits bacterial cell wall synthesis by binding to penicillin-binding proteins (PBPs), causing cell lysis.</p>
+      </div>
+
+      <div class="drug-detail-section">
+        <strong>Key Nursing Considerations:</strong>
+        <p id="modalDrugNursing">Check for penicillin allergy before administration. Administer with food if GI upset occurs. Monitor for signs of superinfections (e.g. oral candidiasis, diarrhea).</p>
+      </div>
+
+      <div class="drug-detail-section">
+        <strong>Common Side Effects:</strong>
+        <p id="modalDrugSideEffects">Nausea, vomiting, diarrhea, mild rash, hypersensitivity reactions.</p>
+      </div>
+
+      <div class="modal-actions">
+        <button onclick="closeDrugDetailModal()" class="btn-primary">Got It, Close</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Edit Profile Modal -->
   <div id="editProfileModal" class="modal-backdrop">
     <div class="modal-box">
@@ -533,24 +588,126 @@
   </footer>
 
   <script>
-    // Drug Database for Search Engine
+    // Comprehensive Drug Database with Full Clinical Explanations
     var drugDatabase = [
-      { name: "Amoxicillin", category: "Unit II: Infections", link: "chapter2.html" },
-      { name: "Azithromycin", category: "Unit II: Infections", link: "chapter2.html" },
-      { name: "Ceftriaxone", category: "Unit II: Infections", link: "chapter2.html" },
-      { name: "Omeprazole", category: "Unit III: Gastrointestinal", link: "chapter3.html" },
-      { name: "Ranitidine", category: "Unit III: Gastrointestinal", link: "chapter3.html" },
-      { name: "Metoclopramide", category: "Unit III: Gastrointestinal", link: "chapter3.html" },
-      { name: "Warfarin", category: "Unit IV: Hematology", link: "chapter4.html" },
-      { name: "Heparin", category: "Unit IV: Hematology", link: "chapter4.html" },
-      { name: "Aspirin", category: "Unit IV: Hematology", link: "chapter4.html" },
-      { name: "Cisplatin", category: "Unit V: Anti-Neoplastic", link: "chapter5.html" },
-      { name: "Doxorubicin", category: "Unit V: Anti-Neoplastic", link: "chapter5.html" },
-      { name: "Methotrexate", category: "Unit V: Anti-Neoplastic", link: "chapter5.html" },
-      { name: "Digoxin", category: "Unit I: Basics", link: "chapter1.html" },
-      { name: "Atropine", category: "Unit I: Basics", link: "chapter1.html" },
-      { name: "Adrenaline", category: "Unit I: Basics", link: "chapter1.html" }
+      { 
+        name: "Amoxicillin", 
+        category: "Unit II: Infections", 
+        moa: "Inhibits bacterial cell wall synthesis by binding to penicillin-binding proteins (PBPs), causing cell lysis.",
+        nursing: "Check for penicillin allergy before first dose. Take with food if GI upset occurs. Monitor for allergic anaphylaxis and superinfections.",
+        sideEffects: "Nausea, diarrhea, skin rash, mild hypersensitivity."
+      },
+      { 
+        name: "Azithromycin", 
+        category: "Unit II: Infections", 
+        moa: "Binds to the 50S ribosomal subunit of susceptible microorganisms, inhibiting bacterial protein synthesis.",
+        nursing: "Administer on an empty stomach for best absorption. Monitor ECG for QT interval prolongation, especially in cardiac patients.",
+        sideEffects: "Abdominal pain, nausea, diarrhea, QT prolongation."
+      },
+      { 
+        name: "Ceftriaxone", 
+        category: "Unit II: Infections", 
+        moa: "Third-generation cephalosporin that inhibits bacterial cell wall synthesis.",
+        nursing: "Never mix with calcium-containing IV solutions in neonates. Monitor renal function and PT/INR during prolonged therapy.",
+        sideEffects: "Injection site pain, diarrhea, elevated liver enzymes, rash."
+      },
+      { 
+        name: "Omeprazole", 
+        category: "Unit III: Gastrointestinal", 
+        moa: "Proton Pump Inhibitor (PPI) that suppresses gastric acid secretion by inhibiting the H+/K+ ATPase enzyme system.",
+        nursing: "Take 30 to 60 minutes before breakfast. Long-term use may reduce calcium and magnesium absorption; monitor bone density.",
+        sideEffects: "Headache, abdominal pain, nausea, flatulence, diarrhea."
+      },
+      { 
+        name: "Ranitidine", 
+        category: "Unit III: Gastrointestinal", 
+        moa: "H2 histamine receptor antagonist that inhibits gastric acid secretion.",
+        nursing: "Can be taken with or without food. Monitor renal function and adjust dosage in renal impairment.",
+        sideEffects: "Headache, dizziness, constipation, transient fatigue."
+      },
+      { 
+        name: "Metoclopramide", 
+        category: "Unit III: Gastrointestinal", 
+        moa: "Dopamine receptor antagonist that increases upper GI tract motility without stimulating gastric secretions.",
+        nursing: "Administer 30 minutes before meals and at bedtime. Monitor for extrapyramidal symptoms and tardive dyskinesia.",
+        sideEffects: "Drowsiness, restlessness, extrapyramidal symptoms, fatigue."
+      },
+      { 
+        name: "Warfarin", 
+        category: "Unit IV: Hematology", 
+        moa: "Vitamin K antagonist that inhibits synthesis of vitamin K-dependent clotting factors (II, VII, IX, X).",
+        nursing: "Monitor daily PT/INR. Maintain consistent Vitamin K intake in diet. Antidote is Phytomenadione (Vitamin K).",
+        sideEffects: "Bleeding tendencies, bruising, microembolization."
+      },
+      { 
+        name: "Heparin", 
+        category: "Unit IV: Hematology", 
+        moa: "Potentiates antithrombin III, inactivating thrombin and preventing conversion of fibrinogen to fibrin.",
+        nursing: "Monitor aPTT closely. Check platelet count regularly to watch for Heparin-Induced Thrombocytopenia (HIT). Antidote is Protamine Sulfate.",
+        sideEffects: "Bleeding, bruising, injection site hematoma, thrombocytopenia."
+      },
+      { 
+        name: "Aspirin", 
+        category: "Unit IV: Hematology", 
+        moa: "Irreversibly inhibits cyclooxygenase (COX-1 and COX-2), preventing synthesis of thromboxane A2 and platelet aggregation.",
+        nursing: "Stop 7 days prior to elective surgery. Monitor for GI bleeding, tinnitus (sign of toxicity). Do not give to children with viral infections (Rye syndrome).",
+        sideEffects: "Gastric irritation, heartburn, GI bleeding, tinnitus."
+      },
+      { 
+        name: "Cisplatin", 
+        category: "Unit V: Anti-Neoplastic", 
+        moa: "Alkylating-like agent that cross-links DNA strands, inhibiting DNA replication and transcription.",
+        nursing: "Pre-hydrate thoroughly with IV fluids and administer antiemetics. Monitor strict input/output, serum creatinine, and audiometric testing for ototoxicity.",
+        sideEffects: "Severe nausea, nephrotoxicity, ototoxicity, peripheral neuropathy."
+      },
+      { 
+        name: "Doxorubicin", 
+        category: "Unit V: Anti-Neoplastic", 
+        moa: "Anthracycline antibiotic that intercalates DNA, inhibits topoisomerase II, and generates free radicals.",
+        nursing: "Monitor cumulative lifetime dose and baseline ejection fraction (cardiotoxicity risk). Vesicant: ensure secure IV access to prevent extravasation.",
+        sideEffects: "Alopecia, bone marrow suppression, red-colored urine, cardiotoxicity."
+      },
+      { 
+        name: "Digoxin", 
+        category: "Unit I: Basics", 
+        moa: "Inhibits Na+/K+ ATPase pump, increasing intracellular calcium and enhancing myocardial contractility.",
+        nursing: "Check apical pulse for 1 full minute before administration (hold if pulse < 60 bpm). Monitor serum potassium levels and digoxin toxicity (yellow-green vision, nausea).",
+        sideEffects: "Bradycardia, visual disturbances (yellow halo), anorexia, arrhythmias."
+      }
     ];
+
+    // Mnemonics Database for Quick Flashcard Widget
+    var mnemonicsDB = [
+      {
+        category: "Unit II: Antibiotics",
+        title: "The 'CYN' Rule for Macrolides",
+        text: "Erythromycin, Azithromycin, Clarithromycin cause Cardiotoxicity (QT prolongation), GI distress, and CYP450 enzyme inhibition!"
+      },
+      {
+        category: "Unit I: Pharmacology Basics",
+        title: "Pharmacokinetics Mnemonic: ADME",
+        text: "Absorption (getting into blood), Distribution (travelling to tissues), Metabolism (liver breakdown), Excretion (renal removal)."
+      },
+      {
+        category: "Unit IV: Hematology",
+        title: "Heparin vs Warfarin Antidotes",
+        text: "H before W, P before V! Heparin antidote is Protamine sulfate. Warfarin antidote is Vitamin (Phytonadione)."
+      },
+      {
+        category: "Unit III: Gastrointestinal",
+        title: "PPI Side Effects Mnemonic: PPIs",
+        text: "P - Paresthesia, P - Pneumonia risk, I - Intestinal infection (C. diff), S - Spontaneous fractures (low calcium)."
+      }
+    ];
+    var currentMnemonicIndex = 0;
+
+    function nextMnemonic() {
+      currentMnemonicIndex = (currentMnemonicIndex + 1) % mnemonicsDB.length;
+      var item = mnemonicsDB[currentMnemonicIndex];
+      document.getElementById('mnemonicCategory').innerText = item.category;
+      document.getElementById('mnemonicTitle').innerText = item.title;
+      document.getElementById('mnemonicText').innerText = item.text;
+    }
 
     function filterDrugs() {
       var query = document.getElementById('drugSearchInput').value.toLowerCase().trim();
@@ -576,13 +733,41 @@
 
       var html = '';
       for (var j = 0; j < matches.length; j++) {
-        html += '<a href="' + matches[j].link + '" class="drug-result-item" onclick="return checkAccess(event)">' +
+        // We use data-index attribute to open direct explanation modal
+        html += '<div class="drug-result-item" onclick="openDrugDetailModal(\'' + matches[j].name + '\')">' +
                 '<span class="drug-name-main">' + matches[j].name + '</span>' +
                 '<span class="drug-chapter-tag">' + matches[j].category + '</span>' +
-                '</a>';
+                '</div>';
       }
       dropdown.innerHTML = html;
       dropdown.style.display = 'block';
+    }
+
+    // Open direct explanation modal for searched drug
+    function openDrugDetailModal(drugName) {
+      var foundDrug = null;
+      for (var i = 0; i < drugDatabase.length; i++) {
+        if (drugDatabase[i].name === drugName) {
+          foundDrug = drugDatabase[i];
+          break;
+        }
+      }
+
+      if (foundDrug) {
+        document.getElementById('modalDrugName').innerText = foundDrug.name;
+        document.getElementById('modalDrugCategory').innerText = foundDrug.category;
+        document.getElementById('modalDrugMoa').innerText = foundDrug.moa;
+        document.getElementById('modalDrugNursing').innerText = foundDrug.nursing;
+        document.getElementById('modalDrugSideEffects').innerText = foundDrug.sideEffects;
+
+        document.getElementById('drugDetailModal').style.display = 'flex';
+        document.getElementById('drugResultsDropdown').style.display = 'none';
+        document.getElementById('drugSearchInput').value = '';
+      }
+    }
+
+    function closeDrugDetailModal() {
+      document.getElementById('drugDetailModal').style.display = 'none';
     }
 
     // Hide dropdown when clicking outside
