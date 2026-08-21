@@ -176,9 +176,9 @@
     .mnemonic-title { font-size: 1.02rem; font-weight: 800; color: #065f46; margin-bottom: 6px; }
     .mnemonic-text { font-size: 0.88rem; color: #047857; font-weight: 600; line-height: 1.5; margin-bottom: 16px; }
 
-    /* Daily MCQ Spaced Repetition Widget */
+    /* Daily 5-MCQ Spaced Repetition Widget */
     .mcq-widget-box { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 16px; padding: 20px; margin-top: 10px; text-align: left; }
-    .sr-badge-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .sr-badge-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 6px; }
     .sr-interval-tag { background: #e0f2fe; color: #0369a1; padding: 3px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 800; }
     .mcq-question-text { font-size: 0.92rem; font-weight: 800; color: #1e293b; margin-bottom: 14px; }
     .mcq-options-grid { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
@@ -187,7 +187,8 @@
     .mcq-opt-btn.correct { background: #dcfce7; border-color: #10b981; color: #065f46; }
     .mcq-opt-btn.incorrect { background: #fee2e2; border-color: #ef4444; color: #991b1b; }
     .mcq-explanation { display: none; background: white; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; font-size: 0.82rem; color: #475569; line-height: 1.5; margin-top: 10px; }
-    .mcq-score-display { font-size: 0.78rem; font-weight: 700; color: #64748b; margin-top: 10px; text-align: right; }
+    .next-mcq-btn { display: none; margin-top: 12px; width: 100%; background: #0284c7; color: white; border: none; padding: 10px; border-radius: 10px; font-weight: 800; font-size: 0.84rem; cursor: pointer; }
+    .next-mcq-btn:hover { background: #0369a1; }
 
     /* Real-Time Progress Tracker */
     .progress-container { margin-top: 10px; }
@@ -199,7 +200,7 @@
     .stat-num { font-size: 1.05rem; font-weight: 900; color: #0284c7; }
     .stat-label { font-size: 0.7rem; color: #64748b; font-weight: 700; text-transform: uppercase; margin-top: 2px; }
 
-    /* Study Plan */
+    /* Automated Daily Study Plan */
     .study-plan-list { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
     .plan-task-item { display: flex; align-items: center; gap: 12px; background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px 14px; border-radius: 12px; cursor: pointer; }
     .plan-task-item input[type=checkbox] { width: 18px; height: 18px; accent-color: #0284c7; cursor: pointer; }
@@ -254,11 +255,11 @@
     <div class="desktop-welcome-card">
       <div class="desktop-welcome-icon">⚡</div>
       <h3>BSN Clinical Portal Ready</h3>
-      <p>Search all chapter drugs in the top header, solve daily spaced-repetition MCQs, and track your real-time academic progress.</p>
+      <p>Search any drug in the top header, solve your daily 5-question spaced-repetition MCQs, and track your real-time academic progress.</p>
       <div class="steps-box">
         <div class="step-row"><span class="step-badge">1</span><span>Search any drug to view class &amp; clinical uses.</span></div>
-        <div class="step-row"><span class="step-badge">2</span><span>Complete daily MCQs with spaced repetition.</span></div>
-        <div class="step-row"><span class="step-badge">3</span><span>Check off study plan tasks for real-time progress.</span></div>
+        <div class="step-row"><span class="step-badge">2</span><span>Complete daily 5 MCQs with spaced repetition.</span></div>
+        <div class="step-row"><span class="step-badge">3</span><span>Check off automated daily study tasks.</span></div>
       </div>
       <button class="proceed-btn" onclick="dismissWelcomeModal()">Start Studying!</button>
     </div>
@@ -332,22 +333,24 @@
         </div>
       </div>
 
-      <!-- Daily MCQ Spaced Repetition Flashcard Widget -->
+      <!-- Daily 5-MCQ Spaced Repetition Widget -->
       <div class="card">
-        <h2>Daily MCQ &amp; Spaced Repetition</h2>
-        <p>Test your clinical retention and strengthen memory via spaced intervals (Day 1, 3, 7, 14):</p>
+        <h2>Daily 5 MCQs &amp; Spaced Repetition</h2>
+        <p>Test your clinical retention with 5 fresh questions daily (Spaced intervals: Day 1, 3, 7, 14):</p>
         <div class="mcq-widget-box">
           <div class="sr-badge-row">
             <span class="sr-interval-tag" id="srIntervalLabel">Interval: Day 1 (Initial Review)</span>
-            <span style="font-size: 0.75srem; font-weight: 700; color: #0284c7;" id="mcqStreakCount">Score: 0 / 0</span>
+            <span style="font-size: 0.78rem; font-weight: 800; color: #0284c7;" id="mcqCounterStatus">Question 1 of 5</span>
+            <span style="font-size: 0.78rem; font-weight: 800; color: #047857;" id="mcqStreakCount">Score: 0 / 5</span>
           </div>
-          <div class="mcq-question-text" id="mcqQuestionText">Which of the following medications is classified as an opioid receptor agonist used specifically for symptomatic control of acute diarrhea?</div>
+          <div class="mcq-question-text" id="mcqQuestionText">Loading today's clinical question...</div>
           <div class="mcq-options-grid" id="mcqOptionsContainer">
             <!-- Dynamically populated -->
           </div>
           <div id="mcqExplanationBox" class="mcq-explanation">
-            <strong>Clinical Reasoning:</strong> <span id="mcqReasonText">Loperamide acts on gut opioid receptors to inhibit peristalsis and prolong gastrointestinal transit time without central nervous system opioid effects.</span>
+            <strong>Clinical Reasoning:</strong> <span id="mcqReasonText">Loading explanation...</span>
           </div>
+          <button id="nextMCQBtn" class="next-mcq-btn" onclick="nextMCQQuestion()">Next Question →</button>
         </div>
       </div>
 
@@ -373,30 +376,19 @@
               <div class="stat-label">Units Read</div>
             </div>
             <div class="stat-box">
-              <div class="stat-num" id="quizScoreNum">0</div>
-              <div class="stat-label">MCQs Mastered</div>
+              <div class="stat-num" id="quizScoreNum">0 / 5</div>
+              <div class="stat-label">Daily MCQs Mastered</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Today's Study Plan -->
+      <!-- Automated Daily Study Plan -->
       <div class="card">
-        <h2>Today's Study Plan</h2>
-        <p>Check off daily tasks to boost your real-time progress tracker instantly:</p>
-        <div class="study-plan-list">
-          <label class="plan-task-item" id="taskItem0">
-            <input type="checkbox" id="taskCheckbox0" onchange="saveAndUpdateProgress()">
-            <span class="plan-task-text">Review Unit I basic pharmacokinetics &amp; half-life formulas</span>
-          </label>
-          <label class="plan-task-item" id="taskItem1">
-            <input type="checkbox" id="taskCheckbox1" onchange="saveAndUpdateProgress()">
-            <span class="plan-task-text">Read Unit II antimicrobial spectrum &amp; antiviral charts</span>
-          </label>
-          <label class="plan-task-item" id="taskItem2">
-            <input type="checkbox" id="taskCheckbox2" onchange="saveAndUpdateProgress()">
-            <span class="plan-task-text">Practice daily spaced-repetition MCQ challenge</span>
-          </label>
+        <h2>Today's Automated Study Plan</h2>
+        <p>Check off today's automatically scheduled tasks to boost your real-time progress tracker:</p>
+        <div class="study-plan-list" id="dailyStudyPlanContainer">
+          <!-- Dynamically populated daily tasks -->
         </div>
       </div>
 
@@ -590,34 +582,53 @@
       { category: "Unit III: Gastrointestinal", title: "PPI Side Effects Mnemonic", text: "P - Pneumonia risk, P - Paresthesia, I - Intestinal infection (C. diff), S - Spontaneous fractures." }
     ];
 
-    // Daily MCQ Spaced Repetition Bank
-    var dailyMCQBank = [
-      {
-        question: "Which of the following medications is classified as an opioid receptor agonist used specifically for symptomatic control of acute diarrhea?",
-        options: ["Loperamide", "Bisacodyl", "Omeprazole", "Fluconazole"],
-        correctIndex: 0,
-        reason: "Loperamide acts on gut opioid receptors to inhibit peristalsis and prolong gastrointestinal transit time without central nervous system opioid effects.",
-        interval: "Day 1 (Initial Review)"
-      },
-      {
-        question: "Acyclovir exerts its antiviral mechanism of action primarily by which of the following processes?",
-        options: ["Inhibiting neuraminidase", "Inhibiting viral DNA polymerase after phosphorylation", "Neutralizing stomach acid", "Chelating iron"],
-        correctIndex: 1,
-        reason: "Acyclovir is phosphorylated by viral thymidine kinase, after which its triphosphate form selectively inhibits viral DNA polymerase.",
-        interval: "Day 3 (First Spaced Review)"
-      },
-      {
-        question: "What is the primary pharmacological class and clinical use of Fluconazole?",
-        options: ["Antibiotic for gram-negative sepsis", "Antiviral for influenza", "Antifungal (Triazole) for candidiasis and fungal infections", "Laxative for chronic constipation"],
-        correctIndex: 2,
-        reason: "Fluconazole is a triazole antifungal that inhibits fungal cytochrome P450 sterol C-14 alpha-demethylation, treating candidiasis.",
-        interval: "Day 7 (Intermediate Review)"
-      }
+    /* Automated Daily Study Plans Pool */
+    var studyPlansPool = [
+      [
+        "Review Unit I basic pharmacokinetics and half-life formulas",
+        "Read Unit II antimicrobial spectrum and antiviral charts",
+        "Practice daily 5-question clinical MCQ challenge"
+      ],
+      [
+        "Master Unit III gastrointestinal antidiarrheal and laxative mechanisms",
+        "Analyze Unit IV hematology anticoagulants (Heparin versus Warfarin)",
+        "Complete daily 5-question spaced-repetition quiz and check reasoning"
+      ],
+      [
+        "Study Unit V anti-neoplastic alkylating agents and safety protocols",
+        "Review high-yield autonomic drugs (Atropine, Epinephrine, Digoxin)",
+        "Review UHS past paper questions for recurring clinical patterns"
+      ],
+      [
+        "Deep dive into macrolide, azole, and antiviral drug interactions",
+        "Review clinical nursing administration guidelines for GI medications",
+        "Complete daily spaced-repetition MCQ practice and track score"
+      ]
     ];
 
-    var currentMCQIndex = 0;
-    var mcqScore = 0;
-    var mcqTotalAnswered = 0;
+    /* Full MCQ Bank for Daily 5-Question Rotation */
+    var fullMCQBank = [
+      { q: "Which medication is classified as an opioid receptor agonist used specifically for acute diarrhea?", opts: ["Loperamide", "Bisacodyl", "Omeprazole", "Fluconazole"], correct: 0, reason: "Loperamide acts on gut opioid receptors to inhibit peristalsis and prolong transit time without central nervous system opioid effects." },
+      { q: "Acyclovir exerts its antiviral mechanism of action primarily by:", opts: ["Inhibiting viral neuraminidase", "Inhibiting viral DNA polymerase after phosphorylation", "Neutralizing stomach acid", "Chelating iron"], correct: 1, reason: "Acyclovir is phosphorylated by viral thymidine kinase and then selectively inhibits viral DNA polymerase." },
+      { q: "What is the primary pharmacological class and clinical use of Fluconazole?", opts: ["Antibiotic for sepsis", "Antiviral for influenza", "Antifungal (Triazole) for candidiasis", "Laxative for constipation"], correct: 2, reason: "Fluconazole is a triazole antifungal that inhibits CYP450 sterol demethylation to treat fungal infections." },
+      { q: "What is the specific antidote for Heparin overdose?", opts: ["Vitamin K", "Protamine sulfate", "Flumazenil", "Naloxone", "Atropine"], correct: 1, reason: "Protamine sulfate binds to heparin and neutralizes its anticoagulant activity instantly." },
+      { q: "Bisacodyl belongs to which pharmacological class of medications?", opts: ["Stimulant laxative", "Osmotic laxative", "Prokinetic agent", "Antidiarrheal"], correct: 0, reason: "Bisacodyl directly stimulates colonic peristalsis and increases fluid secretion." },
+      { q: "Which drug is an influenza neuraminidase inhibitor?", opts: ["Acyclovir", "Oseltamivir", "Fluconazole", "Amphotericin B"], correct: 1, reason: "Oseltamivir inhibits influenza neuraminidase, preventing the release of new viral particles." },
+      { q: "Amphotericin B is associated with which major dose-limiting adverse effect?", opts: ["Hyperglycemia", "Nephrotoxicity and hypokalemia", "Hypertension", "Tachycardia"], correct: 1, reason: "Amphotericin B binds to ergosterol in human renal membranes, causing renal vasoconstriction and electrolyte loss." },
+      { q: "Lactulose reduces ammonia levels in hepatic encephalopathy by:", opts: ["Inhibiting liver enzymes", "Drawing water and lowering colon pH to trap ammonia", "Binding bile acids", "Blocking urea synthesis"], correct: 1, reason: "Osmotic action and acidification trap ammonia as ammonium ions in the gut for excretion." },
+      { q: "Which antibiotic is a macrolide that inhibits the 50S ribosomal subunit?", opts: ["Amoxicillin", "Azithromycin", "Ciprofloxacin", "Cisplatin"], correct: 1, reason: "Azithromycin binds to bacterial 50S ribosomes, halting protein synthesis." },
+      { q: "Warfarin anticoagulation is monitored primarily using which laboratory test?", opts: ["aPTT", "PT / INR", "Platelet count", "Bleeding time"], correct: 1, reason: "Warfarin inhibits Vitamin K-dependent factors (II, VII, IX, X), monitored via Prothrombin Time / INR." },
+      { q: "Digoxin toxicity is classically characterized by which visual disturbance?", opts: ["Tunnel vision", "Yellow-green vision (xanthopsia)", "Complete blindness", "Double vision"], correct: 1, reason: "Cardiac glycosides affect retinal sodium pumps, often producing yellow halos or blurred vision." },
+      { q: "Ciprofloxacin belongs to which antibacterial class?", opts: ["Penicillin", "Fluoroquinolone", "Macrolide", "Cephalosporin"], correct: 1, reason: "Ciprofloxacin inhibits bacterial DNA gyrase and topoisomerase IV." },
+      { q: "Atropine acts as a competitive antagonist at which autonomic receptors?", opts: ["Nicotinic receptors", "Muscarinic acetylcholine receptors", "Adrenergic alpha receptors", "Dopamine receptors"], correct: 1, reason: "Atropine blocks muscarinic acetylcholine receptors, producing antispasmodic and tachycardic effects." },
+      { q: "Doxorubicin is an anthracycline antibiotic noted for what organ toxicity?", opts: ["Hepatotoxicity", "Cardiotoxicity", "Pulmonary fibrosis", "Splenic infarction"], correct: 1, reason: "Doxorubicin generates reactive oxygen species that damage cardiac muscle tissue." },
+      { q: "Omeprazole's mechanism of action involves inhibition of:", opts: ["H+/K+ ATPase pump", "Carbonic anhydrase", "Cyclooxygenase", "Acetylcholinesterase"], correct: 0, reason: "Proton pump inhibitors block gastric parietal cell H+/K+ ATPase pumps." }
+    ];
+
+    var todaysMCQList = [];
+    var currentMCQStep = 0;
+    var dailyQuizScore = 0;
+    var quizCompletedToday = false;
 
     function initDailyMnemonic() {
       var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
@@ -627,22 +638,58 @@
       document.getElementById('mnemonicText').innerText = item.text;
     }
 
-    function initDailyMCQ() {
+    function initDailyStudyPlan() {
       var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-      currentMCQIndex = dayOfYear % dailyMCQBank.length;
-      var mcq = dailyMCQBank[currentMCQIndex];
+      var todaysTasks = studyPlansPool[dayOfYear % studyPlansPool.length];
+      var container = document.getElementById('dailyStudyPlanContainer');
+      var html = '';
+      for (var i = 0; i < todaysTasks.length; i++) {
+        html += '<label class="plan-task-item" id="taskItem' + i + '">' +
+                '<input type="checkbox" id="taskCheckbox' + i + '" onchange="saveAndUpdateProgress()">' +
+                '<span class="plan-task-text">' + todaysTasks[i] + '</span>' +
+                '</label>';
+      }
+      container.innerHTML = html;
+    }
 
-      document.getElementById('srIntervalLabel').innerText = "Interval: " + mcq.interval;
-      document.getElementById('mcqQuestionText').innerText = mcq.question;
+    function initDailyMCQs() {
+      var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+      todaysMCQList = [];
+      for (var i = 0; i < 5; i++) {
+        todaysMCQList.push(fullMCQBank[(dayOfYear * 5 + i) % fullMCQBank.length]);
+      }
+      currentMCQStep = 0;
+      dailyQuizScore = parseInt(localStorage.getItem('pharmacologyDailyQuizScore_' + dayOfYear)) || 0;
+      quizCompletedToday = localStorage.getItem('pharmacologyQuizDone_' + dayOfYear) === 'true';
+      renderCurrentMCQ();
+    }
+
+    function renderCurrentMCQ() {
+      if (currentMCQStep >= todaysMCQList.length) {
+        document.getElementById('srIntervalLabel').innerText = "Status: Completed Today";
+        document.getElementById('mcqCounterStatus').innerText = "All 5 Questions Done";
+        document.getElementById('mcqQuestionText').innerText = "Fantastic job! You have completed today's 5-question daily challenge. Your final score is " + dailyQuizScore + " out of 5.";
+        document.getElementById('mcqOptionsContainer').innerHTML = '<button class="mcq-opt-btn" style="background:#f0fdf4; color:#065f46; font-weight:800; text-align:center;">Review completed successfully ✓ Come back tomorrow for 5 new questions!</button>';
+        document.getElementById('mcqExplanationBox').style.display = 'none';
+        document.getElementById('nextMCQBtn').style.display = 'none';
+        return;
+      }
+
+      var mcq = todaysMCQList[currentMCQStep];
+      document.getElementById('srIntervalLabel').innerText = "Interval: Day " + ((currentMCQStep * 3) + 1) + " Spaced Review";
+      document.getElementById('mcqCounterStatus').innerText = "Question " + (currentMCQStep + 1) + " of 5";
+      document.getElementById('mcqStreakCount').innerText = "Score: " + dailyQuizScore + " / 5";
+      document.getElementById('mcqQuestionText').innerText = mcq.q;
       document.getElementById('mcqReasonText').innerText = mcq.reason;
 
       var optContainer = document.getElementById('mcqOptionsContainer');
       var html = '';
-      for (var i = 0; i < mcq.options.length; i++) {
-        html += '<button class="mcq-opt-btn" onclick="submitMCQAnswer(' + i + ', ' + mcq.correctIndex + ')">' + (i + 1) + '. ' + mcq.options[i] + '</button>';
+      for (var i = 0; i < mcq.opts.length; i++) {
+        html += '<button class="mcq-opt-btn" onclick="submitMCQAnswer(' + i + ', ' + mcq.correct + ')">' + (i + 1) + '. ' + mcq.opts[i] + '</button>';
       }
       optContainer.innerHTML = html;
       document.getElementById('mcqExplanationBox').style.display = 'none';
+      document.getElementById('nextMCQBtn').style.display = 'none';
     }
 
     function submitMCQAnswer(selectedIndex, correctIndex) {
@@ -656,16 +703,27 @@
         }
       }
 
-      mcqTotalAnswered++;
       if (selectedIndex === correctIndex) {
-        mcqScore++;
+        dailyQuizScore++;
       }
 
-      document.getElementById('mcqStreakCount').innerText = "Score: " + mcqScore + " / " + mcqTotalAnswered;
+      var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+      localStorage.setItem('pharmacologyDailyQuizScore_' + dayOfYear, dailyQuizScore);
+      
+      document.getElementById('mcqStreakCount').innerText = "Score: " + dailyQuizScore + " / 5";
       document.getElementById('mcqExplanationBox').style.display = 'block';
 
-      localStorage.setItem('pharmacologyMasteredMCQs', mcqScore);
+      if (currentMCQStep === todaysMCQList.length - 1) {
+        localStorage.setItem('pharmacologyQuizDone_' + dayOfYear, 'true');
+      }
+
+      document.getElementById('nextMCQBtn').style.display = 'block';
       saveAndUpdateProgress();
+    }
+
+    function nextMCQQuestion() {
+      currentMCQStep++;
+      renderCurrentMCQ();
     }
 
     function filterDrugs() {
@@ -756,32 +814,34 @@
       var checkboxes = [
         document.getElementById('taskCheckbox0'),
         document.getElementById('taskCheckbox1'),
-        document.getElementById('taskCheckbox2')
+        document.getElementById('taskCheckbox2']
       ];
 
       var checkedCount = 0;
       var taskStates = [];
 
       for (var i = 0; i < checkboxes.length; i++) {
-        var isChecked = checkboxes[i].checked;
-        taskStates.push(isChecked);
-        var taskItem = document.getElementById('taskItem' + i);
-        if (isChecked) {
-          checkedCount++;
-          taskItem.classList.add('completed');
-        } else {
-          taskItem.classList.remove('completed');
+        if (checkboxes[i]) {
+          var isChecked = checkboxes[i].checked;
+          taskStates.push(isChecked);
+          var taskItem = document.getElementById('taskItem' + i);
+          if (isChecked) {
+            checkedCount++;
+            if (taskItem) taskItem.classList.add('completed');
+          } else {
+            if (taskItem) taskItem.classList.remove('completed');
+          }
         }
       }
 
       localStorage.setItem('pharmacologyStudyTasks', JSON.stringify(taskStates));
 
       var unitsReadCount = unitsReadSet.length;
-      var masteredMCQs = parseInt(localStorage.getItem('pharmacologyMasteredMCQs')) || 0;
+      var masteredMCQs = dailyQuizScore;
 
-      // Total weight: 3 tasks + 8 units + 5 mastery points = 16 max score
+      // Total weight: 3 tasks + 8 units + 5 quiz points = 16 max score
       var totalPossibleScore = 16;
-      var currentScore = checkedCount + unitsReadCount + Math.min(masteredMCQs, 5);
+      var currentScore = checkedCount + unitsReadCount + masteredMCQs;
       var percent = Math.round((currentScore / totalPossibleScore) * 100);
       if (percent > 100) percent = 100;
 
@@ -790,7 +850,7 @@
       document.getElementById('progressBarFill').style.width = percent + "%";
       document.getElementById('completedCountNum').innerText = checkedCount + " / 3";
       document.getElementById('unitsReadNum').innerText = unitsReadCount + " / 8";
-      document.getElementById('quizScoreNum').innerText = masteredMCQs;
+      document.getElementById('quizScoreNum').innerText = masteredMCQs + " / 5";
     }
 
     function loadSavedProgress() {
@@ -801,8 +861,6 @@
           if (cb) cb.checked = savedStates[i];
         }
       }
-      var savedScore = parseInt(localStorage.getItem('pharmacologyMasteredMCQs')) || 0;
-      mcqScore = savedScore;
       saveAndUpdateProgress();
     }
 
@@ -812,15 +870,6 @@
 
     // Security
     document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-
-    function checkAccess(event) {
-      if (localStorage.getItem('pharmacologyUnlocked') !== 'true') {
-        event.preventDefault();
-        alert('Locked! Please enter your valid single-use access code first.');
-        return false;
-      }
-      return true;
-    }
 
     var validCodes = JSON.parse(localStorage.getItem('pharmacologyDatabaseCodes')) || {
       "PHARMA-101": false,
@@ -837,7 +886,8 @@
 
       loadUserDataToUI();
       initDailyMnemonic();
-      initDailyMCQ();
+      initDailyStudyPlan();
+      initDailyMCQs();
       loadSavedProgress();
 
       var savedPic = localStorage.getItem('pharmacologyUserPic');
