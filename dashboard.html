@@ -294,7 +294,7 @@
     <div class="header-search-container">
       <div class="search-box-wrapper">
         <span class="search-icon-abs">🔍</span>
-        <input type="text" id="drugSearchInput" class="drug-search-input" placeholder="Search any drug (e.g. fluconazole, loperamide)..." oninput="filterDrugs()">
+        <input type="text" id="drugSearchInput" class="drug-search-input" placeholder="Search any drug (e.g. fluconazole, cisplatin, metronidazole)..." oninput="filterDrugs()">
         <div id="drugResultsDropdown" class="drug-results-dropdown"></div>
       </div>
     </div>
@@ -605,27 +605,59 @@
   <script>
     /* Comprehensive Drug Database Covering All Chapters & Classes */
     var drugDatabase = [
+      // UNIT II: INFECTIONS (Antibiotics, Antifungals, Antivirals, Antimalarials, Antiparasitics)
       { name: "Fluconazole", classTag: "Antifungal (Triazole)", chapter: "Unit II: Infections", moa: "Inhibits fungal CYP450 sterol C-14 alpha-demethylation.", uses: "Candidiasis, cryptococcal meningitis.", sideEffects: "Headache, nausea, elevated liver enzymes." },
       { name: "Amphotericin B", classTag: "Antifungal (Polyene)", chapter: "Unit II: Infections", moa: "Binds to ergosterol in fungal cell membranes, forming pores.", uses: "Severe systemic fungal infections.", sideEffects: "Fever, chills, nephrotoxicity, hypokalemia." },
+      { name: "Ketoconazole", classTag: "Antifungal (Imidazole)", chapter: "Unit II: Infections", moa: "Inhibits ergosterol synthesis in fungal membranes.", uses: "Topical and systemic fungal infections.", sideEffects: "Hepatotoxicity, gynecomastia, GI upset." },
+      { name: "Nystatin", classTag: "Antifungal (Polyene)", chapter: "Unit II: Infections", moa: "Binds ergosterol, increasing fungal membrane permeability.", uses: "Oral thrush, cutaneous candidiasis.", sideEffects: "Mild GI irritation, diarrhea." },
       { name: "Acyclovir", classTag: "Antiviral (Nucleoside Analogue)", chapter: "Unit II: Infections", moa: "Inhibits viral DNA polymerase after phosphorylation by thymidine kinase.", uses: "Herpes simplex and varicella-zoster infections.", sideEffects: "Nausea, headache, transient renal impairment." },
       { name: "Valacyclovir", classTag: "Antiviral (Prodrug)", chapter: "Unit II: Infections", moa: "Converted to acyclovir; inhibits viral DNA replication.", uses: "Genital herpes, shingles, cold sores.", sideEffects: "Headache, abdominal pain, nausea." },
       { name: "Oseltamivir", classTag: "Antiviral (Neuraminidase Inhibitor)", chapter: "Unit II: Infections", moa: "Inhibits influenza neuraminidase, preventing viral release.", uses: "Treatment and prophylaxis of Influenza A and B.", sideEffects: "Nausea, vomiting, neuropsychiatric events." },
+      { name: "Zidovudine (AZT)", classTag: "Antiviral (NRTI)", chapter: "Unit II: Infections", moa: "Inhibits HIV reverse transcriptase enzyme.", uses: "HIV-1 infection management and maternal transmission prevention.", sideEffects: "Bone marrow suppression, anemia, neutropenia." },
+      { name: "Amoxicillin", classTag: "Antibiotic (Penicillin)", chapter: "Unit II: Infections", moa: "Inhibits bacterial cell wall synthesis by binding to PBPs.", uses: "Respiratory tract infections, otitis media, sinusitis.", sideEffects: "Nausea, diarrhea, skin rash." },
+      { name: "Azithromycin", classTag: "Antibiotic (Macrolide)", chapter: "Unit II: Infections", moa: "Binds to 50S ribosomal subunit, inhibiting protein synthesis.", uses: "Pneumonia, pharyngitis, chlamydia.", sideEffects: "Abdominal pain, nausea, QT prolongation." },
+      { name: "Ciprofloxacin", classTag: "Antibiotic (Fluoroquinolone)", chapter: "Unit II: Infections", moa: "Inhibits DNA gyrase and topoisomerase IV.", uses: "Urinary tract infections, pyelonephritis, infectious diarrhea.", sideEffects: "Nausea, tendonitis, photosensitivity." },
+      { name: "Ceftriaxone", classTag: "Antibiotic (3rd Gen Cephalosporin)", chapter: "Unit II: Infections", moa: "Inhibits bacterial cell wall cross-linking.", uses: "Meningitis, gonorrhea, severe sepsis.", sideEffects: "Biliary sludging, diarrhea, rash." },
+      { name: "Vancomycin", classTag: "Antibiotic (Glycopeptide)", chapter: "Unit II: Infections", moa: "Inhibits bacterial cell wall peptidoglycan synthesis.", uses: "MRSA infections, C. difficile colitis (oral).", sideEffects: "Red Man Syndrome, nephrotoxicity, ototoxicity." },
+      { name: "Gentamicin", classTag: "Antibiotic (Aminoglycoside)", chapter: "Unit II: Infections", moa: "Binds to 30S ribosomal subunit causing mistranslation.", uses: "Severe gram-negative aerobic bacillary infections.", sideEffects: "Ototoxicity (irreversible), nephrotoxicity." },
+      { name: "Doxycycline", classTag: "Antibiotic (Tetracycline)", chapter: "Unit II: Infections", moa: "Inhibits 30S ribosomal subunit preventing tRNA binding.", uses: "Lyme disease, rickettsia, acne, chlamydia.", sideEffects: "Pill esophagitis, tooth discoloration in children, photosensitivity." },
+      { name: "Chloroquine", classTag: "Antimalarial (4-Aminoquinoline)", chapter: "Unit II: Infections", moa: "Blocks heme detoxification in Plasmodium parasites.", uses: "Treatment and prophylaxis of sensitive malaria.", sideEffects: "Retinopathy, pruritus, GI distress." },
+      { name: "Artemether / Lumefantrine", classTag: "Antimalarial (ACT)", chapter: "Unit II: Infections", moa: "Generates free radicals damaging parasite membranes.", uses: "Uncomplicated Plasmodium falciparum malaria.", sideEffects: "Headache, dizziness, cardiac QT prolongations." },
+      { name: "Metronidazole", classTag: "Antiparasitic / Antiprotozoal", chapter: "Unit II: Infections", moa: "Forms toxic intermediate compounds that disrupt parasite DNA.", uses: "Amebiasis, giardiasis, trichomoniasis, anaerobic infections.", sideEffects: "Metallic taste, disulfiram-like reaction with alcohol." },
+      { name: "Mebendazole", classTag: "Anthelmintic", chapter: "Unit II: Infections", moa: "Inhibits microtubule synthesis in helminthes.", uses: "Pinworm, hookworm, and roundworm infestations.", sideEffects: "Abdominal discomfort, transient diarrhea." },
+
+      // UNIT III: GASTROINTESTINAL SYSTEM
       { name: "Loperamide", classTag: "Antidiarrheal (Opioid Agonist)", chapter: "Unit III: Gastrointestinal", moa: "Binds to gut opioid receptors, inhibiting peristalsis and prolonging transit time.", uses: "Symptomatic control of acute non-specific diarrhea.", sideEffects: "Constipation, abdominal cramps, dizziness." },
       { name: "Bisacodyl", classTag: "Laxative (Stimulant)", chapter: "Unit III: Gastrointestinal", moa: "Stimulates colonic peristalsis and increases fluid/electrolyte secretion.", uses: "Treatment of constipation and bowel evacuation before procedures.", sideEffects: "Abdominal cramps, nausea, electrolyte imbalance." },
       { name: "Lactulose", classTag: "Laxative (Osmotic Agent)", chapter: "Unit III: Gastrointestinal", moa: "Draws water into bowel by osmosis and lowers colon pH to reduce ammonia.", uses: "Constipation and hepatic encephalopathy.", sideEffects: "Flatulence, abdominal cramps, diarrhea, nausea." },
       { name: "Omeprazole", classTag: "Proton Pump Inhibitor (PPI)", chapter: "Unit III: Gastrointestinal", moa: "Inhibits gastric H+/K+ ATPase pump.", uses: "GERD, peptic ulcer disease, Zollinger-Ellison syndrome.", sideEffects: "Headache, abdominal pain, flatulence, diarrhea." },
+      { name: "Ranitidine", classTag: "H2 Receptor Antagonist", chapter: "Unit III: Gastrointestinal", moa: "Competitively blocks histamine H2 receptors on parietal cells.", uses: "Peptic ulcer disease, GERD, hypersecretory states.", sideEffects: "Headache, dizziness, mild GI alterations." },
       { name: "Metoclopramide", classTag: "Prokinetic / Anti-emetic", chapter: "Unit III: Gastrointestinal", moa: "Dopamine receptor antagonist, increases upper GI motility.", uses: "Gastroparesis, chemotherapy nausea, GERD.", sideEffects: "Drowsiness, restlessness, extrapyramidal symptoms." },
-      { name: "Amoxicillin", classTag: "Antibiotic (Penicillin)", chapter: "Unit II: Infections", moa: "Inhibits bacterial cell wall synthesis by binding to PBPs.", uses: "Respiratory tract infections, otitis media, sinusitis.", sideEffects: "Nausea, diarrhea, skin rash." },
-      { name: "Azithromycin", classTag: "Antibiotic (Macrolide)", chapter: "Unit II: Infections", moa: "Binds to 50S ribosomal subunit, inhibiting protein synthesis.", uses: "Pneumonia, pharyngitis, chlamydia.", sideEffects: "Abdominal pain, nausea, QT prolongation." },
-      { name: "Ciprofloxacin", classTag: "Antibiotic (Fluoroquinolone)", chapter: "Unit II: Infections", moa: "Inhibits DNA gyrase and topoisomerase IV.", uses: "Urinary tract infections, pyelonephritis, infectious diarrhea.", sideEffects: "Nausea, tendonitis, photosensitivity." },
+      { name: "Ondansetron", classTag: "Anti-emetic (5-HT3 Antagonist)", chapter: "Unit III: Gastrointestinal", moa: "Blocks serotonin receptors peripherally on vagal nerve terminals and centrally.", uses: "Chemotherapy/radiation-induced nausea, post-op vomiting.", sideEffects: "Headache, constipation, QT interval prolongation." },
+      { name: "Subsalicylate Bismuth", classTag: "Antidiarrheal / Anti-ulcer", chapter: "Unit III: Gastrointestinal", moa: "Exerts antisecretory, anti-inflammatory, and antimicrobial effects.", uses: "Traveler's diarrhea, H. pylori eradication.", sideEffects: "Harmless darkening of tongue and stool, tinnitus." },
+
+      // UNIT IV: HEMATOLOGY SYSTEM
+      { name: "Warfarin", classTag: "Anticoagulant (Vitamin K Antagonist)", chapter: "Unit IV: Hematology", moa: "Inhibits synthesis of vitamin K-dependent clotting factors (II, VII, IX, X).", uses: "Prevention of DVT, pulmonary embolism, atrial fibrillation strokes.", sideEffects: "Bleeding tendencies, bruising, tissue necrosis." },
+      { name: "Heparin", classTag: "Anticoagulant (Indirect Thrombin Inhibitor)", chapter: "Unit IV: Hematology", moa: "Potentiates antithrombin III to block thrombin and factor Xa.", uses: "Acute venous thrombosis, pulmonary embolism, MI.", sideEffects: "Bleeding, Heparin-Induced Thrombocytopenia (HIT)." },
+      { name: "Enoxaparin", classTag: "Low Molecular Weight Heparin", chapter: "Unit IV: Hematology", moa: "Inactivates factor Xa via antithrombin activation.", uses: "Prophylaxis and treatment of DVT and unstable angina.", sideEffects: "Bleeding, injection site hematoma, anemia." },
+      { name: "Aspirin", classTag: "Antiplatelet Agent", chapter: "Unit IV: Hematology", moa: "Irreversibly inhibits cyclooxygenase-1 (COX-1), blocking TXA2.", uses: "Prevention of myocardial infarction and ischemic stroke.", sideEffects: "GI bleeding, heartburn, peptic ulceration." },
+      { name: "Clopidogrel", classTag: "Antiplatelet (P2Y12 Inhibitor)", chapter: "Unit IV: Hematology", moa: "Inhibits ADP binding to platelet P2Y12 receptors.", uses: "ACS management, prevention of stent thrombosis.", sideEffects: "Bleeding, purpura, GI discomfort." },
+      { name: "Streptokinase", classTag: "Thrombolytic / Fibrinolytic", chapter: "Unit IV: Hematology", moa: "Converts plasminogen to active plasmin to degrade fibrin clots.", uses: "Acute myocardial infarction, massive PE, severe arterial thrombosis.", sideEffects: "Severe hemorrhage, allergic reactions, hypotension." },
+      { name: "Ferrous Sulfate", classTag: "Hematinic (Iron Supplement)", chapter: "Unit IV: Hematology", moa: "Replaces essential iron needed for hemoglobin synthesis.", uses: "Iron deficiency anemia treatment and prophylaxis.", sideEffects: "Dark stools, constipation, nausea, epigastric pain." },
+
+      // UNIT V: ANTI-NEOPLASTIC DRUGS
+      { name: "Cisplatin", classTag: "Anti-Neoplastic (Alkylating-Like)", chapter: "Unit V: Anti-Neoplastic", moa: "Forms intrastrand and interstrand DNA cross-links, blocking replication.", uses: "Testicular, ovarian, bladder, and lung cancers.", sideEffects: "Nephrotoxicity, severe nausea/vomiting, ototoxicity." },
+      { name: "Cyclophosphamide", classTag: "Anti-Neoplastic (Alkylating Agent)", chapter: "Unit V: Anti-Neoplastic", moa: "Attaches alkyl group to DNA base causing cross-linking.", uses: "Lymphomas, leukemias, breast cancer, nephrotic syndrome.", sideEffects: "Hemorrhagic cystitis, alopecia, bone marrow suppression." },
+      { name: "Methotrexate", classTag: "Anti-Neoplastic (Antimetabolite)", chapter: "Unit V: Anti-Neoplastic", moa: "Inhibits dihydrofolate reductase (DHFR), blocking DNA synthesis.", uses: "Leukemias, osteosarcoma, RA, ectopic pregnancy.", sideEffects: "Mucositis, myelosuppression, hepatotoxicity, pulmonary fibrosis." },
+      { name: "5-Fluorouracil (5-FU)", classTag: "Anti-Neoplastic (Pyrimidine Analogue)", chapter: "Unit V: Anti-Neoplastic", moa: "Inhibits thymidylate synthase, halting DNA synthesis.", uses: "Colorectal, breast, stomach, and pancreatic cancers.", sideEffects: "Hand-foot syndrome, severe diarrhea, bone marrow suppression." },
+      { name: "Doxorubicin", classTag: "Anti-Neoplastic (Anthracycline)", chapter: "Unit V: Anti-Neoplastic", moa: "Intercalates DNA and inhibits topoisomerase II enzyme.", uses: "Breast cancer, lymphomas, sarcomas, leukemias.", sideEffects: "Cardiotoxicity (dose-dependent), red urine, alopecia." },
+      { name: "Vincristine", classTag: "Anti-Neoplastic (Vinca Alkaloid)", chapter: "Unit V: Anti-Neoplastic", moa: "Binds tubulin and arrests mitosis in metaphase.", uses: "Acute lymphocytic leukemia, Hodgkin's disease, neuroblastoma.", sideEffects: "Peripheral neuropathy, paralytic ileus (spares bone marrow)." },
+      { name: "Paclitaxel", classTag: "Anti-Neoplastic (Taxane)", chapter: "Unit V: Anti-Neoplastic", moa: "Hyper-stabilizes microtubule polymers, preventing disassembly.", uses: "Ovarian, breast, and non-small cell lung cancers.", sideEffects: "Peripheral neuropathy, severe hypersensitivity reactions, neutropenia." },
+
+      // UNIT I: BASICS & AUTONOMIC
       { name: "Digoxin", classTag: "Cardiac Glycoside", chapter: "Unit I: Basics", moa: "Inhibits Na+/K+ ATPase pump, increasing intracellular calcium.", uses: "Heart failure, atrial fibrillation.", sideEffects: "Bradycardia, yellow vision, arrhythmias." },
       { name: "Atropine", classTag: "Anticholinergic", chapter: "Unit I: Basics", moa: "Competitive antagonist at muscarinic acetylcholine receptors.", uses: "Symptomatic bradycardia, organophosphate poisoning.", sideEffects: "Dry mouth, blurred vision, tachycardia." },
-      { name: "Epinephrine", classTag: "Adrenergic Agonist", chapter: "Unit I: Basics", moa: "Stimulates alpha-1, beta-1, and beta-2 adrenergic receptors.", uses: "Acute anaphylaxis, cardiac arrest, severe asthma.", sideEffects: "Tachycardia, hypertension, anxiety." },
-      { name: "Warfarin", classTag: "Anticoagulant (Vitamin K Antagonist)", chapter: "Unit IV: Hematology", moa: "Inhibits synthesis of vitamin K-dependent clotting factors.", uses: "Prevention of DVT, pulmonary embolism, atrial fibrillation strokes.", sideEffects: "Bleeding tendencies, bruising." },
-      { name: "Heparin", classTag: "Anticoagulant (Indirect Thrombin Inhibitor)", chapter: "Unit IV: Hematology", moa: "Potentiates antithrombin III.", uses: "Acute thrombosis, cardiac surgery anticoagulation.", sideEffects: "Bleeding, thrombocytopenia." },
-      { name: "Aspirin", classTag: "Antiplatelet", chapter: "Unit IV: Hematology", moa: "Irreversibly inhibits COX-1 and COX-2.", uses: "Prevention of myocardial infarction and ischemic stroke.", sideEffects: "GI bleeding, heartburn." },
-      { name: "Cisplatin", classTag: "Alkylating Agent", chapter: "Unit V: Anti-Neoplastic", moa: "Cross-links DNA strands.", uses: "Testicular, ovarian, and bladder cancers.", sideEffects: "Nephrotoxicity, ototoxicity, severe nausea." },
-      { name: "Doxorubicin", classTag: "Anthracycline Antibiotic", chapter: "Unit V: Anti-Neoplastic", moa: "Intercalates DNA and inhibits topoisomerase II.", uses: "Breast cancer, lymphomas, leukemias.", sideEffects: "Cardiotoxicity, alopecia, red urine." }
+      { name: "Epinephrine", classTag: "Adrenergic Agonist", chapter: "Unit I: Basics", moa: "Stimulates alpha-1, beta-1, and beta-2 adrenergic receptors.", uses: "Acute anaphylaxis, cardiac arrest, severe asthma.", sideEffects: "Tachycardia, hypertension, anxiety." }
     ];
 
     /* Daily Rotating Mnemonics DB */
@@ -635,7 +667,7 @@
       { category: "Unit II: Infections", title: "Macrolide 'CYN' Rule", text: "Erythromycin, Azithromycin, Clarithromycin cause Cardiotoxicity (QT), GI distress, and CYP450 inhibition!" },
       { category: "Unit I: Pharmacology Basics", title: "Pharmacokinetics: ADME", text: "Absorption (blood entry), Distribution (tissue spread), Metabolism (liver breakdown), Excretion (renal exit)." },
       { category: "Unit IV: Hematology", title: "Antidotes: Heparin vs Warfarin", text: "H before W, P before V! Heparin antidote is Protamine sulfate. Warfarin antidote is Vitamin K." },
-      { category: "Unit III: Gastrointestinal", title: "PPI Side Effects Mnemonic", text: "P - Pneumonia risk, P - Paresthesia, I - Intestinal infection (C. diff), S - Spontaneous fractures." }
+      { category: "Unit V: Anti-Neoplastic", title: "Chemo Toxicity Mnemonic", text: "C - Cisplatin (Nephro/Oto), D - Doxorubicin (Cardio), V - Vincristine (Neuro), M - Methotrexate (Myelosuppression)." }
     ];
 
     /* Automated Daily Study Plans Pool */
@@ -676,7 +708,7 @@
       { q: "Warfarin anticoagulation is monitored primarily using which laboratory test?", opts: ["aPTT", "PT / INR", "Platelet count", "Bleeding time"], correct: 1, reason: "Warfarin inhibits Vitamin K-dependent factors (II, VII, IX, X), monitored via Prothrombin Time / INR." },
       { q: "Digoxin toxicity is classically characterized by which visual disturbance?", opts: ["Tunnel vision", "Yellow-green vision (xanthopsia)", "Complete blindness", "Double vision"], correct: 1, reason: "Cardiac glycosides affect retinal sodium pumps, often producing yellow halos or blurred vision." },
       { q: "Ciprofloxacin belongs to which antibacterial class?", opts: ["Penicillin", "Fluoroquinolone", "Macrolide", "Cephalosporin"], correct: 1, reason: "Ciprofloxacin inhibits bacterial DNA gyrase and topoisomerase IV." },
-      { q: "Atropine acts as a competitive antagonist at which autonomic receptors?", opts: ["Nicotinic receptors", "Muscarinic acetylcholine receptors", "Adrenergic alpha receptors", "Dopamine receptors"], correct: 1, reason: "Atropine blocks muscarinic acetylcholine receptors, producing antispasmodic and tachycardic effects." },
+      { q: "Which anti-neoplastic medication is associated with cardiotoxicity as a key adverse effect?", opts: ["Cisplatin", "Doxorubicin", "Vincristine", "Methotrexate"], correct: 1, reason: "Doxorubicin generates free radicals that cause cardiac muscle toxicity." },
       { q: "Doxorubicin is an anthracycline antibiotic noted for what organ toxicity?", opts: ["Hepatotoxicity", "Cardiotoxicity", "Pulmonary fibrosis", "Splenic infarction"], correct: 1, reason: "Doxorubicin generates reactive oxygen species that damage cardiac muscle tissue." },
       { q: "Omeprazole's mechanism of action involves inhibition of:", opts: ["H+/K+ ATPase pump", "Carbonic anhydrase", "Cyclooxygenase", "Acetylcholinesterase"], correct: 0, reason: "Proton pump inhibitors block gastric parietal cell H+/K+ ATPase pumps." }
     ];
@@ -812,7 +844,7 @@
       }
       
       if (matches.length === 0) {
-        dropdown.innerHTML = '<div class="drug-result-item"><span class="drug-name-main" style="color: #64748b;">No matching medications found (try fluconazole, loperamide, acyclovir)</span></div>';
+        dropdown.innerHTML = '<div class="drug-result-item"><span class="drug-name-main" style="color: #64748b;">No matching medications found (try fluconazole, cisplatin, metronidazole)</span></div>';
         dropdown.style.display = 'block';
         return;
       }
