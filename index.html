@@ -1,566 +1,917 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Pharmacology-I | 3rd Semester Study Portal</title>
-  <!-- Browser Favicon -->
-  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/mudassirkhan3/pharmacology-3rd-semester/6aa44e6835f7f62abc4f17be73579a3ea4864969/images/1000125814.png">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #0284c7;
-      --primary-dark: #0369a1;
-      --accent: #0ea5e9;
-      --success: #16a34a;
-      --whatsapp: #25d366;
-      --instagram: #e1306c;
-      --bg-main: #f8fafc;
-      --text-dark: #0f172a;
-      --text-muted: #64748b;
-      --border-color: #cbd5e1;
-      --card-bg: #ffffff;
-      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-      --shadow-lg: 0 20px 25px -5px rgba(2, 132, 199, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg-main); color: var(--text-dark); line-height: 1.65; padding-bottom: 80px; }
-
-    /* Top Header */
-    .header { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; padding: 50px 24px 60px; text-align: center; position: relative; box-shadow: 0 10px 30px rgba(2, 132, 199, 0.2); }
-    
-    /* Top Left Header Button (Instagram) */
-    .header-left {
-      position: absolute;
-      top: 20px;
-      left: 24px;
-      display: flex;
-      align-items: center;
-    }
-
-    /* Top Right Header Buttons */
-    .header-right {
-      position: absolute;
-      top: 20px;
-      right: 24px;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .header-btn {
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: white;
-      padding: 8px 14px;
-      border-radius: 10px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      backdrop-filter: blur(6px);
-      transition: all 0.25s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    .header-btn:hover {
-      background: white;
-      color: var(--primary-dark);
-      transform: translateY(-2px);
-    }
-    .header-btn.wa { background: rgba(37, 211, 102, 0.25); border-color: rgba(37, 211, 102, 0.5); }
-    .header-btn.wa:hover { background: var(--whatsapp); color: white; }
-    .header-btn.ig { background: rgba(225, 48, 108, 0.3); border-color: rgba(225, 48, 108, 0.6); }
-    .header-btn.ig:hover { background: var(--instagram); color: white; }
-
-    /* Header Logo & Brand Layout */
-    .header-brand-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 12px;
-      margin-top: 10px;
-    }
-    .header-logo {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      background: #ffffff;
-    }
-    .header-badge { background: rgba(255, 255, 255, 0.2); padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; }
-    
-    .header h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.5px; }
-    .header p { opacity: 0.95; font-size: 1.05rem; max-width: 750px; margin: 0 auto; }
-
-    /* Container */
-    .container { max-width: 1050px; margin: 0 auto; padding: 0 20px; }
-
-    /* Stats Overview Bar */
-    .stats-bar { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px; margin: -30px auto 35px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; box-shadow: var(--shadow-sm); position: relative; z-index: 10; text-align: center; }
-    .stat-item h3 { font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-bottom: 2px; border: none; padding: 0; }
-    .stat-item p { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin: 0; text-transform: uppercase; letter-spacing: 0.5px; }
-
-    /* Unlock Access Banner / Button Section */
-    .unlock-banner {
-      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-      border: 1px solid #bbf7d0;
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      box-shadow: 0 4px 15px rgba(22, 163, 74, 0.05);
-    }
-    .unlock-info h3 { font-size: 1.15rem; font-weight: 800; color: #166534; margin: 0 0 4px 0; border: none; padding: 0; }
-    .unlock-info p { font-size: 0.9rem; color: #15803d; margin: 0; }
-    .unlock-btn {
-      background: var(--success);
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 12px;
-      font-weight: 800;
-      font-size: 0.95rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.25);
-      transition: background 0.2s, transform 0.1s;
-    }
-    .unlock-btn:hover { background: #15803d; transform: translateY(-1px); }
-
-    /* Section Cards */
-    .section-card { background: var(--card-bg); border-radius: 16px; border: 1px solid #e2e8f0; padding: 36px; margin-bottom: 32px; box-shadow: var(--shadow-sm); }
-    .section-title { font-size: 1.5rem; font-weight: 800; color: var(--text-dark); border-left: 5px solid var(--primary); padding-left: 12px; margin-bottom: 22px; }
-    
-    h3 { font-size: 1.15rem; font-weight: 700; color: var(--primary-dark); margin: 24px 0 12px; border-bottom: 1px solid #f1f5f9; padding-bottom: 6px; }
-    p, li { color: #334155; font-size: 0.96rem; margin-bottom: 10px; }
-    ul, ol { margin-left: 22px; margin-bottom: 18px; }
-
-    /* Learning Objectives Grid */
-    .objectives-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 18px; }
-    .objective-card { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; padding: 18px; transition: all 0.2s ease; }
-    .objective-card:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: var(--shadow-sm); }
-    .objective-card h4 { color: var(--primary); font-size: 0.92rem; font-weight: 800; margin-bottom: 6px; }
-    .objective-card p { font-size: 0.9rem; color: #334155; margin: 0; }
-
-    /* Custom Tables */
-    .table-container { overflow-x: auto; margin: 20px 0; border-radius: 12px; border: 1px solid var(--border-color); }
-    .custom-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 600px; }
-    .custom-table th, .custom-table td { border: 1px solid var(--border-color); padding: 12px 14px; text-align: left; }
-    .custom-table th { background-color: #e0f2fe; color: var(--primary-dark); font-weight: 700; }
-    .custom-table tr:nth-child(even) { background-color: #f8fafc; }
-
-    /* FLOATING ASK ADMIN BUTTON (WHATSAPP) */
-    .fab-container {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      z-index: 250;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 12px;
-    }
-    .fab-btn {
-      background: var(--whatsapp);
-      color: white;
-      border: none;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      text-decoration: none;
-    }
-    .fab-btn:hover {
-      transform: scale(1.1) rotate(5deg);
-      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
-    }
-    .fab-tooltip {
-      background: var(--text-dark);
-      color: white;
-      padding: 6px 14px;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.25s ease;
-      pointer-events: none;
-      white-space: nowrap;
-    }
-    .fab-container:hover .fab-tooltip {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* MODAL STYLING */
-    .modal-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(6px);
-      z-index: 300; display: none; align-items: center; justify-content: center; padding: 20px;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal-box {
-      background: #ffffff; border-radius: 20px; width: 100%; max-width: 440px;
-      padding: 30px; box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25); border: 1px solid #e2e8f0; position: relative;
-      animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    @keyframes modalPop {
-      0% { transform: scale(0.92); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    .close-btn {
-      position: absolute; top: 18px; right: 18px; background: #f1f5f9; border: none; font-size: 1.2rem;
-      width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
-      color: var(--text-muted); transition: all 0.2s;
-    }
-    .close-btn:hover { background: #e2e8f0; color: var(--text-dark); }
-    
-    .price-tag {
-      background: #f0fdf4; border: 1px solid #bbf7d0; color: var(--success); padding: 12px 18px;
-      border-radius: 12px; font-size: 1.5rem; font-weight: 800; margin: 18px 0; display: flex; align-items: baseline; gap: 6px;
-    }
-    .payment-methods {
-      background: #f8fafc; border: 1px solid var(--border-color); padding: 16px; border-radius: 12px; margin-bottom: 20px;
-      font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;
-    }
-    .payment-methods code { background: #e2e8f0; padding: 2px 6px; border-radius: 6px; font-weight: 800; color: var(--text-dark); }
-    
-    .modal-btn {
-      background: var(--whatsapp); color: white; text-decoration: none; padding: 14px 20px; border-radius: 12px;
-      font-weight: 800; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; gap: 10px;
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); transition: background 0.2s, transform 0.1s; width: 100%; border: none; cursor: pointer;
-    }
-    .modal-btn:hover { background: #20ba5a; transform: translateY(-1px); }
-
-    /* Footer */
-    footer { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-top: 60px; border-top: 1px solid #e2e8f0; padding-top: 30px; }
-    footer .author-credit { font-size: 1.1rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 6px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-
-    /* Mobile Responsive Header Tweaks */
-    @media (max-width: 640px) {
-      .header { padding: 80px 16px 35px; }
-      .header-left {
-        top: 12px;
-        left: 12px;
-      }
-      .header-right {
-        top: 12px;
-        right: 12px;
-        gap: 6px;
-      }
-      .header-btn {
-        padding: 6px 10px;
-        font-size: 0.75rem;
-      }
-      .header h1 { font-size: 1.8rem; }
-      .header p { font-size: 0.95rem; }
-      .section-card { padding: 20px 16px; }
-      .unlock-banner { flex-direction: column; align-items: stretch; text-align: center; }
-      .unlock-btn { justify-content: center; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSN Pharmacology 3rd Semester | Educational Portal</title>
+    <meta name="description" content="Interactive, exam-focused BSN 3rd Semester Pharmacology portal with animations, MCQs, past papers, and memory aids.">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                            800: '#1e3a8a',
+                        },
+                        medical: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.4' },
+                            '50%': { opacity: '0.8' },
+                        }
+                    },
+                    animation: {
+                        float: 'float 4s ease-in-out infinite',
+                        pulseGlow: 'pulseGlow 3s ease-in-out infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .backdrop-blur-md { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        details summary::-webkit-details-marker { display: none; }
+    </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
 
-  <!-- Top Header -->
-  <header class="header">
-    <div class="header-left">
-      <a href="https://instagram.com/mudassirkhan43_?igsh=MTZiMTBzNmNucDJ1YQ==" target="_blank" class="header-btn ig">
-        <span>📸</span> Instagram
-      </a>
+    <!-- NAVIGATION HEADER -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2.5 text-brand-700 font-bold text-lg tracking-tight hover:opacity-90 transition">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-medical-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+                    <i data-lucide="pill" class="w-5 h-5"></i>
+                </div>
+                <span>Pharma<span class="text-medical-600">BSN</span></span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+                <a href="#features" class="hover:text-brand-600 transition">Features</a>
+                <a href="#demo" class="hover:text-brand-600 transition">Free Demo</a>
+                <a href="#syllabus" class="hover:text-brand-600 transition">Syllabus</a>
+                <a href="#pricing" class="hover:text-brand-600 transition">Pricing</a>
+                <a href="#faq" class="hover:text-brand-600 transition">FAQ</a>
+            </nav>
+
+            <div class="hidden md:flex items-center gap-3">
+                <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/chapter1.html" class="px-4 py-2 rounded-lg text-sm font-semibold text-brand-600 hover:bg-brand-50 transition">
+                    Try Demo
+                </a>
+                <button onclick="openLoginModal()" class="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-md shadow-brand-600/20 transition active:scale-95">
+                    Student Login
+                </button>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-600 hover:text-slate-900 focus:outline-none">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-4 space-y-3">
+            <a href="#features" class="block py-2 text-sm font-medium text-slate-600">Features</a>
+            <a href="#demo" class="block py-2 text-sm font-medium text-slate-600">Free Demo</a>
+            <a href="#syllabus" class="block py-2 text-sm font-medium text-slate-600">Syllabus</a>
+            <a href="#pricing" class="block py-2 text-sm font-medium text-slate-600">Pricing</a>
+            <a href="#faq" class="block py-2 text-sm font-medium text-slate-600">FAQ</a>
+            <div class="pt-2 border-t border-slate-100 flex flex-col gap-2">
+                <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/chapter1.html" class="w-full text-center py-2 rounded-lg text-sm font-semibold text-brand-600 border border-brand-200">Try Demo</a>
+                <button onclick="openLoginModal()" class="w-full text-center py-2 rounded-lg text-sm font-semibold text-white bg-brand-600">Student Login</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- SECTION 1 — HERO -->
+        <section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
+            <div class="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.brand.100),theme(colors.slate.50))] opacity-60"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                    
+                    <!-- Left Column -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100/80 border border-brand-200 text-brand-700 text-xs font-semibold uppercase tracking-wider">
+                            <i data-lucide="graduation-cap" class="w-4 h-4 text-brand-600"></i>
+                            3rd Semester BSN
+                        </div>
+                        
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
+                            PHARMACOLOGY
+                            <span class="block text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-600 mt-2">
+                                Understand. Remember. Practice. Excel.
+                            </span>
+                        </h1>
+
+                        <p class="text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                            An interactive, exam-focused Pharmacology learning portal designed to make a vast syllabus simple, visual, and easier to revise for BSN students.
+                        </p>
+
+                        <div class="pt-2 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/chapter1.html" class="px-6 py-3.5 rounded-xl font-bold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/30 flex items-center justify-center gap-2 transition active:scale-95">
+                                <i data-lucide="play-circle" class="w-5 h-5"></i>
+                                Explore Free Demo
+                            </a>
+                            <button onclick="openLoginModal()" class="px-6 py-3.5 rounded-xl font-bold text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 shadow-sm flex items-center justify-center gap-2 transition active:scale-95">
+                                <i data-lucide="lock" class="w-5 h-5 text-slate-500"></i>
+                                Student Login
+                            </button>
+                        </div>
+
+                        <!-- Trust Line -->
+                        <div class="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-y-2 gap-x-6 text-xs font-semibold text-slate-500">
+                            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-medical-600"></i> Syllabus-focused</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-medical-600"></i> Easy learning</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-medical-600"></i> Practice</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-medical-600"></i> Past Papers</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Visual Dashboard Demo -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative mx-auto max-w-md lg:max-w-none rounded-2xl bg-slate-900 p-3 shadow-2xl shadow-brand-900/20 ring-1 ring-slate-800 animate-float">
+                            <!-- Window Bar -->
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-2.5 px-3 mb-3">
+                                <div class="flex items-center gap-1.5">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-rose-500"></div>
+                                    <div class="w-2.5 h-2.5 rounded-full bg-amber-500"></div>
+                                    <div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
+                                </div>
+                                <span class="text-[10px] font-mono text-slate-400">portal.pharma-bsn.internal</span>
+                            </div>
+                            
+                            <!-- Visual Graphic Canvas -->
+                            <div class="bg-slate-950 rounded-xl p-4 text-slate-100 space-y-4 font-sans">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <div class="text-xs text-slate-400">Active Module</div>
+                                        <div class="text-sm font-bold text-white">Ch 1: Pharmacokinetics (ADME)</div>
+                                    </div>
+                                    <span class="px-2 py-1 rounded bg-medical-500/20 text-medical-500 text-[10px] font-bold uppercase">Live Interactive</span>
+                                </div>
+
+                                <!-- Animated ADME Bar Diagram -->
+                                <div class="space-y-2 pt-2">
+                                    <div class="flex justify-between text-xs font-mono">
+                                        <span class="text-brand-400">Absorption Rate</span>
+                                        <span>88%</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                        <div class="bg-brand-500 h-full rounded-full w-[88%] transition-all duration-1000"></div>
+                                    </div>
+
+                                    <div class="flex justify-between text-xs font-mono pt-1">
+                                        <span class="text-medical-500">Bioavailability</span>
+                                        <span>72%</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                        <div class="bg-medical-500 h-full rounded-full w-[72%] transition-all duration-1000"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Card Micro Preview -->
+                                <div class="grid grid-cols-2 gap-2 pt-2">
+                                    <div class="bg-slate-900 border border-slate-800 rounded-lg p-2.5 flex items-center gap-2">
+                                        <i data-lucide="brain text-brand-400" class="w-4 h-4"></i>
+                                        <span class="text-xs font-medium">12 Mnemonics</span>
+                                    </div>
+                                    <div class="bg-slate-900 border border-slate-800 rounded-lg p-2.5 flex items-center gap-2">
+                                        <i data-lucide="file-check-2 text-medical-400" class="w-4 h-4"></i>
+                                        <span class="text-xs font-medium">45 High-Yield MCQs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2 — THE PROBLEM -->
+        <section class="py-16 bg-white border-y border-slate-200/60">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-8">
+                    Pharmacology shouldn't feel overwhelming.
+                </h2>
+
+                <div class="grid sm:grid-cols-3 gap-6 mb-10">
+                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+                        <div class="w-10 h-10 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mx-auto mb-3">
+                            <i data-lucide="book-open" class="w-5 h-5"></i>
+                        </div>
+                        <p class="text-sm font-semibold text-slate-800">Huge amount of information</p>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mx-auto mb-3">
+                            <i data-lucide="git-fork" class="w-5 h-5"></i>
+                        </div>
+                        <p class="text-sm font-semibold text-slate-800">Difficult classifications and drug facts</p>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+                        <div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mx-auto mb-3">
+                            <i data-lucide="clock" class="w-5 h-5"></i>
+                        </div>
+                        <p class="text-sm font-semibold text-slate-800">Limited time for revision</p>
+                    </div>
+                </div>
+
+                <div class="inline-block p-4 rounded-xl bg-brand-50 border border-brand-200 text-brand-800 font-semibold text-base sm:text-lg">
+                    💡 So I built a simpler way to study — designed directly from a BSN student's perspective.
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3 — THE SOLUTION -->
+        <section id="features" class="py-20 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                        Everything you need for Pharmacology, in one place.
+                    </h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Feature 1 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center mb-4">
+                            <i data-lucide="book" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">COMPLETE CHAPTERS</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Easy explanations following the relevant textbook/syllabus headings.</p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-medical-100 text-medical-600 flex items-center justify-center mb-4">
+                            <i data-lucide="lightbulb" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">MNEMONICS</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Simple memory aids for difficult classifications and drug information.</p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-4">
+                            <i data-lucide="sparkles" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">ANIMATIONS</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Visual explanations for difficult medical and mechanism concepts.</p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-4">
+                            <i data-lucide="sliders" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">INTERACTIVE SIMULATORS</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">For example, the ADME simulator in Chapter 1.</p>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-100 text-cyan-600 flex items-center justify-center mb-4">
+                            <i data-lucide="table" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">QUICK TABLES</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Short high-yield tables for rapid revision before exams.</p>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4">
+                            <i data-lucide="help-circle" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">MCQ PRACTICE</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Practice questions with detailed answers and rationales.</p>
+                    </div>
+
+                    <!-- Feature 7 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center mb-4">
+                            <i data-lucide="history" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">PAST PAPERS</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Past-paper questions organized specifically for targeted preparation.</p>
+                    </div>
+
+                    <!-- Feature 8 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center mb-4">
+                            <i data-lucide="zap" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">HIGH-YIELD REVISION</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Laser focus on high-yield core concepts before examinations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4 — FREE DEMO -->
+        <section id="demo" class="py-20 bg-gradient-to-b from-brand-900 to-slate-900 text-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-medical-500/20 text-medical-400 border border-medical-500/30 text-xs font-bold uppercase tracking-wider">
+                        <i data-lucide="unlock" class="w-3.5 h-3.5"></i>
+                        Free Access
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-black tracking-tight">
+                        EXPERIENCE THE PORTAL BEFORE YOU BUY
+                    </h2>
+                    <p class="text-xl font-semibold text-brand-300">
+                        Start with Chapter 1 — Basic Principles of Pharmacology
+                    </p>
+                    <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto pt-2">
+                        Explore the ADME concept through interactive animation and simulation, then test your understanding with practice questions.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-slate-800/80 backdrop-blur border border-slate-700/60 p-6 rounded-2xl text-center">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="film" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-white mb-2">ADME ANIMATION</h3>
+                        <p class="text-slate-400 text-sm">See the journey of a drug through the body visually represented.</p>
+                    </div>
+
+                    <div class="bg-slate-800/80 backdrop-blur border border-slate-700/60 p-6 rounded-2xl text-center">
+                        <div class="w-12 h-12 rounded-xl bg-medical-500/20 text-medical-400 flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="activity" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-white mb-2">ADME SIMULATOR</h3>
+                        <p class="text-slate-400 text-sm">Interact and understand mechanisms instead of blind memorizing.</p>
+                    </div>
+
+                    <div class="bg-slate-800/80 backdrop-blur border border-slate-700/60 p-6 rounded-2xl text-center">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="check-square" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-white mb-2">QUICK MCQ</h3>
+                        <p class="text-slate-400 text-sm">Immediately test what you just learned with real-time feedback.</p>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/chapter1.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-extrabold text-white bg-medical-600 hover:bg-medical-500 shadow-xl shadow-medical-600/30 transition text-lg active:scale-95">
+                        <i data-lucide="rocket" class="w-5 h-5"></i>
+                        TRY CHAPTER 1 FREE
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 5 — HOW THE PORTAL WORKS -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                        From learning to exam preparation.
+                    </h2>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+                    <!-- Step 1 -->
+                    <div class="relative flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-brand-50 border-2 border-brand-500 text-brand-700 text-xl font-black flex items-center justify-center mb-4 shadow-sm">
+                            01
+                        </div>
+                        <h3 class="font-extrabold text-slate-900 text-lg">LEARN</h3>
+                        <p class="text-slate-600 text-sm mt-1">Easy explanations</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-brand-50 border-2 border-brand-500 text-brand-700 text-xl font-black flex items-center justify-center mb-4 shadow-sm">
+                            02
+                        </div>
+                        <h3 class="font-extrabold text-slate-900 text-lg">UNDERSTAND</h3>
+                        <p class="text-slate-600 text-sm mt-1">Animations + visual concepts</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-brand-50 border-2 border-brand-500 text-brand-700 text-xl font-black flex items-center justify-center mb-4 shadow-sm">
+                            03
+                        </div>
+                        <h3 class="font-extrabold text-slate-900 text-lg">PRACTICE</h3>
+                        <p class="text-slate-600 text-sm mt-1">MCQs + past papers</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-medical-50 border-2 border-medical-500 text-medical-700 text-xl font-black flex items-center justify-center mb-4 shadow-sm">
+                            04
+                        </div>
+                        <h3 class="font-extrabold text-slate-900 text-lg">REVISE</h3>
+                        <p class="text-slate-600 text-sm mt-1">Mnemonics + quick tables + high-yield review</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6 — SYLLABUS -->
+        <section id="syllabus" class="py-20 bg-slate-50 border-t border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                    <div>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-bold uppercase mb-2">
+                            <i data-lucide="book-marked" class="w-3.5 h-3.5"></i>
+                            Organized for 3rd Semester BSN preparation
+                        </span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                            3rd Semester Pharmacology Syllabus
+                        </h2>
+                    </div>
+                </div>
+
+                <!-- Preserved Actual Chapters Grid -->
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Chapter 1 (Free Demo) -->
+                    <div class="bg-white rounded-2xl p-6 border-2 border-medical-500/40 shadow-sm relative flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-2xl font-black text-brand-600">01</span>
+                                <span class="px-2.5 py-1 rounded-full bg-medical-100 text-medical-700 font-bold text-xs">FREE DEMO</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-lg mb-2">Basic Principles of Pharmacology</h3>
+                            <p class="text-slate-600 text-sm">Pharmacokinetics, ADME, Bioavailability, Pharmacodynamics, and Receptors.</p>
+                        </div>
+                        <div class="pt-6">
+                            <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/chapter1.html" class="w-full py-2.5 rounded-xl font-bold text-sm text-medical-700 bg-medical-50 hover:bg-medical-100 border border-medical-200 flex items-center justify-center gap-2 transition">
+                                Access Demo Chapter
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 2 -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-2xl font-black text-slate-400">02</span>
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold text-xs"><i data-lucide="lock" class="w-3 h-3 inline"></i> Locked</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-lg mb-2">Autonomic Nervous System</h3>
+                            <p class="text-slate-600 text-sm">Sympathetic & Parasympathetic Drugs, Agonists and Antagonists.</p>
+                        </div>
+                        <div class="pt-6">
+                            <button onclick="openLoginModal()" class="w-full py-2.5 rounded-xl font-bold text-sm text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 flex items-center justify-center gap-2 transition">
+                                Unlock with Portal Access
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 3 -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-2xl font-black text-slate-400">03</span>
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold text-xs"><i data-lucide="lock" class="w-3 h-3 inline"></i> Locked</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-lg mb-2">Cardiovascular System</h3>
+                            <p class="text-slate-600 text-sm">Antihypertensives, Antiarrhythmics, Antianginals, and Diuretics.</p>
+                        </div>
+                        <div class="pt-6">
+                            <button onclick="openLoginModal()" class="w-full py-2.5 rounded-xl font-bold text-sm text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 flex items-center justify-center gap-2 transition">
+                                Unlock with Portal Access
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 4 -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-2xl font-black text-slate-400">04</span>
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold text-xs"><i data-lucide="lock" class="w-3 h-3 inline"></i> Locked</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-lg mb-2">Central Nervous System</h3>
+                            <p class="text-slate-600 text-sm">Sedatives, Hypnotics, Antipsychotics, Antidepressants, and Anesthetics.</p>
+                        </div>
+                        <div class="pt-6">
+                            <button onclick="openLoginModal()" class="w-full py-2.5 rounded-xl font-bold text-sm text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 flex items-center justify-center gap-2 transition">
+                                Unlock with Portal Access
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 5 -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-2xl font-black text-slate-400">05</span>
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold text-xs"><i data-lucide="lock" class="w-3 h-3 inline"></i> Locked</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-lg mb-2">Chemotherapeutic Agents</h3>
+                            <p class="text-slate-600 text-sm">Antibiotics, Antifungals, Antivirals, and Antineoplastics.</p>
+                        </div>
+                        <div class="pt-6">
+                            <button onclick="openLoginModal()" class="w-full py-2.5 rounded-xl font-bold text-sm text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 flex items-center justify-center gap-2 transition">
+                                Unlock with Portal Access
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 6 -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-2xl font-black text-slate-400">06</span>
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold text-xs"><i data-lucide="lock" class="w-3 h-3 inline"></i> Locked</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-lg mb-2">Endocrine & Gastrointestinal</h3>
+                            <p class="text-slate-600 text-sm">Insulin, Hypoglycemics, Steroids, Antiulcer, and Antiemetics.</p>
+                        </div>
+                        <div class="pt-6">
+                            <button onclick="openLoginModal()" class="w-full py-2.5 rounded-xl font-bold text-sm text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 flex items-center justify-center gap-2 transition">
+                                Unlock with Portal Access
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7 — WHY THIS IS DIFFERENT -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                        More than notes.
+                    </h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- Traditional Card -->
+                    <div class="p-8 rounded-2xl bg-slate-50 border border-slate-200">
+                        <h3 class="text-xl font-bold text-slate-700 mb-6 flex items-center gap-2">
+                            <i data-lucide="x-circle" class="w-5 h-5 text-rose-500"></i>
+                            Traditional Study
+                        </h3>
+                        <ul class="space-y-4 text-slate-600 font-medium">
+                            <li class="flex items-start gap-3"><i data-lucide="minus" class="w-5 h-5 text-slate-400 shrink-0 mt-0.5"></i> Huge, dense textbook paragraphs</li>
+                            <li class="flex items-start gap-3"><i data-lucide="minus" class="w-5 h-5 text-slate-400 shrink-0 mt-0.5"></i> Searching everywhere for scattered topics</li>
+                            <li class="flex items-start gap-3"><i data-lucide="minus" class="w-5 h-5 text-slate-400 shrink-0 mt-0.5"></i> Spending hours writing out basic notes</li>
+                            <li class="flex items-start gap-3"><i data-lucide="minus" class="w-5 h-5 text-slate-400 shrink-0 mt-0.5"></i> Searching for past questions separately</li>
+                            <li class="flex items-start gap-3"><i data-lucide="minus" class="w-5 h-5 text-slate-400 shrink-0 mt-0.5"></i> Memorizing complex mechanisms without visual aid</li>
+                        </ul>
+                    </div>
+
+                    <!-- My Portal Card -->
+                    <div class="p-8 rounded-2xl bg-brand-50/50 border-2 border-brand-500/30 shadow-md">
+                        <h3 class="text-xl font-bold text-brand-800 mb-6 flex items-center gap-2">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-medical-600"></i>
+                            My Portal
+                        </h3>
+                        <ul class="space-y-4 text-slate-800 font-semibold">
+                            <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-medical-600 shrink-0 mt-0.5"></i> Perfectly organized syllabus content</li>
+                            <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-medical-600 shrink-0 mt-0.5"></i> Clear & easy topic explanations</li>
+                            <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-medical-600 shrink-0 mt-0.5"></i> Custom mnemonics for drug classes</li>
+                            <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-medical-600 shrink-0 mt-0.5"></i> Interactive learning & visual simulators</li>
+                            <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-medical-600 shrink-0 mt-0.5"></i> High-yield MCQs & integrated past papers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center text-slate-500 text-sm max-w-xl mx-auto font-medium">
+                    "Use the tools you like. This portal simply saves you the time of organizing everything yourself."
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 8 & 9 — FACULTY & STUDENT REVIEWS -->
+        <section class="py-20 bg-slate-50 border-t border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+                
+                <!-- SECTION 8 — FACULTY REVIEW -->
+                <div>
+                    <div class="text-center max-w-2xl mx-auto mb-8">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-bold uppercase mb-2">
+                            <i data-lucide="award" class="w-3.5 h-3.5"></i>
+                            Faculty Review
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Academic Feedback</h2>
+                    </div>
+
+                    <div class="max-w-xl mx-auto p-8 rounded-2xl border border-dashed border-slate-300 bg-white text-center text-slate-500 font-medium">
+                        <i data-lucide="clock" class="w-8 h-8 text-slate-400 mx-auto mb-2"></i>
+                        Faculty review coming soon
+                    </div>
+                </div>
+
+                <!-- SECTION 9 — STUDENT REVIEWS -->
+                <div>
+                    <div class="text-center max-w-2xl mx-auto mb-8">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-bold uppercase mb-2">
+                            <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
+                            What Students Say
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Student Reviews</h2>
+                    </div>
+
+                    <div class="max-w-xl mx-auto p-8 rounded-2xl border border-slate-200 bg-white text-center space-y-4">
+                        <p class="text-slate-500 font-medium">Student reviews coming soon.</p>
+                        <div>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfmCoyJkxUlfrv3ZdPm5HN9gNh5HsoopQNpMyaxPgY9UqFZNQ/viewform" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-brand-600 bg-brand-50 border border-brand-200 hover:bg-brand-100 transition">
+                                <i data-lucide="message-circle-plus" class="w-4 h-4"></i>
+                                Leave a Review
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 10 — PRICING -->
+        <section id="pricing" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="max-w-lg mx-auto bg-gradient-to-b from-white to-brand-50/40 border-2 border-brand-500 rounded-3xl p-8 shadow-xl shadow-brand-500/10 relative">
+                    
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-brand-600 text-white font-bold text-xs uppercase tracking-wider shadow-sm">
+                        Founding Batch
+                    </div>
+
+                    <div class="text-center pt-2 mb-6">
+                        <div class="text-5xl font-black text-slate-900 tracking-tight mb-1">
+                            Rs.399
+                        </div>
+                        <div class="text-sm font-semibold text-brand-700">
+                            Access until the December final examination
+                        </div>
+                    </div>
+
+                    <ul class="space-y-3.5 mb-8 text-sm text-slate-700 font-medium">
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-medical-600 shrink-0"></i> Complete Pharmacology chapters</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-medical-600 shrink-0"></i> Mnemonics & classification aids</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-medical-600 shrink-0"></i> Visual concept animations</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-medical-600 shrink-0"></i> Interactive ADME simulator</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-medical-600 shrink-0"></i> Quick tables for rapid revision</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-medical-600 shrink-0"></i> Comprehensive MCQ practice</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-medical-600 shrink-0"></i> Categorized past paper questions</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-medical-600 shrink-0"></i> High-yield pre-exam summaries</li>
+                    </ul>
+
+                    <button onclick="openLoginModal()" class="w-full py-4 rounded-xl font-extrabold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/25 flex items-center justify-center gap-2 transition active:scale-95 text-base">
+                        <i data-lucide="key" class="w-5 h-5"></i>
+                        GET ACCESS
+                    </button>
+
+                    <div class="text-center mt-4 text-xs font-semibold text-slate-500">
+                        Limited founding-batch pricing
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 11 — FAQ -->
+        <section id="faq" class="py-20 bg-slate-50 border-t border-slate-200/60">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">
+                        Frequently Asked Questions
+                    </h2>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- FAQ 1 -->
+                    <details class="group bg-white p-5 rounded-2xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
+                            <span>What is included?</span>
+                            <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+                            Full access includes syllabus-aligned chapter notes, high-yield tables, drug mnemonics, concept animations, interactive simulators, chapter MCQs, and past examination papers.
+                        </p>
+                    </details>
+
+                    <!-- FAQ 2 -->
+                    <details class="group bg-white p-5 rounded-2xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
+                            <span>Who is this portal for?</span>
+                            <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+                            It is built specifically for 3rd semester BSN (Bachelor of Science in Nursing) students preparing for their Pharmacology term and semester final examinations.
+                        </p>
+                    </details>
+
+                    <!-- FAQ 3 -->
+                    <details class="group bg-white p-5 rounded-2xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
+                            <span>Is Chapter 1 available as a demo?</span>
+                            <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+                            Yes! Chapter 1 (Basic Principles & ADME) is 100% free to explore without needing any login or access code.
+                        </p>
+                    </details>
+
+                    <!-- FAQ 4 -->
+                    <details class="group bg-white p-5 rounded-2xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
+                            <span>How long is access?</span>
+                            <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+                            Your one-time access remains active right up until your December final examinations.
+                        </p>
+                    </details>
+
+                    <!-- FAQ 5 -->
+                    <details class="group bg-white p-5 rounded-2xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
+                            <span>How do I get my access code?</span>
+                            <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+                            Click on "Get Access" or "Student Login", enter your access code, or follow the payment instructions provided in the access prompt.
+                        </p>
+                    </details>
+
+                    <!-- FAQ 6 -->
+                    <details class="group bg-white p-5 rounded-2xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
+                            <span>Is this an official UHS website?</span>
+                            <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+                            No. This is a student-developed educational resource designed to support BSN Pharmacology learning and examination preparation.
+                        </p>
+                    </details>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 12 — FINAL CALL TO ACTION -->
+        <section class="py-20 bg-gradient-to-tr from-brand-700 to-brand-900 text-white text-center relative overflow-hidden">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
+                    Ready to make Pharmacology easier?
+                </h2>
+                <p class="text-xl text-brand-200 font-medium">
+                    Learn smarter. Revise faster. Practice better.
+                </p>
+                <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/chapter1.html" class="px-8 py-4 rounded-xl font-extrabold text-brand-900 bg-white hover:bg-brand-50 shadow-xl transition active:scale-95 text-base">
+                        TRY FREE DEMO
+                    </a>
+                    <button onclick="openLoginModal()" class="px-8 py-4 rounded-xl font-extrabold text-white bg-medical-600 hover:bg-medical-500 shadow-xl transition active:scale-95 text-base">
+                        STUDENT LOGIN
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                
+                <div class="space-y-3 lg:col-span-2">
+                    <div class="text-white font-bold text-lg flex items-center gap-2">
+                        <i data-lucide="pill" class="w-5 h-5 text-brand-500"></i>
+                        Pharmacology — 3rd Semester
+                    </div>
+                    <p class="text-slate-400 text-xs max-w-sm">
+                        Student-developed educational resource engineered for 3rd semester nursing students.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Quick Navigation</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#" class="hover:text-white transition">Home</a></li>
+                        <li><a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/chapter1.html" class="hover:text-white transition">Free Demo</a></li>
+                        <li><a href="#syllabus" class="hover:text-white transition">Syllabus</a></li>
+                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfmCoyJkxUlfrv3ZdPm5HN9gNh5HsoopQNpMyaxPgY9UqFZNQ/viewform" target="_blank" class="hover:text-white transition">Reviews</a></li>
+                        <li><button onclick="openLoginModal()" class="hover:text-white transition text-left">Login</button></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Portal Access</h4>
+                    <p class="text-xs text-slate-400 mb-3">Have an access code?</p>
+                    <button onclick="openLoginModal()" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs border border-slate-700 transition">
+                        Enter Code
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <p>This portal is an educational study resource and does not replace prescribed textbooks, faculty instruction, or professional clinical guidance.</p>
+                <p>© 2026 Pharmacology BSN Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ACCESS / LOGIN MODAL (Preserving existing functional login mechanics) -->
+    <div id="loginModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm hidden">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative border border-slate-100">
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center mx-auto mb-3">
+                    <i data-lucide="key-round" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900">Student Access</h3>
+                <p class="text-slate-500 text-xs mt-1">Enter your access code to unlock all chapters</p>
+            </div>
+
+            <form id="accessForm" onsubmit="handleAccessSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Access Code</label>
+                    <input type="text" id="accessCodeInput" placeholder="Enter code..." required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-slate-900 font-mono text-sm outline-none">
+                </div>
+                <button type="submit" class="w-full py-3 rounded-xl font-bold text-white bg-brand-600 hover:bg-brand-700 transition shadow-md">
+                    Unlock Portal
+                </button>
+            </form>
+
+            <div class="mt-6 pt-4 border-t border-slate-100 text-center">
+                <p class="text-xs text-slate-500 mb-2">Don't have an access code?</p>
+                <a href="https://wa.me/?text=Hi,%20I%20want%20to%20get%20access%20to%20the%20BSN%20Pharmacology%20Portal" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-medical-600 hover:text-medical-700">
+                    <i data-lucide="message-square" class="w-4 h-4"></i> Get Access Code via WhatsApp
+                </a>
+            </div>
+        </div>
     </div>
 
-    <div class="header-right">
-      <a href="login.html" class="header-btn">
-        <span>🔐</span> Login Dashboard
-      </a>
-    </div>
+    <!-- SCRIPT INITIALIZATION -->
+    <script>
+        // Render Lucide Icons
+        lucide.createIcons();
 
-    <!-- Logo & Title Badge -->
-    <div class="header-brand-wrap">
-      <img src="https://raw.githubusercontent.com/mudassirkhan3/pharmacology-3rd-semester/6aa44e6835f7f62abc4f17be73579a3ea4864969/images/1000125814.png" alt="MK Portal Logo" class="header-logo">
-      <span class="header-badge">Professional Study Portal • Pharmacology-I</span>
-    </div>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-    <h1>PHARMACOLOGY-I PORTAL</h1>
-    <p>Comprehensive Curriculum, Learning Outcomes, and Unit-Wise Examination Study Notes</p>
-  </header>
+        // Login Modal Controls
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+        }
 
-  <div class="container">
-    
-    <!-- Stats Overview Bar -->
-    <div class="stats-bar">
-      <div class="stat-item">
-        <h3>02</h3>
-        <p>Credit Hours</p>
-      </div>
-      <div class="stat-item">
-        <h3>05</h3>
-        <p>Core Units</p>
-      </div>
-      <div class="stat-item">
-        <h3>30</h3>
-        <p>MCQs Weightage</p>
-      </div>
-      <div class="stat-item">
-        <h3>06</h3>
-        <p>SEQs Weightage</p>
-      </div>
-    </div>
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+        }
 
-    <!-- UNLOCK BUNDLE / JAZZCASH PAYMENT BANNER -->
-    <div class="unlock-banner">
-      <div class="unlock-info">
-        <h3>Unlock Full Pharmacology Semester Bundle</h3>
-        <p>Get complete unit notes,imp tables,and practice MCQs.</p>
-      </div>
-      <button class="unlock-btn" onclick="openPaymentModal('Complete Pharmacology Semester Bundle',)">
-        <span>💳</span> Pay via JazzCash &amp; Unlock
-      </button>
-    </div>
-
-    <!-- PAYMENT / APPROVAL POPUP MODAL -->
-    <div id="paymentModal" class="modal-overlay" onclick="handleOverlayClick(event)">
-      <div class="modal-box">
-        <button class="close-btn" onclick="closeModal()">×</button>
-        <h2 style="font-size:1.25rem; color:var(--text-dark);">Unlock Portal Access</h2>
-        <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Support platform maintenance &amp; get instant access support.</p>
-        
-        <div class="price-tag">
-          <span style="font-size:0.95rem;">PKR</span> <span id="modalPrice">699</span>
-        </div>
-
-        <div class="payment-methods">
-          <strong>📱 JazzCash Direct Transfer</strong>
-          <p style="margin-top:6px;">Account No: <code>03241064487</code></p>
-          <p style="margin-top:4px;">Name: <strong>Mudassir Hussain Khan</strong></p>
-        </div>
-
-        <a id="whatsappBtn" href="#" target="_blank" class="modal-btn">
-          💬 Share Receipt on WhatsApp
-        </a>
-      </div>
-    </div>
-
-    <!-- ASK ADMIN POPUP MODAL -->
-    <div id="adminModal" class="modal-overlay" onclick="handleAdminOverlayClick(event)">
-      <div class="modal-box">
-        <button class="close-btn" onclick="closeAdminModal()">×</button>
-        <h2 style="font-size:1.25rem; color:var(--text-dark);">Connect with Admin</h2>
-        <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Have questions regarding notes, portal access, or study guides? Reach out directly via WhatsApp.</p>
-        
-        <div class="payment-methods" style="margin-top: 18px;">
-          <strong>📞 Direct Contact</strong>
-          <p style="margin-top:6px;">WhatsApp: <code>03241064487</code></p>
-          <p style="margin-top:4px;">Admin: <strong>Mudassir Khan</strong></p>
-        </div>
-
-        <a href="https://wa.me/923241064487?text=Hello%20Mudassir%20Khan,%20I%20have%20a%20question%20regarding%20the%20Pharmacology%20Portal." target="_blank" class="modal-btn">
-          💬 Chat on WhatsApp (03241064487)
-        </a>
-      </div>
-    </div>
-
-    <!-- Course Learning Outcomes Section -->
-    <section class="section-card">
-      <h2 class="section-title">Course Learning Outcomes &amp; Objectives</h2>
-      <p>By the end of this course, students will be equipped to master the following clinical and theoretical competencies:</p>
-      
-      <div class="objectives-grid">
-        <div class="objective-card">
-          <h4>01. Systemic Drug Effects</h4>
-          <p>Discuss drug impacts on gastrointestinal, genitourinary, and immunological systems.</p>
-        </div>
-        <div class="objective-card">
-          <h4>02. Indications &amp; Disorders</h4>
-          <p>Relate drug knowledge directly to indications for treating various systemic disorders.</p>
-        </div>
-        <div class="objective-card">
-          <h4>03. Clinical Rationale</h4>
-          <p>Explain the precise clinical rationale for selecting specific medications for patients.</p>
-        </div>
-        <div class="objective-card">
-          <h4>04. Nursing Interventions</h4>
-          <p>Select appropriate, safe nursing interventions for medications given in clinical settings.</p>
-        </div>
-        <div class="objective-card">
-          <h4>05. Client &amp; Family Education</h4>
-          <p>Impart effective patient and family medication education based on individual needs.</p>
-        </div>
-        <div class="objective-card">
-          <h4>06. Nursing Process Integration</h4>
-          <p>Utilize the nursing process to evaluate the necessity and efficacy of prescribed drugs.</p>
-        </div>
-        <div class="objective-card">
-          <h4>07. Legal &amp; Ethical Issues</h4>
-          <p>Integrate legal and ethical considerations into safe medication administration practices.</p>
-        </div>
-        <div class="objective-card">
-          <h4>08. Research &amp; New Drugs</h4>
-          <p>Incorporate research findings as a foundational base for nursing practice and drug development.</p>
-        </div>
-        <div class="objective-card">
-          <h4>09. Holistic Skill Application</h4>
-          <p>Incorporate cognitive, interpersonal, and technical skills from behavioral and natural sciences.</p>
-        </div>
-        <div class="objective-card">
-          <h4>10. Accurate Dosage Calculations</h4>
-          <p>Calculate exact drug dosages accurately when administering oral and parenteral medications.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Course Content & Units Breakdown Section -->
-    <section class="section-card">
-      <h2 class="section-title">Course Content &amp; Exam Weightage</h2>
-      <p>Overview of the 5 core syllabus units detailing topics, classifications, and examination marks distribution.</p>
-
-      <div class="table-container">
-        <table class="custom-table">
-          <thead>
-            <tr>
-              <th>Course Unit &amp; Title</th>
-              <th>Core Topics &amp; Content Breakdown</th>
-              <th>MCQs</th>
-              <th>SEQs</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Unit I: Introduction to Pharmacology</strong></td>
-              <td>
-                • Terminologies &amp; brief history of pharmacology<br>
-                • Purposes and sources of medication<br>
-                • Classification of drugs &amp; 3 drug supply systems<br>
-                • Drug standards, legislation &amp; information resources<br>
-                • Preparation of drug cards
-              </td>
-              <td>6</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td><strong>Unit II: Drugs Used to Prevent and Treat Infection</strong></td>
-              <td>
-                • Antibiotics, antifungal, antiparasitic, antimalarial, &amp; antiviral drugs<br>
-                • Actions, effects, and commonly used drug examples<br>
-                • Nursing measures and patient education for anti-infective therapy
-              </td>
-              <td>6</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td><strong>Unit III: Drugs Affecting the Gastrointestinal System</strong></td>
-              <td>
-                • Common symptoms &amp; GI disorders treated with medications<br>
-                • Uses, effects, classification, and action of GI drugs<br>
-                • Expected and adverse reactions<br>
-                • Nursing responsibilities and accurate dosage calculations
-              </td>
-              <td>6</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td><strong>Unit IV: Drugs Affecting Hematology System</strong></td>
-              <td>
-                • Uses, effects, classification, and action of hematology drugs<br>
-                • Expected and adverse reactions in blood disorders<br>
-                • Nursing responsibilities and precise dosage calculations
-              </td>
-              <td>6</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td><strong>Unit V: Anti-Neoplastic Drugs</strong></td>
-              <td>
-                • Uses, effects, and classification of anti-neoplastic agents<br>
-                • Cellular action on the body and toxicities<br>
-                • Expected/adverse reactions and specialized nursing responsibilities<br>
-                • Safe calculation of chemotherapy dosages
-              </td>
-              <td>6</td>
-              <td>1</td>
-            </tr>
-            <tr style="background-color: #f0fdf4; font-weight: 700;">
-              <td colspan="2" style="text-align: right;">Total Examination Weightage:</td>
-              <td>30</td>
-              <td>6</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-  </div>
-
-  <!-- FLOATING ACTION BUTTON (ASK ADMIN / WHATSAPP) -->
-  <div class="fab-container">
-    <div class="fab-tooltip">Ask Admin (WhatsApp)</div>
-    <button class="fab-btn" onclick="openAdminModal()" aria-label="Ask Admin on WhatsApp">
-      💬
-    </button>
-  </div>
-
-  <footer>
-    <div class="container">
-      <div class="author-credit">
-        <span>✨</span> Crafted with excellence by Mudassir Khan
-      </div>
-      <p style="margin-top: 15px; font-size: 0.8rem; opacity: 0.7;">&copy; 2026 Pharmacology-I Portal. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script>
-    function openPaymentModal(subjectName, price) {
-      document.getElementById('modalPrice').innerText = price;
-      const message = encodeURIComponent(`Hello Mudassir Khan, I want to request access for "${subjectName}" (PKR ${price}). Here is my JazzCash support confirmation screenshot.`);
-      document.getElementById('whatsappBtn').href = `https://wa.me/923241064487?text=${message}`;
-      document.getElementById('paymentModal').classList.add('open');
-    }
-
-    function closeModal() {
-      document.getElementById('paymentModal').classList.remove('open');
-    }
-
-    function handleOverlayClick(event) {
-      if (event.target.id === 'paymentModal') {
-        closeModal();
-      }
-    }
-
-    function openAdminModal() {
-      document.getElementById('adminModal').classList.add('open');
-    }
-
-    function closeAdminModal() {
-      document.getElementById('adminModal').classList.remove('open');
-    }
-
-    function handleAdminOverlayClick(event) {
-      if (event.target.id === 'adminModal') {
-        closeAdminModal();
-      }
-    }
-  </script>
-
+        // Handle Form Submission (Preserving access code handling logic)
+        function handleAccessSubmit(e) {
+            e.preventDefault();
+            const code = document.getElementById('accessCodeInput').value.trim();
+            if (code) {
+                // Save access session in local storage
+                localStorage.setItem('pharma_access_code', code);
+                alert('Access Granted! Redirecting to Dashboard...');
+                closeLoginModal();
+                // Redirect to main portal dashboard/chapters if applicable
+                window.location.href = "chapter1.html";
+            }
+        }
+    </script>
 </body>
 </html>
