@@ -223,6 +223,19 @@
     .mcqs-box { border-top: 3px solid #059669; background: linear-gradient(135deg, #f8fafc 0%, #ecfdf5 100%); }
     .mcqs-box h4 { color: #047857 !important; }
 
+    /* Student & Faculty Reviews Section */
+    .reviews-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 12px; }
+    .review-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.2s; }
+    .review-card:hover { border-color: #0284c7; background: white; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08); transform: translateY(-2px); }
+    .review-rating { color: #f59e0b; font-size: 0.95rem; margin-bottom: 8px; font-weight: 800; letter-spacing: 1px; }
+    .review-text { font-size: 0.82rem; color: #334155; line-height: 1.5; font-style: italic; margin-bottom: 12px; flex: 1; }
+    .reviewer-meta { border-top: 1px dashed #cbd5e1; padding-top: 8px; display: flex; flex-direction: column; gap: 2px; }
+    .reviewer-name { font-weight: 800; font-size: 0.84rem; color: #0f172a; }
+    .reviewer-role { font-size: 0.72rem; font-weight: 700; color: #0284c7; }
+    .leave-review-btn { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; text-decoration: none; padding: 10px 18px; border-radius: 12px; font-weight: 800; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25); transition: all 0.2s; }
+    .leave-review-btn:hover { opacity: 0.95; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(2, 132, 199, 0.35); }
+
     /* Modals */
     .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; padding: 16px; backdrop-filter: blur(3px); }
     .modal-box { background: white; border-radius: 20px; padding: 24px; width: 100%; max-width: 460px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); text-align: left; }
@@ -410,7 +423,8 @@
             </div>
             <span class="chapter-link-text">Read Notes (Open) →</span>
           </a>
-<a href="chapter2.html" class="chapter-box" onclick="return checkChapterAccess(event, 2)">
+
+          <a href="chapter2.html" class="chapter-box" onclick="return checkChapterAccess(event, 2)">
             <div>
               <span id="lockBadge2" class="chapter-badge-lock" style="font-size: 0.65rem; padding: 2px 6px; background-color: #fee2e2; color: #991b1b; border-radius: 6px; font-weight: 600; display: inline-block; margin-bottom: 4px;">🔒 Locked</span>
               <h4>Unit II: Infections</h4>
@@ -472,6 +486,55 @@
             </div>
             <span class="chapter-link-text">Start Quiz →</span>
           </a>
+        </div>
+      </div>
+
+      <!-- Student & Faculty Reviews Section -->
+      <div class="card">
+        <div class="reviews-header-row">
+          <h2>Student &amp; Faculty Reviews</h2>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfmCoyJkxUlfrv3ZdPm5HN9gNh5HsoopQNpMyaxPgY9UqFZNQ/viewform" target="_blank" rel="noopener noreferrer" class="leave-review-btn">
+            ✍️ Leave a Review
+          </a>
+        </div>
+        <p>Read verified feedback from nursing students and faculty members using this learning portal:</p>
+        
+        <div class="reviews-grid">
+          <!-- Review Card 1 -->
+          <div class="review-card">
+            <div>
+              <div class="review-rating">★★★★★</div>
+              <p class="review-text">"The structured drug breakdowns and daily MCQ spaced-repetition tools are exceptionally well organized for nursing exam preparation."</p>
+            </div>
+            <div class="reviewer-meta">
+              <span class="reviewer-name">Faculty Reviewer</span>
+              <span class="reviewer-role">Nursing Faculty Member</span>
+            </div>
+          </div>
+
+          <!-- Review Card 2 -->
+          <div class="review-card">
+            <div>
+              <div class="review-rating">★★★★★</div>
+              <p class="review-text">"Having access to high-yield past paper questions alongside daily quick-flip mnemonics made studying for semester exams much clearer."</p>
+            </div>
+            <div class="reviewer-meta">
+              <span class="reviewer-name">BSN Student</span>
+              <span class="reviewer-role">BSN Student (4th Semester)</span>
+            </div>
+          </div>
+
+          <!-- Review Card 3 -->
+          <div class="review-card">
+            <div>
+              <div class="review-rating">★★★★★</div>
+              <p class="review-text">"The instant drug search and classification tables make cross-referencing clinical drug mechanisms effortless during study sessions."</p>
+            </div>
+            <div class="reviewer-meta">
+              <span class="reviewer-name">BSN Student</span>
+              <span class="reviewer-role">BSN Student</span>
+            </div>
+          </div>
         </div>
       </div>
 
