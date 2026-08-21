@@ -106,7 +106,7 @@
                 
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100/80 border border-brand-200 text-brand-700 text-xs font-semibold uppercase tracking-wider mx-auto">
                     <i data-lucide="graduation-cap" class="w-4 h-4 text-brand-600"></i>
-                    3rd Semester BSN • curated by by Mudassir Khan
+                    3rd Semester BSN • curated  by Mudassir Khan
                 </div>
                 
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
@@ -116,7 +116,7 @@
                     </span>
                 </h1>
 
-                <!-- Short & Concise Typewriter Message -->
+                <!-- Typewriter Message: Learn it -> Understand it -> Practice it -> Revise it -->
                 <div class="text-lg sm:text-xl font-bold text-slate-700 flex items-center justify-center gap-1.5 h-8">
                     <span id="typewriterText" class="text-medical-600 font-mono font-bold"></span><span class="w-2 h-5 bg-medical-500 animate-blink"></span>
                 </div>
@@ -365,14 +365,8 @@
                         Stop jumping between textbooks, notes and scattered questions.
                     </h3>
                     
-                    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-sm sm:text-base font-extrabold text-white">
-                        <span class="px-3 py-1 bg-brand-800/80 rounded-lg border border-brand-700">Learn it</span>
-                        <span class="text-medical-400">→</span>
-                        <span class="px-3 py-1 bg-brand-800/80 rounded-lg border border-brand-700">Understand it</span>
-                        <span class="text-medical-400">→</span>
-                        <span class="px-3 py-1 bg-brand-800/80 rounded-lg border border-brand-700">Practice it</span>
-                        <span class="text-medical-400">→</span>
-                        <span class="px-3 py-1 bg-medical-600/90 rounded-lg border border-medical-500">Revise it</span>
+                    <div class="text-lg sm:text-2xl font-black text-medical-400 font-mono">
+                        Learn it → Understand it → Practice it → Revise it
                     </div>
 
                     <p class="text-sm font-semibold text-slate-300">
@@ -390,23 +384,16 @@
             </div>
         </section>
 
-        <!-- SECTION 4 — FREE DEMO -->
+        <!-- SECTION 4 — FREE DEMO (Cleaned Layout) -->
         <section id="demo" class="py-20 bg-gradient-to-b from-brand-900 to-slate-900 text-white relative overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 
                 <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-medical-500/20 text-medical-400 border border-medical-500/30 text-xs font-bold uppercase tracking-wider">
-                        <i data-lucide="unlock" class="w-3.5 h-3.5"></i>
-                        Free Access
-                    </span>
                     <h2 class="text-3xl sm:text-4xl font-black tracking-tight">
                         EXPERIENCE THE PORTAL BEFORE YOU BUY
                     </h2>
                     <p class="text-xl font-semibold text-brand-300">
                         Start with Chapter 1 — Basic Principles of Pharmacology
-                    </p>
-                    <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto pt-2">
-                        Explore the ADME concept through interactive animation and simulation, then test your understanding with practice questions.
                     </p>
                 </div>
 
@@ -723,11 +710,13 @@
                     Learn smarter. Revise faster. Practice better.
                 </p>
                 <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/chapter1.html" class="px-8 py-4 rounded-xl font-extrabold text-brand-900 bg-white hover:bg-brand-50 shadow-xl transition active:scale-95 text-base">
+                    <!-- Modified Button Color: Medical Green -->
+                    <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/chapter1.html" class="px-8 py-4 rounded-xl font-extrabold text-white bg-medical-600 hover:bg-medical-500 shadow-xl transition active:scale-95 text-base flex items-center justify-center gap-2">
+                        <i data-lucide="play-circle" class="w-5 h-5"></i>
                         TRY FREE DEMO
                     </a>
-                    <a href="login.html" class="px-8 py-4 rounded-xl font-extrabold text-white bg-medical-600 hover:bg-medical-500 shadow-xl transition active:scale-95 text-base inline-flex items-center justify-center gap-2">
-                        <i data-lucide="log-in" class="w-5 h-5"></i>
+                    <a href="login.html" class="px-8 py-4 rounded-xl font-extrabold text-slate-900 bg-white hover:bg-brand-50 shadow-xl transition active:scale-95 text-base inline-flex items-center justify-center gap-2">
+                        <i data-lucide="log-in" class="w-5 h-5 text-brand-600"></i>
                         STUDENT LOGIN
                     </a>
                 </div>
@@ -746,7 +735,7 @@
                         Pharmacology — 3rd Semester
                     </div>
                     <p class="text-slate-400 text-xs max-w-sm">
-                        Engineered and curated by Mudassir Khan for 3rd semester nursing students.
+                        curated by Mudassir Khan for 3rd semester nursing students.
                     </p>
                 </div>
 
@@ -789,13 +778,12 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Fast & Short Typewriter Script
+        // Typewriter Script for Workflow Sequence
         const phrases = [
+            "Learn it.",
             "Understand it.",
-            "Visualize it.",
-            "Remember it.",
             "Practice it.",
-            "Master it."
+            "Revise it."
         ];
         
         let phraseIdx = 0;
@@ -814,15 +802,15 @@
                 charIdx++;
             }
 
-            let speed = isDeleting ? 30 : 60; // Typing speed
+            let speed = isDeleting ? 35 : 70;
 
             if (!isDeleting && charIdx === current.length) {
-                speed = 1000; // Brief pause on full word
+                speed = 1100; // Pause on full phrase
                 isDeleting = true;
             } else if (isDeleting && charIdx === 0) {
                 isDeleting = false;
                 phraseIdx = (phraseIdx + 1) % phrases.length;
-                speed = 150; // Brief pause before typing next
+                speed = 200; // Pause before typing next phrase
             }
 
             setTimeout(playTypewriter, speed);
