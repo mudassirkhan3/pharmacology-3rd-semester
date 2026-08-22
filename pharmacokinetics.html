@@ -27,8 +27,12 @@
     .back-btn:hover { background: var(--primary-dark); }
 
     .badge { display: inline-block; padding: 4px 12px; background: #eff6ff; color: var(--primary); font-weight: 800; font-size: 0.75rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; border: 1px solid #bfdbfe; }
-    .hy-badge { display: inline-block; padding: 2px 8px; background: #fef3c7; color: #92400e; font-weight: 800; font-size: 0.72rem; border-radius: 6px; text-transform: uppercase; margin-left: 6px; vertical-align: middle; }
-    .risk-badge { display: inline-block; padding: 2px 8px; background: #fee2e2; color: #991b1b; font-weight: 800; font-size: 0.72rem; border-radius: 6px; text-transform: uppercase; margin-left: 6px; vertical-align: middle; }
+    
+    /* BEAUTIFUL UHS BADGE */
+    .uhs-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); color: #92400e; font-weight: 800; font-size: 0.7rem; border-radius: 6px; border: 1px solid #f59e0b; text-transform: uppercase; margin-left: 6px; vertical-align: middle; }
+
+    /* HIGHLIGHT TEXT TAG */
+    mark.hl { background: #fef08a; color: #854d0e; font-weight: 700; padding: 1px 4px; border-radius: 4px; }
 
     h1 { font-size: clamp(1.4rem, 5vw, 2.3rem); font-weight: 900; background: linear-gradient(135deg, #1e3a8a 0%, var(--primary) 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; line-height: 1.25; }
     
@@ -73,11 +77,13 @@
     ul li { position: relative; padding-left: 20px; margin-bottom: 8px; color: var(--text-muted); font-size: 0.92rem; }
     ul li::before { content: '▪'; position: absolute; left: 4px; color: var(--primary); font-weight: bold; font-size: 1.1rem; top: -2px; }
 
-    /* HIGH-YIELD MOBILE FRACTION FORMULA DISPLAY */
-    .formula-box { background: #f8fafc; border: 1.5px solid var(--primary); padding: 12px; border-radius: 10px; margin: 12px 0; font-weight: bold; color: var(--primary-dark); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.88rem; flex-wrap: wrap; }
-    .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; padding: 0 4px; }
-    .frac .num { border-bottom: 1.5px solid var(--primary-dark); padding-bottom: 2px; }
-    .frac .den { padding-top: 2px; }
+    /* HIGHLY IMPROVED RESPONSIVE MATH FORMULA BOX */
+    .formula-box { background: #f0fdf4; border: 1.5px solid #86efac; padding: 12px 14px; border-radius: 10px; margin: 12px 0; font-family: 'Courier New', Courier, monospace; font-weight: bold; color: #166534; text-align: center; overflow-x: auto; font-size: 0.9rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+    .formula-title { font-size: 0.75rem; text-transform: uppercase; color: #15803d; letter-spacing: 0.5px; margin-bottom: 2px; }
+    .fraction { display: inline-flex; flex-direction: column; vertical-align: middle; text-anchor: middle; text-align: center; padding: 0 4px; }
+    .numerator { border-bottom: 2px solid #166534; padding-bottom: 2px; }
+    .denominator { padding-top: 2px; }
+    .eq-row { display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap; }
 
     .graph-box { background: white; border: 1.5px solid var(--card-border); border-radius: 12px; padding: 14px; margin: 16px 0; text-align: center; }
 
@@ -99,8 +105,6 @@
       .mobile-anim-track { min-height: 30px; margin: 8px auto; }
       .moving-pill { font-size: 1.25rem; }
       
-      .formula-box { font-size: 0.82rem; padding: 10px 6px; }
-
       @keyframes movePillMobile {
         0%   { left: 15%; transform: translate(-50%, -50%) scale(1); }
         50%  { left: 85%; transform: translate(-50%, -50%) scale(1.15); }
@@ -138,21 +142,21 @@
 
   <!-- SECTION 1: ABSORPTION, GI MECHANISMS & BIOAVAILABILITY -->
   <h2>1. Absorption, GI Mechanisms & Bioavailability</h2>
-  <p><strong>Absorption</strong> is the movement of a drug from its site of administration into the systemic bloodstream. When a drug is administered intravenously (IV), absorption is bypassed entirely because it enters the blood stream directly with 100 percent efficiency.</p>
+  <p><strong>Absorption</strong> is the movement of a drug from its site of administration into the systemic bloodstream. When a drug is administered <mark class="hl">intravenously (IV)</mark>, absorption is bypassed entirely because it enters the blood stream directly with 100 percent efficiency.</p>
 
   <div class="grid-2">
     <div class="card-box">
       <h3>🧬 Mechanisms of Absorption from the GI Tract</h3>
       <p>When you swallow an oral tablet, drug molecules must cross the gastrointestinal (GI) epithelial barrier to enter circulation through several distinct mechanisms:</p>
       <ul>
-        <li><strong>Transcellular Passive Diffusion:</strong> The most common route. Fat-soluble (lipophilic) drug molecules dissolve directly into and slip across the lipid cell membranes of intestinal enterocytes from high to low concentration.</li>
+        <li><strong>Transcellular Passive Diffusion:</strong> The most common route. <mark class="hl">Lipophilic</mark> drug molecules dissolve directly into and slip across the lipid cell membranes of intestinal enterocytes from high to low concentration.</li>
         <li><strong>Paracellular Transport:</strong> Extremely small, water-soluble polar molecules squeeze through microscopic tight junction spaces between adjacent intestinal cells.</li>
         <li><strong>Carrier-Mediated Transport:</strong> Transporter proteins embedded in the cell membrane actively carry nutrient-like drug molecules across the intestinal wall.</li>
         <li><strong>Endocytosis / Pinocytosis:</strong> The cell membrane engulfs very large macromolecular drugs, pulling them inside in vesicles.</li>
       </ul>
     </div>
     <div class="card-box">
-      <h3>📈 Factors Affecting Absorption & Bioavailability <span class="hy-badge">⭐ High-Yield</span></h3>
+      <h3>📈 Factors Affecting Absorption & Bioavailability <span class="uhs-badge">⭐ UHS Question</span></h3>
       <p><strong>Key Factors Affecting Absorption:</strong></p>
       <ul>
         <li><strong>Surface Area:</strong> The small intestine features villi and microvilli, providing a massive surface area that absorbs drugs vastly faster than the stomach.</li>
@@ -161,18 +165,21 @@
       </ul>
       <p style="margin-top: 10px;"><strong>The Concept of Bioavailability (F):</strong></p>
       <p>Bioavailability represents the fraction (percentage) of an administered drug that reaches the systemic circulation unchanged.</p>
-      
-      <!-- Fraction Formula Mobile Rendering -->
+
+      <!-- BEAUTIFUL FRACTION FORMULA -->
       <div class="formula-box">
-        <span>Bioavailability (F) = </span>
-        <div class="frac">
-          <span class="num">AUC Oral</span>
-          <span class="den">AUC IV</span>
+        <div class="formula-title">Bioavailability Equation</div>
+        <div class="eq-row">
+          <span>Bioavailability (F) =</span>
+          <div class="fraction">
+            <span class="numerator">AUC oral</span>
+            <span class="denominator">AUC IV</span>
+          </div>
+          <span>&times; 100</span>
         </div>
-        <span>× 100</span>
       </div>
 
-      <p><strong>Factors Affecting Bioavailability:</strong> First-pass hepatic metabolism, chemical instability in GI acid, drug solubility, and food-drug interactions.</p>
+      <p><strong>Factors Affecting Bioavailability:</strong> <mark class="hl">First-pass hepatic metabolism</mark>, chemical instability in GI acid, drug solubility, and food-drug interactions.</p>
     </div>
   </div>
 
@@ -185,22 +192,25 @@
       <h3>🌐 Key Factors Affecting Distribution</h3>
       <ul>
         <li><strong>Blood Flow (Perfusion):</strong> Highly perfused organs like the brain, heart, and liver receive drugs almost instantly. Tissues with low perfusion (fat, bone, skin) take much longer.</li>
-        <li><strong>Capillary Permeability:</strong> Leaky capillary beds in the liver and spleen allow large drug molecules to pass. Conversely, tight endothelial junctions in the brain form the Blood-Brain Barrier, restricting hydrophilic drugs.</li>
-        <li><strong>Plasma Protein Binding:</strong> Drugs can bind reversibly to plasma proteins like albumin. Only the <em>free (unbound)</em> fraction is pharmacologically active and capable of reaching target tissue receptors.</li>
+        <li><strong>Capillary Permeability:</strong> Leaky capillary beds in the liver and spleen allow large drug molecules to pass. Conversely, tight endothelial junctions in the brain form the <mark class="hl">Blood-Brain Barrier</mark>, restricting hydrophilic drugs.</li>
+        <li><strong>Plasma Protein Binding:</strong> Drugs can bind reversibly to plasma proteins like <mark class="hl">albumin</mark>. Only the <em>free (unbound)</em> fraction is pharmacologically active and capable of reaching target tissue receptors.</li>
         <li><strong>Tissue Binding:</strong> Certain drugs accumulate avidly in specific body reservoirs (e.g., tetracycline antibiotics binding to calcium in bones and teeth).</li>
         <li><strong>Lipophilicity:</strong> Highly lipid-soluble drugs readily cross cell membranes and concentrate heavily in adipose (fat) tissue.</li>
       </ul>
     </div>
     <div class="card-box">
-      <h3>📦 Volume of Distribution (Vd) <span class="hy-badge">⭐ UHS Question</span></h3>
+      <h3>📦 Volume of Distribution (Vd) <span class="uhs-badge">⭐ UHS Question</span></h3>
       <p><strong>Volume of Distribution</strong> is a theoretical fluid volume that would be required to contain all the drug in the body at the same concentration measured in blood plasma.</p>
-      
-      <!-- Fraction Formula Mobile Rendering -->
+
+      <!-- BEAUTIFUL FRACTION FORMULA -->
       <div class="formula-box">
-        <span>Vd = </span>
-        <div class="frac">
-          <span class="num">Total Amount of Drug in Body</span>
-          <span class="den">Plasma Concentration (C)</span>
+        <div class="formula-title">Volume of Distribution Equation</div>
+        <div class="eq-row">
+          <span>Vd =</span>
+          <div class="fraction">
+            <span class="numerator">Total Amount of Drug in Body</span>
+            <span class="denominator">Plasma Concentration</span>
+          </div>
         </div>
       </div>
 
@@ -222,11 +232,11 @@
       <p><strong>Functionalization:</strong> Phase 1 involves oxidation, reduction, or hydrolysis, which introduces or unmasks polar functional groups (such as hydroxyl groups). This slightly increases water solubility and prepares the drug for Phase 2.</p>
     </div>
     <div class="card-box">
-      <h3>⚙️ The CYP450 System <span class="hy-badge">⭐ Exam Core</span></h3>
+      <h3>⚙️ The CYP450 System in Detail <span class="uhs-badge">⭐ UHS Question</span></h3>
       <p>The Cytochrome P450 enzyme family in the liver acts as the primary enzymatic engine for drug biotransformation.</p>
       <ul>
-        <li><strong>Inducers:</strong> Drugs like rifampin accelerate enzyme activity, causing companion drugs to break down prematurely (leading to therapeutic failure).</li>
-        <li><strong>Inhibitors:</strong> Drugs like ketoconazole suppress CYP450 activity, causing companion drugs to accumulate to toxic levels.</li>
+        <li><strong>Inducers:</strong> Drugs like rifampin or St. John's wort accelerate enzyme activity, causing companion drugs to break down prematurely (leading to therapeutic failure).</li>
+        <li><strong>Inhibitors:</strong> Drugs like ketoconazole or grapefruit juice suppress CYP450 activity, causing companion drugs to accumulate to toxic levels.</li>
       </ul>
     </div>
     <div class="card-box">
@@ -242,20 +252,22 @@
   <div class="grid-2">
     <div class="card-box">
       <h3>📈 First-Order Kinetics (Exponential Elimination)</h3>
-      <p><strong>How it works:</strong> The body eliminates a <em>constant percentage</em> of the drug per unit time. If you have 100mg and 50 percent is eliminated every hour, you have 50mg left after hour one, 25mg after hour two, and so on.</p>
+      <p><strong>How it works:</strong> The body eliminates a <mark class="hl">constant percentage</mark> of the drug per unit time. If you have 100mg and 50 percent is eliminated every hour, you have 50mg left after hour one, 25mg after hour two, and so on.</p>
       
       <div class="formula-box">
-        <span>Rate of Elimination = k × Drug Concentration</span>
+        <div class="formula-title">First-Order Rate Equation</div>
+        <span>Rate of Elimination = Constant &times; Drug Concentration</span>
       </div>
 
       <p><strong>Key Feature:</strong> The half-life is constant regardless of plasma concentration. Most clinical drugs follow first-order kinetics at therapeutic dosages.</p>
     </div>
     <div class="card-box">
-      <h3>📊 Zero-Order Kinetics <span class="risk-badge">⚠️ Toxicity Risk</span></h3>
-      <p><strong>How it works:</strong> The body eliminates a <em>constant amount</em> of drug per unit time, regardless of how high the concentration is. This occurs when metabolic enzymes become saturated.</p>
-      
+      <h3>📊 Zero-Order Kinetics (Constant Rate Elimination) <span class="uhs-badge">⭐ UHS Question</span></h3>
+      <p><strong>How it works:</strong> The body eliminates a <mark class="hl">constant amount</mark> of drug per unit time, regardless of how high the concentration is. This occurs when metabolic enzymes become saturated.</p>
+
       <div class="formula-box">
-        <span>Rate of Elimination = Constant (Enzymes Saturated)</span>
+        <div class="formula-title">Zero-Order Rate Equation</div>
+        <span>Rate of Elimination = Constant (Independent of Concentration)</span>
       </div>
 
       <p><strong>Key Feature:</strong> If dosage exceeds enzyme capacity, small dose increases cause sudden, dangerous toxicity spikes.</p>
@@ -263,33 +275,36 @@
     </div>
   </div>
 
-  <!-- GRAPH COMPARISON -->
-  <h2>5. Visual Comparison of Metabolism Kinetics</h2>
-  <p>The graphs below illustrate the distinct elimination curves for First-Order versus Zero-Order kinetics over time.</p>
-
-  <div class="grid-2">
-    <div class="graph-box">
-      <h3>First-Order Kinetics Curve</h3>
-      <svg viewBox="0 0 300 180" width="100%" height="auto">
-        <line x1="30" y1="150" x2="270" y2="150" stroke="#475569" stroke-width="2" />
-        <line x1="30" y1="20" x2="30" y2="150" stroke="#475569" stroke-width="2" />
-        <text x="150" y="172" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle">Time</text>
-        <text x="15" y="85" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle" transform="rotate(-90 15 85)">Conc</text>
-        <path d="M 30 30 Q 100 130 260 145" fill="none" stroke="#3b82f6" stroke-width="3" />
-      </svg>
-      <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px;">Curved drop: Elimination rate decreases proportionally as concentration falls.</p>
+  <!-- GRAPH COMPARISON RE-POSITIONED DIRECTLY UNDER KINETICS SECTION -->
+  <div class="graph-box">
+    <h3 style="margin-bottom: 10px;">Visual Comparison of Elimination Curves</h3>
+    <div class="grid-2" style="margin: 0;">
+      <div>
+        <h4 style="font-size: 0.88rem; color: var(--primary-dark); margin-bottom: 4px;">First-Order (Curved Decay)</h4>
+        <svg viewBox="0 0 300 160" width="100%" height="auto">
+          <line x1="30" y1="130" x2="270" y2="130" stroke="#475569" stroke-width="2" />
+          <line x1="30" y1="10" x2="30" y2="130" stroke="#475569" stroke-width="2" />
+          <text x="150" y="150" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle">Time</text>
+          <text x="15" y="70" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle" transform="rotate(-90 15 70)">Conc</text>
+          <path d="M 30 20 Q 90 110 260 125" fill="none" stroke="#3b82f6" stroke-width="3" />
+        </svg>
+      </div>
+      <div>
+        <h4 style="font-size: 0.88rem; color: #dc2626; margin-bottom: 4px;">Zero-Order (Linear Drop)</h4>
+        <svg viewBox="0 0 300 160" width="100%" height="auto">
+          <line x1="30" y1="130" x2="270" y2="130" stroke="#475569" stroke-width="2" />
+          <line x1="30" y1="10" x2="30" y2="130" stroke="#475569" stroke-width="2" />
+          <text x="150" y="150" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle">Time</text>
+          <text x="15" y="70" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle" transform="rotate(-90 15 70)">Conc</text>
+          <line x1="30" y1="20" x2="240" y2="130" stroke="#ef4444" stroke-width="3" />
+        </svg>
+      </div>
     </div>
-    <div class="graph-box">
-      <h3>Zero-Order Kinetics Curve</h3>
-      <svg viewBox="0 0 300 180" width="100%" height="auto">
-        <line x1="30" y1="150" x2="270" y2="150" stroke="#475569" stroke-width="2" />
-        <line x1="30" y1="20" x2="30" y2="150" stroke="#475569" stroke-width="2" />
-        <text x="150" y="172" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle">Time</text>
-        <text x="15" y="85" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle" transform="rotate(-90 15 85)">Conc</text>
-        <line x1="30" y1="30" x2="240" y2="150" stroke="#ef4444" stroke-width="3" />
-      </svg>
-      <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px;">Straight line drop: Fixed amount removed per unit time due to enzyme saturation.</p>
-    </div>
+    <!-- EXACT 2-LINE EXPLANATION -->
+    <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 10px; margin-bottom: 0;">
+      First-order kinetics displays an exponential curved drop because elimination decreases proportionally as drug concentration drops.<br>
+      Zero-order kinetics displays a straight linear drop because a fixed amount of drug is cleared per unit time due to enzyme saturation.
+    </p>
   </div>
 
   <!-- SECTION 6: ELIMINATION, RENAL FACTORS, CLEARANCE & HALF-LIFE -->
@@ -310,27 +325,33 @@
       <h3>⏱️ Clearance and Half-Life Concepts</h3>
       <p><strong>Total Body Clearance (CL):</strong> The volume of blood plasma completely cleared of a drug per unit of time by all eliminating organs combined.</p>
       
-      <!-- Fraction Formula Mobile Rendering -->
+      <!-- BEAUTIFUL FRACTION FORMULA -->
       <div class="formula-box">
-        <span>CL = </span>
-        <div class="frac">
-          <span class="num">Rate of Elimination</span>
-          <span class="den">Plasma Concentration (C)</span>
+        <div class="formula-title">Clearance Equation</div>
+        <div class="eq-row">
+          <span>Total Clearance (CL) =</span>
+          <div class="fraction">
+            <span class="numerator">Rate of Elimination</span>
+            <span class="denominator">Plasma Concentration</span>
+          </div>
         </div>
       </div>
 
-      <p><strong>Half-Life (t½):</strong> The time required for the concentration of a drug in the body to decrease by exactly 50 percent.</p>
-      
-      <!-- Fraction Formula Mobile Rendering -->
+      <p><strong>Half-Life (t1/2):</strong> The time required for the concentration of a drug in the body to decrease by exactly 50 percent.</p>
+
+      <!-- BEAUTIFUL FRACTION FORMULA -->
       <div class="formula-box">
-        <span>t½ = </span>
-        <div class="frac">
-          <span class="num">0.693 × Vd</span>
-          <span class="den">Clearance (CL)</span>
+        <div class="formula-title">Half-Life Equation</div>
+        <div class="eq-row">
+          <span>Half-Life (t1/2) =</span>
+          <div class="fraction">
+            <span class="numerator">0.693 &times; Vd</span>
+            <span class="denominator">CL</span>
+          </div>
         </div>
       </div>
 
-      <p><strong>Clinical Rule of Thumb:</strong> It takes approximately 4 to 5 half-lives for a drug to be completely eliminated or to reach a stable steady-state concentration with regular dosing.</p>
+      <p><strong>Clinical Rule of Thumb:</strong> It takes approximately <mark class="hl">4 to 5 half-lives</mark> for a drug to be completely eliminated or to reach a stable steady-state concentration with regular dosing.</p>
     </div>
   </div>
 
@@ -340,30 +361,36 @@
 
   <div class="grid-2">
     <div class="card-box">
-      <h3>🚀 Loading Dose <span class="hy-badge">⭐ Formula Choice</span></h3>
+      <h3>🚀 Loading Dose <span class="uhs-badge">⭐ UHS Question</span></h3>
       <p><strong>Definition:</strong> A large initial dose given immediately to achieve the target therapeutic concentration rapidly, without waiting through 4 to 5 half-lives of regular dosing.</p>
-      
-      <!-- Fraction Formula Mobile Rendering -->
+
+      <!-- BEAUTIFUL FRACTION FORMULA -->
       <div class="formula-box">
-        <span>Loading Dose = </span>
-        <div class="frac">
-          <span class="num">Target Concentration × Vd</span>
-          <span class="den">Bioavailability (F)</span>
+        <div class="formula-title">Loading Dose Equation</div>
+        <div class="eq-row">
+          <span>Loading Dose =</span>
+          <div class="fraction">
+            <span class="numerator">Target Concentration &times; Vd</span>
+            <span class="denominator">Bioavailability (F)</span>
+          </div>
         </div>
       </div>
 
       <p><strong>When to use:</strong> Used when a drug has a long half-life and an immediate medical crisis requires rapid symptom control (e.g., emergency anti-arrhythmic or antibiotic loading).</p>
     </div>
     <div class="card-box">
-      <h3>🔄 Maintenance Dose <span class="hy-badge">⭐ Formula Choice</span></h3>
+      <h3>🔄 Maintenance Dose <span class="uhs-badge">⭐ UHS Question</span></h3>
       <p><strong>Definition:</strong> Smaller, repeated doses given at regular intervals to replace the exact amount of drug eliminated from the body since the previous dose, maintaining a steady therapeutic concentration window.</p>
-      
-      <!-- Fraction Formula Mobile Rendering -->
+
+      <!-- BEAUTIFUL FRACTION FORMULA -->
       <div class="formula-box">
-        <span>Maintenance Dose = </span>
-        <div class="frac">
-          <span class="num">Target Concentration × Clearance × Interval</span>
-          <span class="den">Bioavailability (F)</span>
+        <div class="formula-title">Maintenance Dose Equation</div>
+        <div class="eq-row">
+          <span>Maintenance Dose =</span>
+          <div class="fraction">
+            <span class="numerator">Target Concentration &times; Clearance &times; Dosing Interval</span>
+            <span class="denominator">Bioavailability (F)</span>
+          </div>
         </div>
       </div>
 
