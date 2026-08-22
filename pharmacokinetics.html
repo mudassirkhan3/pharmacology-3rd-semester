@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Pharmacokinetics: Complete ADME, Kinetics & Dosage Design | Pharmacology Fundamentals</title>
   <style>
     :root {
@@ -19,19 +19,19 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.8; padding: 40px 16px; min-height: 100vh; }
+    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.8; padding: 24px 12px; min-height: 100vh; }
     
     .container { max-width: 950px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(16px); padding: 50px 40px; border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: var(--shadow-glow); }
     
-    .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; margin-bottom: 30px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2); }
+    .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; margin-bottom: 30px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2); min-height: 44px; }
     .back-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
 
     .badge { display: inline-block; padding: 6px 14px; background: #eff6ff; color: var(--primary); font-weight: 800; font-size: 0.8rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; border: 1px solid #bfdbfe; }
 
-    h1 { font-size: 2.5rem; font-weight: 900; background: linear-gradient(135deg, #1e3a8a 0%, var(--primary) 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
+    h1 { font-size: 2.5rem; font-weight: 900; background: linear-gradient(135deg, #1e3a8a 0%, var(--primary) 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; line-height: 1.25; }
     
-    h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #bfdbfe; padding-bottom: 10px; }
-    h2::before { content: ''; display: inline-block; width: 6px; height: 24px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; }
+    h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #bfdbfe; padding-bottom: 10px; flex-wrap: wrap; }
+    h2::before { content: ''; display: inline-block; width: 6px; height: 24px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; flex-shrink: 0; }
 
     h3 { font-size: 1.2rem; color: var(--primary-dark); margin: 20px 0 10px; }
 
@@ -42,12 +42,12 @@
     
     .card-box { background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); transition: 0.3s; }
     .card-box:hover { transform: translateY(-5px); border-color: var(--primary); }
-    .card-box h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
+    .card-box h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 
     /* ADME ANIMATION CONTAINER */
-    .animation-container { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 2px solid var(--primary); border-radius: 16px; padding: 30px; margin: 30px 0; text-align: center; box-shadow: 0 10px 25px rgba(59, 130, 246, 0.15); }
-    .pipeline { display: flex; justify-content: space-between; align-items: center; position: relative; margin: 30px 0; flex-wrap: wrap; gap: 15px; }
-    .pipeline-step { background: white; border: 2px solid var(--primary); border-radius: 12px; padding: 15px; width: 22%; min-width: 140px; font-weight: 700; color: var(--primary-dark); box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: relative; z-index: 2; transition: 0.3s; }
+    .animation-container { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 2px solid var(--primary); border-radius: 16px; padding: 30px 20px; margin: 30px 0; text-align: center; box-shadow: 0 10px 25px rgba(59, 130, 246, 0.15); overflow: hidden; }
+    .pipeline { display: flex; justify-content: space-between; align-items: center; position: relative; margin: 30px 0; flex-wrap: wrap; gap: 12px; }
+    .pipeline-step { background: white; border: 2px solid var(--primary); border-radius: 12px; padding: 15px 10px; flex: 1 1 130px; min-width: 120px; font-weight: 700; color: var(--primary-dark); box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: relative; z-index: 2; transition: 0.3s; text-align: center; }
     .pipeline-step:hover { background: var(--primary); color: white; transform: scale(1.05); }
     
     .moving-pill { font-size: 2rem; position: absolute; top: -35px; left: 10%; animation: movePill 6s infinite ease-in-out; z-index: 3; }
@@ -67,8 +67,27 @@
     ul li { position: relative; padding-left: 28px; margin-bottom: 12px; color: var(--text-muted); font-size: 1.05rem; }
     ul li::before { content: '▪'; position: absolute; left: 8px; color: var(--primary); font-weight: bold; font-size: 1.2rem; }
 
-    .formula-box { background: #f8fafc; border: 1px dashed var(--primary); padding: 15px; border-radius: 10px; margin: 15px 0; font-family: monospace; font-weight: bold; color: var(--primary-dark); text-align: center; }
+    .formula-box { background: #f8fafc; border: 1px dashed var(--primary); padding: 14px; border-radius: 10px; margin: 15px 0; font-family: monospace; font-weight: bold; color: var(--primary-dark); text-align: center; overflow-x: auto; white-space: nowrap; font-size: 0.95rem; }
     .graph-box { background: white; border: 2px solid var(--card-border); border-radius: 16px; padding: 25px; margin: 30px 0; text-align: center; }
+
+    footer { margin-top: 30px; text-align: center; }
+    .author-credit { font-weight: 700; font-size: 1.05rem; letter-spacing: 0.5px; color: var(--text-main); display: flex; align-items: center; justify-content: center; gap: 6px; }
+
+    /* MOBILE READABILITY MEDIA QUERIES */
+    @media (max-width: 640px) {
+      body { padding: 12px 6px; }
+      .container { padding: 24px 16px; border-radius: 16px; }
+      h1 { font-size: 1.7rem; }
+      h2 { font-size: 1.25rem; margin: 30px 0 15px; }
+      p, ul li { font-size: 0.96rem; line-height: 1.6; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 16px; }
+      .card-box { padding: 18px 14px; }
+      .animation-container { padding: 20px 12px; }
+      .moving-pill { display: none; } /* Hide floating pill on mobile to prevent overflow */
+      .pipeline { flex-direction: column; width: 100%; }
+      .pipeline-step { width: 100%; min-width: auto; }
+      .mnemonic-box { padding: 16px 14px; }
+    }
   </style>
 </head>
 <body>
@@ -211,7 +230,8 @@
         <!-- Exponential Decay Curve -->
         <path d="M 30 30 Q 100 130 260 145" fill="none" stroke="#3b82f6" stroke-width="3" />
       </svg>
-<p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 6px;">Curved drop: Elimination rate decreases proportionally as concentration falls.</p>    </div>
+      <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 6px;">Curved drop: Elimination rate decreases proportionally as concentration falls.</p>
+    </div>
     <div class="graph-box">
       <h3>Zero-Order Kinetics Curve</h3>
       <svg viewBox="0 0 300 180" width="100%" height="auto">
@@ -222,8 +242,10 @@
         <!-- Straight Linear Drop -->
         <line x1="30" y1="30" x2="240" y2="150" stroke="#ef4444" stroke-width="3" />
       </svg>
-<p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 6px;">Straight line drop: Fixed amount removed per unit time due to enzyme saturation.</p>    </div>
+      <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 6px;">Straight line drop: Fixed amount removed per unit time due to enzyme saturation.</p>
+    </div>
   </div>
+
   <!-- SECTION 6: ELIMINATION, RENAL FACTORS, CLEARANCE & HALF-LIFE -->
   <h2>6. Elimination, Renal Factors, Clearance & Half-Life</h2>
   <p><strong>Elimination</strong> is the irreversible removal of drugs and their metabolites from the body. While the liver aids biliary excretion, the kidneys are the primary organs of elimination.</p>
@@ -280,13 +302,12 @@
     <li><strong>Understand Zero-Order Dosing Risks:</strong> Recognize that drugs following zero-order elimination (like phenytoin) require meticulous monitoring because small dosage increments can cause dangerous toxicity.</li>
     <li><strong>Respect Loading vs Maintenance Schedules:</strong> Ensure loading doses are administered fully when rapid therapeutic onset is clinically required, followed by steady maintenance scheduling.</li>
   </ul>
+
   <footer>
-    <div class="container">
-      <div class="author-credit">
-        <span>✨</span> Crafted with excellence by Mudassir Khan
-      </div>
-      <p style="margin-top: 15px; font-size: 0.8rem; opacity: 0.7;">&copy; 2026 Pharmacology-I Portal. All rights reserved.</p>
+    <div class="author-credit">
+      <span>✨</span> Crafted with excellence by Mudassir Khan
     </div>
+    <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">&copy; 2026 Pharmacology-I Portal. All rights reserved.</p>
   </footer>
 </div>
 
