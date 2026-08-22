@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit II: Drugs used to prevent and treat infection Quiz</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --primary: #8b5cf6;
+      --primary-hover: #7c3aed;
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --accent-red: #ef4444;
+      --accent-amber: #f59e0b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --glass-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.6; padding: 30px 15px; min-height: 100vh; }
+
+    .container { max-width: 900px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(20px); border-radius: var(--radius); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 40px 30px; position: relative; overflow: hidden; }
+    .container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--accent-cyan), var(--primary), var(--accent-green)); }
+
+    /* HEADER STYLES */
+    .header-badge { display: inline-block; padding: 6px 16px; background: rgba(139, 92, 246, 0.2); color: var(--primary); border: 1px solid rgba(139, 92, 246, 0.4); font-size: 0.8rem; font-weight: 800; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+    h1 { font-size: 2.2rem; font-weight: 900; background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; line-height: 1.2; }
+    .subtitle { color: var(--text-muted); font-size: 1rem; margin-bottom: 30px; }
+
+    /* DASHBOARD / TRACKER */
+    .dashboard-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 30px; }
+    .dash-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px; text-align: center; }
+    .dash-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
+    .dash-value { font-size: 1.3rem; font-weight: 800; color: var(--accent-cyan); margin-top: 4px; }
+
+    /* CHAPTER BADGE */
+    .chapter-indicator { background: linear-gradient(90deg, rgba(6, 182, 212, 0.15), rgba(139, 92, 246, 0.15)); border: 1px solid rgba(6, 182, 212, 0.3); padding: 12px 20px; border-radius: 12px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
+    .chapter-title { font-weight: 800; font-size: 1.1rem; color: #fff; }
+    .diff-tag { font-size: 0.75rem; padding: 3px 8px; border-radius: 6px; font-weight: 800; text-transform: uppercase; }
+    .tag-basic { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); border: 1px solid var(--accent-green); }
+    .tag-scenario { background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); border: 1px solid var(--accent-amber); }
+    .tag-hard { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border: 1px solid var(--accent-red); }
+
+    /* MCQ CARD */
+    .mcq-card { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--card-border); border-radius: 16px; padding: 25px; margin-bottom: 25px; display: none; }
+    .mcq-card.active { display: block; animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .q-number { font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 8px; }
+    .q-text { font-size: 1.05rem; font-weight: 600; color: var(--text-main); margin-bottom: 20px; line-height: 1.5; }
+
+    /* OPTIONS */
+    .options-grid { display: grid; gap: 12px; }
+    .opt-btn { background: rgba(255, 255, 255, 0.05); border: 1.5px solid var(--card-border); border-radius: 12px; padding: 14px 18px; color: var(--text-main); font-size: 0.95rem; font-weight: 500; text-align: left; cursor: pointer; transition: 0.2s ease; display: flex; align-items: center; justify-content: space-between; }
+    .opt-btn:hover:not(.disabled) { background: rgba(139, 92, 246, 0.15); border-color: var(--primary); transform: translateX(4px); }
+    .opt-btn.correct { background: rgba(16, 185, 129, 0.2) !important; border-color: var(--accent-green) !important; color: #fff; }
+    .opt-btn.incorrect { background: rgba(239, 68, 68, 0.2) !important; border-color: var(--accent-red) !important; color: #fff; }
+    .opt-btn.disabled { cursor: not-allowed; opacity: 0.8; }
+
+    /* EXPLANATION BOX */
+    .explanation-box { margin-top: 20px; padding: 18px; border-radius: 12px; background: rgba(15, 23, 42, 0.8); border-left: 4px solid var(--primary); display: none; }
+    .explanation-box.show { display: block; animation: slideDown 0.3s ease; }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+    .exp-title { font-weight: 800; font-size: 0.9rem; color: var(--accent-cyan); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .exp-text { font-size: 0.9rem; color: #cbd5e1; line-height: 1.5; }
+
+    /* NAVIGATION BUTTONS */
+    .nav-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 25px; }
+    .action-btn { padding: 12px 28px; background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; border: none; border-radius: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: 0.2s ease; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3); }
+    .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4); }
+    .action-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    /* CHAPTER REPORT & FINAL REPORT */
+    .report-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border); border-radius: 16px; padding: 30px; text-align: center; display: none; }
+    .report-card.show { display: block; animation: fadeIn 0.4s ease; }
+    .report-score { font-size: 3rem; font-weight: 900; color: var(--accent-cyan); margin: 15px 0; }
+    .report-breakdown { text-align: left; margin: 20px 0; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; }
+    .weakness-list { margin-top: 10px; padding-left: 20px; color: #fca5a5; }
+
+    footer { margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--card-border); padding-top: 20px; }
+    .author { color: var(--text-main); font-weight: 700; }
+
+    @media (max-width: 640px) {
+      .container { padding: 25px 15px; }
+      h1 { font-size: 1.6rem; }
+      .dashboard-bar { grid-template-columns: repeat(2, 1fr); }
+      .action-btn { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header-badge">Pharmacology-I • Unit 5</div>
+  <h1>Antimicrobial Pharmacology Master Quiz</h1>
+  <div class="subtitle">150 High-Yield MCQs • 5 Subchapters (30 Qs Each) • Step-by-Step Weakness Analysis</div>
+
+  <!-- DASHBOARD TRACKER -->
+  <div class="dashboard-bar">
+    <div class="dash-card">
+      <div class="dash-title">Total Progress</div>
+      <div class="dash-value" id="dash-progress">0 / 150</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-title">Current Score</div>
+      <div class="dash-value" id="dash-score">0</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-title">Subchapter</div>
+      <div class="dash-value" id="dash-ch-num">1 / 5</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-title">Accuracy</div>
+      <div class="dash-value" id="dash-accuracy">0%</div>
+    </div>
+  </div>
+
+  <!-- CHAPTER BADGE -->
+  <div class="chapter-indicator" id="ch-badge-container">
+    <div class="chapter-title" id="ch-title-text">Subchapter 1: Antibacterial Drugs</div>
+    <span class="diff-tag tag-basic" id="q-diff-badge">Basic (40%)</span>
+  </div>
+
+  <!-- QUIZ CONTAINER -->
+  <div id="quiz-box"></div>
+
+  <!-- INTERMEDIATE CHAPTER RESULT CARD -->
+  <div class="report-card" id="chapter-report">
+    <h2 style="color: var(--accent-cyan);">🎉 Subchapter Complete!</h2>
+    <p style="color: var(--text-muted); margin-top: 5px;" id="ch-report-subtitle">Performance breakdown for Antibacterial Drugs</p>
+    <div class="report-score" id="ch-score-display">0 / 30</div>
+    
+    <div class="report-breakdown">
+      <h4 style="color: #fff; margin-bottom: 8px;">📊 Topic Diagnostics & Weak Areas:</h4>
+      <div id="ch-weakness-text" style="font-size: 0.95rem; color: #cbd5e1;">Analyzing answers...</div>
+    </div>
+
+    <button class="action-btn" onclick="startNextChapter()" id="btn-next-ch">Begin Next Subchapter ➔</button>
+  </div>
+
+  <!-- FINAL CUMULATIVE RESULT CARD -->
+  <div class="report-card" id="final-report">
+    <h2 style="color: var(--accent-green); font-size: 2rem;">🏆 Course Final Diagnostic Report</h2>
+    <p style="color: var(--text-muted);" id="final-subtitle">Cumulative score across all 150 Antimicrobial MCQs</p>
+    <div class="report-score" id="final-score-display">0 / 150</div>
+
+    <div class="report-breakdown" style="text-align: left;">
+      <h3 style="color: #fff; margin-bottom: 12px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px;">📈 Subchapter Breakdown:</h3>
+      <div id="subchapter-scores-list" style="margin-bottom: 20px; font-size: 0.95rem; line-height: 1.8;"></div>
+
+      <h3 style="color: var(--accent-red); margin-bottom: 8px;">⚠️ Comprehensive Weakness & Study Guidance:</h3>
+      <p style="font-size: 0.9rem; color: var(--text-muted);">Based on incorrect selections, focus review on:</p>
+      <ul class="weakness-list" id="final-weakness-list"></ul>
+    </div>
+
+    <button class="action-btn" style="background: linear-gradient(135deg, var(--accent-green), #059669);" onclick="restartEntireQuiz()">🔄 Restart Entire Master Quiz</button>
+  </div>
+
+  <footer>
+    Crafted with Excellence by <span class="author">Mudassir Khan</span> • &copy; 2026 Pharmacology Portal
+  </footer>
+</div>
+
+<script>
+// RAW QUIZ DATA: 5 CHAPTERS x 30 QUESTIONS EACH = 150 QUESTIONS TOTAL
+const quizData = [
+  // CHAPTER 1: ANTIBACTERIAL DRUGS (1-30)
+  {
+    chTitle: "Subchapter 1: Antibacterial Drugs",
+    questions: [
+      // Basic (1-12)
+      { q: "Which antibiotic inhibits bacterial cell wall synthesis by binding to Penicillin-Binding Proteins (PBPs)?", opts: ["Amoxicillin", "Ciprofloxacin", "Gentamicin", "Doxycycline"], a: 0, tag: "Basic", topic: "Penicillins & Cell Wall Synthesis", exp: "Amoxicillin is a beta-lactam antibiotic that structurally mimics D-Ala-D-Ala and covalently binds PBPs, inhibiting peptidoglycan transpeptidation." },
+      { q: "Which adverse effect is classically associated with Vancomycin when infused too rapidly?", opts: ["Gray Baby Syndrome", "Red Man Syndrome", "Tendon Rupture", "Aplastic Anemia"], a: 1, tag: "Basic", topic: "Glycopeptides (Vancomycin)", exp: "Rapid IV infusion of Vancomycin causes histamine release from mast cells, resulting in flushing and erythema known as Red Man Syndrome." },
+      { q: "Gentamicin belongs to which antibiotic class that binds irreversibly to the 30S ribosomal subunit?", opts: ["Macrolides", "Aminoglycosides", "Tetracyclines", "Fluoroquinolones"], a: 1, tag: "Basic", topic: "Aminoglycosides", exp: "Aminoglycosides (Gentamicin, Amikacin) bind the 30S ribosomal subunit, causing misreading of mRNA and inhibition of protein synthesis." },
+      { q: "What is the primary mechanism of action of Fluoroquinolones like Ciprofloxacin?", opts: ["Inhibition of Bacterial DNA Gyrase (Topoisomerase II)", "Inhibition of Dihydrofolate Reductase", "Binding to 50S Ribosomal Subunit", "Disruption of Folic Acid Synthesis"], a: 0, tag: "Basic", topic: "Fluoroquinolones", exp: "Fluoroquinolones inhibit bacterial DNA gyrase and Topoisomerase IV, preventing DNA replication and supercoiling." },
+      { q: "Which antibiotic is known to cause teeth discoloration and bone growth inhibition in young children?", opts: ["Azithromycin", "Doxycycline", "Ceftriaxone", "Ampicillin"], a: 1, tag: "Basic", topic: "Tetracyclines", exp: "Tetracyclines (e.g., Doxycycline) chelate calcium ions, depositing into calcifying tissues like enamel and bone, leading to permanent teeth discoloration." },
+      { q: "Sulfamethoxazole combined with Trimethoprim (Cotrimoxazole) acts synergistically by inhibiting:", opts: ["Two sequential steps in bacterial folic acid synthesis", "Bacterial RNA polymerase", "Cell wall cross-linking directly", "Ribosomal transpeptidation"], a: 0, tag: "Basic", topic: "Sulfonamides & Trimethoprim", exp: "Sulfamethoxazole inhibits dihydropteroate synthase, and Trimethoprim inhibits dihydrofolate reductase, blocking folate synthesis sequentially." },
+      { q: "Metronidazole is particularly effective against anaerobic bacteria and protozoa because it forms toxic free radicals after reduction by:", opts: ["Cytochrome P450", "Ferredoxin / Nitroreductase", "Beta-lactamase", "DNA helicase"], a: 1, tag: "Basic", topic: "Metronidazole", exp: "In anaerobes, pyruvate:ferredoxin oxidoreductase reduces Metronidazole to reactive cytotoxic nitro radicals that disrupt bacterial DNA." },
+      { q: "Which class of antibiotics exhibits concentration-dependent killing and a significant Post-Antibiotic Effect (PAE)?", opts: ["Penicillins", "Aminoglycosides", "Cephalosporins", "Carbapenems"], a: 1, tag: "Basic", topic: "Aminoglycoside Kinetics", exp: "Aminoglycosides display concentration-dependent bactericidal action and prolonged PAE, justifying single daily high-dose dosing schedules." },
+      { q: "Which of the following drugs is a broad-spectrum Carbapenem co-administered with Cilastatin?", opts: ["Imipenem", "Meropenem", "Ertapenem", "Aztreonam"], a: 0, tag: "Basic", topic: "Carbapenems", exp: "Imipenem is degraded by renal dehydropeptidase I in proximal tubules; Cilastatin is added to inhibit this enzyme and prevent nephrotoxic metabolites." },
+      { q: "Clindamycin is classically associated with which gastrointestinal adverse effect?", opts: ["Pseudomembranous Colitis (C. difficile overgrowth)", "Constipation", "Peptic Ulcer Disease", "Pancreatitis"], a: 0, tag: "Basic", topic: "Lincosamides (Clindamycin)", exp: "Clindamycin suppresses normal intestinal bacterial flora, allowing toxigenic Clostridioides difficile to proliferate and cause pseudomembranous colitis." },
+      { q: "Rifampin exerts its antibacterial effect by inhibiting which enzyme?", opts: ["DNA Gyrase", "Bacterial DNA-dependent RNA Polymerase", "Transpeptidase", "Dihydrofolate Reductase"], a: 1, tag: "Basic", topic: "Antitubercular Drugs (Rifampin)", exp: "Rifampin binds to the beta subunit of bacterial DNA-dependent RNA polymerase, blocking transcription of mRNA." },
+      { q: "Which generation of Cephalosporins includes Ceftriaxone, known for excellent CNS penetration?", opts: ["1st Generation", "2nd Generation", "3rd Generation", "5th Generation"], a: 2, tag: "Basic", topic: "Cephalosporins", exp: "3rd generation cephalosporins like Ceftriaxone cross the blood-brain barrier effectively and are first-line for bacterial meningitis." },
+      // Scenario-Based (13-24)
+      { q: "A 24-year-old male presents with acute urethritis. Gram stain reveals Gram-negative intracellular diplococci. He is treated with Ceftriaxone. Why is oral Azithromycin co-administered?", opts: ["To prevent Ceftriaxone resistance", "To treat empiric co-infection with Chlamydia trachomatis", "To enhance urinary excretion of Ceftriaxone", "To cover anaerobic oral flora"], a: 1, tag: "Scenario", topic: "STI Empiric Regimens", exp: "Neisseria gonorrhoeae and Chlamydia trachomatis frequently co-infect patients; dual therapy (Ceftriaxone + Azithromycin/Doxycycline) covers both pathogens." },
+      { q: "A 68-year-old hospitalized patient with severe Pseudomonas pneumonia requires intravenous coverage. Which penicillin derivative possesses antipseudomonal activity?", opts: ["Amoxicillin", "Piperacillin", "Penicillin V", "Oxacillin"], a: 1, tag: "Scenario", topic: "Antipseudomonal Penicillins", exp: "Extended-spectrum ureidopenicillins like Piperacillin (often combined with Tazobactam) possess high potency against Pseudomonas aeruginosa." },
+      { q: "A 32-year-old pregnant woman in her 3rd trimester presents with an uncomplicated UTI. Which drug is safe to use?", opts: ["Ciprofloxacin", "Nitrofurantoin", "Amoxicillin-Clavulanate", "Doxycycline"], a: 2, tag: "Scenario", topic: "Pregnancy Antibiotic Safety", exp: "Amoxicillin-Clavulanate is Category B and safe in late pregnancy. Fluoroquinolones (cartilage toxicity) and Tetracyclines (tooth staining) are contraindicated." },
+      { q: "A patient receiving IV Gentamicin for sepsis develops elevated serum creatinine and oliguria. Renal biopsy would most likely show damage to:", opts: ["Glomerular podocytes", "Proximal tubular epithelial cells", "Loop of Henle", "Collecting ducts"], a: 1, tag: "Scenario", topic: "Aminoglycoside Nephrotoxicity", exp: "Aminoglycosides accumulate heavily inside renal proximal tubular cells via endocytosis, inducing tubular necrosis (ATN)." },
+      { q: "An elderly patient taking Warfarin is prescribed Erythromycin for bronchitis. Three days later, INR rises to 6.2 with bleeding gums. What occurred?", opts: ["Erythromycin displacement of Warfarin from albumin", "Erythromycin inhibition of CYP3A4 / CYP1A2 hepatic metabolism", "Erythromycin induction of liver enzymes", "Direct renal excretion blockage of Warfarin"], a: 1, tag: "Scenario", topic: "Macrolide CYP Interactions", exp: "Macrolides (Erythromycin, Clarithromycin) are potent CYP enzyme inhibitors, decreasing Warfarin clearance and surging INR levels." },
+      { q: "A 19-year-old college student presents with dry cough, low-grade fever, and chest X-ray showing patchy infiltrates ('Walking Pneumonia'). Which drug targeting 50S ribosomal subunits is best?", opts: ["Azithromycin", "Amoxicillin", "Vancomycin", "Cefazolin"], a: 0, tag: "Scenario", topic: "Atypical Pneumonia (Macrolides)", exp: "Mycoplasma pneumoniae lacks a peptidoglycan cell wall (beta-lactams ineffective). Macrolides like Azithromycin target bacterial 50S ribosomes effectively." },
+      { q: "A patient with MRSA bacteremia is prescribed Vancomycin. Trough blood levels must be monitored primarily to balance efficacy and minimize:", opts: ["Ototoxicity and Nephrotoxicity", "Hepatotoxicity and Jaundice", "Cardiotoxicity and QTc prolongation", "Pancreatitis"], a: 0, tag: "Scenario", topic: "Therapeutic Drug Monitoring", exp: "Vancomycin has a narrow therapeutic index; elevated trough levels (>20 mcg/mL) significantly raise risks of acute kidney injury and ototoxicity." },
+      { q: "A diabetic patient with a foot ulcer grows Methicillin-Resistant Staphylococcus aureus (MRSA). Which oral agent provides MRSA coverage by binding 23S rRNA of 50S subunit?", opts: ["Linezolid", "Cephalexin", "Ciprofloxacin", "Ampicillin"], a: 0, tag: "Scenario", topic: "Oxazolidinones (Linezolid)", exp: "Linezolid binds the 23S ribosomal RNA of the 50S subunit, preventing 70S initiation complex formation, and is active against oral MRSA." },
+      { q: "A patient taking Isoniazid (INH) for tuberculosis develops severe peripheral neuropathy. This deficit is prevented by co-prescribing:", opts: ["Pyridoxine (Vitamin B6)", "Thiamine (Vitamin B1)", "Folic Acid", "Cyanocobalamin (Vitamin B12)"], a: 0, tag: "Scenario", topic: "Antitubercular Adverse Effects", exp: "Isoniazid structurally resembles Pyridoxine (B6) and promotes its renal excretion, leading to B6 deficiency and peripheral neuropathy." },
+      { q: "An adult patient taking Ciprofloxacin for pyelonephritis suddenly experiences pain and swelling in the Achilles tendon. The nurse advises stopping the drug because:", opts: ["Fluoroquinolones inhibit collagen synthesis and cause tendon rupture", "Fluoroquinolones cause acute uric acid deposition", "It causes peripheral nerve demyelination", "It induces autoimmune vasculitis"], a: 0, tag: "Scenario", topic: "Fluoroquinolone Toxicity", exp: "Fluoroquinolones damage extracellular matrix structures in cartilage and tendons, carrying a black box warning for tendinitis and tendon rupture." },
+      { q: "A patient with bacterial endocarditis is treated with a combination of Penicillin G and Gentamicin. This combination is effective because Penicillin:", opts: ["Inhibits hepatic metabolism of Gentamicin", "Facilitates Gentamicin entry across the bacterial cell wall", "Blocks renal elimination of Gentamicin", "Prevents Gentamicin binding to human ribosomes"], a: 1, tag: "Scenario", topic: "Synergistic Combinations", exp: "Penicillin weakens peptidoglycan cell walls, permitting polar Aminoglycoside molecules to enter bacterial cytoplasm to reach 30S ribosomes." },
+      { q: "A patient receiving IV Ceftriaxone for gallbladder disease develops biliary sludge and abdominal pain. This is due to:", opts: ["Direct hepatocyte necrosis", "Biliary precipitation of Ceftriaxone-calcium salts", "Hemolytic anemia", "Intestinal obstruction"], a: 1, tag: "Scenario", topic: "Cephalosporin Complications", exp: "Ceftriaxone undergoes high biliary excretion and can bind calcium, forming insoluble pseudolithiasis (biliary sludge)." },
+      // Challenging (25-30)
+      { q: "Enterococci resistant to Vancomycin (VRE) modify their cell wall precursors from D-Ala-D-Ala to:", opts: ["D-Ala-D-Lac", "D-Ala-D-Ser", "D-Glu-D-Ala", "D-Ala-D-Val"], a: 0, tag: "Challenging", topic: "Bacterial Resistance Mechanisms", exp: "VRE genes (VanA/VanB) alter peptidoglycan terminus from D-Alanine-D-Alanine to D-Alanine-D-Lactate, reducing Vancomycin binding affinity 1,000-fold." },
+      { q: "Daptomycin is highly bactericidal against Gram-positive MRSA, but it is clinically ineffective in treating pneumonia because:", opts: ["It cannot cross pulmonary capillary endothelium", "It is inactivated by pulmonary surfactant", "Lung tissue pH decomposes the molecule", "Alveolar macrophages rapidly phagocytose it"], a: 1, tag: "Challenging", topic: "Daptomycin Pharmacokinetics", exp: "Daptomycin inserts its lipophilic tail into bacterial membranes, but pulmonary surfactant binds and inactivates Daptomycin, rendering it ineffective in pneumonia." },
+      { q: "A patient with multi-drug resistant Pseudomonas is started on Polymyxin B (Colistin). The primary mechanism of action of polymyxins involves:", opts: ["Detergent-like disruption of Gram-negative outer cell membranes via LPS binding", "Inhibition of Topoisomerase IV", "Binding to 23S rRNA", "Inhibition of UDP-N-acetylglucosamine"], a: 0, tag: "Challenging", topic: "Polymyxins (Colistin)", exp: "Polymyxins act like cationic detergents; they bind lipid A of bacterial lipopolysaccharide (LPS), disrupting outer membrane integrity." },
+      { q: "A patient receiving Linezolid for VRE bacteremia concurrently takes a Selective Serotonin Reuptake Inhibitor (SSRI). The patient develops confusion, hyperreflexia, and fever. Why?", opts: ["Linezolid is a weak reversible Monoamine Oxidase (MAO) inhibitor", "Linezolid induces serotonin receptor upregulation", "Linezolid inhibits hepatic metabolism of SSRIs via CYP2D6", "Linezolid causes acute neuroleptic malignant syndrome"], a: 0, tag: "Challenging", topic: "Linezolid Drug Interactions", exp: "Linezolid possesses weak intrinsic MAO inhibitory activity; co-administration with serotonergic agents (SSRIs) can precipitate fatal Serotonin Syndrome." },
+      { q: "Which beta-lactamase inhibitor combination specifically neutralizes AmpC beta-lactamases and Klebsiella pneumoniae carbapenemases (KPC)?", opts: ["Amoxicillin + Clavulanate", "Ceftazidime + Avibactam", "Ampicillin + Sulbactam", "Piperacillin + Tazobactam"], a: 1, tag: "Challenging", topic: "Novel Beta-Lactamase Inhibitors", exp: "Avibactam is a non-beta-lactam beta-lactamase inhibitor that restores Ceftazidime activity against KPC carbapenemases and Class A/C/D enzymes." },
+      { q: "Fidaxomicin is a narrow-spectrum macrolide-like antibiotic specifically approved for C. difficile infection because it:", opts: ["Inhibits bacterial RNA polymerase without systemic absorption", "Inhibits peptidoglycan synthesis in blood", "Is excreted exclusively by liver into bile", "Promotes competitive growth of Lactobacillus"], a: 0, tag: "Challenging", topic: "Fidaxomicin & C. difficile", exp: "Fidaxomicin inhibits bacterial RNA polymerase, acts locally in the GI lumen with minimal systemic absorption, and spares normal anaerobic flora." }
+    ]
+  },
+
+  // CHAPTER 2: ANTIFUNGAL DRUGS (31-60)
+  {
+    chTitle: "Subchapter 2: Antifungal Drugs",
+    questions: [
+      // Basic (31-42)
+      { q: "Amphotericin B exerts its fungicidal effect by binding to which fungal cell membrane component?", opts: ["Cholesterol", "Ergosterol", "Beta-1,3-glucan", "Chitin"], a: 1, tag: "Basic", topic: "Polyene Antifungals", exp: "Amphotericin B binds ergosterol in fungal cell membranes, forming transmembrane pores that leak intracellular potassium and ions." },
+      { q: "Which class of antifungals inhibits 1,3-beta-D-glucan synthase, disrupting fungal cell wall integrity?", opts: ["Azoles", "Polyenes", "Echinocandins (e.g., Caspofungin)", "Allylamines"], a: 2, tag: "Basic", topic: "Echinocandins", exp: "Echinocandins (Caspofungin, Micafungin) inhibit 1,3-beta-D-glucan synthesis, weakening the fungal cell wall (unlike azoles, which target membranes)." },
+      { q: "Fluconazole and Ketoconazole inhibit ergosterol synthesis by targeting which fungal enzyme?", opts: ["Squalene epoxidase", "14-alpha-demethylase (CYP51)", "Dihydropteroate synthase", "Thymidylate synthase"], a: 1, tag: "Basic", topic: "Azole Antifungals", exp: "Azoles inhibit fungal cytochrome P450 14-alpha-demethylase, preventing the conversion of lanosterol to ergosterol." },
+      { q: "Terbinafine, commonly used for dermatophyte onychomycosis, acts by inhibiting:", opts: ["Squalene epoxidase", "Fungal RNA polymerase", "Beta-glucan synthase", "Microtubule assembly"], a: 0, tag: "Basic", topic: "Allylamines (Terbinafine)", exp: "Terbinafine inhibits squalene epoxidase, leading to toxic intracellular squalene accumulation and ergosterol depletion in dermatophytes." },
+      { q: "Flucytosine (5-FC) is converted inside fungal cells by cytosine deaminase into which active antimetabolite?", opts: ["5-Fluorouracil (5-FU)", "5-Fluorodeoxyuridine", "Acyclovir monophosphate", "Methotrexate"], a: 0, tag: "Basic", topic: "Flucytosine", exp: "Flucytosine enters fungal cells via cytosine permease and is converted by cytosine deaminase into 5-FU, inhibiting fungal DNA/RNA synthesis." },
+      { q: "Which antifungal is renowned for causing dose-dependent nephrotoxicity, electrolyte wasting (K+ and Mg2+), and anemia?", opts: ["Voriconazole", "Amphotericin B", "Itraconazole", "Griseofulvin"], a: 1, tag: "Basic", topic: "Amphotericin B Toxicity", exp: "Amphotericin B causes renal vasoconstriction and distal tubular injury, leading to tubular acidosis, K+/Mg2+ wasting, and decreased erythropoietin." },
+      { q: "Griseofulvin concentrates in keratinized tissues and exerts its antifungal effect by:", opts: ["Inhibiting fungal cell wall synthesis", "Disrupting mitotic spindle microtubule assembly", "Inhibiting ergosterol synthesis", "Forming free radicals"], a: 1, tag: "Basic", topic: "Griseofulvin", exp: "Griseofulvin binds fungal tubulin, disrupting mitotic spindle structure and halting fungal mitosis in dermatophytes." },
+      { q: "Which azole antifungal is considered first-line for invasive Aspergillosis but is associated with transient visual disturbances?", opts: ["Fluconazole", "Voriconazole", "Ketoconazole", "Posaconazole"], a: 1, tag: "Basic", topic: "Voriconazole", exp: "Voriconazole is first-line for Aspergillus; it frequently causes transient visual disturbances (photopsia/color changes) in ~30% of patients." },
+      { q: "Nystatin is restricted primarily to topical or oral 'swish-and-swallow' administration because:", opts: ["It is not absorbed from the GI tract and has high systemic toxicity", "It is rapidly destroyed by gastric acid", "It causes liver failure immediately", "It causes pulmonary edema"], a: 0, tag: "Basic", topic: "Nystatin", exp: "Nystatin is structurally similar to Amphotericin B but displays severe systemic toxicity if injected IV; topical/oral use is safe as it is unabsorbed." },
+      { q: "Ketoconazole requires which GI environment for optimal oral absorption?", opts: ["Alkaline pH", "Acidic pH", "Neutral pH", "Presence of bile salts only"], a: 1, tag: "Basic", topic: "Azole Pharmacokinetics", exp: "Ketoconazole and Itraconazole require an acidic gastric environment for dissolution; antacids or proton pump inhibitors significantly reduce absorption." },
+      { q: "Which systemic antifungal agent accumulates extensively in lipid-rich skin and nail beds for months after treatment stops?", opts: ["Flucytosine", "Terbinafine", "Caspofungin", "Amphotericin B"], a: 1, tag: "Basic", topic: "Terbinafine Kinetics", exp: "Terbinafine is highly lipophilic and keratophilic, remaining active in stratum corneum and nails for weeks to months after therapy." },
+      { q: "Isavuconazole is an advanced triazole approved for invasive aspergillosis and:", opts: ["Mucormycosis", "Pneumocystis pneumonia", "Dermatophytosis", "Microsporidiosis"], a: 0, tag: "Basic", topic: "Novel Triazoles", exp: "Isavuconazole and Posaconazole possess expanded broad-spectrum activity covering both Aspergillus species and Mucorales (Mucormycosis)." },
+      // Scenario-Based (43-54)
+      { q: "An HIV patient with CD4 count of 45 cells/mcL presents with severe cryptococcal meningitis. Initial induction therapy consists of Amphotericin B plus Flucytosine. Why is Flucytosine added?", opts: ["To reduce Amphotericin B clearance", "For synergistic CNS fungal clearance and prevention of resistance", "To prevent renal failure from Amphotericin B", "To cover bacterial co-infections"], a: 1, tag: "Scenario", topic: "Cryptococcal Meningitis Regimen", exp: "Flucytosine enters CSF rapidly and acts synergistically with Amphotericin B, accelerating CSF clearance of Cryptococcus and lowering mortality." },
+      { q: "A bone marrow transplant patient receiving Voriconazole develops severe hallucinations and visual altered color perception 30 minutes after each dose. What is the clinical management?", opts: ["Stop Voriconazole immediately and start Fluconazole", "Reassure the patient that visual symptoms are transient and reversible", "Administer Pyridoxine", "Perform emergency hemodialysis"], a: 1, tag: "Scenario", topic: "Voriconazole Adverse Effects", exp: "Voriconazole-induced visual disturbances (altered brightness, color perception, hallucinations) occur in ~30% of patients, are benign, self-limiting, and resolve." },
+      { q: "An organ transplant patient on Cyclosporine requires oral Itraconazole for blastomycosis. What monitoring is critical regarding drug-drug interactions?", opts: ["Cyclosporine toxicity due to CYP3A4 inhibition by Itraconazole", "Subtherapeutic Itraconazole due to Cyclosporine excretion", "Severe hypoglycemia", "Acute tendon rupture"], a: 0, tag: "Scenario", topic: "Azole CYP Interactions", exp: "Itraconazole is a potent CYP3A4 inhibitor; co-administration increases calcineurin inhibitor (Cyclosporine/Tacrolimus) levels, risking acute nephrotoxicity." },
+      { q: "A patient receiving IV Amphotericin B deoxycholate develops chills, fever, and tachypnea during infusion ('shake and bake'). How can this reaction be attenuated?", opts: ["Pretreatment with Acetaminophen and Diphenhydramine", "Co-infusion of Potassium Chloride", "Administering the infusion over 10 minutes", "Switching to Flucytosine"], a: 0, tag: "Scenario", topic: "Polyene Infusion Reactions", exp: "Infusion-related reactions (fever, rigors) stem from cytokine release; pretreatment with antipyretics (Acetaminophen) and antihistamines reduces symptoms." },
+      { q: "A 45-year-old female with severe systemic Candidiasis has acute kidney injury (serum creatinine 3.8 mg/dL). Which echinocandin is safe without renal dose adjustment?", opts: ["Caspofungin", "Amphotericin B", "Fluconazole", "Flucytosine"], a: 0, tag: "Scenario", topic: "Echinocandin Safety in Renal Failure", exp: "Echinocandins (Caspofungin, Anidulafungin) are cleared by hepatic metabolism/spontaneous degradation, requiring no dose adjustments in renal impairment." },
+      { q: "A patient treated with oral Ketoconazole for a severe deep fungal infection develops gynecomastia, decreased libido, and adrenal insufficiency. What is the molecular mechanism?", opts: ["Inhibition of human cytochrome P450 enzymes involved in steroidogenesis", "Direct blockade of testosterone receptors", "Upregulation of prolactin secretion", "Destruction of adrenal cortical cells"], a: 0, tag: "Scenario", topic: "Ketoconazole Endocrine Side Effects", exp: "Ketoconazole non-selectively inhibits human CYP enzymes (17-alpha-hydroxylase and 17,20-lyase), suppressing testosterone and cortisol synthesis." },
+      { q: "A diabetic patient presents with facial pain, black nasal eschar, and ketoacidosis. Biopsy shows broad non-septate hyphae branching at right angles (Mucormycosis). First-line drug is:", opts: ["Fluconazole", "High-dose Liposomal Amphotericin B", "Caspofungin", "Voriconazole"], a: 1, tag: "Scenario", topic: "Mucormycosis Treatment", exp: "Mucorales species are inherently resistant to Fluconazole and Echinocandins. Liposomal Amphotericin B (or Posaconazole/Isavuconazole) is required." },
+      { q: "A patient with systemic Candidiasis fails to respond to Fluconazole. Laboratory testing demonstrates mutation in fungal Erg11 gene. This resistance mechanism alters:", opts: ["Target enzyme 14-alpha-demethylase binding site", "Fungal cell wall glucan cross-links", "Cytosine permease transport channel", "Squalene epoxidase synthesis"], a: 0, tag: "Scenario", topic: "Fungal Azole Resistance", exp: "Mutations in the ERG11 gene modify the 14-alpha-demethylase active site, preventing azole molecules from binding effectively." },
+      { q: "An immunocompromised patient receives Flucytosine monotherapy for Candida endocarditis. Within 2 weeks, treatment fails. Why is Flucytosine rarely used as monotherapy?", opts: ["Rapid emergence of drug resistance", "Immediate renal clearance", "Severe allergic anaphylaxis", "Inactivation by plasma proteins"], a: 0, tag: "Scenario", topic: "Flucytosine Monotherapy Limits", exp: "Fungi rapidly develop resistance to Flucytosine via mutations in cytosine permease or deaminase; hence it is almost exclusively combined with Amphotericin B." },
+      { q: "A patient with leukemia on Voriconazole experiences severe sunburns after 10 minutes of light exposure, followed by squamous cell skin carcinoma. This is attributed to:", opts: ["Voriconazole-induced phototoxicity", "Direct DNA alkylation", "Immune complex deposition", "Inhibition of melanin synthesis"], a: 0, tag: "Scenario", topic: "Voriconazole Dermatologic Toxicity", exp: "Long-term Voriconazole therapy causes photosensitivity and phototoxicity, significantly elevating the risk of cutaneous squamous cell carcinoma." },
+      { q: "Liposomal formulation of Amphotericin B (AmBisome) reduces nephrotoxicity compared to standard deoxycholate primarily because:", opts: ["The liposome vehicle preferentially targets reticuloendothelial system and fungal cells, sparing human renal tubular cell membranes", "It is excreted entirely by lungs", "It contains no active drug", "It binds irreversibly to serum albumin"], a: 0, tag: "Scenario", topic: "Liposomal Drug Formulations", exp: "Liposomal lipid vehicles act as reservoirs, delivering Amphotericin B to fungal ergosterol while reducing direct binding to cholesterol in human renal tubules." },
+      { q: "A chronic alcoholic patient with liver cirrhosis requires systemic antifungal therapy. Which drug requires significant hepatic dose reduction and close LFT monitoring?", opts: ["Caspofungin", "Amphotericin B", "Nystatin", "Terbinafine (topical)"], a: 0, tag: "Scenario", topic: "Hepatic Antifungal Clearance", exp: "Caspofungin undergoes extensive hepatic metabolism; baseline LFT elevation or Child-Pugh Class B/C cirrhosis requires lower maintenance dosing." },
+      // Challenging (55-60)
+      { q: "Which specific echinocandin undergoes non-enzymatic chemical degradation (Hoffmann elimination) in plasma, making it completely independent of renal or hepatic clearance?", opts: ["Anidulafungin", "Caspofungin", "Micafungin", "Rezafungin"], a: 0, tag: "Challenging", topic: "Echinocandin Elimination Pathways", exp: "Anidulafungin undergoes slow spontaneous chemical degradation at physiologic body temperature and pH, requiring no hepatic or renal dose adjustments." },
+      { q: "Fungal resistance to Echinocandins (e.g., Caspofungin) is mediated by point mutations in which specific gene encoding the catalytic subunit of 1,3-beta-D-glucan synthase?", opts: ["FKS1 / FKS2", "ERG11", "CDR1", "FUR1"], a: 0, tag: "Challenging", topic: "Echinocandin Resistance", exp: "Mutations in the hot-spot regions of FKS1 and FKS2 genes alter 1,3-beta-D-glucan synthase, conferring high-level resistance to echinocandins." },
+      { q: "Which systemic antifungal agent exhibits non-linear (zero-order) elimination kinetics due to saturation of CYP2C19 metabolism at therapeutic doses?", opts: ["Voriconazole", "Fluconazole", "Amphotericin B", "Flucytosine"], a: 0, tag: "Challenging", topic: "Voriconazole Kinetics", exp: "Voriconazole displays non-linear pharmacokinetics in adults due to CYP2C19 saturation; small dose increases yield disproportionately high serum levels." },
+      { q: "Flucytosine-induced bone marrow suppression and leukopenia occur predominantly when serum levels exceed:", opts: ["100 mcg/mL", "10 mcg/mL", "1 mcg/mL", "500 mcg/mL"], a: 0, tag: "Challenging", topic: "Flucytosine Toxicity Windows", exp: "Serum Flucytosine peak concentrations >100 mcg/mL are strongly associated with severe bone marrow toxicity and enterocolitis due to systemic conversion to 5-FU." },
+      { q: "Ibrexafungerp represents a novel class of antifungal agents known as triterpenoids. What is its molecular mechanism?", opts: ["Glucan synthase inhibitor binding a distinct site from echinocandins", "Inhibition of fungal Hsp90", "Fungal cell membrane lysis", "Inhibition of isoleucyl-tRNA synthetase"], a: 0, tag: "Challenging", topic: "Novel Antifungals (Triterpenoids)", exp: "Ibrexafungerp is a first-in-class oral glucan synthase inhibitor that binds a unique domain on 1,3-beta-D-glucan synthase, retaining activity against echinocandin-resistant Candida." },
+      { q: "Oteseconazole is a novel CYP51 inhibitor designed specifically to reduce toxicity in humans by:", opts: ["Selective binding to fungal CYP51 over human CYP enzymes due to a modified tetrazole ring", "Bypassing hepatic metabolism entirely", "Selectively accumulating in human adipose tissues", "Inhibiting fungal DNA gyrase"], a: 0, tag: "Challenging", topic: "Targeted Azoles (Oteseconazole)", exp: "Oteseconazole utilizes a tetrazole structure with lower affinity for human CYP enzymes, significantly decreasing off-target human steroidogenic inhibition." }
+    ]
+  },
+
+  // CHAPTER 3: ANTIVIRAL DRUGS (61-90)
+  {
+    chTitle: "Subchapter 3: Antiviral Drugs",
+    questions: [
+      // Basic (61-72)
+      { q: "Acyclovir requires initial monophosphorylation inside infected cells by which viral enzyme?", opts: ["Viral Thymidine Kinase", "Human DNA Polymerase", "Viral Protease", "Reverse Transcriptase"], a: 0, tag: "Basic", topic: "Anti-Herpes Virals (Acyclovir)", exp: "Acyclovir is a prodrug selectively phosphorylated first by HSV/VZV viral Thymidine Kinase (TK), then by host kinases into active acyclovir triphosphate." },
+      { q: "Which antiviral agent used for Cytomegalovirus (CMV) retinitis causes significant bone marrow suppression (neutropenia)?", opts: ["Ganciclovir", "Acyclovir", "Oseltamivir", "Ribavirin"], a: 0, tag: "Basic", topic: "Anti-CMV Drugs (Ganciclovir)", exp: "Ganciclovir inhibits CMV DNA polymerase; its principal dose-limiting toxicity is severe myelosuppression (neutropenia and thrombocytopenia)." },
+      { q: "Oseltamivir (Tamiflu) treats Influenza A and B by inhibiting which viral surface enzyme?", opts: ["Neuraminidase", "Hemagglutinin", "M2 Proton Channel", "RNA Polymerase"], a: 0, tag: "Basic", topic: "Influenza Neuraminidase Inhibitors", exp: "Oseltamivir inhibits viral Neuraminidase, preventing the cleavage of sialic acid residues and halting the release of newly formed virions from infected host cells." },
+      { q: "Which class of antiretrovirals includes Zidovudine (AZT) and Tenofovir?", opts: ["Nucleoside/Nucleotide Reverse Transcriptase Inhibitors (NRTIs)", "Non-Nucleoside Reverse Transcriptase Inhibitors (NNRTIs)", "Protease Inhibitors (PIs)", "Integrase Strand Transfer Inhibitors (INSTIs)"], a: 0, tag: "Basic", topic: "HIV NRTIs", exp: "Zidovudine and Tenofovir are NRTIs that incorporate into cDNA by HIV Reverse Transcriptase, causing DNA chain termination." },
+      { q: "Efavirenz belongs to which HIV drug class that binds directly to an allosteric pocket on Reverse Transcriptase?", opts: ["NNRTIs", "NRTIs", "Entry Inhibitors", "Protease Inhibitors"], a: 0, tag: "Basic", topic: "HIV NNRTIs", exp: "NNRTIs (Efavirenz, Nevirapine) bind directly to an allosteric site on HIV reverse transcriptase, inducing a conformational change without requiring phosphorylation." },
+      { q: "Which anti-HIV drug class causes metabolic adverse effects including lipodystrophy, hyperlipidemia, and insulin resistance?", opts: ["Protease Inhibitors (e.g., Ritonavir, Atazanavir)", "NRTIs", "Integrase Inhibitors", "Fusion Inhibitors"], a: 0, tag: "Basic", topic: "HIV Protease Inhibitors", exp: "Protease inhibitors inhibit HIV aspartyl protease; long-term use leads to metabolic syndrome, central adiposity (buffalo hump), hyperlipidemia, and insulin resistance." },
+      { q: "Ritonavir is commonly co-administered in HIV regimens ('boosting') primarily because it:", opts: ["Inhibits hepatic CYP3A4, raising blood levels of companion protease inhibitors", "Directly destroys viral membrane capsids", "Inhibits renal tubular clearance of NRTIs", "Prevents opportunistic fungal infections"], a: 0, tag: "Basic", topic: "Pharmacokinetic Boosting", exp: "Low-dose Ritonavir is a potent CYP3A4 inhibitor used as a pharmacokinetic booster to elevate and prolong plasma concentrations of other PIs." },
+      { q: "Sofosbuvir revolutionised Hepatitis C (HCV) treatment. It acts as an inhibitor of which viral target?", opts: ["NS5B RNA-dependent RNA Polymerase", "NS3/4A Protease", "NS5A Replication Complex", "Viral Helicase"], a: 0, tag: "Basic", topic: "HCV Direct-Acting Antivirals", exp: "Sofosbuvir is a nucleotide analog that inhibits HCV NS5B RNA-dependent RNA polymerase, terminating viral RNA transcription." },
+      { q: "Baloxavir marboxil is a single-dose oral influenza medication that inhibits:", opts: ["Cap-dependent endonuclease", "Neuraminidase", "M2 ion channel", "Thymidine kinase"], a: 0, tag: "Basic", topic: "Novel Influenza Drugs", exp: "Baloxavir marboxil inhibits influenza virus cap-dependent endonuclease, blocking viral mRNA transcription initiation." },
+      { q: "Which HIV drug class prevents integration of proviral DNA into human host chromosomes (e.g., Biktarvy, Dolutegravir)?", opts: ["Integrase Strand Transfer Inhibitors (INSTIs)", "NNRTIs", "Entry Inhibitors", "Protease Inhibitors"], a: 0, tag: "Basic", topic: "HIV INSTIs", exp: "INSTIs (Dolutegravir, Raltegravir) bind catalytic sites of HIV integrase, blocking viral DNA insertion into human genomic DNA." },
+      { q: "Acyclovir is poorly water-soluble and has low oral bioavailability. Which ester prodrug offers vastly superior oral absorption?", opts: ["Valacyclovir", "Famciclovir", "Ganciclovir", "Cidofovir"], a: 0, tag: "Basic", topic: "Acyclovir Prodrugs", exp: "Valacyclovir is the L-valyl ester prodrug of Acyclovir; intestinal peptide transporters absorb it rapidly, yielding 3- to 5-fold higher blood levels." },
+      { q: "Ribavirin, used in respiratory syncytial virus (RSV) and viral hemorrhagic fevers, is notoriously known for causing:", opts: ["Dose-dependent Hemolytic Anemia", "Severe pancreatitis", "Idiopathic pulmonary fibrosis", "Acute renal failure"], a: 0, tag: "Basic", topic: "Ribavirin Toxicity", exp: "Ribavirin accumulates in red blood cells, causing oxidative damage and dose-dependent extravascular hemolytic anemia." },
+      // Scenario-Based (73-84)
+      { q: "A patient with HSV encephalitis receives high-dose IV Acyclovir. On day 3, serum creatinine rises from 0.9 to 3.2 mg/dL. Urinalysis reveals needle-shaped crystals. What is the cause?", opts: ["Crystalline nephropathy due to intratubular drug precipitation", "Acute allergic interstitial nephritis", "Glomerulonephritis", "Renal artery thrombosis"], a: 0, tag: "Scenario", topic: "Acyclovir Nephrotoxicity", exp: "Rapid IV Acyclovir administration can cause drug crystallization in renal collecting tubules; aggressive IV hydration prevents crystalline nephropathy." },
+      { q: "An HIV-positive patient starting Efavirenz-based antiretroviral therapy reports vivid nightmares, severe dizziness, and vivid hallucinations during the first week. What should the physician advise?", opts: ["Symptoms usually diminish over 2 to 4 weeks; take the dose at bedtime on an empty stomach", "Stop all HIV drugs immediately", "Double the dose to clear CNS virus", "Add high-dose Corticosteroids"], a: 0, tag: "Scenario", topic: "NNRTI CNS Side Effects", exp: "Efavirenz causes prominent CNS side effects (vivid dreams, dizziness, insomnia) in >50% of patients. Administering at bedtime on an empty stomach reduces peak absorption." },
+      { q: "Before prescribing Abacavir to an HIV patient, genetic testing for which allele must be conducted to avoid fatal hypersensitivity reactions?", opts: ["HLA-B*5701", "HLA-B*27", "HLA-A*3101", "CYP2D6*2"], a: 0, tag: "Scenario", topic: "Abacavir Pharmacogenomics", exp: "Patients carrying the HLA-B*5701 allele have a high risk of severe multi-organ hypersensitivity reaction to Abacavir; screening is mandatory." },
+      { q: "A patient with CMV retinitis resistant to Ganciclovir due to UL97 kinase mutation is switched to Foscarnet. What key advantage does Foscarnet possess?", opts: ["It directly inhibits viral DNA polymerase without requiring metabolic activation by viral kinases", "It stimulates human white blood cell production", "It is an oral non-toxic tablet", "It acts as a protease inhibitor"], a: 0, tag: "Scenario", topic: "Foscarnet Mechanism", exp: "Foscarnet is an inorganic pyrophosphate analog that directly inhibits CMV DNA polymerase without requiring viral UL97 kinase phosphorylation." },
+      { q: "A chronic Hepatitis B patient on Tenofovir disoproxil fumarate (TDF) shows gradual decline in eGFR and proteinuria. Switching to Tenofovir alafenamide (TAF) is beneficial because TAF:", opts: ["Delivers active drug intracellularly to lymphoid cells at lower plasma doses, sparing renal tubules and bone density", "Is eliminated by liver only", "Has zero systemic absorption", "Is a topical agent"], a: 0, tag: "Scenario", topic: "Tenofovir Formulations (TDF vs TAF)", exp: "TAF is more stable in plasma than TDF, achieving high target-cell active metabolite concentrations at 1/10th the dose, significantly reducing renal and bone toxicities." },
+      { q: "An HIV patient presenting with advanced immunosuppression develops CMV retinitis. Treatment with Foscarnet is initiated. Which electrolyte abnormalities require intensive monitoring?", opts: ["Severe Hypocalcemia and Hypomagnesemia", "Hyperkalemia and Hypernatremia", "Hypercalcemia and Hyperphosphatemia", "Isolated Hyponatremia"], a: 0, tag: "Scenario", topic: "Foscarnet Electrolyte Toxicity", exp: "Foscarnet chelates divalent cations, leading to severe acute hypocalcemia, hypomagnesemia, and hypokalemia, which can trigger seizures and arrhythmias." },
+      { q: "A pregnant woman who is HIV-positive arrives in labor. She received no prenatal ART. To reduce perinatal HIV transmission, which drug is administered intravenously during labor?", opts: ["Zidovudine (AZT)", "Efavirenz", "Ritonavir", "Enfuvirtide"], a: 0, tag: "Scenario", topic: "Perinatal HIV Prevention", exp: "Intravenous Zidovudine during labor (plus infant post-exposure prophylaxis) significantly reduces vertical transmission of HIV." },
+      { q: "An HIV patient fails treatment. Genotypic testing reveals mutation in the env gene encoding gp41 glycoprotein. Which drug class loses clinical efficacy?", opts: ["Fusion Inhibitors (Enfuvirtide)", "CCR5 Antagonists (Maraviroc)", "INSTIs", "NRTIs"], a: 0, tag: "Scenario", topic: "HIV Entry Inhibitor Mechanisms", exp: "Enfuvirtide binds specifically to viral envelope glycoprotein gp41, preventing conformational change required for membrane fusion." },
+      { q: "A patient starting Maraviroc for resistant HIV therapy must first undergo a tropism assay (Trofile test) to confirm:", opts: ["The virus exclusively uses CCR5 co-receptors for cell entry (R5-tropic virus)", "The virus uses CXCR4 co-receptors", "The patient lacks HLA-B*5701", "Viral CD4 count is over 500"], a: 0, tag: "Scenario", topic: "Maraviroc Tropism Requirements", exp: "Maraviroc blocks the human CCR5 co-receptor. It is ineffective if the viral population exhibits CXCR4 or dual/mixed tropism." },
+      { q: "A patient receiving chronic Ganciclovir for CMV prophylaxis after kidney transplant develops severe neutropenia (ANC < 500/mcL). The most appropriate management is:", opts: ["Administer Granulocyte Colony-Stimulating Factor (G-CSF) or substitute with Valganciclovir/Foscarnet", "Increase Ganciclovir dose", "Add Zidovudine", "Stop all immunosuppressants"], a: 0, tag: "Scenario", topic: "Ganciclovir Neutropenia Management", exp: "Ganciclovir-induced bone marrow suppression is managed by dose reduction, adding G-CSF (Filgrastim), or switching to alternative anti-CMV agents." },
+      { q: "An alcoholic patient receiving Ribavirin and Pegylated Interferon-alpha for Hepatitis C develops severe depression and suicidal ideation. This adverse effect is attributed to:", opts: ["Interferon-alpha therapy", "Ribavirin hemolysis", "Sofosbuvir toxicity", "Direct viral neurotropism"], a: 0, tag: "Scenario", topic: "Interferon Neuropsychiatric Toxicity", exp: "Interferon-alpha therapy is classically associated with severe neuropsychiatric side effects, including profound depression and suicidal ideation." },
+      { q: "A renal transplant patient on Tacrolimus develops severe HSV-1 lesions. Acyclovir is prescribed. What renal interaction should be anticipated?", opts: ["Additive nephrotoxicity requiring routine monitoring of serum creatinine and Tacrolimus levels", "Complete inactivation of Acyclovir", "Severe hepatic necrosis", "Hypoglycemia"], a: 0, tag: "Scenario", topic: "Antiviral Nephrotoxic Combinations", exp: "Co-administering nephrotoxic agents (Acyclovir + Calcineurin inhibitors) elevates risk of acute kidney injury; hydration and drug level monitoring are vital." },
+      // Challenging (85-90)
+      { q: "Cidofovir treatment for resistant CMV is co-administered with oral Probenecid and aggressive IV saline hydration. Probenecid is given to:", opts: ["Block active tubular secretion of Cidofovir via OAT-1 transporters, protecting renal proximal tubule cells", "Inhibit liver destruction of Cidofovir", "Enhance CNS penetration of Cidofovir", "Prevent severe neutropenia"], a: 0, tag: "Challenging", topic: "Cidofovir & Probenecid Kinetics", exp: "Cidofovir causes severe proximal tubular necrosis. Probenecid blocks Organic Anion Transporter 1 (OAT-1), stopping Cidofovir uptake into tubular cells." },
+      { q: "Which Direct-Acting Antiviral (DAA) combination targets NS3/4A protease, NS5A protein, and NS5B polymerase simultaneously for pangenotypic HCV cure?", opts: ["Sofosbuvir + Velpatasvir (+ Voxilaprevir)", "Acyclovir + Ganciclovir", "Zidovudine + Lamivudine", "Ribavirin + Interferon"], a: 0, tag: "Challenging", topic: "HCV Triple DAA Regimens", exp: "Triple DAA regimens combine NS5B polymerase inhibitors (Sofosbuvir), NS5A inhibitors (Velpatasvir), and NS3/4A protease inhibitors (Voxilaprevir) for 98%+ cure rates." },
+      { q: "Acyclovir-resistant HSV strains isolated from immunocompromised patients most commonly exhibit loss or mutation of which gene?", opts: ["Viral Thymidine Kinase (TK) gene", "Viral DNA Polymerase gene", "Human DNA Polymerase", "Host Cell Kinase"], a: 0, tag: "Challenging", topic: "Acyclovir Resistance Genetics", exp: "Over 95% of clinical Acyclovir resistance stems from TK-deficient or TK-altered HSV mutants that fail to phosphorylate Acyclovir into its active monophosphate." },
+      { q: "Nirmatrelvir (in Paxlovid for COVID-19) acts as an inhibitor of which essential SARS-CoV-2 enzyme?", opts: ["Main Protease (Mpro / 3CLpro)", "RNA-dependent RNA Polymerase", "Spike Glycoprotein", "Cap methyltransferase"], a: 0, tag: "Challenging", topic: "SARS-CoV-2 Antivirals", exp: "Nirmatrelvir selectively inhibits SARS-CoV-2 main protease (Mpro / 3CLpro), preventing processing of polyprotein precursors required for viral replication." },
+      { q: "Remdesivir acts as a prodrug of a adenosine nucleotide analog. Its active triphosphate metabolite inhibits SARS-CoV-2 RNA polymerase via:", opts: ["Delayed RNA chain termination (3 nucleotides downstream)", "Immediate competitive protein denaturation", "Inhibition of host translation", "Destruction of viral membrane"], a: 0, tag: "Challenging", topic: "Remdesivir Mechanism", exp: "Remdesivir-triphosphate incorporates into viral RNA by RdRp; after 3 additional nucleotides are added, it induces spatial distortion, terminating transcription." },
+      { q: "Which HIV antiretroviral agent is a small-molecule capsid inhibitor that disrupts multiple stages of the viral life cycle and is administered subcutaneously every 6 months?", opts: ["Lenacapavir", "Cabotegravir", "Fostemsavir", "Islatravir"], a: 0, tag: "Challenging", topic: "Novel Long-Acting Antiretrovirals", exp: "Lenacapavir is a first-in-class HIV-1 capsid inhibitor targeting capsid-mediated nuclear import, virion assembly, and capsid core formation with 6-month dosing." }
+    ]
+  },
+
+  // CHAPTER 4: ANTIPARASITIC DRUGS (91-120)
+  {
+    chTitle: "Subchapter 4: Antiparasitic Drugs",
+    questions: [
+      // Basic (91-102)
+      { q: "Metronidazole is the drug of choice for Giardia lamblia, Entamoeba histolytica, and Trichomonas vaginalis. Its cytotoxic mechanism requires reduction to free radicals in:", opts: ["Anaerobic / Microaerophilic protozoa", "Aerobic bacteria only", "Human liver cells only", "Fungal cell walls"], a: 0, tag: "Basic", topic: "Antiprotozoal Metronidazole", exp: "Metronidazole acts as a prodrug selectively reduced in anaerobic/microaerophilic protozoa (and bacteria), generating reactive intermediates that break DNA strands." },
+      { q: "Which antihelminthic drug inhibits microtubule polymerization by binding to beta-tubulin of nematodes?", opts: ["Albendazole / Mebendazole", "Praziquantel", "Ivermectin", "Pyrantel Pamoate"], a: 0, tag: "Basic", topic: "Benzimidazoles", exp: "Benzimidazoles (Albendazole, Mebendazole) bind nematode beta-tubulin, inhibiting microtubule polymerization and blocking glucose uptake." },
+      { q: "Praziquantel is the drug of choice for Schistosomiasis and Trematode infections. Its primary mechanism involves:", opts: ["Increasing cell membrane permeability to Calcium, causing spastic paralysis of worms", "Blocking GABA receptors", "Inhibiting chitin synthesis", "Hyperpolarizing glutamate channels"], a: 0, tag: "Basic", topic: "Praziquantel", exp: "Praziquantel induces rapid influx of Calcium ions across schistosome tegument, causing severe muscular contraction, paralysis, and tegumental disruption." },
+      { q: "Ivermectin treats Onchocerca volvulus (River Blindness) and Strongyloides by activating which parasite ion channels?", opts: ["Glutamate-gated Chloride Channels", "Voltage-gated Sodium Channels", "Nicotinic Acetylcholine Channels", "Calcium Channels"], a: 0, tag: "Basic", topic: "Ivermectin Mechanism", exp: "Ivermectin selectively binds glutamate-gated chloride channels in invertebrate nerve and muscle cells, causing hyperpolarization and flaccid paralysis." },
+      { q: "Pyrantel Pamoate acts as a depolarizing neuromuscular blocking agent against pinworms (Enterobius) by stimulating:", opts: ["Nicotinic Acetylcholine Receptors", "GABA Receptors", "Glutamate Channels", "Beta-adrenergic Receptors"], a: 0, tag: "Basic", topic: "Pyrantel Pamoate", exp: "Pyrantel Pamoate acts as a persistent agonist at parasite nicotinic acetylcholine receptors, producing depolarizing neuromuscular block and expulsion." },
+      { q: "Which antihelminthic agent causes the Mazotti reaction (fever, rash, hypotension) when treating Onchocerciasis due to massive dying microfilariae?", opts: ["Ivermectin or Diethylcarbamazine (DEC)", "Praziquantel", "Mebendazole", "Niclosamide"], a: 0, tag: "Basic", topic: "Mazzotti Reaction", exp: "Inflammatory responses to dead microfilaria protein breakdown (Mazzotti reaction) cause intense pruritus, fever, tachycardia, and lymphadenitis." },
+      { q: "Nitazoxanide is approved for diarrhea caused by Cryptosporidium parvum and Giardia. It acts by inhibiting:", opts: ["Pyruvate:ferredoxin oxidoreductase (PFOR) enzyme", "Beta-tubulin synthesis", "Acetylcholinesterase", "DNA gyrase"], a: 0, tag: "Basic", topic: "Nitazoxanide", exp: "Nitazoxanide interferes with Pyruvate:ferredoxin oxidoreductase (PFOR) enzyme-dependent electron transfer essential for anaerobic energy metabolism." },
+      { q: "Which drug is used first-line for treating Neurocysticercosis caused by Taenia solium larval cysts?", opts: ["Albendazole (often with Corticosteroids)", "Metronidazole", "Ivermectin", "Pyrantel Pamoate"], a: 0, tag: "Basic", topic: "Neurocysticercosis Management", exp: "Albendazole penetrates CNS tissue and cyst walls effectively to kill Taenia solium larvae; corticosteroids prevent inflammation from dying parasites." },
+      { q: "Permethrin is used topically to treat scabies and lice. It acts by disrupting:", opts: ["Voltage-gated Sodium Channels, delaying repolarization", "GABA receptors", "Chitin cell walls", "Glutamate-gated channels"], a: 0, tag: "Basic", topic: "Ectoparasiticides (Permethrin)", exp: "Permethrin prevents repolarization of arthropod nerve cell membranes by keeping voltage-gated sodium channels open, paralyzing the parasite." },
+      { q: "Pentamidine is used in early-stage African Trypanosomiasis and Pneumocystis jirovecii. Its toxicity includes:", opts: ["Pancreatic beta-cell toxicity causing severe Hypoglycemia, followed by Diabetes", "Severe tendon rupture", "Aplastic anemia", "Optic neuritis"], a: 0, tag: "Basic", topic: "Pentamidine Toxicity", exp: "Pentamidine damages pancreatic islet beta cells, acutely triggering massive insulin release (hypoglycemia), followed by permanent diabetes mellitus." },
+      { q: "Which oral luminally-acting agent is non-absorbable and used to eradicate luminal cysts of Entamoeba histolytica?", opts: ["Paromomycin or Iodoquinol", "Metronidazole", "Albendazole", "Praziquantel"], a: 0, tag: "Basic", topic: "Luminal Amebicides", exp: "Metronidazole kills invasive amebic tissue trophozoites but not luminal cysts; non-absorbable luminal amebicides (Paromomycin) eradicate cysts." },
+      { q: "Suramin is used to treat the hemolymphatic stage of which protozoal infection?", opts: ["African Trypanosomiasis (T. brucei rhodiense)", "Leishmaniasis", "Chagas Disease", "Toxoplasmosis"], a: 0, tag: "Basic", topic: "Suramin", exp: "Suramin is an IV agent used for early hemolymphatic East African Sleeping Sickness (Trypanosoma brucei rhodiense) prior to CNS invasion." },
+      // Scenario-Based (103-114)
+      { q: "A 28-year-old traveler returning from South America presents with dysentery and liver abscess. Stool microscopy shows trophozoites with ingested RBCs. What is the correct two-step treatment sequence?", opts: ["Metronidazole (tissue amebicide) followed by Paromomycin (luminal amebicide)", "Paromomycin alone", "Albendazole followed by Praziquantel", "Ciprofloxacin alone"], a: 0, tag: "Scenario", topic: "Amebic Liver Abscess Regimen", exp: "Tissue amebicides (Metronidazole) eliminate invasive trophozoites in liver and colon wall, followed by luminal amebicide (Paromomycin) to clear asymptomatic luminal cysts." },
+      { q: "A patient being treated with Metronidazole for Trichomonas vaginitis consumes two glasses of wine and develops severe flushing, throbbing headache, nausea, and vomiting. What occurred?", opts: ["Disulfiram-like reaction due to inhibition of Aldehyde Dehydrogenase", "Severe allergic anaphylaxis", "Potentiation of ethanol CNS depression", "Metronidazole-induced acute pancreatitis"], a: 0, tag: "Scenario", topic: "Metronidazole Disulfiram Reaction", exp: "Metronidazole inhibits hepatic Aldehyde Dehydrogenase, causing systemic acetaldehyde accumulation when combined with alcohol." },
+      { q: "An immunocompromised HIV patient (CD4 count 80 cells/mcL) develops brain lesions showing ring-enhancing ring-like mass on MRI. Serology confirms Toxoplasma gondii. First-line therapy is:", opts: ["Sulfadiazine + Pyrimethamine (plus Leucovorin)", "Metronidazole + Ceftriaxone", "Albendazole + Fluconazole", "Pentamidine alone"], a: 0, tag: "Scenario", topic: "Toxoplasmosis Therapy", exp: "Synergistic dihydrofolate reductase inhibition by Pyrimethamine + Sulfadiazine is first-line for Toxoplasmosis; Leucovorin (Folinic acid) rescues bone marrow." },
+      { q: "A child in day care presents with intense perianal itching, especially at night. Scotch tape test confirms Enterobius vermicularis (Pinworm). Which strategy must be employed?", opts: ["Treat the child and all household family members simultaneously with Pyrantel Pamoate or Albendazole", "Treat child only with IV Vancomycin", "Surgically excise worms", "Administer Metronidazole"], a: 0, tag: "Scenario", topic: "Pinworm Eradication Strategy", exp: "Pinworm eggs spread easily within households; treating all family contacts simultaneously prevents immediate reinfection cycles." },
+      { q: "A patient with suspected Neurocysticercosis is starting Albendazole. Why are high-dose Dexamethasone (corticosteroid) and Anticonvulsants co-administered?", opts: ["To suppress intense inflammatory response and seizures caused by dying cysticerci in brain parenchyma", "To increase renal excretion of Albendazole", "To prevent fungal superinfection", "To kill adult tapeworms in intestine"], a: 0, tag: "Scenario", topic: "Neurocysticercosis Management", exp: "Degeneration of cysticerci under Albendazole releases massive foreign antigens, triggering focal cerebral edema, severe headache, and seizures unless suppressed by steroid." },
+      { q: "A patient with Chagas Disease (Trypanosoma cruzi) in the acute phase requires antiparasitic treatment. Which agent is effective?", opts: ["Nifurtimox or Benznidazole", "Praziquantel", "Metronidazole", "Ivermectin"], a: 0, tag: "Scenario", topic: "Chagas Disease Therapeutics", exp: "Nifurtimox and Benznidazole generate toxic oxygen radicals inside T. cruzi, effective in acute Chagas disease." },
+      { q: "A patient receiving Pyrimethamine + Sulfadiazine for Toxoplasmosis develops pancytopenia and megaloblastic anemia. This toxicity is prevented by co-prescribing:", opts: ["Leucovorin (Folinic Acid)", "Pyridoxine (Vitamin B6)", "Thiamine", "Iron dextran"], a: 0, tag: "Scenario", topic: "Pyrimethamine Rescue Therapy", exp: "Pyrimethamine inhibits human dihydrofolate reductase at high doses; Leucovorin bypasses DHFR to provide active tetrahydrofolate, rescuing human hematopoiesis." },
+      { q: "A patient with Visceral Leishmaniasis (Kala-azar) failing sodium stibogluconate is prescribed Liposomal Amphotericin B. Why is Amphotericin B effective against Leishmania?", opts: ["Leishmania cell membranes contain ergosterol-like sterols targetable by polyenes", "It inhibits Leishmania cell wall peptidoglycan", "It paralyzes Leishmania flagella", "It blocks human macrophages"], a: 0, tag: "Scenario", topic: "Leishmaniasis & Polyenes", exp: "Leishmania promastigotes/amastigotes possess ergosterol as their main cell membrane sterol, making them highly susceptible to Amphotericin B." },
+      { q: "A family returning from a camping trip develops foul-smelling, watery diarrhea, abdominal distension, and flatulence after drinking stream water. Stool microscopy reveals flagellated binucleate trophozoites with a ventral sucking disk. First-line therapy is:", opts: ["Metronidazole or Tinidazole", "Ciprofloxacin", "Albendazole", "Praziquantel"], a: 0, tag: "Scenario", topic: "Giardiasis Treatment", exp: "Giardia lamblia is treated first-line with Metronidazole or single-dose Tinidazole, which targets protozoal anaerobic metabolic pathways." },
+      { q: "A patient with river blindness (Onchocerciasis) receives Ivermectin. Within 24 hours, the patient develops fever, severe urticaria, hypotension, and tender lymphadenopathy. The nurse recognizes this as:", opts: ["Mazzotti reaction due to host immune response to dead microfilariae", "Immediate Type I IgE anaphylaxis to Ivermectin", "Stevens-Johnson Syndrome", "Acute bacterial sepsis"], a: 0, tag: "Scenario", topic: "Mazzotti Reaction Recognition", exp: "The Mazzotti reaction stems from immune destruction of microfilariae; it is a expected inflammatory response, managed with antipyretics and steroids if severe." },
+      { q: "Which antihelminthic drug is contraindicated during the 1st trimester of pregnancy due to potential embryotoxicity and teratogenicity?", opts: ["Albendazole / Mebendazole", "Pyrantel Pamoate", "Praziquantel", "Permethrin"], a: 0, tag: "Scenario", topic: "Teratogenic Antihelminthics", exp: "Benzimidazoles disrupt microtubule dynamics during fetal organogenesis and are generally avoided during the 1st trimester of pregnancy." },
+      { q: "A sheep farmer presents with a large, fluid-filled liver cyst containing daughter cysts (Hydatid Disease caused by Echinococcus granulosus). Along with surgical aspiration (PAIR procedure), which drug is administered?", opts: ["Albendazole", "Praziquantel", "Metronidazole", "Ivermectin"], a: 0, tag: "Scenario", topic: "Hydatid Cyst Management", exp: "Albendazole is administered before and after Hydatid cyst intervention to kill released protoscolices and prevent secondary cyst seeding." },
+      // Challenging (115-120)
+      { q: "Melarsoprol is an organoarsenical compound reserved for late-stage CNS African Trypanosomiasis (Sleeping Sickness). Its most catastrophic, fatal adverse effect is:", opts: ["Reactive Encephalopathy (in ~10% of patients)", "Acute myocardial infarction", "Irreversible blindness", "Pulmonary fibrosis"], a: 0, tag: "Challenging", topic: "Melarsoprol Neurotoxicity", exp: "Melarsoprol crosses BBB to kill trypanosomes in CNS, but causes severe, potentially fatal reactive encephalopathy (brain swelling) in 5-10% of treated patients." },
+      { q: "Miltefosine is a major therapeutic breakthrough in parasitic pharmacology because it is:", opts: ["The first effective ORAL medication for Visceral and Cutaneous Leishmaniasis", "An injectable single-dose cure for Malaria", "A topical lotion for Tapeworms", "An IV agent for Amebiasis"], a: 0, tag: "Challenging", topic: "Miltefosine Innovation", exp: "Miltefosine is an alkylphosphocholine analog that interacts with cell signaling and sterol biosynthesis, representing the first oral cure for Leishmaniasis." },
+      { q: "Artemether + Lumefantrine combination therapy targets malaria, but Artemisinin derivatives also display potent activity against which trematode parasite?", opts: ["Schistosoma species (juvenile schistosomula stages)", "Fasciola hepatica", "Taenia solium", "Ascaris lumbricoides"], a: 0, tag: "Challenging", topic: "Artemisinin Spectrum Beyond Malaria", exp: "Artemisinins generate reactive free radicals that damage juvenile schistosomula, demonstrating significant anti-schistosomal properties." },
+      { q: "Benznidazole and Nifurtimox exert trypanocidal activity against Trypanosoma cruzi via activation by parasite-specific:", opts: ["Type I Nitroreductase enzymes, producing toxic reactive oxygen and nitrogen species", "Cytochrome P450 3A4", "Beta-lactamases", "Topoisomerase II"], a: 0, tag: "Challenging", topic: "Nitroheterocyclic Activation Mechanisms", exp: "T. cruzi expresses bacterial-like Type I nitroreductases that reduce Benznidazole into reactive metabolites that damage parasite DNA and proteins." },
+      { q: "Tribendimidine is an emerging broad-spectrum antihelminthic agent that acts as an agonist at which parasite receptor subtype?", opts: ["L-type Nicotinic Acetylcholine Receptors (nAChR)", "GABA-A Receptors", "Glutamate-gated Chloride Channels", "5-HT3 Serotonin Receptors"], a: 0, tag: "Challenging", topic: "Novel Antihelminthics", exp: "Tribendimidine is a nicotinic acetylcholine receptor agonist (L-subtype) that induces spastic paralysis in soil-transmitted nematodes and fluke species." },
+      { q: "Tafenoquine is a newly approved 8-aminoquinoline. What distinct clinical advantage does it offer over Primaquine for radical cure of Plasmodium vivax?", opts: ["Single-dose administration due to an ultra-long elimination half-life (~14 days)", "Zero risk of hemolysis in G6PD deficiency", "Complete safety in pregnancy", "Oral absorption without liver metabolism"], a: 0, tag: "Challenging", topic: "Tafenoquine vs Primaquine", exp: "Tafenoquine has an elimination half-life of 2 weeks, allowing a single-dose regimen for P. vivax hypnozoite eradication (versus 14 days of Primaquine)." }
+    ]
+  },
+
+  // CHAPTER 5: ANTIMALARIAL DRUGS (121-150)
+  {
+    chTitle: "Subchapter 5: Antimalarial Drugs",
+    questions: [
+      // Basic (121-132)
+      { q: "Chloroquine acts by inhibiting which essential parasite process inside Erythrocytic acidic vacuoles?", opts: ["Polymerization of toxic free Heme into non-toxic Hemozoin", "Inhibition of viral RNA polymerase", "Blockade of parasite glucose transporters", "Inhibition of parasite mitochondria"], a: 0, tag: "Basic", topic: "Chloroquine Mechanism", exp: "Plasmodium digests hemoglobin, releasing toxic free heme; Chloroquine prevents heme biocrystallization into non-toxic hemozoin, causing toxic heme accumulation." },
+      { q: "Which antimalarial agent is uniquely capable of eradicating dormant liver hypnozoites of Plasmodium vivax and Plasmodium ovale?", opts: ["Primaquine / Tafenoquine", "Chloroquine", "Mefloquine", "Artemether"], a: 0, tag: "Basic", topic: "Hypnozoitocidal Antimalarials", exp: "8-Aminoquinolines (Primaquine, Tafenoquine) kill dormant liver hypnozoites of P. vivax/ovale, preventing relapses." },
+      { q: "Primaquine and Tafenoquine trigger severe acute intravascular hemolysis and methemoglobinemia in patients with deficiency of which enzyme?", opts: ["Glucose-6-Phosphate Dehydrogenase (G6PD)", "Pyruvate Kinase", "Cytochrome P450 2C19", "Dihydrofolate Reductase"], a: 0, tag: "Basic", topic: "G6PD Deficiency & Hemolysis", exp: "8-Aminoquinolines generate oxidative stress; G6PD-deficient RBCs cannot maintain NADPH/glutathione levels, resulting in severe acute hemolysis." },
+      { q: "Artemisinin-based Combination Therapy (ACT) is recommended worldwide by WHO as first-line for uncomplicated P. falciparum because Artemisinins:", opts: ["Provide rapid reduction of parasite burden via endoperoxide radical generation", "Inhibit human liver cytochrome enzymes", "Sustain blood levels for 30 days alone", "Inhibit bacterial cell walls"], a: 0, tag: "Basic", topic: "ACT Rationale", exp: "Artemisinins contain an endoperoxide bridge that generates free radicals, rapidly clearing parasites (>99% in 48 hours); partner drugs eliminate remaining parasites." },
+      { q: "Quinine and Quinidine are cinchona alkaloids used for severe malaria. A classic constellation of adverse effects known as 'Cinchonism' includes:", opts: ["Tinnitus, headache, dizziness, nausea, and visual disturbances", "Severe diarrhea and colitis", "Peripheral neuropathy and bone marrow failure", "Acute pulmonary fibrosis"], a: 0, tag: "Basic", topic: "Cinchonism Symptoms", exp: "Cinchonism is toxic reaction to quinine/quinidine characterized by tinnitus, high-frequency hearing loss, headache, dizziness, flushing, and blurred vision." },
+      { q: "Mefloquine is effective for chloroquine-resistant malaria chemoprophylaxis, but carries a strict black-box warning regarding:", opts: ["Neuropsychiatric adverse effects (vivid dreams, anxiety, psychosis)", "Severe acute renal failure", "Pulmonary embolism", "Fulminant liver necrosis"], a: 0, tag: "Basic", topic: "Mefloquine Neuropsychiatric Warning", exp: "Mefloquine crosses BBB and can induce severe neuropsychiatric reactions, including severe anxiety, paranoia, depression, hallucinations, and seizures." },
+      { q: "Atovaquone + Proguanil (Malarone) acts synergistically against erythrocytic and liver stages. Atovaquone specifically disrupts:", opts: ["Parasite mitochondrial electron transport (cytochrome bc1 complex)", "Parasite DNA gyrase", "Parasite cell wall glucan", "Bacterial 50S ribosome"], a: 0, tag: "Basic", topic: "Malarone Mechanisms", exp: "Atovaquone selectively inhibits Plasmodium mitochondrial cytochrome bc1 complex, collapsing membrane potential; Proguanil enhances this action." },
+      { q: "Proguanil and Pyrimethamine inhibit which specific enzyme involved in protozoal folate synthesis?", opts: ["Plasmodium Dihydrofolate Reductase (DHFR)", "Dihydropteroate Synthase (DHPS)", "Thymidylate Synthase", "DNA Polymerase"], a: 0, tag: "Basic", topic: "Antimalarial Antifolates", exp: "Proguanil (via its active metabolite cycloguanil) and Pyrimethamine selectively inhibit Plasmodium dihydrofolate reductase (DHFR)." },
+      { q: "Which intravenous agent is recommended by WHO as first-line treatment for Severe / Complicated Plasmodium falciparum Malaria?", opts: ["IV Artesunate", "IV Quinine", "Oral Chloroquine", "Oral Mefloquine"], a: 0, tag: "Basic", topic: "Severe Malaria Management", exp: "IV Artesunate rapidly reduces parasitemia and lowers mortality significantly compared to IV Quinine, making it first-line for severe/complicated malaria." },
+      { q: "Fansidar is a fixed combination antimalarial consisting of Sulfadoxine and Pyrimethamine. Sulfadoxine acts by inhibiting:", opts: ["Dihydropteroate Synthase (DHPS)", "Dihydrofolate Reductase (DHFR)", "DNA Gyrase", "Cytochrome bc1"], a: 0, tag: "Basic", topic: "Sulfadoxine Mechanism", exp: "Sulfadoxine inhibits Plasmodium dihydropteroate synthase (DHPS), acting synergistically with Pyrimethamine (DHFR inhibitor)." },
+      { q: "Chloroquine resistance in Plasmodium falciparum (Pfcrt mutation) is mediated primarily by:", opts: ["Efflux of Chloroquine out of parasite digestive vacuole via mutated PfCRT transporter", "Destruction of Chloroquine by bacterial enzymes", "Thickening of parasite membrane", "Alteration of human hemoglobin"], a: 0, tag: "Basic", topic: "Chloroquine Resistance Molecular Basis", exp: "Mutations in P. falciparum chloroquine resistance transporter (PfCRT) protein pump Chloroquine out of the acidic digestive vacuole away from heme." },
+      { q: "Doxycycline is used for antimalarial chemoprophylaxis in areas with multi-drug resistant P. falciparum. It exerts antimalarial action by targeting:", opts: ["Plasmodium apicoplast 30S ribosome, inhibiting protein synthesis", "Human erythrocyte cell wall", "Parasite digestive vacuole pH", "Folate synthesis directly"], a: 0, tag: "Basic", topic: "Doxycycline Antimalarial Mechanism", exp: "Doxycycline targets the apicoplast (a relict plastid organelle in Plasmodium) by binding its 30S ribosome, leading to a delayed death phenotype in progeny." },
+      // Scenario-Based (133-144)
+      { q: "A 32-year-old pregnant woman in her 1st trimester travels to a chloroquine-resistant P. falciparum endemic area. Which antimalarial is safest for chemoprophylaxis?", opts: ["Mefloquine", "Doxycycline", "Primaquine", "Atovaquone-Proguanil"], a: 0, tag: "Scenario", topic: "Pregnancy Antimalarial Safety", exp: "Mefloquine is Category B and considered safe for prophylaxis across all trimesters of pregnancy. Doxycycline (bone/teeth toxicity) and Primaquine are contraindicated." },
+      { q: "A patient with severe falciparum malaria is treated with IV Quinine dihydrochloride. During infusion, the patient experiences profound sweating, confusion, and blood glucose of 34 mg/dL. What caused this?", opts: ["Quinine stimulates pancreatic beta-cell insulin secretion", "Quinine inhibits hepatic glycogenolysis directly", "Malaria parasites consume all blood glucose instantly", "Quinine induces acute adrenal insufficiency"], a: 0, tag: "Scenario", topic: "Quinine-Induced Hypoglycemia", exp: "Quinine is a potent secretagogue for pancreatic beta cells, triggering hyperinsulinemia and severe hypoglycemia; blood glucose must be monitored closely." },
+      { q: "A soldier returning from Southeast Asia is cured of blood-stage P. vivax with Chloroquine. 6 months later, he suffers a relapse of malaria. Why did relapse occur?", opts: ["Failure to administer Primaquine to eradicate dormant liver hypnozoites", "Reinfection from local mosquitoes", "Chloroquine resistance of blood schizonts", "Mutated viral enzyme"], a: 0, tag: "Scenario", topic: "P. vivax Relapse Dynamics", exp: "P. vivax and P. ovale form dormant liver hypnozoites that remain quiescent for months; blood schizonticides (Chloroquine) cannot kill hypnozoites." },
+      { q: "Before prescribing Primaquine for radical cure of P. vivax malaria, what diagnostic test MUST be performed to avoid life-threatening complications?", opts: ["Quantitative G6PD Enzyme Assay", "Serum Creatinine", "Liver biopsy", "Blood glucose level"], a: 0, tag: "Scenario", topic: "G6PD Screening Mandate", exp: "Primaquine triggers acute intravascular hemolysis in G6PD-deficient individuals; quantitative G6PD testing prior to administration is mandatory." },
+      { q: "A patient taking IV Quinidine for severe malaria exhibits widening of QRS complex (>50% above baseline) and QTc prolongation on ECG. What is the immediate management?", opts: ["Slow or temporarily discontinue Quinidine infusion to prevent fatal ventricular arrhythmias (Torsades de Pointes)", "Double the IV infusion rate", "Administer high-dose Potassium", "Add Mefloquine"], a: 0, tag: "Scenario", topic: "Quinidine Cardiotoxicity", exp: "Quinidine is a Class IA antiarrhythmic that blocks cardiac sodium and potassium channels; QRS widening or QTc prolongation risks fatal Torsades de Pointes." },
+      { q: "A 24-year-old traveler takes Atovaquone-Proguanil (Malarone) for malaria prophylaxis during a 2-week safari. What is a key advantage of Malarone over Doxycycline or Mefloquine?", opts: ["It can be stopped 7 days after leaving endemic area (casual prophylaxis targeting liver stage)", "It requires only a single lifetime tablet", "It causes zero side effects", "It is safe in severe G6PD deficiency with renal failure"], a: 0, tag: "Scenario", topic: "Malarone Prophylaxis Kinetics", exp: "Malarone possesses causal prophylactic activity against liver stage schizonts; thus it only needs to be continued for 7 days post-travel (versus 4 weeks for Doxycycline/Mefloquine)." },
+      { q: "A patient treated for severe malaria with IV Artesunate develops delayed intravascular hemolysis 2 weeks after successfully completing treatment ('Post-Artesunate Delayed Hemolysis'). What is the mechanism?", opts: ["Extravascular pitting of dead parasites by spleen leaves pitted RBCs with shortened lifespans that lyse synchronously weeks later", "Direct allergic antibody formation against Artesunate", "G6PD deficiency flare-up", "Bone marrow aplasia"], a: 0, tag: "Scenario", topic: "Post-Artesunate Delayed Hemolysis", exp: "Artesunate promotes 'pitting', where the spleen expels dead parasites while returning damaged RBC membranes to circulation; these pitted RBCs lyse 1-3 weeks later." },
+      { q: "A businessman traveling to West Africa receives Mefloquine prophylaxis. He has a past medical history of well-controlled epilepsy and depression. Is Mefloquine appropriate?", opts: ["No, Mefloquine is strictly contraindicated in patients with history of seizures or psychiatric disorders", "Yes, Mefloquine is the safest choice", "Yes, if combined with Valproate", "No, because Mefloquine causes kidney stones"], a: 0, tag: "Scenario", topic: "Mefloquine Contraindications", exp: "Mefloquine lowers seizure threshold and can exacerbate psychiatric conditions; a history of epilepsy, depression, or psychosis is an absolute contraindication." },
+      { q: "A patient with P. falciparum malaria is treated with Artemether + Lumefantrine (Coartem). Lumefantrine must be taken with fatty food or milk because:", opts: ["Fatty meals dramatically increase oral bioavailability of highly lipophilic Lumefantrine", "Fatty food neutralizes stomach acid", "It prevents Lumefantrine-induced peptic ulcers", "Milk inactivates Artemether"], a: 0, tag: "Scenario", topic: "Lumefantrine Bioavailability", exp: "Lumefantrine is extremely lipophilic; co-administration with lipid-rich food/milk increases its oral absorption up to 16-fold, ensuring therapeutic blood levels." },
+      { q: "A patient receiving High-Dose Chloroquine for rheumatoid arthritis long-term undergoes routine ophthalmologic screening. The optometrist looks for which classic drug toxicity?", opts: ["'Bull's-eye' Macular Retinopathy", "Cataracts", "Glaucoma", "Optic Nerve Atrophy"], a: 0, tag: "Scenario", topic: "Chloroquine Retinopathy", exp: "Long-term high-dose Chloroquine/Hydroxychloroquine binds melanin in retinal pigment epithelium, causing irreversible 'bull's-eye' maculopathy." },
+      { q: "An IV drug user presents with high fever, chills, splenomegaly, and ring-form trophozoites on thick blood smear. He is diagnosed with P. falciparum. Why is Chloroquine monotherapy avoided in West Africa?", opts: ["Widespread P. falciparum resistance (>80% of strains carry PfCRT mutation)", "Chloroquine causes immediate liver failure in adults", "Chloroquine is ineffective against blood schizonts", "Chloroquine cannot be given orally"], a: 0, tag: "Scenario", topic: "Global Antimalarial Resistance Patterns", exp: "P. falciparum resistance to Chloroquine is ubiquitous across Sub-Saharan Africa and Asia due to PfCRT gene mutations; ACT regimens are mandated." },
+      { q: "A backpacker taking Doxycycline for antimalarial prophylaxis in Thailand develops severe erythematous blistering skin eruptions on exposed arms and face after sunbathing. Management involves:", opts: ["Discontinuing Doxycycline, applying sun protection, and switching to Malarone or Mefloquine", "Increasing Doxycycline dose", "Administering oral Hydroxychloroquine", "Applying ice packs only"], a: 0, tag: "Scenario", topic: "Doxycycline Phototoxicity", exp: "Tetracyclines (Doxycycline) cause prominent UVA-induced phototoxicity; travelers must be warned to wear sunscreen or use alternative prophylactic drugs." },
+      // Challenging (145-150)
+      { q: "Artemisinin resistance in Southeast Asia (Greater Mekong Subregion) is driven by Kelch 13 (K13) gene mutations. This mutation results in:", opts: ["Delayed clearance of ring-stage parasites due to reduced endocytosis and hemoglobin digestion", "Immediate enzymatic destruction of Artemisinin", "Complete loss of Plasmodium mitochondria", "Overproduction of PfCRT transporters"], a: 0, tag: "Challenging", topic: "Artemisinin K13 Resistance Genetics", exp: "K13 gene mutations decrease Kelch13 protein function, reducing endocytosis of host hemoglobin in early ring stages, blunting artemisinin radical activation." },
+      { q: "Which antimalarial drug acts as a fast-acting synthetic ozonide (trioxolane) designed to overcome artemisinin resistance via endoperoxide cleavage?", opts: ["Arterolane / Artefenomel", "Pyronaridine", "Piperaquine", "Halofantrine"], a: 0, tag: "Challenging", topic: "Synthetic Ozonides", exp: "Synthetic trioxolanes (Arterolane) contain a stable synthetic peroxide ring that generates parasiticidal free radicals, retaining potency against K13-mutant Plasmodium." },
+      { q: "Pyronaridine + Artesunate is a novel ACT combination. Pyronaridine's mechanism of action involves:", opts: ["Inhibition of beta-hematin formation and Topoisomerase II inhibition in Plasmodium", "Blockade of GABA receptors", "Inhibition of host white blood cells", "Inhibition of parasite cell wall synthesis"], a: 0, tag: "Challenging", topic: "Pyronaridine ACT Dynamics", exp: "Pyronaridine is a benzonaphthyridine derivative that inhibits beta-hematin formation, forms drug-heme complexes, and inhibits parasite Topoisomerase II." },
+      { q: "Halofantrine was historically effective against multi-drug resistant P. falciparum, but its clinical use was severely restricted due to:", opts: ["High risk of fatal cardiac arrhythmias secondary to marked QTc prolongation and Torsades de Pointes", "Irreversible aplastic anemia", "Fulminant acute renal failure", "Severe retrobulbar optic neuritis"], a: 0, tag: "Challenging", topic: "Halofantrine Cardiotoxicity", exp: "Halofantrine causes potent dose-dependent cardiac delayed-rectifier potassium channel blockade, leading to severe QTc prolongation and sudden cardiac death." },
+      { q: "KAF156 (Ganaplacide) is a novel antimalarial drug class in clinical trials. It acts by targeting which Plasmodium organelle protein component?", opts: ["Plasmodium falciparum Cyclic Amine Resistance Locus (PfCARL) and ER membrane protein", "Parasite 30S ribosome", "Dihydropteroate synthase", "Cytochrome bc1 complex"], a: 0, tag: "Challenging", topic: "Next-Gen Antimalarial Pipeline", exp: "Ganaplacide (KAF156) belongs to the imidazolopiperazine class, targeting PfCARL and endoplasmic reticulum mechanisms to clear blood and liver schizonts." },
+      { q: "Cipargamin (KAE609) represents a novel antimalarial class known as spiroindolones. It causes rapid parasitic swelling and lysis by inhibiting:", opts: ["Plasmodium falciparum P-type Sodium ATPase (PfATP4)", "Dihydrofolate reductase", "DNA Gyrase", "Heme polymerase"], a: 0, tag: "Challenging", topic: "Spiroindolones & PfATP4", exp: "Spiroindolones (Cipargamin) inhibit PfATP4, a plasma membrane Na+ efflux pump in Plasmodium, causing lethal intracellular Na+ overload and osmotic lysis." }
+    ]
+  }
+];
+
+// STATE MANAGEMENT
+let currentChapter = 0;
+let currentQuestionIndex = 0;
+let overallScore = 0;
+let userAnswers = []; // Store answers per question: { ch, q, selected, correct, topic }
+let chapterScores = [0, 0, 0, 0, 0];
+
+// DOM ELEMENTS
+const quizBox = document.getElementById('quiz-box');
+const dashProgress = document.getElementById('dash-progress');
+const dashScore = document.getElementById('dash-score');
+const dashChNum = document.getElementById('dash-ch-num');
+const dashAccuracy = document.getElementById('dash-accuracy');
+const chTitleText = document.getElementById('ch-title-text');
+const qDiffBadge = document.getElementById('q-diff-badge');
+const chBadgeContainer = document.getElementById('ch-badge-container');
+
+const chapterReport = document.getElementById('chapter-report');
+const finalReport = document.getElementById('final-report');
+
+// INITIALIZE QUIZ
+function initQuiz() {
+  currentChapter = 0;
+  currentQuestionIndex = 0;
+  overallScore = 0;
+  userAnswers = [];
+  chapterScores = [0, 0, 0, 0, 0];
+  
+  chapterReport.classList.remove('show');
+  finalReport.classList.remove('show');
+  quizBox.style.display = 'block';
+  chBadgeContainer.style.display = 'flex';
+
+  renderQuestion();
+  updateDashboard();
+}
+
+// RENDER CURRENT MCQ
+function renderQuestion() {
+  const chData = quizData[currentChapter];
+  const qData = chData.questions[currentQuestionIndex];
+
+  // Update Badges & Chapter Indicator
+  chTitleText.innerText = chData.chTitle;
+  qDiffBadge.innerText = `${qData.tag} Difficulty`;
+  qDiffBadge.className = `diff-tag ${qData.tag === 'Basic' ? 'tag-basic' : qData.tag === 'Scenario' ? 'tag-scenario' : 'tag-hard'}`;
+
+  // Global question count calculation
+  const totalPrevQuestions = currentChapter * 30;
+  const currentGlobalNum = totalPrevQuestions + currentQuestionIndex + 1;
+
+  let html = `
+    <div class="mcq-card active">
+      <div class="q-number">QUESTION ${currentGlobalNum} OF 150 • [${qData.topic}]</div>
+      <div class="q-text">${qData.q}</div>
+      <div class="options-grid">
+  `;
+
+  qData.opts.forEach((opt, idx) => {
+    html += `
+      <button class="opt-btn" onclick="handleAnswer(${idx})" id="opt-${idx}">
+        <span><strong>${String.fromCharCode(65 + idx)}.</strong> ${opt}</span>
+        <span id="icon-${idx}"></span>
+      </button>
+    `;
+  });
+
+  html += `
+      </div>
+      <div class="explanation-box" id="exp-box">
+        <div class="exp-title">💡 WHY IS THIS CORRECT?</div>
+        <div class="exp-text">${qData.exp}</div>
+      </div>
+      <div class="nav-actions">
+        <div></div>
+        <button class="action-btn" id="next-btn" onclick="nextQuestion()" disabled>Next Question ➔</button>
+      </div>
+    </div>
+  `;
+
+  quizBox.innerHTML = html;
+}
+
+// HANDLE ANSWER SELECTION
+function handleAnswer(selectedIdx) {
+  const chData = quizData[currentChapter];
+  const qData = chData.questions[currentQuestionIndex];
+
+  // Disable all option buttons
+  const buttons = document.querySelectorAll('.opt-btn');
+  buttons.forEach(btn => btn.classList.add('disabled'));
+
+  const isCorrect = (selectedIdx === qData.a);
+
+  // Style Selected and Correct Options
+  const selectedBtn = document.getElementById(`opt-${selectedIdx}`);
+  const correctBtn = document.getElementById(`opt-${qData.a}`);
+
+  if (isCorrect) {
+    selectedBtn.classList.add('correct');
+    document.getElementById(`icon-${selectedIdx}`).innerText = '✓';
+    overallScore++;
+    chapterScores[currentChapter]++;
+  } else {
+    selectedBtn.classList.add('incorrect');
+    document.getElementById(`icon-${selectedIdx}`).innerText = '✗';
+    correctBtn.classList.add('correct');
+    document.getElementById(`icon-${qData.a}`).innerText = '✓';
+  }
+
+  // Record Answer for Weakness Diagnostic
+  userAnswers.push({
+    ch: currentChapter,
+    qIndex: currentQuestionIndex,
+    selected: selectedIdx,
+    correct: isCorrect,
+    topic: qData.topic,
+    tag: qData.tag
+  });
+
+  // Reveal Explanation & Enable Next Button
+  document.getElementById('exp-box').classList.add('show');
+  document.getElementById('next-btn').disabled = false;
+
+  updateDashboard();
+}
+
+// UPDATE DASHBOARD METRICS
+function updateDashboard() {
+  const totalAnswered = userAnswers.length;
+  dashProgress.innerText = `${totalAnswered} / 150`;
+  dashScore.innerText = `${overallScore}`;
+  dashChNum.innerText = `${currentChapter + 1} / 5`;
+  
+  const accuracy = totalAnswered > 0 ? Math.round((overallScore / totalAnswered) * 100) : 0;
+  dashAccuracy.innerText = `${accuracy}%`;
+}
+
+// NEXT QUESTION LOGIC
+function nextQuestion() {
+  currentQuestionIndex++;
+
+  if (currentQuestionIndex < 30) {
+    renderQuestion();
+  } else {
+    // 30 Questions completed for this subchapter
+    showChapterReport();
+  }
+}
+
+// SHOW INTERMEDIATE SUBCHAPTER REPORT
+function showChapterReport() {
+  quizBox.style.display = 'none';
+  chBadgeContainer.style.display = 'none';
+
+  const chScore = chapterScores[currentChapter];
+  document.getElementById('ch-report-subtitle').innerText = `Performance breakdown for ${quizData[currentChapter].chTitle}`;
+  document.getElementById('ch-score-display').innerText = `${chScore} / 30 (${Math.round((chScore / 30) * 100)}%)`;
+
+  // Analyze Weakness for current subchapter
+  const chAnswers = userAnswers.filter(a => a.ch === currentChapter);
+  const incorrectAnswers = chAnswers.filter(a => !a.correct);
+
+  let weaknessHtml = "";
+  if (incorrectAnswers.length === 0) {
+    weaknessHtml = "<span style='color: var(--accent-green); font-weight: bold;'>🌟 Outstanding Mastery! 100% Accuracy in this Subchapter. No topic weaknesses detected.</span>";
+  } else {
+    // Count incorrect by topic
+    const topicCounts = {};
+    incorrectAnswers.forEach(a => {
+      topicCounts[a.topic] = (topicCounts[a.topic] || 0) + 1;
+    });
+
+    weaknessHtml = "You lost marks in the following high-yield topics:<ul class='weakness-list'>";
+    for (const [topic, count] of Object.entries(topicCounts)) {
+      weaknessHtml += `<li><strong>${topic}:</strong> ${count} question(s) missed.</li>`;
+    }
+    weaknessHtml += "</ul> Review these specific drug mechanisms before sitting your university exam.";
+  }
+
+  document.getElementById('ch-weakness-text').innerHTML = weaknessHtml;
+
+  // Modify Button Text if it is the last chapter
+  const nextBtn = document.getElementById('btn-next-ch');
+  if (currentChapter === 4) {
+    nextBtn.innerText = "View Final Cumulative Course Report 🏆";
+    nextBtn.onclick = showFinalReport;
+  } else {
+    nextBtn.innerText = "Begin Next Subchapter ➔";
+    nextBtn.onclick = startNextChapter;
+  }
+
+  chapterReport.classList.add('show');
+}
+
+// START NEXT CHAPTER
+function startNextChapter() {
+  currentChapter++;
+  currentQuestionIndex = 0;
+  chapterReport.classList.remove('show');
+  quizBox.style.display = 'block';
+  chBadgeContainer.style.display = 'flex';
+  renderQuestion();
+}
+
+// SHOW FINAL CUMULATIVE REPORT
+function showFinalReport() {
+  chapterReport.classList.remove('show');
+  quizBox.style.display = 'none';
+  chBadgeContainer.style.display = 'none';
+
+  document.getElementById('final-score-display').innerText = `${overallScore} / 150 (${Math.round((overallScore / 150) * 100)}%)`;
+
+  // Render Subchapter Breakdown List
+  let subScoresHtml = "";
+  quizData.forEach((ch, idx) => {
+    const score = chapterScores[idx];
+    const pct = Math.round((score / 30) * 100);
+    const color = pct >= 80 ? 'var(--accent-green)' : pct >= 60 ? 'var(--accent-amber)' : 'var(--accent-red)';
+    subScoresHtml += `
+      <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+        <span><strong>Subchapter ${idx + 1}:</strong> ${ch.chTitle.replace('Subchapter ' + (idx + 1) + ': ', '')}</span>
+        <span style="color: ${color}; font-weight: bold;">${score} / 30 (${pct}%)</span>
+      </div>
+    `;
+  });
+  document.getElementById('subchapter-scores-list').innerHTML = subScoresHtml;
+
+  // Overall Weakness Analysis
+  const allIncorrect = userAnswers.filter(a => !a.correct);
+  let finalWeaknessHtml = "";
+
+  if (allIncorrect.length === 0) {
+    finalWeaknessHtml = "<li style='color: var(--accent-green);'>Perfect Score! You have mastered all 150 Antimicrobial MCQs.</li>";
+  } else {
+    const globalTopicCounts = {};
+    allIncorrect.forEach(a => {
+      globalTopicCounts[a.topic] = (globalTopicCounts[a.topic] || 0) + 1;
+    });
+
+    // Sort topics by most missed
+    const sortedTopics = Object.entries(globalTopicCounts).sort((a, b) => b[1] - a[1]);
+
+    sortedTopics.forEach(([topic, count]) => {
+      finalWeaknessHtml += `<li><strong>${topic}:</strong> ${count} total errors.</li>`;
+    });
+  }
+
+  document.getElementById('final-weakness-list').innerHTML = finalWeaknessHtml;
+  finalReport.classList.add('show');
+}
+
+// RESTART ENTIRE QUIZ
+function restartEntireQuiz() {
+  initQuiz();
+}
+
+// START ON LOAD
+window.onload = initQuiz;
+</script>
+</body>
+</html>
