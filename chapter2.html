@@ -9,6 +9,7 @@
       --primary: #2563eb;
       --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
       --accent: #06b6d4;
+      --quiz-gradient: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
       --bg-gradient: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%);
       --text-dark: #0f172a;
       --text-muted: #475569;
@@ -31,16 +32,25 @@
     .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
     .card { position: relative; background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 22px; text-decoration: none; color: inherit; overflow: hidden; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; justify-content: space-between; opacity: 0; animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     
-    /* Animation Delays */
-    .card:nth-child(1) { animation-delay: 0.15s; }
-    .card:nth-child(2) { animation-delay: 0.30s; }
-    .card:nth-child(3) { animation-delay: 0.45s; }
-    .card:nth-child(4) { animation-delay: 0.60s; }
-    .card:nth-child(5) { animation-delay: 0.75s; }
+    /* Animation Delays for 6 Cards */
+    .card:nth-child(1) { animation-delay: 0.10s; }
+    .card:nth-child(2) { animation-delay: 0.20s; }
+    .card:nth-child(3) { animation-delay: 0.30s; }
+    .card:nth-child(4) { animation-delay: 0.40s; }
+    .card:nth-child(5) { animation-delay: 0.50s; }
+    .card:nth-child(6) { animation-delay: 0.60s; }
 
     .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--primary-gradient); opacity: 0; transition: opacity 0.3s ease; }
     .card:hover { transform: translateY(-8px); border-color: #3b82f6; box-shadow: var(--shadow-lg); }
     .card:hover::before { opacity: 1; }
+
+    /* Special Styling for Quiz Card */
+    .card-quiz::before { background: var(--quiz-gradient) !important; }
+    .card-quiz:hover { border-color: #8b5cf6 !important; }
+    .card-quiz .card-icon { background: #f3e8ff !important; color: #7c3aed; }
+    .card-quiz:hover .card-icon { background: #e9d5ff !important; }
+    .card-quiz .card-link { color: #7c3aed !important; }
+
     .card-icon { width: 42px; height: 42px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 14px; transition: transform 0.3s ease; }
     .card:hover .card-icon { transform: scale(1.1) rotate(-5deg); background: #dbeafe; }
     .card h3 { font-size: 1.15rem; color: #1e293b; margin-bottom: 8px; }
@@ -49,9 +59,11 @@
     .card:hover .card-link { gap: 10px; }
 
     .nursing-list { list-style: none; display: grid; gap: 14px; margin-top: 15px; }
-    .nursing-item { background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--primary); border-radius: 10px; padding: 16px; display: flex; align-items: flex-start; gap: 12px; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: var(--shadow-sm); }
+    .nursing-item { background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--primary); border-radius: 10px; padding: 18px; display: flex; align-items: flex-start; gap: 14px; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: var(--shadow-sm); }
     .nursing-item:hover { transform: translateX(6px); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06); }
-    .nursing-number { background: #dbeafe; color: #1e40af; font-weight: 800; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+    .nursing-number { background: #dbeafe; color: #1e40af; font-weight: 800; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+    .nursing-content h4 { color: #1e293b; font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .nursing-content p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
 
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes slideUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
@@ -76,7 +88,6 @@
       <h2>Select Drug Category</h2>
       <div class="card-grid">
 
-        <!-- 1. Antibacterial -->
         <a href="antibacterial.html" class="card">
           <div>
             <div class="card-icon">🧫</div>
@@ -86,7 +97,6 @@
           <span class="card-link">Explore Chapter &rarr;</span>
         </a>
 
-        <!-- 2. Antifungal -->
         <a href="antifungal.html" class="card">
           <div>
             <div class="card-icon">🍄</div>
@@ -96,7 +106,6 @@
           <span class="card-link">Explore Chapter &rarr;</span>
         </a>
 
-        <!-- 3. Antiviral -->
         <a href="antiviral.html" class="card">
           <div>
             <div class="card-icon">🦠</div>
@@ -106,7 +115,6 @@
           <span class="card-link">Explore Chapter &rarr;</span>
         </a>
 
-        <!-- 4. Antiparasitic -->
         <a href="antiparasitic.html" class="card">
           <div>
             <div class="card-icon">🪱</div>
@@ -116,7 +124,6 @@
           <span class="card-link">Explore Chapter &rarr;</span>
         </a>
 
-        <!-- 5. Antimalarial -->
         <a href="antimalarial.html" class="card">
           <div>
             <div class="card-icon">🦟</div>
@@ -126,11 +133,68 @@
           <span class="card-link">Explore Chapter &rarr;</span>
         </a>
 
+        <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/quiz.chapter2.html" class="card card-quiz" target="_blank">
+          <div>
+            <div class="card-icon">🎯</div>
+            <h3>Practice Master Quiz</h3>
+            <p>Test your knowledge with 150 high-yield MCQs across all 5 anti-infective subchapters.</p>
+          </div>
+          <span class="card-link">Take Quiz Now &rarr;</span>
+        </a>
+
       </div>
 
       <h2>General Nursing Measures &amp; Patient Education</h2>
       <ul class="nursing-list">
-        <!-- ... (keep existing nursing list items here) -->
+        
+        <li class="nursing-item">
+          <div class="nursing-number">1</div>
+          <div class="nursing-content">
+            <h4>Culture &amp; Sensitivity Testing First</h4>
+            <p>Always collect appropriate diagnostic specimens (blood, urine, sputum, or wound swabs) for culture and sensitivity testing <strong>before</strong> initiating the first dose of antimicrobial therapy to avoid masking true pathogen growth.</p>
+          </div>
+        </li>
+
+        <li class="nursing-item">
+          <div class="nursing-number">2</div>
+          <div class="nursing-content">
+            <h4>Strict Treatment Adherence &amp; Resistance Prevention</h4>
+            <p>Educate patients on the critical importance of taking antimicrobial medications at evenly spaced intervals and completing the entire prescribed course—even if symptoms resolve completely—to prevent drug resistance and clinical relapse.</p>
+          </div>
+        </li>
+
+        <li class="nursing-item">
+          <div class="nursing-number">3</div>
+          <div class="nursing-content">
+            <h4>Hypersensitivity &amp; Anaphylaxis Surveillance</h4>
+            <p>Monitor patients closely for signs of allergic reactions (e.g., urticarial rash, bronchospasm, facial angioedema) during the first 30 minutes of administration—especially with Beta-Lactam antibiotics (Penicillins and Cephalosporins).</p>
+          </div>
+        </li>
+
+        <li class="nursing-item">
+          <div class="nursing-number">4</div>
+          <div class="nursing-content">
+            <h4>Monitoring Organ Function &amp; Toxicity Windows</h4>
+            <p>Assess baseline renal (serum creatinine, BUN) and hepatic (ALT, AST) laboratory parameters. Perform Therapeutic Drug Monitoring (TDM) peak and trough draws for narrow therapeutic index drugs like Vancomycin and Gentamicin to avoid acute nephrotoxicity and ototoxicity.</p>
+          </div>
+        </li>
+
+        <li class="nursing-item">
+          <div class="nursing-number">5</div>
+          <div class="nursing-content">
+            <h4>Superinfection &amp; Adverse Effect Management</h4>
+            <p>Educate patients to immediately report signs of secondary superinfections, such as persistent watery diarrhea (suggestive of <em>C. difficile</em> colitis) or oral white patches/vaginal discharge (fungal <em>Candida</em> overgrowth).</p>
+          </div>
+        </li>
+
+        <li class="nursing-item">
+          <div class="nursing-number">6</div>
+          <div class="nursing-content">
+            <h4>Administration Rules &amp; Drug Interactions</h4>
+            <p>Verify food and drug interactions before administration (e.g., avoiding antacids/dairy products with Tetracyclines/Fluoroquinolones due to chelation, and warning against alcohol intake with Metronidazole to prevent disulfiram-like reactions).</p>
+          </div>
+        </li>
+
       </ul>
     </main>
   </div>
