@@ -67,7 +67,12 @@
     ul li { position: relative; padding-left: 28px; margin-bottom: 12px; color: var(--text-muted); font-size: 1.05rem; }
     ul li::before { content: '▪'; position: absolute; left: 8px; color: var(--primary); font-weight: bold; font-size: 1.2rem; }
 
-    .formula-box { background: #f8fafc; border: 1px dashed var(--primary); padding: 15px; border-radius: 10px; margin: 15px 0; font-family: monospace; font-weight: bold; color: var(--primary-dark); text-align: center; overflow-x: auto; white-space: nowrap; font-size: 0.95rem; }
+    /* RESPONSIVE MATHEMATICAL FORMULA DISPLAY */
+    .formula-box { background: #f0f9ff; border: 1.5px dashed var(--primary); padding: 14px 16px; border-radius: 12px; margin: 15px 0; color: var(--primary-dark); font-weight: bold; font-size: 0.95rem; overflow-x: auto; display: flex; align-items: center; justify-content: center; gap: 8px; white-space: nowrap; }
+    .fraction { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; padding: 0 6px; }
+    .numerator { border-bottom: 2px solid var(--primary-dark); padding-bottom: 2px; }
+    .denominator { padding-top: 2px; }
+
     .graph-box { background: white; border: 2px solid var(--card-border); border-radius: 16px; padding: 25px; margin: 30px 0; text-align: center; }
 
     footer { margin-top: 30px; text-align: center; }
@@ -89,6 +94,7 @@
       .moving-pill { font-size: 1.5rem; top: -30px; }
       .mnemonic-box { padding: 16px 14px; }
       .card-tag { margin-left: 0; margin-top: 4px; }
+      .formula-box { justify-content: flex-start; }
     }
   </style>
 </head>
@@ -101,7 +107,6 @@
   <h1>Pharmacokinetics: ADME Principles, Kinetics & Dosage Design</h1>
   <p>Pharmacokinetics is the study of what the human body does to a drug from the moment it enters until it is completely cleared. Think of a medicine pill as a traveler embarking on an intricate biological journey through your organ systems. This journey follows four core milestones known as <strong>ADME</strong>: <strong>A</strong>bsorption, <strong>D</strong>istribution, <strong>M</strong>etabolism, and <strong>E</strong>limination.</p>
 
-  <!-- INTERACTIVE ADME ANIMATION -->
   <div class="animation-container">
     <h3 style="color: var(--primary-dark); margin-bottom: 10px;">⚡ Animated ADME Journey</h3>
     <p style="font-size: 0.95rem; margin-bottom: 25px;">Follow the active drug molecule as it moves through the body systems:</p>
@@ -117,7 +122,6 @@
     </div>
   </div>
 
-  <!-- SECTION 1: ABSORPTION, GI MECHANISMS & BIOAVAILABILITY -->
   <h2>1. Absorption, GI Mechanisms & Bioavailability</h2>
   <p><strong>Absorption</strong> is the movement of a drug from its site of administration into the systemic bloodstream. When a drug is administered intravenously (IV), absorption is bypassed entirely because it enters the blood stream directly with 100 percent efficiency.</p>
 
@@ -142,12 +146,21 @@
       </ul>
       <p style="margin-top: 15px;"><strong>The Concept of Bioavailability (F):</strong></p>
       <p>Bioavailability represents the fraction (percentage) of an administered drug that reaches the systemic circulation unchanged.</p>
-      <div class="formula-box">Bioavailability (F) = (AUC oral / AUC IV) * 100</div>
-      <p><strong>Factors Affecting Bioavailability:</strong> First-pass hepatic metabolism, chemical instability in GI acid, drug solubility, and food-drug interactions.</p>
+      
+      <div class="formula-box">
+        <span>Bioavailability (F) = </span>
+        <div class="fraction">
+          <span class="numerator">AUC oral</span>
+          <span class="denominator">AUC IV</span>
+        </div>
+        <span>× 100</span>
+      </div>
+
+      <p><strong>Factors Affecting Bioavailability:</strong></p>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0;">Bioavailability is reduced by first-pass liver destruction, acidic stomach degradation, poor drug lipid solubility, and food binding interactions in the gut.<br>These factors alter the total fraction of unchanged active drug that successfully reaches the systemic circulation.</p>
     </div>
   </div>
 
-  <!-- SECTION 2: DISTRIBUTION & VOLUME OF DISTRIBUTION -->
   <h2>2. Distribution & Volume of Distribution</h2>
   <p><strong>Distribution</strong> is the reversible transfer of a drug from the bloodstream into the interstitial spaces and body tissues, such as fat, muscle, and the brain.</p>
 
@@ -165,7 +178,15 @@
     <div class="card-box">
       <h3>📦 Volume of Distribution (Vd) <span class="card-tag">⭐ Key Calculation</span></h3>
       <p><strong>Volume of Distribution</strong> is a theoretical fluid volume that would be required to contain all the drug in the body at the same concentration measured in blood plasma.</p>
-      <div class="formula-box">Vd = Total Amount of Drug in Body / Plasma Concentration</div>
+      
+      <div class="formula-box">
+        <span>Vd = </span>
+        <div class="fraction">
+          <span class="numerator">Total Amount of Drug in Body</span>
+          <span class="denominator">Plasma Concentration</span>
+        </div>
+      </div>
+
       <p><strong>Practical Examples:</strong></p>
       <ul>
         <li><strong>Low Vd (e.g., Heparin, ~3 to 5 Liters):</strong> Remains confined almost entirely within the blood plasma compartment because it binds heavily to plasma proteins and is too large to cross tissue barriers.</li>
@@ -174,7 +195,6 @@
     </div>
   </div>
 
-  <!-- SECTION 3: METABOLISM & CYP450 -->
   <h2>3. Metabolism (Biotransformation) & The CYP450 System</h2>
   <p><strong>Metabolism</strong> is the chemical conversion of lipophilic (fat-soluble) drugs into hydrophilic (water-soluble) metabolites, allowing the kidneys to excrete them efficiently. This process takes place primarily in the liver.</p>
 
@@ -197,7 +217,6 @@
     </div>
   </div>
 
-  <!-- SECTION 4: KINETICS OF METABOLISM -->
   <h2>4. Kinetics of Metabolism: First-Order vs. Zero-Order</h2>
   <p>The rate at which drugs are metabolized and eliminated is governed by mathematical kinetic models.</p>
 
@@ -205,19 +224,26 @@
     <div class="card-box">
       <h3>📈 First-Order Kinetics (Exponential Elimination)</h3>
       <p><strong>How it works:</strong> The body eliminates a <em>constant percentage</em> of the drug per unit time. If you have 100mg and 50 percent is eliminated every hour, you have 50mg left after hour one, 25mg after hour two, and so on.</p>
-      <div class="formula-box">Rate of Elimination = Constant * Drug Concentration</div>
+      
+      <div class="formula-box">
+        Rate of Elimination = Constant × Drug Concentration
+      </div>
+
       <p><strong>Key Feature:</strong> The half-life is constant regardless of plasma concentration. Most clinical drugs follow first-order kinetics at therapeutic dosages.</p>
     </div>
     <div class="card-box">
       <h3>📊 Zero-Order Kinetics (Constant Rate Elimination) <span class="card-tag">⭐ Clinical Risk</span></h3>
       <p><strong>How it works:</strong> The body eliminates a <em>constant amount</em> of drug per unit time, regardless of how high the concentration is. This occurs when metabolic enzymes become saturated.</p>
-      <div class="formula-box">Rate of Elimination = Constant (Independent of Concentration)</div>
+      
+      <div class="formula-box">
+        Rate of Elimination = Constant (Saturated Rate)
+      </div>
+
       <p><strong>Key Feature:</strong> If dosage exceeds enzyme capacity, small dose increases cause sudden, dangerous toxicity spikes.</p>
       <p><strong>Classic Examples:</strong> Alcohol, high-dose Aspirin, and Phenytoin.</p>
     </div>
   </div>
 
-  <!-- GRAPH COMPARISON -->
   <h2>5. Visual Comparison of Metabolism Kinetics</h2>
   <p>The graphs below illustrate the distinct elimination curves for First-Order versus Zero-Order kinetics over time.</p>
 
@@ -229,7 +255,6 @@
         <line x1="30" y1="20" x2="30" y2="150" stroke="#475569" stroke-width="2" />
         <text x="150" y="172" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle">Time</text>
         <text x="15" y="85" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle" transform="rotate(-90 15 85)">Conc</text>
-        <!-- Exponential Decay Curve -->
         <path d="M 30 30 Q 100 130 260 145" fill="none" stroke="#3b82f6" stroke-width="3" />
       </svg>
       <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 6px;">Curved drop: Elimination rate decreases proportionally as concentration falls.</p>
@@ -241,14 +266,12 @@
         <line x1="30" y1="20" x2="30" y2="150" stroke="#475569" stroke-width="2" />
         <text x="150" y="172" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle">Time</text>
         <text x="15" y="85" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle" transform="rotate(-90 15 85)">Conc</text>
-        <!-- Straight Linear Drop -->
         <line x1="30" y1="30" x2="240" y2="150" stroke="#ef4444" stroke-width="3" />
       </svg>
       <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 6px;">Straight line drop: Fixed amount removed per unit time due to enzyme saturation.</p>
     </div>
   </div>
 
-  <!-- SECTION 6: ELIMINATION, RENAL FACTORS, CLEARANCE & HALF-LIFE -->
   <h2>6. Elimination, Renal Factors, Clearance & Half-Life</h2>
   <p><strong>Elimination</strong> is the irreversible removal of drugs and their metabolites from the body. While the liver aids biliary excretion, the kidneys are the primary organs of elimination.</p>
 
@@ -265,14 +288,29 @@
     <div class="card-box">
       <h3>⏱️ Clearance and Half-Life Concepts <span class="card-tag">⭐ Key Calculation</span></h3>
       <p><strong>Total Body Clearance (CL):</strong> The volume of blood plasma completely cleared of a drug per unit of time by all eliminating organs combined.</p>
-      <div class="formula-box">Total Clearance (CL) = Rate of Elimination / Plasma Concentration</div>
+      
+      <div class="formula-box">
+        <span>Total Clearance (CL) = </span>
+        <div class="fraction">
+          <span class="numerator">Rate of Elimination</span>
+          <span class="denominator">Plasma Concentration</span>
+        </div>
+      </div>
+
       <p><strong>Half-Life (t1/2):</strong> The time required for the concentration of a drug in the body to decrease by exactly 50 percent.</p>
-      <div class="formula-box">Half-Life (t1/2) = (0.693 * Vd) / CL</div>
+      
+      <div class="formula-box">
+        <span>Half-Life (t1/2) = </span>
+        <div class="fraction">
+          <span class="numerator">0.693 × Vd</span>
+          <span class="denominator">Clearance (CL)</span>
+        </div>
+      </div>
+
       <p><strong>Clinical Rule of Thumb:</strong> It takes approximately 4 to 5 half-lives for a drug to be completely eliminated or to reach a stable steady-state concentration with regular dosing.</p>
     </div>
   </div>
 
-  <!-- SECTION 7: DESIGN AND OPTIMIZATION OF DOSAGE REGIMENS -->
   <h2>7. Design and Optimization of Dosage Regimens</h2>
   <p>To achieve therapeutic success without causing toxicity, clinicians calculate precise dosing schedules based on pharmacokinetic parameters.</p>
 
@@ -280,13 +318,29 @@
     <div class="card-box">
       <h3>🚀 Loading Dose <span class="card-tag">⭐ Core Dosing Rule</span></h3>
       <p><strong>Definition:</strong> A large initial dose given immediately to achieve the target therapeutic concentration rapidly, without waiting through 4 to 5 half-lives of regular dosing.</p>
-      <div class="formula-box">Loading Dose = (Target Concentration * Vd) / Bioavailability</div>
+      
+      <div class="formula-box">
+        <span>Loading Dose = </span>
+        <div class="fraction">
+          <span class="numerator">Target Concentration × Vd</span>
+          <span class="denominator">Bioavailability (F)</span>
+        </div>
+      </div>
+
       <p><strong>When to use:</strong> Used when a drug has a long half-life and an immediate medical crisis requires rapid symptom control (e.g., emergency anti-arrhythmic or antibiotic loading).</p>
     </div>
     <div class="card-box">
       <h3>🔄 Maintenance Dose <span class="card-tag">⭐ Core Dosing Rule</span></h3>
       <p><strong>Definition:</strong> Smaller, repeated doses given at regular intervals to replace the exact amount of drug eliminated from the body since the previous dose, maintaining a steady therapeutic concentration window.</p>
-      <div class="formula-box">Maintenance Dose = (Target Concentration * Clearance * Dosing Interval) / Bioavailability</div>
+      
+      <div class="formula-box">
+        <span>Maintenance Dose = </span>
+        <div class="fraction">
+          <span class="numerator">Target Conc. × Clearance × Dosing Interval</span>
+          <span class="denominator">Bioavailability (F)</span>
+        </div>
+      </div>
+
       <p><strong>Steady State:</strong> Achieved when the rate of drug administration equals the rate of elimination, keeping blood levels stable within the therapeutic window.</p>
     </div>
   </div>
@@ -296,7 +350,6 @@
     <p><strong>A</strong>bsorption (into blood) ➔ <strong>D</strong>istribution (to tissues) ➔ <strong>M</strong>etabolism (liver breakdown) ➔ <strong>E</strong>limination (renal excretion)</p>
   </div>
 
-  <!-- KEY NURSING TAKEAWAYS -->
   <h2>8. Key Nursing Takeaways & Clinical Application</h2>
   <ul>
     <li><strong>Monitor Renal and Hepatic Labs:</strong> Review GFR, serum creatinine, AST, ALT, and bilirubin levels to adjust dosages safely for patients with organ impairment.</li>
