@@ -10,7 +10,7 @@
       --primary: #3b82f6;
       --primary-dark: #1d4ed8;
       --accent: #60a5fa;
-      --card-bg: rgba(255, 255, 255, 0.95);
+      --card-bg: rgba(255, 255, 255, 0.9);
       --card-border: rgba(191, 219, 254, 0.8);
       --text-main: #1e3a8a;
       --text-muted: #475569;
@@ -19,46 +19,44 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.7; padding: 24px 12px; min-height: 100vh; }
+    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.8; padding: 24px 12px; min-height: 100vh; }
     
-    .container { max-width: 950px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(16px); padding: 40px 25px; border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: var(--shadow-glow); }
+    .container { max-width: 950px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(16px); padding: 50px 40px; border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: var(--shadow-glow); }
     
     .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; margin-bottom: 30px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2); min-height: 44px; }
     .back-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
 
     .badge { display: inline-block; padding: 6px 14px; background: #eff6ff; color: var(--primary); font-weight: 800; font-size: 0.8rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; border: 1px solid #bfdbfe; }
-    .hy-tag { display: inline-block; padding: 3px 8px; background: #fef3c7; color: #92400e; font-weight: 800; font-size: 11px; border-radius: 6px; text-transform: uppercase; margin-left: 6px; }
 
-    h1 { font-size: 2.2rem; font-weight: 900; background: linear-gradient(135deg, #1e3a8a 0%, var(--primary) 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; line-height: 1.2; }
+    h1 { font-size: 2.5rem; font-weight: 900; background: linear-gradient(135deg, #1e3a8a 0%, var(--primary) 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; line-height: 1.25; }
     
-    h2 { font-size: 1.45rem; margin: 35px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #bfdbfe; padding-bottom: 10px; flex-wrap: wrap; }
+    h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #bfdbfe; padding-bottom: 10px; flex-wrap: wrap; }
     h2::before { content: ''; display: inline-block; width: 6px; height: 24px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; flex-shrink: 0; }
 
-    h3 { font-size: 1.15rem; color: var(--primary-dark); margin: 20px 0 10px; }
+    h3 { font-size: 1.2rem; color: var(--primary-dark); margin: 20px 0 10px; }
 
-    p { font-size: 1rem; color: var(--text-muted); margin-bottom: 20px; }
+    p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 20px; }
 
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin: 25px 0; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin: 25px 0; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 25px 0; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin: 25px 0; }
     
-    .card-box { background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 22px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); transition: 0.3s; }
-    .card-box:hover { transform: translateY(-4px); border-color: var(--primary); box-shadow: 0 12px 24px rgba(59, 130, 246, 0.08); }
-    .card-box h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.15rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .card-box { background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); transition: 0.3s; }
+    .card-box:hover { transform: translateY(-5px); border-color: var(--primary); }
+    .card-box h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 
-    /* REVOLUTIONARY RESPONSIVE ADME INTERACTIVE PIPELINE */
-    .animation-container { background: #f0f7ff; border: 2px dashed var(--primary); border-radius: 18px; padding: 24px 16px; margin: 30px 0; text-align: center; }
-    .sim-nav { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
-    .sim-tab { background: white; border: 1px solid var(--card-border); padding: 8px 14px; font-weight: 700; font-size: 0.85rem; border-radius: 10px; cursor: pointer; transition: 0.2s; color: var(--text-muted); min-height: 40px; }
-    .sim-tab.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 10px rgba(59, 130, 246, 0.25); }
+    /* ADME ANIMATION CONTAINER */
+    .animation-container { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 2px solid var(--primary); border-radius: 16px; padding: 30px 20px; margin: 30px 0; text-align: center; box-shadow: 0 10px 25px rgba(59, 130, 246, 0.15); overflow: hidden; }
+    .pipeline { display: flex; justify-content: space-between; align-items: center; position: relative; margin: 30px 0; flex-wrap: wrap; gap: 12px; }
+    .pipeline-step { background: white; border: 2px solid var(--primary); border-radius: 12px; padding: 15px 10px; flex: 1 1 130px; min-width: 120px; font-weight: 700; color: var(--primary-dark); box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: relative; z-index: 2; transition: 0.3s; text-align: center; }
+    .pipeline-step:hover { background: var(--primary); color: white; transform: scale(1.05); }
     
-    .stage-viewer { background: white; border-radius: 14px; padding: 20px; border: 1px solid #e2e8f0; min-height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: all 0.3s ease; }
-    .stage-icon { font-size: 2.2rem; margin-bottom: 8px; animation: bounceMolecule 2s infinite ease-in-out; }
-    .stage-title { font-weight: 800; font-size: 1.1rem; color: var(--text-main); margin-bottom: 4px; }
-    .stage-desc { font-size: 0.9rem; color: var(--text-muted); max-width: 500px; }
-
-    @keyframes bounceMolecule {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
+    .moving-pill { font-size: 2rem; position: absolute; top: -35px; left: 10%; animation: movePill 6s infinite ease-in-out; z-index: 3; }
+    @keyframes movePill {
+      0% { left: 5%; transform: translateY(0) rotate(0deg); }
+      25% { left: 28%; transform: translateY(-10px) rotate(90deg); }
+      50% { left: 52%; transform: translateY(0) rotate(180deg); }
+      75% { left: 75%; transform: translateY(-10px) rotate(270deg); }
+      100% { left: 92%; transform: translateY(0) rotate(360deg); }
     }
 
     .mnemonic-box { background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%); border-left: 6px solid var(--primary); padding: 22px; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.08); }
@@ -66,26 +64,29 @@
     .mnemonic-box p { color: #1e3a8a; margin-bottom: 0; font-weight: 500; }
 
     ul { list-style-type: none; padding-left: 0; margin-bottom: 20px; }
-    ul li { position: relative; padding-left: 24px; margin-bottom: 12px; color: var(--text-muted); font-size: 1rem; }
-    ul li::before { content: '▪'; position: absolute; left: 6px; color: var(--primary); font-weight: bold; font-size: 1.1rem; top: -1px; }
+    ul li { position: relative; padding-left: 28px; margin-bottom: 12px; color: var(--text-muted); font-size: 1.05rem; }
+    ul li::before { content: '▪'; position: absolute; left: 8px; color: var(--primary); font-weight: bold; font-size: 1.2rem; }
 
-    .formula-box { background: #f8fafc; border: 1px dashed var(--primary); padding: 14px; border-radius: 10px; margin: 15px 0; font-family: monospace; font-weight: bold; color: var(--primary-dark); text-align: center; font-size: 0.95rem; overflow-x: auto; white-space: nowrap; }
-    .graph-box { background: white; border: 2px solid var(--card-border); border-radius: 16px; padding: 20px; margin: 25px 0; text-align: center; }
-    
-    footer { background: #0f172a; padding: 25px 16px; border-radius: 16px; margin-top: 4px; text-align: center; color: #f8fafc; }
-    .author-credit { font-weight: 700; font-size: 1.05rem; letter-spacing: 0.5px; color: white; display: flex; align-items: center; justify-content: center; gap: 6px; }
-    .author-credit span { color: #38bdf8; }
+    .formula-box { background: #f8fafc; border: 1px dashed var(--primary); padding: 14px; border-radius: 10px; margin: 15px 0; font-family: monospace; font-weight: bold; color: var(--primary-dark); text-align: center; overflow-x: auto; white-space: nowrap; font-size: 0.95rem; }
+    .graph-box { background: white; border: 2px solid var(--card-border); border-radius: 16px; padding: 25px; margin: 30px 0; text-align: center; }
 
-    /* MOBILE LAYOUT FINE TUNING */
+    footer { margin-top: 30px; text-align: center; }
+    .author-credit { font-weight: 700; font-size: 1.05rem; letter-spacing: 0.5px; color: var(--text-main); display: flex; align-items: center; justify-content: center; gap: 6px; }
+
+    /* MOBILE READABILITY MEDIA QUERIES */
     @media (max-width: 640px) {
       body { padding: 12px 6px; }
-      .container { padding: 24px 14px; border-radius: 16px; }
-      h1 { font-size: 1.65rem; }
+      .container { padding: 24px 16px; border-radius: 16px; }
+      h1 { font-size: 1.7rem; }
       h2 { font-size: 1.25rem; margin: 30px 0 15px; }
+      p, ul li { font-size: 0.96rem; line-height: 1.6; }
       .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 16px; }
-      .card-box { padding: 16px; }
-      .hy-tag { margin-left: 0; margin-top: 4px; }
-      .formula-box { font-size: 0.85rem; padding: 10px; }
+      .card-box { padding: 18px 14px; }
+      .animation-container { padding: 20px 12px; }
+      .moving-pill { display: none; } /* Hide floating pill on mobile to prevent overflow */
+      .pipeline { flex-direction: column; width: 100%; }
+      .pipeline-step { width: 100%; min-width: auto; }
+      .mnemonic-box { padding: 16px 14px; }
     }
   </style>
 </head>
@@ -98,40 +99,39 @@
   <h1>Pharmacokinetics: ADME Principles, Kinetics & Dosage Design</h1>
   <p>Pharmacokinetics is the study of what the human body does to a drug from the moment it enters until it is completely cleared. Think of a medicine pill as a traveler embarking on an intricate biological journey through your organ systems. This journey follows four core milestones known as <strong>ADME</strong>: <strong>A</strong>bsorption, <strong>D</strong>istribution, <strong>M</strong>etabolism, and <strong>E</strong>limination.</p>
 
+  <!-- INTERACTIVE ADME ANIMATION -->
   <div class="animation-container">
-    <h3 style="color: var(--primary-dark); margin-bottom: 6px;">⚡ Interactive ADME Tracker</h3>
-    <p style="font-size: 0.9rem; margin-bottom: 16px; color: var(--text-muted);">Tap different stages to visualize systemic molecular transitions:</p>
+    <h3 style="color: var(--primary-dark); margin-bottom: 10px;">⚡ Animated ADME Journey</h3>
+    <p style="font-size: 0.95rem; margin-bottom: 25px;">Follow the active drug molecule as it moves through the body systems:</p>
     
-    <div class="sim-nav">
-      <button class="sim-tab active" onclick="switchADME('a', this)">1. Absorption</button>
-      <button class="sim-tab" onclick="switchADME('d', this)">2. Distribution</button>
-      <button class="sim-tab" onclick="switchADME('m', this)">3. Metabolism</button>
-      <button class="sim-tab" onclick="switchADME('e', this)">4. Elimination</button>
-    </div>
-
-    <div class="stage-viewer" id="admeViewer">
-      <div class="stage-icon">💊</div>
-      <div class="stage-title">1. Absorption Process</div>
-      <div class="stage-desc">The active drug particle bypasses membranes or intestinal walls to successfully reach systemic plasma circulation.</div>
+    <div style="position: relative; padding-top: 20px;">
+      <div class="moving-pill">💊</div>
+      <div class="pipeline">
+        <div class="pipeline-step">1. Absorption<br><small>Enters Blood</small></div>
+        <div class="pipeline-step">2. Distribution<br><small>Reaches Tissues</small></div>
+        <div class="pipeline-step">3. Metabolism<br><small>Liver Breakdown</small></div>
+        <div class="pipeline-step">4. Elimination<br><small>Renal Excretion</small></div>
+      </div>
     </div>
   </div>
 
+  <!-- SECTION 1: ABSORPTION, GI MECHANISMS & BIOAVAILABILITY -->
   <h2>1. Absorption, GI Mechanisms & Bioavailability</h2>
   <p><strong>Absorption</strong> is the movement of a drug from its site of administration into the systemic bloodstream. When a drug is administered intravenously (IV), absorption is bypassed entirely because it enters the blood stream directly with 100 percent efficiency.</p>
 
   <div class="grid-2">
     <div class="card-box">
-      <h3>🧬 Mechanisms of Absorption from the GI Tract <span class="hy-tag">⭐ High Yield</span></h3>
+      <h3>🧬 Mechanisms of Absorption from the GI Tract</h3>
       <p>When you swallow an oral tablet, drug molecules must cross the gastrointestinal (GI) epithelial barrier to enter circulation through several distinct mechanisms:</p>
       <ul>
         <li><strong>Transcellular Passive Diffusion:</strong> The most common route. Fat-soluble (lipophilic) drug molecules dissolve directly into and slip across the lipid cell membranes of intestinal enterocytes from high to low concentration.</li>
         <li><strong>Paracellular Transport:</strong> Extremely small, water-soluble polar molecules squeeze through microscopic tight junction spaces between adjacent intestinal cells.</li>
         <li><strong>Carrier-Mediated Transport:</strong> Transporter proteins embedded in the cell membrane actively carry nutrient-like drug molecules across the intestinal wall.</li>
-        <li><strong>Endocytosis / Pinocytosis:</strong> The cell membrane safe-guards very large macromolecular drugs, pulling them inside via vesicles.</li>
+        <li><strong>Endocytosis / Pinocytosis:</strong> The cell membrane engulfs very large macromolecular drugs, pulling them inside in vesicles.</li>
       </ul>
     </div>
     <div class="card-box">
-      <h3>📈 Factors Affecting Absorption & Bioavailability <span class="hy-tag">⭐ High Yield</span></h3>
+      <h3>📈 Factors Affecting Absorption & Bioavailability</h3>
       <p><strong>Key Factors Affecting Absorption:</strong></p>
       <ul>
         <li><strong>Surface Area:</strong> The small intestine features villi and microvilli, providing a massive surface area that absorbs drugs vastly faster than the stomach.</li>
@@ -145,6 +145,7 @@
     </div>
   </div>
 
+  <!-- SECTION 2: DISTRIBUTION & VOLUME OF DISTRIBUTION -->
   <h2>2. Distribution & Volume of Distribution</h2>
   <p><strong>Distribution</strong> is the reversible transfer of a drug from the bloodstream into the interstitial spaces and body tissues, such as fat, muscle, and the brain.</p>
 
@@ -160,7 +161,7 @@
       </ul>
     </div>
     <div class="card-box">
-      <h3>📦 Volume of Distribution (Vd) <span class="hy-tag">UHS Calculation Metric</span></h3>
+      <h3>📦 Volume of Distribution (Vd)</h3>
       <p><strong>Volume of Distribution</strong> is a theoretical fluid volume that would be required to contain all the drug in the body at the same concentration measured in blood plasma.</p>
       <div class="formula-box">Vd = Total Amount of Drug in Body / Plasma Concentration</div>
       <p><strong>Practical Examples:</strong></p>
@@ -171,6 +172,7 @@
     </div>
   </div>
 
+  <!-- SECTION 3: METABOLISM & CYP450 -->
   <h2>3. Metabolism (Biotransformation) & The CYP450 System</h2>
   <p><strong>Metabolism</strong> is the chemical conversion of lipophilic (fat-soluble) drugs into hydrophilic (water-soluble) metabolites, allowing the kidneys to excrete them efficiently. This process takes place primarily in the liver.</p>
 
@@ -180,11 +182,11 @@
       <p><strong>Functionalization:</strong> Phase 1 involves oxidation, reduction, or hydrolysis, which introduces or unmasks polar functional groups (such as hydroxyl groups). This slightly increases water solubility and prepares the drug for Phase 2.</p>
     </div>
     <div class="card-box">
-      <h3>⚙️ CYP450 System <span class="hy-tag">⭐ Critical Unit</span></h3>
+      <h3>⚙️ The CYP450 System in Detail</h3>
       <p>The Cytochrome P450 enzyme family in the liver acts as the primary enzymatic engine for drug biotransformation.</p>
       <ul>
-        <li><strong>Inducers:</strong> Acceleration causes therapeutic failure.</li>
-        <li><strong>Inhibitors:</strong> Suppression builds up potential drug toxicity risks.</li>
+        <li><strong>Inducers:</strong> Drugs like rifampin or St. John's wort accelerate enzyme activity, causing companion drugs to break down prematurely (leading to therapeutic failure).</li>
+        <li><strong>Inhibitors:</strong> Drugs like ketoconazole or grapefruit juice suppress CYP450 activity, causing companion drugs to accumulate to toxic levels.</li>
       </ul>
     </div>
     <div class="card-box">
@@ -193,6 +195,7 @@
     </div>
   </div>
 
+  <!-- SECTION 4: KINETICS OF METABOLISM -->
   <h2>4. Kinetics of Metabolism: First-Order vs. Zero-Order</h2>
   <p>The rate at which drugs are metabolized and eliminated is governed by mathematical kinetic models.</p>
 
@@ -212,6 +215,7 @@
     </div>
   </div>
 
+  <!-- GRAPH COMPARISON -->
   <h2>5. Visual Comparison of Metabolism Kinetics</h2>
   <p>The graphs below illustrate the distinct elimination curves for First-Order versus Zero-Order kinetics over time.</p>
 
@@ -223,6 +227,7 @@
         <line x1="30" y1="20" x2="30" y2="150" stroke="#475569" stroke-width="2" />
         <text x="150" y="172" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle">Time</text>
         <text x="15" y="85" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle" transform="rotate(-90 15 85)">Conc</text>
+        <!-- Exponential Decay Curve -->
         <path d="M 30 30 Q 100 130 260 145" fill="none" stroke="#3b82f6" stroke-width="3" />
       </svg>
       <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 6px;">Curved drop: Elimination rate decreases proportionally as concentration falls.</p>
@@ -234,12 +239,14 @@
         <line x1="30" y1="20" x2="30" y2="150" stroke="#475569" stroke-width="2" />
         <text x="150" y="172" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle">Time</text>
         <text x="15" y="85" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle" transform="rotate(-90 15 85)">Conc</text>
+        <!-- Straight Linear Drop -->
         <line x1="30" y1="30" x2="240" y2="150" stroke="#ef4444" stroke-width="3" />
       </svg>
       <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 6px;">Straight line drop: Fixed amount removed per unit time due to enzyme saturation.</p>
     </div>
   </div>
 
+  <!-- SECTION 6: ELIMINATION, RENAL FACTORS, CLEARANCE & HALF-LIFE -->
   <h2>6. Elimination, Renal Factors, Clearance & Half-Life</h2>
   <p><strong>Elimination</strong> is the irreversible removal of drugs and their metabolites from the body. While the liver aids biliary excretion, the kidneys are the primary organs of elimination.</p>
 
@@ -263,20 +270,21 @@
     </div>
   </div>
 
+  <!-- SECTION 7: DESIGN AND OPTIMIZATION OF DOSAGE REGIMENS -->
   <h2>7. Design and Optimization of Dosage Regimens</h2>
   <p>To achieve therapeutic success without causing toxicity, clinicians calculate precise dosing schedules based on pharmacokinetic parameters.</p>
 
   <div class="grid-2">
     <div class="card-box">
-      <h3>🚀 Loading Dose <span class="hy-tag">⭐ Dosing Rule</span></h3>
+      <h3>🚀 Loading Dose</h3>
       <p><strong>Definition:</strong> A large initial dose given immediately to achieve the target therapeutic concentration rapidly, without waiting through 4 to 5 half-lives of regular dosing.</p>
       <div class="formula-box">Loading Dose = (Target Concentration * Vd) / Bioavailability</div>
       <p><strong>When to use:</strong> Used when a drug has a long half-life and an immediate medical crisis requires rapid symptom control (e.g., emergency anti-arrhythmic or antibiotic loading).</p>
     </div>
     <div class="card-box">
-      <h3>🔄 Maintenance Dose <span class="hy-tag">⭐ Dosing Rule</span></h3>
+      <h3>🔄 Maintenance Dose</h3>
       <p><strong>Definition:</strong> Smaller, repeated doses given at regular intervals to replace the exact amount of drug eliminated from the body since the previous dose, maintaining a steady therapeutic concentration window.</p>
-      <div class="formula-box">Maintenance Dose = (Target Concentration * CL * Dosing Interval) / F</div>
+      <div class="formula-box">Maintenance Dose = (Target Concentration * Clearance * Dosing Interval) / Bioavailability</div>
       <p><strong>Steady State:</strong> Achieved when the rate of drug administration equals the rate of elimination, keeping blood levels stable within the therapeutic window.</p>
     </div>
   </div>
@@ -286,6 +294,7 @@
     <p><strong>A</strong>bsorption (into blood) ➔ <strong>D</strong>istribution (to tissues) ➔ <strong>M</strong>etabolism (liver breakdown) ➔ <strong>E</strong>limination (renal excretion)</p>
   </div>
 
+  <!-- KEY NURSING TAKEAWAYS -->
   <h2>8. Key Nursing Takeaways & Clinical Application</h2>
   <ul>
     <li><strong>Monitor Renal and Hepatic Labs:</strong> Review GFR, serum creatinine, AST, ALT, and bilirubin levels to adjust dosages safely for patients with organ impairment.</li>
@@ -298,43 +307,9 @@
     <div class="author-credit">
       <span>✨</span> Crafted with excellence by Mudassir Khan
     </div>
-    <p style="margin-top: 6px; font-size: 0.8rem; opacity: 0.6;">&copy; 2026 Pharmacology-I Portal. All rights reserved.</p>
+    <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">&copy; 2026 Pharmacology-I Portal. All rights reserved.</p>
   </footer>
 </div>
-
-<script>
-  function switchADME(stage, btn) {
-    // Reset tabs
-    document.querySelectorAll('.sim-tab').forEach(t => t.classList.remove('active'));
-    btn.classList.add('active');
-
-    const viewer = document.getElementById('admeViewer');
-    
-    // Stage configurations
-    const stages = {
-      a: { icon: "💊", title: "1. Absorption Process", desc: "The active drug particle crosses cellular membranes or intestinal enterocyte linings to successfully transition into systemic plasma circulation." },
-      d: { icon: "🩸", title: "2. Distribution Workflow", desc: "Reversible molecular transport from vascular plasma tracking into interstitial spaces, specific reservoirs, or complex tissue regions." },
-      m: { icon: "🧪", title: "3. Metabolism (Biotransformation)", desc: "Primary hepatic enzyme conversion transforming lipophilic compounds into water-soluble metabolites ready for renal processing." },
-      e: { icon: "🌊", title: "4. Elimination Pathway", desc: "Irreversible kidney filtration, PCT active secretion, and direct biological exit ensuring clean safe clearance from body systems." }
-    };
-
-    const target = stages[stage];
-    
-    // Smooth Fade Transition
-    viewer.style.opacity = 0;
-    viewer.style.transform = "scale(0.98)";
-    
-    setTimeout(() => {
-      viewer.innerHTML = `
-        <div class="stage-icon">${target.icon}</div>
-        <div class="stage-title">${target.title}</div>
-        <div class="stage-desc">${target.desc}</div>
-      `;
-      viewer.style.opacity = 1;
-      viewer.style.transform = "scale(1)";
-    }, 150);
-  }
-</script>
 
 </body>
 </html>
