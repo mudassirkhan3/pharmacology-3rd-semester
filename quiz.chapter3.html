@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 3: Gastrointestinal (GIT) Pharmacology Master Quiz</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #172554 50%, #1e1b4b 100%);
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --accent-red: #ef4444;
+      --accent-amber: #f59e0b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --glass-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.6; padding: 30px 15px; min-height: 100vh; }
+
+    .container { max-width: 900px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(20px); border-radius: var(--radius); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 40px 30px; position: relative; overflow: hidden; }
+    .container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--accent-cyan), var(--primary), var(--accent-green)); }
+
+    .header-badge { display: inline-block; padding: 6px 16px; background: rgba(59, 130, 246, 0.2); color: var(--primary); border: 1px solid rgba(59, 130, 246, 0.4); font-size: 0.8rem; font-weight: 800; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+    h1 { font-size: 2.2rem; font-weight: 900; background: linear-gradient(135deg, #ffffff 0%, #93c5fd 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; line-height: 1.2; }
+    .subtitle { color: var(--text-muted); font-size: 1rem; margin-bottom: 30px; }
+
+    .dashboard-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 30px; }
+    .dash-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px; text-align: center; }
+    .dash-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
+    .dash-value { font-size: 1.3rem; font-weight: 800; color: var(--accent-cyan); margin-top: 4px; }
+    .timer-alert { color: var(--accent-red) !important; animation: pulse 1s infinite; }
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+    .chapter-indicator { background: linear-gradient(90deg, rgba(6, 182, 212, 0.15), rgba(59, 130, 246, 0.15)); border: 1px solid rgba(6, 182, 212, 0.3); padding: 12px 20px; border-radius: 12px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
+    .chapter-title { font-weight: 800; font-size: 1.1rem; color: #fff; }
+    .diff-tag { font-size: 0.75rem; padding: 3px 8px; border-radius: 6px; font-weight: 800; text-transform: uppercase; }
+    .tag-basic { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); border: 1px solid var(--accent-green); }
+    .tag-scenario { background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); border: 1px solid var(--accent-amber); }
+    .tag-hard { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border: 1px solid var(--accent-red); }
+
+    .mcq-card { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--card-border); border-radius: 16px; padding: 25px; margin-bottom: 25px; display: none; }
+    .mcq-card.active { display: block; animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .q-number { font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 8px; }
+    .q-text { font-size: 1.05rem; font-weight: 600; color: var(--text-main); margin-bottom: 20px; line-height: 1.5; }
+
+    .options-grid { display: grid; gap: 12px; }
+    .opt-btn { background: rgba(255, 255, 255, 0.05); border: 1.5px solid var(--card-border); border-radius: 12px; padding: 14px 18px; color: var(--text-main); font-size: 0.95rem; font-weight: 500; text-align: left; cursor: pointer; transition: 0.2s ease; display: flex; align-items: center; justify-content: space-between; }
+    .opt-btn:hover:not(.disabled) { background: rgba(59, 130, 246, 0.15); border-color: var(--primary); transform: translateX(4px); }
+    .opt-btn.correct { background: rgba(16, 185, 129, 0.2) !important; border-color: var(--accent-green) !important; color: #fff; }
+    .opt-btn.incorrect { background: rgba(239, 68, 68, 0.2) !important; border-color: var(--accent-red) !important; color: #fff; }
+    .opt-btn.disabled { cursor: not-allowed; opacity: 0.8; }
+
+    .explanation-box { margin-top: 20px; padding: 18px; border-radius: 12px; background: rgba(15, 23, 42, 0.8); border-left: 4px solid var(--primary); display: none; }
+    .explanation-box.show { display: block; animation: slideDown 0.3s ease; }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+    .exp-title { font-weight: 800; font-size: 0.9rem; color: var(--accent-cyan); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .exp-text { font-size: 0.9rem; color: #cbd5e1; line-height: 1.5; }
+
+    .nav-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 25px; }
+    .action-btn { padding: 12px 28px; background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; border: none; border-radius: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: 0.2s ease; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); }
+    .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4); }
+    .action-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .report-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border); border-radius: 16px; padding: 30px; text-align: center; display: none; }
+    .report-card.show { display: block; animation: fadeIn 0.4s ease; }
+    .report-score { font-size: 3rem; font-weight: 900; color: var(--accent-cyan); margin: 15px 0; }
+    .report-breakdown { text-align: left; margin: 20px 0; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; }
+    .weakness-list { margin-top: 10px; padding-left: 20px; color: #fca5a5; }
+
+    footer { margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--card-border); padding-top: 20px; }
+    .author { color: var(--text-main); font-weight: 700; }
+
+    @media (max-width: 640px) {
+      .container { padding: 25px 15px; }
+      h1 { font-size: 1.6rem; }
+      .dashboard-bar { grid-template-columns: repeat(2, 1fr); }
+      .action-btn { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header-badge">Pharmacology-I • Chapter 3</div>
+  <h1>GIT Pharmacology Master Quiz</h1>
+  <div class="subtitle">180 High-Yield MCQs • 6 Subchapters (30 Qs Each) • 30-Min Timer Per Chapter</div>
+
+  <div class="dashboard-bar">
+    <div class="dash-card">
+      <div class="dash-title">Total Progress</div>
+      <div class="dash-value" id="dash-progress">0 / 180</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-title">Chapter Time</div>
+      <div class="dash-value" id="dash-timer">30:00</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-title">Current Score</div>
+      <div class="dash-value" id="dash-score">0</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-title">Subchapter</div>
+      <div class="dash-value" id="dash-ch-num">1 / 6</div>
+    </div>
+  </div>
+
+  <div class="chapter-indicator" id="ch-badge-container">
+    <div class="chapter-title" id="ch-title-text">Subchapter 1: Antimicrobial Agents (H. pylori)</div>
+    <span class="diff-tag tag-basic" id="q-diff-badge">Basic (40%)</span>
+  </div>
+
+  <div id="quiz-box"></div>
+
+  <div class="report-card" id="chapter-report">
+    <h2 style="color: var(--accent-cyan);">🎉 Subchapter Complete!</h2>
+    <p style="color: var(--text-muted); margin-top: 5px;" id="ch-report-subtitle">Performance breakdown for Antimicrobial Agents</p>
+    <div class="report-score" id="ch-score-display">0 / 30</div>
+    
+    <div class="report-breakdown">
+      <h4 style="color: #fff; margin-bottom: 8px;">📊 Topic Diagnostics & Weak Areas:</h4>
+      <div id="ch-weakness-text" style="font-size: 0.95rem; color: #cbd5e1;">Analyzing answers...</div>
+    </div>
+
+    <button class="action-btn" onclick="startNextChapter()" id="btn-next-ch">Begin Next Subchapter ➔</button>
+  </div>
+
+  <div class="report-card" id="final-report">
+    <h2 style="color: var(--accent-green); font-size: 2rem;">🏆 Course Final Diagnostic Report</h2>
+    <p style="color: var(--text-muted);" id="final-subtitle">Cumulative score across all 180 GIT Pharmacology MCQs</p>
+    <div class="report-score" id="final-score-display">0 / 180</div>
+
+    <div class="report-breakdown" style="text-align: left;">
+      <h3 style="color: #fff; margin-bottom: 12px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px;">📈 Subchapter Breakdown:</h3>
+      <div id="subchapter-scores-list" style="margin-bottom: 20px; font-size: 0.95rem; line-height: 1.8;"></div>
+
+      <h3 style="color: var(--accent-red); margin-bottom: 8px;">⚠️ Comprehensive Weakness & Study Guidance:</h3>
+      <p style="font-size: 0.9rem; color: var(--text-muted);">Based on incorrect selections, focus review on:</p>
+      <ul class="weakness-list" id="final-weakness-list"></ul>
+    </div>
+
+    <button class="action-btn" style="background: linear-gradient(135deg, var(--accent-green), #059669);" onclick="restartEntireQuiz()">🔄 Restart Entire Master Quiz</button>
+  </div>
+
+  <footer>
+    Crafted with Excellence by <span class="author">Mudassir Khan</span> • &copy; 2026 Pharmacology Portal
+  </footer>
+</div>
+
+<script>
+const quizData = [
+  // SUBCHAPTER 1: ANTIMICROBIAL AGENTS (H. PYLORI) (1-30)
+  {
+    chTitle: "Subchapter 1: Antimicrobial Agents (H. pylori Eradication)",
+    questions: [
+      { q: "Which enzyme produced by Helicobacter pylori converts urea into ammonia to neutralize stomach acid?", opts: ["Urease", "Beta-lactamase", "Cytochrome P450", "Carbonic anhydrase"], a: 0, tag: "Basic", topic: "Pathophysiology of H. pylori", exp: "H. pylori produces urease, which breaks down urea into ammonia and CO2, creating a protective alkaline microenvironment against gastric acid." },
+      { q: "Standard triple therapy for H. pylori eradication typically consists of a PPI combined with Clarithromycin and:", opts: ["Amoxicillin (or Metronidazole)", "Ciprofloxacin", "Vancomycin", "Gentamicin"], a: 0, tag: "Basic", topic: "H. pylori Regimens", exp: "First-line triple therapy includes a PPI + Clarithromycin + Amoxicillin (or Metronidazole if penicillin-allergic) for 10-14 days." },
+      { q: "What is the primary mechanism of action of Amoxicillin against H. pylori?", opts: ["Inhibition of bacterial cell wall synthesis", "Inhibition of 50S ribosomal protein synthesis", "DNA strand breakage", "Inhibition of dihydrofolate reductase"], a: 0, tag: "Basic", topic: "Amoxicillin Mechanism", exp: "Amoxicillin is a beta-lactam antibiotic that inhibits peptidoglycan transpeptidation in the bacterial cell wall." },
+      { q: "Clarithromycin inhibits bacterial growth by binding to which ribosomal subunit?", opts: ["50S ribosomal subunit", "30S ribosomal subunit", "70S initiation complex", "60S eukaryotic subunit"], a: 0, tag: "Basic", topic: "Clarithromycin Mechanism", exp: "Clarithromycin is a macrolide that reversibly binds the 50S ribosomal subunit, suppressing bacterial protein synthesis." },
+      { q: "In bismuth-based quadruple therapy, Bismuth subsalicylate acts by:", opts: ["Exerting direct antimicrobial action and forming a protective mucosal barrier", "Inhibiting parietal cell H+/K+-ATPase", "Blocking histamine H2 receptors", "Neutralizing acid instantly via systemic absorption"], a: 0, tag: "Basic", topic: "Bismuth Subsalicylate Action", exp: "Bismuth coat ulcers, prevents bacterial adherence, and displays direct bactericidal effects against H. pylori." },
+      { q: "Which adverse effect is characteristic of Bismuth subsalicylate that patients should be forewarned about?", opts: ["Harmless black discoloration of tongue and stool", "Red-orange discoloration of urine", "Irreversible ototoxicity", "Peripheral neuropathy"], a: 0, tag: "Basic", topic: "Bismuth Side Effects", exp: "Bismuth reacts with gut hydrogen sulfide to form bismuth sulfide, turning stool and tongue dark black." },
+      { q: "Metronidazole requires intracellular reduction by which bacterial metabolic pathway to generate toxic free radicals?", opts: ["Pyruvate:ferredoxin oxidoreductase in anaerobic/microaerophilic environment", "Cytochrome P450 3A4", "Bacterial DNA gyrase", "Glutathione S-transferase"], a: 0, tag: "Basic", topic: "Metronidazole Activation", exp: "In microaerophilic H. pylori, Metronidazole nitro-group is reduced by ferredoxin pathways to active cytotoxic intermediates." },
+      { q: "Why is a Proton Pump Inhibitor (PPI) included alongside antibiotics in H. pylori eradication regimens?", opts: ["Raising gastric pH increases antibiotic stability and efficacy in mucosal tissues", "PPIs directly kill bacteria via cell lysis", "PPIs act as an immune stimulant", "PPIs speed up gastric emptying"], a: 0, tag: "Basic", topic: "PPI Role in Eradication", exp: "Suppressing acid (pH > 6) stabilizes acid-labile antibiotics (Amoxicillin/Clarithromycin) and enhances their antimicrobial potency." },
+      { q: "Bismuth-based quadruple therapy includes PPI, Bismuth, Metronidazole, and which tetracycline antibiotic?", opts: ["Tetracycline HCl", "Doxycycline", "Minocycline", "Tigecycline"], a: 0, tag: "Basic", topic: "Quadruple Therapy Components", exp: "Classic quadruple therapy consists of a PPI, Bismuth subsalicylate, Metronidazole, and Tetracycline for 14 days." },
+      { q: "Which non-invasive diagnostic test verifies H. pylori eradication 4 weeks post-treatment?", opts: ["Urea Breath Test (UBT)", "Upper GI Endoscopy", "Barium Swallow", "Serum IgG antibody test"], a: 0, tag: "Basic", topic: "H. pylori Diagnostic Verification", exp: "The Urea Breath Test measures 14C or 13C-labeled CO2 in breath, reflecting active urease activity and confirming eradication." },
+      { q: "Metronidazole consumption combined with alcohol leads to which adverse reaction?", opts: ["Disulfiram-like reaction (flushing, nausea, vomiting, tachycardia)", "Serotonin syndrome", "Severe acute renal failure", "Hypoglycemic shock"], a: 0, tag: "Basic", topic: "Metronidazole Drug Interactions", exp: "Metronidazole inhibits aldehyde dehydrogenase, causing toxic acetaldehyde accumulation when ingested with alcohol." },
+      { q: "Macrolide resistance in H. pylori against Clarithromycin is primarily caused by:", opts: ["Point mutations in 23S rRNA gene", "Overproduction of bacterial beta-lactamase", "Efflux pumps targeting penicillin", "Loss of urease gene"], a: 0, tag: "Basic", topic: "Clarithromycin Resistance Genetics", exp: "Point mutations in the 23S rRNA gene prevent Clarithromycin from binding effectively to 50S bacterial ribosomes." },
+      
+      { q: "A 45-year-old male with duodenal ulcer tests positive for H. pylori. He reports severe penicillin allergy (anaphylaxis). Which drug should replace Amoxicillin in standard triple therapy?", opts: ["Metronidazole", "Ciprofloxacin", "Vancomycin", "Gentamicin"], a: 0, tag: "Scenario", topic: "Penicillin Allergy Adaptation", exp: "In penicillin-allergic patients, Metronidazole replaces Amoxicillin in the PPI + Clarithromycin regimen." },
+      { q: "A patient treated for peptic ulcer disease reports black stool. Vital signs are stable and hemoglobin is normal. He takes PPI, Clarithromycin, Metronidazole, and Bismuth. What is the nurse's priority action?", opts: ["Reassure the patient that stool darkening is a harmless side effect of Bismuth", "Prepare for emergency endoscopy for upper GI bleed", "Discontinue Metronidazole immediately", "Administer IV Vitamin K"], a: 0, tag: "Scenario", topic: "Clinical Differentiation of Side Effects", exp: "Bismuth subsalicylate causes benign black stools due to bismuth sulfide formation, which must be distinguished from melena." },
+      { q: "A patient undergoing H. pylori treatment with PPI, Amoxicillin, and Clarithromycin complains of a metallic taste and mild diarrhea. This metallic taste is primarily attributed to:", opts: ["Clarithromycin (or Metronidazole)", "Amoxicillin", "Omeprazole", "Sucralfate"], a: 0, tag: "Scenario", topic: "Antibiotic Adverse Effects", exp: "Clarithromycin and Metronidazole frequently cause dysgeusia (unpleasant metallic taste) during oral therapy." },
+      { q: "In a geographic region with high Clarithromycin resistance (>15%), which initial H. pylori eradication regimen is clinically indicated?", opts: ["Bismuth-based Quadruple Therapy for 14 days", "Amoxicillin monotherapy for 30 days", "PPI + Clarithromycin for 7 days", "H2 blocker alone"], a: 0, tag: "Scenario", topic: "High-Resistance Treatment Guidelines", exp: "Guidelines recommend 14-day Bismuth Quadruple Therapy as first-line when regional Clarithromycin resistance exceeds 15%." },
+      { q: "A patient taking Metronidazole for H. pylori develops tingling, numbness, and burning pain in his toes. What is the appropriate clinical response?", opts: ["Discontinue Metronidazole due to neurotoxicity (peripheral neuropathy)", "Increase dose to clear infection faster", "Add oral iron supplements", "Switch to Amoxicillin monotherapy"], a: 0, tag: "Scenario", topic: "Metronidazole Toxicity Recognition", exp: "Prolonged or high-dose Metronidazole causes sensory peripheral neuropathy; drug discontinuation is required to prevent permanence." },
+      { q: "A patient taking Clarithromycin for H. pylori is concurrently prescribed Simvastatin. The patient is at risk for rhabdomyolysis because Clarithromycin:", opts: ["Inhibits hepatic CYP3A4, surging serum Simvastatin levels", "Induces CYP3A4, clearing Simvastatin rapidly", "Blocks renal excretion of statins", "Binds statins in the gut lumen"], a: 0, tag: "Scenario", topic: "Macrolide Drug Interactions", exp: "Clarithromycin is a potent CYP3A4 inhibitor, decreasing statin clearance and triggering muscle toxicity/rhabdomyolysis." },
+      { q: "Why is serological antibody testing unsuitable to confirm H. pylori cure immediately after completing antibiotic treatment?", opts: ["IgG antibodies persist in blood for months to years despite successful bacterial clearance", "Serology only measures stomach acid levels", "Antibiotics interfere with antibody assays", "H. pylori destroys serum antibodies"], a: 0, tag: "Scenario", topic: "Diagnostic Limitations", exp: "Serology detects circulating IgG antibodies which remain positive long after eradication; UBT or stool antigen tests are required instead." },
+      { q: "A patient with PUD and renal impairment requires H. pylori treatment. Which component of quadruple therapy requires caution due to potential neurotoxicity in renal failure?", opts: ["Bismuth subsalicylate (risk of bismuth encephalopathy)", "Amoxicillin", "Omeprazole", "Metronidazole"], a: 0, tag: "Scenario", topic: "Renal Risk Factors", exp: "Systemic absorption of bismuth in chronic kidney disease can cause accumulation and central nervous system toxicity (encephalopathy)." },
+      { q: "A patient fails initial 14-day triple therapy (PPI + Amoxicillin + Clarithromycin). What is the appropriate second-line strategy?", opts: ["Switch to Bismuth Quadruple Therapy or Levofloxacin-based Triple Therapy", "Repeat the same triple therapy for 14 more days", "Stop all antibiotics and give antacids", "Use Clarithromycin monotherapy"], a: 0, tag: "Scenario", topic: "Treatment Failure Management", exp: "After first-line failure, repeat exposure to Clarithromycin is avoided due to acquired resistance; Quadruple or Levofloxacin regimens are used." },
+      { q: "A 30-year-old female receiving H. pylori eradication therapy with Amoxicillin and PPI uses oral contraceptive pills (OCPs). What nurse counsel is vital?", opts: ["Use a backup non-hormonal barrier method during antibiotic therapy", "Double the OCP dose", "Stop PPI immediately", "Take OCPs with dairy products"], a: 0, tag: "Scenario", topic: "Patient Education on Contraception", exp: "Broad-spectrum antibiotics like Amoxicillin can alter gut flora, reducing enterohepatic recirculation of estrogen and potentially lowering OCP efficacy." },
+      { q: "An elderly patient on H. pylori therapy develops watery diarrhea (6 times/day) and low-grade fever. Clostridioides difficile colitis is suspected. What is the initial action?", opts: ["Evaluate for C. difficile stool toxin and discontinue offending broad-spectrum antibiotics", "Administer loperamide immediately", "Double the PPI dose", "Increase Clarithromycin dose"], a: 0, tag: "Scenario", topic: "Superinfection Management", exp: "Broad-spectrum regimens alter intestinal flora, predisposing to C. difficile superinfection; anti-motility agents like loperamide are contraindicated." },
+      { q: "Which instruction should a nurse give a patient taking Tetracycline as part of H. pylori therapy?", opts: ["Avoid co-administration with milk, antacids, or iron supplements", "Take with a large glass of whole milk", "Take immediately before bedtime without water", "Crush tablets and mix with yogurt"], a: 0, tag: "Scenario", topic: "Tetracycline Administration Rules", exp: "Divalent and trivalent cations (Ca2+, Mg2+, Fe2+, Al3+) chelate Tetracycline in the GI lumen, preventing systemic absorption." },
+      
+      { q: "Vonoprazan is a novel Potassium-Competitive Acid Blocker (P-CAB) recently introduced in H. pylori regimens. Its mechanism differs from PPIs because it:", opts: ["Reversibly inhibits H+/K+-ATPase by competing with K+ without requiring acid activation", "Irreversibly binds cysteine residues on gastric proton pumps", "Directly neutralizes luminal HCl", "Blocks gastrin receptors"], a: 0, tag: "Hard", topic: "Novel P-CAB Pharmacology", exp: "Vonoprazan is a P-CAB that competes with potassium ions on H+/K+-ATPase, providing faster, non-acid-dependent, reversible acid suppression." },
+      { q: "In patients with CYP2C19 extensive metabolizer genotype, standard doses of Omeprazole may result in eradication failure because:", opts: ["Rapid hepatic clearance of Omeprazole leads to inadequate acid suppression", "CYP2C19 inactivates Amoxicillin directly", "Omeprazole binds Clarithromycin in blood", "It triggers rapid bacterial mutations"], a: 0, tag: "Hard", topic: "Pharmacogenomics of PPIs", exp: "CYP2C19 extensive metabolizers clear Omeprazole rapidly, reducing acid suppression and lowering antibiotic stability against H. pylori." },
+      { q: "Rifabutin-based triple therapy is reserved for multi-drug resistant H. pylori rescue therapy. Rifabutin acts by inhibiting:", opts: ["Bacterial DNA-dependent RNA polymerase", "Peptidoglycan transpeptidase", "Topoisomerase IV", "Dihydrofolate reductase"], a: 0, tag: "Hard", topic: "Rescue Therapy Mechanisms", exp: "Rifabutin binds the beta-subunit of bacterial DNA-dependent RNA polymerase, blocking RNA transcription in resistant H. pylori." },
+      { q: "Why is Levofloxacin-based rescue therapy susceptible to rapid clinical failure if used broadly in the community?", opts: ["High baseline prevalence of fluoroquinolone resistance due to widespread use for UTIs and respiratory infections", "Levofloxacin is destroyed by stomach acid", "It cannot penetrate gastric mucosa", "It causes severe hypokalemia"], a: 0, tag: "Hard", topic: "Resistance Dynamics", exp: "Point mutations in bacterial gyrA gene confer cross-resistance across fluoroquinolones, elevated by widespread community fluoroquinolone prescribing." },
+      { q: "What is the molecular mechanism by which PPIs enhance the minimal inhibitory concentration (MIC) efficiency of Amoxicillin against H. pylori?", opts: ["Maintaining luminal pH > 6 allows H. pylori to enter dividing growth phase, becoming susceptible to cell-wall targeting beta-lactams", "PPIs directly phosphorylate Amoxicillin", "PPIs block bacterial efflux pumps", "PPIs induce bacterial lysis"], a: 0, tag: "Hard", topic: "Synergistic Pharmacodynamics", exp: "H. pylori goes into a dormant non-dividing state in acidic conditions; raising pH to >6 triggers bacterial replication, making cell-wall synthesis inhibitors effective." },
+      { q: "Bismuth subsalicylate release of salicylate in the stomach carries a theoretical risk of toxicity in patients taking:", opts: ["High-dose Anticoagulants (Warfarin) or Aspirin", "Inhaled Corticosteroids", "Beta blockers", "Insulin"], a: 0, tag: "Hard", topic: "Salicylate Toxicity Risks", exp: "Salicylate absorbed from bismuth subsalicylate can displace Warfarin from plasma proteins and exert additive antiplatelet effects." }
+    ]
+  },
+
+  // SUBCHAPTER 2: H2 RECEPTOR BLOCKERS (31-60)
+  {
+    chTitle: "Subchapter 2: H2 Receptor Blockers",
+    questions: [
+      { q: "Which cells in the gastric mucosa possess H2 receptors that stimulate hydrochloric acid secretion?", opts: ["Parietal cells", "Chief cells", "G cells", "Enterochromaffin-like (ECL) cells"], a: 0, tag: "Basic", topic: "Gastric Mucosal Anatomy", exp: "Parietal cells located in the stomach body and fundus express H2 receptors on their basolateral membrane." },
+      { q: "What is the intracellular second messenger activated when Histamine binds to H2 receptors on parietal cells?", opts: ["Cyclic AMP (cAMP)", "Inositol trisphosphate (IP3)", "Diacylglycerol (DAG)", "Cyclic GMP (cGMP)"], a: 0, tag: "Basic", topic: "Signal Transduction", exp: "H2 receptors are Gs protein-coupled; activation stimulates adenylyl cyclase, raising cAMP and activating Protein Kinase A." },
+      { q: "Which H2 receptor antagonist is well-known for potent inhibition of Cytochrome P450 enzymes (CYP1A2, CYP2C9, CYP2D6, CYP3A4)?", opts: ["Cimetidine", "Famotidine", "Ranitidine", "Nizatidine"], a: 0, tag: "Basic", topic: "CYP Inhibition", exp: "Cimetidine binds CYP450 heme iron, inhibiting multiple hepatic isoenzymes and causing numerous drug interactions." },
+      { q: "Which H2 blocker exhibits the highest potency per milligram and minimal CYP450 drug interactions?", opts: ["Famotidine", "Cimetidine", "Ranitidine", "Nizatidine"], a: 0, tag: "Basic", topic: "Potency & Safety Comparison", exp: "Famotidine is 20-50 times more potent than Cimetidine and does not inhibit hepatic CYP450 enzymes." },
+      { q: "Cimetidine can cause gynecomastia, galactorrhea, and reduced sperm count in males because it:", opts: ["Blocks androgen receptors and increases prolactin secretion", "Stimulates testosterone synthesis", "Directly damages Leydig cells", "Inhibits LH release"], a: 0, tag: "Basic", topic: "Endocrine Side Effects", exp: "Cimetidine acts as a weak anti-androgen and inhibits estradiol degradation, leading to gynecomastia and sexual dysfunction." },
+      { q: "H2 receptor blockers suppress acid secretion induced predominantly by:", opts: ["Basal and nocturnal histamine stimulation", "Direct vagal stimulation", "Gastrin meal-stimulated peak acid secretion", "Direct physical distension"], a: 0, tag: "Basic", topic: "Acid Suppression Profile", exp: "H2 blockers are particularly effective at suppressing basal and nocturnal acid secretion, which is heavily histamine-dependent." },
+      { q: "Rapid intravenous bolus administration of H2 blockers (especially Cimetidine) can trigger which cardiovascular reaction?", opts: ["Bradycardia and Hypotension", "Severe Hypertension", "Atrial fibrillation", "Ventricular hypertrophy"], a: 0, tag: "Basic", topic: "IV Administration Risks", exp: "Cardiac H2 receptors mediate positive inotropic/chronotropic effects; rapid IV blockade can cause cardiac arrhythmias, bradycardia, and hypotension." },
+      { q: "Which H2 receptor antagonist undergoes minimal first-pass hepatic metabolism and has nearly 100% oral bioavailability?", opts: ["Nizatidine", "Cimetidine", "Famotidine", "Ranitidine"], a: 0, tag: "Basic", topic: "Pharmacokinetics", exp: "Nizatidine is rapidly and completely absorbed with ~90-100% oral bioavailability, unlike Cimetidine or Famotidine." },
+      { q: "Development of tolerance (tachyphylaxis) to acid-suppressing effects of H2 blockers typically occurs within:", opts: ["3 to 14 days of continuous use", "24 hours", "6 months", "1 year"], a: 0, tag: "Basic", topic: "Tachyphylaxis", exp: "Repeated H2 blocker exposure causes upregulation of gastrin/histamine pathways, producing tolerance within 1-2 weeks." },
+      { q: "Central nervous system adverse effects of H2 blockers (confusion, hallucinations) occur most frequently in:", opts: ["Elderly patients with renal or hepatic impairment", "Young athletes", "Pregnant females", "Pediatric patients"], a: 0, tag: "Basic", topic: "CNS Side Effects Risk", exp: "H2 blockers cross the blood-brain barrier; reduced clearance in renal/hepatic impairment leads to CNS accumulation and delirium in the elderly." },
+      { q: "In the management of Gastroesophageal Reflux Disease (GERD), H2 blockers are generally recommended for:", opts: ["Mild, intermittent heartburn symptoms", "Severe erosive esophagitis", "Zollinger-Ellison Syndrome", "Barrett's esophagus"], a: 0, tag: "Basic", topic: "Clinical Indications", exp: "H2 blockers provide quick relief for mild, episodic heartburn, whereas PPIs are required for severe erosive disease." },
+      { q: "How do H2 blockers affect gastric acid pH compared to Proton Pump Inhibitors?", opts: ["H2 blockers offer partial, shorter-duration acid suppression compared to PPIs", "H2 blockers cause total, irreversible 24-hour anacidosis", "H2 blockers lower gastric pH further", "H2 blockers work only in alkaline media"], a: 0, tag: "Basic", topic: "Efficacy Comparison", exp: "H2 blockers inhibit histamine-stimulated acid but leave gastrin and acetylcholine pathways active, making them less potent than PPIs." },
+
+      { q: "An elderly hospitalized patient receiving IV Cimetidine for stress ulcer prophylaxis becomes acutely confused and disoriented at night. What is the priority nursing action?", opts: ["Assess renal function lab values and report to physician to consider switching to Famotidine", "Administer a sedative", "Increase IV Cimetidine infusion rate", "Restrain the patient"], a: 0, tag: "Scenario", topic: "Nursing Assessment of Toxicity", exp: "Cimetidine-induced CNS toxicity is heightened in elderly patients with reduced renal clearance; switching to Famotidine is safer." },
+      { q: "A patient taking Warfarin is prescribed Cimetidine for peptic ulcer disease. Four days later, the patient presents with epistaxis and hematuria. Why did this occur?", opts: ["Cimetidine inhibited CYP2C9, raising plasma Warfarin levels and INR", "Cimetidine displaced Warfarin from albumin", "Cimetidine directly destroyed platelets", "Cimetidine blocked Vitamin K absorption"], a: 0, tag: "Scenario", topic: "CYP Drug Interaction Scenario", exp: "Cimetidine inhibits CYP2C9 (which metabolizes S-warfarin), leading to accumulation of Warfarin, elevated INR, and bleeding." },
+      { q: "A patient taking Theophylline for severe asthma starts self-medicating with OTC Cimetidine for heartburn. The patient experiences tremors, palpitations, and nausea. What happened?", opts: ["Cimetidine inhibited Theophylline hepatic metabolism, causing Theophylline toxicity", "Theophylline destroyed Cimetidine", "Cimetidine blocked bronchial H2 receptors", "Acute allergic reaction"], a: 0, tag: "Scenario", topic: "Narrow Therapeutic Index Interaction", exp: "Cimetidine inhibits CYP1A2, which clears Theophylline; elevated Theophylline levels induce cardiac and neurological toxicity." },
+      { q: "A male patient complains of painful breast enlargement (gynecomastia) after taking an acid reducer for 6 months. Which medication is the likely cause?", opts: ["Cimetidine", "Famotidine", "Omeprazole", "Sucralfate"], a: 0, tag: "Scenario", topic: "Endocrine Adverse Event", exp: "Cimetidine exhibits anti-androgenic effects and reduces hepatic clearance of estradiol, resulting in gynecomastia in men." },
+      { q: "A patient taking Ketoconazole for a systemic fungal infection is prescribed Famotidine. The nurse monitors for treatment failure of Ketoconazole because:", opts: ["Famotidine raises gastric pH, severely impairing dissolution and absorption of Ketoconazole", "Famotidine destroys fungal cell membranes", "Famotidine increases renal excretion of azoles", "Famotidine inactivates azoles in blood"], a: 0, tag: "Scenario", topic: "pH-Dependent Absorption Interaction", exp: "Ketoconazole requires an acidic gastric environment for dissolution; H2 blockers reduce acid, leading to subtherapeutic antifungal levels." },
+      { q: "An ICU patient receives IV Famotidine for stress ulcer prophylaxis. The nurse knows that IV H2 blockers are preferred over IV PPIs in non-bleeding patients primarily to:", opts: ["Reduce the risk of nosocomial pneumonia by avoiding complete gastric acid elimination", "Provide faster relief than PPIs", "Eliminate all stomach bacteria", "Prevent acute kidney injury"], a: 0, tag: "Scenario", topic: "ICU Stress Ulcer Prophylaxis", exp: "Partial acid suppression with H2 blockers maintains a modest gastric acid barrier against bacterial colonization of the upper GI tract." },
+      { q: "A chronic kidney disease patient (eGFR 20 mL/min) requires Famotidine for GERD. How should the dosage be adjusted?", opts: ["Reduce dose or increase dosing interval by 50%", "Double the dose to offset slow filtration", "Keep standard dose", "Administer with antacids only"], a: 0, tag: "Scenario", topic: "Renal Dosing Adjustments", exp: "Famotidine is cleared primarily by renal excretion; dosage reduction is mandatory in moderate-to-severe renal failure to avoid toxicity." },
+      { q: "A patient asks why taking Famotidine before a heavy, spicy meal prevents heartburn, but taking it after heartburn starts takes 30-45 minutes to work. The nurse explains:", opts: ["H2 blockers require systemic absorption to reach parietal cell H2 receptors", "Famotidine must coat the esophagus first", "Famotidine works by direct neutralization in the lumen", "Famotidine must be converted by liver first"], a: 0, tag: "Scenario", topic: "Onset of Action Education", exp: "Unlike antacids which neutralize acid instantly in the lumen, H2 blockers must be absorbed systemically to block parietal receptors." },
+      { q: "A patient taking Famotidine for 6 weeks notes that heartburn symptoms are returning despite taking the medication regularly. This clinical phenomenon is called:", opts: ["Tachyphylaxis (tolerance)", "Anaphylaxis", "Idiosyncratic drug allergy", "Rebound acid hypersecretion"], a: 0, tag: "Scenario", topic: "Clinical Tachyphylaxis", exp: "Frequent continuous H2 blocker administration leads to tolerance (tachyphylaxis) due to upregulation of non-histamine acid pathways." },
+      { q: "Which H2 blocker choice is optimal for a cardiac patient taking Clopidogrel, Warfarin, and Metoprolol?", opts: ["Famotidine (no CYP interference)", "Cimetidine", "High-dose Cimetidine", "Cimetidine + Antacids"], a: 0, tag: "Scenario", topic: "Regimen Optimization", exp: "Famotidine does not alter hepatic CYP450 enzymes, making it safe alongside multi-drug cardiac regimens." },
+      { q: "A patient taking Phenytoin for epilepsy starts Cimetidine. Phenytoin plasma levels rise from 15 mcg/mL to 32 mcg/mL (toxic range). What mechanism caused this surge?", opts: ["Competitive inhibition of CYP2C9 and CYP2C19 by Cimetidine", "Increased intestinal absorption of Phenytoin", "Decreased renal filtration of Phenytoin", "Phenytoin binding to parietal cells"], a: 0, tag: "Scenario", topic: "Antiepileptic Drug Interaction", exp: "Cimetidine inhibits CYP2C9/19, blocking Phenytoin metabolism and producing ataxia, nystagmus, and lethargy." },
+      { q: "Why should H2 blockers be taken at bedtime for patients with uncomplicated duodenal ulcers?", opts: ["To suppress nocturnal acid breakthrough driven by basal uninhibited histamine release", "Because H2 blockers cause severe daytime sedation", "To prevent morning emesis", "To enhance calcium absorption"], a: 0, tag: "Scenario", topic: "Dosing Chronotherapy", exp: "Uninhibited nocturnal acid secretion plays a dominant role in duodenal ulcer pathogenesis; bedtime H2 blocker dosing suppresses night acid effectively." },
+
+      { q: "Which specific molecular interaction explains why Cimetidine inhibits CYP450 enzymes while Famotidine does not?", opts: ["Cimetidine contains an imidazole ring with an unshared electron pair that coordinates to CYP heme iron", "Famotidine is too large to enter hepatocytes", "Famotidine binds renal tubules exclusively", "Cimetidine lacks a sulfur atom"], a: 0, tag: "Hard", topic: "Structure-Activity Relationship", exp: "Cimetidine's imidazole ring forms a stable complex with the ferric iron atom of CYP450 heme, blocking substrate oxidation." },
+      { q: "How does long-term H2 blocker therapy potentially lead to hypergastrinemia?", opts: ["Reduced gastric acidity removes negative feedback on antral G cells, raising gastrin release", "H2 blockers directly stimulate G cells", "Gastrin is produced by parietal cells during H2 block", "H2 blockers inhibit renal gastrin clearance"], a: 0, tag: "Hard", topic: "Endocrine Feedback Loops", exp: "Gastric acid normally inhibits gastrin release via somatostatin; acid reduction removes this brake, causing compensatory G-cell hyperplasia and hypergastrinemia." },
+      { q: "In Zollinger-Ellison Syndrome, why are H2 blockers rarely effective as monotherapy compared to PPIs?", opts: ["Gastrinoma secretes massive gastrin, activating acid pathways that bypass H2 histamine receptors", "Gastrin destroys H2 blocker molecules", "H2 receptors disappear in ZES", "H2 blockers undergo rapid renal destruction in ZES"], a: 0, tag: "Hard", topic: "Pathophysiologic Refractoriness", exp: "Extreme hypergastrinemia stimulates parietal cells via CCK2 receptors and ECL cells, producing acid rates that overwhelm competitive H2 receptor blockade." },
+      { q: "Co-administration of H2 blockers with oral Iron supplements (Ferrous Sulfate) reduces iron efficacy because:", opts: ["Conversion of ferric (Fe3+) to absorbable ferrous (Fe2+) iron requires an acidic gastric pH", "H2 blockers chelate iron in blood", "Iron destroys parietal cells", "H2 blockers increase intestinal transit speed"], a: 0, tag: "Hard", topic: "Micronutrient Absorption Dynamics", exp: "Gastric acid facilitates solubility and reduction of dietary non-heme iron into the absorbable ferrous (Fe2+) form." },
+      { q: "What is the effect of H2 blockers on gastric alcohol dehydrogenase activity?", opts: ["Cimetidine and Ranitidine inhibit gastric alcohol dehydrogenase, elevating peak blood alcohol concentrations", "They accelerate alcohol breakdown", "They prevent ethanol absorption", "They bind alcohol in the stomach"], a: 0, tag: "Hard", topic: "First-Pass Metabolism Interference", exp: "Inhibition of mucosal alcohol dehydrogenase by certain H2 blockers reduces first-pass breakdown of ingested ethanol, increasing systemic alcohol exposure." },
+      { q: "In patients with severe systemic mastocytosis or basophilic leukemia, high-dose H2 blockers are combined with H1 blockers to:", opts: ["Block massive systemic histamine release causing refractory hypotension and gastric hypersecretion", "Prevent fungal infections", "Inhibit mast cell production in bone marrow", "Lower serum calcium"], a: 0, tag: "Hard", topic: "Synergistic Histamine Blockade", exp: "Systemic mastocytosis releases enormous histamine; combining H1 (vascular) and H2 (gastric/cardiac) antagonists provides complete receptor blockade." }
+    ]
+  },
+
+  // SUBCHAPTER 3: PPIS & PROSTAGLANDINS (61-90)
+  {
+    chTitle: "Subchapter 3: PPIs & Prostaglandin Analogs",
+    questions: [
+      { q: "What is the ultimate molecular target of Proton Pump Inhibitors (PPIs) on gastric parietal cells?", opts: ["H+/K+-ATPase proton pump", "H2 histamine receptor", "CCK2 gastrin receptor", "Muscarinic M3 receptor"], a: 0, tag: "Basic", topic: "PPI Mechanism of Action", exp: "PPIs inhibit H+/K+-ATPase, the final common pathway for gastric acid secretion on parietal cell apical membranes." },
+      { q: "PPIs are prodrugs that require which environment to be converted into their active sulfenamide form?", opts: ["Acidic canaliculus of the parietal cell (pH < 2)", "Alkaline intestinal lumen", "Neutral blood plasma", "Hepatic parenchymal cells"], a: 0, tag: "Basic", topic: "PPI Activation Mechanism", exp: "PPIs accumulate in the acidic secretory canaliculi of parietal cells where protonation converts them into active reactive sulfenamides." },
+      { q: "How do active PPI sulfenamides bind to the H+/K+-ATPase enzyme to achieve prolonged inhibition?", opts: ["Covalent disulfide bond formation with Cysteine residues", "Reversible competitive ionic binding", "Allosteric lipid membrane fluidization", "Direct enzymatic digestion"], a: 0, tag: "Basic", topic: "Covalent Inhibition", exp: "Active sulfenamide forms covalent disulfide links with SH groups of cysteine residues on H+/K+-ATPase, permanently disabling the pump." },
+      { q: "Misoprostol is a synthetic analog of which endogenous substance?", opts: ["Prostaglandin E1 (PGE1)", "Prostaglandin F2-alpha", "Thromboxane A2", "Leukotriene B4"], a: 0, tag: "Basic", topic: "Misoprostol Classification", exp: "Misoprostol is a synthetic PGE1 methyl ester analog that exerts mucosal protective and acid inhibitory actions." },
+      { q: "Misoprostol protects the gastric mucosa by stimulating bicarbonate/mucus secretion and by:", opts: ["Inhibiting Gi protein-coupled parietal acid secretion", "Blocking H2 receptors", "Neutralizing HCl in lumen", "Inhibiting gastrin synthesis"], a: 0, tag: "Basic", topic: "Prostaglandin Dual Action", exp: "PGE1 binds EP3 receptors on parietal cells to decrease cAMP and acid output, while enhancing mucosal blood flow and mucus secretion." },
+      { q: "Misoprostol carries a strict Black-Box Warning and absolute contraindication in which patient population?", opts: ["Pregnant women (risk of uterine contractions and abortion)", "Hypertensive patients", "Asthmatic patients", "Elderly males"], a: 0, tag: "Basic", topic: "Misoprostol Contraindications", exp: "Misoprostol stimulates uterine contractions and cervical ripening, making it abortifacient and strictly contraindicated in pregnancy." },
+      { q: "Which adverse effect is most common with Misoprostol therapy, often limiting patient compliance?", opts: ["Dose-dependent diarrhea and abdominal cramps", "Severe constipation", "Hypertension", "Irreversible urinary retention"], a: 0, tag: "Basic", topic: "Misoprostol Side Effects", exp: "Misoprostol stimulates intestinal motility and secretion, causing diarrhea and cramping in up to 30% of patients." },
+      { q: "Long-term PPI therapy is associated with increased risk of hip fractures due to decreased absorption of:", opts: ["Calcium (due to hypochlorhydria)", "Sodium", "Potassium", "Vitamin C"], a: 0, tag: "Basic", topic: "Bone Health Risk", exp: "Gastric acid is necessary to insoluble calcium salts into absorbable ionic calcium; chronic PPI use reduces calcium absorption and bone density." },
+      { q: "Which vitamin deficiency can develop during multi-year PPI suppression therapy?", opts: ["Vitamin B12 (Cobalamin)", "Vitamin C", "Folic Acid", "Vitamin K"], a: 0, tag: "Basic", topic: "Micronutrient Deficiency", exp: "Acid and pepsin are required to cleave Vitamin B12 from dietary proteins; hypochlorhydria causes B12 malabsorption." },
+      { q: "Omeprazole inhibits which hepatic CYP enzyme, creating notable interactions with Diazepam and Warfarin?", opts: ["CYP2C19", "CYP2E1", "CYP1A1", "CYP2B6"], a: 0, tag: "Basic", topic: "PPI Hepatic Metabolism", exp: "Omeprazole is metabolized by and inhibits CYP2C19, delaying clearance of co-administered CYP2C19 substrates." },
+      { q: "Enteric coating on oral PPI capsules is essential because PPIs are:", opts: ["Rapidly degraded and inactivated by gastric acid in the stomach lumen", "Extremely caustic to the esophagus", "Absorbed only through buccal mucosa", "Light-sensitive"], a: 0, tag: "Basic", topic: "Formulation Rationale", exp: "PPI prodrugs are acid-labile and would be inactivated in gastric juice; enteric coating delays dissolution until reaching the alkaline duodenum." },
+      { q: "Which PPI can be administered intravenously for acute upper GI bleeding?", opts: ["Pantoprazole (or Esomeprazole)", "Misoprostol", "Sucralfate", "Dicyclomine"], a: 0, tag: "Basic", topic: "IV PPI Availability", exp: "Pantoprazole and Esomeprazole are formulated for IV infusion during acute non-variceal upper GI bleeding." },
+
+      { q: "A patient taking Clopidogrel (Plavix) following coronary stent placement needs a PPI for severe acid reflux. Which PPI should be avoided due to antiplatelet reduction?", opts: ["Omeprazole (inhibits CYP2C19 required for Clopidogrel activation)", "Rabeprazole", "Pantoprazole", "Dexlansoprazole"], a: 0, tag: "Scenario", topic: "Clopidogrel-PPI Interaction", exp: "Clopidogrel is a prodrug activated by CYP2C19. Omeprazole inhibits CYP2C19, reducing active clopidogrel levels and increasing thrombotic risk." },
+      { q: "A 68-year-old female taking high-dose NSAIDs for osteoarthritis develops a peptic ulcer. She requires continued NSAID therapy. Which drug prevents NSAID-induced ulcers?", opts: ["Misoprostol (or a PPI)", "Dicyclomine", "Loperamide", "Aluminium hydroxide"], a: 0, tag: "Scenario", topic: "NSAID Ulcer Prevention", exp: "NSAIDs block mucosal prostaglandin synthesis; Misoprostol replaces mucosal PGE1, directly counteracting NSAID mucosal injury." },
+      { q: "A patient taking Omeprazole for 3 years presents with muscle twitching, tremors, and cardiac dysrhythmia. Serum magnesium is 1.0 mEq/L. The nurse identifies this as:", opts: ["PPI-induced severe hypomagnesemia", "Hypercalcemia crisis", "Hyponatremia", "Metabolic acidosis"], a: 0, tag: "Scenario", topic: "Electrolyte Disturbance Warning", exp: "FDA warns that long-term PPI use impairs active intestinal magnesium transport (TRPM6/7 channels), leading to severe hypomagnesemia." },
+      { q: "An elderly patient on continuous PPI therapy for 2 years develops severe, recurrent Clostridioides difficile colitis. Why does PPI therapy raise C. diff risk?", opts: ["Loss of gastric acid barrier allows ingested bacterial spores to survive and colonize the bowel", "PPIs directly nourish anaerobic bacteria", "PPIs suppress white blood cell count", "PPIs cause colonic mucosal tearing"], a: 0, tag: "Scenario", topic: "Infectious Risk Assessment", exp: "Gastric acid kills ingested pathogens; hypochlorhydria allows C. diff spores and enteric bacteria to pass into the lower bowel." },
+      { q: "How should a nurse instruct a patient to take oral Omeprazole capsules for optimal efficacy?", opts: ["Take 30 to 60 minutes before the first meal of the day", "Take immediately after a heavy fatty meal", "Take at bedtime with a glass of milk", "Crush capsule and mix in warm water"], a: 0, tag: "Scenario", topic: "Administration Timing Guidelines", exp: "PPIs should be taken before breakfast so peak blood levels coincide with meal-stimulated activation of parietal proton pumps." },
+      { q: "A female patient of childbearing potential with NSAID-induced gastritis is prescribed Misoprostol. What nursing requirement must be fulfilled prior to starting therapy?", opts: ["Obtain a negative serum pregnancy test and provide effective contraception counseling", "Perform baseline ECG", "Check serum amylase", "Measure urine pH"], a: 0, tag: "Scenario", topic: "Safety Protocols in Women", exp: "Misoprostol causes uterine contractions and abortion; a negative pregnancy test within 2 weeks of starting therapy is mandatory." },
+      { q: "A patient abruptly stops taking Omeprazole after 1 year of daily use and experiences severe heartburn worse than baseline within 3 days. This is known as:", opts: ["Rebound acid hypersecretion (due to elevated gastrin and parietal cell hyperplasia)", "Acute drug allergy", "Esophageal perforation", "Tolerance"], a: 0, tag: "Scenario", topic: "Rebound Hypersecretion", exp: "Chronic acid suppression causes hypergastrinemia and parietal cell hypertrophy; stopping PPIs abruptly unleashes hypersecretion." },
+      { q: "Which PPI choice exhibits the least potential for CYP2C19 drug interactions in a complex cardiac patient taking Clopidogrel?", opts: ["Pantoprazole", "Omeprazole", "Esomeprazole", "Lansoprazole"], a: 0, tag: "Scenario", topic: "Cardiology-Safe PPI Selection", exp: "Pantoprazole is metabolized predominantly by sulfotransferase pathways, avoiding CYP2C19 inhibition and sparing Clopidogrel activation." },
+      { q: "A post-menopausal female on long-term PPI therapy undergoes a DEXA scan showing T-score of -2.8 (osteoporosis). What prophylactic supplement should be evaluated?", opts: ["Calcium citrate (absorbed independently of gastric pH) + Vitamin D", "Calcium carbonate with antacids", "Sodium bicarbonate", "Magnesium oxide"], a: 0, tag: "Scenario", topic: "Osteoporosis Mitigation", exp: "Calcium citrate does not require an acidic gastric pH for dissolution, making it preferred over calcium carbonate during PPI therapy." },
+      { q: "A patient with Zollinger-Ellison Syndrome requires acid suppression. What PPI dosing strategy is typically employed?", opts: ["Doses significantly higher than standard (e.g., Omeprazole 60-120 mg/day) divided twice daily", "Micro-dosing every 3 days", "Standard OTC dose once weekly", "H2 blockers only"], a: 0, tag: "Scenario", topic: "Hypersecretory Management", exp: "ZES gastrinomas drive massive proton pump insertion; controlling symptoms requires high-dose, twice-daily PPI therapy." },
+      { q: "A nurse is caring for an ICU patient receiving continuous enteral tube feedings. The physician orders Omeprazole. How should this be administered?", opts: ["Use delayed-release oral suspension or open capsule in acidic juice (apple juice) to prevent tube clogging and enteric coat destruction", "Crush enteric granules into hot water", "Mix granules with alkaline sodium bicarbonate solution and let sit 1 hour", "Inject capsule whole into tube"], a: 0, tag: "Scenario", topic: "Enteral Tube Administration", exp: "Crushing enteric-coated granules destroys prodrugs in acid; intact granules must be delivered in acidic vehicles or formulated as bicarbonate suspensions." },
+      { q: "A patient taking Omeprazole develops acute interstitial nephritis with fever, rash, and eosinophiluria. What is the appropriate management?", opts: ["Discontinue PPI permanently and initiate alternative acid suppression (H2 blocker)", "Increase PPI dose", "Add oral iron", "Administer misoprostol"], a: 0, tag: "Scenario", topic: "Immune-Mediated Renal Toxicity", exp: "PPIs can cause drug-induced acute interstitial nephritis (AIN); prompt cessation of the PPI is required to prevent permanent renal damage." },
+
+      { q: "Why do PPIs require 3 to 5 days of continuous daily dosing to achieve maximal acid suppression (~66-95%), despite short elimination half-lives (1-2 hours)?", opts: ["PPIs only inhibit actively secreting pumps (~75% per meal); new pumps are synthesized daily requiring sequential covalent blockade", "PPIs accumulate in adipose tissue slowly", "Hepatic enzymes take days to activate sulfenamides", "Proton pumps regenerate every 10 minutes"], a: 0, tag: "Hard", topic: "Pharmacodynamic Kinetics", exp: "Only ~75% of proton pumps are active and blocked with a single dose; 18-24 hours are needed to synthesize new pumps, requiring days for steady-state suppression." },
+      { q: "Which structural feature differentiates Dexlansoprazole from Lansoprazole to provide a dual delayed-release pharmacokinetic profile?", opts: ["Two types of enteric-coated granules dissolving at distinct pH levels (pH 5.5 and pH 6.75)", "Inclusion of a lipid membrane tail", "Formulation as a prodrug of misoprostol", "Binding to chief cells"], a: 0, tag: "Hard", topic: "Advanced Drug Delivery Systems", exp: "Dexlansoprazole uses Dual Delayed Release technology: 25% releases at pH 5.5 (duodenum) and 75% at pH 6.75 (ileum), extending blood concentration." },
+      { q: "In parietal cells, PPI sulfenamide binds covalently to which specific amino acid residue on the catalytic alpha subunit of H+/K+-ATPase?", opts: ["Cysteine-813", "Lysine-501", "Alanine-102", "Aspartate-351"], a: 0, tag: "Hard", topic: "Molecular Structural Biology", exp: "Active PPI sulfenamide forms an irreversible disulfide bond with Cysteine-813 accessible from the luminal surface of the H+/K+-ATPase pump." },
+      { q: "How does PPI-induced hypochlorhydria alter the intestinal microbiome and increase risk of Spontaneous Bacterial Peritonitis (SBP) in cirrhotic patients?", opts: ["Loss of gastric acid barrier allows bacterial overgrowth in small bowel and translocation across intestinal mucosa into ascites", "PPIs directly cause bowel perforation", "PPIs suppress hepatic bile synthesis", "PPIs destroy peritoneal macrophages"], a: 0, tag: "Hard", topic: "Pathophysiology in Cirrhosis", exp: "Hypochlorhydria permits small intestinal bacterial overgrowth (SIBO), facilitating bacterial translocation into the bloodstream and ascitic fluid." },
+      { q: "Co-administration of PPIs with high-dose Methotrexate can result in Methotrexate toxicity because PPIs:", opts: ["Inhibit renal BCRP and OAT3 transporters, impairing Methotrexate elimination", "Displace Methotrexate from albumin", "Inhibit hepatic metabolism of Methotrexate", "Increase intestinal absorption of Methotrexate 10-fold"], a: 0, tag: "Hard", topic: "Oncology Drug Interactions", exp: "PPIs inhibit Breast Cancer Resistance Protein (BCRP) and organic anion transporters, slowing renal clearance of toxic Methotrexate." },
+      { q: "What is the biochemical reason why Misoprostol reduces intracellular cAMP levels in parietal cells?", opts: ["EP3 receptor activation stimulates Gi protein, inhibiting adenylyl cyclase activity", "EP3 receptor activates Gs protein", "Misoprostol destroys ATP directly", "Misoprostol blocks phosphodiesterase"], a: 0, tag: "Hard", topic: "Receptor Signal Transduction", exp: "PGE1 binds EP3 receptors coupled to inhibitory Gi protein, suppressing adenylyl cyclase, lowering cAMP, and shutting down proton pump translocation." }
+    ]
+  },
+
+  // SUBCHAPTER 4: ANTIMUSCARINICS & ANTACIDS (91-120)
+  {
+    chTitle: "Subchapter 4: Antimuscarinics, Antacids & Mucosal Protectors",
+    questions: [
+      { q: "Antacids reduce gastric acidity primarily by:", opts: ["Reacting chemically with gastric HCl to form water and a salt", "Inhibiting proton pumps covalently", "Blocking histamine H2 receptors", "Inhibiting gastrin synthesis"], a: 0, tag: "Basic", topic: "Antacid Mechanism", exp: "Antacids are weak bases that chemically neutralize gastric hydrochloric acid in the stomach lumen." },
+      { q: "Which antacid component is classically associated with diarrhea due to unabsorbed osmotic ion retention in bowel?", opts: ["Magnesium hydroxide", "Aluminium hydroxide", "Calcium carbonate", "Sodium bicarbonate"], a: 0, tag: "Basic", topic: "Magnesium Toxicity Profile", exp: "Unabsorbed magnesium salts retain water in the intestinal lumen osmotically, stimulating peristalsis and causing diarrhea." },
+      { q: "Which antacid component causes constipation and can bind dietary phosphate, leading to hypophosphatemia?", opts: ["Aluminium hydroxide", "Magnesium hydroxide", "Sodium bicarbonate", "Potassium citrate"], a: 0, tag: "Basic", topic: "Aluminium Toxicity Profile", exp: "Aluminium ions relax smooth muscle and cause constipation, while binding phosphate in the gut lumen to form insoluble aluminium phosphate." },
+      { q: "Sucralfate exerts its mucosal protective action by:", opts: ["Forming a viscous paste that cross-links in acid (pH < 4) to cover ulcer beds", "Neutralizing systemic pH", "Inhibiting H+/K+-ATPase", "Blocking vagal nerve impulses"], a: 0, tag: "Basic", topic: "Sucralfate Mechanism", exp: "Sucralfate is sulfated sucrose + aluminium hydroxide; in acid, it forms a negatively charged paste that adheres to positively charged proteins in ulcer beds." },
+      { q: "Systemic absorption of Sodium bicarbonate antacids can cause which acid-base disturbance?", opts: ["Metabolic alkalosis", "Metabolic acidosis", "Respiratory acidosis", "Respiratory alkalosis"], a: 0, tag: "Basic", topic: "Systemic Antacid Complications", exp: "Sodium bicarbonate is water-soluble and rapidly absorbed, yielding excess bicarbonate ions and systemic metabolic alkalosis." },
+      { q: "Milk-Alkali Syndrome (hypercalcemia, metabolic alkalosis, renal failure) is caused by chronic overuse of:", opts: ["Calcium carbonate (+ milk)", "Aluminium hydroxide", "Magnesium citrate", "Sucralfate"], a: 0, tag: "Basic", topic: "Milk-Alkali Syndrome", exp: "Excessive ingestion of Calcium carbonate with calcium-rich dairy causes hypercalcemia, renal vasoconstriction, and metabolic alkalosis." },
+      { q: "Antimuscarinics like Dicyclomine and Hyoscyamine reduce GI spasms by blocking which receptor subtype?", opts: ["Muscarinic M3 receptors", "Nicotinic receptors", "Beta-2 adrenergic receptors", "Histamine H1 receptors"], a: 0, tag: "Basic", topic: "Antispasmodic Targets", exp: "M3 receptors on intestinal smooth muscle mediate parasympathetic contraction; antimuscarinics block M3 receptors to relieve spasms." },
+      { q: "Which anticholinergic side effect is common with antimuscarinic drugs like Dicyclomine?", opts: ["Dry mouth, blurred vision, urinary retention, and constipation", "Profuse salivation and diarrhea", "Severe bradycardia", "Miosis"], a: 0, tag: "Basic", topic: "Anticholinergic Toxicity Profile", exp: "Blockade of peripheral muscarinic receptors reduces exocrine secretions (dry mouth), relaxes bladder/bowel, and causes cycloplegia." },
+      { q: "Simethicone is frequently added to antacid preparations because it acts as:", opts: ["An antiflatulent that alters gas bubble surface tension, coalescing them for easier expulsion", "An acid-suppressing proton blocker", "A mucosal binder", "A local anesthetic"], a: 0, tag: "Basic", topic: "Simethicone Action", exp: "Simethicone collapses gas bubbles in the stomach and intestines by reducing surface tension, aiding gas eructation or passage." },
+      { q: "Sucralfate requires which luminal condition to form its protective gel barrier?", opts: ["Acidic environment (pH < 4)", "Alkaline environment (pH > 7)", "Presence of fatty acids", "Presence of bile salts"], a: 0, tag: "Basic", topic: "Sucralfate Activation Requirements", exp: "Sucralfate requires acid-catalyzed polymerization to form its adhesive gel mesh; taking it with antacids prevents activation." },
+      { q: "Combination antacids containing both Aluminium hydroxide and Magnesium hydroxide are formulated to:", opts: ["Balance bowel effects (counteracting aluminium constipation with magnesium diarrhea)", "Increase systemic absorption", "Double acid secretion", "Prevent liver metabolism"], a: 0, tag: "Basic", topic: "Antacid Formulation Strategy", exp: "Combining constipation-inducing aluminium with diarrhea-inducing magnesium balances overall bowel motility." },
+      { q: "Aluminium and Magnesium antacids can significantly decrease intestinal absorption of concurrent oral medications via:", opts: ["Chelation and formation of non-absorbable complexes", "Direct enzymatic destruction in liver", "Inhibition of renal filtration", "Induction of CYP3A4"], a: 0, tag: "Basic", topic: "Antacid Chelation", exp: "Polyvalent cations (Al3+, Mg2+, Ca2+) chelate drugs like Fluoroquinolones and Tetracyclines, reducing bioavailabilty." },
+
+      { q: "A patient taking Ciprofloxacin for pyelonephritis takes Magnesium-Aluminium antacid for heartburn 30 minutes later. The infection fails to clear because:", opts: ["Antacid cations chelated Ciprofloxacin, preventing its GI absorption", "Antacids destroyed Ciprofloxacin in blood", "Antacids accelerated Ciprofloxacin renal excretion", "Ciprofloxacin turned into acid"], a: 0, tag: "Scenario", topic: "Chelation Interaction Scenario", exp: "Antacid polyvalent cations bind Ciprofloxacin into insoluble complexes; antacids must be given 2 hours before or 4 hours after fluoroquinolones." },
+      { q: "A patient with peptic ulcer disease is prescribed Sucralfate and Omeprazole. How should the nurse schedule these medications?", opts: ["Administer Sucralfate 30-60 minutes BEFORE Omeprazole", "Administer both simultaneously", "Give Omeprazole 10 minutes before Sucralfate", "Mix both in liquid"], a: 0, tag: "Scenario", topic: "Administration Sequencing", exp: "Sucralfate requires gastric acid for activation. PPIs raise pH; giving Sucralfate first allows activation before PPI suppression takes effect." },
+      { q: "A patient with end-stage renal disease (ESRD) on hemodialysis takes Aluminium hydroxide with meals. What is the therapeutic indication?", opts: ["Binding dietary phosphate to prevent hyperphosphatemia", "Neutralizing acid reflux", "Treating constipation", "Preventing aluminum toxicity"], a: 0, tag: "Scenario", topic: "Renal Phosphate Binder Role", exp: "In ESRD, Aluminium hydroxide binds dietary phosphate in the gut lumen to form insoluble aluminium phosphate excreted in feces." },
+      { q: "An elderly patient with chronic kidney disease self-medicates with large doses of Magnesium hydroxide antacid daily. The nurse watches for signs of magnesium toxicity, including:", opts: ["Hyporeflexia, muscle weakness, bradycardia, and respiratory depression", "Hyperreflexia and seizures", "Severe hypertension", "Kidney stones"], a: 0, tag: "Scenario", topic: "Hypermagnesemia Recognition", exp: "Renal clearance of magnesium is impaired in CKD; hypermagnesemia suppresses neuromuscular transmission and cardiac conduction." },
+      { q: "A patient with Irritable Bowel Syndrome (IBS) experiencing severe abdominal cramping is prescribed Dicyclomine. Which co-existing condition is a strict contraindication?", opts: ["Narrow-angle glaucoma (or severe urinary retention)", "Hypertension", "Osteoarthritis", "Hypothyroidism"], a: 0, tag: "Scenario", topic: "Antimuscarinic Contraindications", exp: "Antimuscarinics cause mydriasis, blocking aqueous humor drainage and precipitating acute angle-closure glaucoma." },
+      { q: "A patient taking Sucralfate complains of severe constipation. What is the mechanism behind this side effect?", opts: ["Aluminium component of Sucralfate exerts astringent and smooth muscle relaxing effects in bowel", "Sucralfate destroys gut flora", "Sucralfate causes systemic dehydration", "Sucralfate blocks H2 receptors"], a: 0, tag: "Scenario", topic: "Sucralfate Side Effect", exp: "Sucralfate contains aluminium hydroxide, which causes intestinal smooth muscle relaxation and constipation." },
+      { q: "A patient taking Sodium bicarbonate antacid repeatedly for indigestion presents with shortness of breath, muscle twitching, and blood pH 7.52. What condition has developed?", opts: ["Systemic metabolic alkalosis", "Metabolic acidosis", "Lactic acidosis", "Hyperkalemia"], a: 0, tag: "Scenario", topic: "Systemic Alkalosis", exp: "Sodium bicarbonate is absorbed systemically; chronic overuse alters HCO3- buffer balance, causing metabolic alkalosis." },
+      { q: "A patient taking Digoxin for heart failure starts taking Aluminium-Magnesium antacids daily. Digoxin blood levels drop below therapeutic range because:", opts: ["Antacids bind Digoxin and reduce its oral bioavailability", "Antacids increase Digoxin liver clearance", "Antacids increase renal excretion of Digoxin", "Antacids destroy cardiac receptors"], a: 0, tag: "Scenario", topic: "Cardiac Drug Interaction", exp: "Antacids adsorb Digoxin in the GI lumen, decreasing its intestinal absorption; doses should be separated by at least 2 hours." },
+      { q: "Why should Sucralfate not be administered via enteral feeding tube simultaneously with continuous tube feeds?", opts: ["Sucralfate binds enteral proteins and forms insoluble bezoars that obstruct feeding tubes", "Sucralfate causes tube corrosion", "Sucralfate destroys vitamins in feed", "Sucralfate causes immediate diarrhea"], a: 0, tag: "Scenario", topic: "Enteral Nutrition Interaction", exp: "Sucralfate binds proteins in enteral formulas, forming sticky masses (bezoars) that clog tubes and impair feed absorption." },
+      { q: "A patient taking Phenytoin for seizures requires antacid therapy. How should the nurse educate the patient?", opts: ["Separate antacid and Phenytoin administration times by at least 2 hours", "Take antacid and Phenytoin together with meal", "Stop Phenytoin while taking antacids", "Double Phenytoin dose"], a: 0, tag: "Scenario", topic: "Anticonvulsant Separation Rules", exp: "Antacids reduce Phenytoin GI absorption, risking breakthrough seizures if taken concurrently." },
+      { q: "An infant with colic is prescribed Simethicone drops. What explanation should the nurse give the parents regarding safety?", opts: ["Simethicone is not absorbed systemically and acts locally in the GI lumen to release trapped gas", "Simethicone depresses CNS pain pathways", "Simethicone stops stomach acid creation", "Simethicone acts as a systemic antibiotic"], a: 0, tag: "Scenario", topic: "Pediatric Safety Education", exp: "Simethicone is physiologically inert and unabsorbed, making it exceptionally safe for infant gas relief." },
+      { q: "A patient taking Hyoscyamine for GI spasms reports dry mouth and difficulty urinating. What nursing advice is appropriate?", opts: ["Suck on sugarless hard candies, drink water, and report inability to void immediately", "Stop drinking all fluids", "Double the drug dose", "Take drug with antacids"], a: 0, tag: "Scenario", topic: "Managing Anticholinergic Side Effects", exp: "Dry mouth is managed with sips of water/candy; urinary retention requires evaluation as it indicates significant muscarinic blockade." },
+
+      { q: "In the chemical reaction between Calcium carbonate and gastric HCl, what gas is generated that causes belching and abdominal distension?", opts: ["Carbon dioxide (CO2)", "Hydrogen sulfide (H2S)", "Methane (CH4)", "Nitrous oxide (N2O)"], a: 0, tag: "Hard", topic: "Chemical Dynamics", exp: "CaCO3 + 2HCl -> CaCl2 + H2O + CO2. Rapid CO2 release causes gastric distension, belching, and fluid accumulation." },
+      { q: "How does Aluminium hydroxide cause hypophosphatemia at a molecular level?", opts: ["Forms insoluble aluminium phosphate (AlPO4) precipitates in the gut lumen that cannot be absorbed", "Inhibits renal phosphate reabsorption transporters", "Shifts phosphate into bone cells", "Destroys Vitamin D"], a: 0, tag: "Hard", topic: "Biochemical Chelation", exp: "Aluminium ions bind dietary inorganic phosphate ions tightly, forming insoluble AlPO4 excreted entirely in feces." },
+      { q: "Why is Glycopyrrolate preferred over Atropine for reducing GI secretions during anesthesia when cardiac stimulation is unwanted?", opts: ["Glycopyrrolate is a quaternary amine that does not cross the BBB and has less central cardiac acceleration", "Glycopyrrolate acts on H2 receptors", "Glycopyrrolate is an oral prodrug", "Glycopyrrolate stimulates vagus nerve"], a: 0, tag: "Hard", topic: "Quaternary Anticholinergic Chemistry", exp: "Quaternary ammonium structure limits CNS entry and provides more selective peripheral GI muscarinic blockade." },
+      { q: "What is the role of mucosal bismuth in enhancing endogenous prostaglandin production?", opts: ["Bismuth stimulates mucosal PGE2 synthesis and inhibits pepsin activity", "Bismuth directly degrades COX enzymes", "Bismuth converts into prostaglandins in liver", "Bismuth blocks prostacyclin"], a: 0, tag: "Hard", topic: "Protective Molecular Mechanisms", exp: "Bismuth salts stimulate endogenous PGE2 secretion, increase bicarbonate output, and inhibit pepsin degradation of mucosal barrier." },
+      { q: "Chronic absorption of aluminium from antacids in dialysis patients can result in which systemic toxicities?", opts: ["Aluminium-induced microcytic anemia and osteomalacia / dialysis encephalopathy", "Hepatic necrosis and jaundice", "Severe hyperkalemia", "Pulmonary fibrosis"], a: 0, tag: "Hard", topic: "Chronic Heavy Metal Toxicity", exp: "Aluminium replaces iron in transferrin (anemia) and deposits in bone matrix (osteomalacia) and brain tissue (dialysis dementia)." },
+      { q: "Which parietal cell receptor is targeted by Proglumide to reduce gastric acid secretion?", opts: ["Cholecystokinin-2 (CCK2 / Gastrin) receptor", "Muscarinic M1 receptor", "Histamine H2 receptor", "Alpha-2 adrenergic receptor"], a: 0, tag: "Hard", topic: "Antigastrin Pharmacology", exp: "Proglumide is a non-peptide CCK2/gastrin receptor antagonist that blocks gastrin-stimulated acid secretion." }
+    ]
+  },
+
+  // SUBCHAPTER 5: ANTIDIARRHEALS (121-150)
+  {
+    chTitle: "Subchapter 5: Antidiarrheals",
+    questions: [
+      { q: "What is the primary mechanism of action of Loperamide in controlling diarrhea?", opts: ["Stimulating peripheral mu-opioid receptors on myenteric plexus to decrease intestinal motility", "Killing intestinal bacteria directly", "Neutralizing stomach acid", "Inhibiting pancreatic lipase"], a: 0, tag: "Basic", topic: "Loperamide Mechanism", exp: "Loperamide binds mu-opioid receptors in the GI submucosal/myenteric plexus, slowing circular and longitudinal muscle peristalsis." },
+      { q: "Why does Loperamide lack central analgesic and addictive opioid properties at therapeutic doses?", opts: ["It is a substrate for P-glycoprotein efflux pump, which actively removes it from the central nervous system", "It cannot bind opioid receptors", "It is degraded instantly in blood", "It converts into naloxone"], a: 0, tag: "Basic", topic: "P-Glycoprotein BBB Transport", exp: "Loperamide crosses the blood-brain barrier but is immediately pumped back into capillaries by P-glycoprotein." },
+      { q: "Diphenoxylate is formulated in combination with subtherapeutic Atropine (Lomotil) specifically to:", opts: ["Deter deliberate drug abuse and overdose by causing unpleasant anticholinergic side effects", "Enhance opioid binding", "Prevent liver breakdown", "Reduce stomach cramps"], a: 0, tag: "Basic", topic: "Abuse Deterrent Formulation", exp: "Atropine causes dry mouth, blurred vision, and nausea if excess doses are taken, preventing Diphenoxylate abuse." },
+      { q: "Bismuth subsalicylate acts as an antidiarrheal in traveler's diarrhea by:", opts: ["Inhibiting intestinal prostaglandin synthesis (antisecretory) and displaying bactericidal action", "Paralyzing bowel smooth muscle", "Binding calcium ions", "Stimulating bile secretion"], a: 0, tag: "Basic", topic: "Bismuth Antidiarrheal Action", exp: "Salicylate moiety inhibits fluid/electrolyte secretion via COX inhibition, while bismuth exhibits direct antimicrobial action." },
+      { q: "Which class of antidiarrheal agents includes Kaolin, Pectin, and Polycarbophil?", opts: ["Adsorbents and bulk-forming agents", "Mu-opioid agonists", "Anticholinergics", "Somatostatin analogs"], a: 0, tag: "Basic", topic: "Adsorbent Classification", exp: "Kaolin-pectin and polycarbophil adsorb fluid, toxins, and digestive chemicals, increasing stool bulk and consistency." },
+      { q: "Octreotide is a synthetic analog of which endogenous peptide hormone used for refractory secretory diarrhea?", opts: ["Somatostatin", "Gastrin", "Secretin", "Cholecystokinin"], a: 0, tag: "Basic", topic: "Octreotide Mechanism", exp: "Octreotide mimics somatostatin, inhibiting secretion of GI hormones (VIP, serotonin, gastrin) and reducing fluid secretion." },
+      { q: "Invasive bacterial dysentery (Shigella, Salmonella, Campylobacter) is a contraindication for antimotility agents because:", opts: ["Slowing peristalsis traps invasive bacterial toxins, worsening tissue invasion and toxic megacolon", "Antimotility agents neutralize antibiotics", "Antimotility drugs cause liver failure", "It causes severe hypokalemia"], a: 0, tag: "Basic", topic: "Contraindications in Dysentery", exp: "Inhibiting motility delays pathogen clearance, increasing mucosal toxin contact time and risk of systemic infection/toxic megacolon." },
+      { q: "Racecadotril controls secretory diarrhea by acting as an inhibitor of which enzyme?", opts: ["Enkephalinase (neutral endopeptidase)", "Cyclooxygenase-2", "Na+/K+-ATPase", "Adenylyl cyclase"], a: 0, tag: "Basic", topic: "Enkephalinase Inhibitor", exp: "Racecadotril prevents breakdown of endogenous enkephalins in the gut wall, reducing hypersecretion without slowing transit time." },
+      { q: "Which antidiarrheal agent is indicated for neuroendocrine tumor-induced secretory diarrhea (carcinoid syndrome, VIPoma)?", opts: ["Octreotide", "Loperamide", "Kaolin-pectin", "Bismuth subsalicylate"], a: 0, tag: "Basic", topic: "Octreotide Indications", exp: "Octreotide suppresses massive peptide secretion from neuroendocrine carcinoid tumors and VIPomas, controlling severe secretory diarrhea." },
+      { q: "Which electrolyte imbalance is the most immediate life-threatening risk in severe acute diarrhea?", opts: ["Hypokalemia and metabolic acidosis", "Hypercalcemia", "Hypernatremia", "Metabolic alkalosis"], a: 0, tag: "Basic", topic: "Pathophysiologic Risks", exp: "Diarrheal fluid is rich in potassium and bicarbonate; severe losses lead to hypokalemia, cardiac dysrhythmias, and metabolic acidosis." },
+      { q: "Oral Rehydration Therapy (ORT) relies on co-transport of Sodium with which nutrient across intestinal enterocytes?", opts: ["Glucose (via SGLT-1 transporter)", "Fructose", "Fatty acids", "Amino acids only"], a: 0, tag: "Basic", topic: "ORT Physiological Basis", exp: "SGLT-1 co-transporters absorb sodium alongside glucose even during severe secretory diarrhea, drawing water into blood passively." },
+      { q: "What is the primary danger of supratherapeutic doses of Loperamide taken by individuals with opioid use disorder?", opts: ["Cardiotoxicity including QTc prolongation, Torsades de Pointes, and sudden cardiac arrest", "Acute liver failure", "Severe hyperthermia", "Renal tubular necrosis"], a: 0, tag: "Basic", topic: "Loperamide Toxicity Warning", exp: "Massive doses overcome P-glycoprotein, entering CNS and blocking cardiac hERG potassium channels, causing fatal arrhythmias." },
+
+      { q: "A 28-year-old traveler returning from an endemic region presents with high fever, bloody diarrhea, and severe abdominal cramps. Why should Loperamide be avoided?", opts: ["Risk of trapping invasive bacteria in bowel, precipitating toxic megacolon", "Loperamide causes acute renal failure in travel diarrhea", "Loperamide destroys antibiotics", "Loperamide causes liver cirrhosis"], a: 0, tag: "Scenario", topic: "Infectious Diarrhea Risk", exp: "Bloody diarrhea and fever indicate invasive bacterial dysentery; antimotility agents trap pathogens and risk toxic megacolon." },
+      { q: "An AIDS patient with severe, refractory secretory diarrhea unresponsive to standard agents is prescribed Subcutaneous Octreotide. What adverse effect should be monitored?", opts: ["Gallbladder sludge/gallstones and alterations in blood glucose", "Severe hypertension", "Pulmonary edema", "Hair loss"], a: 0, tag: "Scenario", topic: "Octreotide Adverse Effects", exp: "Octreotide inhibits gallbladder contractility (leading to biliary sludge/gallstones) and suppresses insulin/glucagon secretion." },
+      { q: "A mother brings her 4-year-old child with acute watery diarrhea to the clinic. What is the most important initial therapeutic intervention?", opts: ["Oral Rehydration Solution (ORS) administration", "Immediate Loperamide administration", "Empiric Ciprofloxacin", "High-dose Diphenoxylate"], a: 0, tag: "Scenario", topic: "Pediatric Diarrhea Management", exp: "Rehydration with ORS to restore fluid/electrolyte balance is the primary life-saving measure; antimotility drugs are contraindicated in young children." },
+      { q: "A patient taking Diphenoxylate with Atropine (Lomotil) exceeds the recommended dose and develops dry mouth, dilated pupils, flushing, and urinary retention. These symptoms stem from:", opts: ["Atropine anticholinergic toxicity", "Opioid withdrawal", "Diphenoxylate toxicity", "Salicylate overdose"], a: 0, tag: "Scenario", topic: "Overdose Symptom Recognition", exp: "Subtherapeutic atropine in Lomotil triggers prominent anticholinergic warning symptoms when abusive high doses are ingested." },
+      { q: "A patient taking Bismuth subsalicylate for traveler's diarrhea notes dark black discoloration of the tongue. What explanation should the nurse offer?", opts: ["It is a harmless chemical reaction between bismuth and sulfur in saliva and will resolve", "It indicates severe oral fungal infection", "It signals acute gastrointestinal bleeding", "It is an allergic reaction requiring steroids"], a: 0, tag: "Scenario", topic: "Patient Reassurance", exp: "Bismuth reacts with salivary trace sulfides to form black bismuth sulfide; this is non-toxic and temporary." },
+      { q: "A patient receiving broad-spectrum IV antibiotics develops pseudomembranous colitis (C. difficile). Why is Loperamide strictly contraindicated in this patient?", opts: ["Impairment of toxin clearance increases mucosal contact time, predisposing to toxic megacolon and perforation", "Loperamide inactivates Vancomycin", "Loperamide causes severe kidney failure", "Loperamide increases blood sugar"], a: 0, tag: "Scenario", topic: "C. diff Safety Rules", exp: "Antimotility drugs impede mechanical flushing of C. diff enterotoxins A and B, escalating bowel necrosis and toxic megacolon." },
+      { q: "Why is Bismuth subsalicylate contraindicated in children recovering from Varicella (chickenpox) or Influenza infection?", opts: ["Risk of precipitating Reye's Syndrome due to salicylate content", "Risk of permanent tooth staining", "Risk of acute aplastic anemia", "Risk of blindness"], a: 0, tag: "Scenario", topic: "Pediatric Salicylate Safety", exp: "Salicylate absorption from bismuth subsalicylate carries a risk of Reye's Syndrome (hepatic encephalopathy) in children with viral illnesses." },
+      { q: "A patient taking Cholestyramine for hyperlipidemia notes that her chronic diarrhea secondary to ileal resection has resolved. What mechanism explains this?", opts: ["Cholestyramine binds unabsorbed bile acids in the intestinal lumen, preventing bile acid diarrhea", "Cholestyramine paralyzes intestine", "Cholestyramine kills bowel bacteria", "Cholestyramine blocks opioid receptors"], a: 0, tag: "Scenario", topic: "Bile Acid Malabsorption", exp: "Unabsorbed bile acids in the colon stimulate fluid secretion; bile acid sequestrants (Cholestyramine) bind bile acids and stop diarrhea." },
+      { q: "A patient taking Loperamide for IBS-D takes 16 tablets daily to achieve control. The patient experiences syncope and ECG shows QTc of 540 ms. The nurse alerts the physician to:", opts: ["Cardiotoxicity and risk of Torsades de Pointes from high-dose Loperamide", "Severe hypocalcemia", "Opioid overdose syndrome", "Acute stroke"], a: 0, tag: "Scenario", topic: "High-Dose Cardiotoxicity Alert", exp: "Extreme Loperamide doses block cardiac hERG potassium channels, causing QTc prolongation, polymorphic VT, and sudden cardiac death." },
+      { q: "An elderly patient taking Diphenoxylate-Atropine for acute diarrhea develops severe abdominal distension, absence of bowel sounds, and confusion. What complication is developing?", opts: ["Paralytic ileus secondary to excessive opioid antimotility action", "Acute appendicitis", "Gastroenteritis relapse", "Peptic ulcer perforation"], a: 0, tag: "Scenario", topic: "Geriatric Vulnerability", exp: "Elderly patients are highly sensitive to opioid motility reduction and anticholinergic effects, predisposing to paralytic ileus." },
+      { q: "Why should a patient taking Cholestyramine for bile acid diarrhea take other oral medications 1 hour before or 4 hours after Cholestyramine?", opts: ["Cholestyramine non-selectively binds and sequesters other oral drugs in the gut lumen, blocking absorption", "Cholestyramine speeds up kidney clearance", "Cholestyramine causes vomiting", "It destroys stomach acid"], a: 0, tag: "Scenario", topic: "Sequestrant Separation Rules", exp: "Bile acid resins bind multiple drugs (Warfarin, Digoxin, Thiazides) in the intestinal lumen, rendering them unabsorbable." },
+      { q: "A patient taking oral Neomycin for hepatic encephalopathy develops mild diarrhea. Why are absorbents like Kaolin-pectin inappropriate to give simultaneously?", opts: ["Adsorbents bind Neomycin in the gut lumen, reducing its antibiotic effectiveness against ammonia-producing bacteria", "Kaolin-pectin causes liver failure", "Kaolin-pectin converts into ammonia", "It triggers severe hypertension"], a: 0, tag: "Scenario", topic: "Adsorbent Interaction Rules", exp: "Kaolin-pectin non-specifically adsorbs co-administered oral antibiotics and drugs, preventing therapeutic luminal action." },
+
+      { q: "Eluxadoline is a novel agent approved for IBS-D. What is its unique dual receptor mechanism of action?", opts: ["Mu-opioid receptor agonist AND delta-opioid receptor antagonist", "Mu-opioid antagonist AND kappa-opioid agonist", "Beta-2 agonist AND alpha-1 blocker", "Muscarinic agonist AND H2 blocker"], a: 0, tag: "Hard", topic: "Advanced Dual Receptor Dynamics", exp: "Eluxadoline is a mu-opioid agonist (reduces motility) and delta-opioid antagonist (prevents excessive mu-induced sphincter of Oddi spasm)." },
+      { q: "How does Crofelemer control diarrhea in HIV/AIDS patients receiving antiretroviral therapy?", opts: ["Inhibits cystic fibrosis transmembrane conductance regulator (CFTR) and CaCC chloride channels in enterocytes", "Blocks mu-opioid receptors", "Binds bile acids", "Kills enteric viruses"], a: 0, tag: "Hard", topic: "Novel Secretory Inhibitor", exp: "Crofelemer selectively blocks luminal CFTR and calcium-activated chloride channels, preventing Cl- and water secretion into bowel lumen." },
+      { q: "What is the biochemical mechanism by which Octreotide reduces intestinal fluid secretion in neuroendocrine tumors?", opts: ["Binds somatostatin SSTR2/SSTR5 receptors, inhibiting Gs-stimulated adenylyl cyclase and blocking VIP release", "Blocks H+/K+-ATPase directly", "Inhibits cyclooxygenase-1", "Stimulates histamine release"], a: 0, tag: "Hard", topic: "Somatostatin Receptor Dynamics", exp: "Octreotide binds SSTR2/5 receptors on enterocytes and neuroendocrine cells, reducing intracellular cAMP and suppressing VIP-mediated hypersecretion." },
+      { q: "Why is Eluxadoline contraindicated in patients with a history of cholecystectomy?", opts: ["Increased risk of severe sphincter of Oddi spasm leading to acute pancreatitis and hepatic enzyme surges", "Risk of gallstone formation", "Loss of drug metabolism in bile", "Risk of acute renal failure"], a: 0, tag: "Hard", topic: "Gastroenterology Black-Box Warning", exp: "In patients without a gallbladder, Eluxadoline can trigger severe sphincter of Oddi constriction, causing acute pancreatitis." },
+      { q: "In cholera-induced secretory diarrhea, Vibrio cholerae toxin causes massive fluid loss by permanently activating:", opts: ["Gs protein via ADP-ribosylation, leading to constitutive adenylyl cyclase activation and cAMP production", "Gi protein inhibition", "Phospholipase C destruction", "Na+/K+-ATPase blockage"], a: 0, tag: "Hard", topic: "Pathotoxin Molecular Biology", exp: "Cholera toxin ADP-ribosylates Gs alpha, locking adenylyl cyclase ON; high cAMP drives continuous CFTR Cl- secretion and osmotic water loss." },
+      { q: "Telotristat ethyl acts as an antidiarrheal in carcinoid syndrome by inhibiting which rate-limiting enzyme?", opts: ["Tryptophan hydroxylase (TH), blocking peripheral serotonin (5-HT) synthesis", "Tyrosine hydroxylase", "Histidine decarboxylase", "Cyclooxygenase-2"], a: 0, tag: "Hard", topic: "Serotonin Synthesis Inhibitor", exp: "Telotristat ethyl inhibits tryptophan hydroxylase, reducing peripheral serotonin synthesis by carcinoid tumor cells and controlling diarrhea." }
+    ]
+  },
+
+  // SUBCHAPTER 6: ANTIEMETICS & CONSTIPATION (151-180)
+  {
+    chTitle: "Subchapter 6: Antiemetics & Drugs for Constipation",
+    questions: [
+      { q: "Ondansetron controls chemotherapy-induced nausea and vomiting (CINV) by blocking which receptor subtype?", opts: ["5-HT3 serotonin receptors", "D2 dopamine receptors", "H1 histamine receptors", "NK1 neurokinin receptors"], a: 0, tag: "Basic", topic: "Ondansetron Target", exp: "Ondansetron is a selective 5-HT3 receptor antagonist blocking serotonin peripherally on vagal afferents and centrally in the CTZ." },
+      { q: "Which anatomical structure outside the blood-brain barrier contains high concentrations of D2, 5-HT3, and opioid receptors that trigger emesis?", opts: ["Chemoreceptor Trigger Zone (CTZ) in area postrema", "Cerebral cortex", "Hippocampus", "Basal ganglia"], a: 0, tag: "Basic", topic: "Emetic Neuroanatomy", exp: "The CTZ is located in the area postrema on the floor of the fourth ventricle; lacking a BBB, it detects circulating emetogenic toxins." },
+      { q: "Metoclopramide acts as an antiemetic and prokinetic by blocking dopamine D2 receptors and enhancing:", opts: ["Upper GI acetylcholine release (prokinetic effect)", "Histamine secretion", "Serotonin breakdown", "GABA inhibition"], a: 0, tag: "Basic", topic: "Metoclopramide Dual Action", exp: "Metoclopramide blocks D2 receptors in CTZ (antiemetic) and enhances upper GI cholinergic response, accelerating gastric emptying." },
+      { q: "Metoclopramide carries a Black-Box Warning for causing which irreversible neurological extrapyramidal symptom?", opts: ["Tardive dyskinesia", "Acute delirium", "Peripheral neuropathy", "Intention tremor"], a: 0, tag: "Basic", topic: "Metoclopramide Neurological Risk", exp: "Central D2 blockade by long-term Metoclopramide can cause irreversible tardive dyskinesia (involuntary repetitive facial/body movements)." },
+      { q: "Which class of antiemetics (e.g., Aprepitant) targets Neurokinin-1 (NK1) receptors in the emetic center?", opts: ["Substance P / NK1 receptor antagonists", "5-HT3 antagonists", "Dopa-decarboxylase inhibitors", "H2 blockers"], a: 0, tag: "Basic", topic: "Aprepitant Classification", exp: "Aprepitant selectively blocks NK1 receptors, preventing Substance P from binding in the CTZ and vomiting center." },
+      { q: "Which antiemetic class is most effective for motion sickness and vestibular disorders (e.g., Meclizine, Scopolamine)?", opts: ["H1 antihistamines and muscarinic anticholinergics", "5-HT3 receptor antagonists", "D2 dopamine antagonists", "NK1 antagonists"], a: 0, tag: "Basic", topic: "Vestibular Emesis Targets", exp: "The vestibular apparatus relies heavily on H1 histamine and M1 muscarinic pathways to signal the vomiting center." },
+      { q: "Psyllium, Methylcellulose, and Polycarbophil belong to which category of laxatives?", opts: ["Bulk-forming laxatives", "Osmotic laxatives", "Stimulant laxatives", "Stool softeners (surfactants)"], a: 0, tag: "Basic", topic: "Bulk Laxative Classification", exp: "Bulk-forming laxatives absorb water in intestine, forming a gel matrix that distends bowel and stimulates peristalsis." },
+      { q: "Docusate sodium acts as a stool softener by:", opts: ["Acting as a surfactant that lowers surface tension, allowing water and lipids to penetrate stool", "Irritating enteric nerves directly", "Drawing water osmotically from blood", "Blocking mu-opioid receptors"], a: 0, tag: "Basic", topic: "Docusate Mechanism", exp: "Docusate is an anionic surfactant that permits water and fatty substances to blend into hard stool masses." },
+      { q: "How do osmotic laxatives like Lactulose and Polyethylene Glycol (PEG) promote bowel evacuation?", opts: ["Retaining water in intestinal lumen osmotically, increasing intraluminal pressure and peristalsis", "Directly paralyzing smooth muscle", "Binding dietary calcium", "Inhibiting bile release"], a: 0, tag: "Basic", topic: "Osmotic Laxative Principle", exp: "Non-absorbable osmotic solutes draw water into bowel lumen, softening stool and stimulating stretch-induced peristalsis." },
+      { q: "Stimulant laxatives like Bisacodyl and Senna act by:", opts: ["Directly irritating enteric intramural plexus mucosa to stimulate peristalsis and fluid secretion", "Forming a non-absorbable gel", "Lowering surface tension", "Blocking dopamine receptors"], a: 0, tag: "Basic", topic: "Stimulant Laxative Action", exp: "Bisacodyl and anthraquinones (Senna) directly stimulate the enteric nervous system and intestinal mucosal fluid secretion." },
+      { q: "Lactulose is administered in hepatic encephalopathy to reduce blood ammonia levels by:", opts: ["Colonic bacterial metabolism into organic acids, trapping ammonia as unabsorbed ammonium (NH4+) ions", "Directly destroying ammonia in liver", "Inhibiting stomach acid", "Increasing renal filtration of urea"], a: 0, tag: "Basic", topic: "Lactulose in Hepatic Encephalopathy", exp: "Colonic bacteria ferment lactulose into lactic/acetic acids (pH < 5); acid converts NH3 to non-absorbable NH4+ excreted in stool." },
+      { q: "Which targeted laxative class includes Methylnaltrexone and Naloxegol, used for opioid-induced constipation?", opts: ["Peripherally Acting Mu-Opioid Receptor Antagonists (PAMORAs)", "5-HT3 antagonists", "Bulk-forming laxatives", "Bile acid binders"], a: 0, tag: "Basic", topic: "PAMORA Mechanism", exp: "PAMORAs block peripheral GI mu-opioid receptors to restore motility without crossing the BBB or reversing central analgesia." },
+
+      { q: "A cancer patient receiving highly emetogenic Cisplatin chemotherapy is prescribed Ondansetron. The nurse monitors ECG for which potential cardiac toxicity?", opts: ["Dose-dependent QTc interval prolongation and Torsades de Pointes", "Severe sinus bradycardia", "ST-segment elevation", "Atrial flutter"], a: 0, tag: "Scenario", topic: "Ondansetron Cardiotoxicity", exp: "Ondansetron blocks cardiac hERG potassium channels at high doses, prolonging QTc and risking Torsades de Pointes." },
+      { q: "A diabetic patient with severe gastroparesis presents with nausea, early satiety, and postprandial fullness. Which medication acts as a prokinetic to speed gastric emptying?", opts: ["Metoclopramide (or Erythromycin)", "Ondansetron", "Loperamide", "Docusate"], a: 0, tag: "Scenario", topic: "Gastroparesis Management", exp: "Metoclopramide enhances upper GI motility via D2 blockade and 5-HT4 agonist actions, facilitating gastric emptying." },
+      { q: "A patient taking Metoclopramide for GERD develops acute facial muscle spasms, involuntary eye rolling (oculogyric crisis), and torticollis. What is the emergency treatment?", opts: ["IV Diphenhydramine (or Benztropine) for acute dystonic reaction", "Increase Metoclopramide dose", "Administer Flumazenil", "Give Naloxone"], a: 0, tag: "Scenario", topic: "Acute Dystonia Emergency", exp: "Central D2 blockade triggers acute extrapyramidal dystonic reactions; anticholinergics (Diphenhydramine/Benztropine) reverse symptoms." },
+      { q: "A patient planning a cruise ship vacation asks for medication to prevent motion sickness. The nurse recommends a Transdermal Scopolamine patch applied:", opts: ["Behind the ear at least 4 hours before exposure", "On the abdomen after nausea begins", "On the arm for 10 minutes only", "On the thigh at bedtime"], a: 0, tag: "Scenario", topic: "Scopolamine Administration", exp: "Transdermal Scopolamine requires ~4 hours for effective blood level accumulation; application behind the ear before travel is required." },
+      { q: "A patient with advanced terminal cancer on chronic morphine therapy develops severe constipation. Standard laxatives fail. Which medication is indicated?", opts: ["Methylnaltrexone (PAMORA)", "High-dose Loperamide", "Diphenoxylate", "Ondansetron"], a: 0, tag: "Scenario", topic: "Opioid Constipation Protocol", exp: "Methylnaltrexone blocks GI mu-opioid receptors without penetrating the CNS, relieving constipation while preserving morphine analgesia." },
+      { q: "A chronic kidney disease patient taking Magnesium citrate laxative daily presents with somnolence, loss of deep tendon reflexes, and hypotension. The nurse recognizes:", opts: ["Hypermagnesemia toxicity due to impaired renal excretion", "Hypocalcemia crisis", "Normal laxative response", "Dehydration"], a: 0, tag: "Scenario", topic: "Renal Laxative Toxicity", exp: "Osmotic magnesium laxatives release Mg2+ absorbed systemically; in CKD, failure to excrete magnesium triggers hypermagnesemia." },
+      { q: "Why must patients taking Bulk-forming laxatives (Psyllium) be instructed to drink at least 8 ounces (240 mL) of water per dose?", opts: ["To prevent dry gel inspissation causing esophageal or intestinal mechanical obstruction", "To accelerate liver metabolism", "To prevent systemic alkalosis", "To prevent kidney stones"], a: 0, tag: "Scenario", topic: "Bulk Laxative Safety Counseling", exp: "Without adequate fluid, bulk laxatives swell in the esophagus or stomach, forming solid masses that cause impaction." },
+      { q: "A female patient with severe Irritable Bowel Syndrome with Constipation (IBS-C) is prescribed Lubiprostone. Lubiprostone acts by:", opts: ["Activating Type-2 Chloride Channels (CIC-2) in intestinal enterocytes, increasing fluid secretion", "Blocking 5-HT3 receptors", "Irritating enteric nerve plexus", "Binding bile acids"], a: 0, tag: "Scenario", topic: "Lubiprostone Mechanism", exp: "Lubiprostone is a bicyclic fatty acid that activates luminal CIC-2 chloride channels, hypersecreting isotonic fluid into bowel." },
+      { q: "An adult female with chronic idiopathic constipation is prescribed Linaclotide. What is its molecular mechanism?", opts: ["Guanylate Cyclase-C (GC-C) agonist that increases intracellular cGMP, stimulating fluid secretion and transit", "Mu-opioid antagonist", "Dopamine agonist", "H1 blocker"], a: 0, tag: "Scenario", topic: "Linaclotide Mechanism", exp: "Linaclotide activates GC-C receptors on luminal enterocyte surfaces, elevating cGMP, driving CFTR chloride/fluid secretion." },
+      { q: "A patient receiving highly emetogenic chemotherapy is prescribed a 3-drug antiemetic combination protocol. This optimal regimen consists of:", opts: ["5-HT3 antagonist (Ondansetron) + NK1 antagonist (Aprepitant) + Dexamethasone", "Metoclopramide + Loperamide + Antacid", "Diphenhydramine + Scopolamine + Docusate", "Promethazine alone"], a: 0, tag: "Scenario", topic: "CINV Combination Guidelines", exp: "NCCN guidelines specify triple therapy (5-HT3 antagonist + NK1 antagonist + Dexamethasone) for highly emetogenic chemotherapy." },
+      { q: "A pregnant female in her 1st trimester suffers from severe morning sickness refractory to dietary changes. Which first-line antiemetic combination is FDA-approved for morning sickness?", opts: ["Doxylamine (antihistamine) + Pyridoxine (Vitamin B6)", "Ondansetron monotherapy", "Metoclopramide IV", "Aprepitant"], a: 0, tag: "Scenario", topic: "Hyperemesis Gravidarum Protocol", exp: "Doxylamine succinate + Pyridoxine hydrochloride (Diclegis) is the first-line FDA-approved safe combination for pregnancy-induced nausea." },
+      { q: "Why should Anthraquinone stimulant laxatives (Senna) not be used continuously for months?", opts: ["Chronic use causes melanosis coli (benign dark pigmentation of colonic mucosa) and cathartic colon syndrome", "Risk of permanent renal failure", "Risk of liver cirrhosis", "Risk of brain swelling"], a: 0, tag: "Scenario", topic: "Chronic Stimulant Abuse Hazards", exp: "Long-term anthraquinone overuse damages enteric neurons (cathartic colon) and causes lipofuscin deposition in colonic macrophages (melanosis coli)." },
+
+      { q: "Aprepitant reduces plasma levels of co-administered oral contraceptives and warfarin because it exhibits which metabolic complex behavior?", opts: ["Induces CYP3A4 after initial transient inhibition, requiring backup contraception and INR monitoring", "Irreversibly destroys liver enzymes", "Binds drugs in intestinal lumen", "Blocks renal filtration"], a: 0, tag: "Hard", topic: "Aprepitant Metabolic Interactions", exp: "Aprepitant is a moderate inhibitor AND inducer of CYP3A4; it induces CYP2C9, lowering Warfarin blood levels and decreasing OCP efficacy." },
+      { q: "What is the physiological role of 5-HT4 receptor activation by prokinetic drugs like Prucalopride in the colon?", opts: ["Stimulates calcitonin gene-related peptide (CGRP) release from sensory neurons, initiating peristaltic reflex", "Inhibits smooth muscle contraction", "Blocks chloride channels", "Destroys acetylcholine"], a: 0, tag: "Hard", topic: "Enteric Prokinetic Neurobiology", exp: "5-HT4 agonists excite presynaptic enteric motor neurons, stimulating acetylcholine and CGRP release to trigger anterograde propulsive waves." },
+      { q: "Why is Domperidone preferred over Metoclopramide in Parkinson's disease patients suffering from GI symptoms?", opts: ["Domperidone does not cross the blood-brain barrier, avoiding blockade of central striatal D2 receptors", "Domperidone is 100 times stronger", "Domperidone destroys levodopa", "Domperidone acts as a GABA agonist"], a: 0, tag: "Hard", topic: "Parkinsonian Neuropharmacology", exp: "Domperidone is excluded from CNS by the blood-brain barrier; it acts on peripheral D2 receptors without worsening Parkinsonian motor deficits." },
+      { q: "Which specific brainstem center lacks a blood-brain barrier and contains high density of NK1, D2, and 5-HT3 receptors?", opts: ["Area postrema (Chemoreceptor Trigger Zone)", "Nucleus ambiguus", "Red nucleus", "Substantia nigra"], a: 0, tag: "Hard", topic: "Emetic Center Neuroanatomy", exp: "The area postrema in the medulla floor lacks tight junctions, exposing CTZ receptors directly to emetogenic chemicals in systemic circulation." },
+      { q: "Prucalopride is a selective high-affinity 5-HT4 agonist. How does its cardiac safety profile differ from older prokinetics like Cisapride?", opts: ["Prucalopride does not inhibit cardiac hERG potassium channels, eliminating risk of QTc prolongation", "Prucalopride increases hERG channels", "Prucalopride causes immediate bradycardia", "Prucalopride acts as a sodium channel blocker"], a: 0, tag: "Hard", topic: "Cardiovascular Safety Engineering", exp: "Cisapride was withdrawn due to hERG K+ channel blockade causing Torsades de Pointes; Prucalopride is highly 5-HT4 selective without hERG binding." },
+      { q: "What is the molecular mechanism by which Dexamethasone enhances antiemetic efficacy when combined with 5-HT3 antagonists?", opts: ["Suppresses prostaglandin synthesis, reduces BBB permeability, and decreases CTZ inflammation", "Directly blocks 5-HT3 receptors", "Destroys substance P", "Inhibits gastric parietal cells"], a: 0, tag: "Hard", topic: "Corticosteroid Antiemetic Mechanisms", exp: "Dexamethasone reduces mucosal inflammatory prostaglandin release, depletes central emetogenic mediators, and decreases CTZ cell membrane permeability." }
+    ]
+  }
+];
+
+let currentChapter = 0;
+let currentQuestionIndex = 0;
+let overallScore = 0;
+let userAnswers = []; 
+let chapterScores = [0, 0, 0, 0, 0, 0];
+let timerInterval = null;
+let timeRemaining = 1800; // 30 minutes in seconds
+
+const quizBox = document.getElementById('quiz-box');
+const dashProgress = document.getElementById('dash-progress');
+const dashTimer = document.getElementById('dash-timer');
+const dashScore = document.getElementById('dash-score');
+const dashChNum = document.getElementById('dash-ch-num');
+const chTitleText = document.getElementById('ch-title-text');
+const qDiffBadge = document.getElementById('q-diff-badge');
+const chBadgeContainer = document.getElementById('ch-badge-container');
+
+const chapterReport = document.getElementById('chapter-report');
+const finalReport = document.getElementById('final-report');
+
+function initQuiz() {
+  currentChapter = 0;
+  currentQuestionIndex = 0;
+  overallScore = 0;
+  userAnswers = [];
+  chapterScores = [0, 0, 0, 0, 0, 0];
+  
+  chapterReport.classList.remove('show');
+  finalReport.classList.remove('show');
+  quizBox.style.display = 'block';
+  chBadgeContainer.style.display = 'flex';
+
+  startChapterTimer();
+  renderQuestion();
+  updateDashboard();
+}
+
+function startChapterTimer() {
+  clearInterval(timerInterval);
+  timeRemaining = 1800; // Reset to 30 mins (1800 seconds)
+  updateTimerDisplay();
+
+  timerInterval = setInterval(() => {
+    timeRemaining--;
+    updateTimerDisplay();
+
+    if (timeRemaining <= 0) {
+      clearInterval(timerInterval);
+      alert("⏰ Time is up for this subchapter! Auto-submitting current chapter.");
+      autoSubmitChapter();
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const minutes = Math.floor(timeRemaining / 60);
+  const seconds = timeRemaining % 60;
+  const displayStr = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  dashTimer.innerText = displayStr;
+
+  if (timeRemaining < 300) { // Under 5 minutes alert
+    dashTimer.classList.add('timer-alert');
+  } else {
+    dashTimer.classList.remove('timer-alert');
+  }
+}
+
+function autoSubmitChapter() {
+  // Fill remaining un-answered questions in chapter as incorrect
+  const chData = quizData[currentChapter];
+  while (currentQuestionIndex < 30) {
+    const qData = chData.questions[currentQuestionIndex];
+    userAnswers.push({
+      ch: currentChapter,
+      qIndex: currentQuestionIndex,
+      selected: -1,
+      correct: false,
+      topic: qData.topic,
+      tag: qData.tag
+    });
+    currentQuestionIndex++;
+  }
+  showChapterReport();
+}
+
+function renderQuestion() {
+  const chData = quizData[currentChapter];
+  const qData = chData.questions[currentQuestionIndex];
+
+  chTitleText.innerText = chData.chTitle;
+  qDiffBadge.innerText = `${qData.tag} Difficulty`;
+  qDiffBadge.className = `diff-tag ${qData.tag === 'Basic' ? 'tag-basic' : qData.tag === 'Scenario' ? 'tag-scenario' : 'tag-hard'}`;
+
+  const totalPrevQuestions = currentChapter * 30;
+  const currentGlobalNum = totalPrevQuestions + currentQuestionIndex + 1;
+
+  let html = `
+    <div class="mcq-card active">
+      <div class="q-number">QUESTION ${currentGlobalNum} OF 180 • [${qData.topic}]</div>
+      <div class="q-text">${qData.q}</div>
+      <div class="options-grid">
+  `;
+
+  qData.opts.forEach((opt, idx) => {
+    html += `
+      <button class="opt-btn" onclick="handleAnswer(${idx})" id="opt-${idx}">
+        <span><strong>${String.fromCharCode(65 + idx)}.</strong> ${opt}</span>
+        <span id="icon-${idx}"></span>
+      </button>
+    `;
+  });
+
+  html += `
+      </div>
+      <div class="explanation-box" id="exp-box">
+        <div class="exp-title">💡 WHY IS THIS CORRECT?</div>
+        <div class="exp-text">${qData.exp}</div>
+      </div>
+      <div class="nav-actions">
+        <div></div>
+        <button class="action-btn" id="next-btn" onclick="nextQuestion()" disabled>Next Question ➔</button>
+      </div>
+    </div>
+  `;
+
+  quizBox.innerHTML = html;
+}
+
+function handleAnswer(selectedIdx) {
+  const chData = quizData[currentChapter];
+  const qData = chData.questions[currentQuestionIndex];
+
+  const buttons = document.querySelectorAll('.opt-btn');
+  buttons.forEach(btn => btn.classList.add('disabled'));
+
+  const isCorrect = (selectedIdx === qData.a);
+
+  const selectedBtn = document.getElementById(`opt-${selectedIdx}`);
+  const correctBtn = document.getElementById(`opt-${qData.a}`);
+
+  if (isCorrect) {
+    selectedBtn.classList.add('correct');
+    document.getElementById(`icon-${selectedIdx}`).innerText = '✓';
+    overallScore++;
+    chapterScores[currentChapter]++;
+  } else {
+    selectedBtn.classList.add('incorrect');
+    document.getElementById(`icon-${selectedIdx}`).innerText = '✗';
+    correctBtn.classList.add('correct');
+    document.getElementById(`icon-${qData.a}`).innerText = '✓';
+  }
+
+  userAnswers.push({
+    ch: currentChapter,
+    qIndex: currentQuestionIndex,
+    selected: selectedIdx,
+    correct: isCorrect,
+    topic: qData.topic,
+    tag: qData.tag
+  });
+
+  document.getElementById('exp-box').classList.add('show');
+  document.getElementById('next-btn').disabled = false;
+
+  updateDashboard();
+}
+
+function updateDashboard() {
+  const totalAnswered = userAnswers.length;
+  dashProgress.innerText = `${totalAnswered} / 180`;
+  dashScore.innerText = `${overallScore}`;
+  dashChNum.innerText = `${currentChapter + 1} / 6`;
+}
+
+function nextQuestion() {
+  currentQuestionIndex++;
+
+  if (currentQuestionIndex < 30) {
+    renderQuestion();
+  } else {
+    clearInterval(timerInterval);
+    showChapterReport();
+  }
+}
+
+function showChapterReport() {
+  quizBox.style.display = 'none';
+  chBadgeContainer.style.display = 'none';
+
+  const chScore = chapterScores[currentChapter];
+  document.getElementById('ch-report-subtitle').innerText = `Performance breakdown for ${quizData[currentChapter].chTitle}`;
+  document.getElementById('ch-score-display').innerText = `${chScore} / 30 (${Math.round((chScore / 30) * 100)}%)`;
+
+  const chAnswers = userAnswers.filter(a => a.ch === currentChapter);
+  const incorrectAnswers = chAnswers.filter(a => !a.correct);
+
+  let weaknessHtml = "";
+  if (incorrectAnswers.length === 0) {
+    weaknessHtml = "<span style='color: var(--accent-green); font-weight: bold;'>🌟 Perfect Score! 100% Mastery in this Subchapter. No topic weaknesses detected.</span>";
+  } else {
+    const topicCounts = {};
+    incorrectAnswers.forEach(a => {
+      topicCounts[a.topic] = (topicCounts[a.topic] || 0) + 1;
+    });
+
+    weaknessHtml = "You lost marks in the following high-yield topics:<ul class='weakness-list'>";
+    for (const [topic, count] of Object.entries(topicCounts)) {
+      weaknessHtml += `<li><strong>${topic}:</strong> ${count} question(s) missed.</li>`;
+    }
+    weaknessHtml += "</ul> Review these specific drug mechanisms before sitting your university exam.";
+  }
+
+  document.getElementById('ch-weakness-text').innerHTML = weaknessHtml;
+
+  const nextBtn = document.getElementById('btn-next-ch');
+  if (currentChapter === 5) {
+    nextBtn.innerText = "View Final Cumulative Course Report 🏆";
+    nextBtn.onclick = showFinalReport;
+  } else {
+    nextBtn.innerText = "Begin Next Subchapter ➔";
+    nextBtn.onclick = startNextChapter;
+  }
+
+  chapterReport.classList.add('show');
+}
+
+function startNextChapter() {
+  currentChapter++;
+  currentQuestionIndex = 0;
+  chapterReport.classList.remove('show');
+  quizBox.style.display = 'block';
+  chBadgeContainer.style.display = 'flex';
+  
+  startChapterTimer();
+  renderQuestion();
+}
+
+function showFinalReport() {
+  chapterReport.classList.remove('show');
+  quizBox.style.display = 'none';
+  chBadgeContainer.style.display = 'none';
+
+  document.getElementById('final-score-display').innerText = `${overallScore} / 180 (${Math.round((overallScore / 180) * 100)}%)`;
+
+  let subScoresHtml = "";
+  quizData.forEach((ch, idx) => {
+    const score = chapterScores[idx];
+    const pct = Math.round((score / 30) * 100);
+    const color = pct >= 80 ? 'var(--accent-green)' : pct >= 60 ? 'var(--accent-amber)' : 'var(--accent-red)';
+    subScoresHtml += `
+      <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+        <span><strong>Subchapter ${idx + 1}:</strong> ${ch.chTitle.replace('Subchapter ' + (idx + 1) + ': ', '')}</span>
+        <span style="color: ${color}; font-weight: bold;">${score} / 30 (${pct}%)</span>
+      </div>
+    `;
+  });
+  document.getElementById('subchapter-scores-list').innerHTML = subScoresHtml;
+
+  const allIncorrect = userAnswers.filter(a => !a.correct);
+  let finalWeaknessHtml = "";
+
+  if (allIncorrect.length === 0) {
+    finalWeaknessHtml = "<li style='color: var(--accent-green);'>Perfect Score! You have mastered all 180 GIT Pharmacology MCQs.</li>";
+  } else {
+    const globalTopicCounts = {};
+    allIncorrect.forEach(a => {
+      globalTopicCounts[a.topic] = (globalTopicCounts[a.topic] || 0) + 1;
+    });
+
+    const sortedTopics = Object.entries(globalTopicCounts).sort((a, b) => b[1] - a[1]);
+
+    sortedTopics.forEach(([topic, count]) => {
+      finalWeaknessHtml += `<li><strong>${topic}:</strong> ${count} total errors.</li>`;
+    });
+  }
+
+  document.getElementById('final-weakness-list').innerHTML = finalWeaknessHtml;
+  finalReport.classList.add('show');
+}
+
+function restartEntireQuiz() {
+  initQuiz();
+}
+
+window.onload = initQuiz;
+</script>
+</body>
+</html>
