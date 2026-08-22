@@ -69,21 +69,25 @@
     .cascade-step { background: white; border: 1.5px solid var(--primary); border-radius: 10px; padding: 10px 4px; font-weight: 700; color: var(--primary-dark); font-size: 0.8rem; text-align: center; }
     .cascade-step small { color: var(--text-muted); display: block; margin-top: 2px; font-size: 0.7rem; font-weight: normal; }
 
-    /* EASY & INTERACTIVE STUDENT-LOVED SIMULATOR */
+    /* EXPANDED & INTERACTIVE STUDENT SIMULATOR */
     .sim-stage { background: #0f172a; color: white; border: 2px solid #3b82f6; border-radius: 18px; padding: 20px 14px; margin: 24px 0; box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2); text-align: center; }
     .sim-stage h3 { color: #60a5fa !important; justify-content: center; }
     .sim-stage p { color: #94a3b8 !important; }
 
-    .sim-controls { display: flex; gap: 8px; justify-content: center; margin: 16px 0; flex-wrap: wrap; }
-    .sim-btn { padding: 10px 14px; border-radius: 10px; border: none; font-weight: 800; cursor: pointer; transition: 0.2s; font-size: 0.82rem; flex: 1 1 120px; max-width: 180px; text-align: center; }
-    .btn-agonist { background: #2563eb; color: white; }
-    .btn-comp { background: #f59e0b; color: #0f172a; }
-    .btn-irrev { background: #ef4444; color: white; }
+    .sim-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; margin: 16px 0; }
+    .sim-btn { padding: 9px 10px; border-radius: 10px; border: none; font-weight: 800; cursor: pointer; transition: 0.2s; font-size: 0.78rem; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+    
+    .btn-full-ag { background: #10b981; color: white; }
+    .btn-part-ag { background: #06b6d4; color: white; }
+    .btn-full-ant { background: #64748b; color: white; }
+    .btn-rev-comp { background: #f59e0b; color: #0f172a; }
+    .btn-irrev-non { background: #ef4444; color: white; }
+    .btn-func-ant { background: #a855f7; color: white; }
 
     .receptor-visual-box { background: #1e293b; border: 2px dashed #475569; border-radius: 14px; padding: 16px; margin: 14px 0; text-align: center; }
-    .lock-graphic { font-size: 2.5rem; margin: 8px 0; transition: transform 0.3s ease; }
-    .status-text { font-weight: 800; font-size: 0.95rem; margin-top: 6px; }
-    .status-detail { font-size: 0.8rem; color: #94a3b8; margin-top: 4px; }
+    .lock-graphic { font-size: 2.2rem; margin: 6px 0; transition: transform 0.3s ease; }
+    .status-text { font-weight: 800; font-size: 0.95rem; margin-top: 4px; }
+    .status-detail { font-size: 0.8rem; color: #94a3b8; margin-top: 4px; line-height: 1.4; }
 
     .response-meter { background: rgba(255,255,255,0.08); border-radius: 10px; height: 18px; overflow: hidden; margin-top: 10px; border: 1px solid rgba(255,255,255,0.1); }
     .response-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #3b82f6, #10b981); transition: width 0.4s ease; }
@@ -96,8 +100,12 @@
     ul li { position: relative; padding-left: 22px; margin-bottom: 10px; color: var(--text-muted); font-size: 0.95rem; }
     ul li::before { content: '✦'; position: absolute; left: 4px; color: var(--primary); font-size: 0.8rem; }
 
-    .formula-box { background: #f8fafc; border: 1.5px dashed var(--primary); padding: 12px; border-radius: 10px; margin: 16px 0; font-family: monospace; font-weight: bold; color: var(--primary-dark); text-align: center; font-size: 0.95rem; overflow-x: auto; white-space: nowrap; }
-    
+    /* RESPONSIVE FRACTION-STYLE FORMULA CONTAINER */
+    .formula-box { background: #f0f9ff; border: 1.5px dashed var(--primary); padding: 14px; border-radius: 12px; margin: 16px 0; color: var(--primary-dark); font-weight: bold; text-align: center; overflow-x: auto; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .fraction { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; padding: 0 4px; }
+    .numerator { border-bottom: 2px solid var(--primary-dark); padding-bottom: 2px; }
+    .denominator { padding-top: 2px; }
+
     .graph-card { background: white; border: 1.5px solid #e2e8f0; border-radius: 16px; padding: 20px 14px; margin: 20px 0; text-align: center; }
     .graph-container { margin: 14px auto; max-width: 550px; background: #f8fafc; border-radius: 10px; padding: 10px; border: 1px solid #e2e8f0; }
 
@@ -113,7 +121,8 @@
       .card-box { padding: 14px 12px; }
       .cascade-flow { grid-template-columns: repeat(2, 1fr); gap: 6px; }
       .high-yield-badge { margin-left: 0; margin-top: 4px; }
-      .animated-drug { display: none; } /* Hide floating pill on small phones to prevent screen jitter */
+      .animated-drug { display: none; }
+      .sim-controls { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -235,20 +244,24 @@
     </div>
   </div>
 
+  <!-- MULTI-STATE STUDENT-FRIENDLY RECEPTOR SIMULATOR -->
   <div class="sim-stage">
-    <h3>⚡ Easy Receptor Interaction Simulator</h3>
-    <p style="font-size: 0.82rem; margin-bottom: 12px;">Tap a button below to test receptor response in real time:</p>
+    <h3>⚡ Multi-State Receptor Interaction Simulator</h3>
+    <p style="font-size: 0.82rem; margin-bottom: 12px;">Select any drug mechanism to observe receptor behavior instantly:</p>
 
     <div class="sim-controls">
-      <button class="sim-btn btn-agonist" onclick="runSimpleSim('agonist')">💊 Full Agonist</button>
-      <button class="sim-btn btn-comp" onclick="runSimpleSim('competitive')">🛡️ Competitive Block</button>
-      <button class="sim-btn btn-irrev" onclick="runSimpleSim('irreversible')">🔒 Irreversible Lock</button>
+      <button class="sim-btn btn-full-ag" onclick="runSimpleSim('full-agonist')">🟢 Full Agonist</button>
+      <button class="sim-btn btn-part-ag" onclick="runSimpleSim('partial-agonist')">🔵 Partial Agonist</button>
+      <button class="sim-btn btn-full-ant" onclick="runSimpleSim('full-antagonist')">⚪ Full Antagonist</button>
+      <button class="sim-btn btn-rev-comp" onclick="runSimpleSim('rev-comp')">🟡 Reversible Comp.</button>
+      <button class="sim-btn btn-irrev-non" onclick="runSimpleSim('irrev-noncomp')">🔴 Irreversible Non-Comp.</button>
+      <button class="sim-btn btn-func-ant" onclick="runSimpleSim('functional')">🟣 Functional Antag.</button>
     </div>
 
     <div class="receptor-visual-box">
       <div class="lock-graphic" id="simGraphic">🔒</div>
       <div class="status-text" id="simTitle" style="color: #60a5fa;">Receptor Resting State</div>
-      <div class="status-detail" id="simDesc">Tap a drug type above to simulate binding.</div>
+      <div class="status-detail" id="simDesc">Tap any drug mechanism button above to simulate binding.</div>
       
       <div style="margin-top: 12px; text-align: left;">
         <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: bold; color: #cbd5e1;">
@@ -317,8 +330,13 @@
   <h2>6. Therapeutic Index (TI) & Safety Margin <span class="high-yield-badge">⭐ Clinical Pearl</span></h2>
   <p>The <strong>Therapeutic Index</strong> is a vital quantitative measurement of relative drug safety. It compares the dosage that produces toxicity to the dosage that produces the desired therapeutic effect.</p>
 
+  <!-- PROPER RESPONSIVE FRACTION FORMULA -->
   <div class="formula-box">
-    Therapeutic Index (TI) = TD50 / ED50
+    <span>Therapeutic Index (TI) = </span>
+    <div class="fraction">
+      <span class="numerator">TD<sub>50</sub> (Median Toxic Dose)</span>
+      <span class="denominator">ED<sub>50</sub> (Median Effective Dose)</span>
+    </div>
   </div>
 
   <div class="graph-card">
@@ -382,30 +400,54 @@
     const percent = document.getElementById('simPercent');
     const fill = document.getElementById('simFill');
 
-    if (mode === 'agonist') {
+    if (mode === 'full-agonist') {
       graphic.innerText = "🟢🔑";
       title.innerText = "Full Agonist Bound";
       title.style.color = "#10b981";
-      desc.innerText = "Key fits perfectly! Full cellular activation generated.";
+      desc.innerText = "100% Intrinsic Activity (Alpha = 1). Full biological response triggered!";
       percent.innerText = "100%";
       fill.style.width = "100%";
       fill.style.background = "#10b981";
-    } else if (mode === 'competitive') {
-      graphic.innerText = "🟡🛡️";
-      title.innerText = "Competitive Blocker Bound";
+    } else if (mode === 'partial-agonist') {
+      graphic.innerText = "🔵🔑";
+      title.innerText = "Partial Agonist Bound";
+      title.style.color = "#06b6d4";
+      desc.innerText = "Submaximal Response (Alpha between 0 and 1). Acts as blocker when competing with full agonists.";
+      percent.innerText = "50%";
+      fill.style.width = "50%";
+      fill.style.background = "#06b6d4";
+    } else if (mode === 'full-antagonist') {
+      graphic.innerText = "⚪🛡️";
+      title.innerText = "Full Antagonist Bound";
+      title.style.color = "#94a3b8";
+      desc.innerText = "Zero Intrinsic Activity (Alpha = 0). Binds active site and blocks endogenous agonists.";
+      percent.innerText = "0%";
+      fill.style.width = "0%";
+      fill.style.background = "#64748b";
+    } else if (mode === 'rev-comp') {
+      graphic.innerText = "🟡🔓";
+      title.innerText = "Reversible Competitive Antagonist";
       title.style.color = "#f59e0b";
-      desc.innerText = "Receptor blocked temporarily. Flooding with extra Agonist can displace this blocker!";
+      desc.innerText = "Shifts curve rightward. Adding higher agonist concentrations overcomes this block completely!";
       percent.innerText = "0%";
       fill.style.width = "0%";
       fill.style.background = "#f59e0b";
-    } else if (mode === 'irreversible') {
+    } else if (mode === 'irrev-noncomp') {
       graphic.innerText = "🔴🔒";
-      title.innerText = "Irreversible Lock Bound";
+      title.innerText = "Irreversible Non-Competitive Antagonist";
       title.style.color = "#ef4444";
-      desc.innerText = "Receptor permanently paralyzed! Extra agonist CANNOT restore activation.";
+      desc.innerText = "Permanently neutralizes receptor (Covalent bond). Reduces Emax—cannot be overcome by agonists!";
       percent.innerText = "0%";
       fill.style.width = "0%";
       fill.style.background = "#ef4444";
+    } else if (mode === 'functional') {
+      graphic.innerText = "🟣⚖️";
+      title.innerText = "Functional / Physiological Antagonist";
+      title.style.color = "#a855f7";
+      desc.innerText = "Acts via completely separate receptor system to produce opposing physiological effects (e.g., Epinephrine vs. Histamine).";
+      percent.innerText = "0%";
+      fill.style.width = "0%";
+      fill.style.background = "#a855f7";
     }
   }
 </script>
