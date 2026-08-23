@@ -1,1159 +1,515 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter 1: Introduction to Pharmacology | MK Study Hub</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/1000125814.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 1: Introduction to Pharmacology Master Quiz</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #31103e 100%);
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --primary: #9333ea;
+      --primary-hover: #7e22ce;
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --accent-red: #ef4444;
+      --accent-amber: #f59e0b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --glass-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+      --radius: 20px;
+    }
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0f7ff',
-                            100: '#e0effe',
-                            500: '#2563eb',
-                            600: '#1d4ed8',
-                            700: '#1e40af',
-                            800: '#1e3a8a',
-                        },
-                        medical: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            500: '#10b981',
-                            600: '#059669',
-                            700: '#047857',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        .backdrop-blur-md { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
-        .timer-warning { color: #f87171 !important; animation: pulse 1s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-    </style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.6; padding: 30px 15px; min-height: 100vh; }
+
+    .container { max-width: 900px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(20px); border-radius: var(--radius); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 40px 30px; position: relative; overflow: hidden; }
+    .container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #c084fc, var(--primary), var(--accent-cyan)); }
+
+    .header-badge { display: inline-block; padding: 6px 16px; background: rgba(147, 51, 234, 0.2); color: #e9d5ff; border: 1px solid rgba(147, 51, 234, 0.4); font-size: 0.8rem; font-weight: 800; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+    h1 { font-size: 2.2rem; font-weight: 900; background: linear-gradient(135deg, #ffffff 0%, #f3e8ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; line-height: 1.2; }
+    .subtitle { color: var(--text-muted); font-size: 1rem; margin-bottom: 30px; }
+
+    .dashboard-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 30px; }
+    .dash-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px; text-align: center; }
+    .dash-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
+    .dash-value { font-size: 1.3rem; font-weight: 800; color: #e9d5ff; margin-top: 4px; }
+    .timer-alert { color: var(--accent-red) !important; animation: pulse 1s infinite; }
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+    .chapter-indicator { background: linear-gradient(90deg, rgba(147, 51, 234, 0.15), rgba(192, 132, 252, 0.15)); border: 1px solid rgba(147, 51, 234, 0.3); padding: 12px 20px; border-radius: 12px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
+    .chapter-title { font-weight: 800; font-size: 1.1rem; color: #fff; }
+    .diff-tag { font-size: 0.75rem; padding: 3px 8px; border-radius: 6px; font-weight: 800; text-transform: uppercase; }
+    .tag-basic { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); border: 1px solid var(--accent-green); }
+    .tag-scenario { background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); border: 1px solid var(--accent-amber); }
+    .tag-hard { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border: 1px solid var(--accent-red); }
+
+    .mcq-card { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--card-border); border-radius: 16px; padding: 25px; margin-bottom: 25px; display: none; }
+    .mcq-card.active { display: block; animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .q-number { font-size: 0.85rem; font-weight: 800; color: #c084fc; margin-bottom: 8px; }
+    .q-text { font-size: 1.05rem; font-weight: 600; color: var(--text-main); margin-bottom: 20px; line-height: 1.5; }
+
+    .options-grid { display: grid; gap: 12px; }
+    .opt-btn { background: rgba(255, 255, 255, 0.05); border: 1.5px solid var(--card-border); border-radius: 12px; padding: 14px 18px; color: var(--text-main); font-size: 0.95rem; font-weight: 500; text-align: left; cursor: pointer; transition: 0.2s ease; display: flex; align-items: center; justify-content: space-between; }
+    .opt-btn:hover:not(.disabled) { background: rgba(147, 51, 234, 0.15); border-color: var(--primary); transform: translateX(4px); }
+    .opt-btn.correct { background: rgba(16, 185, 129, 0.2) !important; border-color: var(--accent-green) !important; color: #fff; }
+    .opt-btn.incorrect { background: rgba(239, 68, 68, 0.2) !important; border-color: var(--accent-red) !important; color: #fff; }
+    .opt-btn.disabled { cursor: not-allowed; opacity: 0.8; }
+
+    .explanation-box { margin-top: 20px; padding: 18px; border-radius: 12px; background: rgba(15, 23, 42, 0.8); border-left: 4px solid var(--primary); display: none; }
+    .explanation-box.show { display: block; animation: slideDown 0.3s ease; }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+    .exp-title { font-weight: 800; font-size: 0.9rem; color: #e9d5ff; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .exp-text { font-size: 0.9rem; color: #cbd5e1; line-height: 1.5; }
+
+    .nav-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 25px; }
+    .action-btn { padding: 12px 28px; background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; border: none; border-radius: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: 0.2s ease; box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3); }
+    .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(147, 51, 234, 0.4); }
+    .action-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .report-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border); border-radius: 16px; padding: 30px; text-align: center; display: none; }
+    .report-card.show { display: block; animation: fadeIn 0.4s ease; }
+    .report-score { font-size: 3rem; font-weight: 900; color: #e9d5ff; margin: 15px 0; }
+    .report-breakdown { text-align: left; margin: 20px 0; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; }
+    .weakness-list { margin-top: 10px; padding-left: 20px; color: #fca5a5; }
+
+    footer { margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--card-border); padding-top: 20px; }
+    .author { color: var(--text-main); font-weight: 700; }
+
+    @media (max-width: 640px) {
+      .container { padding: 25px 15px; }
+      h1 { font-size: 1.6rem; }
+      .dashboard-bar { grid-template-columns: repeat(2, 1fr); }
+      .action-btn { width: 100%; text-align: center; }
+    }
+  </style>
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-white">
+<body>
 
-    <!-- TOP NAV HEADER -->
-    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
-        <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-2.5 text-white font-bold text-lg hover:opacity-90 transition">
-                <div class="w-8 h-8 rounded-lg overflow-hidden border border-slate-700 bg-white flex items-center justify-center">
-                    <img src="images/1000125814.png" alt="MK Study Hub Logo" class="w-full h-full object-cover">
-                </div>
-                <span>MK Study <span class="text-medical-500">Hub</span></span>
-            </a>
+<div class="container">
+  <div class="header-badge">General Pharmacology • Unit I</div>
+  <h1>Chapter 1: Principles of Pharmacology</h1>
+  <div class="subtitle">50 High-Yield MCQs • 2 Subchapters (25 Qs Each) • 30-Min Timer Per Section</div>
 
-            <div class="flex items-center gap-3">
-                <span class="px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-semibold">
-                    Unit I: Chapter 1 Practice
-                </span>
-                <a href="index.html" class="p-2 text-slate-400 hover:text-white transition rounded-lg hover:bg-slate-800" title="Exit Quiz">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </a>
-            </div>
-        </div>
-    </header>
+  <div class="dashboard-bar">
+    <div class="dash-card">
+      <div class="dash-title">Total Progress</div>
+      <div class="dash-value" id="dash-progress">0 / 50</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-title">Section Time</div>
+      <div class="dash-value" id="dash-timer">30:00</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-title">Current Score</div>
+      <div class="dash-value" id="dash-score">0</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-title">Subchapter</div>
+      <div class="dash-value" id="dash-ch-num">1 / 2</div>
+    </div>
+  </div>
 
-    <main class="flex-grow py-8 px-4">
-        <div class="max-w-3xl mx-auto">
+  <div class="chapter-indicator" id="ch-badge-container">
+    <div class="chapter-title" id="ch-title-text">Subchapter 1: Pharmacokinetics & Drug Principles</div>
+    <span class="diff-tag tag-basic" id="q-diff-badge">Basic (60%)</span>
+  </div>
 
-            <!-- QUIZ CONTAINER -->
-            <div id="quizContainer" class="space-y-6">
+  <div id="quiz-box"></div>
 
-                <!-- TOP PROGRESS DASHBOARD -->
-                <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 sm:p-6 shadow-xl backdrop-blur-md">
-                    <div class="flex flex-wrap items-center justify-between gap-4 mb-3">
-                        <div>
-                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Question Progress</span>
-                            <h2 class="text-lg font-bold text-white flex items-center gap-2">
-                                <span id="currentQNum" class="text-brand-400 font-mono text-xl">1</span>
-                                <span class="text-slate-500">/</span>
-                                <span id="totalQNum" class="text-slate-400 font-mono text-sm">60</span>
-                            </h2>
-                        </div>
+  <div class="report-card" id="chapter-report">
+    <h2 style="color: #e9d5ff;">🎉 Subchapter Complete!</h2>
+    <p style="color: var(--text-muted); margin-top: 5px;" id="ch-report-subtitle">Performance breakdown for Section 1</p>
+    <div class="report-score" id="ch-score-display">0 / 25</div>
+    
+    <div class="report-breakdown">
+      <h4 style="color: #fff; margin-bottom: 8px;">📊 Topic Diagnostics & Weak Areas:</h4>
+      <div id="ch-weakness-text" style="font-size: 0.95rem; color: #cbd5e1;">Analyzing answers...</div>
+    </div>
 
-                        <!-- COUNTDOWN TIMER DISPLAY -->
-                        <div class="flex items-center gap-2 bg-slate-900/90 border border-slate-700/80 px-4 py-2 rounded-xl">
-                            <i data-lucide="clock" class="w-4 h-4 text-brand-400"></i>
-                            <div>
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block leading-none">Time Left</span>
-                                <span id="timerDisplay" class="text-sm font-bold text-slate-200 font-mono">30:00</span>
-                            </div>
-                        </div>
+    <button class="action-btn" onclick="startNextChapter()" id="btn-next-ch">Begin Next Subchapter ➔</button>
+  </div>
 
-                        <div class="flex items-center gap-4">
-                            <div class="text-right">
-                                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Score</span>
-                                <div class="text-lg font-bold text-medical-400 font-mono"><span id="scoreTracker">0</span> Pts</div>
-                            </div>
-                        </div>
-                    </div>
+  <div class="report-card" id="final-report">
+    <h2 style="color: var(--accent-green); font-size: 2rem;">🏆 Course Final Diagnostic Report</h2>
+    <p style="color: var(--text-muted);" id="final-subtitle">Cumulative score across all 50 Chapter 1 Pharmacology MCQs</p>
+    <div class="report-score" id="final-score-display">0 / 50</div>
 
-                    <!-- Progress Bar -->
-                    <div class="w-full bg-slate-700/60 h-2.5 rounded-full overflow-hidden">
-                        <div id="progressBar" class="bg-gradient-to-r from-brand-500 to-medical-500 h-full w-[2%] transition-all duration-300"></div>
-                    </div>
-                </div>
+    <div class="report-breakdown" style="text-align: left;">
+      <h3 style="color: #fff; margin-bottom: 12px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px;">📈 Subchapter Breakdown:</h3>
+      <div id="subchapter-scores-list" style="margin-bottom: 20px; font-size: 0.95rem; line-height: 1.8;"></div>
 
-                <!-- QUESTION CARD -->
-                <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
-                    
-                    <!-- Difficulty / Tag Badge -->
-                    <div class="flex items-center justify-between gap-2 mb-4">
-                        <span id="questionCategory" class="px-2.5 py-1 rounded-md bg-slate-700 text-slate-300 text-xs font-semibold uppercase tracking-wider">
-                            Pharmacokinetics
-                        </span>
-                        <span id="difficultyBadge" class="px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider">
-                            Basic
-                        </span>
-                    </div>
+      <h3 style="color: var(--accent-red); margin-bottom: 8px;">⚠️ Comprehensive Weakness & Study Guidance:</h3>
+      <p style="font-size: 0.9rem; color: var(--text-muted);">Based on incorrect selections, focus review on:</p>
+      <ul class="weakness-list" id="final-weakness-list"></ul>
+    </div>
 
-                    <!-- Question Text -->
-                    <h3 id="questionText" class="text-lg sm:text-xl font-bold text-white leading-relaxed mb-6">
-                        Loading question...
-                    </h3>
+    <button class="action-btn" style="background: linear-gradient(135deg, var(--accent-green), #059669);" onclick="restartEntireQuiz()">🔄 Restart Entire Master Quiz</button>
+  </div>
 
-                    <!-- Options Grid -->
-                    <div id="optionsContainer" class="space-y-3 mb-6">
-                        <!-- Options will render dynamically here -->
-                    </div>
+  <footer>
+    Crafted with Excellence by <span class="author">Mudassir Khan</span> • &copy; 2026 MK Study Hub
+  </footer>
+</div>
 
-                    <!-- INSTANT EXPLANATION DRAWER -->
-                    <div id="explanationDrawer" class="hidden mt-6 pt-6 border-t border-slate-700/80 animate-fadeIn">
-                        <div id="resultHeader" class="flex items-center gap-2 text-sm font-extrabold mb-2">
-                            <!-- Dynamic Correct/Incorrect text -->
-                        </div>
+<script>
+const quizData = [
+  // SUBCHAPTER 1: PHARMACOKINETICS & GENERAL PRINCIPLES (1-25)
+  {
+    chTitle: "Subchapter 1: Pharmacokinetics (ADME) & Drug Fundamentals",
+    questions: [
+      { q: "Which phase of pharmacokinetics describes the movement of a drug from its site of administration into the systemic bloodstream?", opts: ["Distribution", "Absorption", "Metabolism", "Excretion"], a: 1, tag: "Basic", topic: "Absorption Definition", exp: "Absorption determines how fast and how much of the drug reaches systemic circulation intact." },
+      { q: "What does the term 'Bioavailability' specifically represent?", opts: ["The time required to eliminate 50% of the drug", "The percentage of unchanged drug reaching systemic circulation", "The rate of hepatic microsomal metabolism", "The dose producing 50% maximal effect"], a: 1, tag: "Basic", topic: "Bioavailability Concept", exp: "Bioavailability (F) is the fraction of active drug entering systemic circulation; IV routes offer 100% bioavailability by definition." },
+      { q: "Which organ serves as the primary site for the enzymatic biotransformation (metabolism) of most pharmacological agents?", opts: ["Kidneys", "Lungs", "Liver", "Small Intestine"], a: 2, tag: "Basic", topic: "Hepatic Metabolism", exp: "The liver contains high concentrations of Cytochrome P450 enzymes that convert lipophilic drugs into polar compounds for renal excretion." },
+      { q: "Primary renal clearance of drugs occurs via which major process in the nephron?", opts: ["Glomerular Filtration", "Biliary Secretion", "Enterohepatic Circulation", "Pulmonary Diffusion"], a: 0, tag: "Basic", topic: "Renal Filtration", exp: "Glomerular filtration filters unbound, low-molecular-weight plasma drugs into the tubular lumen." },
+      { q: "The First-Pass Effect primarily reduces the bioavailability of drugs administered via which route?", opts: ["Intravenous", "Oral", "Sublingual", "Intramuscular"], a: 1, tag: "Basic", topic: "First-Pass Metabolism", exp: "Oral drugs enter portal circulation directly to the liver, where hepatic enzymes metabolize a large fraction before systemic reach." },
+      { q: "Which term describes a drug's official non-proprietary name universally recognized across medical literature?", opts: ["Trade Name", "Brand Name", "Generic Name", "Chemical Formula"], a: 2, tag: "Basic", topic: "Generic Nomenclature", exp: "Generic names provide standardized international identification (e.g., Paracetamol, Aspirin) regardless of commercial branding." },
+      { q: "The time required for plasma drug concentration to decrease by 50% is termed:", opts: ["Half-Life (t1/2)", "Clearance Rate", "Steady State", "Onset of Action"], a: 0, tag: "Basic", topic: "Elimination Half-Life", exp: "Half-life dictates elimination rate and determines dosing intervals; 4-5 half-lives are required to reach steady state." },
+      { q: "Lipophilic drugs penetrate biological cell membranes easily because membranes consist of:", opts: ["Hydrophilic protein sheets", "Phospholipid bilayers", "Polysaccharide grids", "Inorganic mineral matrixes"], a: 1, tag: "Basic", topic: "Membrane Permeability", exp: "Cellular membranes are hydrophobic phospholipid bilayers, allowing non-polar uncharged lipophilic drugs to cross passively." },
+      { q: "What is the primary objective of medication standards and legal legislation?", opts: ["Guarantee pharmaceutical profit", "Ensure drug safety, purity, quality, and efficacy", "Mandate uniform hospital pricing", "Limit oral tablet production"], a: 1, tag: "Basic", topic: "Drug Legislation", exp: "Legal standards (e.g., Pharmacopeias) guarantee public protection against sub-standard, impure, or toxic drug formulations." },
+      { q: "In hospital nursing practice, a unit-dose medication system offers what primary advantage?", opts: ["Reduces floor setup costs", "Minimizes medication administration errors", "Eliminates pharmacy oversight", "Allows unverified patient self-dosing"], a: 1, tag: "Basic", topic: "Unit-Dose Safety", exp: "Individually packaged single-dose units reduce calculation errors, double-dosing risks, and floor contamination." },
+      { q: "Volume of Distribution (Vd) provides an estimate of:", opts: ["Bladder fluid capacity", "Apparent body fluid volume required to contain total drug at plasma concentration", "Excreted sweat volume", "Infused IV fluid volume"], a: 1, tag: "Basic", topic: "Volume of Distribution", exp: "Vd relates total drug body amount to measured plasma concentration; high Vd indicates extensive tissue storage." },
+      { q: "Phase I metabolic reactions in the liver primarily involve which chemical process?", opts: ["Glucuronide Conjugation", "Oxidation, Reduction, or Hydrolysis", "Sulfate Linking", "Amino Acid Coupling"], a: 1, tag: "Basic", topic: "Phase I Metabolism", exp: "Phase I exposes functional polar groups via CYP450 oxidation/reduction/hydrolysis to prepare compounds for Phase II conjugation." },
+      { q: "Unbound, free drug fraction in plasma is clinically important because:", opts: ["Only free drug can cross membranes to exert action", "Bound drug is rapidly excreted by kidneys", "Free drug cannot bind target receptors", "Plasma proteins destroy free drug"], a: 0, tag: "Basic", topic: "Protein Binding Dynamics", exp: "Protein-bound drugs act as an inactive reservoir; only free, unbound drug molecules interact with active receptors or cross membranes." },
+      { q: "Enterohepatic circulation describes a cycle where a drug is:", opts: ["Exhaled and re-inhaled", "Excreted in bile, reabsorbed in small intestine, and returned to liver", "Filtered by glomerulus and reabsorbed in Henle loop", "Metabolized in stomach acid"], a: 1, tag: "Basic", topic: "Enterohepatic Recycling", exp: "Biliary-excreted drugs are deconjugated by gut bacteria and reabsorbed back into blood, significantly prolonging elimination half-life." },
+      { q: "Sublingual administration bypasses first-pass metabolism because oral venous drainage enters directly into the:", opts: ["Hepatic Portal Vein", "Superior Vena Cava", "Renal Artery", "Celiac Trunk"], a: 1, tag: "Basic", topic: "Sublingual Route Mechanics", exp: "Sublingual veins drain into systemic venous circulation (superior vena cava), avoiding initial hepatic portal breakdown." },
 
-                        <!-- Core Reason -->
-                        <p id="explanationCore" class="text-slate-300 text-sm leading-relaxed mb-3">
-                            <!-- Explanation snippet -->
-                        </p>
+      { q: "A patient with end-stage liver cirrhosis is prescribed a standard dose of a highly protein-bound drug. The nurse monitors for toxicity because cirrhosis causes:", opts: ["Decreased plasma albumin levels, increasing free drug concentration", "Increased GFR, causing rapid clearance", "Enhanced first-pass hepatic biotransformation", "Increased stomach acid destroying drug"], a: 0, tag: "Scenario", topic: "Hypoalbuminemia & Protein Binding", exp: "Impaired liver protein synthesis lowers serum albumin, leaving a higher percentage of unbound (active/toxic) drug in plasma." },
+      { q: "An 82-year-old renal failure patient receives Gentamicin (cleared exclusively by nephron filtration). Serum creatinine is elevated. What dose adjustment is indicated?", opts: ["Increase dose to force renal passage", "Decrease dose or extend dosing interval to prevent toxic buildup", "Switch to oral route to bypass kidneys", "Double dose with antacids"], a: 1, tag: "Scenario", topic: "Renal Dosing Adjustments", exp: "Reduced renal filtration slows drug clearance; failing to reduce doses causes cumulative drug accumulation and severe toxicity." },
+      { q: "A nurse administers Intravenous Morphine for acute burn pain. Why does IV administration achieve faster relief than oral Morphine?", opts: ["IV Morphine binds 100% to red blood cells", "IV route bypasses absorption and first-pass hepatic metabolism completely", "IV Morphine converts to gas in lungs", "Oral Morphine is destroyed by salivary amylase"], a: 1, tag: "Scenario", topic: "IV Route Bioavailability", exp: "Direct intravascular injection bypasses gut mucosal barriers and liver first-pass destruction, delivering 100% bioavailability immediately." },
+      { q: "A patient takes Rifampin (a potent CYP450 Enzyme Inducer) alongside oral contraceptives. The nurse warns the patient regarding:", opts: ["Decreased contraceptive effectiveness leading to unintended pregnancy", "Severe contraceptive toxicity due to reduced breakdown", "Immediate renal failure", "Anaphylactic shock"], a: 0, tag: "Scenario", topic: "CYP450 Enzyme Induction", exp: "Enzyme inducers accelerate hepatic drug metabolism, rapidly dropping plasma concentrations below therapeutic effective thresholds." },
+      { q: "A nurse gives a large 'Loading Dose' of an antiarrhythmic drug during acute Atrial Fibrillation. What is the clinical rationale?", opts: ["To permanently stop liver clearance", "To rapidly achieve therapeutic plasma concentration without waiting 4-5 half-lives", "To prevent glomerular filtration", "To test for immediate drug allergy"], a: 1, tag: "Scenario", topic: "Loading Dose Rationale", exp: "Loading doses rapidly fill the Volume of Distribution to reach target therapeutic blood levels immediately in urgent clinical emergencies." },
+      { q: "A patient consumes Grapefruit Juice daily while taking an oral statin (CYP3A4 substrate). Grapefruit juice is a known CYP3A4 Inhibitor. The patient risks:", opts: ["Drug toxicity and rhabdomyolysis due to elevated statin plasma levels", "Complete lack of drug absorption", "Rapid drug clearance requiring triple dose", "Gastric ulceration"], a: 0, tag: "Scenario", topic: "CYP450 Enzyme Inhibition", exp: "Inhibiting metabolic enzymes blocks drug breakdown, driving drug buildup in blood plasma to toxic levels." },
+      { q: "A patient takes Aspirin (weak acid). In the acidic environment of the stomach (pH 1.5 - 2.0), Aspirin molecules will be predominantly:", opts: ["Ionized and lipid insoluble", "Un-ionized (non-polar) and rapidly absorbed across stomach mucosa", "Bound irreversibly to gastric mucin", "Metabolized instantly to glucose"], a: 1, tag: "Scenario", topic: "pH & Ionization Kinetics", exp: "Weak acids remain un-ionized (uncharged) in acidic pH environments, making them lipophilic and easily absorbed across lipid membranes." },
+      { q: "To accelerate renal clearance of an acidic drug overdose (Phenobarbital), IV Sodium Bicarbonate is given to alkalinize urine. This relies on:", opts: ["Ion Trapping", "First-Pass Shunt", "Enterohepatic Recycling", "Receptor Desensitization"], a: 0, tag: "Scenario", topic: "Ion Trapping Mechanics", exp: "Alkalinizing urine converts weak acids into their ionized (charged) form in renal tubules, trapping them in urine so they cannot re-enter blood." },
+      { q: "A patient taking a drug clearing by Zero-Order Elimination Kinetics (e.g., Ethanol) is evaluated. What characterizes zero-order clearance?", opts: ["A constant percentage of drug is cleared per hour", "A constant fixed amount (mg) of drug is cleared per unit time regardless of concentration", "Elimination rate increases exponentially", "Half-life remains fixed at 2 hours"], a: 1, tag: "Scenario", topic: "Zero-Order Elimination Kinetics", exp: "Zero-order clearance occurs when metabolic enzymes are saturated (Vmax); a fixed amount is cleared per hour, causing rapid accumulation at higher doses." },
 
-                        <!-- WHY? Deep-Dive Container -->
-                        <div class="bg-slate-900/90 border border-slate-700/60 rounded-xl p-4 text-xs space-y-1.5">
-                            <span class="font-bold text-amber-400 flex items-center gap-1.5 uppercase tracking-wider">
-                                <i data-lucide="help-circle" class="w-4 h-4"></i> WHY IS THIS CORRECT?
-                            </span>
-                            <p id="explanationWhy" class="text-slate-400 leading-relaxed font-medium">
-                                <!-- Detailed why explanation -->
-                            </p>
-                        </div>
-                    </div>
+      { q: "A drug has a steady-state Volume of Distribution (Vd) of 350 Liters in a 70kg patient. What does this extraordinarily high Vd signify?", opts: ["The drug is confined strictly to blood plasma (3L)", "The drug is extensively bound in peripheral tissue compartments outside blood", "Renal fluid excretion has stopped", "The drug has zero systemic absorption"], a: 1, tag: "Hard", topic: "Extensive Tissue Binding Kinetics", exp: "When lipophilic drugs store heavily in body tissues, blood plasma concentrations drop extremely low, mathematically expanding apparent Vd (Vd = Dose / Plasma Conc)." }
+    ]
+  },
 
-                    <!-- ACTION FOOTER -->
-                    <div class="mt-8 flex justify-end">
-                        <button id="nextBtn" class="hidden px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-extrabold text-sm shadow-lg shadow-brand-600/30 transition active:scale-95 flex items-center gap-2">
-                            <span>Next Question</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </button>
-                    </div>
+  // SUBCHAPTER 2: PHARMACODYNAMICS, SOURCES & LEGISLATION (26-50)
+  {
+    chTitle: "Subchapter 2: Pharmacodynamics, Receptor Mechanics & Safety",
+    questions: [
+      { q: "A drug that binds to a biological receptor and initiates a maximal cellular response is known as a(n):", opts: ["Antagonist", "Agonist", "Inverse Agonist", "Competitive Inhibitor"], a: 1, tag: "Basic", topic: "Full Agonist Concept", exp: "Agonists possess affinity and high intrinsic activity, activating receptors to mimic endogenous ligands." },
+      { q: "What term describes the concentration of a drug required to produce 50% of its maximum effect (EC50)?", opts: ["Efficacy", "Potency", "Therapeutic Index", "Affinity"], a: 1, tag: "Basic", topic: "Drug Potency (EC50)", exp: "Potency reflects required dose size for an effect; lower EC50 values indicate higher potency." },
+      { q: "What is the study of how drugs affect the living body (what the drug does to the body) called?", opts: ["Pharmacokinetics", "Pharmacodynamics", "Pharmacogenetics", "Toxicology"], a: 1, tag: "Basic", topic: "Pharmacodynamics Definition", exp: "Pharmacodynamics analyzes mechanisms of action, receptor binding, and physiological effects (Drug -> Body)." },
+      { q: "A drug with a narrow Therapeutic Index (TI) indicates that the medication:", opts: ["Has very low potency", "Has a small margin of safety between therapeutic and toxic doses", "Can be given safely without blood checks", "Is metabolized entirely by non-hepatic routes"], a: 1, tag: "Basic", topic: "Therapeutic Index Safety", exp: "Narrow TI (TI = TD50/ED50) means toxic doses sit close to effective doses, requiring precise serum drug monitoring." },
+      { q: "A competitive antagonist shifts the drug-dose response curve of an agonist in which direction?", opts: ["To the Left", "To the Right", "Downward without shifting", "Upward"], a: 1, tag: "Basic", topic: "Competitive Antagonism Curve", exp: "Competitive antagonists reversibly occupy active sites, requiring higher agonist concentrations (rightward shift) to reach 100% Emax." },
+      { q: "Which type of chemical bond creates an irreversible interaction between a drug and its receptor?", opts: ["Ionic Bonding", "Hydrogen Bonding", "Covalent Bonding", "Van der Waals forces"], a: 2, tag: "Basic", topic: "Covalent Binding Mechanics", exp: "Covalent bonds are exceptionally strong and irreversible, requiring cells to synthesize new receptors to restore function." },
+      { q: "A drug producing less than maximal effect even when occupying 100% of available receptors is a:", opts: ["Full Agonist", "Partial Agonist", "Competitive Antagonist", "Inverse Agonist"], a: 1, tag: "Basic", topic: "Partial Agonist Efficacy", exp: "Partial agonists have intrinsic activity between 0 and 1; even at full occupancy, they cannot trigger 100% maximal tissue response." },
+      { q: "What happens when a Non-Competitive Antagonist binds to an allosteric site on a receptor?", opts: ["Increases agonist affinity", "Changes receptor shape, reducing agonist maximum efficacy (Emax)", "Causes leftward parallel curve shift", "Converts agonist into antagonist"], a: 1, tag: "Basic", topic: "Allosteric Non-Competitive Inhibition", exp: "Allosteric binding alters receptor conformation, capping maximal response (lowering Emax) regardless of agonist concentration." },
+      { q: "Which drug is a historical example of a medication derived directly from a plant source?", opts: ["Insulin", "Morphine (Opium Poppy)", "Penicillin", "Sulfonamide"], a: 1, tag: "Basic", topic: "Plant Drug Origins", exp: "Morphine is a natural plant alkaloid extracted directly from Papaver somniferum." },
+      { q: "Down-Regulation of receptors typically occurs after prolonged tissue exposure to an:", opts: ["Agonist", "Antagonist", "Inverse Antagonist", "Enzyme Inhibitor"], a: 0, tag: "Basic", topic: "Receptor Down-Regulation", exp: "Continuous over-stimulation by agonists prompts cells to endocytose or destroy surface receptors (desensitization/tolerance)." },
+      { q: "An unwanted, unpredictable, non-dose-related drug reaction caused by immune responses is termed a(n):", opts: ["Side Effect", "Toxic Effect", "Allergic / Hypersensitivity Reaction", "Idiosyncratic Response"], a: 2, tag: "Basic", topic: "Allergic Reaction Profile", exp: "Allergic reactions are antigen-antibody immune responses independent of direct pharmacological dose size." },
+      { q: "Who is widely considered the 'Father of Modern Pharmacology' for establishing experimental pharmacology?", opts: ["Paracelsus", "Oswald Schmiedeberg", "Alexander Fleming", "Edward Jenner"], a: 1, tag: "Basic", topic: "Pharmacology History", exp: "Oswald Schmiedeberg isolated active principles and analyzed chemical structure-activity relationships in the 19th century." },
+      { q: "An Inverse Agonist produces what physiological outcome at a constitutively active receptor site?", opts: ["Blocks agonists without changing baseline", "Reduces baseline receptor activity below resting level", "Increases baseline activity to maximum", "Destroys protein chains"], a: 1, tag: "Basic", topic: "Inverse Agonism Mechanics", exp: "Constitutively active receptors signal baseline activity without ligand; inverse agonists suppress baseline signaling below resting levels." },
+      { q: "When preparing a student nurse 'Drug Card', which information is most crucial for safe bedside practice?", opts: ["Chemical synthesis pathway", "Drug class, indications, mechanism, adverse effects, & nursing considerations", "Wholesale price per 1000 tablets", "Patent expiration date"], a: 1, tag: "Basic", topic: "Nursing Drug Card Focus", exp: "Bedside nursing safety prioritizes actionable clinical data: mechanism, indications, side effects, and monitoring checks." },
+      { q: "In an Automated Dispensing Cabinet (e.g., Pyxis), drug removal is electronically logged primarily to prevent:", opts: ["First-pass metabolism", "Medication diversion and inventory discrepancy", "Receptor down-regulation", "Protein saturation"], a: 1, tag: "Basic", topic: "Automated Supply Security", exp: "Electronic tracking provides legal accountability, preventing drug theft, diversion, and dosing stock errors." },
 
-                </div>
+      { q: "An asthma patient receives Inhaled Albuterol (Beta-2 Agonist) alongside Propranolol (Non-selective Beta Blocker). What is the outcome?", opts: ["Synergistic bronchodilation", "Propranolol competitively blocks Albuterol, preventing bronchodilation", "Severe hypotension", "Albuterol turns propranolol into agonist"], a: 1, tag: "Scenario", topic: "Beta-Blocker Receptor Antagonism", exp: "Propranolol occupies Beta-2 receptors in bronchial smooth muscle, competitively blocking Albuterol from binding and causing bronchodilation." },
+      { q: "A patient takes Warfarin (Therapeutic Index: 1.5 - 2.5). Mandatory routine INR blood monitoring is required because Warfarin has a:", opts: ["Wide safety margin", "Narrow Therapeutic Index where minor dose changes cause hemorrhage or thrombosis", "High first-pass metabolism to Vitamin K", "Short half-life of 3 minutes"], a: 1, tag: "Scenario", topic: "Narrow TI Clinical Management", exp: "Small changes in plasma Warfarin levels shift patients into fatal bleeding (toxic) or stroke/clotting (ineffective) windows." },
+      { q: "A patient experiencing an opioid overdose (Heroin) receives Naloxone (Narcan). Naloxone acts as a(n):", opts: ["Full Opioid Agonist", "Competitive Opioid Antagonist", "Irreversible Enzyme Inducer", "Partial Agonist"], a: 1, tag: "Scenario", topic: "Opioid Antagonism Emergency", exp: "Naloxone binds mu-opioid receptors with high affinity but zero intrinsic activity, competing with heroin to restore breathing." },
+      { q: "A patient using Nitroglycerin patches 24 hours non-stop notices reduced anti-anginal effectiveness. The provider explains this is due to:", opts: ["Tachyphylaxis (rapid tolerance due to receptor desensitization)", "Complete renal clearance of nitrate enzymes", "Irreversible receptor destruction", "Stomach enzyme induction"], a: 0, tag: "Scenario", topic: "Tachyphylaxis & Nitrate Tolerance", exp: "Continuous non-stop nitrate exposure depletes intracellular tissue thiol groups, causing rapid loss of efficacy (tachyphylaxis); a daily 10-12 hour patch-free interval restores sensitivity." },
+      { q: "A nurse prepares a Schedule II Controlled Substance (Fentanyl). Which legal nursing protocol is mandatory?", opts: ["Discard unused portions in trash", "Double-check with a second nurse, sign ledger, & account for waste immediately", "Store at patient bedside", "Give without order if pain is severe"], a: 1, tag: "Scenario", topic: "Controlled Substance Protocol", exp: "Schedule II drugs carry high abuse potential; federal law requires dual-nurse sign-off, double verification, and strict wasted drug logging." },
+      { q: "Two antihypertensive drugs (Drug X and Y) drop BP by 10 mmHg each individually. Given together, BP drops by 35 mmHg. This phenomenon is called:", opts: ["Additive Effect", "Synergism / Potentiation", "Antagonism", "Tachyphylaxis"], a: 1, tag: "Scenario", topic: "Synergism vs Addition", exp: "Synergism (1+1 > 2) occurs when combination therapy targets complementary pathways to multiply total pharmacological response beyond simple addition." },
 
-            </div>
+      { q: "What is the primary difference between a Competitive Antagonist and an Irreversible Antagonist on a Dose-Response Graph?", opts: ["Competitive lowers Emax; Irreversible shifts curve right", "Competitive shifts EC50 right without changing Emax; Irreversible lowers Emax", "Both reduce Emax to zero", "Neither alters EC50 or Emax"], a: 1, tag: "Hard", topic: "Competitive vs Irreversible Dose-Response", exp: "Adding infinite agonist outcompetes a reversible competitive blocker (Emax preserved, EC50 increased). Irreversible covalent blockers disable receptors, capping maximum height (Emax drops)." },
+      { q: "In First-Order Kinetics, if a drug's half-life is 4 hours, what percentage of the initial dose remains in plasma after 12 hours (3 half-lives)?", opts: ["50%", "25%", "12.5%", "6.25%"], a: 2, tag: "Hard", topic: "First-Order Decay Mathematics", exp: "First-order elimination halves concentration per half-life: 100% -> 50% (4h) -> 25% (8h) -> 12.5% (12h) = (1/2)^3 = 12.5%." },
+      { q: "Which secondary messenger cascade is activated when a GPCR attached to the Gs subunit is stimulated by an Agonist?", opts: ["Inhibition of Adenylyl Cyclase", "Activation of Adenylyl Cyclase, increasing intracellular cAMP", "Direct cleavage of DNA", "Opening of sodium channels directly"], a: 1, tag: "Hard", topic: "GPCR Gs Signaling Cascade", exp: "Gs alpha subunits stimulate Adenylyl Cyclase, converting ATP to cyclic AMP (cAMP), which activates Protein Kinase A (PKA)." },
+      { q: "Severe burn shock drops arterial blood pressure and renal perfusion. How is the renal clearance (Cl_renal) of a hydrophilic filtered drug altered?", opts: ["Increases due to filtration pressure", "Drops significantly due to reduced Glomerular Filtration Rate (GFR)", "Remains unchanged", "Converts into a gas"], a: 1, tag: "Hard", topic: "Renal Clearance & Hemodynamics", exp: "Glomerular filtration depends directly on renal perfusion pressure; severe arterial hypotension drops GFR, slowing renal drug clearance." }
+    ]
+  }
+];
 
-            <!-- SCORE / RESULT OVERLAY (HIDDEN BY DEFAULT) -->
-            <div id="scoreContainer" class="hidden bg-slate-800/90 border border-slate-700 rounded-3xl p-8 shadow-2xl text-center space-y-6">
-                
-                <div class="w-20 h-20 rounded-full bg-brand-500/20 border border-brand-500/40 text-brand-400 flex items-center justify-center mx-auto shadow-inner">
-                    <i data-lucide="award" class="w-10 h-10"></i>
-                </div>
+let currentChapter = 0;
+let currentQuestionIndex = 0;
+let overallScore = 0;
+let userAnswers = []; 
+let chapterScores = [0, 0];
+let timerInterval = null;
+let timeRemaining = 1800; // 30 minutes in seconds
 
-                <div>
-                    <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Chapter 1 Assessment Complete</span>
-                    <h2 class="text-3xl font-black text-white mt-1">Quiz Results</h2>
-                </div>
+const quizBox = document.getElementById('quiz-box');
+const dashProgress = document.getElementById('dash-progress');
+const dashTimer = document.getElementById('dash-timer');
+const dashScore = document.getElementById('dash-score');
+const dashChNum = document.getElementById('dash-ch-num');
+const chTitleText = document.getElementById('ch-title-text');
+const qDiffBadge = document.getElementById('q-diff-badge');
+const chBadgeContainer = document.getElementById('ch-badge-container');
 
-                <!-- Main Score Circle/Card -->
-                <div class="bg-slate-900/80 border border-slate-700/80 rounded-2xl p-6 max-w-sm mx-auto space-y-2">
-                    <div class="text-5xl font-black text-medical-400 font-mono" id="finalPercentage">0%</div>
-                    <div class="text-sm font-semibold text-slate-300">
-                        Score: <span id="finalScore" class="text-white font-bold">0</span> / <span id="finalTotal">60</span> Questions
-                    </div>
-                </div>
+const chapterReport = document.getElementById('chapter-report');
+const finalReport = document.getElementById('final-report');
 
-                <!-- Performance Breakdown Grid -->
-                <div class="grid grid-cols-2 gap-4 max-w-sm mx-auto text-left text-xs font-semibold">
-                    <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-700/50 space-y-1">
-                        <span class="text-slate-400 block">Correct Answers</span>
-                        <span id="correctCount" class="text-lg font-bold text-medical-400 font-mono">0</span>
-                    </div>
-                    <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-700/50 space-y-1">
-                        <span class="text-slate-400 block">Incorrect Answers</span>
-                        <span id="incorrectCount" class="text-lg font-bold text-rose-400 font-mono">0</span>
-                    </div>
-                </div>
+function initQuiz() {
+  currentChapter = 0;
+  currentQuestionIndex = 0;
+  overallScore = 0;
+  userAnswers = [];
+  chapterScores = [0, 0];
+  
+  chapterReport.classList.remove('show');
+  finalReport.classList.remove('show');
+  quizBox.style.display = 'block';
+  chBadgeContainer.style.display = 'flex';
 
-                <!-- Recommendation Message -->
-                <p id="performanceFeedback" class="text-sm text-slate-300 max-w-md mx-auto leading-relaxed font-medium">
-                    Excellent work! You have a solid grasp of Pharmacokinetics and Pharmacodynamics.
-                </p>
+  startChapterTimer();
+  renderQuestion();
+  updateDashboard();
+}
 
-                <!-- Actions -->
-                <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
-                    <button id="retryBtn" class="px-8 py-3.5 rounded-xl font-extrabold text-white bg-brand-600 hover:bg-brand-500 shadow-lg shadow-brand-600/30 transition active:scale-95 flex items-center justify-center gap-2">
-                        <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
-                        RETRY QUIZ
-                    </button>
-                    <a href="index.html" class="px-8 py-3.5 rounded-xl font-extrabold text-slate-300 bg-slate-700 hover:bg-slate-600 transition active:scale-95 flex items-center justify-center gap-2">
-                        <i data-lucide="home" class="w-4 h-4"></i>
-                        BACK TO HUB
-                    </a>
-                </div>
+function startChapterTimer() {
+  clearInterval(timerInterval);
+  timeRemaining = 1800; // Reset to 30 mins
+  updateTimerDisplay();
 
-            </div>
+  timerInterval = setInterval(() => {
+    timeRemaining--;
+    updateTimerDisplay();
 
-        </div>
-    </main>
+    if (timeRemaining <= 0) {
+      clearInterval(timerInterval);
+      alert("⏰ Time is up for this section! Auto-submitting current subchapter.");
+      autoSubmitChapter();
+    }
+  }, 1000);
+}
 
-    <!-- FOOTER -->
-    <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
-        <p>© 2026 MK Study Hub. Curated by Mudassir Khan for BSN 3rd Semester Students.</p>
-    </footer>
+function updateTimerDisplay() {
+  const minutes = Math.floor(timeRemaining / 60);
+  const seconds = timeRemaining % 60;
+  const displayStr = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  dashTimer.innerText = displayStr;
 
-    <!-- QUIZ ENGINE & 60 EXPANDED MCQ DATABASE -->
-    <script>
-        const mcqDatabase = [
-            // --- 60% BASIC & CORE CONCEPTUAL (36 Questions) ---
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Basic",
-                question: "Which phase of pharmacokinetics describes the movement of a drug from its administration site into the systemic bloodstream?",
-                options: ["Distribution", "Absorption", "Metabolism", "Excretion"],
-                correct: 1,
-                explanation: "Absorption is the initial movement of drug molecules into systemic circulation.",
-                why: "Absorption determines how fast and how much of the drug reaches blood plasma, whereas distribution spreads it to tissues, metabolism breaks it down, and excretion removes it."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Basic",
-                question: "What does the term 'Bioavailability' specifically represent?",
-                options: [
-                    "The time it takes to eliminate 50% of the drug",
-                    "The percentage of unchanged drug reaching systemic circulation",
-                    "The rate at which the liver metabolizes the drug",
-                    "The minimum dose required for therapeutic effect"
-                ],
-                correct: 1,
-                explanation: "Bioavailability refers to the fraction of an administered dose that reaches circulation intact.",
-                why: "Intravenous administration offers 100% bioavailability because it bypasses absorption barriers like the gut mucosal lining and liver first-pass metabolism."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Basic",
-                question: "A drug that binds to a biological receptor and initiates a maximal cellular response is known as a(n):",
-                options: ["Antagonist", "Agonist", "Inverse Agonist", "Competitive Inhibitor"],
-                correct: 1,
-                explanation: "An agonist mimics endogenous ligands to activate receptors and produce a physiological response.",
-                why: "Agonists possess both affinity (binding ability) and high intrinsic activity (receptor activation capacity), whereas antagonists bind without triggering action."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Basic",
-                question: "Which organ is primary for the enzymatic biotransformation (metabolism) of most pharmacological agents?",
-                options: ["Kidneys", "Lungs", "Liver", "Small Intestine"],
-                correct: 2,
-                explanation: "The liver is the principal site of drug biotransformation due to high Cytochrome P450 activity.",
-                why: "Hepatic microsomal enzymes chemically convert lipophilic compounds into hydrophilic metabolites so the kidneys can easily filter and excrete them."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Basic",
-                question: "What term describes the concentration of a drug required to produce 50% of its maximum effect?",
-                options: ["Efficacy", "Potency (EC50)", "Therapeutic Index", "Affinity"],
-                correct: 1,
-                explanation: "Potency is measured by EC50; lower required concentrations indicate higher potency.",
-                why: "Potency compares doses needed for an effect, whereas efficacy measures the maximum response height regardless of dose size."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Basic",
-                question: "Primary renal excretion of drugs occurs via which major renal process?",
-                options: ["Glomerular Filtration", "Biliary Secretion", "Enterohepatic Circulation", "Pulmonary Diffusion"],
-                correct: 0,
-                explanation: "Glomerular filtration filters unbound, low-molecular-weight drugs into the nephron.",
-                why: "Drugs bound to plasma proteins are too large to pass through glomerular capillaries and must undergo tubular secretion instead."
-            },
-            {
-                category: "Intro & Terminology",
-                difficulty: "Basic",
-                question: "What is the study of how drugs affect the living body (what the drug does to the body) called?",
-                options: ["Pharmacokinetics", "Pharmacodynamics", "Pharmacogenetics", "Toxicology"],
-                correct: 1,
-                explanation: "Pharmacodynamics deals with drug mechanism of action, cellular targets, and systemic physiological effects.",
-                why: "Pharmacodynamics = What the drug does to the body. Pharmacokinetics = What the body does to the drug (ADME)."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Basic",
-                question: "A drug with a narrow Therapeutic Index (TI) indicates that the medication:",
-                options: [
-                    "Has very low potency",
-                    "Has a small margin of safety between therapeutic and toxic doses",
-                    "Can be administered safely without blood monitoring",
-                    "Is metabolized entirely by non-hepatic routes"
-                ],
-                correct: 1,
-                explanation: "A narrow TI means the difference between effective dose and toxic dose is very small.",
-                why: "TI = TD50 / ED50. Small numerical ratios (e.g., Digoxin, Lithium) require precise serum level monitoring to prevent toxicity."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Basic",
-                question: "The First-Pass Effect primarily reduces the bioavailability of drugs administered via which route?",
-                options: ["Intravenous", "Oral", "Sublingual", "Intramuscular"],
-                correct: 1,
-                explanation: "Oral drugs pass through portal circulation to the liver before reaching global systemic circulation.",
-                why: "Extensive hepatic metabolism during the first pass can destroy a large fraction of active drug before it reaches its target tissue."
-            },
-            {
-                category: "Intro & Terminology",
-                difficulty: "Basic",
-                question: "Which term describes a drug's official, non-proprietary name universally recognized in medical literature?",
-                options: ["Trade Name", "Brand Name", "Generic Name", "Chemical Formula"],
-                correct: 2,
-                explanation: "The generic name is the standardized international non-proprietary name (e.g., Paracetamol, Aspirin).",
-                why: "Generic names maintain safe universal communication regardless of manufacturer commercial brand naming (e.g., Panadol vs. Calpol)."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Basic",
-                question: "A competitive antagonist shifts the drug-dose response curve of an agonist in which direction?",
-                options: ["To the Left", "To the Right", "Downward without shifting", "Upward"],
-                correct: 1,
-                explanation: "Competitive antagonists cause a parallel rightward shift in the dose-response curve.",
-                why: "Because competitive binding is reversible, higher concentration of the agonist can outcompete the antagonist and still achieve 100% max effect."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Basic",
-                question: "The time required for the plasma concentration of a drug to decrease by 50% is termed:",
-                options: ["Half-Life (t1/2)", "Clearance Rate", "Steady State", "Onset of Action"],
-                correct: 0,
-                explanation: "Half-life (t1/2) measures elimination speed and determines dosing frequency intervals.",
-                why: "Half-life is vital because it takes approximately 4 to 5 half-lives for a drug to reach steady-state plasma levels or to be fully eliminated."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Basic",
-                question: "Lipophilic drugs penetrate biological membranes more effectively than hydrophilic drugs because cellular membranes are:",
-                options: ["Hydrophilic protein sheets", "Phospholipid bi-layers", "Polysaccharide grids", "Inorganic mineral matrixes"],
-                correct: 1,
-                explanation: "Cell membranes consist of a hydrophobic phospholipid bilayer allowing easy passive lipid diffusion.",
-                why: "Non-polar, uncharged, lipophilic molecules readily dissolve in the lipid core of cell membranes to pass into tissues."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Basic",
-                question: "Which type of drug binding creates an irreversible interaction with its target receptor?",
-                options: ["Ionic Bonding", "Hydrogen Bonding", "Covalent Bonding", "Van der Waals forces"],
-                correct: 2,
-                explanation: "Covalent bonds are extremely strong and irreversible under physiological conditions.",
-                why: "Irreversible antagonists form covalent bonds, requiring the cell to synthesize entirely new receptors to restore activity (e.g., Aspirin on COX enzymes)."
-            },
-            {
-                category: "Intro & Legislation",
-                difficulty: "Basic",
-                question: "What is the primary purpose of medication standards and legislation?",
-                options: [
-                    "To guarantee pharmaceutical company profit",
-                    "To ensure drug safety, purity, quality, and efficacy",
-                    "To mandate specific pricing models across hospitals",
-                    "To limit the production of oral tablet formulations"
-                ],
-                correct: 1,
-                explanation: "Drug legislation exists to protect public safety from sub-standard or toxic remedies.",
-                why: "Regulatory standard pharmacopeias (e.g., BP, USP) establish legal baselines for precise drug identity, purity, and strength."
-            },
-            {
-                category: "Medication Supply",
-                difficulty: "Basic",
-                question: "In hospital nursing practice, a unit-dose drug supply system offers what primary advantage?",
-                options: [
-                    "Reduces floor stock setup costs",
-                    "Minimizes medication administration errors",
-                    "Eliminates the need for pharmacy staff",
-                    "Allows patient self-dosing without verification"
-                ],
-                correct: 1,
-                explanation: "Unit-dose systems provide individually packaged, labeled single doses for specific patients.",
-                why: "Single unit packaging reduces dose calculation mistakes, accidental double-dosing, and floor stock contamination."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Basic",
-                question: "The phrase 'Volume of Distribution (Vd)' provides an estimate of:",
-                options: [
-                    "Total liquid volume in the renal bladder",
-                    "Apparent body fluid volume needed to contain total drug at plasma concentration",
-                    "Percentage of drug excreted through sweat",
-                    "Liquid volume infused during IV administration"
-                ],
-                correct: 1,
-                explanation: "Vd is a theoretical fluid volume relating total body drug amount to plasma concentration.",
-                why: "A high Vd (>42L) implies extensive tissue binding, whereas a low Vd suggests the drug remains mostly inside vascular blood plasma."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Basic",
-                question: "A drug that produces less than maximal effect even when occupying 100% of available receptors is a:",
-                options: ["Full Agonist", "Partial Agonist", "Competitive Antagonist", "Inverse Agonist"],
-                correct: 1,
-                explanation: "Partial agonists have affinity but submaximal intrinsic activity (efficacy < 1.0).",
-                why: "Even at full receptor occupancy, a partial agonist cannot evoke the 100% tissue response that a full agonist generates."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Basic",
-                question: "Phase I metabolic reactions in the liver primarily involve which chemical process?",
-                options: ["Glucuronide Conjugation", "Oxidation, Reduction, or Hydrolysis", "Sulfate Linking", "Amino Acid Coupling"],
-                correct: 1,
-                explanation: "Phase I reactions insert or unmask polar functional groups via oxidation, reduction, or hydrolysis.",
-                why: "Cytochrome P450 enzymes drive Phase I to expose reactive sites; Phase II then attaches hydrophilic moieties (conjugation) for excretion."
-            },
-            {
-                category: "Drug Cards & Resources",
-                difficulty: "Basic",
-                question: "When preparing a student nurse 'Drug Card', which information is most crucial for safe clinical administration?",
-                options: [
-                    "Chemical synthesis structure",
-                    "Drug class, indications, mechanism, adverse effects, & nursing considerations",
-                    "Wholesale pricing per 1000 tablets",
-                    "Original patent expiration date"
-                ],
-                correct: 1,
-                explanation: "Drug cards focus on essential bedside safety info: mechanism, usage, warnings, and nursing checks.",
-                why: "Clinical focus requires instant access to actionable patient-safety details over manufacturing background."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Basic",
-                question: "Unbound, free drug fraction in blood plasma is clinically important because:",
-                options: [
-                    "Only free drug can cross membranes to exert therapeutic or toxic actions",
-                    "Bound drugs are rapidly excreted by the kidneys",
-                    "Free drug cannot bind to target organ receptors",
-                    "Plasma proteins destroy free drug molecules"
-                ],
-                correct: 0,
-                explanation: "Only unbound (free) drug molecules interact with receptors or cross tissue barriers.",
-                why: "Protein-bound drugs act as an inactive reservoir; as free drug is cleared, bound drug dissociates to maintain dynamic equilibrium."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Basic",
-                question: "What happens when a Non-Competitive Antagonist binds to an allosteric site on a receptor?",
-                options: [
-                    "It increases agonist binding affinity",
-                    "It changes receptor shape, reducing agonist maximum efficacy",
-                    "It causes a leftward parallel shift of agonist dose response",
-                    "It converts the agonist into an antagonist"
-                ],
-                correct: 1,
-                explanation: "Allosteric binding changes receptor conformation, lowering maximal response regardless of agonist concentration.",
-                why: "Because non-competitive antagonists do not compete at the active site, adding extra agonist cannot overcome the block."
-            },
-            {
-                category: "Medication Sources",
-                difficulty: "Basic",
-                question: "Which drug is a historical example of a medication derived directly from a plant source?",
-                options: ["Insulin", "Morphine (Opium Poppy)", "Penicillin", "Sulfonamide"],
-                correct: 1,
-                explanation: "Morphine is extracted directly from Papaver somniferum (opium poppy).",
-                why: "Plants remain a primary original source of natural alkaloids alongside animal (insulin), mineral, and microbial sources."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Basic",
-                question: "Enterohepatic circulation describes a cycle where a drug is:",
-                options: [
-                    "Exhaled by lungs and re-inhaled",
-                    "Excreted in bile, reabsorbed in small intestine, and returned to liver",
-                    "Filtered by glomerulus and reabsorbed in loop of Henle",
-                    "Metabolized in stomach acid and recycled in spleen"
-                ],
-                correct: 1,
-                explanation: "Enterohepatic recycling prolongs drug half-life by recirculating biliary-excreted drugs back into the blood via intestinal reabsorption.",
-                why: "Gut bacteria hydrolyze conjugated metabolites back into active lipophilic parent drugs, extending their active duration in the body."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Basic",
-                question: "The term 'Down-Regulation' of receptors typically occurs after prolonged exposure to an:",
-                options: ["Agonist", "Antagonist", "Inverse Antagonist", "Enzyme Inhibitor"],
-                correct: 0,
-                explanation: "Continuous over-stimulation by agonists prompts cells to internalize or reduce receptor numbers.",
-                why: "Down-regulation is a protective adaptation (desensitization/tolerance), requiring higher drug doses to achieve the same initial effect."
-            },
-            {
-                category: "Intro & Terminology",
-                difficulty: "Basic",
-                question: "An unwanted, unpredictable, and non-dose-related drug reaction caused by an immunological response is termed a(n):",
-                options: ["Side Effect", "Toxic Effect", "Allergic / Hypersensitivity Reaction", "Idiosyncratic Response"],
-                correct: 2,
-                explanation: "Allergic reactions are immune-mediated and not directly predicted by drug dose size.",
-                why: "Side effects are predictable extensions of pharmacology; allergic reactions involve antigen-antibody immune cascades (e.g., Anaphylaxis)."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Basic",
-                question: "Sublingual administration bypasses first-pass metabolism because venous drainage from the mouth enters directly into the:",
-                options: ["Hepatic Portal Vein", "Superior Vena Cava", "Renal Artery", "Celiac Trunk"],
-                correct: 1,
-                explanation: "Sublingual veins drain into systemic circulation (superior vena cava) bypassing portal liver flow.",
-                why: "Avoiding liver portal clearance enables rapid therapeutic onset and higher bioavailability for drugs like Nitroglycerin."
-            },
-            {
-                category: "Medication Supply",
-                difficulty: "Basic",
-                question: "In an Automated Dispensing Cabinet (e.g., Pyxis), drug removal is electronically tracked primarily to prevent:",
-                options: [
-                    "First-pass hepatic clearance",
-                    "Medication diversion and inventory discrepancy",
-                    "Receptor down-regulation",
-                    "Protein binding saturation"
-                ],
-                correct: 1,
-                explanation: "Automated systems log nurse credentials, patient IDs, and exact medication quantities.",
-                why: "Electronic tracking ensures strict accountability for controlled substances and minimizes stock errors."
-            },
-            {
-                category: "Pharmacology History",
-                difficulty: "Basic",
-                question: "Who is widely considered the 'Father of Modern Pharmacology' for isolating active plant compounds and establishing experimental pharmacology?",
-                options: ["Paracelsus", "Oswald Schmiedeberg", "Alexander Fleming", "Edward Jenner"],
-                correct: 1,
-                explanation: "Oswald Schmiedeberg established pharmacology as an independent scientific discipline in 19th-century Germany.",
-                why: "Schmiedeberg analyzed how chemical structure dictates biological activity in body tissues using scientific experimentation."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Basic",
-                question: "An 'Inverse Agonist' produces what physiological outcome at a constitutively active receptor site?",
-                options: [
-                    "Blocks agonists without changing baseline activity",
-                    "Reduces baseline receptor activity below resting level",
-                    "Increases receptor baseline activity to maximum",
-                    "Irreversibly destroys the protein chain"
-                ],
-                correct: 1,
-                explanation: "Inverse agonists bind active receptors and suppress intrinsic baseline signaling.",
-                why: "Unlike simple antagonists (which maintain baseline at 0), inverse agonists force active resting receptors into an inactive conformation."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Basic",
-                question: "Phase II biotransformation reactions in the liver are primarily categorized as:",
-                options: ["Oxidative reactions", "Conjugation reactions", "Hydrolytic cleavage", "Reduction reactions"],
-                correct: 1,
-                explanation: "Phase II involves attaching endogenous polar groups (glucuronide, sulfate, glutathione) to drugs.",
-                why: "Conjugation turns lipid-soluble drugs into highly water-soluble metabolites easily excreted by kidneys or bile."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Basic",
-                question: "What term describes the maximum physiological effect that a drug can produce, regardless of dose?",
-                options: ["Potency", "Efficacy (Emax)", "Affinity", "Therapeutic Window"],
-                correct: 1,
-                explanation: "Efficacy reflects the ceiling response height on a dose-response curve.",
-                why: "Efficacy is clinically more important than potency when maximum symptom control is needed (e.g., Morphine vs. Aspirin)."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Basic",
-                question: "Steady-state plasma concentration of a drug is reached after approximately how many half-lives of continuous dosing?",
-                options: ["1 to 2 half-lives", "4 to 5 half-lives", "8 to 10 half-lives", "12 to 15 half-lives"],
-                correct: 1,
-                explanation: "Steady state occurs when drug elimination rate equals drug administration rate (~4-5 t1/2).",
-                why: "At 4 half-lives, plasma levels reach ~94% of steady state; at 5 half-lives, ~97% is achieved."
-            },
-            {
-                category: "Drug Routes",
-                difficulty: "Basic",
-                question: "Which route of administration provides the fastest therapeutic onset during a clinical emergency?",
-                options: ["Oral (PO)", "Intravenous (IV)", "Subcutaneous (SC)", "Transdermal"],
-                correct: 1,
-                explanation: "Intravenous injection deposits drug directly into systemic circulation without absorption delays.",
-                why: "IV bypasses membrane diffusion barriers, making 100% of the dose immediately bioavailable."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Basic",
-                question: "Up-regulation of cell surface receptors typically occurs in response to chronic exposure to a(n):",
-                options: ["Agonist", "Antagonist", "Partial Agonist", "Enzyme Inducer"],
-                correct: 1,
-                explanation: "Cells synthesize and expose more receptors when continuously blocked by antagonists.",
-                why: "Up-regulation causes hypersensitivity; abrupt withdrawal of antagonists (e.g., Beta Blockers) can trigger rebound hyperactivity."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Basic",
-                question: "Which primary plasma protein binds predominantly acidic drugs like Warfarin and Salicylates?",
-                options: ["Alpha-1 Acid Glycoprotein", "Albumin", "Gamma Globulin", "Fibrinogen"],
-                correct: 1,
-                explanation: "Albumin is the major circulating plasma protein that binds acidic drugs.",
-                why: "Alpha-1 acid glycoprotein binds basic drugs; hypoalbuminemia elevates unbound acidic drug fractions."
-            },
+  if (timeRemaining < 300) {
+    dashTimer.classList.add('timer-alert');
+  } else {
+    dashTimer.classList.remove('timer-alert');
+  }
+}
 
-            // --- 30% EXAM STYLE CLINICAL SCENARIOS (18 Questions) ---
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Exam Style",
-                question: "Clinical Scenario: A patient with end-stage liver cirrhosis is prescribed a standard dose of a highly protein-bound drug. The nurse monitors closely for drug toxicity because cirrhosis leads to:",
-                options: [
-                    "Decreased plasma albumin levels, increasing free drug concentration",
-                    "Increased glomerular filtration rate, causing rapid clearance",
-                    "Enhanced first-pass hepatic biotransformation",
-                    "Increased stomach acid production destroying the drug"
-                ],
-                correct: 0,
-                explanation: "Cirrhosis impairs liver albumin synthesis, leaving more unbound (active/toxic) drug in serum.",
-                why: "Fewer albumin binding sites mean a larger fraction of the drug remains free to enter tissues, elevating risk of toxicity unless doses are reduced."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Exam Style",
-                question: "Clinical Scenario: A patient suffering from an asthma attack receives Inhaled Albuterol (Beta-2 Agonist). Simultaneously, the physician administers Propranolol (Non-selective Beta Blocker). What is the expected outcome?",
-                options: [
-                    "Synergistic bronchodilation",
-                    "Propranolol will competitively block Albuterol, preventing bronchodilation",
-                    "Severe hypotension due to total drug inactivation",
-                    "Albuterol will convert Propranolol into an agonist"
-                ],
-                correct: 1,
-                explanation: "Propranolol blocks Beta-2 receptors in the lung, counteracting Albuterol's therapeutic effect.",
-                why: "Competitive antagonism occurs when a non-selective blocker occupies target receptors, preventing agonist attachment."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Exam Style",
-                question: "Clinical Scenario: An 82-year-old renal failure patient is receiving Gentamicin (an antibiotic cleared exclusively by kidney filtration). Serum creatinine is elevated. What dose adjustment does the nurse anticipate?",
-                options: [
-                    "Increase the dose to bypass damaged nephrons",
-                    "Decrease dosage or extend interval between doses to prevent toxic accumulation",
-                    "Switch to oral administration to avoid systemic blood flow",
-                    "Administer double dose with an antacid"
-                ],
-                correct: 1,
-                explanation: "Impaired renal filtration slows drug elimination, requiring lower doses or longer intervals.",
-                why: "Failure to reduce dosage in renal impairment causes cumulative drug buildup in blood plasma, leading to ototoxicity and nephrotoxicity."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Exam Style",
-                question: "Clinical Scenario: A nurse receives an order for Intravenous Morphine for acute severe burn pain. Why does IV administration achieve faster pain relief compared to oral Morphine?",
-                options: [
-                    "IV Morphine binds 100% to hemoglobin",
-                    "IV route bypasses absorption phase and first-pass hepatic metabolism completely",
-                    "IV Morphine is converted into a more active gas form in lungs",
-                    "Oral Morphine is destroyed entirely by salivary amylase"
-                ],
-                correct: 1,
-                explanation: "Direct vascular placement delivers 100% bioavailability instantly to systemic blood flow.",
-                why: "Instant blood entry bypasses gut absorption barriers and liver portal destruction, ensuring immediate drug delivery to brain opioid receptors."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Exam Style",
-                question: "Clinical Scenario: A patient takes Warfarin (Therapeutic Index: 1.5 - 2.5). Routine International Normalized Ratio (INR) blood testing is mandatory because Warfarin has a:",
-                options: [
-                    "Wide safety margin requiring no monitoring",
-                    "Narrow Therapeutic Index where minor dose changes cause hemorrhage or thrombosis",
-                    "High first-pass metabolism converting it to vitamin K",
-                    "Short half-life of less than 3 minutes"
-                ],
-                correct: 1,
-                explanation: "Warfarin has a narrow therapeutic window; small variations can cause severe bleeding or blood clots.",
-                why: "Because therapeutic doses sit extremely close to toxic/lethal doses, strict serum blood monitoring (INR) is required."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Exam Style",
-                question: "Clinical Scenario: A patient takes a drug that is a known potent Cytochrome P450 Enzyme Inducer (e.g., Rifampin) alongside their standard dose of Oral Contraceptive. The nurse warns the patient about:",
-                options: [
-                    "Decreased contraceptive effectiveness leading to unintended pregnancy",
-                    "Severe toxicity due to reduced contraceptive breakdown",
-                    "Immediate renal shutdown",
-                    "Anaphylactic shock within 5 minutes"
-                ],
-                correct: 0,
-                explanation: "CYP450 inducers speed up hepatic breakdown of co-administered drugs, lowering their blood levels.",
-                why: "Enhanced enzyme activity metabolizes the oral contraceptive much faster, dropping plasma concentration below effective threshold levels."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Exam Style",
-                question: "Clinical Scenario: A nurse administers a single, large 'Loading Dose' of an antiarrhythmic drug to a patient in rapid Atrial Fibrillation. What is the clinical rationale for a loading dose?",
-                options: [
-                    "To permanently stop liver metabolism",
-                    "To rapidly achieve therapeutic plasma concentration without waiting 4-5 half-lives",
-                    "To prevent renal glomerular filtration",
-                    "To test if the patient is allergic before full treatment"
-                ],
-                correct: 1,
-                explanation: "A loading dose quickly fills the distribution volume to reach therapeutic blood levels immediately.",
-                why: "Standard maintenance dosing takes 4 to 5 half-lives to reach steady-state plasma concentration; urgent clinical situations cannot wait that long."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Exam Style",
-                question: "Clinical Scenario: A patient consumes Grapefruit Juice daily while taking an oral statin (CYP3A4 substrate). Grapefruit juice is a known CYP3A4 Enzyme Inhibitor. The patient is at risk for:",
-                options: [
-                    "Drug toxicity and rhabdomyolysis due to elevated statin plasma levels",
-                    "Complete lack of drug absorption due to gut binding",
-                    "Rapid drug clearance requiring triple the statin dose",
-                    "Gastric ulcer perforation"
-                ],
-                correct: 0,
-                explanation: "CYP3A4 inhibition prevents statin breakdown, causing hazardous accumulation in plasma.",
-                why: "Inhibiting metabolic enzymes blocks drug clearance, artificially raising blood concentrations to dangerous toxic levels."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Exam Style",
-                question: "Clinical Scenario: A patient experiencing an opioid overdose (Heroin) presents with respiratory depression. The nurse administers Naloxone (Narcan). Naloxone acts as a(n):",
-                options: [
-                    "Full Opioid Agonist",
-                    "Competitive Opioid Antagonist",
-                    "Irreversible Enzyme Inducer",
-                    "Partial Agonist activator"
-                ],
-                correct: 1,
-                explanation: "Naloxone competes directly with heroin at mu-opioid receptors, reversing respiratory depression.",
-                why: "Naloxone has high binding affinity for mu receptors but zero intrinsic activity, displaces opioid molecules, and restores ventilation."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Exam Style",
-                question: "Clinical Scenario: An acidic drug like Aspirin is ingested. In the acidic environment of the stomach (pH 1.5 - 2.0), the aspirin molecules will be predominantly:",
-                options: [
-                    "Ionized and lipid insoluble",
-                    "Un-ionized (non-polar) and rapidly absorbed across stomach mucosa",
-                    "Bound irreversibly to stomach mucin",
-                    "Metabolized instantly into glucose"
-                ],
-                correct: 1,
-                explanation: "Weak acids remain un-ionized in acidic environments, facilitating rapid passive lipid absorption.",
-                why: "Un-ionized (uncharged) molecules are lipophilic and cross biological membranes easily compared to charged (ionized) forms."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Exam Style",
-                question: "Clinical Scenario: A patient with severe chronic kidney disease exhibits urine pH that is highly acidic. To accelerate the excretion of an acidic drug overdose (like phenobarbital), the clinician orders IV Sodium Bicarbonate to alkalinize the urine. This process relies on:",
-                options: [
-                    "Ion Trapping",
-                    "First-Pass Hepatic Shunt",
-                    "Enterohepatic Recirculation",
-                    "Receptor Desensitization"
-                ],
-                correct: 0,
-                explanation: "Alkalinizing urine ionizes weak acids in renal tubules, trapping them so they cannot be reabsorbed.",
-                why: "Ionized molecules cannot cross back through tubular lipid membranes into blood; they remain trapped in urine fluid and are excreted."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Exam Style",
-                question: "Clinical Scenario: A patient taking Nitroglycerin sublingually for angina notices that wearing a transdermal nitroglycerin patch 24 hours non-stop reduces its effectiveness. The provider explains this is due to:",
-                options: [
-                    "Tachyphylaxis (rapid tolerance due to receptor desensitization)",
-                    "Complete renal clearance of nitrate enzymes",
-                    "Irreversible receptor destruction",
-                    "Induction of stomach cytochrome proteins"
-                ],
-                correct: 0,
-                explanation: "Continuous, non-stop exposure to nitrates depletes thiol groups, causing rapid drug tolerance (tachyphylaxis).",
-                why: "Providing a daily 10-12 hour 'nitrate-free interval' restores cellular reactivity and prevents desensitization."
-            },
-            {
-                category: "Legislation & Safety",
-                difficulty: "Exam Style",
-                question: "Clinical Scenario: A nurse prepares to give a Schedule II Controlled Substance (e.g., Fentanyl). Which legal nursing protocol is mandatory?",
-                options: [
-                    "Discard unused portions in regular trash cans",
-                    "Double-check with a second nurse, sign controlled ledger, & account for waste immediately",
-                    "Store medication at patient bedside for easy access",
-                    "Administer without physician sign-off if pain is severe"
-                ],
-                correct: 1,
-                explanation: "Schedule II drugs carry high abuse potential and require strict physical count and witnessed disposal.",
-                why: "Federal legislation mandates precise accountability, secure locking, and two-nurse verification for wasted controlled substances."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Exam Style",
-                question: "Clinical Scenario: A patient receives a high dose of a drug that obeys Zero-Order Elimination Kinetics (e.g., Ethanol or high-dose Aspirin). What characterizes zero-order clearance?",
-                options: [
-                    "A constant percentage of drug is eliminated per unit time",
-                    "A constant amount (fixed quantity) of drug is eliminated per unit time regardless of concentration",
-                    "Elimination rate increases exponentially with blood concentration",
-                    "The drug half-life remains completely fixed at 2 hours"
-                ],
-                correct: 1,
-                explanation: "Zero-order kinetics means elimination enzymes are saturated, clearing a fixed mg amount per hour.",
-                why: "Because metabolic enzymes operate at maximum capacity (Vmax), excess drug builds up rapidly in plasma, elevating toxicity risk."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Exam Style",
-                question: "Clinical Scenario: Two antihypertensive drugs (Drug X and Drug Y) are given together. Drug X drops blood pressure by 10 mmHg. Drug Y drops blood pressure by 10 mmHg. Given together, blood pressure drops by 35 mmHg. This phenomenon is called:",
-                options: ["Additive Effect", "Synergism / Potentiation", "Antagonism", "Tachyphylaxis"],
-                correct: 1,
-                explanation: "Synergism occurs when the combined effect of two drugs is greater than the sum of their individual effects (1+1 > 2).",
-                why: "Synergistic combinations target different pathways simultaneously to multiply therapeutic output beyond simple addition."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Exam Style",
-                question: "Clinical Scenario: A patient receiving continuous IV Heparin therapy undergoes routine activated Partial Thromboplastin Time (aPTT) blood testing. Adjusting the IV drip rate based on laboratory blood values is essential because Heparin:",
-                options: [
-                    "Exhibits a narrow therapeutic window with high risk of bleeding",
-                    "Is destroyed instantly by saliva",
-                    "Has 100% oral bioavailability",
-                    "Is eliminated exclusively by exhalation"
-                ],
-                correct: 0,
-                explanation: "Anticoagulants require precise monitoring to maintain therapeutic efficacy while avoiding hemorrhage.",
-                why: "Overdosing causes fatal bleeding while underdosing risks thromboembolism; titration keeps aPTT within safe limits."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Exam Style",
-                question: "Clinical Scenario: A patient taking a chronic Beta-Blocker suddenly stops taking the medication. Within 24 hours, the patient presents with severe tachycardia and hypertension. This rebound effect is caused by:",
-                options: [
-                    "Receptor Up-Regulation during chronic blockade",
-                    "Receptor Down-Regulation",
-                    "Enzyme inhibition in kidneys",
-                    "Sudden loss of plasma albumin"
-                ],
-                correct: 0,
-                explanation: "Chronic antagonist exposure causes cells to up-regulate receptor density.",
-                why: "Abruptly removing the antagonist leaves an increased number of unblocked receptors vulnerable to endogenous catecholamines, causing rebound surges."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Exam Style",
-                question: "Clinical Scenario: A patient with severe diarrhea is given an oral drug designed for intestinal absorption. The nurse anticipates the drug's therapeutic effect will be reduced primarily due to:",
-                options: [
-                    "Decreased GI transit time reducing mucosal contact time",
-                    "Increased hepatic first-pass metabolism",
-                    "Rapid renal glomerular filtration",
-                    "Increased plasma protein binding"
-                ],
-                correct: 0,
-                explanation: "Hypermotility reduces the duration a drug stays in contact with intestinal absorbing membranes.",
-                why: "Rapid transit flushes the drug through the digestive tract before adequate passive diffusion can occur into mesenteric blood vessels."
-            },
+function autoSubmitChapter() {
+  const chData = quizData[currentChapter];
+  while (currentQuestionIndex < 25) {
+    const qData = chData.questions[currentQuestionIndex];
+    userAnswers.push({
+      ch: currentChapter,
+      qIndex: currentQuestionIndex,
+      selected: -1,
+      correct: false,
+      topic: qData.topic,
+      tag: qData.tag
+    });
+    currentQuestionIndex++;
+  }
+  showChapterReport();
+}
 
-            // --- 10% ADVANCED CHALLENGING QUESTIONS (6 Questions) ---
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Challenging",
-                question: "Advanced Calculation Concept: A drug has a steady-state volume of distribution (Vd) of 350 Liters in a 70kg patient. What does this extraordinarily high numerical Vd indicate about the drug's physical location?",
-                options: [
-                    "The drug is entirely confined to vascular plasma volume (3L)",
-                    "The drug is extensively bound in peripheral tissue compartments outside the vascular space",
-                    "The patient's kidneys have failed to excrete liquid",
-                    "The drug has experienced 0% absorption"
-                ],
-                correct: 1,
-                explanation: "A Vd far exceeding total body water (>42L) proves heavy lipophilic tissue binding.",
-                why: "When drug molecules concentrate heavily in fat and tissue cells, plasma levels drop extremely low, mathematically magnifying the apparent Vd formula (Vd = Amount / Plasma conc)."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Challenging",
-                question: "Advanced Concept: What is the primary functional difference between a Competitive Antagonist and a Non-Competitive Irreversible Antagonist on a Pharmacodynamic Dose-Response Graph?",
-                options: [
-                    "Competitive lowers Emax; Irreversible shifts curve right without changing Emax",
-                    "Competitive shifts EC50 right without changing Emax; Irreversible lowers Emax",
-                    "Both reduce Emax to zero instantly",
-                    "Neither alters the EC50 or Emax values"
-                ],
-                correct: 1,
-                explanation: "Competitive blockers shift the curve right (EC50 increases, Emax preserved). Irreversible blockers reduce maximum achievable height (Emax drops).",
-                why: "Adding infinite agonist outcompetes a reversible competitive blocker to reach 100% Emax. Irreversible covalent bonds permanently disable receptors, capping maximum possible response."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Challenging",
-                question: "Advanced Concept: In First-Order Kinetics, if a drug's half-life (t1/2) is 4 hours, what percentage of the initial peak dose remains in plasma after exactly 12 hours (3 half-lives)?",
-                options: ["50%", "25%", "12.5%", "6.25%"],
-                correct: 2,
-                explanation: "First-order kinetics halves concentration every half-life: 100% -> 50% (4h) -> 25% (8h) -> 12.5% (12h).",
-                why: "3 half-lives elapsed = (1/2)^3 = 1/8th of initial concentration remaining, which equals 12.5%."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Challenging",
-                question: "Advanced Concept: Which intracellular secondary messenger cascade is activated when a G-protein Coupled Receptor (GPCR) attached to the Gs subunit is stimulated by an Agonist?",
-                options: [
-                    "Inhibition of Adenylyl Cyclase, lowering cAMP",
-                    "Activation of Adenylyl Cyclase, increasing intracellular cAMP",
-                    "Direct cleavage of nuclear DNA",
-                    "Opening of voltage-gated sodium channels directly without ATP"
-                ],
-                correct: 1,
-                explanation: "Gs protein alpha subunits stimulate Adenylyl Cyclase, converting ATP to cyclic AMP (cAMP).",
-                why: "Elevated cAMP activates Protein Kinase A (PKA), triggering targeted intracellular protein phosphorylation (e.g., cardiac Beta-1 stimulation)."
-            },
-            {
-                category: "Pharmacokinetics",
-                difficulty: "Challenging",
-                question: "Advanced Concept: A patient with severe burn shock exhibits low systemic blood pressure and severe renal vasoconstriction. How will this alter the renal clearance (Cl_renal) of a hydrophilic drug cleared primarily by glomerular filtration?",
-                options: [
-                    "Renal clearance will increase due to passive filtration pressure",
-                    "Renal clearance will drop significantly due to reduced Glomerular Filtration Rate (GFR)",
-                    "Renal clearance will remain entirely unchanged",
-                    "The drug will convert instantly into a lipophilic gas"
-                ],
-                correct: 1,
-                explanation: "GFR depends directly on renal perfusion pressure; severe hypotension drops filtration and drug clearance.",
-                why: "Reduced arterial pressure lowers renal blood flow, decreasing glomerular filtration pressure and slowing clearance of plasma drugs into urine."
-            },
-            {
-                category: "Pharmacodynamics",
-                difficulty: "Challenging",
-                question: "Advanced Concept: According to the Spare Receptor Hypothesis, a tissue possesses spare receptors if the maximum physiological response (Emax) is achieved at an agonist concentration where:",
-                options: [
-                    "100% of available receptors are occupied",
-                    "Less than 100% of available receptors are occupied",
-                    "Receptors are completely destroyed by enzymes",
-                    "No agonist molecules are bound"
-                ],
-                correct: 1,
-                explanation: "Spare receptors exist when maximum cellular response occurs without full receptor occupancy.",
-                why: "Amplification cascades downstream of GPCRs allow maximum response to occur at low occupancy, reserving spare receptors to increase sensitivity."
-            }
-        ];
+function renderQuestion() {
+  const chData = quizData[currentChapter];
+  const qData = chData.questions[currentQuestionIndex];
 
-        // QUIZ STATE VARIABLES
-        let currentQIndex = 0;
-        let score = 0;
-        let answered = false;
-        let timerInterval = null;
-        let timeRemaining = 1800; // 30 minutes in seconds
+  chTitleText.innerText = chData.chTitle;
+  qDiffBadge.innerText = `${qData.tag} Difficulty`;
+  qDiffBadge.className = `diff-tag ${qData.tag === 'Basic' ? 'tag-basic' : qData.tag === 'Scenario' ? 'tag-scenario' : 'tag-hard'}`;
 
-        // DOM ELEMENTS
-        const currentQNumEl = document.getElementById("currentQNum");
-        const totalQNumEl = document.getElementById("totalQNum");
-        const scoreTrackerEl = document.getElementById("scoreTracker");
-        const progressBarEl = document.getElementById("progressBar");
-        const timerDisplayEl = document.getElementById("timerDisplay");
-        const questionCategoryEl = document.getElementById("questionCategory");
-        const difficultyBadgeEl = document.getElementById("difficultyBadge");
-        const questionTextEl = document.getElementById("questionText");
-        const optionsContainerEl = document.getElementById("optionsContainer");
-        const explanationDrawerEl = document.getElementById("explanationDrawer");
-        const resultHeaderEl = document.getElementById("resultHeader");
-        const explanationCoreEl = document.getElementById("explanationCore");
-        const explanationWhyEl = document.getElementById("explanationWhy");
-        const nextBtn = document.getElementById("nextBtn");
-        const quizContainerEl = document.getElementById("quizContainer");
-        const scoreContainerEl = document.getElementById("scoreContainer");
+  const totalPrevQuestions = currentChapter * 25;
+  const currentGlobalNum = totalPrevQuestions + currentQuestionIndex + 1;
 
-        // TIMER FUNCTIONS
-        function startTimer() {
-            clearInterval(timerInterval);
-            timeRemaining = 1800; // 30 mins
-            updateTimerDisplay();
+  let html = `
+    <div class="mcq-card active">
+      <div class="q-number">QUESTION ${currentGlobalNum} OF 50 • [${qData.topic}]</div>
+      <div class="q-text">${qData.q}</div>
+      <div class="options-grid">
+  `;
 
-            timerInterval = setInterval(() => {
-                timeRemaining--;
-                updateTimerDisplay();
+  qData.opts.forEach((opt, idx) => {
+    html += `
+      <button class="opt-btn" onclick="handleAnswer(${idx})" id="opt-${idx}">
+        <span><strong>${String.fromCharCode(65 + idx)}.</strong> ${opt}</span>
+        <span id="icon-${idx}"></span>
+      </button>
+    `;
+  });
 
-                if (timeRemaining <= 0) {
-                    clearInterval(timerInterval);
-                    alert("⏰ Time is up! Submitting your quiz now.");
-                    showResults();
-                }
-            }, 1000);
-        }
+  html += `
+      </div>
+      <div class="explanation-box" id="exp-box">
+        <div class="exp-title">💡 WHY IS THIS CORRECT?</div>
+        <div class="exp-text">${qData.exp}</div>
+      </div>
+      <div class="nav-actions">
+        <div></div>
+        <button class="action-btn" id="next-btn" onclick="nextQuestion()" disabled>Next Question ➔</button>
+      </div>
+    </div>
+  `;
 
-        function updateTimerDisplay() {
-            const minutes = Math.floor(timeRemaining / 60);
-            const seconds = timeRemaining % 60;
-            const formatted = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-            timerDisplayEl.textContent = formatted;
+  quizBox.innerHTML = html;
+}
 
-            if (timeRemaining < 300) { // Less than 5 minutes
-                timerDisplayEl.classList.add("timer-warning");
-            } else {
-                timerDisplayEl.classList.remove("timer-warning");
-            }
-        }
+function handleAnswer(selectedIdx) {
+  const chData = quizData[currentChapter];
+  const qData = chData.questions[currentQuestionIndex];
 
-        // INITIALIZE QUESTION
-        function loadQuestion() {
-            answered = false;
-            explanationDrawerEl.classList.add("hidden");
-            nextBtn.classList.add("hidden");
+  const buttons = document.querySelectorAll('.opt-btn');
+  buttons.forEach(btn => btn.classList.add('disabled'));
 
-            const q = mcqDatabase[currentQIndex];
+  const isCorrect = (selectedIdx === qData.a);
 
-            // Update Progress Header
-            currentQNumEl.textContent = currentQIndex + 1;
-            totalQNumEl.textContent = mcqDatabase.length;
-            scoreTrackerEl.textContent = score;
-            const progressPercent = ((currentQIndex + 1) / mcqDatabase.length) * 100;
-            progressBarEl.style.width = `${progressPercent}%`;
+  const selectedBtn = document.getElementById(`opt-${selectedIdx}`);
+  const correctBtn = document.getElementById(`opt-${qData.a}`);
 
-            // Category & Difficulty Styling
-            questionCategoryEl.textContent = q.category;
-            difficultyBadgeEl.textContent = q.difficulty;
-            
-            if (q.difficulty === "Basic") {
-                difficultyBadgeEl.className = "px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-medical-500/10 text-medical-400 border border-medical-500/20";
-            } else if (q.difficulty === "Exam Style") {
-                difficultyBadgeEl.className = "px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-brand-500/10 text-brand-400 border border-brand-500/20";
-            } else {
-                difficultyBadgeEl.className = "px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-amber-500/10 text-amber-400 border border-amber-500/20";
-            }
+  if (isCorrect) {
+    selectedBtn.classList.add('correct');
+    document.getElementById(`icon-${selectedIdx}`).innerText = '✓';
+    overallScore++;
+    chapterScores[currentChapter]++;
+  } else {
+    selectedBtn.classList.add('incorrect');
+    document.getElementById(`icon-${selectedIdx}`).innerText = '✗';
+    correctBtn.classList.add('correct');
+    document.getElementById(`icon-${qData.a}`).innerText = '✓';
+  }
 
-            // Question Text
-            questionTextEl.textContent = q.question;
+  userAnswers.push({
+    ch: currentChapter,
+    qIndex: currentQuestionIndex,
+    selected: selectedIdx,
+    correct: isCorrect,
+    topic: qData.topic,
+    tag: qData.tag
+  });
 
-            // Render Options
-            optionsContainerEl.innerHTML = "";
-            q.options.forEach((optText, idx) => {
-                const btn = document.createElement("button");
-                btn.className = "w-full text-left p-4 rounded-xl bg-slate-900/60 border border-slate-700/80 hover:bg-slate-700/50 hover:border-slate-600 transition duration-200 flex items-start gap-3 text-slate-200 text-sm font-medium group focus:outline-none";
-                btn.onclick = () => selectOption(idx);
-                
-                btn.innerHTML = `
-                    <span class="w-6 h-6 rounded-lg bg-slate-800 border border-slate-700 text-slate-400 text-xs font-mono font-bold flex items-center justify-center shrink-0 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-500 transition">
-                        ${String.fromCharCode(65 + idx)}
-                    </span>
-                    <span class="leading-relaxed flex-grow">${optText}</span>
-                `;
-                optionsContainerEl.appendChild(btn);
-            });
+  document.getElementById('exp-box').classList.add('show');
+  document.getElementById('next-btn').disabled = false;
 
-            lucide.createIcons();
-        }
+  updateDashboard();
+}
 
-        // HANDLE OPTION SELECTION
-        function selectOption(selectedIdx) {
-            if (answered) return;
-            answered = true;
+function updateDashboard() {
+  const totalAnswered = userAnswers.length;
+  dashProgress.innerText = `${totalAnswered} / 50`;
+  dashScore.innerText = `${overallScore}`;
+  dashChNum.innerText = `${currentChapter + 1} / 2`;
+}
 
-            const q = mcqDatabase[currentQIndex];
-            const optionButtons = optionsContainerEl.children;
+function nextQuestion() {
+  currentQuestionIndex++;
 
-            // Lock all option buttons
-            for (let btn of optionButtons) {
-                btn.disabled = true;
-                btn.classList.remove("hover:bg-slate-700/50", "hover:border-slate-600");
-                btn.classList.add("cursor-default");
-            }
+  if (currentQuestionIndex < 25) {
+    renderQuestion();
+  } else {
+    clearInterval(timerInterval);
+    showChapterReport();
+  }
+}
 
-            if (selectedIdx === q.correct) {
-                // Correct Answer
-                score += 10;
-                scoreTrackerEl.textContent = score;
+function showChapterReport() {
+  quizBox.style.display = 'none';
+  chBadgeContainer.style.display = 'none';
 
-                optionButtons[selectedIdx].classList.remove("bg-slate-900/60", "border-slate-700/80");
-                optionButtons[selectedIdx].classList.add("bg-medical-500/20", "border-medical-500", "text-white");
-                
-                resultHeaderEl.innerHTML = `
-                    <span class="p-1 rounded-full bg-medical-500/20 text-medical-400"><i data-lucide="check-circle" class="w-5 h-5"></i></span>
-                    <span class="text-medical-400 font-extrabold uppercase tracking-wider">Correct Answer! (+10 Pts)</span>
-                `;
-            } else {
-                // Incorrect Answer
-                optionButtons[selectedIdx].classList.remove("bg-slate-900/60", "border-slate-700/80");
-                optionButtons[selectedIdx].classList.add("bg-rose-500/20", "border-rose-500", "text-white");
+  const chScore = chapterScores[currentChapter];
+  document.getElementById('ch-report-subtitle').innerText = `Performance breakdown for ${quizData[currentChapter].chTitle}`;
+  document.getElementById('ch-score-display').innerText = `${chScore} / 25 (${Math.round((chScore / 25) * 100)}%)`;
 
-                // Highlight Correct One
-                optionButtons[q.correct].classList.remove("bg-slate-900/60", "border-slate-700/80");
-                optionButtons[q.correct].classList.add("bg-medical-500/20", "border-medical-500", "text-white");
+  const chAnswers = userAnswers.filter(a => a.ch === currentChapter);
+  const incorrectAnswers = chAnswers.filter(a => !a.correct);
 
-                resultHeaderEl.innerHTML = `
-                    <span class="p-1 rounded-full bg-rose-500/20 text-rose-400"><i data-lucide="x-circle" class="w-5 h-5"></i></span>
-                    <span class="text-rose-400 font-extrabold uppercase tracking-wider">Incorrect Choice</span>
-                `;
-            }
+  let weaknessHtml = "";
+  if (incorrectAnswers.length === 0) {
+    weaknessHtml = "<span style='color: var(--accent-green); font-weight: bold;'>🌟 Perfect Score! 100% Mastery in this Subchapter. No topic weaknesses detected.</span>";
+  } else {
+    const topicCounts = {};
+    incorrectAnswers.forEach(a => {
+      topicCounts[a.topic] = (topicCounts[a.topic] || 0) + 1;
+    });
 
-            // Populate Explanation
-            explanationCoreEl.textContent = q.explanation;
-            explanationWhyEl.textContent = q.why;
+    weaknessHtml = "You lost marks in the following high-yield topics:<ul class='weakness-list'>";
+    for (const [topic, count] of Object.entries(topicCounts)) {
+      weaknessHtml += `<li><strong>${topic}:</strong> ${count} question(s) missed.</li>`;
+    }
+    weaknessHtml += "</ul> Review these pharmacology concepts before sitting your exam.";
+  }
 
-            // Show Explanation Drawer & Next Button
-            explanationDrawerEl.classList.remove("hidden");
-            nextBtn.classList.remove("hidden");
+  document.getElementById('ch-weakness-text').innerHTML = weaknessHtml;
 
-            lucide.createIcons();
-        }
+  const nextBtn = document.getElementById('btn-next-ch');
+  if (currentChapter === 1) {
+    nextBtn.innerText = "View Final Cumulative Course Report 🏆";
+    nextBtn.onclick = showFinalReport;
+  } else {
+    nextBtn.innerText = "Begin Subchapter 2 ➔";
+    nextBtn.onclick = startNextChapter;
+  }
 
-        // NEXT BUTTON EVENT
-        nextBtn.addEventListener("click", () => {
-            currentQIndex++;
-            if (currentQIndex < mcqDatabase.length) {
-                loadQuestion();
-            } else {
-                clearInterval(timerInterval);
-                showResults();
-            }
-        });
+  chapterReport.classList.add('show');
+}
 
-        // SHOW SCORE OVERLAY
-        function showResults() {
-            clearInterval(timerInterval);
-            quizContainerEl.classList.add("hidden");
-            scoreContainerEl.classList.remove("hidden");
+function startNextChapter() {
+  currentChapter++;
+  currentQuestionIndex = 0;
+  chapterReport.classList.remove('show');
+  quizBox.style.display = 'block';
+  chBadgeContainer.style.display = 'flex';
+  
+  startChapterTimer();
+  renderQuestion();
+}
 
-            const totalQuestions = mcqDatabase.length;
-            const correctCount = score / 10;
-            const incorrectCount = totalQuestions - correctCount;
-            const percentage = Math.round((correctCount / totalQuestions) * 100);
+function showFinalReport() {
+  chapterReport.classList.remove('show');
+  quizBox.style.display = 'none';
+  chBadgeContainer.style.display = 'none';
 
-            document.getElementById("finalPercentage").textContent = `${percentage}%`;
-            document.getElementById("finalScore").textContent = correctCount;
-            document.getElementById("finalTotal").textContent = totalQuestions;
-            document.getElementById("correctCount").textContent = correctCount;
-            document.getElementById("incorrectCount").textContent = incorrectCount;
+  document.getElementById('final-score-display').innerText = `${overallScore} / 50 (${Math.round((overallScore / 50) * 100)}%)`;
 
-            const feedbackEl = document.getElementById("performanceFeedback");
-            if (percentage >= 80) {
-                feedbackEl.textContent = "Outstanding Performance! You have mastered Chapter 1 Pharmacokinetics and Pharmacodynamics concepts.";
-            } else if (percentage >= 60) {
-                feedbackEl.textContent = "Good Effort! You have a solid baseline, but reviewing high-yield ADME concepts will strengthen your exam scores.";
-            } else {
-                feedbackEl.textContent = "Needs Revision. Focus on reviewing Pharmacokinetics (ADME) and Receptor Mechanics, then try again!";
-            }
+  let subScoresHtml = "";
+  quizData.forEach((ch, idx) => {
+    const score = chapterScores[idx];
+    const pct = Math.round((score / 25) * 100);
+    const color = pct >= 80 ? 'var(--accent-green)' : pct >= 60 ? 'var(--accent-amber)' : 'var(--accent-red)';
+    subScoresHtml += `
+      <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+        <span><strong>Subchapter ${idx + 1}:</strong> ${ch.chTitle.replace('Subchapter ' + (idx + 1) + ': ', '')}</span>
+        <span style="color: ${color}; font-weight: bold;">${score} / 25 (${pct}%)</span>
+      </div>
+    `;
+  });
+  document.getElementById('subchapter-scores-list').innerHTML = subScoresHtml;
 
-            lucide.createIcons();
-        }
+  const allIncorrect = userAnswers.filter(a => !a.correct);
+  let finalWeaknessHtml = "";
 
-        // RETRY QUIZ
-        document.getElementById("retryBtn").addEventListener("click", () => {
-            currentQIndex = 0;
-            score = 0;
-            scoreContainerEl.classList.add("hidden");
-            quizContainerEl.classList.remove("hidden");
-            startTimer();
-            loadQuestion();
-        });
+  if (allIncorrect.length === 0) {
+    finalWeaknessHtml = "<li style='color: var(--accent-green);'>Perfect Score! You have mastered all 50 Chapter 1 Pharmacology MCQs.</li>";
+  } else {
+    const globalTopicCounts = {};
+    allIncorrect.forEach(a => {
+      globalTopicCounts[a.topic] = (globalTopicCounts[a.topic] || 0) + 1;
+    });
 
-        // START ON LOAD
-        document.addEventListener("DOMContentLoaded", () => {
-            startTimer();
-            loadQuestion();
-        });
-    </script>
+    const sortedTopics = Object.entries(globalTopicCounts).sort((a, b) => b[1] - a[1]);
+
+    sortedTopics.forEach(([topic, count]) => {
+      finalWeaknessHtml += `<li><strong>${topic}:</strong> ${count} total errors.</li>`;
+    });
+  }
+
+  document.getElementById('final-weakness-list').innerHTML = finalWeaknessHtml;
+  finalReport.classList.add('show');
+}
+
+function restartEntireQuiz() {
+  initQuiz();
+}
+
+window.onload = initQuiz;
+</script>
 </body>
 </html>
