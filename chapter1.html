@@ -7,36 +7,30 @@
   <style>
     :root {
       --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
       --accent: #06b6d4;
-      --bg-main: #f8fafc;
+      --bg-gradient: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%);
       --text-dark: #0f172a;
       --text-muted: #475569;
-      --card-bg: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.95);
       --card-border: #e2e8f0;
       --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-      --shadow-glow: 0 20px 25px -5px rgba(37, 99, 235, 0.12);
+      --shadow-lg: 0 20px 25px -5px rgba(37, 99, 235, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg-main); color: var(--text-dark); line-height: 1.6; padding: 20px 12px; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; overflow-x: hidden; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8fafc; color: var(--text-dark); line-height: 1.6; padding: 20px 12px; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; overflow-x: hidden; }
     
-    .container { max-width: 950px; width: 100%; margin: 0 auto; background: var(--card-bg); padding: 35px 25px; border-radius: 20px; border: 1px solid var(--card-border); box-shadow: var(--shadow-md); backdrop-filter: blur(10px); animation: fadeIn 0.8s ease-out; }
+    .container { max-width: 950px; width: 100%; margin: 0 auto; background: var(--card-bg); padding: 35px 25px; border-radius: 20px; border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); backdrop-filter: blur(10px); animation: fadeIn 0.8s ease-out; }
     
-    .badge { display: inline-block; padding: 6px 14px; background: #dbeafe; color: #1e40af; font-weight: 700; font-size: 13px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; border: 1px solid #bfdbfe; }
-    
-    h1 { font-size: clamp(1.6rem, 5vw, 2.3rem); font-weight: 800; background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; line-height: 1.25; }
+    .badge { display: inline-block; padding: 6px 14px; background: #dbeafe; color: #1e40af; font-weight: 700; font-size: 13px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+    h1 { font-size: clamp(1.6rem, 5vw, 2.2rem); font-weight: 800; background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; line-height: 1.2; }
     .subtitle { font-size: clamp(0.92rem, 3vw, 1.05rem); color: var(--text-muted); margin-bottom: 30px; }
-    
-    h2 { font-size: clamp(1.2rem, 4vw, 1.4rem); color: #1e293b; margin: 35px 0 20px; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; }
-    h2::before { content: ''; display: inline-block; width: 6px; height: 22px; background: var(--primary); border-radius: 4px; flex-shrink: 0; }
+    h2 { font-size: clamp(1.2rem, 4vw, 1.4rem); color: #1e293b; margin: 35px 0 20px; display: flex; align-items: center; gap: 10px; }
+    h2::before { content: ''; display: inline-block; width: 5px; height: 22px; background: var(--primary); border-radius: 4px; flex-shrink: 0; }
 
-    /* CARD GRID STYLING */
     .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-    
-    .card { position: relative; background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 22px; text-decoration: none; color: inherit; overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; opacity: 0; animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .card { position: relative; background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 22px; text-decoration: none; color: inherit; overflow: hidden; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; justify-content: space-between; opacity: 0; animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     
     .card:nth-child(1) { animation-delay: 0.10s; }
     .card:nth-child(2) { animation-delay: 0.20s; }
@@ -44,35 +38,32 @@
     .card:nth-child(4) { animation-delay: 0.40s; }
 
     .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--primary-gradient); opacity: 0; transition: opacity 0.3s ease; }
-    .card:hover, .card:active { transform: translateY(-6px); border-color: #3b82f6; box-shadow: var(--shadow-glow); }
+    .card:hover, .card:active { transform: translateY(-6px); border-color: #3b82f6; box-shadow: var(--shadow-lg); }
     .card:hover::before, .card:active::before { opacity: 1; }
     
-    /* MEDICAL ICONS STYLING */
-    .card-icon { width: 50px; height: 50px; background: #eff6ff; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 14px; transition: transform 0.3s ease, background-color 0.3s ease; border: 1.5px solid #bfdbfe; }
-    .card:hover .card-icon, .card:active .card-icon { transform: scale(1.1) rotate(-4deg); background: #dbeafe; }
+    /* RELEVANT MEDICAL ICONS STYLING */
+    .card-icon { width: 48px; height: 48px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 14px; transition: transform 0.3s ease, background-color 0.3s ease; border: 1px solid #bfdbfe; }
+    .card:hover .card-icon, .card:active .card-icon { transform: scale(1.1) rotate(-5deg); background: #dbeafe; }
     
     .card h3 { font-size: 1.15rem; color: #1e293b; margin-bottom: 8px; font-weight: 700; }
     .card p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5; }
-    
-    .card-link { font-size: 0.85rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 6px; transition: gap 0.2s ease; margin-top: auto; }
-    .card:hover .card-link, .card:active .card-link { gap: 10px; color: var(--primary-dark); }
+    .card-link { font-size: 0.85rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 6px; transition: gap 0.2s ease; }
+    .card:hover .card-link, .card:active .card-link { gap: 10px; }
 
-    /* NURSING CONSIDERATIONS LIST */
     .nursing-list { list-style: none; display: grid; gap: 14px; margin-top: 15px; }
-    .nursing-item { background: #ffffff; border: 1px solid var(--card-border); border-left: 5px solid var(--primary); border-radius: 12px; padding: 18px; display: flex; align-items: flex-start; gap: 14px; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: var(--shadow-sm); }
-    .nursing-item:hover { transform: translateX(4px); box-shadow: var(--shadow-md); }
-    .nursing-number { background: #dbeafe; color: #1e40af; font-weight: 800; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+    .nursing-item { background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--primary); border-radius: 10px; padding: 16px; display: flex; align-items: flex-start; gap: 12px; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: var(--shadow-sm); }
+    .nursing-number { background: #dbeafe; color: #1e40af; font-weight: 800; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; margin-top: 2px; }
 
-    /* FOOTER STYLING */
-    .site-footer { max-width: 950px; width: 100%; margin: 30px auto 10px; padding: 25px 20px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #e2e8f0; border-radius: 16px; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; border: 1px solid rgba(255, 255, 255, 0.08); }
+    .site-footer { max-width: 950px; width: 100%; margin: 30px auto 10px; padding: 25px 20px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #e2e8f0; border-radius: 16px; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; border: 1px solid rgba(255, 255, 255, 0.08); }
     .footer-brand { font-size: 1.05rem; font-weight: 700; letter-spacing: 0.5px; color: #ffffff; display: flex; align-items: center; gap: 8px; }
     .footer-brand span { color: #38bdf8; font-weight: 800; }
-    .footer-copy { font-size: 0.8rem; color: #64748b; margin-top: 2px; }
+    .footer-role { font-size: 0.88rem; color: #94a3b8; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+    .footer-copy { font-size: 0.8rem; color: #64748b; margin-top: 4px; }
 
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* MOBILE SPECIFIC OVERRIDES */
+    /* MOBILE OPTIMIZATIONS (< 640px) */
     @media (max-width: 640px) {
       body { padding: 12px 6px; }
       .container { padding: 22px 14px; border-radius: 14px; }
@@ -97,7 +88,7 @@
 
         <a href="pharmacokinetics.html" class="card">
           <div>
-            <div class="card-icon" title="Pharmacokinetics">🩺</div>
+            <div class="card-icon" title="Pharmacokinetics - Drug Pathway">🩺</div>
             <h3>Pharmacokinetics</h3>
             <p>ADME processes: Absorption, Distribution, Metabolism, and Excretion.</p>
           </div>
@@ -106,7 +97,7 @@
 
         <a href="pharmacodynamics.html" class="card">
           <div>
-            <div class="card-icon" title="Pharmacodynamics">🔬</div>
+            <div class="card-icon" title="Pharmacodynamics - Cellular Mechanism">🔬</div>
             <h3>Pharmacodynamics</h3>
             <p>Mechanism of action, receptor theory, dose-response, and efficacy.</p>
           </div>
@@ -115,7 +106,7 @@
 
         <a href="uhsContent1.html" class="card">
           <div>
-            <div class="card-icon" title="UHS Content">🎯</div>
+            <div class="card-icon" title="UHS Exam High-Yield Target">🎯</div>
             <h3>UHS Content #1</h3>
             <p>High-yield study points and essential practice questions for UHS exams.</p>
           </div>
@@ -124,7 +115,7 @@
 
         <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/quiz.chapter1.html" class="card">
           <div>
-            <div class="card-icon" title="Chapter 1 Quiz">🧪</div>
+            <div class="card-icon" title="Self-Assessment Quiz">🧪</div>
             <h3>Chapter 1 Quiz</h3>
             <p>Test your knowledge with 50 high-yield MCQs and instant rationale explanations.</p>
           </div>
