@@ -206,7 +206,7 @@
     .journey-step { background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(4px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 10px 8px; flex: 1 1 120px; font-weight: 800; font-size: 0.82rem; color: #ffffff; }
     .journey-arrow { color: #60a5fa; font-weight: bold; font-size: 1.1rem; }
 
-    /* ENHANCED ANIMATION STAGE 1 WITH STEP HIGHLIGHTS */
+    /* OPTION 2: STEP-CONTROLLER ANIMATION STAGE 1 */
     .animation-stage { 
       background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); 
       border: 2px solid #3b82f6; 
@@ -218,153 +218,82 @@
       color: white;
     }
 
-    .visual-dock-box {
+    .interactive-stage-viewport {
       position: relative;
-      height: 130px;
-      background: rgba(255, 255, 255, 0.04);
+      height: 140px;
+      background: rgba(255, 255, 255, 0.03);
       border-radius: 14px;
       border: 1px dashed rgba(59, 130, 246, 0.4);
-      margin: 16px 0;
+      margin: 14px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
-    .membrane-floor {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 28px;
-      background: linear-gradient(90deg, #1d4ed8, #059669, #1d4ed8);
-      border-top: 3px solid #60a5fa;
+    .stage-graphics-row {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.72rem;
+      gap: 15px;
+      margin-bottom: 8px;
+    }
+
+    .interactive-drug-node {
+      font-size: 2.2rem;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .interactive-receptor-node {
+      font-size: 2.2rem;
+      background: #1e40af;
+      padding: 8px 12px;
+      border-radius: 12px;
+      border: 2px solid #60a5fa;
+      transition: all 0.4s ease;
+    }
+
+    .stage-banner-text {
+      font-size: 0.95rem;
       font-weight: 800;
-      color: #ffffff;
-      letter-spacing: 1px;
+      color: #38bdf8;
+      background: rgba(15, 23, 42, 0.8);
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid #0284c7;
     }
 
-    .dock-receptor {
-      position: absolute;
-      bottom: 22px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 50px;
+    .stage-desc-text {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+
+    .step-control-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .step-nav-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      padding: 8px 4px;
+      border-radius: 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .step-nav-btn.active-step {
       background: #2563eb;
-      border: 2px solid #93c5fd;
-      border-bottom: none;
-      border-radius: 14px 14px 0 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      z-index: 2;
-    }
-
-    .dock-drug {
-      position: absolute;
-      top: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 1.8rem;
-      z-index: 3;
-      animation: stepByStepDock 6s infinite linear;
-    }
-
-    /* STEP-BY-STEP SEQUENCE ANIMATION */
-    @keyframes stepByStepDock {
-      /* Phase 1: RECOGNITION (0% - 25%) */
-      0% { top: 6px; transform: translateX(-50%) scale(0.8) rotate(-20deg); opacity: 0; }
-      15% { top: 12px; transform: translateX(-50%) scale(1) rotate(0deg); opacity: 1; }
-      
-      /* Phase 2: ACTIVATION (25% - 50%) */
-      25% { top: 48px; transform: translateX(-50%) scale(1) rotate(0deg); }
-      35% { top: 50px; transform: translateX(-50%) scale(1.1) rotate(15deg); filter: drop-shadow(0 0 8px #f59e0b); }
-      
-      /* Phase 3: AMPLIFICATION (50% - 75%) */
-      50% { top: 50px; transform: translateX(-50%) scale(1.2) rotate(0deg); filter: drop-shadow(0 0 14px #10b981); }
-      65% { top: 50px; transform: translateX(-50%) scale(1.2) rotate(0deg); filter: drop-shadow(0 0 20px #38bdf8); }
-      
-      /* Phase 4: RESPONSE (75% - 100%) */
-      75% { top: 50px; transform: translateX(-50%) scale(1.25) rotate(0deg); opacity: 1; }
-      90% { top: 12px; transform: translateX(-50%) scale(0.9) rotate(0deg); opacity: 1; }
-      100% { top: 6px; opacity: 0; }
-    }
-
-    .signal-burst {
-      position: absolute;
-      bottom: 4px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 12px;
-      height: 12px;
-      background: #10b981;
-      border-radius: 50%;
-      opacity: 0;
-      z-index: 1;
-      animation: burstCascade 6s infinite linear;
-    }
-
-    @keyframes burstCascade {
-      0%, 45% { width: 10px; height: 10px; opacity: 0; }
-      55% { width: 120px; height: 35px; opacity: 0.85; background: #f59e0b; }
-      75% { width: 280px; height: 60px; opacity: 0.9; background: #10b981; }
-      90% { width: 340px; height: 75px; opacity: 0; background: #3b82f6; }
-      100% { opacity: 0; }
-    }
-
-    /* CASCADE STEP HIGHLIGHT ANIMATIONS */
-    .cascade-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 16px; }
-    
-    .cascade-step { 
-      background: white; 
-      border: 1.5px solid var(--primary); 
-      border-radius: 10px; 
-      padding: 10px 4px; 
-      font-weight: 700; 
-      color: var(--primary-dark); 
-      font-size: 0.8rem; 
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-    
-    .cascade-step small { color: var(--text-muted); display: block; margin-top: 2px; font-size: 0.7rem; font-weight: normal; }
-
-    .cascade-step:nth-child(1) { animation: highlightStep1 6s infinite linear; }
-    .cascade-step:nth-child(2) { animation: highlightStep2 6s infinite linear; }
-    .cascade-step:nth-child(3) { animation: highlightStep3 6s infinite linear; }
-    .cascade-step:nth-child(4) { animation: highlightStep4 6s infinite linear; }
-
-    @keyframes highlightStep1 {
-      0%, 20% { background: #dbeafe; border-color: #2563eb; transform: scale(1.04); }
-      25%, 100% { background: white; border-color: var(--primary); transform: scale(1); }
-    }
-
-    @keyframes highlightStep2 {
-      0%, 24% { background: white; border-color: var(--primary); transform: scale(1); }
-      25%, 45% { background: #fef3c7; border-color: #f59e0b; transform: scale(1.04); }
-      50%, 100% { background: white; border-color: var(--primary); transform: scale(1); }
-    }
-
-    @keyframes highlightStep3 {
-      0%, 49% { background: white; border-color: var(--primary); transform: scale(1); }
-      50%, 70% { background: #d1fae5; border-color: #10b981; transform: scale(1.04); }
-      75%, 100% { background: white; border-color: var(--primary); transform: scale(1); }
-    }
-
-    @keyframes highlightStep4 {
-      0%, 74% { background: white; border-color: var(--primary); transform: scale(1); }
-      75%, 92% { background: #e0f2fe; border-color: #0284c7; transform: scale(1.04); }
-      95%, 100% { background: white; border-color: var(--primary); transform: scale(1); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .dock-drug, .signal-burst, .cascade-step { animation: none; }
+      color: white;
+      border-color: #60a5fa;
+      box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
     }
 
     /* STUDENT SIMULATOR */
@@ -480,9 +409,9 @@
       p, ul li { font-size: 0.9rem; line-height: 1.5; }
       .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 12px; }
       .card-box { padding: 14px 12px; }
-      .cascade-flow { grid-template-columns: repeat(2, 1fr); gap: 6px; }
       .high-yield-badge { margin-left: 0; margin-top: 4px; }
       .sim-controls { grid-template-columns: repeat(2, 1fr); }
+      .step-control-buttons { grid-template-columns: repeat(2, 1fr); gap: 8px; }
       .journey-steps { flex-direction: column; gap: 6px; }
       .journey-step { width: 100%; }
       .journey-arrow { transform: rotate(90deg); margin: 2px 0; }
@@ -542,23 +471,25 @@
     </div>
   </section>
 
-  <!-- ANIMATION STAGE 1: STEP-BY-STEP DOCKING -->
+  <!-- ANIMATION STAGE 1: INTERACTIVE STEP-TRACKER -->
   <div class="animation-stage">
-    <h3 style="color: #60a5fa; margin-bottom: 6px; justify-content: center;">Animation 1: Signal Transduction Sequence</h3>
-    <p style="font-size: 0.85rem; margin-bottom: 12px; color: #cbd5e1;">Watch how Recognition, Activation, Amplification, and Response occur in sequence:</p>
+    <h3 style="color: #60a5fa; margin-bottom: 6px; justify-content: center;">Animation 1: Interactive Signal Transduction Visualizer</h3>
+    <p style="font-size: 0.85rem; margin-bottom: 8px; color: #cbd5e1;">Tap each step below to control the molecular transduction sequence manually:</p>
     
-    <div class="visual-dock-box">
-      <div class="dock-drug" title="Drug Agonist Molecule">💊</div>
-      <div class="dock-receptor" title="Active Receptor Site">🧬</div>
-      <div class="signal-burst"></div>
-      <div class="membrane-floor">CELL MEMBRANE BARRIER</div>
+    <div class="interactive-stage-viewport">
+      <div class="stage-graphics-row">
+        <div class="interactive-drug-node" id="drugNode">💊</div>
+        <div class="interactive-receptor-node" id="receptorNode">🧬</div>
+      </div>
+      <div class="stage-banner-text" id="stageTitle">1. RECOGNITION PHASE</div>
+      <div class="stage-desc-text" id="stageDesc">Drug molecule approaches and recognizes active binding site on cell surface receptor.</div>
     </div>
 
-    <div class="cascade-flow">
-      <div class="cascade-step">1. Recognition<small>Drug binds active site</small></div>
-      <div class="cascade-step">2. Activation<small>Receptor conformation shift</small></div>
-      <div class="cascade-step">3. Amplification<small>Second messengers generated</small></div>
-      <div class="cascade-step">4. Response<small>Physiologic change</small></div>
+    <div class="step-control-buttons">
+      <button class="step-nav-btn active-step" id="btnStep1" onclick="setTransductionStep(1)">1. Recognition</button>
+      <button class="step-nav-btn" id="btnStep2" onclick="setTransductionStep(2)">2. Activation</button>
+      <button class="step-nav-btn" id="btnStep3" onclick="setTransductionStep(3)">3. Amplification</button>
+      <button class="step-nav-btn" id="btnStep4" onclick="setTransductionStep(4)">4. Response</button>
     </div>
   </div>
 
@@ -854,6 +785,51 @@
 </div>
 
 <script>
+  /* INTERACTIVE TRANSDUCTION STEP TRACKER JS */
+  function setTransductionStep(stepNum) {
+    const drugNode = document.getElementById('drugNode');
+    const receptorNode = document.getElementById('receptorNode');
+    const title = document.getElementById('stageTitle');
+    const desc = document.getElementById('stageDesc');
+
+    // Reset button states
+    for(let i=1; i<=4; i++) {
+      document.getElementById('btnStep' + i).classList.remove('active-step');
+    }
+    document.getElementById('btnStep' + stepNum).classList.add('active-step');
+
+    if (stepNum === 1) {
+      drugNode.style.transform = "translateX(-20px) scale(1)";
+      receptorNode.style.transform = "translateX(0px) rotate(0deg)";
+      receptorNode.style.background = "#1e40af";
+      title.innerText = "1. RECOGNITION PHASE";
+      title.style.color = "#38bdf8";
+      desc.innerText = "Drug molecule approaches and recognizes active binding site on cell surface receptor.";
+    } else if (stepNum === 2) {
+      drugNode.style.transform = "translateX(15px) scale(1.1)";
+      receptorNode.style.transform = "translateX(-5px) rotate(15deg)";
+      receptorNode.style.background = "#d97706";
+      title.innerText = "2. ACTIVATION PHASE";
+      title.style.color = "#fbbf24";
+      desc.innerText = "Drug docks tightly into active site, forcing structural conformational shift in receptor protein.";
+    } else if (stepNum === 3) {
+      drugNode.style.transform = "translateX(15px) scale(1.2)";
+      receptorNode.style.transform = "translateX(-5px) rotate(0deg)";
+      receptorNode.style.background = "#059669";
+      title.innerText = "3. AMPLIFICATION PHASE";
+      title.style.color = "#34d399";
+      desc.innerText = "Conformation change triggers G-protein cascades, generating thousands of cAMP second messengers.";
+    } else if (stepNum === 4) {
+      drugNode.style.transform = "translateX(0px) scale(1)";
+      receptorNode.style.transform = "translateX(0px) rotate(0deg)";
+      receptorNode.style.background = "#2563eb";
+      title.innerText = "4. PHYSIOLOGIC RESPONSE";
+      title.style.color = "#60a5fa";
+      desc.innerText = "Intracellular second messengers alter cellular function, producing clinical drug effect.";
+    }
+  }
+
+  /* RECEPTOR SIMULATOR JS */
   function runSimpleSim(mode) {
     const graphic = document.getElementById('simGraphic');
     const title = document.getElementById('simTitle');
