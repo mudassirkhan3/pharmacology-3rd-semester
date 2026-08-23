@@ -308,7 +308,22 @@
     }
     tr:nth-child(even) { background: #f8fafc; }
 
-    .graph-box { background: white; border: 2px solid var(--card-border); border-radius: 16px; padding: 18px; margin: 18px 0; text-align: center; }
+    /* FIXED GRAPH CONTAINER AND TEXT PLACEMENT */
+    .graph-box { 
+      background: white; 
+      border: 2px solid var(--card-border); 
+      border-radius: 16px; 
+      padding: 20px; 
+      margin: 18px 0; 
+      text-align: center; 
+    }
+    .graph-caption {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-top: 12px;
+      margin-bottom: 0;
+      line-height: 1.4;
+    }
 
     /* 13. BOTTOM NAVIGATION */
     .chapter-nav-bar {
@@ -417,10 +432,10 @@
   <div class="mnemonic-card">
     <h4>💡 MEMORY TRICK: "ADME" Sequence</h4>
     <p>
-      <strong>A</strong> $\rightarrow$ <strong>A</strong>bsorption (Enters circulation)<br>
-      <strong>D</strong> $\rightarrow$ <strong>D</strong>istribution (Spreads to tissues)<br>
-      <strong>M</strong> $\rightarrow$ <strong>M</strong>etabolism (Transformed by liver)<br>
-      <strong>E</strong> $\rightarrow$ <strong>E</strong>xcretion (Cleared via kidneys)
+      <strong>A</strong> &rarr; <strong>A</strong>bsorption (Enters circulation)<br>
+      <strong>D</strong> &rarr; <strong>D</strong>istribution (Spreads to tissues)<br>
+      <strong>M</strong> &rarr; <strong>M</strong>etabolism (Transformed by liver)<br>
+      <strong>E</strong> &rarr; <strong>E</strong>xcretion (Cleared via kidneys)
     </p>
   </div>
 
@@ -554,9 +569,9 @@
       <h4>💡 MEMORY TRICK: Zero-Order Drugs = "PEA"</h4>
       <p>
         Drugs eliminated at a <strong>constant rate</strong> (due to saturated enzymes):<br>
-        <strong>P</strong> $\rightarrow$ <strong>P</strong>henytoin<br>
-        <strong>E</strong> $\rightarrow$ <strong>E</strong>thanol (Alcohol)<br>
-        <strong>A</strong> $\rightarrow$ <strong>A</strong>spirin (at toxic/high doses)
+        <strong>P</strong> &rarr; <strong>P</strong>henytoin<br>
+        <strong>E</strong> &rarr; <strong>E</strong>thanol (Alcohol)<br>
+        <strong>A</strong> &rarr; <strong>A</strong>spirin (at toxic/high doses)
       </p>
     </div>
 
@@ -587,28 +602,36 @@
     <h3>Visual Comparison of Metabolism Kinetics</h3>
     <p>The graphs below illustrate the distinct elimination curves for First-Order versus Zero-Order kinetics over time.</p>
 
+    <!-- CLEANED & PROPERLY SPACED SVG GRAPHS -->
     <div class="grid-2">
       <div class="graph-box">
         <h3>First-Order Kinetics Curve</h3>
-        <svg viewBox="0 0 300 180" width="100%" height="auto">
-          <line x1="30" y1="150" x2="270" y2="150" stroke="#475569" stroke-width="2" />
-          <line x1="30" y1="20" x2="30" y2="150" stroke="#475569" stroke-width="2" />
-          <text x="150" y="172" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle">Time</text>
-          <text x="15" y="85" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle" transform="rotate(-90 15 85)">Conc</text>
-          <path d="M 30 30 Q 100 130 260 145" fill="none" stroke="#3b82f6" stroke-width="3" />
+        <svg viewBox="0 0 300 170" width="100%" height="auto">
+          <!-- Axes -->
+          <line x1="45" y1="130" x2="275" y2="130" stroke="#475569" stroke-width="2" />
+          <line x1="45" y1="20" x2="45" y2="130" stroke="#475569" stroke-width="2" />
+          <!-- Labels -->
+          <text x="160" y="152" font-size="12" fill="#475569" font-weight="bold" text-anchor="middle">Time (t)</text>
+          <text x="20" y="75" font-size="12" fill="#475569" font-weight="bold" text-anchor="middle" transform="rotate(-90 20 75)">Conc</text>
+          <!-- Exponential Curve -->
+          <path d="M 45 25 Q 110 115 270 125" fill="none" stroke="#2563eb" stroke-width="3.5" />
         </svg>
-        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px;">Curved drop: Elimination rate decreases proportionally as concentration falls.</p>
+        <p class="graph-caption"><strong>Curved drop:</strong> Elimination rate decreases proportionally as drug concentration falls.</p>
       </div>
+
       <div class="graph-box">
         <h3>Zero-Order Kinetics Curve</h3>
-        <svg viewBox="0 0 300 180" width="100%" height="auto">
-          <line x1="30" y1="150" x2="270" y2="150" stroke="#475569" stroke-width="2" />
-          <line x1="30" y1="20" x2="30" y2="150" stroke="#475569" stroke-width="2" />
-          <text x="150" y="172" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle">Time</text>
-          <text x="15" y="85" font-size="11" fill="#475569" font-weight="bold" text-anchor="middle" transform="rotate(-90 15 85)">Conc</text>
-          <line x1="30" y1="30" x2="240" y2="150" stroke="#ef4444" stroke-width="3" />
+        <svg viewBox="0 0 300 170" width="100%" height="auto">
+          <!-- Axes -->
+          <line x1="45" y1="130" x2="275" y2="130" stroke="#475569" stroke-width="2" />
+          <line x1="45" y1="20" x2="45" y2="130" stroke="#475569" stroke-width="2" />
+          <!-- Labels -->
+          <text x="160" y="152" font-size="12" fill="#475569" font-weight="bold" text-anchor="middle">Time (t)</text>
+          <text x="20" y="75" font-size="12" fill="#475569" font-weight="bold" text-anchor="middle" transform="rotate(-90 20 75)">Conc</text>
+          <!-- Straight Line -->
+          <line x1="45" y1="25" x2="250" y2="125" stroke="#dc2626" stroke-width="3.5" />
         </svg>
-        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px;">Straight line drop: Fixed amount removed per unit time due to enzyme saturation.</p>
+        <p class="graph-caption"><strong>Straight line drop:</strong> Fixed amount removed per unit time due to enzyme saturation.</p>
       </div>
     </div>
   </section>
@@ -640,17 +663,17 @@
           </div>
         </div>
 
-        <p><strong>Half-Life (t1/2):</strong> The time required for the concentration of a drug in the body to decrease by exactly 50 percent.</p>
+        <p><strong>Half-Life (t½):</strong> The time required for the concentration of a drug in the body to decrease by exactly 50 percent.</p>
         
         <div class="formula-box">
-          <span>Half-Life (t1/2) = </span>
+          <span>Half-Life (t½) = </span>
           <div class="fraction">
             <span class="numerator">0.693 × Vd</span>
             <span class="denominator">Clearance (CL)</span>
           </div>
         </div>
 
-        <p><strong>Clinical Rule of Thumb:</strong> It takes approximately 4 to 5 half-lives for a drug to be completely eliminated or to reach a stable steady-state concentration with regular dosing.</p>
+        <p><strong>Clinical Rule of Thumb:</strong> It takes approximately 4 to 5 half-lives for a drug to be completely eliminated or to reach a stable steady-state concentration (Css) with regular dosing.</p>
       </div>
     </div>
   </section>
@@ -711,7 +734,7 @@
             <td>Constant amount per unit time (e.g. 10mg/hr)</td>
           </tr>
           <tr>
-            <td><strong>Half-Life ($t_{1/2}$)</strong></td>
+            <td><strong>Half-Life (t½)</strong></td>
             <td>Constant half-life</td>
             <td>Variable (increases with dose)</td>
           </tr>
