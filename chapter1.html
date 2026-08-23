@@ -62,7 +62,7 @@
     .mobile-popup-overlay {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
-      background: rgba(15, 23, 42, 0.7);
+      background: rgba(15, 23, 42, 0.75);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
       z-index: 9999;
@@ -74,7 +74,7 @@
     .mobile-popup-card {
       background: #ffffff;
       width: 100%;
-      max-width: 380px;
+      max-width: 400px;
       border-radius: 20px;
       padding: 24px;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -94,6 +94,17 @@
     }
     .mobile-popup-card p {
       font-size: 0.88rem; color: #475569; margin-bottom: 16px; line-height: 1.5;
+    }
+    .subchapters-tag {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e40af;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+      text-align: left;
     }
     .mobile-popup-steps {
       background: #f8fafc;
@@ -209,19 +220,28 @@
     <div class="footer-copy">&copy; 2026 Pharmacology Study Portal. All rights reserved.</div>
   </footer>
 
-  <!-- MOBILE DESKTOP-MODE ADVICE POPUP MODAL -->
+  <!-- MOBILE POPUP MODAL -->
   <div id="mobileDesktopModal" class="mobile-popup-overlay">
     <div class="mobile-popup-card">
-      <div class="mobile-popup-icon">📱</div>
-      <h3>Better Study Experience!</h3>
-      <p>For the clearest view of drug diagrams, tables, and interactive modules on mobile, please enable <b>Desktop Site</b> mode.</p>
+      <div class="mobile-popup-icon">📲</div>
+      <h3>Switch to Desktop Site</h3>
+      <p>This chapter contains <b>3 detailed sub-chapters</b> (Pharmacokinetics, Pharmacodynamics, and UHS Content #1). Switch to desktop view for full tables & diagrams!</p>
       
+      <div class="subchapters-tag">
+        📖 <b>3 Sub-Chapters Included:</b>
+        <ul style="margin-top: 4px; margin-left: 18px; font-weight: 500;">
+          <li>Pharmacokinetics</li>
+          <li>Pharmacodynamics</li>
+          <li>UHS Content #1</li>
+        </ul>
+      </div>
+
       <div class="mobile-popup-steps">
         <div class="mobile-popup-step-item">
-          <span class="step-num">1</span> Click the <b>Three Dots (⋮)</b> in top right.
+          <span class="step-num">1</span> Click the <b>Three Dots (⋮)</b> in your browser.
         </div>
         <div class="mobile-popup-step-item">
-          <span class="step-num">2</span> Tap <b>"Desktop site"</b> checkbox.
+          <span class="step-num">2</span> Check the box for <b>"Desktop site"</b>.
         </div>
       </div>
 
@@ -236,7 +256,6 @@
       const modal = document.getElementById("mobileDesktopModal");
       const closeBtn = document.getElementById("closeMobilePopupBtn");
 
-      // Display pop-up on mobile device if not already dismissed in this session
       if (isMobile && !sessionStorage.getItem("desktopModeNoticeSeen")) {
         modal.style.display = "flex";
       }
