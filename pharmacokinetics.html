@@ -12,25 +12,25 @@
       --accent: #3b82f6;
       --scrub-green: #059669;
       --scrub-green-light: #d1fae5;
-      --card-bg: rgba(255, 255, 255, 0.95);
-      --card-border: rgba(191, 219, 254, 0.8);
-      --text-main: #1e3a8a;
-      --text-muted: #475569;
-      --shadow-glow: 0 20px 40px -15px rgba(59, 130, 246, 0.2);
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --card-border: #cbd5e1;
+      --text-main: #0f172a;
+      --text-muted: #334155;
+      --shadow-glow: 0 10px 30px -10px rgba(37, 99, 235, 0.15);
       --radius: 20px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.8; padding: 20px 12px 60px; min-height: 100vh; overflow-x: hidden; }
+    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.75; padding: 16px 8px 80px; min-height: 100vh; overflow-x: hidden; }
 
-    .container { max-width: 950px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(16px); padding: 40px 28px; border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: var(--shadow-glow); }
+    .container { max-width: 950px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(16px); padding: 32px 20px; border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: var(--shadow-glow); }
 
     /* TEXT HIGHLIGHTING */
     mark {
       background: #fef08a;
-      color: #854d0e;
-      padding: 1px 5px;
+      color: #713f12;
+      padding: 2px 6px;
       border-radius: 4px;
       font-weight: 700;
     }
@@ -39,9 +39,9 @@
     .hero-header {
       background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
       color: white;
-      padding: 28px 22px;
+      padding: 24px 18px;
       border-radius: 18px;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
     }
 
@@ -67,6 +67,7 @@
       font-size: 0.85rem;
       transition: all 0.2s ease; 
       backdrop-filter: blur(4px);
+      min-height: 40px;
     }
     .back-btn:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-1px); }
 
@@ -83,15 +84,15 @@
     }
 
     .hero-header h1 { 
-      font-size: 2.1rem; 
+      font-size: 1.8rem; 
       font-weight: 900; 
       color: #ffffff;
       margin-bottom: 6px; 
-      line-height: 1.2; 
+      line-height: 1.25; 
     }
 
     .hero-header .subtitle {
-      font-size: 0.98rem;
+      font-size: 0.95rem;
       opacity: 0.95;
       font-weight: 500;
       color: #e0f2fe;
@@ -114,19 +115,19 @@
     /* 2. QUICK ORIENTATION CHIPS */
     .quick-nav-wrapper {
       position: sticky;
-      top: 10px;
+      top: 8px;
       z-index: 100;
-      margin-bottom: 25px;
-      background: rgba(255, 255, 255, 0.92);
+      margin-bottom: 20px;
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(12px);
-      padding: 8px 12px;
+      padding: 10px 12px;
       border-radius: 14px;
-      border: 1px solid var(--card-border);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
     }
 
     .quick-nav-title {
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       font-weight: 800;
       color: var(--primary-dark);
       text-transform: uppercase;
@@ -140,17 +141,17 @@
       overflow-x: auto;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
-      padding-bottom: 2px;
+      padding-bottom: 4px;
     }
     .quick-nav-chips::-webkit-scrollbar { display: none; }
 
     .nav-chip {
       background: #eff6ff;
       color: var(--primary-dark);
-      border: 1px solid #bfdbfe;
-      padding: 6px 14px;
+      border: 1px solid #93c5fd;
+      padding: 8px 16px;
       border-radius: 20px;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 700;
       text-decoration: none;
       white-space: nowrap;
@@ -158,6 +159,7 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
+      min-height: 38px;
     }
     .nav-chip:hover, .nav-chip:active {
       background: var(--primary);
@@ -172,7 +174,7 @@
       gap: 4px;
       padding: 3px 8px;
       background: #fef3c7;
-      color: #92400e;
+      color: #78350f;
       font-weight: 800;
       font-size: 0.72rem;
       border-radius: 6px;
@@ -184,57 +186,57 @@
 
     .badge-important {
       background: #fee2e2;
-      color: #991b1b;
+      color: #7f1d1d;
       border-color: #fca5a5;
     }
 
     .badge-green {
       background: var(--scrub-green-light);
-      color: #065f46;
+      color: #064e3b;
       border-color: #a7f3d0;
     }
 
     /* TYPOGRAPHY */
-    h2 { font-size: 1.35rem; margin: 35px 0 18px; color: var(--text-main); display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #bfdbfe; padding-bottom: 8px; flex-wrap: wrap; }
+    h2 { font-size: 1.3rem; margin: 32px 0 16px; color: var(--primary-dark); display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #bfdbfe; padding-bottom: 8px; flex-wrap: wrap; }
     h2::before { content: ''; display: inline-block; width: 6px; height: 22px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; flex-shrink: 0; }
 
-    h3 { font-size: 1.1rem; color: var(--primary-dark); margin: 18px 0 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+    h3 { font-size: 1.05rem; color: #1e293b; margin: 16px 0 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
 
-    p { font-size: 0.98rem; color: var(--text-muted); margin-bottom: 16px; }
+    p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 14px; font-weight: 450; }
 
     /* LAYOUT GRIDS */
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin: 20px 0; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin: 20px 0; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 16px 0; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 16px 0; }
 
-    .card-box { background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 22px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); transition: all 0.3s ease; }
-    .card-box:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: 0 12px 28px -5px rgba(37, 99, 235, 0.12); }
+    .card-box { background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 16px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: all 0.3s ease; }
+    .card-box:hover { border-color: var(--primary); box-shadow: 0 8px 20px rgba(37, 99, 235, 0.1); }
 
     /* 3. RELEVANT MOBILE-ENABLED ADME ANIMATION */
     .adme-hero-container {
       background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
       border-radius: 20px;
-      padding: 24px 18px;
-      margin: 24px 0;
+      padding: 20px 14px;
+      margin: 20px 0;
       color: white;
-      box-shadow: 0 15px 30px rgba(15, 23, 42, 0.25);
+      box-shadow: 0 12px 25px rgba(15, 23, 42, 0.2);
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     .adme-hero-title {
       text-align: center;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
     .adme-hero-title h3 {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 800;
       color: #38bdf8;
       margin: 0;
       justify-content: center;
     }
     .adme-hero-title p {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: #94a3b8;
       margin: 4px 0 0 0;
     }
@@ -243,7 +245,7 @@
     .pill-track-wrapper {
       position: relative;
       height: 30px;
-      margin: 10px 10px 15px;
+      margin: 8px 8px 12px;
     }
     .pill-track-line {
       position: absolute;
@@ -275,57 +277,70 @@
       position: relative;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
+      gap: 8px;
     }
 
     .adme-step-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 14px;
-      padding: 12px 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 10px 4px;
       text-align: center;
       text-decoration: none;
       color: white;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.3s ease;
       position: relative;
       z-index: 3;
+      min-height: 80px;
     }
     .adme-step-card:hover, .adme-step-card:active {
-      background: rgba(37, 99, 235, 0.3);
+      background: rgba(37, 99, 235, 0.4);
       border-color: #60a5fa;
-      transform: translateY(-3px);
     }
 
     .adme-icon-wrapper {
-      width: 44px; height: 44px;
-      background: rgba(255, 255, 255, 0.1);
+      width: 38px; height: 38px;
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 22px; margin: 0 auto 8px;
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      font-size: 18px; margin: 0 auto 6px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
     .adme-step-card h4 {
-      font-size: 0.88rem; font-weight: 800; color: #f8fafc; margin-bottom: 2px;
+      font-size: 0.82rem; font-weight: 800; color: #f8fafc; margin-bottom: 2px;
     }
     .adme-step-card span {
-      font-size: 0.72rem; color: #cbd5e1; display: block; font-weight: 500;
+      font-size: 0.68rem; color: #cbd5e1; display: block; font-weight: 500;
     }
 
     /* MNEMONIC CARDS STYLING */
     .mnemonic-card { 
-      background: linear-gradient(135deg, #ecfdf5 0%, #eff6ff 100%); 
+      background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 100%); 
       border-left: 6px solid var(--scrub-green); 
       border-top: 1px solid #a7f3d0;
       border-right: 1px solid #a7f3d0;
       border-bottom: 1px solid #a7f3d0;
-      padding: 18px 20px; 
+      padding: 16px 18px; 
       border-radius: 14px; 
-      margin: 20px 0; 
-      box-shadow: 0 4px 15px rgba(5, 150, 105, 0.08); 
+      margin: 18px 0; 
+      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.06); 
     }
-    .mnemonic-card h4 { color: #065f46; font-size: 1.02rem; margin-bottom: 6px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
-    .mnemonic-card p { color: #064e3b; margin-bottom: 0; font-weight: 600; font-size: 0.94rem; }
+    .mnemonic-card h4 { color: #065f46; font-size: 0.98rem; margin-bottom: 6px; font-weight: 800; display: flex; align-items: center; gap: 6px; }
+    .mnemonic-card p { color: #064e3b; margin-bottom: 0; font-weight: 600; font-size: 0.9rem; line-height: 1.6; }
+
+    /* EXAMPLE CALLOUT CARDS */
+    .example-box {
+      background: #fffbebf5;
+      border: 1px solid #fde68a;
+      border-left: 4px solid #d97706;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin: 10px 0 14px;
+      font-size: 0.88rem;
+      color: #78350f;
+    }
+    .example-box strong { font-weight: 800; color: #92400e; }
 
     /* QUICK REVISION CARDS */
     .revision-card {
@@ -337,7 +352,7 @@
       margin: 16px 0;
     }
     .revision-card h5 {
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 800;
       color: var(--primary-dark);
       text-transform: uppercase;
@@ -345,12 +360,12 @@
       margin-bottom: 6px;
     }
 
-    ul { list-style-type: none; padding-left: 0; margin-bottom: 16px; }
-    ul li { position: relative; padding-left: 22px; margin-bottom: 8px; color: var(--text-muted); font-size: 0.95rem; }
-    ul li::before { content: '▪'; position: absolute; left: 6px; color: var(--primary); font-weight: bold; font-size: 1.1rem; }
+    ul { list-style-type: none; padding-left: 0; margin-bottom: 14px; }
+    ul li { position: relative; padding-left: 20px; margin-bottom: 8px; color: var(--text-muted); font-size: 0.92rem; font-weight: 450; }
+    ul li::before { content: '▪'; position: absolute; left: 4px; color: var(--primary); font-weight: bold; font-size: 1.1rem; }
 
     /* MATHEMATICAL FORMULA DISPLAY */
-    .formula-box { background: #f0f9ff; border: 1.5px dashed var(--primary); padding: 12px 14px; border-radius: 12px; margin: 12px 0; color: var(--primary-dark); font-weight: bold; font-size: 0.9rem; overflow-x: auto; display: flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; }
+    .formula-box { background: #f0f9ff; border: 1.5px dashed var(--primary); padding: 12px 14px; border-radius: 12px; margin: 12px 0; color: var(--primary-dark); font-weight: bold; font-size: 0.88rem; overflow-x: auto; display: flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; }
     .fraction { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; padding: 0 4px; }
     .numerator { border-bottom: 2px solid var(--primary-dark); padding-bottom: 2px; }
     .denominator { padding-top: 2px; }
@@ -359,17 +374,18 @@
     .table-container {
       width: 100%;
       overflow-x: auto;
-      margin: 20px 0;
+      margin: 18px 0;
       border-radius: 12px;
       border: 1px solid var(--card-border);
       box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      -webkit-overflow-scrolling: touch;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       text-align: left;
-      min-width: 500px;
+      min-width: 520px;
     }
     th {
       background: #f1f5f9;
@@ -380,7 +396,7 @@
     }
     td {
       padding: 12px 14px;
-      border-bottom: 1px solid #f1f5f9;
+      border-bottom: 1px solid #e2e8f0;
       color: var(--text-muted);
     }
     tr:nth-child(even) { background: #f8fafc; }
@@ -388,30 +404,30 @@
     /* ABSOLUTELY NO OVERLAP GRAPH CONTAINER */
     .graph-card { 
       background: white; 
-      border: 2px solid var(--card-border); 
+      border: 1.5px solid #cbd5e1; 
       border-radius: 16px; 
-      padding: 20px; 
-      margin: 18px 0; 
+      padding: 18px; 
+      margin: 16px 0; 
       display: flex;
       flex-direction: column;
       align-items: center;
     }
     .graph-card h3 {
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: var(--primary-dark);
-      margin: 0 0 14px 0;
+      margin: 0 0 12px 0;
       text-align: center;
       width: 100%;
     }
     .graph-svg-wrapper {
       width: 100%;
-      max-width: 280px;
+      max-width: 260px;
       margin: 0 auto;
     }
     .graph-caption-text {
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
-      margin-top: 14px;
+      margin-top: 12px;
       margin-bottom: 0;
       text-align: center;
       line-height: 1.5;
@@ -423,7 +439,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 12px;
-      margin-top: 40px;
+      margin-top: 36px;
       padding-top: 20px;
       border-top: 2px solid #bfdbfe;
       flex-wrap: wrap;
@@ -438,40 +454,67 @@
       text-decoration: none;
       border-radius: 12px;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       transition: all 0.2s ease;
       box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+      min-height: 44px;
     }
     .nav-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
 
     footer { margin-top: 25px; text-align: center; padding-top: 18px; border-top: 1px solid var(--card-border); }
-    .author-credit { font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px; color: var(--text-main); display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .author-credit { font-weight: 700; font-size: 0.92rem; letter-spacing: 0.5px; color: var(--text-main); display: flex; align-items: center; justify-content: center; gap: 6px; }
+
+    /* MOBILE STICKY BOTTOM BAR FOR FAST NAVIGATION */
+    .mobile-bottom-bar {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid #cbd5e1;
+      padding: 8px 12px;
+      z-index: 999;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
+    }
+    .mobile-bottom-bar a {
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 800;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
 
     /* MOBILE-FIRST RESPONSIVE OPTIMIZATIONS (< 640px) */
     @media (max-width: 640px) {
-      body { padding: 8px 4px 40px; }
+      body { padding: 6px 4px 70px; }
       .container { padding: 18px 10px; border-radius: 14px; }
-      .hero-header { padding: 18px 12px; }
+      .hero-header { padding: 16px 12px; }
       .hero-header h1 { font-size: 1.45rem; }
       .hero-header .subtitle { font-size: 0.85rem; }
-      h2 { font-size: 1.1rem; margin: 24px 0 12px; }
-      h3 { font-size: 0.95rem; }
-      p, ul li { font-size: 0.88rem; line-height: 1.65; }
+      h2 { font-size: 1.12rem; margin: 24px 0 12px; }
+      h3 { font-size: 0.92rem; }
+      p, ul li { font-size: 0.88rem; line-height: 1.6; }
       
       .adme-pipeline-track {
         grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+        gap: 8px;
       }
-      .adme-hero-container { padding: 16px 10px; }
-      .adme-step-card h4 { font-size: 0.82rem; }
-      .adme-step-card span { font-size: 0.68rem; }
+      .adme-hero-container { padding: 14px 8px; }
+      .adme-step-card h4 { font-size: 0.78rem; }
+      .adme-step-card span { font-size: 0.65rem; }
 
       .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 12px; }
-      .card-box { padding: 16px 12px; }
-      .mnemonic-card { padding: 14px 12px; }
+      .card-box { padding: 14px 12px; }
+      .mnemonic-card { padding: 12px 10px; }
       .formula-box { justify-content: flex-start; }
       .chapter-nav-bar { flex-direction: column; align-items: stretch; }
       .nav-btn { justify-content: center; width: 100%; }
+      .mobile-bottom-bar { display: flex; }
     }
   </style>
 </head>
@@ -507,7 +550,7 @@
     </div>
   </nav>
 
-  <p><mark>Pharmacokinetics</mark> is the quantitative study of <strong>what the body does to a drug</strong> from the instant of administration to complete elimination. Think of an oral medication as a microscopic traveler passing through biological checkpoints governed by four core milestones: <mark>Absorption</mark>, <mark>Distribution</mark>, <mark>Metabolism</mark>, and <mark>Excretion</mark> (<strong>ADME</strong>).</p>
+  <p><mark>Pharmacokinetics</mark> is the quantitative study of <strong>what the body does to a drug</strong> from the moment it is taken until it is fully removed. Imagine swallowing a pill: it acts like a microscopic traveler passing through biological checkpoints controlled by four major steps: <mark>Absorption</mark>, <mark>Distribution</mark>, <mark>Metabolism</mark>, and <mark>Excretion</mark> (<strong>ADME</strong>).</p>
 
   <!-- 3. ANIMATED ADME JOURNEY WITH RELEVANT MEDICAL SYMBOLS -->
   <div id="adme-journey" class="adme-hero-container">
@@ -552,38 +595,43 @@
     <h4>💡 MEMORY TRICK: "ADME" Sequence</h4>
     <p>
       <strong>A</strong> &rarr; <mark>Absorption</mark> (Entry into systemic circulation)<br>
-      <strong>D</strong> &rarr; <mark>Distribution</mark> (Reversible movement into tissues)<br>
-      <strong>M</strong> &rarr; <mark>Metabolism</mark> (Enzymatic transformation by liver)<br>
-      <strong>E</strong> &rarr; <mark>Excretion</mark> (Irreversible clearance via kidneys)
+      <strong>D</strong> &rarr; <mark>Distribution</mark> (Reversible movement into target tissues)<br>
+      <strong>M</strong> &rarr; <mark>Metabolism</mark> (Enzymatic transformation, mostly in liver)<br>
+      <strong>E</strong> &rarr; <mark>Excretion</mark> (Irreversible removal via kidneys)
     </p>
   </div>
 
   <!-- SECTION 1: ABSORPTION -->
   <section id="absorption">
     <h2>1. Absorption, GI Mechanisms &amp; Bioavailability</h2>
-    <p><mark>Absorption</mark> is defined as the transfer of a drug from its administration site into the systemic bloodstream. When given <mark>Intravenously (IV)</mark>, absorption is completely bypassed with <strong>100% immediate efficiency</strong>.</p>
+    <p><mark>Absorption</mark> is the movement of a drug from its site of administration into the bloodstream. Think of a sponge absorbing water: the faster and more complete the absorption, the quicker the medicine works. When given <mark>Intravenously (IV)</mark>, absorption is completely bypassed because the drug goes directly into the vein with <strong>100% immediate bioavailability</strong>.</p>
 
     <div class="grid-2">
       <div class="card-box">
         <h3>🧬 Mechanisms of GI Absorption <span class="badge-highlight">⭐ High-Yield Focus</span></h3>
-        <p>When swallowed, drug molecules must cross intestinal epithelial membranes via distinct mechanisms:</p>
+        <p>When you swallow a tablet, drug molecules must cross the wall of the stomach or intestine to reach the blood:</p>
         <ul>
-          <li><strong>Transcellular Passive Diffusion:</strong> Most common. <mark>Lipophilic (fat-soluble)</mark> drugs dissolve directly into and cross cell membranes down concentration gradients.</li>
-          <li><strong>Paracellular Transport:</strong> Small polar water-soluble molecules pass through tight junction gaps between adjacent intestinal enterocytes.</li>
-          <li><strong>Carrier-Mediated Transport:</strong> Transporter proteins actively shuttle nutrient-like drugs across membranes.</li>
-          <li><strong>Endocytosis / Pinocytosis:</strong> Vesicles engulf very large macromolecular structures.</li>
+          <li><strong>Transcellular Passive Diffusion:</strong> The most common route. <mark>Lipophilic (fat-soluble)</mark> drugs glide directly through cell membrane lipids without needing energy.</li>
+          <li><strong>Paracellular Transport:</strong> Small, water-soluble molecules slip through microscopic gaps (tight junctions) between adjacent cells.</li>
+          <li><strong>Carrier-Mediated Transport:</strong> Special membrane carrier proteins actively grab drug molecules and carry them across.</li>
+          <li><strong>Endocytosis / Pinocytosis:</strong> Cells engulf very large drug complexes inside small fluid vesicles.</li>
         </ul>
+        <div class="example-box">
+          <strong>💡 Real-World Example:</strong> An oral Paracetamol tablet dissolves in gut fluids, and its lipid-soluble molecules cross intestinal membranes via passive diffusion to enter the bloodstream.
+        </div>
       </div>
+
       <div class="card-box">
-        <h3>📈 Factors Affecting Absorption  <span class="badge-highlight badge-green">⭐ Key Calculation</span></h3>
-        <p><strong>Determinants of Absorption Speed:</strong></p>
+        <h3>📈 Factors Affecting Absorption <span class="badge-highlight badge-green">⭐ Key Calculation</span></h3>
+        <p><strong>What Speeds Up or Slows Down Absorption?</strong></p>
         <ul>
-          <li><strong>Surface Area:</strong> The small intestine's massive villi surface absorbs drugs vastly faster than the stomach.</li>
-          <li><strong>Blood Flow:</strong> Rich perfusion maintains concentration gradients.</li>
-          <li><strong>pH &amp; Ionization:</strong> Weak acids absorb best in acidic stomach pH; weak bases prefer alkaline small intestine.</li>
+          <li><strong>Surface Area:</strong> The small intestine has millions of tiny villi creating a surface area as huge as a tennis court, making it the primary site for drug absorption compared to the stomach.</li>
+          <li><strong>Blood Flow:</strong> Rich intestinal blood flow rapidly sweeps absorbed drug away, maintaining a steep concentration gradient for continuous entry.</li>
+          <li><strong>pH &amp; Ionization:</strong> Non-ionized (un-charged) drugs are fat-soluble and absorb easily. Weakly acidic drugs (like Aspirin) stay un-ionized and absorb well in the acidic stomach.</li>
         </ul>
+
         <p style="margin-top: 15px;"><strong>Bioavailability Concept (F):</strong></p>
-        <p><mark>Bioavailability (F)</mark> is the percentage fraction of administered drug reaching systemic circulation unchanged.</p>
+        <p><mark>Bioavailability (F)</mark> is the exact fraction or percentage of the administered drug that reaches the main bloodstream active and unchanged.</p>
 
         <div class="formula-box">
           <span>Bioavailability (F) = </span>
@@ -596,11 +644,14 @@
 
         <p><strong>Factors Lowering Bioavailability:</strong></p>
         <ul>
-          <li><mark>First-Pass Hepatic Metabolism:</mark> Portal vein blood carries oral drugs to the liver first, where hepatic enzymes metabolize a large percentage before blood systemic entry.</li>
-          <li><strong>Chemical Instability:</strong> Gastric acid destroys sensitive drugs (e.g., insulin).</li>
+          <li><mark>First-Pass Hepatic Metabolism:</mark> Oral drugs travel straight through the portal vein to the liver first, where liver enzymes break down a portion of the drug before it ever reaches the rest of the body.</li>
+          <li><strong>Chemical Instability:</strong> Stomach acids destroy sensitive drugs (e.g., oral Insulin).</li>
           <li><strong>Solubility Limitations:</strong> Extremely hydrophobic or hydrophilic states restrict transport.</li>
           <li><strong>Chelation &amp; Food Interactions:</strong> Binding to calcium/food prevents absorption.</li>
         </ul>
+        <div class="example-box">
+          <strong>💡 Real-World Example:</strong> Nitroglycerin suffers over 90% first-pass destruction if swallowed. That is why it is given <em>sublingually</em> (under the tongue) so it absorbs directly into blood vessels, bypassing the liver!
+        </div>
       </div>
     </div>
 
@@ -609,7 +660,7 @@
       <h5>⚡ QUICK REMEMBER: Bioavailability &amp; First-Pass Effect</h5>
       <p style="margin-bottom:0;">
         • IV Route = <mark>100% Bioavailability</mark> (No first-pass loss).<br>
-        • Oral Route = Subject to <mark>First-Pass Hepatic Metabolism</mark> in liver.
+        • Oral Route = Subject to <mark>First-Pass Hepatic Metabolism</mark> in the liver.
       </p>
     </div>
   </section>
@@ -617,22 +668,26 @@
   <!-- SECTION 2: DISTRIBUTION -->
   <section id="distribution">
     <h2>2. Distribution &amp; Volume of Distribution</h2>
-    <p><mark>Distribution</mark> is the reversible movement of a drug between blood circulation, interstitial fluid, and body tissue compartments.</p>
+    <p><mark>Distribution</mark> is the delivery of a drug from the bloodstream into tissues and fluid compartments throughout the body. Imagine a delivery train dropping cargo off at different stations; highly blood-perfused organs get their cargo first!</p>
 
     <div class="grid-2">
       <div class="card-box">
         <h3>🌐 Key Factors Affecting Distribution</h3>
         <ul>
-          <li><strong>Perfusion / Blood Flow:</strong> Highly perfused organs (brain, liver, heart) receive drug rapidly; bone and fat take longer.</li>
-          <li><strong>Capillary Permeability:</strong> Brain microvessels have tight junctions creating the <mark>Blood-Brain Barrier (BBB)</mark>, preventing hydrophilic drug entry.</li>
-          <li><mark>Plasma Protein Binding:</mark> Bound drugs cling to <mark>Albumin</mark>. Only <strong>free (unbound) drug</strong> is pharmacologically active!</li>
-          <li><strong>Tissue Reservoir Binding:</strong> Drugs like tetracycline bind calcium in bone tissue.</li>
+          <li><strong>Perfusion / Blood Flow:</strong> Organs with high blood supply (brain, heart, liver, kidneys) receive drugs in seconds. Less perfused organs (fat, bone, skin) fill up slowly.</li>
+          <li><strong>Capillary Permeability:</strong> Brain capillaries have extra tight junctions called the <mark>Blood-Brain Barrier (BBB)</mark>. Only highly lipid-soluble drugs can cross into brain tissue.</li>
+          <li><mark>Plasma Protein Binding:</mark> Many drugs bind to <mark>Albumin</mark> in blood. Bound drug molecules act like passengers stuck on a bus—they cannot leave blood vessels. Only <strong>free (unbound) drug</strong> is active and able to produce therapeutic effects!</li>
+          <li><strong>Tissue Reservoir Binding:</strong> Some drugs accumulate in specific tissue storage sites.</li>
           <li><strong>Lipophilicity:</strong> Highly fat-soluble drugs deposit in adipose tissue.</li>
         </ul>
+        <div class="example-box">
+          <strong>💡 Real-World Example:</strong> Warfarin is 99% bound to plasma albumin. If another drug knocks Warfarin off albumin, free Warfarin spikes, triggering severe bleeding risk!
+        </div>
       </div>
+
       <div class="card-box">
         <h3>📦 Volume of Distribution (Vd) <span class="badge-highlight badge-green">⭐ Key Calculation</span></h3>
-        <p><mark>Volume of Distribution (Vd)</mark> is a theoretical fluid volume required to contain the total drug amount at plasma concentration levels.</p>
+        <p><mark>Volume of Distribution (Vd)</mark> is a calculated theoretical volume that reflects how widely a drug spreads out into body tissues versus staying in blood plasma.</p>
 
         <div class="formula-box">
           <span>Vd = </span>
@@ -644,9 +699,12 @@
 
         <p><strong>Clinical Interpretation:</strong></p>
         <ul>
-          <li><strong>Low Vd (e.g., Heparin, ~3-5L):</strong> Confined to vascular plasma due to high plasma protein binding.</li>
-          <li><strong>High Vd (e.g., Digoxin, >500L):</strong> Extensively distributes outside blood into deep tissue reservoirs.</li>
+          <li><strong>Low Vd (e.g., Heparin, ~3-5L):</strong> The drug stays confined inside the blood vessels because it binds strongly to plasma proteins or is very large.</li>
+          <li><strong>High Vd (e.g., Digoxin, >500L):</strong> The drug leaves the blood and spreads extensively into deep body tissues, muscle, or fat reservoirs.</li>
         </ul>
+        <div class="example-box">
+          <strong>💡 Simple Analogy:</strong> A drop of red dye in a small cup of water stays dark red (Low Vd). That same drop dissolved in a huge swimming pool becomes pale and spread out (High Vd).
+        </div>
       </div>
     </div>
   </section>
@@ -654,24 +712,35 @@
   <!-- SECTION 3: METABOLISM -->
   <section id="metabolism">
     <h2>3. Metabolism (Biotransformation) &amp; The CYP450 System</h2>
-    <p><mark>Metabolism (Biotransformation)</mark> is the enzymatic alteration converting lipophilic compounds into hydrophilic metabolites easily excreted by kidneys. The <strong>liver</strong> is the chief organ.</p>
+    <p><mark>Metabolism (Biotransformation)</mark> is the body's process of chemically changing a drug, usually transforming fat-soluble drugs into water-soluble forms so the kidneys can easily flush them out in urine. The <strong>liver</strong> is the primary chemical processing plant.</p>
 
     <div class="grid-3">
       <div class="card-box">
         <h3>🧪 Phase 1 Reactions</h3>
-        <p><strong>Functionalization:</strong> Involves <mark>Oxidation</mark>, <mark>Reduction</mark>, or <mark>Hydrolysis</mark> to introduce polar groups (-OH, -NH2), preparing the drug for Phase 2.</p>
+        <p><strong>Functionalization:</strong> Liver enzymes use <mark>Oxidation</mark>, <mark>Reduction</mark>, or <mark>Hydrolysis</mark> to attach a small polar handle (-OH or -NH2) onto the drug molecule, making it more reactive for Phase 2.</p>
+        <div class="example-box">
+          <strong>💡 Example:</strong> Converting inactive <em>Codeine</em> into active <em>Morphine</em> via Phase 1 oxidation.
+        </div>
       </div>
+
       <div class="card-box">
         <h3>⚙️ The CYP450 System <span class="badge-highlight">⭐ Core Unit</span></h3>
-        <p>The <mark>Cytochrome P450</mark> enzyme family drives Phase 1 oxidation.</p>
+        <p>The <mark>Cytochrome P450</mark> family of liver enzymes carries out most Phase 1 reactions.</p>
         <ul>
-          <li><mark>CYP Inducers</mark> (e.g., Rifampin): Speed enzyme work &rarr; lower drug levels &rarr; therapeutic failure.</li>
-          <li><mark>CYP Inhibitors</mark> (e.g., Ketoconazole, Grapefruit Juice): Block enzymes &rarr; raise drug levels &rarr; toxicity.</li>
+          <li><mark>CYP Inducers</mark> (e.g., Rifampin, St. John's Wort): Speed up enzymes &rarr; drugs break down too fast &rarr; therapy fails.</li>
+          <li><mark>CYP Inhibitors</mark> (e.g., Ketoconazole, Grapefruit Juice): Block enzymes &rarr; drugs build up &rarr; toxic risk.</li>
         </ul>
+        <div class="example-box">
+          <strong>💡 Warning:</strong> Drinking grapefruit juice while taking statins blocks CYP3A4, causing drug levels to surge and risk muscle damage!
+        </div>
       </div>
+
       <div class="card-box">
         <h3>🛡️ Phase 2 Reactions</h3>
-        <p><strong>Conjugation:</strong> Attaches heavy polar groups like <mark>Glucuronic Acid</mark> or Glutathione to make drug inactive and water-soluble for urine excretion.</p>
+        <p><strong>Conjugation:</strong> The liver glues a heavy, highly water-soluble sugar or acid group (like <mark>Glucuronic Acid</mark>) onto the drug molecule, neutralizing it completely so it washes out into urine or bile.</p>
+        <div class="example-box">
+          <strong>💡 Example:</strong> Bilirubin and Morphine undergo glucuronidation to become water-soluble.
+        </div>
       </div>
     </div>
   </section>
@@ -679,39 +748,46 @@
   <!-- SECTION 4: KINETICS -->
   <section id="kinetics-comp">
     <h2>4. Kinetics of Elimination: First-Order vs. Zero-Order</h2>
-    <p>Drug elimination rates follow specific mathematical models essential for dosing accuracy.</p>
+    <p>How fast does the body remove a drug? Drug elimination speed follows two main mathematical patterns that determine how often a patient needs a dose.</p>
 
     <!-- MNEMONIC CARD 2 -->
     <div class="mnemonic-card">
       <h4>💡 MEMORY TRICK: Zero-Order Drugs = "PEA"</h4>
       <p>
-        Drugs eliminated at a <strong>constant rate</strong> due to saturated enzymes:<br>
-        <strong>P</strong> &rarr; <mark>Phenytoin</mark><br>
-        <strong>E</strong> &rarr; <mark>Ethanol (Alcohol)</mark><br>
-        <strong>A</strong> &rarr; <mark>Aspirin (at toxic doses)</mark>
+        Drugs cleared at a <strong>fixed, constant amount per hour</strong> because liver enzymes get overworked and saturated:<br>
+        <strong>P</strong> &rarr; <mark>Phenytoin</mark> (Anticonvulsant)<br>
+        <strong>E</strong> &rarr; <mark>Ethanol</mark> (Alcohol)<br>
+        <strong>A</strong> &rarr; <mark>Aspirin</mark> (at high/toxic doses)
       </p>
     </div>
 
     <div class="grid-2">
       <div class="card-box">
         <h3>📈 First-Order Kinetics (Constant Percentage)</h3>
-        <p>Eliminates a <mark>constant fraction/percentage</mark> per unit time. Half-life remains constant regardless of concentration.</p>
+        <p>The body clears a <mark>constant fraction or percentage</mark> (e.g., 50%) of the remaining drug per hour. Drug half-life stays constant no matter how much drug is in the body.</p>
 
         <div class="formula-box">
           Rate of Elimination = Constant × Drug Concentration
         </div>
 
-        <p>Most clinical drugs obey First-Order elimination.</p>
+        <p>Over 95% of therapeutic medications follow First-Order kinetics.</p>
+        <div class="example-box">
+          <strong>💡 Simple Example:</strong> If you start with 100 mg of a drug with a 1-hour half-life: hour 1 leaves 50 mg; hour 2 leaves 25 mg; hour 3 leaves 12.5 mg.
+        </div>
       </div>
+
       <div class="card-box">
         <h3>📊 Zero-Order Kinetics (Constant Amount) <span class="badge-highlight badge-important">⭐ Clinical Risk</span></h3>
-        <p>Eliminates a <mark>fixed, constant amount</mark> (mg/hr) per unit time because metabolic enzymes are completely saturated.</p>
+        <p>The body clears a <mark>fixed, constant amount</mark> (e.g., 10 mg/hour) regardless of blood concentration because processing enzymes are completely saturated.</p>
 
         <div class="formula-box">
           Rate of Elimination = Constant (Saturated Rate)
         </div>
 
-        <p><strong>Danger:</strong> Small dose increases trigger huge toxicity spikes!</p>
+        <p><strong>Danger:</strong> Even small dose increases can cause steep toxicity spikes!</p>
+        <div class="example-box">
+          <strong>💡 Simple Example:</strong> The liver metabolizes about 1 standard alcoholic drink (~10-15g alcohol) per hour. Drinking faster saturates enzymes, raising blood alcohol level rapidly.
+        </div>
       </div>
     </div>
 
@@ -727,7 +803,7 @@
           </svg>
         </div>
         <p class="graph-caption-text">
-          <strong>Curved Decay:</strong> Rate slows down as plasma concentration falls.
+          <strong>Curved Decay:</strong> Elimination rate slows down as plasma concentration falls.
         </p>
       </div>
 
@@ -750,20 +826,24 @@
   <!-- SECTION 5: ELIMINATION -->
   <section id="elimination">
     <h2>5. Elimination, Clearance &amp; Half-Life</h2>
-    <p><mark>Excretion</mark> is the permanent removal of drug molecules from the body, primarily performed by the kidneys.</p>
+    <p><mark>Excretion</mark> is the final, permanent removal of drug molecules from the body. While bile, sweat, saliva, and exhalation play minor roles, the <strong>kidneys</strong> are the main excretion organs.</p>
 
     <div class="grid-2">
       <div class="card-box">
         <h3>🌊 Renal Clearance Processes</h3>
         <ul>
-          <li><strong>1. Glomerular Filtration (GFR):</strong> Free, unbound drug filters across glomeruli into nephron tubules.</li>
-          <li><strong>2. PCT Active Secretion:</strong> Transporters actively push drugs (penicillins) into tubular filtrate.</li>
-          <li><strong>3. Tubular Reabsorption:</strong> Un-ionized, lipophilic drugs diffuse back into blood. <mark>Ion Trapping</mark> via urine pH alteration prevents reabsorption.</li>
+          <li><strong>1. Glomerular Filtration (GFR):</strong> Free, unbound drug molecules filter through nephron glomeruli into urine tubules.</li>
+          <li><strong>2. PCT Active Secretion:</strong> Active transporter pumps in the proximal tubule pump drugs directly into tubular urine.</li>
+          <li><strong>3. Tubular Reabsorption:</strong> Lipophilic un-ionized drugs tend to diffuse back into blood vessels. <mark>Ion Trapping</mark> (adjusting urine pH with bicarbonate) keeps drugs ionized so they stay trapped in urine and exit the body!</li>
         </ul>
+        <div class="example-box">
+          <strong>💡 Real-World Example:</strong> Penicillin is cleared very fast because renal active tubular secretion pumps it into urine rapidly.
+        </div>
       </div>
+
       <div class="card-box">
         <h3>⏱️ Clearance &amp; Half-Life <span class="badge-highlight badge-green">⭐ Key Calculation</span></h3>
-        <p><mark>Clearance (CL)</mark> is the volume of plasma cleared of drug per unit time.</p>
+        <p><mark>Clearance (CL)</mark> is the volume of plasma completely cleared of drug per unit of time (mL/min).</p>
 
         <div class="formula-box">
           <span>Half-Life (t½) = </span>
@@ -773,7 +853,10 @@
           </div>
         </div>
 
-        <p><strong>Clinical Rule:</strong> It takes <mark>4 to 5 half-lives</mark> for a drug to reach steady state (Css) or to be completely eliminated from the body.</p>
+        <p><strong>Clinical Rule:</strong> It takes <mark>4 to 5 half-lives</mark> for a drug to reach a stable level in blood (<mark>Steady State - Css</mark>) or to be completely cleared from the body.</p>
+        <div class="example-box">
+          <strong>💡 Example:</strong> If a drug has a half-life of 6 hours, it takes about 24–30 hours (4–5 × 6 hrs) to reach steady state or to be fully cleared.
+        </div>
       </div>
     </div>
   </section>
@@ -785,7 +868,7 @@
     <div class="grid-2">
       <div class="card-box">
         <h3>🚀 Loading Dose <span class="badge-highlight">⭐ Core Dosing Rule</span></h3>
-        <p>A high initial dose given to achieve target therapeutic concentration rapidly.</p>
+        <p>A single larger initial dose given at the start of treatment to raise plasma drug concentration to therapeutic levels rapidly during emergencies.</p>
 
         <div class="formula-box">
           <span>Loading Dose = </span>
@@ -794,10 +877,14 @@
             <span class="denominator">Bioavailability (F)</span>
           </div>
         </div>
+        <div class="example-box">
+          <strong>💡 Real-World Example:</strong> Giving a patient a large loading dose of <em>Digoxin</em> for acute atrial fibrillation to get heart rate under control immediately!
+        </div>
       </div>
+
       <div class="card-box">
         <h3>🔄 Maintenance Dose <span class="badge-highlight">⭐ Core Dosing Rule</span></h3>
-        <p>Repeated smaller doses designed to balance elimination rate and maintain <mark>Steady State (Css)</mark>.</p>
+        <p>Smaller, repeated doses given regularly to replace the exact amount of drug eliminated, keeping drug levels stable within the therapeutic window (<mark>Steady State - Css</mark>).</p>
 
         <div class="formula-box">
           <span>Maintenance Dose = </span>
@@ -805,6 +892,9 @@
             <span class="numerator">Target Conc. × Clearance × Dosing Interval</span>
             <span class="denominator">Bioavailability (F)</span>
           </div>
+        </div>
+        <div class="example-box">
+          <strong>💡 Everyday Analogy:</strong> A loading dose fills up a leaky bucket to the target line; the maintenance dose drips in just enough water to replace what leaks out!
         </div>
       </div>
     </div>
@@ -825,23 +915,23 @@
         <tbody>
           <tr>
             <td><strong>Elimination Rate</strong></td>
-            <td>Constant percentage (e.g. 50%/hr)</td>
-            <td>Constant amount (e.g. 10mg/hr)</td>
+            <td>Constant percentage (e.g., 50% removed per hour)</td>
+            <td>Constant amount (e.g., 10 mg removed per hour)</td>
           </tr>
           <tr>
             <td><strong>Half-Life (t½)</strong></td>
-            <td>Constant</td>
-            <td>Variable (increases with dose)</td>
+            <td>Constant (independent of drug concentration)</td>
+            <td>Variable (increases as dose/concentration rises)</td>
           </tr>
           <tr>
             <td><strong>Enzymes</strong></td>
-            <td>Not saturated</td>
-            <td>Saturated (Capacity limited)</td>
+            <td>Not saturated (plenty of free enzymes available)</td>
+            <td>Saturated (capacity-limited, enzymes overworked)</td>
           </tr>
           <tr>
             <td><strong>Examples</strong></td>
-            <td>Most clinical drugs</td>
-            <td>Phenytoin, Ethanol, High-dose Aspirin</td>
+            <td>Over 95% of clinical drugs (e.g., Amoxicillin, Paracetamol)</td>
+            <td>Phenytoin, Ethanol (Alcohol), High-dose Aspirin</td>
           </tr>
         </tbody>
       </table>
@@ -852,9 +942,9 @@
   <section id="quick-revision">
     <h2>8. Key Nursing Takeaways &amp; Quick Revision</h2>
     <ul>
-      <li><strong>Check Renal &amp; Liver Labs:</strong> Always evaluate GFR, Creatinine, AST/ALT before administering drugs with narrow therapeutic indices.</li>
-      <li><strong>Watch Albumin Levels:</strong> Low albumin (malnutrition) leads to higher free active drug levels and unexpected toxicity!</li>
-      <li><strong>Respect Steady State Rules:</strong> Remember that full drug accumulation or clearance takes 4 to 5 half-lives.</li>
+      <li><strong>Check Renal &amp; Liver Labs:</strong> Always check Serum Creatinine, GFR, and ALT/AST before giving drugs with a narrow safety margin (like Gentamicin or Digoxin).</li>
+      <li><strong>Watch Serum Albumin Levels:</strong> Malnourished or elderly patients with low albumin have fewer binding sites. This means more <strong>free active drug</strong> in blood, leading to sudden toxicity!</li>
+      <li><strong>Respect Steady State Timing:</strong> Remind patients that most chronic medications take <strong>4 to 5 half-lives</strong> to reach full therapeutic effectiveness.</li>
     </ul>
   </section>
 
@@ -871,6 +961,14 @@
     <p style="margin-top: 10px; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Pharmacology-I Portal. All rights reserved.</p>
   </footer>
 
+</div>
+
+<!-- MOBILE BOTTOM NAVIGATION BAR FOR TOUCH SCREEN CONVENIENCE -->
+<div class="mobile-bottom-bar">
+  <a href="#adme-journey"><span>🗺️</span>ADME</a>
+  <a href="#absorption"><span>1️⃣</span>Absorb</a>
+  <a href="#kinetics-comp"><span>4️⃣</span>Kinetics</a>
+  <a href="#quick-revision"><span>📌</span>Revision</a>
 </div>
 
 </body>
