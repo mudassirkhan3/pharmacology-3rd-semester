@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hematology Pharmacology Master Quiz</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #311018 50%, #1e1b4b 100%);
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --primary: #e11d48;
+      --primary-hover: #be123c;
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --accent-red: #ef4444;
+      --accent-amber: #f59e0b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --glass-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.6; padding: 30px 15px; min-height: 100vh; }
+
+    .container { max-width: 900px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(20px); border-radius: var(--radius); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 40px 30px; position: relative; overflow: hidden; }
+    .container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #f43f5e, var(--primary), var(--accent-amber)); }
+
+    .header-badge { display: inline-block; padding: 6px 16px; background: rgba(225, 29, 72, 0.2); color: #fda4af; border: 1px solid rgba(225, 29, 72, 0.4); font-size: 0.8rem; font-weight: 800; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+    h1 { font-size: 2.2rem; font-weight: 900; background: linear-gradient(135deg, #ffffff 0%, #fecdd3 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; line-height: 1.2; }
+    .subtitle { color: var(--text-muted); font-size: 1rem; margin-bottom: 30px; }
+
+    .dashboard-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 30px; }
+    .dash-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px; text-align: center; }
+    .dash-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
+    .dash-value { font-size: 1.3rem; font-weight: 800; color: #fda4af; margin-top: 4px; }
+    .timer-alert { color: var(--accent-red) !important; animation: pulse 1s infinite; }
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+    .chapter-indicator { background: linear-gradient(90deg, rgba(225, 29, 72, 0.15), rgba(244, 63, 94, 0.15)); border: 1px solid rgba(225, 29, 72, 0.3); padding: 12px 20px; border-radius: 12px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
+    .chapter-title { font-weight: 800; font-size: 1.1rem; color: #fff; }
+    .diff-tag { font-size: 0.75rem; padding: 3px 8px; border-radius: 6px; font-weight: 800; text-transform: uppercase; }
+    .tag-basic { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); border: 1px solid var(--accent-green); }
+    .tag-scenario { background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); border: 1px solid var(--accent-amber); }
+    .tag-hard { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border: 1px solid var(--accent-red); }
+
+    .mcq-card { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--card-border); border-radius: 16px; padding: 25px; margin-bottom: 25px; display: none; }
+    .mcq-card.active { display: block; animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .q-number { font-size: 0.85rem; font-weight: 800; color: #fb7185; margin-bottom: 8px; }
+    .q-text { font-size: 1.05rem; font-weight: 600; color: var(--text-main); margin-bottom: 20px; line-height: 1.5; }
+
+    .options-grid { display: grid; gap: 12px; }
+    .opt-btn { background: rgba(255, 255, 255, 0.05); border: 1.5px solid var(--card-border); border-radius: 12px; padding: 14px 18px; color: var(--text-main); font-size: 0.95rem; font-weight: 500; text-align: left; cursor: pointer; transition: 0.2s ease; display: flex; align-items: center; justify-content: space-between; }
+    .opt-btn:hover:not(.disabled) { background: rgba(225, 29, 72, 0.15); border-color: var(--primary); transform: translateX(4px); }
+    .opt-btn.correct { background: rgba(16, 185, 129, 0.2) !important; border-color: var(--accent-green) !important; color: #fff; }
+    .opt-btn.incorrect { background: rgba(239, 68, 68, 0.2) !important; border-color: var(--accent-red) !important; color: #fff; }
+    .opt-btn.disabled { cursor: not-allowed; opacity: 0.8; }
+
+    .explanation-box { margin-top: 20px; padding: 18px; border-radius: 12px; background: rgba(15, 23, 42, 0.8); border-left: 4px solid var(--primary); display: none; }
+    .explanation-box.show { display: block; animation: slideDown 0.3s ease; }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+    .exp-title { font-weight: 800; font-size: 0.9rem; color: #fda4af; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .exp-text { font-size: 0.9rem; color: #cbd5e1; line-height: 1.5; }
+
+    .nav-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 25px; }
+    .action-btn { padding: 12px 28px; background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; border: none; border-radius: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: 0.2s ease; box-shadow: 0 4px 15px rgba(225, 29, 72, 0.3); }
+    .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(225, 29, 72, 0.4); }
+    .action-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .report-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border); border-radius: 16px; padding: 30px; text-align: center; display: none; }
+    .report-card.show { display: block; animation: fadeIn 0.4s ease; }
+    .report-score { font-size: 3rem; font-weight: 900; color: #fda4af; margin: 15px 0; }
+    .report-breakdown { text-align: left; margin: 20px 0; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; }
+    .weakness-list { margin-top: 10px; padding-left: 20px; color: #fca5a5; }
+
+    footer { margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--card-border); padding-top: 20px; }
+    .author { color: var(--text-main); font-weight: 700; }
+
+    @media (max-width: 640px) {
+      .container { padding: 25px 15px; }
+      h1 { font-size: 1.6rem; }
+      .dashboard-bar { grid-template-columns: repeat(2, 1fr); }
+      .action-btn { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header-badge">Hematology Pharmacology</div>
+  <h1>Drugs Affecting Hematology Master Quiz</h1>
+  <div class="subtitle">120 High-Yield MCQs • 4 Subchapters (30 Qs Each) • 30-Min Timer Per Chapter</div>
+
+  <div class="dashboard-bar">
+    <div class="dash-card">
+      <div class="dash-title">Total Progress</div>
+      <div class="dash-value" id="dash-progress">0 / 120</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-title">Chapter Time</div>
+      <div class="dash-value" id="dash-timer">30:00</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-title">Current Score</div>
+      <div class="dash-value" id="dash-score">0</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-title">Subchapter</div>
+      <div class="dash-value" id="dash-ch-num">1 / 4</div>
+    </div>
+  </div>
+
+  <div class="chapter-indicator" id="ch-badge-container">
+    <div class="chapter-title" id="ch-title-text">Subchapter 1: Platelet Inhibitors</div>
+    <span class="diff-tag tag-basic" id="q-diff-badge">Basic (40%)</span>
+  </div>
+
+  <div id="quiz-box"></div>
+
+  <div class="report-card" id="chapter-report">
+    <h2 style="color: #fda4af;">🎉 Subchapter Complete!</h2>
+    <p style="color: var(--text-muted); margin-top: 5px;" id="ch-report-subtitle">Performance breakdown for Platelet Inhibitors</p>
+    <div class="report-score" id="ch-score-display">0 / 30</div>
+    
+    <div class="report-breakdown">
+      <h4 style="color: #fff; margin-bottom: 8px;">📊 Topic Diagnostics & Weak Areas:</h4>
+      <div id="ch-weakness-text" style="font-size: 0.95rem; color: #cbd5e1;">Analyzing answers...</div>
+    </div>
+
+    <button class="action-btn" onclick="startNextChapter()" id="btn-next-ch">Begin Next Subchapter ➔</button>
+  </div>
+
+  <div class="report-card" id="final-report">
+    <h2 style="color: var(--accent-green); font-size: 2rem;">🏆 Course Final Diagnostic Report</h2>
+    <p style="color: var(--text-muted);" id="final-subtitle">Cumulative score across all 120 Hematology Pharmacology MCQs</p>
+    <div class="report-score" id="final-score-display">0 / 120</div>
+
+    <div class="report-breakdown" style="text-align: left;">
+      <h3 style="color: #fff; margin-bottom: 12px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px;">📈 Subchapter Breakdown:</h3>
+      <div id="subchapter-scores-list" style="margin-bottom: 20px; font-size: 0.95rem; line-height: 1.8;"></div>
+
+      <h3 style="color: var(--accent-red); margin-bottom: 8px;">⚠️ Comprehensive Weakness & Study Guidance:</h3>
+      <p style="font-size: 0.9rem; color: var(--text-muted);">Based on incorrect selections, focus review on:</p>
+      <ul class="weakness-list" id="final-weakness-list"></ul>
+    </div>
+
+    <button class="action-btn" style="background: linear-gradient(135deg, var(--accent-green), #059669);" onclick="restartEntireQuiz()">🔄 Restart Entire Master Quiz</button>
+  </div>
+
+  <footer>
+    Crafted with Excellence by <span class="author">Mudassir Khan</span> • &copy; 2026 Pharmacology Portal
+  </footer>
+</div>
+
+<script>
+const quizData = [
+  // SUBCHAPTER 1: PLATELET INHIBITORS (1-30)
+  {
+    chTitle: "Subchapter 1: Platelet Inhibitors",
+    questions: [
+      { q: "Aspirin achieves antiplatelet effects primarily by irreversibly acetylating and inhibiting which enzyme?", opts: ["Cyclooxygenase-1 (COX-1)", "Phosphodiesterase-3", "Glycoprotein IIb/IIIa", "Vitamin K epoxide reductase"], a: 0, tag: "Basic", topic: "Aspirin Mechanism", exp: "Aspirin irreversibly inhibits COX-1, blocking Thromboxane A2 (TXA2) synthesis for the platelet's lifespan (7-10 days)." },
+      { q: "Which lipid-derived mediator, normally responsible for platelet aggregation and vasoconstriction, is blocked by Aspirin?", opts: ["Thromboxane A2 (TXA2)", "Prostaglandin I2 (PGI2)", "Leukotriene B4", "Platelet-Activating Factor"], a: 0, tag: "Basic", topic: "Thromboxane Inhibiting Target", exp: "COX-1 inhibition stops synthesis of Thromboxane A2, a potent inducer of platelet aggregation and vascular smooth muscle constriction." },
+      { q: "Clopidogrel, Prasugrel, and Ticagrelor belong to which antiplatelet drug class?", opts: ["P2Y12 ADP receptor antagonists", "GPIIb/IIIa inhibitors", "Phosphodiesterase inhibitors", "PAR-1 antagonists"], a: 0, tag: "Basic", topic: "P2Y12 Receptor Blockers", exp: "These agents selectively block P2Y12 purinergic receptors on platelets, preventing Adenosine Diphosphate (ADP) binding." },
+      { q: "Which P2Y12 inhibitor is a REVERSIBLE binder, requiring no hepatic activation prodrug conversion?", opts: ["Ticagrelor", "Clopidogrel", "Prasugrel", "Ticlopidine"], a: 0, tag: "Basic", topic: "Reversible P2Y12 Blockers", exp: "Ticagrelor is a direct-acting, reversible P2Y12 antagonist, unlike Clopidogrel and Prasugrel which are irreversible prodrugs." },
+      { q: "Which drug is a potent Glycoprotein IIb/IIIa (GPIIb/IIIa) receptor antagonist administered intravenously during PCI?", opts: ["Abciximab (or Eptifibatide/Tirofiban)", "Clopidogrel", "Cilostazol", "Dipyridamole"], a: 0, tag: "Basic", topic: "GPIIb/IIIa Inhibitor Target", exp: "Abciximab, Eptifibatide, and Tirofiban block the GPIIb/IIIa receptor, preventing fibrinogen cross-linking between platelets." },
+      { q: "Cilostazol exerts antiplatelet and vasodilatory effects primarily by inhibiting which enzyme?", opts: ["Phosphodiesterase-3 (PDE-3)", "Cyclooxygenase-2 (COX-2)", "Thrombin", "Factor Xa"], a: 0, tag: "Basic", topic: "PDE3 Inhibitors", exp: "Cilostazol inhibits PDE-3, elevating intracellular cAMP in platelets and vascular smooth muscle to cause antiaggregation and vasodilation." },
+      { q: "What is the primary clinical indication for Cilostazol?", opts: ["Intermittent claudication in peripheral arterial disease (PAD)", "Acute ischemic stroke thrombolysis", "Deep vein thrombosis prophylaxis", "Atrial fibrillation anticoagulation"], a: 0, tag: "Basic", topic: "Cilostazol Indication", exp: "Cilostazol improves painless walking distance in patients with intermittent claudication secondary to peripheral arterial disease." },
+      { q: "Vorapaxar acts as an antiplatelet agent by blocking which specific receptor?", opts: ["Protease-Activated Receptor-1 (PAR-1)", "P2Y12 receptor", "TXA2 receptor", "GPIIb/IIIa receptor"], a: 0, tag: "Basic", topic: "PAR-1 Receptor Blockade", exp: "Vorapaxar is a competitive antagonist of PAR-1, blocking thrombin-induced platelet activation." },
+      { q: "Why must low-dose Aspirin (75-81 mg/day) be selected over high doses for chronic cardiaprophylaxis?", opts: ["High doses inhibit endothelial COX-2, reducing protective Prostacyclin (PGI2) synthesis", "Low doses cause systemic internal bleeding", "High doses destroy platelets in bone marrow", "Low doses act as anticoagulants"], a: 0, tag: "Basic", topic: "Aspirin Dosing Dynamics", exp: "Low-dose aspirin selectively inhibits platelet COX-1 while sparing endothelial COX-2, maintaining anti-thrombotic Prostacyclin (PGI2) levels." },
+      { q: "How long prior to elective major surgery should Clopidogrel ideally be discontinued?", opts: ["5 days", "12 hours", "24 hours", "14 days"], a: 0, tag: "Basic", topic: "Preoperative Discontinuation Timing", exp: "Guidelines recommend stopping Clopidogrel 5 days prior to elective surgery to allow recovery of normal platelet function." },
+      { q: "Which adverse effect is uniquely associated with Ticagrelor, independent of bleeding?", opts: ["Dyspnea and ventricular pauses", "Severe constipation", "Hepatotoxicity", "Optic neuritis"], a: 0, tag: "Basic", topic: "Ticagrelor Non-Bleeding Adverse Reactions", exp: "Ticagrelor inhibits adenosine reuptake, frequently causing self-limiting dyspnea and transient ventricular pauses." },
+      { q: "Cilostazol carries a strict Black-Box Warning and is contraindicated in patients with:", opts: ["Congestive Heart Failure (CHF) of any severity", "Asthma", "Peptic ulcer disease", "Renal stones"], a: 0, tag: "Basic", topic: "Cilostazol Black-Box Warning", exp: "PDE-3 inhibitors increase mortality in patients with heart failure due to inotropic/chronotropic ventricular dysrhythmia risks." },
+
+      { q: "A patient taking Clopidogrel and Omeprazole post-coronary stent placement experiences recurrent stent thrombosis. Why?", opts: ["Omeprazole inhibits CYP2C19, preventing bioactivation of Clopidogrel prodrug", "Omeprazole destroys Clopidogrel in the stomach lumen", "Omeprazole increases renal clearance of Clopidogrel", "Clopidogrel inactivates Omeprazole"], a: 0, tag: "Scenario", topic: "CYP2C19 Drug Interaction", exp: "Clopidogrel requires hepatic CYP2C19 activation. Omeprazole inhibits CYP2C19, producing subtherapeutic active antiplatelet levels." },
+      { q: "A patient undergoing Percutaneous Coronary Intervention (PCI) receives IV Abciximab. Platelet count drops from 220,000/mcL to 35,000/mcL within 6 hours. What is the diagnosis?", opts: ["GPIIb/IIIa inhibitor-induced acute severe thrombocytopenia", "Heparin-Induced Thrombocytopenia", "Aplastic anemia", "Disseminated Intravascular Coagulation"], a: 0, tag: "Scenario", topic: "Immune Thrombocytopenia Recognition", exp: "GPIIb/IIIa inhibitors can cause rapid-onset, immune-mediated acute thrombocytopenia within hours of initial exposure." },
+      { q: "A patient with a history of transient ischemic attack (TIA) is prescribed dual antiplatelet therapy (Aspirin + Clopidogrel). What is the major systemic risk?", opts: ["Increased risk of major gastrointestinal and intracranial hemorrhage", "Acute renal tubular necrosis", "Pulmonary fibrosis", "Severe hypertension"], a: 0, tag: "Scenario", topic: "DAPT Risk Assessment", exp: "Dual antiplatelet therapy significantly reduces ischemic events but synergistically escalates major GI and intracranial bleeding risks." },
+      { q: "A patient with a prior history of ischemic stroke is evaluated for acute coronary syndrome. Prasugrel is considered. Why is Prasugrel contraindicated?", opts: ["History of stroke/TIA carries a high risk of fatal intracranial bleeding with Prasugrel", "Prasugrel causes acute ischemic stroke", "Prasugrel reduces cardiac output", "Prasugrel is destroyed by brain tissue"], a: 0, tag: "Scenario", topic: "Prasugrel Contraindication", exp: "Prasugrel has a Black-Box warning against use in patients with a history of stroke or TIA due to high intracranial bleeding rates." },
+      { q: "A patient taking Aspirin for 5 years presents with epigastric pain and dark tarry stools (melena). What mechanism caused this mucosal damage?", opts: ["Inhibition of COX-1 reduces cytoprotective gastric mucosal prostaglandin synthesis", "Direct chemical erosion of cardiac sphincters", "Inhibition of hepatic bile breakdown", "Inhibition of pancreatic amylase"], a: 0, tag: "Scenario", topic: "Aspirin GI Toxicity Mechanism", exp: "Prostaglandins (PGE2, PGI2) stimulate gastric bicarbonate and mucus secretion; COX-1 inhibition depletes protective barriers, causing peptic ulcers." },
+      { q: "A patient taking Ticagrelor complains of sudden shortness of breath at rest with normal chest X-ray and normal oxygen saturation. What should be done?", opts: ["Reassure the patient that dyspnea is a known side effect of Ticagrelor that usually resolves without lung injury", "Discontinue Ticagrelor immediately and start thrombolysis", "Administer high-dose inhaled steroids", "Intubate the patient"], a: 0, tag: "Scenario", topic: "Ticagrelor Dyspnea Management", exp: "Ticagrelor-induced dyspnea occurs in ~15% of patients due to adenosine accumulation; it is typically self-limiting and does not reflect heart failure." },
+      { q: "An elderly patient taking Aspirin 325 mg daily reports ringing in the ears (tinnitus), confusion, and hyperventilation. What toxicity is suspected?", opts: ["Salicylism (Aspirin toxicity)", "Clopidogrel allergy", "Acute stroke", "Hypoglycemia"], a: 0, tag: "Scenario", topic: "Salicylism Recognition", exp: "Tinnitus is an early sign of salicylism. Higher plasma levels stimulate the respiratory center (hyperventilation/alkalosis) and cause CNS confusion." },
+      { q: "A patient prescribed Dipyridamole combined with low-dose Aspirin (Aggrenox) for secondary stroke prevention asks how Dipyridamole works. The response is:", opts: ["Inhibits adenosine uptake and phosphodiesterase, elevating cAMP to prevent platelet activation", "Destroys clotting factor VII", "Blocks thrombin receptors", "Inhibits Vitamin K"], a: 0, tag: "Scenario", topic: "Dipyridamole Action Explanation", exp: "Dipyridamole inhibits red blood cell adenosine reuptake and intracellular PDE, increasing cAMP levels and blocking aggregation." },
+      { q: "A diabetic patient with severe leg pain while walking 100 meters is diagnosed with Peripheral Arterial Disease. Which medication is specifically indicated to improve walking distance?", opts: ["Cilostazol", "Warfarin", "Abciximab", "Alteplase"], a: 0, tag: "Scenario", topic: "PAD Therapy Selection", exp: "Cilostazol provides antiplatelet and direct arterial vasodilatory actions, improving exercise tolerance and claudication distance in PAD." },
+      { q: "A patient undergoing urgent emergency CABG surgery is currently on Ticagrelor. How many days should Ticagrelor ideally be held before surgery?", opts: ["3 days", "7 days", "10 days", "12 hours"], a: 0, tag: "Scenario", topic: "Ticagrelor Pre-Op Timing", exp: "Because Ticagrelor binding is reversible with faster offset than Clopidogrel, discontinuation 3 days prior to surgery is recommended." },
+      { q: "A patient taking Aspirin needs Ibuprofen for osteoarthritis pain. How should administration be timed to prevent Ibuprofen from blocking Aspirin's cardioprotective effect?", opts: ["Take Aspirin at least 30-60 minutes BEFORE Ibuprofen (or 8 hours after)", "Take Ibuprofen and Aspirin together", "Take Ibuprofen 10 minutes before Aspirin", "Mix both tablets in water"], a: 0, tag: "Scenario", topic: "NSAID-Aspirin Interaction Timing", exp: "Ibuprofen reversibly blocks COX-1 entry channels, preventing Aspirin from irreversibly binding. Aspirin must be taken first to bind COX-1 permanently." },
+      { q: "A patient taking Vorapaxar following myocardial infarction reports severe headache and sudden unilateral arm weakness. What critical complication must be evaluated?", opts: ["Intracranial hemorrhage", "Transient Ticagrelor reaction", "Peripheral neuropathy", "Migraine"], a: 0, tag: "Scenario", topic: "PAR-1 Bleeding Warning", exp: "Vorapaxar significantly increases major bleeding risks, including fatal intracranial hemorrhage, requiring immediate diagnostic imaging." },
+
+      { q: "Why does Prasugrel demonstrate faster, more consistent antiplatelet action than Clopidogrel?", opts: ["Prasugrel requires only a single-step esterase/CYP cleavage reaction, whereas Clopidogrel requires a two-step hepatic CYP activation", "Prasugrel does not require liver metabolism", "Prasugrel binds directly to fibrinogen", "Prasugrel is administered IV"], a: 0, tag: "Hard", topic: "Pharmacokinetic Prodrug Comparison", exp: "Prasugrel is rapidly hydrolyzed by intestinal esterases to an intermediate, requiring only one hepatic CYP step, avoiding CYP2C19 resistance." },
+      { q: "What is the molecular mechanism by which elevated intracellular cAMP suppresses platelet aggregation?", opts: ["cAMP activates Protein Kinase A (PKA), which phosphorylates VASP and inhibits intracellular Ca2+ release", "cAMP increases intracellular calcium ions", "cAMP activates COX-1 directly", "cAMP cleaves fibrinogen"], a: 0, tag: "Hard", topic: "Intracellular Signal Transduction", exp: "PKA activation suppresses IP3-mediated calcium release from dense tubular systems; low calcium prevents GPIIb/IIIa activation." },
+      { q: "Genetic polymorphism in which gene is tested to identify non-responders (resistance) to Clopidogrel therapy?", opts: ["CYP2C19 (*2 and *3 loss-of-function alleles)", "CYP3A4", "VKORC1", "Factor V Leiden"], a: 0, tag: "Hard", topic: "Pharmacogenomics of P2Y12", exp: "Carriers of CYP2C19 loss-of-function alleles (*2, *3) exhibit reduced active metabolite formation and higher stent thrombosis rates." },
+      { q: "How does Thromboxane A2 binding to its Gq-coupled receptor trigger platelet activation?", opts: ["Stimulates Phospholipase C, raising IP3 and DAG, unleashing intracellular Calcium surge", "Inhibits Protein Kinase C", "Decreases intracellular calcium", "Blocks GPIIb/IIIa receptors"], a: 0, tag: "Hard", topic: "Platelet Receptor Signal Cascades", exp: "Gq activation triggers Phospholipase C, generating IP3 (releases stored Ca2+) and DAG (activates PKC), causing shape change and aggregation." },
+      { q: "Why is Aspirin inhibition of platelet COX-1 irreversible for the life of the cell, whereas endothelial COX-2 inhibition is transient?", opts: ["Platelets lack nuclei and mRNA, preventing new enzyme synthesis, whereas nucleated endothelial cells synthesize new COX-2", "Platelets destroy aspirin", "Endothelial cells lack COX enzymes", "Aspirin binds irreversibly only in acidic blood"], a: 0, tag: "Hard", topic: "Anucleate Cell Molecular Biology", exp: "Anucleate platelets cannot synthesize new proteins; COX-1 remains inhibited for 7-10 days until new platelets are produced by megakaryocytes." },
+      { q: "What is the biochemical reason why Ticagrelor causes elevated plasma uric acid levels (hyperuricemia)?", opts: ["Ticagrelor inhibits renal organic anion transporters (OAT2) responsible for uric acid clearance", "Ticagrelor increases purine synthesis", "Ticagrelor destroys red blood cells", "Ticagrelor damages liver parenchyma"], a: 0, tag: "Hard", topic: "Renal Transport Interactions", exp: "Ticagrelor and its active metabolite inhibit the OAT2-mediated tubular secretion of uric acid, leading to hyperuricemia and gout risk." }
+    ]
+  },
+
+  // SUBCHAPTER 2: ANTICOAGULANTS (31-60)
+  {
+    chTitle: "Subchapter 2: Anticoagulants",
+    questions: [
+      { q: "Unfractionated Heparin (UFH) exerts its anticoagulant effect by binding to and accelerating the activity of:", opts: ["Antithrombin III (ATIII)", "Protein C", "Plasminogen", "Prothrombin"], a: 0, tag: "Basic", topic: "Heparin Mechanism", exp: "Heparin binds Antithrombin III, inducing a conformational change that accelerates its inactivation of Thrombin (Factor IIa) and Factor Xa 1,000-fold." },
+      { q: "Which coagulation assay is routinely monitored to adjust unfractionated heparin (UFH) dosage?", opts: ["Activated Partial Thromboplastin Time (aPTT)", "Prothrombin Time / INR", "Bleeding Time", "Thrombin Time only"], a: 0, tag: "Basic", topic: "UFH Monitoring Assay", exp: "aPTT measures the intrinsic and common coagulation pathways sensitive to UFH therapy; target is usually 1.5-2.5 times baseline." },
+      { q: "Low Molecular Weight Heparins (LMWHs, e.g., Enoxaparin) differ from UFH because they selectively inhibit:", opts: ["Factor Xa predominantly over Factor IIa (Thrombin)", "Factor IIa exclusively", "Factor VIIa", "Factor XIIIa"], a: 0, tag: "Basic", topic: "LMWH Selectivity Ratio", exp: "LMWH chains are too short to bridge Antithrombin to Thrombin (IIa), resulting in a high Anti-Factor Xa to Anti-Factor IIa ratio (3:1 to 4:1)." },
+      { q: "Warfarin acts as an anticoagulant by inhibiting which specific enzyme in the liver?", opts: ["Vitamin K Epoxide Reductase (VKORC1)", "Cytochrome P450 3A4", "Factor Xa synthase", "Cyclooxygenase-1"], a: 0, tag: "Basic", topic: "Warfarin Enzymatic Target", exp: "Warfarin inhibits VKORC1, blocking regeneration of reduced Vitamin K (KH2) required for gamma-carboxylation of factors II, VII, IX, and X." },
+      { q: "Which blood test is standardized globally to monitor Warfarin oral anticoagulant therapy?", opts: ["International Normalized Ratio (INR)", "aPTT", "Anti-Xa assay", "Activated Clotting Time (ACT)"], a: 0, tag: "Basic", topic: "Warfarin Monitoring Standard", exp: "INR (derived from Prothrombin Time) standardizes Warfarin monitoring across laboratories; therapeutic target is typically 2.0-3.0." },
+      { q: "Rivaroxaban, Apixaban, and Edoxaban belong to which class of Direct Oral Anticoagulants (DOACs)?", opts: ["Direct Factor Xa inhibitors", "Direct Thrombin inhibitors", "Vitamin K antagonists", "Low Molecular Weight Heparins"], a: 0, tag: "Basic", topic: "Direct Factor Xa Inhibitors", exp: "These oral agents directly bind and inhibit free and clot-bound Factor Xa without requiring Antithrombin III." },
+      { q: "Dabigatran etexilate is an oral anticoagulant belonging to which class?", opts: ["Direct Thrombin (Factor IIa) inhibitor", "Direct Factor Xa inhibitor", "P2Y12 blocker", "Heparinoid"], a: 0, tag: "Basic", topic: "Direct Thrombin Inhibitors", exp: "Dabigatran is a direct, competitive, reversible inhibitor of free and clot-bound Thrombin (Factor IIa)." },
+      { q: "Fondaparinux is a synthetic pentasaccharide that selectively binds Antithrombin to inhibit:", opts: ["Factor Xa exclusively", "Factor IIa exclusively", "Factor VIIa", "Factor XIIa"], a: 0, tag: "Basic", topic: "Fondaparinux Selectivity", exp: "Fondaparinux contains only the pentasaccharide sequence required to bind Antithrombin III, causing pure selective Factor Xa inhibition." },
+      { q: "Which dangerous immune-mediated complication of heparin therapy is caused by IgG antibodies against Heparin-Platelet Factor 4 complexes?", opts: ["Heparin-Induced Thrombocytopenia (HIT Type II)", "Disseminated Intravascular Coagulation", "Aplastic anemia", "Immune Thrombocytopenic Purpura"], a: 0, tag: "Basic", topic: "HIT Type II Pathophysiology", exp: "HIT Type II involves IgG antibodies targeting Heparin-PF4 complexes, activating platelets and triggering paradoxical arterial/venous thrombosis." },
+      { q: "Why is Warfarin strictly contraindicated during pregnancy?", opts: ["Crosses the placenta causing fetal Warfarin embryopathy and fatal fetal hemorrhage", "Destroys maternal kidneys", "Triggers maternal asthma", "Inactivates insulin"], a: 0, tag: "Basic", topic: "Warfarin Teratogenicity", exp: "Warfarin crosses the placenta, causing nasal hypoplasia, stippled epiphyses, and CNS bleeding; LMWH/UFH is preferred in pregnancy." },
+      { q: "Which direct parenteral thrombin inhibitor (e.g., Argatroban, Bivalirudin) is indicated for anticoagulation in patients with confirmed HIT?", opts: ["Argatroban", "Enoxaparin", "Warfarin", "Fondaparinux"], a: 0, tag: "Basic", topic: "HIT Alternative Anticoagulants", exp: "Argatroban is a direct thrombin inhibitor cleared by the liver, providing safe anticoagulation without cross-reacting with HIT antibodies." },
+      { q: "Early in Warfarin therapy, a transient hypercoagulable state and skin necrosis risk occurs due to rapid depletion of:", opts: ["Protein C (short half-life ~8 hours)", "Factor II", "Factor X", "Prothrombin"], a: 0, tag: "Basic", topic: "Warfarin-Induced Skin Necrosis", exp: "Protein C has a shorter half-life than factors II and X. Initial Warfarin administration depletes Protein C first, creating a temporary prothrombotic state." },
+
+      { q: "A patient on continuous IV Heparin for DVT has an aPTT of 130 seconds (baseline 30s) and active oozing from IV sites. What initial action is indicated?", opts: ["Stop IV Heparin infusion immediately", "Double the Heparin rate", "Administer oral Warfarin", "Give high-dose Aspirin"], a: 0, tag: "Scenario", topic: "Heparin Overdose Initial Action", exp: "An aPTT > 100 seconds with active bleeding requires immediate cessation of IV Heparin due to its short biological half-life (1-2 hours)." },
+      { q: "A patient taking Warfarin (INR 2.5) is prescribed Trimethoprim-Sulfamethoxazole (Bactrim) for a UTI. Four days later, INR surges to 7.5 with epistaxis. Why?", opts: ["Bactrim inhibits CYP2C9 and displaces Warfarin from plasma proteins", "Bactrim acts as a direct Factor Xa inhibitor", "Bactrim destroys Antithrombin III", "Bactrim increases Vitamin K levels"], a: 0, tag: "Scenario", topic: "Bactrim-Warfarin Interaction", exp: "Sulfamethoxazole strongly inhibits CYP2C9 (metabolizes S-warfarin) and clears gut flora synthesizing Vitamin K, causing severe INR spikes." },
+      { q: "On day 6 of IV Unfractionated Heparin, a patient's platelet count drops from 250,000/mcL to 90,000/mcL. New DVT is confirmed. What is the immediate intervention?", opts: ["Stop all Heparin, do NOT start Warfarin immediately, and initiate IV Argatroban", "Switch UFH to Enoxaparin LMWH", "Transfuse 6 units of platelets", "Increase Heparin dose"], a: 0, tag: "Scenario", topic: "HIT Clinical Management Protocol", exp: "HIT Type II requires immediate cessation of all heparins (LMWH cross-reacts) and starting a non-heparin anticoagulant (Argatroban/Bivalirudin)." },
+      { q: "A patient with non-valvular Atrial Fibrillation and severe chronic kidney disease (eGFR 15 mL/min) requires anticoagulation. Which agent is safest?", opts: ["Warfarin (or dose-adjusted UFH)", "Dabigatran", "Edoxaban", "Fondaparinux"], a: 0, tag: "Scenario", topic: "Renal Clearance Considerations", exp: "DOACs (Dabigatran, Edoxaban) rely heavily on renal clearance and accumulate in ESRD. Warfarin is cleared hepatically, making it safer in ESRD." },
+      { q: "A pregnant female at 12 weeks gestation develops acute DVT. Which anticoagulant regimen is indicated throughout pregnancy?", opts: ["Therapeutic Low Molecular Weight Heparin (Enoxaparin)", "Oral Warfarin", "Oral Dabigatran", "Aspirin 325 mg"], a: 0, tag: "Scenario", topic: "Pregnancy Anticoagulation Protocol", exp: "LMWH does not cross the placenta and is safe for the fetus, making it the drug of choice for anticoagulation during pregnancy." },
+      { q: "Why is a Heparin 'bridge' required for 5 days when initiating Warfarin therapy for acute DVT?", opts: ["Warfarin takes 4-5 days to deplete functional Factor II and X pools, while early Protein C loss risks transient thrombosis", "Heparin activates Warfarin in blood", "Warfarin causes acute Heparin withdrawal", "Heparin prevents Warfarin rash"], a: 0, tag: "Scenario", topic: "Warfarin Bridging Rationale", exp: "Warfarin requires 4-5 days to achieve full therapeutic suppression of long half-life factors (Factor II t1/2 = 60h); Heparin provides instant coverage." },
+      { q: "A patient taking Dabigatran for stroke prevention experiences severe heartburn. How should the nurse advise taking the capsule?", opts: ["Take with food and a full glass of water, and NEVER open or crush the capsule", "Crush capsule and mix with applesauce", "Dissolve in hot tea", "Take on empty stomach"], a: 0, tag: "Scenario", topic: "Dabigatran Oral Form Integrity", exp: "Dabigatran capsules contain tartaric acid pellets to aid absorption. Opening/crushing capsules increases bioavailability by 75%, risking fatal overdose." },
+      { q: "A patient on Apixaban is scheduled for elective hip replacement surgery. Assuming normal renal function, when should Apixaban be stopped prior to surgery?", opts: ["48 hours prior to high-bleeding-risk surgery", "12 hours", "14 days", "6 hours"], a: 0, tag: "Scenario", topic: "DOAC Perioperative Interruption", exp: "For high-bleeding-risk surgical procedures, direct Factor Xa inhibitors like Apixaban should be discontinued 48 hours prior to surgery." },
+      { q: "A patient on Warfarin presents with INR 2.8. He eats large quantities of spinach, kale, and broccoli over the weekend. What will happen to his INR?", opts: ["INR will drop below therapeutic range due to high dietary Vitamin K intake", "INR will rise to toxic levels", "INR will remain completely unaffected", "INR will trigger HIT"], a: 0, tag: "Scenario", topic: "Dietary Vitamin K Interaction", exp: "Vitamin K-rich green leafy vegetables bypass VKORC1 blockade, providing active Vitamin K to synthesize factors II, VII, IX, X, dropping the INR." },
+      { q: "A patient with severe liver cirrhosis (Child-Pugh Class C) develops DVT. Why is Warfarin monitoring challenging and unpredictable in end-stage liver disease?", opts: ["Diseased liver impairs baseline clotting factor synthesis and Warfarin clearance simultaneously", "Cirrhosis accelerates renal elimination", "Cirrhosis destroys Vitamin K receptors", "Warfarin binds liver cells permanently"], a: 0, tag: "Scenario", topic: "Hepatic Disease Anticoagulation", exp: "Liver cirrhosis reduces baseline synthesis of clotting factors and regulatory proteins while impairing hepatic CYP metabolism of Warfarin." },
+      { q: "A patient taking Rivaroxaban 20 mg once daily asks when to take the dose. What instruction is vital for optimal drug absorption?", opts: ["Take with the main meal of the day (food increases bioavailability)", "Take on an empty stomach with water", "Take at bedtime with milk", "Crush and dissolve in juice"], a: 0, tag: "Scenario", topic: "Rivaroxaban Food Requirement", exp: "Rivaroxaban 15 mg and 20 mg doses require co-administration with food to achieve complete (~80-100%) gastrointestinal absorption." },
+      { q: "Why is Protamine Sulfate ineffective as a complete reversal agent for Low Molecular Weight Heparin (Enoxaparin) compared to UFH?", opts: ["Protamine neutralizes Anti-IIa activity fully but neutralizes Anti-Xa activity only partially (~60%)", "Protamine does not bind LMWH at all", "Protamine destroys Enoxaparin in liver", "Protamine causes massive clotting"], a: 0, tag: "Scenario", topic: "LMWH Neutralization Limits", exp: "Protamine binds long heparin chains strongly (Anti-IIa), but shorter LMWH chains lack electrostatic binding sites, limiting Xa neutralization." },
+
+      { q: "What is the structural explanation for why Fondaparinux causes virtually zero incidence of Heparin-Induced Thrombocytopenia (HIT)?", opts: ["Its pentasaccharide chain is too short to form the multimolecular complexes with PF4 required for IgG antibody recognition", "It binds directly to platelets", "It contains no sulfur groups", "It is cleared by hepatocytes"], a: 0, tag: "Hard", topic: "HIT Structural Immunogenicity", exp: "HIT antibody formation requires heparin chains >18 saccharide units to cross-link PF4 molecules; 5-saccharide Fondaparinux cannot form these immunogenic complexes." },
+      { q: "Why do gain-of-function polymorphisms in CYP2C9 (*1/*1) vs. loss-of-function (*2 or *3) alter Warfarin dosing requirements?", opts: ["CYP2C9*2 and *3 variants clear S-warfarin slowly, requiring significantly lower maintenance doses to avoid bleeding", "CYP2C9*2 destroys Warfarin in blood", "CYP2C9 variants block Vitamin K in gut", "They eliminate need for INR testing"], a: 0, tag: "Hard", topic: "Warfarin Pharmacogenomics", exp: "S-warfarin (5x more potent than R-warfarin) is cleared by CYP2C9. Variant alleles (*2, *3) reduce enzyme clearance, requiring lower Warfarin doses." },
+      { q: "How does the molecular mechanism of Direct Thrombin Inhibitors (e.g., Bivalirudin) allow them to inhibit clot-bound thrombin, unlike UFH-Antithrombin complexes?", opts: ["Small DTIs access the catalytic site of fibrin-bound thrombin, whereas bulky UFH-Antithrombin III complexes are sterically hindered", "DTIs dissolve fibrin mesh directly", "DTIs bind platelets instead of thrombin", "UFH is destroyed by fibrin"], a: 0, tag: "Hard", topic: "Clot-Bound Thrombin Kinetics", exp: "Thrombin bound to fibrin covers the heparin-binding exosite; large UFH-ATIII complexes cannot reach thrombin's active site, whereas low-MW DTIs penetrate easily." },
+      { q: "What is the mechanism by which p-glycoprotein (P-gp) intestinal efflux transporters alter oral bioavailability of DOACs like Dabigatran and Rivaroxaban?", opts: ["P-gp pumps absorbed DOAC molecules back into gut lumen; P-gp inhibitors (Amiodarone/Verapamil) surge DOAC plasma levels", "P-gp inactivates DOACs in liver", "P-gp converts DOACs into heparin", "P-gp accelerates renal excretion"], a: 0, tag: "Hard", topic: "P-gp Efflux Pharmacokinetics", exp: "Dabigatran etexilate and Rivaroxaban are substrates for intestinal P-gp. P-gp inhibitors reduce efflux, increasing systemic DOAC exposure and bleeding risk." },
+      { q: "In patients with Antithrombin III deficiency, why is Unfractionated Heparin clinically ineffective (Heparin Resistance)?", opts: ["Heparin relies on ATIII as an obligate cofactor to exert anticoagulant action; without ATIII, Heparin cannot inhibit IIa or Xa", "Heparin is destroyed by liver", "ATIII deficiency causes rapid Heparin excretion", "Heparin turns into a procoagulant"], a: 0, tag: "Hard", topic: "Heparin Resistance Pathophysiology", exp: "Heparin has no intrinsic enzymatic activity; it acts as a conformational catalyst for ATIII. Deficient ATIII levels render Heparin ineffective." },
+      { q: "What is the molecular mechanism of Warfarin-induced skin necrosis related to Protein C and Factor VII kinetics?", opts: ["Factor VII (t1/2 = 6h) and Protein C (t1/2 = 8h) drop rapidly before Factor II (t1/2 = 60h), causing microvascular thrombosis", "Warfarin causes direct allergic necrosis of cutaneous arteries", "Protein C destroys vascular endothelium", "Factor VII causes skin immune lysis"], a: 0, tag: "Hard", topic: "Microvascular Necrosis Dynamics", exp: "Un-bridged Warfarin suppresses anticoagulant Protein C and procoagulant Factor VII rapidly while prothrombin remains elevated, producing transient microvascular thrombosis." }
+    ]
+  },
+
+  // SUBCHAPTER 3: THROMBOLYTIC AGENTS (61-90)
+  {
+    chTitle: "Subchapter 3: Thrombolytic Agents",
+    questions: [
+      { q: "Thrombolytic agents (e.g., Alteplase, Reteplase, Tenecteplase) dissolve blood clots by converting:", opts: ["Plasminogen to active Plasmin", "Fibrinogen to Fibrin", "Prothrombin to Thrombin", "Factor X to Factor Xa"], a: 0, tag: "Basic", topic: "Thrombolytic Mechanism", exp: "Thrombolytics catalyze conversion of endogenous plasminogen to plasmin, an enzyme that degrades fibrin clots." },
+      { q: "Alteplase (recombinant tissue plasminogen activator / tPA) is classified as a 'fibrin-selective' thrombolytic because it:", opts: ["Binds preferentially to plasminogen bound to fibrin within a clot, minimizing systemic fibrinogen depletion", "Destroys platelets selectively", "Inhibits thrombin exclusively", "Acts only in venous blood"], a: 0, tag: "Basic", topic: "Fibrin Selectivity Concept", exp: "tPA selectively binds fibrin-bound plasminogen within thrombi, localized activation compared to older non-selective agents." },
+      { q: "Which non-selective first-generation thrombolytic agent is derived from beta-hemolytic streptococci and can cause allergic anaphylaxis?", opts: ["Streptokinase", "Alteplase", "Tenecteplase", "Reteplase"], a: 0, tag: "Basic", topic: "Streptokinase Antigenicity", exp: "Streptokinase is a bacterial protein from Streptococcus; repeat administration can trigger neutralizing antibodies and anaphylaxis." },
+      { q: "What is the primary FDA-approved therapeutic window for IV Alteplase in acute ischemic stroke from symptom onset?", opts: ["Within 3 to 4.5 hours of well-established symptom onset", "Within 24 hours", "Within 12 to 18 hours", "Within 48 hours"], a: 0, tag: "Basic", topic: "Stroke Therapeutic Window", exp: "IV tPA must be initiated within 3 to 4.5 hours of ischemic stroke onset to salvage penumbral brain tissue without unacceptable hemorrhage risks." },
+      { q: "Which mutant variant of tPA possesses a longer half-life and greater fibrin specificity, allowing single IV bolus administration in STEMI?", opts: ["Tenecteplase (TNK-tPA)", "Streptokinase", "Urokinase", "Anistreplase"], a: 0, tag: "Basic", topic: "Tenecteplase Advantages", exp: "Tenecteplase has modifications conferring a longer half-life (20 min vs 5 min for tPA), enabling convenient single-bolus IV dosing." },
+      { q: "What is the most common life-threatening adverse reaction associated with thrombolytic therapy?", opts: ["Symptomatic intracranial hemorrhage (ICH)", "Acute renal failure", "Severe bronchospasm", "Deep vein thrombosis"], a: 0, tag: "Basic", topic: "Thrombolytic Major Complication", exp: "Systemic lytic state and microvascular breakdown carry a ~6-7% risk of fatal or disabling intracranial hemorrhage." },
+      { q: "Prior to initiating IV Alteplase for acute ischemic stroke, CT brain scan must be performed immediately to rule out:", opts: ["Acute intracranial hemorrhage or major structural infarction", "Ischemic penumbra", "Cerebral vasospasm", "Carotid artery stenosis"], a: 0, tag: "Basic", topic: "Pre-tPA CT Requirement", exp: "Non-contrast head CT is mandatory before tPA to exclude hemorrhagic stroke, which is an absolute contraindication." },
+      { q: "Which physiological protein is the primary endogenous inhibitor of active Circulating Plasmin?", opts: ["Alpha-2 Antiplasmin", "Antithrombin III", "Protein S", "Plasminogen Activator Inhibitor-1"], a: 0, tag: "Basic", topic: "Endogenous Lytic Regulation", exp: "Alpha-2 antiplasmin rapidly inactivates free circulating plasmin in plasma, confining lytic activity to fibrin clot surfaces." },
+      { q: "Thrombolytic therapy in Acute Myocardial Infarction (STEMI) is indicated if Primary Percutaneous Coronary Intervention (PCI) cannot be performed within:", opts: ["120 minutes of first medical contact", "24 hours", "6 hours", "12 hours"], a: 0, tag: "Basic", topic: "STEMI Reperfusion Guidelines", exp: "Guidelines mandate Primary PCI within 90-120 minutes; if unavailable within 120 minutes, thrombolysis should be administered within 30 minutes." },
+      { q: "Which lab parameter drops drastically during systemic non-selective thrombolytic therapy, signaling a severe systemic lytic state?", opts: ["Fibrinogen level", "Platelet count", "Hemoglobin", "Serum creatinine"], a: 0, tag: "Basic", topic: "Systemic Fibrinogen Breakdown", exp: "Systemic plasmin activation degrades circulating fibrinogen, dropping plasma fibrinogen levels below 100 mg/dL." },
+      { q: "Which thrombolytic agent is naturally synthesized by human kidney cells and isolated from human urine or tissue culture?", opts: ["Urokinase", "Streptokinase", "Anistreplase", "Reteplase"], a: 0, tag: "Basic", topic: "Urokinase Origin", exp: "Urokinase is an endogenous enzyme produced by renal parenchymal cells that directly cleaves plasminogen without allergic antigenicity." },
+      { q: "What is the primary antidote used to reverse life-threatening bleeding induced by Alteplase or Tenecteplase?", opts: ["Tranexamic Acid (or Aminocaproic Acid)", "Protamine Sulfate", "Vitamin K1", "Idarucizumab"], a: 0, tag: "Basic", topic: "Thrombolytic Reversal Agent", exp: "Tranexamic acid competitively blocks plasminogen lysine-binding sites, inhibiting plasmin formation and arresting fibrinolysis." },
+
+      { q: "A 62-year-old male presents with acute ischemic stroke. His blood pressure is 200/110 mmHg. Why must BP be lowered below 185/110 mmHg BEFORE giving IV tPA?", opts: ["Elevated BP > 185/110 mmHg exponentially increases the risk of fatal hemorrhagic transformation during tPA infusion", "High BP inactivates tPA in blood", "High BP causes tPA renal excretion", "High BP triggers immediate stroke resolution"], a: 0, tag: "Scenario", topic: "Blood Pressure Controls for tPA", exp: "Uncontrolled hypertension during tPA surges microvascular hydrostatic pressure, triggering catastrophic intracranial hemorrhage." },
+      { q: "A patient with acute STEMI is evaluated for tPA. The nurse notes a history of ischemic stroke 2 months ago. What is the clinical assessment?", opts: ["Absolute contraindication to thrombolysis due to high risk of intracranial hemorrhage", "Relative contraindication; proceed with half-dose tPA", "Indication to give double dose tPA", "No concern; proceed standard infusion"], a: 0, tag: "Scenario", topic: "Absolute Contraindications Evaluation", exp: "Ischemic stroke within the past 3 months is an absolute contraindication to thrombolysis due to damaged blood-brain barrier integrity." },
+      { q: "During IV Alteplase infusion for acute ischemic stroke, the patient suddenly develops severe headache, vomiting, and BP surge to 210/120 mmHg. What is the immediate priority?", opts: ["Stop the Alteplase infusion immediately and obtain emergency non-contrast head CT", "Slow down the infusion rate by half", "Administer high-dose aspirin", "Give IV Heparin bolus"], a: 0, tag: "Scenario", topic: "Intracranial Bleeding Emergency Protocol", exp: "Sudden neurological deterioration during tPA signals acute intracranial hemorrhage; immediate infusion cessation and CT imaging are mandatory." },
+      { q: "A patient receiving IV Alteplase for massive pulmonary embolism develops sudden swelling of the tongue, lips, and airway compromise. What condition has occurred?", opts: ["tPA-induced orogenital/orolingual angioedema (bradykinin-mediated)", "Anaphylaxis to heparin", "Oral thrush", "Acute stroke"], a: 0, tag: "Scenario", topic: "tPA Angioedema Recognition", exp: "tPA generates plasmin which activates the kinin cascade, triggering bradykinin-mediated orolingual angioedema in 1-5% of patients (especially on ACE inhibitors)." },
+      { q: "A patient who received Streptokinase 6 months ago for MI presents with acute DVT. Why is Streptokinase strictly contraindicated for this patient today?", opts: ["Pre-existing neutralizing antistreptococcal antibodies destroy Streptokinase and risk severe anaphylaxis", "Streptokinase causes permanent liver damage", "Streptokinase causes blindness on second dose", "Streptokinase degrades kidneys"], a: 0, tag: "Scenario", topic: "Streptokinase Re-exposure Safety", exp: "Prior exposure to Streptokinase induces high titers of neutralizing antibodies persisting for years, rendering re-exposure ineffective and anaphylactic." },
+      { q: "A 45-year-old female with massive pulmonary embolism and severe hemodynamic instability (BP 75/40 mmHg) is evaluated. What is the treatment of choice?", opts: ["Systemic IV Thrombolytic therapy (Alteplase 100 mg over 2 hours)", "Oral Warfarin monotherapy", "Subcutaneous Enoxaparin alone", "Aspirin 325 mg"], a: 0, tag: "Scenario", topic: "Massive PE Thrombolysis Indications", exp: "High-risk massive PE with persistent hypotension/shock is a primary indication for emergency thrombolysis to restore right ventricular function." },
+      { q: "A patient receiving IV Alteplase for stroke develops major abdominal bleeding. Fibrinogen is 50 mg/dL. In addition to Tranexamic Acid, what blood product is indicated?", opts: ["Cryoprecipitate (or Fibrinogen Concentrate)", "Packed Red Blood Cells only", "Platelet concentrates", "Prothrombin Complex Concentrate"], a: 0, tag: "Scenario", topic: "Hypofibrinogenemia Management", exp: "Cryoprecipitate is rich in Fibrinogen, Factor VIII, and VWF, rapidly replenishing depleted fibrinogen levels (<100 mg/dL) during lytic crises." },
+      { q: "Why is recent major surgery or trauma within 3 weeks considered an absolute/relative contraindication to thrombolytic therapy?", opts: ["Thrombolytics break down physiological surgical fibrin plugs, triggering catastrophic surgical site hemorrhage", "Thrombolytics prevent surgical wound healing permanently", "Thrombolytics cause acute bone marrow failure", "Thrombolytics destroy surgical sutures"], a: 0, tag: "Scenario", topic: "Surgical Bleeding Risk Assessment", exp: "Hemostatic plugs preventing bleeding at recent surgical sites consist of fresh fibrin; thrombolytics dissolve these plugs, causing major hemorrhage." },
+      { q: "A STEMI patient receives Tenecteplase bolus in the ambulance. Upon arrival at the cardiac cath lab, what adjunctive antiplatelet/anticoagulant therapy is co-administered?", opts: ["Aspirin + Clopidogrel + Heparin (or LMWH)", "Warfarin alone", "Dabigatran alone", "None; avoid all drugs for 48 hours"], a: 0, tag: "Scenario", topic: "Adjunctive STEMI Pharmacotherapy", exp: "Thrombolytics dissolve existing fibrin but generate thrombin exposure; adjunctive antiplatelet (Aspirin/P2Y12) and anticoagulant (Heparin) therapy prevents re-occlusion." },
+      { q: "A patient with acute ischemic stroke has a baseline blood glucose of 35 mg/dL. Why must hypoglycemia be corrected BEFORE diagnosing stroke and giving tPA?", opts: ["Severe hypoglycemia mimics acute focal ischemic stroke deficits (stroke mimic)", "Hypoglycemia destroys tPA molecules", "Hypoglycemia causes acute brain hemorrhage", "tPA causes severe hyperinsulinemia"], a: 0, tag: "Scenario", topic: "Stroke Mimics Evaluation", exp: "Neuroglycopenia causes focal neurological deficits indistinguishable from acute stroke; correcting glucose resolves symptoms if it is a hypoglycemia mimic." },
+      { q: "A patient receiving IV tPA for ischemic stroke requires invasive procedure placement (NG tube, urinary catheter, arterial line). What precautions are indicated?", opts: ["Delay non-essential invasive punctures for 24 hours post-tPA to avoid compressible and non-compressible site bleeding", "Perform arterial line placement immediately during tPA", "Give IM injections every 2 hours", "No precautions needed"], a: 0, tag: "Scenario", topic: "Post-tPA Invasive Procedure Rules", exp: "Systemic lytic state persists for hours post-tPA; invasive lines and non-compressible vascular punctures should be avoided for 24 hours." },
+      { q: "How does the administration method of Alteplase for Acute Ischemic Stroke differ from massive PE?", opts: ["Stroke: 0.9 mg/kg (max 90 mg) as 10% IV bolus over 1 min, remainder over 60 min. PE: 100 mg IV over 2 hours", "Stroke uses single IV bolus; PE uses 24-hour drip", "PE uses micro-doses; stroke uses high doses", "Stroke uses IM injection"], a: 0, tag: "Scenario", topic: "Alteplase Dosing Protocol Variations", exp: "Acute ischemic stroke requires a 10% initial IV bolus over 1 minute followed by 60-minute infusion. PE uses a fixed 100 mg infusion over 2 hours." },
+
+      { q: "What specific structural modification in Tenecteplase (TNK-tPA) confers its resistance to Plasminogen Activator Inhibitor-1 (PAI-1)?", opts: ["Substitution of 4 amino acids (Lys-His-Arg-Rna to Ala-Ala-Ala-Ala) at positions 296-299", "Addition of a heavy lipid chain", "Removal of all sugar groups", "Coupling to human albumin"], a: 0, tag: "Hard", topic: "Molecular Engineering of TNK", exp: "The tetra-alanine substitution (TNK mutations) increases PAI-1 resistance 80-fold and prolongs plasma half-life compared to native alteplase." },
+      { q: "Why does tPA exhibit a 500-fold higher catalytic activity for converting plasminogen to plasmin in the presence of Fibrin compared to Fibrinogen?", opts: ["Fibrin acts as a catalytic scaffold, co-localizing tPA and Plasminogen in a ternary complex that dramatically lowers Km", "Fibrinogen destroys tPA", "Fibrin activates liver enzymes", "Fibrinogen blocks plasminogen receptors"], a: 0, tag: "Hard", topic: "Ternary Complex Enzymatic Kinetics", exp: "Fibrin provides a structural template where both tPA and plasminogen bind side-by-side; this ternary complex lowers Km, accelerating plasmin generation." },
+      { q: "What is the molecular mechanism of tPA-induced orolingual angioedema in patients concurrently taking ACE Inhibitors?", opts: ["Plasmin activates the kallikrein-kinin pathway, surging Bradykinin levels while ACE inhibition blocks Bradykinin degradation", "tPA causes histamine release from mast cells directly", "ACE inhibitors bind tPA directly", "Plasmin destroys endothelial cells"], a: 0, tag: "Hard", topic: "Kallikrein-Kinin Cascade Dynamics", exp: "tPA generates plasmin, which cleaves high-molecular-weight kininogen into bradykinin. Concurrent ACE inhibitors prevent bradykinin breakdown, causing angioedema." },
+      { q: "How does Plasminogen Activator Inhibitor-1 (PAI-1) regulate physiological fibrinolysis under basal conditions?", opts: ["PAI-1 forms a 1:1 stoichometric covalent complex with active tPA and uPA, rapidly inactivating them", "PAI-1 degrades fibrin mesh directly", "PAI-1 destroys alpha-2 antiplasmin", "PAI-1 activates prothrombin"], a: 0, tag: "Hard", topic: "PAI-1 Molecular Inhibition", exp: "PAI-1 is a serine protease inhibitor (serpin) that rapidly binds active tPA and urokinase, serving as the primary physiological inhibitor of fibrinolysis." },
+      { q: "In acute ischemic stroke, what pathophysiological phenomenon explains 'hemorrhagic transformation' post-tPA reperfusion?", opts: ["Ischemic degradation of microvascular basal lamina (MMP-9 activation) allows blood extravasation upon arterial re-flow", "tPA destroys cerebral neurons directly", "tPA triggers brain capillary atherosclerosis", "Plasmin causes arterial smooth muscle spasm"], a: 0, tag: "Hard", topic: "Microvascular Reperfusion Injury", exp: "Ischemia induces matrix metalloproteinase-9 (MMP-9) breakdown of endothelial tight junctions and basement membrane; tPA exacerbates MMP-9 degradation." },
+      { q: "Why is Streptokinase considered a 'pro-enzyme activator' rather than a direct serine protease enzyme?", opts: ["Streptokinase lacks intrinsic enzymatic activity; it forms a 1:1 complex with plasminogen, exposing the active plasmin catalytic site", "Streptokinase cleaves fibrin directly without plasmin", "Streptokinase requires liver activation", "Streptokinase acts as a hormone"], a: 0, tag: "Hard", topic: "Streptokinase Allosteric Activation", exp: "Streptokinase is not an enzyme. It forms an equimolar complex with plasminogen, inducing a conformational change that exposes catalytic sites on other plasminogens." }
+    ]
+  },
+
+  // SUBCHAPTER 4: TREATMENT OF BLEEDINGS (91-120)
+  {
+    chTitle: "Subchapter 4: Treatment of Bleedings & Reversal Protocols",
+    questions: [
+      { q: "Protamine Sulfate is the specific chemical antidote used to reverse the anticoagulant effects of:", opts: ["Unfractionated Heparin (UFH)", "Warfarin", "Dabigatran", "Rivaroxaban"], a: 0, tag: "Basic", topic: "Heparin Antidote", exp: "Protamine sulfate is a strongly basic polycationic peptide that binds strongly acidic polyanionic Heparin, forming an inactive salt complex." },
+      { q: "Which specific monoclonal antibody fragment (Fab) is the FDA-approved specific reversal agent for Dabigatran?", opts: ["Idarucizumab", "Andexanet alfa", "Protamine sulfate", "Praxbind / Ciraparantag"], a: 0, tag: "Basic", topic: "Dabigatran Reversal Agent", exp: "Idarucizumab (Praxbind) is a humanized monoclonal antibody fragment that binds free and thrombin-bound Dabigatran with 350x higher affinity than thrombin." },
+      { q: "Andexanet alfa is a recombinant modified decoy Factor Xa protein designed to reverse which class of anticoagulants?", opts: ["Direct and indirect Factor Xa inhibitors (Rivaroxaban, Apixaban, LMWH)", "Direct Thrombin inhibitors", "Vitamin K antagonists", "Fibrinolytic agents"], a: 0, tag: "Basic", topic: "Andexanet Alfa Target", exp: "Andexanet alfa is a catalytically inactive Factor Xa decoy that sequesters Factor Xa inhibitors (Apixaban, Rivaroxaban, Enoxaparin) away from endogenous Factor Xa." },
+      { q: "Phytonadione (Vitamin K1) reverses Warfarin therapy by providing active substrate for:", opts: ["Hepatic gamma-glutamyl carboxylase conversion of clotting factors II, VII, IX, X", "Renal filtration of Warfarin", "Direct Factor Xa activation", "Inhibition of Antithrombin III"], a: 0, tag: "Basic", topic: "Vitamin K1 Reversal Mechanism", exp: "Exogenous Vitamin K1 bypasses Warfarin-inhibited VKORC1 via Vitamin K reductase enzymes, restoring active gamma-carboxylation of factors II, VII, IX, X." },
+      { q: "4-Factor Prothrombin Complex Concentrate (4F-PCC / Kcentra) contains concentrated non-activated factors:", opts: ["Factors II, VII, IX, and X (+ Proteins C and S)", "Factors I, V, VIII, and XIII", "Factors VIII and IX only", "Factor VIIa exclusively"], a: 0, tag: "Basic", topic: "4F-PCC Composition", exp: "4F-PCC contains concentrated human Vitamin K-dependent factors (II, VII, IX, X) and antithrombotic Proteins C and S for rapid Warfarin reversal." },
+      { q: "Tranexamic Acid (TXA) and Aminocaproic Acid control bleeding by acting as antifibrinolytic analogs of which amino acid?", opts: ["Lysine", "Arginine", "Histidine", "Cysteine"], a: 0, tag: "Basic", topic: "TXA Amino Acid Analogs", exp: "TXA and aminocaproic acid are synthetic lysine analogs that block plasminogen lysine-binding sites, preventing fibrin degradation." },
+      { q: "Desmopressin (DDAVP) is administered to control mild bleeding in von Willebrand Disease and Hemophilia A by stimulating release of:", opts: ["Endogenous Factor VIII and von Willebrand Factor (VWF) from endothelial Weibel-Palade bodies", "Factor IX from liver", "Platelets from megakaryocytes", "Fibrinogen from hepatocytes"], a: 0, tag: "Basic", topic: "DDAVP Secretagogue Action", exp: "DDAVP binds endothelial V2 vasopressin receptors, triggering exocytosis of Weibel-Palade bodies containing stored VWF and Factor VIII." },
+      { q: "Recombinant Activated Factor VII (rFVIIa / NovoSeven) is primarily indicated for controlling severe bleeding in patients with:", opts: ["Hemophilia A or B with high-titer Factor VIII/IX inhibitor antibodies", "Warfarin toxicity only", "Aspirin overdose", "Heparin overdose"], a: 0, tag: "Basic", topic: "rFVIIa Bypass Therapy", exp: "rFVIIa bypasses upstream factors VIII and IX, complexing with tissue factor to directly activate Factor X and trigger a prothrombin burst." },
+      { q: "Which blood product contains concentrated Fibrinogen, Factor VIII, Factor XIII, and von Willebrand Factor?", opts: ["Cryoprecipitate", "Fresh Frozen Plasma (FFP)", "Packed Red Blood Cells", "Platelet Concentrates"], a: 0, tag: "Basic", topic: "Cryoprecipitate Contents", exp: "Cryoprecipitate is prepared by thawing FFP; it yields concentrated Fibrinogen (~150-250 mg/unit), VWF, Factor VIII, and Factor XIII." },
+      { q: "Rapid IV administration of Protamine Sulfate can trigger which severe cardiovascular reaction?", opts: ["Severe Hypotension, Bradycardia, and Pulmonary Artery Hypertension", "Hypertensive crisis", "Atrial fibrillation", "Hyperthermia"], a: 0, tag: "Basic", topic: "Protamine IV Infusion Risks", exp: "Rapid IV Protamine triggers histamine release and complement activation, causing profound vasodilation, bradycardia, and pulmonary vasoconstriction." },
+      { q: "Fresh Frozen Plasma (FFP) requires cross-matching for which blood parameter before transfusion?", opts: ["ABO blood group compatibility", "Rh factor only", "Platelet count", "HLA typing"], a: 0, tag: "Basic", topic: "FFP Transfusion Rules", exp: "FFP contains donor plasma antibodies; ABO compatibility is mandatory to prevent immune-mediated recipient hemolysis." },
+      { q: "Microfibrillar Collagen Hemostat (Avitene) and Oxidized Regenerated Cellulose (Surgicel) act as:", opts: ["Topical mechanical/contact hemostatic agents applied directly to bleeding surgical surfaces", "Systemic IV antidotes", "Oral anticoagulants", "Injectable thrombolytics"], a: 0, tag: "Basic", topic: "Topical Hemostat Agents", exp: "Topical agents act locally at surgical bleeding sites by providing a mechanical matrix that traps platelets and activates contact factors." },
+
+      { q: "A patient taking Warfarin presents with acute subdural hematoma following a fall. INR is 4.2. What is the fastest therapeutic intervention to reverse coagulopathy?", opts: ["IV 4-Factor Prothrombin Complex Concentrate (4F-PCC) + IV Vitamin K1", "Oral Vitamin K1 alone", "Fresh Frozen Plasma alone over 12 hours", "Protamine sulfate IV"], a: 0, tag: "Scenario", topic: "Major Bleeding Warfarin Protocol", exp: "In life-threatening intracranial bleeding, 4F-PCC reverses INR within 15-30 minutes with minimal volume, combined with IV Vitamin K for sustained synthesis." },
+      { q: "A patient on continuous IV Heparin develops major GI bleeding. Heparin is stopped, but bleeding continues. Heparin dose was 1,000 units/hour. How much Protamine is needed for the last hour's Heparin?", opts: ["10 mg Protamine Sulfate IV (1 mg neutralizes ~100 units Heparin)", "100 mg Protamine IV", "1 mg Protamine IV", "500 mg Protamine IV"], a: 0, tag: "Scenario", topic: "Protamine Dosing Calculation", exp: "1 mg Protamine neutralizes ~100 units of UFH. For 1,000 units UFH given in the past hour, ~10 mg Protamine is administered slowly." },
+      { q: "A patient taking Dabigatran presents with major gastrointestinal bleeding requiring emergency surgery. Which specific reversal agent should be administered immediately?", opts: ["Idarucizumab (Praxbind) 5g IV", "Andexanet alfa", "Vitamin K1 IV", "Protamine sulfate"], a: 0, tag: "Scenario", topic: "Dabigatran Reversal Scenario", exp: "Idarucizumab 5g IV (2x 2.5g vials) completely neutralizes Dabigatran anticoagulant activity within minutes, allowing emergency surgery." },
+      { q: "A patient taking Rivaroxaban 20 mg daily presents with acute life-threatening retroperitoneal hemorrhage. Which agent is specifically indicated for reversal?", opts: ["Andexanet alfa (or 4F-PCC if unavailable)", "Idarucizumab", "Protamine sulfate", "Vitamin K1"], a: 0, tag: "Scenario", topic: "Factor Xa Reversal Protocol", exp: "Andexanet alfa is the FDA-approved specific reversal agent for direct Factor Xa inhibitors (Rivaroxaban/Apixaban)." },
+      { q: "An asymptomatic patient taking Warfarin has a routine INR check of 6.2 with NO signs of bleeding. According to CHEST guidelines, what is the management?", opts: ["Hold 1-2 doses of Warfarin, monitor INR, and resume at a lower dose when INR is therapeutic (No Vitamin K routine)", "Give 10 mg IV Vitamin K immediately", "Transfuse 4 units FFP", "Administer 4F-PCC"], a: 0, tag: "Scenario", topic: "Asymptomatic High INR Guidelines", exp: "For INR 4.5-10.0 without bleeding, guidelines recommend withholding Warfarin alone without routine Vitamin K, as Vitamin K risks Warfarin refractoriness." },
+      { q: "A mild Hemophilia A patient undergoing dental extraction receives IV Desmopressin (DDAVP). Why must fluid intake be restricted for 24 hours post-DDAVP?", opts: ["DDAVP stimulates V2 renal water reabsorption, risking severe dilutional hyponatremia and water intoxication", "DDAVP causes hypernatremia", "DDAVP causes kidney stone precipitation", "DDAVP triggers severe dehydration"], a: 0, tag: "Scenario", topic: "DDAVP Hyponatremia Risk", exp: "DDAVP is an antidiuretic (V2 agonist). Unrestricted free water intake triggers water retention, dilutional hyponatremia, and seizures." },
+      { q: "A trauma patient receives 12 units of Packed Red Blood Cells during emergency resuscitation. Microvascular oozing develops. Platelets are 40,000/mcL and Fibrinogen is 70 mg/dL. What transfusions are needed?", opts: ["Platelet concentrates and Cryoprecipitate (to restore fibrinogen > 150 mg/dL)", "PRBCs only", "Vitamin K1 IV only", "Protamine sulfate"], a: 0, tag: "Scenario", topic: "Massive Transfusion Protocol Coagulopathy", exp: "Massive PRBC transfusion dilutes endogenous platelets and fibrinogen. Resuscitation guidelines mandate replacing platelets and fibrinogen (Cryoprecipitate)." },
+      { q: "Why is IV Vitamin K1 administered slowly over 30 minutes diluted in IV fluid, rather than as a rapid IV push?", opts: ["Rapid IV push carries a risk of severe anaphylactoid shock and cardiovascular collapse", "Rapid push causes immediate blindness", "Rapid push destroys Vitamin K", "Rapid push causes hypoglycemia"], a: 0, tag: "Scenario", topic: "IV Vitamin K Safety Rules", exp: "Black-Box warning: Rapid IV Vitamin K push can trigger severe anaphylactoid reactions, rigors, hypotension, and cardiac arrest." },
+      { q: "A surgical patient receiving Tranexamic Acid (TXA) IV post-op asks how TXA prevents excessive bleeding. The nurse explains:", opts: ["TXA stops the breakdown of blood clots by blocking plasminogen binding to fibrin", "TXA directly destroys heparin", "TXA synthesizes new platelets", "TXA acts as an oral anticoagulant"], a: 0, tag: "Scenario", topic: "TXA Mechanism Explanation", exp: "TXA inhibits fibrinolysis by competitively blocking plasminogen lysine-binding sites, preserving established fibrin clots." },
+      { q: "A patient with Hemophilia B (Factor IX deficiency) presents with joint hemarthrosis. Which specific factor concentrate should be administered?", opts: ["Recombinant Factor IX concentrate", "Factor VIII concentrate", "Desmopressin (DDAVP)", "Protamine sulfate"], a: 0, tag: "Scenario", topic: "Hemophilia B Targeted Replacement", exp: "Hemophilia B is Factor IX deficiency; it requires Factor IX replacement concentrate. DDAVP is ineffective because it releases Factor VIII, not IX." },
+      { q: "Why is Fresh Frozen Plasma (FFP) less desirable than 4F-PCC for emergency Warfarin reversal in an elderly heart failure patient?", opts: ["FFP requires large infusion volumes (15-20 mL/kg) risking fluid overload/TACO, and takes hours to thaw/infuse", "FFP destroys Warfarin reversal", "FFP contains no clotting factors", "FFP causes immediate renal destruction"], a: 0, tag: "Scenario", topic: "FFP vs PCC Volume Comparison", exp: "FFP reversal requires ~1-2 Liters of plasma, carrying a high risk of Transfusion-Associated Circulatory Overload (TACO) in heart failure; PCC uses <100 mL." },
+      { q: "A patient receiving Protamine Sulfate for Heparin reversal develops sudden hypotension and flushing. What was the likely administration error?", opts: ["Protamine was infused too rapidly (exceeding 50 mg in 10 minutes)", "Protamine was given orally", "Protamine was mixed with saline", "Protamine was given with Vitamin K"], a: 0, tag: "Scenario", topic: "Protamine Infusion Rate Limit", exp: "Protamine should never be infused faster than 50 mg in 10 minutes to avoid histamine release and severe cardiovascular collapse." },
+
+      { q: "What is the molecular mechanism by which Andexanet alfa acts as a universal decoy for Direct Factor Xa Inhibitors?", opts: ["Recombinant human Xa protein with a mutated active site (S379A) preventing procoagulant activity, while retaining high binder affinity for Xa inhibitors", "Destroys Xa inhibitors enzymatically", "Binds platelets directly", "Activates Antithrombin III"], a: 0, tag: "Hard", topic: "Andexanet Alfa Molecular Engineering", exp: "Andexanet alfa is modified Xa: Serine at active site 379 is replaced with Alanine (no clotting activity) and membrane-binding Gla domain is removed, acting purely as an inhibitor sponge." },
+      { q: "Why is Idarucizumab binding affinity for Dabigatran ~350 times stronger than Dabigatran's binding affinity for Thrombin?", opts: ["Idarucizumab Fab fragments enclose the entire Dabigatran molecule with extensive hydrogen bonding and hydrophobic contacts", "Idarucizumab forms covalent disulfide bonds with Dabigatran", "Idarucizumab destroys Dabigatran enzymatically", "Idarucizumab acts via ionic precipitation"], a: 0, tag: "Hard", topic: "Antibody Reversal Thermodynamics", exp: "Idarucizumab forms a tight non-covalent structural pocket around Dabigatran, driving an ultra-low dissociation constant (Kd = 2.1 pM) that strips Dabigatran from thrombin." },
+      { q: "What is the biochemical reason why Tranexamic Acid is ~8-10 times more potent than Aminocaproic Acid as an antifibrinolytic?", opts: ["TXA's rigid trans-cyclohexane ring structure places its carboxylic acid and amino groups in an optimal spatial distance to fit plasminogen lysine sites", "TXA contains sulfur bonds", "TXA degrades plasmin directly", "TXA binds fibrinogen covalently"], a: 0, tag: "Hard", topic: "Structure-Activity Relationship of Antifibrinolytics", exp: "The rigid cyclohexane geometry of TXA perfectly matches the distance between lysine-binding domain residues on plasminogen's kringle domains." },
+      { q: "How does Recombinant Activated Factor VII (rFVIIa) induce hemostasis in Hemophilia patients with high-titer inhibitors independent of Tissue Factor?", opts: ["High-dose rFVIIa binds directly to activated platelet surfaces, directly activating Factor X to generate a localized thrombin burst", "rFVIIa synthesizes Factor VIII", "rFVIIa destroys inhibitor antibodies", "rFVIIa activates VKORC1"], a: 0, tag: "Hard", topic: "TF-Independent rFVIIa Mechanism", exp: "At pharmacological high doses, rFVIIa binds directly to phosphatidylserine on activated platelets, converting X to Xa without needing TF, Factor VIII, or Factor IX." },
+      { q: "Why does administration of 3-Factor PCC (containing II, IX, X) require supplemental Fresh Frozen Plasma or Factor VII compared to 4-Factor PCC for Warfarin reversal?", opts: ["3F-PCC lacks significant Factor VII, which has the shortest half-life (6 hours) and is essential for rapid INR normalization", "3F-PCC destroys Factor II", "3F-PCC contains excess Heparin", "3F-PCC causes factor IX destruction"], a: 0, tag: "Hard", topic: "3F vs 4F PCC Factor Dynamics", exp: "Factor VII has the shortest half-life (6h) and dictates early INR elevation. 3F-PCC lacks Factor VII; adding FFP or Factor VII is required to normalize INR." },
+      { q: "What immunogenic cross-reactivity risk exists when administering Protamine Sulfate to diabetic patients previously treated with NPH Insulin?", opts: ["NPH insulin contains protamine; prior exposure creates IgG/IgE antibodies, risking severe systemic anaphylaxis upon IV Protamine infusion", "NPH insulin destroys Protamine", "Protamine causes irreversible hyperglycemia", "Protamine triggers acute insulin release"], a: 0, tag: "Hard", topic: "Protamine Immunogenic Sensitization", exp: "Neutral Protamine Hagedorn (NPH) insulin contains protamine. Prior exposure can cause antibody sensitization, triggering fatal anaphylaxis when IV Protamine is given." }
+    ]
+  }
+];
+
+let currentChapter = 0;
+let currentQuestionIndex = 0;
+let overallScore = 0;
+let userAnswers = []; 
+let chapterScores = [0, 0, 0, 0];
+let timerInterval = null;
+let timeRemaining = 1800; // 30 minutes in seconds
+
+const quizBox = document.getElementById('quiz-box');
+const dashProgress = document.getElementById('dash-progress');
+const dashTimer = document.getElementById('dash-timer');
+const dashScore = document.getElementById('dash-score');
+const dashChNum = document.getElementById('dash-ch-num');
+const chTitleText = document.getElementById('ch-title-text');
+const qDiffBadge = document.getElementById('q-diff-badge');
+const chBadgeContainer = document.getElementById('ch-badge-container');
+
+const chapterReport = document.getElementById('chapter-report');
+const finalReport = document.getElementById('final-report');
+
+function initQuiz() {
+  currentChapter = 0;
+  currentQuestionIndex = 0;
+  overallScore = 0;
+  userAnswers = [];
+  chapterScores = [0, 0, 0, 0];
+  
+  chapterReport.classList.remove('show');
+  finalReport.classList.remove('show');
+  quizBox.style.display = 'block';
+  chBadgeContainer.style.display = 'flex';
+
+  startChapterTimer();
+  renderQuestion();
+  updateDashboard();
+}
+
+function startChapterTimer() {
+  clearInterval(timerInterval);
+  timeRemaining = 1800; // Reset to 30 mins
+  updateTimerDisplay();
+
+  timerInterval = setInterval(() => {
+    timeRemaining--;
+    updateTimerDisplay();
+
+    if (timeRemaining <= 0) {
+      clearInterval(timerInterval);
+      alert("⏰ Time is up for this subchapter! Auto-submitting current chapter.");
+      autoSubmitChapter();
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const minutes = Math.floor(timeRemaining / 60);
+  const seconds = timeRemaining % 60;
+  const displayStr = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  dashTimer.innerText = displayStr;
+
+  if (timeRemaining < 300) {
+    dashTimer.classList.add('timer-alert');
+  } else {
+    dashTimer.classList.remove('timer-alert');
+  }
+}
+
+function autoSubmitChapter() {
+  const chData = quizData[currentChapter];
+  while (currentQuestionIndex < 30) {
+    const qData = chData.questions[currentQuestionIndex];
+    userAnswers.push({
+      ch: currentChapter,
+      qIndex: currentQuestionIndex,
+      selected: -1,
+      correct: false,
+      topic: qData.topic,
+      tag: qData.tag
+    });
+    currentQuestionIndex++;
+  }
+  showChapterReport();
+}
+
+function renderQuestion() {
+  const chData = quizData[currentChapter];
+  const qData = chData.questions[currentQuestionIndex];
+
+  chTitleText.innerText = chData.chTitle;
+  qDiffBadge.innerText = `${qData.tag} Difficulty`;
+  qDiffBadge.className = `diff-tag ${qData.tag === 'Basic' ? 'tag-basic' : qData.tag === 'Scenario' ? 'tag-scenario' : 'tag-hard'}`;
+
+  const totalPrevQuestions = currentChapter * 30;
+  const currentGlobalNum = totalPrevQuestions + currentQuestionIndex + 1;
+
+  let html = `
+    <div class="mcq-card active">
+      <div class="q-number">QUESTION ${currentGlobalNum} OF 120 • [${qData.topic}]</div>
+      <div class="q-text">${qData.q}</div>
+      <div class="options-grid">
+  `;
+
+  qData.opts.forEach((opt, idx) => {
+    html += `
+      <button class="opt-btn" onclick="handleAnswer(${idx})" id="opt-${idx}">
+        <span><strong>${String.fromCharCode(65 + idx)}.</strong> ${opt}</span>
+        <span id="icon-${idx}"></span>
+      </button>
+    `;
+  });
+
+  html += `
+      </div>
+      <div class="explanation-box" id="exp-box">
+        <div class="exp-title">💡 WHY IS THIS CORRECT?</div>
+        <div class="exp-text">${qData.exp}</div>
+      </div>
+      <div class="nav-actions">
+        <div></div>
+        <button class="action-btn" id="next-btn" onclick="nextQuestion()" disabled>Next Question ➔</button>
+      </div>
+    </div>
+  `;
+
+  quizBox.innerHTML = html;
+}
+
+function handleAnswer(selectedIdx) {
+  const chData = quizData[currentChapter];
+  const qData = chData.questions[currentQuestionIndex];
+
+  const buttons = document.querySelectorAll('.opt-btn');
+  buttons.forEach(btn => btn.classList.add('disabled'));
+
+  const isCorrect = (selectedIdx === qData.a);
+
+  const selectedBtn = document.getElementById(`opt-${selectedIdx}`);
+  const correctBtn = document.getElementById(`opt-${qData.a}`);
+
+  if (isCorrect) {
+    selectedBtn.classList.add('correct');
+    document.getElementById(`icon-${selectedIdx}`).innerText = '✓';
+    overallScore++;
+    chapterScores[currentChapter]++;
+  } else {
+    selectedBtn.classList.add('incorrect');
+    document.getElementById(`icon-${selectedIdx}`).innerText = '✗';
+    correctBtn.classList.add('correct');
+    document.getElementById(`icon-${qData.a}`).innerText = '✓';
+  }
+
+  userAnswers.push({
+    ch: currentChapter,
+    qIndex: currentQuestionIndex,
+    selected: selectedIdx,
+    correct: isCorrect,
+    topic: qData.topic,
+    tag: qData.tag
+  });
+
+  document.getElementById('exp-box').classList.add('show');
+  document.getElementById('next-btn').disabled = false;
+
+  updateDashboard();
+}
+
+function updateDashboard() {
+  const totalAnswered = userAnswers.length;
+  dashProgress.innerText = `${totalAnswered} / 120`;
+  dashScore.innerText = `${overallScore}`;
+  dashChNum.innerText = `${currentChapter + 1} / 4`;
+}
+
+function nextQuestion() {
+  currentQuestionIndex++;
+
+  if (currentQuestionIndex < 30) {
+    renderQuestion();
+  } else {
+    clearInterval(timerInterval);
+    showChapterReport();
+  }
+}
+
+function showChapterReport() {
+  quizBox.style.display = 'none';
+  chBadgeContainer.style.display = 'none';
+
+  const chScore = chapterScores[currentChapter];
+  document.getElementById('ch-report-subtitle').innerText = `Performance breakdown for ${quizData[currentChapter].chTitle}`;
+  document.getElementById('ch-score-display').innerText = `${chScore} / 30 (${Math.round((chScore / 30) * 100)}%)`;
+
+  const chAnswers = userAnswers.filter(a => a.ch === currentChapter);
+  const incorrectAnswers = chAnswers.filter(a => !a.correct);
+
+  let weaknessHtml = "";
+  if (incorrectAnswers.length === 0) {
+    weaknessHtml = "<span style='color: var(--accent-green); font-weight: bold;'>🌟 Perfect Score! 100% Mastery in this Subchapter. No topic weaknesses detected.</span>";
+  } else {
+    const topicCounts = {};
+    incorrectAnswers.forEach(a => {
+      topicCounts[a.topic] = (topicCounts[a.topic] || 0) + 1;
+    });
+
+    weaknessHtml = "You lost marks in the following high-yield topics:<ul class='weakness-list'>";
+    for (const [topic, count] of Object.entries(topicCounts)) {
+      weaknessHtml += `<li><strong>${topic}:</strong> ${count} question(s) missed.</li>`;
+    }
+    weaknessHtml += "</ul> Review these specific drug mechanisms before sitting your university exam.";
+  }
+
+  document.getElementById('ch-weakness-text').innerHTML = weaknessHtml;
+
+  const nextBtn = document.getElementById('btn-next-ch');
+  if (currentChapter === 3) {
+    nextBtn.innerText = "View Final Cumulative Course Report 🏆";
+    nextBtn.onclick = showFinalReport;
+  } else {
+    nextBtn.innerText = "Begin Next Subchapter ➔";
+    nextBtn.onclick = startNextChapter;
+  }
+
+  chapterReport.classList.add('show');
+}
+
+function startNextChapter() {
+  currentChapter++;
+  currentQuestionIndex = 0;
+  chapterReport.classList.remove('show');
+  quizBox.style.display = 'block';
+  chBadgeContainer.style.display = 'flex';
+  
+  startChapterTimer();
+  renderQuestion();
+}
+
+function showFinalReport() {
+  chapterReport.classList.remove('show');
+  quizBox.style.display = 'none';
+  chBadgeContainer.style.display = 'none';
+
+  document.getElementById('final-score-display').innerText = `${overallScore} / 120 (${Math.round((overallScore / 120) * 100)}%)`;
+
+  let subScoresHtml = "";
+  quizData.forEach((ch, idx) => {
+    const score = chapterScores[idx];
+    const pct = Math.round((score / 30) * 100);
+    const color = pct >= 80 ? 'var(--accent-green)' : pct >= 60 ? 'var(--accent-amber)' : 'var(--accent-red)';
+    subScoresHtml += `
+      <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+        <span><strong>Subchapter ${idx + 1}:</strong> ${ch.chTitle.replace('Subchapter ' + (idx + 1) + ': ', '')}</span>
+        <span style="color: ${color}; font-weight: bold;">${score} / 30 (${pct}%)</span>
+      </div>
+    `;
+  });
+  document.getElementById('subchapter-scores-list').innerHTML = subScoresHtml;
+
+  const allIncorrect = userAnswers.filter(a => !a.correct);
+  let finalWeaknessHtml = "";
+
+  if (allIncorrect.length === 0) {
+    finalWeaknessHtml = "<li style='color: var(--accent-green);'>Perfect Score! You have mastered all 120 Hematology Pharmacology MCQs.</li>";
+  } else {
+    const globalTopicCounts = {};
+    allIncorrect.forEach(a => {
+      globalTopicCounts[a.topic] = (globalTopicCounts[a.topic] || 0) + 1;
+    });
+
+    const sortedTopics = Object.entries(globalTopicCounts).sort((a, b) => b[1] - a[1]);
+
+    sortedTopics.forEach(([topic, count]) => {
+      finalWeaknessHtml += `<li><strong>${topic}:</strong> ${count} total errors.</li>`;
+    });
+  }
+
+  document.getElementById('final-weakness-list').innerHTML = finalWeaknessHtml;
+  finalReport.classList.add('show');
+}
+
+function restartEntireQuiz() {
+  initQuiz();
+}
+
+window.onload = initQuiz;
+</script>
+</body>
+</html>
