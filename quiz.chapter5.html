@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anti-Neoplastic Pharmacology Master Quiz</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #31103e 50%, #1e1b4b 100%);
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --primary: #9333ea;
+      --primary-hover: #7e22ce;
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --accent-red: #ef4444;
+      --accent-amber: #f59e0b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --glass-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.6; padding: 30px 15px; min-height: 100vh; }
+
+    .container { max-width: 900px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(20px); border-radius: var(--radius); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 40px 30px; position: relative; overflow: hidden; }
+    .container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #c084fc, var(--primary), var(--accent-cyan)); }
+
+    .header-badge { display: inline-block; padding: 6px 16px; background: rgba(147, 51, 234, 0.2); color: #e9d5ff; border: 1px solid rgba(147, 51, 234, 0.4); font-size: 0.8rem; font-weight: 800; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+    h1 { font-size: 2.2rem; font-weight: 900; background: linear-gradient(135deg, #ffffff 0%, #f3e8ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; line-height: 1.2; }
+    .subtitle { color: var(--text-muted); font-size: 1rem; margin-bottom: 30px; }
+
+    .dashboard-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 30px; }
+    .dash-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px; text-align: center; }
+    .dash-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
+    .dash-value { font-size: 1.3rem; font-weight: 800; color: #e9d5ff; margin-top: 4px; }
+    .timer-alert { color: var(--accent-red) !important; animation: pulse 1s infinite; }
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+    .chapter-indicator { background: linear-gradient(90deg, rgba(147, 51, 234, 0.15), rgba(192, 132, 252, 0.15)); border: 1px solid rgba(147, 51, 234, 0.3); padding: 12px 20px; border-radius: 12px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
+    .chapter-title { font-weight: 800; font-size: 1.1rem; color: #fff; }
+    .diff-tag { font-size: 0.75rem; padding: 3px 8px; border-radius: 6px; font-weight: 800; text-transform: uppercase; }
+    .tag-basic { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); border: 1px solid var(--accent-green); }
+    .tag-scenario { background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); border: 1px solid var(--accent-amber); }
+    .tag-hard { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border: 1px solid var(--accent-red); }
+
+    .mcq-card { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--card-border); border-radius: 16px; padding: 25px; margin-bottom: 25px; display: none; }
+    .mcq-card.active { display: block; animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .q-number { font-size: 0.85rem; font-weight: 800; color: #c084fc; margin-bottom: 8px; }
+    .q-text { font-size: 1.05rem; font-weight: 600; color: var(--text-main); margin-bottom: 20px; line-height: 1.5; }
+
+    .options-grid { display: grid; gap: 12px; }
+    .opt-btn { background: rgba(255, 255, 255, 0.05); border: 1.5px solid var(--card-border); border-radius: 12px; padding: 14px 18px; color: var(--text-main); font-size: 0.95rem; font-weight: 500; text-align: left; cursor: pointer; transition: 0.2s ease; display: flex; align-items: center; justify-content: space-between; }
+    .opt-btn:hover:not(.disabled) { background: rgba(147, 51, 234, 0.15); border-color: var(--primary); transform: translateX(4px); }
+    .opt-btn.correct { background: rgba(16, 185, 129, 0.2) !important; border-color: var(--accent-green) !important; color: #fff; }
+    .opt-btn.incorrect { background: rgba(239, 68, 68, 0.2) !important; border-color: var(--accent-red) !important; color: #fff; }
+    .opt-btn.disabled { cursor: not-allowed; opacity: 0.8; }
+
+    .explanation-box { margin-top: 20px; padding: 18px; border-radius: 12px; background: rgba(15, 23, 42, 0.8); border-left: 4px solid var(--primary); display: none; }
+    .explanation-box.show { display: block; animation: slideDown 0.3s ease; }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+    .exp-title { font-weight: 800; font-size: 0.9rem; color: #e9d5ff; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .exp-text { font-size: 0.9rem; color: #cbd5e1; line-height: 1.5; }
+
+    .nav-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 25px; }
+    .action-btn { padding: 12px 28px; background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; border: none; border-radius: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: 0.2s ease; box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3); }
+    .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(147, 51, 234, 0.4); }
+    .action-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .report-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border); border-radius: 16px; padding: 30px; text-align: center; display: none; }
+    .report-card.show { display: block; animation: fadeIn 0.4s ease; }
+    .report-score { font-size: 3rem; font-weight: 900; color: #e9d5ff; margin: 15px 0; }
+    .report-breakdown { text-align: left; margin: 20px 0; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; }
+    .weakness-list { margin-top: 10px; padding-left: 20px; color: #fca5a5; }
+
+    footer { margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--card-border); padding-top: 20px; }
+    .author { color: var(--text-main); font-weight: 700; }
+
+    @media (max-width: 640px) {
+      .container { padding: 25px 15px; }
+      h1 { font-size: 1.6rem; }
+      .dashboard-bar { grid-template-columns: repeat(2, 1fr); }
+      .action-btn { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header-badge">Oncology Pharmacology</div>
+  <h1>Anti-Neoplastic Drugs Master Quiz</h1>
+  <div class="subtitle">210 High-Yield MCQs • 7 Subchapters (30 Qs Each) • 30-Min Timer Per Chapter</div>
+
+  <div class="dashboard-bar">
+    <div class="dash-card">
+      <div class="dash-title">Total Progress</div>
+      <div class="dash-value" id="dash-progress">0 / 210</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-title">Chapter Time</div>
+      <div class="dash-value" id="dash-timer">30:00</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-title">Current Score</div>
+      <div class="dash-value" id="dash-score">0</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-title">Subchapter</div>
+      <div class="dash-value" id="dash-ch-num">1 / 7</div>
+    </div>
+  </div>
+
+  <div class="chapter-indicator" id="ch-badge-container">
+    <div class="chapter-title" id="ch-title-text">Subchapter 1: Alkylating Agents & Platinum Analogs</div>
+    <span class="diff-tag tag-basic" id="q-diff-badge">Basic (40%)</span>
+  </div>
+
+  <div id="quiz-box"></div>
+
+  <div class="report-card" id="chapter-report">
+    <h2 style="color: #e9d5ff;">🎉 Subchapter Complete!</h2>
+    <p style="color: var(--text-muted); margin-top: 5px;" id="ch-report-subtitle">Performance breakdown for Alkylating Agents</p>
+    <div class="report-score" id="ch-score-display">0 / 30</div>
+    
+    <div class="report-breakdown">
+      <h4 style="color: #fff; margin-bottom: 8px;">📊 Topic Diagnostics & Weak Areas:</h4>
+      <div id="ch-weakness-text" style="font-size: 0.95rem; color: #cbd5e1;">Analyzing answers...</div>
+    </div>
+
+    <button class="action-btn" onclick="startNextChapter()" id="btn-next-ch">Begin Next Subchapter ➔</button>
+  </div>
+
+  <div class="report-card" id="final-report">
+    <h2 style="color: var(--accent-green); font-size: 2rem;">🏆 Course Final Diagnostic Report</h2>
+    <p style="color: var(--text-muted);" id="final-subtitle">Cumulative score across all 210 Anti-Neoplastic Pharmacology MCQs</p>
+    <div class="report-score" id="final-score-display">0 / 210</div>
+
+    <div class="report-breakdown" style="text-align: left;">
+      <h3 style="color: #fff; margin-bottom: 12px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px;">📈 Subchapter Breakdown:</h3>
+      <div id="subchapter-scores-list" style="margin-bottom: 20px; font-size: 0.95rem; line-height: 1.8;"></div>
+
+      <h3 style="color: var(--accent-red); margin-bottom: 8px;">⚠️ Comprehensive Weakness & Study Guidance:</h3>
+      <p style="font-size: 0.9rem; color: var(--text-muted);">Based on incorrect selections, focus review on:</p>
+      <ul class="weakness-list" id="final-weakness-list"></ul>
+    </div>
+
+    <button class="action-btn" style="background: linear-gradient(135deg, var(--accent-green), #059669);" onclick="restartEntireQuiz()">🔄 Restart Entire Master Quiz</button>
+  </div>
+
+  <footer>
+    Crafted with Excellence by <span class="author">Mudassir Khan</span> • &copy; 2026 Pharmacology Portal
+  </footer>
+</div>
+
+<script>
+const quizData = [
+  // SUBCHAPTER 1: ALKYLATING AGENTS (1-30)
+  {
+    chTitle: "Subchapter 1: Alkylating Agents & Platinum Analogs",
+    questions: [
+      { q: "What is the primary cellular mechanism of action of alkylating agents like Cyclophosphamide?", opts: ["Forming covalent alkyl bonds with DNA bases (N-7 position of Guanine), leading to DNA cross-linking", "Inhibiting dihydrofolate reductase", "Blocking tubulin polymerization", "Topoisomerase II inhibition"], a: 0, tag: "Basic", topic: "Alkylating Mechanism", exp: "Alkylating agents transfer alkyl groups to DNA, specifically the N-7 atom of guanine, producing intrastrand/interstrand cross-links that block DNA replication." },
+      { q: "Which active metabolite of Cyclophosphamide is directly responsible for causing acute hemorrhagic cystitis?", opts: ["Acrolein", "Phosphoramide mustard", "Aldophosphamide", "Mesna"], a: 0, tag: "Basic", topic: "Acrolein Urotoxicity", exp: "Cyclophosphamide metabolizes into phosphoramide mustard (cytotoxic) and acrolein. Acrolein concentrates in urine, irritating bladder mucosa and causing hemorrhagic cystitis." },
+      { q: "Which protective agent is co-administered with high-dose Cyclophosphamide or Ifosfamide to neutralize acrolein in the urinary bladder?", opts: ["MESNA (Sodium 2-mercaptoethane sulfonate)", "Amifostine", "Dexrazoxane", "Leucovorin"], a: 0, tag: "Basic", topic: "MESNA Protection", exp: "MESNA binds toxic acrolein in the bladder lumen via free sulfhydryl groups, forming a non-toxic adduct that prevents hemorrhagic cystitis." },
+      { q: "Nitrosoureas such as Carmustine (BCNU) and Lomustine (CCNU) are uniquely valuable in oncology because they:", opts: ["Cross the blood-brain barrier (BBB) to treat primary brain tumors (gliomas)", "Cause no bone marrow suppression", "Do not affect DNA", "Are administered exclusively orally"], a: 0, tag: "Basic", topic: "Nitrosourea BBB Crossing", exp: "Nitrosoureas are highly lipophilic, enabling them to cross the blood-brain barrier and treat central nervous system malignancies like glioblastoma." },
+      { q: "Cisplatin and Carboplatin exert their antineoplastic effect by forming which molecular lesions on DNA?", opts: ["Intrastrand and interstrand platinum-DNA cross-links", "Single-strand RNA cleavage", "Inhibition of DNA ligase exclusively", "Microtubule stabilization"], a: 0, tag: "Basic", topic: "Platinum Complex Mechanism", exp: "Platinum complexes react with nucleophilic N-7 positions of guanine/adenine, forming intrastrand cross-links that distort the DNA helix and trigger apoptosis." },
+      { q: "What is the dose-limiting toxicity classically associated with Cisplatin therapy?", opts: ["Nephrotoxicity and ototoxicity", "Hemorrhagic cystitis", "Pulmonary fibrosis", "Cardiomyopathy"], a: 0, tag: "Basic", topic: "Cisplatin Toxicity Profile", exp: "Cisplatin causes acute/chronic acute tubular necrosis (nephrotoxicity) and irreversible sensorineural hearing loss (ototoxicity)." },
+      { q: "Which alkylating agent is classically associated with progressive, irreversible pulmonary fibrosis ('busulfan lung')?", opts: ["Busulfan", "Chlorambucil", "Mechlorethamine", "Temozolomide"], a: 0, tag: "Basic", topic: "Busulfan Pulmonary Toxicity", exp: "Busulfan causes alveolar epithelial injury and fibroblast proliferation, leading to insidious pulmonary fibrosis." },
+      { q: "Procarbazine is an alkylating agent used in Hodgkin lymphoma that exhibits which unique metabolic drug interaction?", opts: ["Inhibition of Monoamine Oxidase (MAO), risking hypertensive crisis with tyramine-rich foods", "Inhibition of alcohol dehydrogenase", "Induction of CYP3A4", "Direct histamine release"], a: 0, tag: "Basic", topic: "Procarbazine MAO Interaction", exp: "Procarbazine acts as a weak MAO inhibitor; ingestion of tyramine-containing foods or sympathomimetic drugs can trigger severe hypertensive crises." },
+      { q: "Which platinum drug exhibits significantly lower nephrotoxicity and emetogenicity than Cisplatin, but causes dose-limiting myelosuppression (thrombocytopenia)?", opts: ["Carboplatin", "Oxaliplatin", "Satraplatin", "Nedaplatin"], a: 0, tag: "Basic", topic: "Carboplatin Toxicity Profile", exp: "Carboplatin is better tolerated renally and causes less emesis than Cisplatin, but displays pronounced bone marrow suppression (thrombocytopenia)." },
+      { q: "Oxaliplatin is a third-generation platinum analog whose unique dose-limiting neurotoxicity is precipitated or worsened by:", opts: ["Exposure to cold temperatures (cold-induced peripheral neuropathy)", "Hot baths", "High-fat meals", "Bright sunlight"], a: 0, tag: "Basic", topic: "Oxaliplatin Cold Sensitivity", exp: "Oxaliplatin triggers acute sensory neuropathy characterized by dysesthesias in hands/feet and pharyngolaryngeal dysesthesia triggered by cold exposure." },
+      { q: "Are alkylating agents cell-cycle phase-specific or phase-nonspecific?", opts: ["Cell-cycle phase-nonspecific (CCNS)", "S-phase specific", "M-phase specific", "G1-phase specific"], a: 0, tag: "Basic", topic: "Cell-Cycle Classification", exp: "Alkylating agents damage DNA directly regardless of the cell cycle phase, classifying them as cell-cycle phase-nonspecific (CCNS)." },
+      { q: "A long-term late risk of alkylating agent therapy (e.g., Cyclophosphamide, Mechlorethamine) is the development of:", opts: ["Secondary acute myeloid leukemia (t-AML) or myelodysplastic syndrome (MDS)", "Type 1 Diabetes", "Chronic glomerulonephritis", "Alzheimer's disease"], a: 0, tag: "Basic", topic: "Secondary Malignancies", exp: "DNA damage from alkylating agents can induce permanent oncogenic mutations, predisposing patients to therapy-related myeloid neoplasms years later." },
+
+      { q: "A patient receiving high-dose Cyclophosphamide develops dysuria and gross hematuria on day 3. What is the immediate underlying cause?", opts: ["Acrolein-induced mucosal irritation of the urinary bladder", "Direct acute tubular necrosis", "Immune complex glomerulonephritis", "Uric acid nephropathy"], a: 0, tag: "Scenario", topic: "Hemorrhagic Cystitis Diagnosis", exp: "Urotoxic acrolein concentrates in urine and strips the protective glycosaminoglycan layer of the bladder, causing ulceration and bleeding." },
+      { q: "A patient scheduled for Cisplatin infusion receives aggressive IV hydration with 0.9% Normal Saline before and after therapy. What is the objective?", opts: ["Promote renal chloride diuresis to reduce cisplatin retention in renal tubular cells and prevent nephrotoxicity", "Prevent acute liver failure", "Inactivate cisplatin in blood", "Prevent pulmonary edema"], a: 0, tag: "Scenario", topic: "Cisplatin Renal Protection", exp: "High luminal chloride concentrations in renal tubules suppress cisplatin activation into toxic aquated species, while forced diuresis flushes the kidneys." },
+      { q: "A patient receiving Oxaliplatin for colorectal cancer reports severe throat tightness and hand spasms when drinking iced water. What explanation should be given?", opts: ["Cold exposure triggers transient Oxaliplatin-induced voltage-gated sodium channel peripheral neuropathy", "It is an acute anaphylactic allergy to oxaliplatin", "It indicates sudden hypocalcemia", "It is a sign of esophageal rupture"], a: 0, tag: "Scenario", topic: "Oxaliplatin Neuropathy Management", exp: "Oxaliplatin alters axonal voltage-gated Na+ channels, producing acute cold-aggravated peripheral dysesthesias; patients must avoid cold food/drinks." },
+      { q: "A patient taking Procarbazine as part of the BEACOPP regimen for Hodgkin lymphoma attends a dinner party and consumes aged cheese and red wine. He develops severe headache and BP 210/120. What happened?", opts: ["Procarbazine-induced MAO inhibition prevented tyramine breakdown, triggering a sympathomimetic hypertensive crisis", "Anaphylaxis to red wine", "Interaction between procarbazine and alcohol dehydrogenase", "Acute stroke"], a: 0, tag: "Scenario", topic: "Procarbazine Dietary Crisis", exp: "Aged cheese and red wine contain tyramine. Procarbazine inhibits MAO, allowing dietary tyramine to displace norepinephrine into systemic blood." },
+      { q: "A patient with glioblastoma multiforme is prescribed Carmustine (BCNU) wafer implants placed in the surgical cavity. Why is Carmustine effective for brain tumors?", opts: ["High lipophilicity permits effective penetration into CNS tissue and crossing of the BBB", "It acts exclusively on blood vessels", "It does not enter systemic circulation", "It is activated by brain enzymes"], a: 0, tag: "Scenario", topic: "CNS Chemotherapy Delivery", exp: "Nitrosoureas possess optimal lipophilicity to traverse the blood-brain barrier and infiltrate surrounding malignant neural tissues." },
+      { q: "A patient receiving Cisplatin complains of persistent high-pitched ringing in both ears (tinnitus) and difficulty hearing conversations. Audiometry confirms loss of high-frequency sound perception. The cause is:", opts: ["Cisplatin-induced damage to hair cells in the organ of Corti (ototoxicity)", "Acrolein accumulation in the inner ear", "Busulfan toxicity", "Otitis media"], a: 0, tag: "Scenario", topic: "Cisplatin Ototoxicity Recognition", exp: "Cisplatin generates reactive oxygen species in the cochlea, causing irreversible destruction of outer hair cells in the organ of Corti." },
+      { q: "A patient with chronic myeloid leukemia treated with Busulfan for 2 years presents with progressive dry cough and exertional dyspnea. Pulmonary function tests show restrictive lung disease. The nurse suspects:", opts: ["Busulfan-induced pulmonary toxicity/fibrosis", "Bacterial pneumonia", "Asthma exacerbation", "Heart failure"], a: 0, tag: "Scenario", topic: "Busulfan Pulmonary Fibrosis", exp: "Busulfan causes cumulative, dose-dependent alveolar cell injury leading to pulmonary inflammation and progressive interstitial fibrosis." },
+      { q: "A patient receiving Carboplatin chemotherapy has a serum creatinine of 2.1 mg/dL. How should Carboplatin dosing be calculated?", opts: ["Using the Calvert formula based on Target AUC and Glomerular Filtration Rate (GFR / CrCl)", "Fixed mg/kg body weight", "Fixed flat dose for all adults", "Based on liver enzyme levels"], a: 0, tag: "Scenario", topic: "Calvert Formula Dosing", exp: "Carboplatin clearance correlates directly with GFR. Dosing is customized using the Calvert Formula: Total Dose (mg) = Target AUC x (GFR + 25)." },
+      { q: "A patient receiving Ifosfamide develops severe encephalopathy, confusion, and twitching. Which agent can be administered to treat Ifosfamide-induced neurotoxicity?", opts: ["Methylene Blue", "MESNA", "Leucovorin", "Dexrazoxane"], a: 0, tag: "Scenario", topic: "Ifosfamide Neurotoxicity Management", exp: "Ifosfamide metabolizes into chloroacetaldehyde, which impairs mitochondrial electron transport; Methylene Blue acts as an alternative electron acceptor to reverse CNS toxicity." },
+      { q: "An oncology patient develops severe uric acid nephropathy and hyperuricemia following rapid cell lysis after alkylating agent therapy. What drug prevents uric acid formation?", opts: ["Allopurinol (or Rasburicase)", "MESNA", "Amifostine", "Furosemide"], a: 0, tag: "Scenario", topic: "Tumor Lysis Syndrome Prevention", exp: "Allopurinol inhibits xanthine oxidase, preventing conversion of purines to uric acid during massive malignant cell turnover." },
+      { q: "A patient treated with Dacarbazine for malignant melanoma complains of severe pain and burning along the IV vein during infusion. What precaution is indicated?", opts: ["Slow the infusion rate, dilute the solution, and protect the infusion bag/tubing from light exposure", "Administer rapid IV push", "Apply ice directly to bare vein", "Stop treatment permanently"], a: 0, tag: "Scenario", topic: "Dacarbazine Administration Safety", exp: "Dacarbazine is a potent venous irritant and light-sensitive; protecting it from light prevents breakdown into photolytic toxic products." },
+      { q: "Prior to administering a repeat dose of Cisplatin, which laboratory parameters MUST be evaluated?", opts: ["Serum creatinine, BUN, Magnesium, Potassium, and Audiometry", "Liver function enzymes only", "Blood glucose only", "Thyroid stimulating hormone"], a: 0, tag: "Scenario", topic: "Pre-Cisplatin Monitoring Protocols", exp: "Cisplatin causes nephrotoxicity, renal magnesium/potassium wasting, and ototoxicity; baseline renal function and electrolytes dictate treatment safety." },
+
+      { q: "What is the molecular mechanism by which glutathione S-transferase (GST) overexpression causes cancer cell resistance to alkylating agents?", opts: ["GST catalyzes conjugation of nucleophilic glutathione to electrophilic alkylating species, neutralizing them before DNA attack", "GST repair double-strand DNA breaks directly", "GST pumps alkylating agents out of cells", "GST blocks drug uptake"], a: 0, tag: "Hard", topic: "Glutathione Resistance Kinetics", exp: "Overexpressed GST detoxifies electrophilic alkylating intermediates by linking them to reduced glutathione (GSH), marking them for cellular efflux." },
+      { q: "Why does Ifosfamide cause significantly higher rates of hemorrhagic cystitis and neurotoxicity compared to Cyclophosphamide at equimolar doses?", opts: ["Ifosfamide requires higher therapeutic doses and undergoes metabolic dechloroethylation, yielding high amounts of acrolein and chloroacetaldehyde", "Ifosfamide does not enter the liver", "Ifosfamide contains platinum", "Ifosfamide is not cleared by kidneys"], a: 0, tag: "Hard", topic: "Ifosfamide Metabolic Kinetics", exp: "Ifosfamide is less potent per molecule, requiring 3-4x higher doses; it yields vast amounts of acrolein (cystitis) and toxic chloroacetaldehyde (neurotoxicity)." },
+      { q: "Which DNA repair enzyme specifically removes O-6-alkylguanine adducts produced by Temozolomide and Nitrosoureas, mediating drug resistance?", opts: ["O-6-methylguanine-DNA methyltransferase (MGMT)", "Nucleotide Excision Repair (NER)", "Base Excision Repair (BER)", "DNA Mismatch Repair (MMR)"], a: 0, tag: "Hard", topic: "MGMT Repair Mechanism", exp: "MGMT transfers the alkyl group from the O-6 position of guanine to its own cysteine residue, repairing DNA directly; promoter methylation silences MGMT, restoring drug sensitivity." },
+      { q: "How does Amifostine selectively protect normal tissues from Cisplatin-induced nephrotoxicity without protecting tumor cells?", opts: ["Normal vascular endothelium expresses high alkaline phosphatase, converting Amifostine into active free-thiol scavenger WR-1065", "Amifostine enters tumor cells exclusively", "Amifostine destroys cisplatin in blood", "Amifostine alters urinary pH"], a: 0, tag: "Hard", topic: "Amifostine Cytoprotection Mechanism", exp: "Amifostine is a prodrug cleaved by capillary endothelial alkaline phosphatase (higher in healthy tissue, lower in hypovascular tumors) into WR-1065, which scavenges platinum species." },
+      { q: "What is the structural difference in the platinum coordination complex of Oxaliplatin that prevents cross-resistance in tumors resistant to Cisplatin?", opts: ["1,2-diaminocyclohexane (DACH) carrier ligand", "Cyclobutane dicarboxylate ring", "Chloride ligand removal", "Addition of an alkyl tail"], a: 0, tag: "Hard", topic: "DACH Ligand Structural Advantage", exp: "Oxaliplatin's bulky DACH ring forms platinum-DNA adducts that sterically hinder mismatch repair (MMR) protein binding and bypass conventional cisplatin resistance." },
+      { q: "In the Calvert formula for Carboplatin dosing [Dose = Target AUC x (GFR + 25)], why is GFR capped at 125 mL/min?", opts: ["To avoid severe over-dosing and fatal myelosuppression in patients with supranormal renal clearance", "Because Carboplatin is cleared by the liver above 125 mL/min", "To prevent brain edema", "Because GFR cannot exceed 125 in humans"], a: 0, tag: "Hard", topic: "Calvert Cap Safety Rationale", exp: "Capping CrCl/GFR at 125 mL/min prevents dangerous overestimation of carboplatin doses in hyperfiltering young or hypermetabolic oncology patients." }
+    ]
+  },
+
+  // SUBCHAPTER 2: ANTIMETABOLITES (31-60)
+  {
+    chTitle: "Subchapter 2: Antimetabolites",
+    questions: [
+      { q: "Antimetabolites exert their antineoplastic effect primarily during which specific phase of the cell cycle?", opts: ["S-phase (DNA synthesis phase)", "M-phase (mitosis)", "G1-phase", "G0-phase"], a: 0, tag: "Basic", topic: "S-Phase Specificity", exp: "Antimetabolites substitute for normal purines/pyrimidines or inhibit enzymes required for nucleic acid synthesis during the S-phase." },
+      { q: "Methotrexate acts as a competitive inhibitor of which crucial enzyme involved in folic acid pathway synthesis?", opts: ["Dihydrofolate Reductase (DHFR)", "Thymidylate Synthase", "Xanthine Oxidase", "Ribonucleotide Reductase"], a: 0, tag: "Basic", topic: "Methotrexate Target", exp: "Methotrexate competitively inhibits DHFR, blocking conversion of dihydrofolate to tetrahydrofolate (THF) essential for purine/thymidylate synthesis." },
+      { q: "Fluorouracil (5-FU) is converted into FdUMP, which irreversibly inhibits which enzyme?", opts: ["Thymidylate Synthase", "Dihydrofolate Reductase", "Adenosine Deaminase", "DNA Polymerase"], a: 0, tag: "Basic", topic: "5-FU Target Enzyme", exp: "5-FU metabolite FdUMP forms a stable ternary complex with thymidylate synthase and N5,N10-methylenetetrahydrofolate, blocking dTMP synthesis." },
+      { q: "Which agent is administered as 'rescue therapy' following high-dose Methotrexate to protect normal host cells from lethal bone marrow toxicity?", opts: ["Leucovorin (Folinic Acid)", "MESNA", "Dexrazoxane", "Amifostine"], a: 0, tag: "Basic", topic: "Leucovorin Rescue", exp: "Leucovorin provides a downstream reduced folate source (N5-formyl-THF) that bypasses DHFR blockade, rescuing normal rapidly dividing bone marrow cells." },
+      { q: "Cytarabine (Ara-C) is a pyrimidine nucleoside analog that acts as a potent antineoplastic by:", opts: ["Competitive inhibition of DNA Polymerase alpha/beta and incorporation into DNA, halting elongation", "Inhibiting RNA Polymerase II", "Cross-linking DNA strands", "Stabilizing microtubules"], a: 0, tag: "Basic", topic: "Cytarabine Mechanism", exp: "Ara-C is phosphorylated to Ara-CTP, which competes with dCTP for DNA polymerase incorporation, causing chain termination during S-phase." },
+      { q: "Mercaptopurine (6-MP) and Thioguanine (6-TG) are antimetabolites classified as:", opts: ["Purine analogs", "Pyrimidine analogs", "Folate antagonists", "Topoisomerase inhibitors"], a: 0, tag: "Basic", topic: "6-MP Classification", exp: "6-MP and 6-TG are purine thiol analogs that inhibit de novo purine nucleotide synthesis and incorporate into DNA/RNA." },
+      { q: "Which metabolic enzyme metabolizes Mercaptopurine (6-MP); co-administration with Allopurinol requires a 75% reduction in 6-MP dose?", opts: ["Xanthine Oxidase", "Thiopurine S-methyltransferase (TPMT)", "Cytidine Deaminase", "Dihydropyrimidine Deaminase"], a: 0, tag: "Basic", topic: "6-MP Xanthine Oxidase Interaction", exp: "Xanthine oxidase inactivates 6-MP. Allopurinol blocks xanthine oxidase; failing to reduce 6-MP dose leads to severe bone marrow aplasia." },
+      { q: "Capecitabine is an oral prodrug that is selectively converted in tumor tissues into which active antimetabolite?", opts: ["Fluorouracil (5-FU)", "Methotrexate", "Cytarabine", "Gemcitabine"], a: 0, tag: "Basic", topic: "Capecitabine Conversion", exp: "Capecitabine undergoes a 3-step enzymatic cascade, culminating in conversion to 5-FU by Thymidine Phosphorylase (highly expressed in tumors)." },
+      { q: "Gemcitabine is a fluorine-substituted deoxycytidine analog widely used in pancreatic cancer that inhibits:", opts: ["Ribonucleotide Reductase and DNA Polymerase", "Dihydrofolate Reductase", "Topoisomerase I", "Microtubule assembly"], a: 0, tag: "Basic", topic: "Gemcitabine Mechanism", exp: "Gemcitabine diphosphate inhibits ribonucleotide reductase (depleting dNTP pools), while gemcitabine triphosphate incorporates into DNA." },
+      { q: "Deficiency of which catabolic enzyme leads to severe, life-threatening toxicity (neurotoxicity, mucositis, neutropenia) upon exposure to Fluorouracil (5-FU)?", opts: ["Dihydropyrimidine Deaminase (DPD)", "Thiopurine S-methyltransferase (TPMT)", "Uridine Diphosphate Glucuronosyltransferase", "Xanthine Oxidase"], a: 0, tag: "Basic", topic: "DPD Deficiency", exp: "DPD catabolizes >80% of 5-FU. Genetic DPD deficiency causes massive 5-FU accumulation and fatal systemic toxicity." },
+      { q: "Hydroxyurea inhibits which enzyme to arrest cells in the S-phase, commonly used in sickle cell disease and myeloproliferative neoplasms?", opts: ["Ribonucleotide Reductase", "Thymidylate Synthase", "DHFR", "Xanthine Oxidase"], a: 0, tag: "Basic", topic: "Hydroxyurea Target", exp: "Hydroxyurea scavenges tyrosyl free radicals on ribonucleotide reductase, blocking conversion of ribonucleotides to deoxyribonucleotides." },
+      { q: "Pemetrexed is a multi-targeted antifolate that inhibits DHFR, Thymidylate Synthase, and which third enzyme?", opts: ["Glycinamide Ribonucleotide Formyltransferase (GARFT)", "Adenosine Deaminase", "DNA Ligase", "Topoisomerase II"], a: 0, tag: "Basic", topic: "Pemetrexed Multi-Target Action", exp: "Pemetrexed disrupts folate-dependent enzymes: Thymidylate Synthase, DHFR, and GARFT (a key enzyme in de novo purine synthesis)." },
+
+      { q: "A leukemia patient receiving high-dose Methotrexate develops serum creatinine elevation (3.5 mg/dL) and low urine output. Why did renal failure occur?", opts: ["Methotrexate and its 7-OH metabolite precipitated in the acidic renal tubular lumen", "Acrolein bladder injury", "Direct glomerulus destruction", "Renal artery spasm"], a: 0, tag: "Scenario", topic: "Methotrexate Renal Precipitation", exp: "At high doses, poor aqueous solubility in acidic urine causes methotrexate crystallization in renal tubules; IV hydration and urinary alkalinization (pH > 7) prevent precipitation." },
+      { q: "A patient taking Allopurinol for gout is diagnosed with Acute Lymphoblastic Leukemia and prescribed oral Mercaptopurine (6-MP). What essential dose adjustment is required?", opts: ["Reduce Mercaptopurine dose by 66% to 75%", "Double the Mercaptopurine dose", "Stop Allopurinol and double 6-MP", "No dose adjustment needed"], a: 0, tag: "Scenario", topic: "6-MP Allopurinol Clinical Dosing", exp: "Allopurinol blocks 6-MP catabolism via Xanthine Oxidase, increasing 6-MP bioavailability 4-fold; failure to reduce dose results in lethal neutropenia." },
+      { q: "A patient receiving 5-Fluorouracil (5-FU) and Leucovorin for metastatic colon cancer asks why Leucovorin is given. The nurse explains:", opts: ["Leucovorin enhances 5-FU binding to Thymidylate Synthase, increasing anti-tumor efficacy", "Leucovorin rescues healthy cells from 5-FU toxicity", "Leucovorin prevents hair loss", "Leucovorin prevents renal failure"], a: 0, tag: "Scenario", topic: "Leucovorin Modulation of 5-FU", exp: "Unlike in Methotrexate therapy (rescue), Leucovorin stabilizes the ternary complex with Thymidylate Synthase, potentiating 5-FU cytotoxic action." },
+      { q: "Before starting a patient on 6-Mercaptopurine or Azathioprine, genetic testing for polymorphism in which enzyme is recommended to avoid severe myelosuppression?", opts: ["Thiopurine S-methyltransferase (TPMT) and NUDT15", "DPD", "CYP2C19", "UGT1A1"], a: 0, tag: "Scenario", topic: "TPMT Pharmacogenomic Screening", exp: "TPMT inactivates 6-MP via S-methylation. Patients with homozygous TPMT deficiency develop severe toxic accumulation and fatal bone marrow suppression." },
+      { q: "A patient with acute myeloid leukemia receives high-dose Cytarabine (Ara-C). The nurse monitors for which distinct non-hematologic adverse effects?", opts: ["Chemical conjunctivitis and cerebellar toxicity (ataxia, dysmetria)", "Hemorrhagic cystitis", "Pulmonary fibrosis", "Cardiomyopathy"], a: 0, tag: "Scenario", topic: "High-Dose Ara-C Toxicity Profile", exp: "High-dose Cytarabine causes cerebellar Purkinje cell toxicity (ataxia/dysmetria) and secretes into tears, requiring prophylactic steroid eye drops." },
+      { q: "A patient taking oral Capecitabine develops redness, severe swelling, pain, and desquamation on the palms of the hands and soles of the feet. This is known as:", opts: ["Hand-Foot Syndrome (Palmar-Plantar Erythrodysesthesia)", "Raynaud's phenomenon", "Gouty tophi", "Oxaliplatin neuropathy"], a: 0, tag: "Scenario", topic: "Hand-Foot Syndrome Recognition", exp: "Hand-Foot Syndrome is a prominent cutaneous side effect of 5-FU and Capecitabine due to drug extravasation from capillaries in palms/soles." },
+      { q: "A patient receiving Pemetrexed for non-small cell lung cancer is co-prescribed Folic Acid and Vitamin B12 supplements. What is the rationale?", opts: ["To reduce the frequency and severity of treatment-related hematologic and GI toxicities", "To enhance drug absorption in stomach", "To replace lost red blood cells", "To prevent hair loss"], a: 0, tag: "Scenario", topic: "Pemetrexed Vitamin Pre-medication", exp: "Pre-treatment with oral Folic Acid and IM Vitamin B12 significantly reduces life-threatening myelosuppression and severe mucositis from Pemetrexed." },
+      { q: "A patient with severe psoriasis receiving outpatient oral Methotrexate develops mouth sores and sore throat. What laboratory test is urgent?", opts: ["Complete Blood Count (CBC) to check for severe leukopenia/neutropenia", "Serum amylase", "Thyroid panel", "Blood glucose"], a: 0, tag: "Scenario", topic: "Methotrexate Toxicity Screening", exp: "Mucositis and stomatitis are early clinical indicators of systemic Methotrexate toxicity and impending severe bone marrow suppression." },
+      { q: "An infant accidentally receives an overdose of Fluorouracil (5-FU). Which emergency antidote can be administered within 96 hours of overdose?", opts: ["Uridine Triacetate", "Leucovorin", "MESNA", "Glucarpidase"], a: 0, tag: "Scenario", topic: "5-FU Antidote", exp: "Uridine Triacetate is an oral pyrimidine analog that competes with toxic 5-FU metabolites, serving as a specific antidote for 5-FU/capecitabine overdose." },
+      { q: "A patient receiving high-dose Methotrexate develops acute renal failure, and serum Methotrexate levels remain dangerously high (>10 micromolar). Which recombinant enzyme clears blood Methotrexate directly?", opts: ["Glucarpidase (carboxypeptidase G2)", "Rasburicase", "Pegaspargase", "Hyaluronidase"], a: 0, tag: "Scenario", topic: "Glucarpidase Mechanism", exp: "Glucarpidase is a bacterial enzyme that cleaves circulating methotrexate into inactive DAMPA and glutamate, rapidly dropping toxic plasma levels." },
+      { q: "A patient receiving Gemcitabine for pancreatic cancer presents with petechiae, anemia, thrombocytopenia, and elevated creatinine. What rare complication is suspected?", opts: ["Thrombotic Microangiopathy / Hemolytic Uremic Syndrome (HUS)", "Acute liver failure", "Aplastic anemia", "Tumor lysis syndrome"], a: 0, tag: "Scenario", topic: "Gemcitabine-Induced HUS", exp: "Gemcitabine can cause microvascular endothelial damage resulting in Hemolytic Uremic Syndrome (microangiopathic hemolytic anemia + renal failure)." },
+      { q: "What instruction regarding oral administration of Methotrexate should be given to a rheumatoid arthritis patient?", opts: ["Take once WEEKLY on the same day, NEVER daily", "Take twice daily after meals", "Take every 8 hours continuously", "Take only with high-fat meals"], a: 0, tag: "Scenario", topic: "Methotrexate Weekly Dosing Safety", exp: "Dosing errors mistaking weekly methotrexate for daily administration lead to fatal bone marrow suppression and GI toxicity." },
+
+      { q: "Why is FdUMP binding to Thymidylate Synthase termed 'suicide inhibition' in the presence of N5,N10-methylenetetrahydrofolate?", opts: ["FdUMP, cofactor, and enzyme form a covalent ternary complex that cannot undergo beta-elimination, permanently trapping the enzyme", "FdUMP destroys the cell wall", "FdUMP causes nuclear lysis", "FdUMP induces macrophage attack"], a: 0, tag: "Hard", topic: "Suicide Inhibition Kinetics", exp: "The fluorine atom at C-5 of FdUMP prevents abstraction of a proton necessary to break the covalent bond with thymidylate synthase, locking the enzyme permanently." },
+      { q: "What is the molecular mechanism of 'masked' DNA chain termination by Gemcitabine triphosphate?", opts: ["Gemcitabine incorporates into DNA, followed by addition of ONE additional nucleotide before DNA Polymerase is permanently locked", "Gemcitabine prevents RNA synthesis completely", "Gemcitabine cross-links double strands", "Gemcitabine cleaves telomeres"], a: 0, tag: "Hard", topic: "Masked Chain Termination", exp: "After gemcitabine incorporation, one extra deoxynucleotide is added. This 'masks' gemcitabine from exonucleolytic proofreading repair enzymes, locking it into DNA." },
+      { q: "How does Glucarpidase hydrolyze Methotrexate in systemic circulation?", opts: ["Cleaves the C-terminal glutamate residue from Methotrexate, producing inactive 2,4-diamino-N10-methylpteroic acid (DAMPA)", "Oxidizes the pteridine ring", "Methylates the folate receptor", "Binds methotrexate in a lipid shell"], a: 0, tag: "Hard", topic: "Glucarpidase Enzymatic Cleavage", exp: "Glucarpidase is a recombinant carboxypeptidase G2 that hydrolyzes the ester bond of methotrexate, generating non-toxic DAMPA excreted hepatically." },
+      { q: "Why does T-cell Acute Lymphoblastic Leukemia exhibit high sensitivity to Nelarabine?", opts: ["Nelarabine is a prodrug demethylated to ara-G, which selectively accumulates as ara-GTP in T-lymphoblasts due to high deoxycytidine kinase activity", "T-cells lack folic acid", "Nelarabine blocks T-cell receptors", "T-cells destroy ara-G"], a: 0, tag: "Hard", topic: "Nelarabine T-Cell Selectivity", exp: "T-cells efficiently phosphorylate ara-G into cytotoxic ara-GTP via high deoxycytidine kinase and low 5'-nucleotidase, trapping ara-GTP inside T-cells." },
+      { q: "In patients with NUDT15 loss-of-function gene variants, why does standard-dose Azathioprine trigger severe toxicity?", opts: ["NUDT15 normally hydrolyzes toxic thiopurine active metabolites (TGTP to TGMP); deficiency causes massive toxic DNA incorporation", "NUDT15 clears allopurinol", "NUDT15 synthesizes purines", "NUDT15 destroys folic acid"], a: 0, tag: "Hard", topic: "NUDT15 Pharmacogenomics", exp: "NUDT15 inactivates cytotoxic thiopurine triphosphates (TGTP). Defective NUDT15 leads to excessive TGTP incorporation into DNA and severe marrow aplasia." },
+      { q: "What is the biochemical basis for Pemetrexed intracellular retention and enhanced potency in tumor cells?", opts: ["Rapid polyglutamylation by Folylpolyglutamate Synthetase (FPGS), trapping pemetrexed polyglutamates inside cells", "Lipid membrane binding", "Inhibition of P-glycoprotein", "Binding to nuclear histones"], a: 0, tag: "Hard", topic: "Polyglutamylation Kinetics", exp: "FPGS adds glutamate residues to pemetrexed. Polyglutamylated forms are trapped intracellularly and exhibit over 80-fold higher affinity for Thymidylate Synthase." }
+    ]
+  },
+
+  // SUBCHAPTER 3: ANTITUMOR ANTIBIOTICS (61-90)
+  {
+    chTitle: "Subchapter 3: Antitumor Antibiotics",
+    questions: [
+      { q: "Anthracyclines such as Doxorubicin and Daunorubicin exert antineoplastic effects by DNA intercalation and inhibition of which enzyme?", opts: ["Topoisomerase II", "Topoisomerase I", "DNA Polymerase alpha", "RNA Polymerase II"], a: 0, tag: "Basic", topic: "Anthracycline Target", exp: "Anthracyclines intercalate between DNA base pairs and stabilize the cleavable complex with Topoisomerase II, inducing double-strand DNA breaks." },
+      { q: "What is the characteristic, dose-limiting organ toxicity associated with cumulative doses of Doxorubicin?", opts: ["Dilated cardiomyopathy and congestive heart failure", "Pulmonary fibrosis", "Acute renal failure", "Peripheral neuropathy"], a: 0, tag: "Basic", topic: "Doxorubicin Cardiotoxicity", exp: "Doxorubicin generates iron-mediated free radicals in cardiac tissue, causing cumulative, dose-dependent irreversible dilated cardiomyopathy." },
+      { q: "Which cardioprotective iron-chelating agent is administered to reduce Doxorubicin-induced cardiotoxicity in high cumulative dose regimens?", opts: ["Dexrazoxane", "MESNA", "Amifostine", "Leucovorin"], a: 0, tag: "Basic", topic: "Dexrazoxane Cardioprotection", exp: "Dexrazoxane is an intracellular iron chelator that reduces iron-doxorubicin complex formation and free radical generation in cardiomyocytes." },
+      { q: "Bleomycin is a glycopeptide antitumor antibiotic that damages DNA through which primary mechanism?", opts: ["Generating oxygen free radicals that cause single- and double-strand DNA scission", "Topoisomerase I inhibition", "Alkylating guanine N-7", "Blocking microtubule assembly"], a: 0, tag: "Basic", topic: "Bleomycin Mechanism", exp: "Bleomycin chelates ferrous iron (Fe2+) and reacts with oxygen to generate superoxide and hydroxyl free radicals that cleave DNA strands." },
+      { q: "What is the major dose-limiting toxicity of Bleomycin therapy?", opts: ["Pulmonary toxicity / pneumonitis leading to irreversible pulmonary fibrosis", "Dilated cardiomyopathy", "Hemorrhagic cystitis", "Acute nephrotoxicity"], a: 0, tag: "Basic", topic: "Bleomycin Pulmonary Risk", exp: "Bleomycin hydrolase (inactivating enzyme) is deficient in lung and skin tissue; free radical accumulation causes pneumonitis and fatal pulmonary fibrosis." },
+      { q: "Why is Bleomycin notably useful in combination chemotherapy regimens (e.g., ABVD for Hodgkin lymphoma)?", opts: ["It causes minimal bone marrow suppression (myelosuppression)", "It does not cause hair loss", "It is administered orally", "It protects the heart"], a: 0, tag: "Basic", topic: "Bleomycin Marrow Sparing", exp: "Bleomycin exhibits little to no myelosuppression, allowing its combination with heavily myelosuppressive agents without worsening leukopenia." },
+      { q: "Mitomycin C is an antitumor antibiotic activated in hypoxic tumor environments that acts as a potent:", opts: ["Bifunctional alkylating agent causing DNA cross-linking", "Microtubule stabilizer", "DHFR inhibitor", "Estrogen antagonist"], a: 0, tag: "Basic", topic: "Mitomycin C Action", exp: "Mitomycin C is bioreductively activated into a bifunctional alkylating agent that cross-links DNA preferentially in hypoxic tumor cells." },
+      { q: "Liposomal Doxorubicin (Doxil) offers distinct pharmacokinetic advantages over conventional Doxorubicin because it:", opts: ["Extends plasma circulation time and reduces cardiac tissue uptake, lowering cardiotoxicity risk", "Crosses the blood-brain barrier easily", "Does not cause hair loss", "Is administered orally"], a: 0, tag: "Basic", topic: "Liposomal Doxorubicin Profile", exp: "Pegylated liposomal encapsulation prevents drug clearance by reticuloendothelial systems, accumulating preferentially in tumor capillaries while sparing the heart." },
+      { q: "Which harmless side effect should patients receiving Doxorubicin or Daunorubicin be forewarned about?", opts: ["Red-orange discoloration of urine, sweat, and tears", "Blue discoloration of skin", "Bright green urine", "Black tongue"], a: 0, tag: "Basic", topic: "Anthracycline Chromaturia", exp: "Anthracyclines possess a red planar chromophore ring structure that imparts a harmless red-orange color to bodily fluids for 1-2 days." },
+      { q: "Dactinomycin (Actinomycin D) exerts its antineoplastic action by:", opts: ["Intercalating into the minor groove of DNA and blocking RNA Polymerase transcription", "Inhibiting dihydrofolate reductase", "Stabilizing mitotic spindles", "Inhibiting tyrosine kinase"], a: 0, tag: "Basic", topic: "Dactinomycin Mechanism", exp: "Dactinomycin intercalates tightly into DNA G-C pairs, sterically blocking RNA polymerase movement and transcription synthesis." },
+      { q: "What is the maximum recommended life-time cumulative dose threshold for conventional Doxorubicin to avoid cardiotoxicity?", opts: ["450 to 550 mg/m²", "1,000 mg/m²", "100 mg/m²", "2,000 mg/m²"], a: 0, tag: "Basic", topic: "Doxorubicin Dose Ceiling", exp: "Cardiotoxicity risk increases exponentially above a lifetime cumulative dose of 450-550 mg/m² of Doxorubicin." },
+      { q: "Epirubicin and Idarubicin are structural analogs of Doxorubicin classified under which family?", opts: ["Anthracyclines", "Nitrosoureas", "Epipodophyllotoxins", "Taxanes"], a: 0, tag: "Basic", topic: "Anthracycline Family Members", exp: "Epirubicin, Idarubicin, and Daunorubicin are anthracycline antitumor antibiotics sharing the tetracycline ring core." },
+
+      { q: "A patient receiving IV Doxorubicin via a peripheral IV line complains of sudden intense burning pain at the site. The nurse observes swelling and erythema. What has occurred?", opts: ["Severe vesicant extravasation injury", "Normal drug reaction", "Acute thrombophlebitis", "Arterial spasm"], a: 0, tag: "Scenario", topic: "Anthracycline Extravasation", exp: "Anthracyclines are potent vesicants; extravasation causes severe tissue necrosis, sloughing, and non-healing ulcers." },
+      { q: "Which antidote should be infused topically/systemically within 6 hours to treat severe Doxorubicin extravasation?", opts: ["IV Dexrazoxane (or topical DMSO and cold compresses)", "Sodium bicarbonate", "MESNA", "Hyaluronidase"], a: 0, tag: "Scenario", topic: "Extravasation Antidote", exp: "IV Dexrazoxane is FDA-approved for anthracycline extravasation, acting as a topoisomerase II catalytic inhibitor to reduce local tissue destruction." },
+      { q: "A patient who completed 500 mg/m² cumulative Doxorubicin 6 months ago presents with progressive exertional dyspnea, orthopnea, and lower extremity edema. Echocardiogram shows LVEF 30%. What condition is present?", opts: ["Chronic anthracycline-induced dilated cardiomyopathy", "Bleomycin lung", "Acute MI", "Renal failure"], a: 0, tag: "Scenario", topic: "Chronic Anthracycline Cardiomyopathy", exp: "Doxorubicin causes chronic, irreversible cardiac myofibrillar loss and dilated cardiomyopathy presenting months to years post-therapy." },
+      { q: "A patient scheduled for Bleomycin therapy for testicular cancer undergoes baseline testing. Which diagnostic test is mandatory prior to starting therapy?", opts: ["Pulmonary Function Tests (PFTs) including DLCO", "Echocardiogram LVEF", "Renal biopsy", "Audiometry"], a: 0, tag: "Scenario", topic: "Pre-Bleomycin PFT Requirement", exp: "Baseline DLCO (diffusion capacity for carbon monoxide) and spirometry are essential to detect pre-existing lung deficits before Bleomycin exposure." },
+      { q: "During a surgical procedure under general anesthesia, a patient who received Bleomycin 3 months ago requires supplemental oxygen. Why must inspired oxygen (FiO2) be kept as low as safe?", opts: ["High oxygen concentrations react with residual tissue Bleomycin to generate massive pulmonary free radicals, triggering acute respiratory distress", "High oxygen destroys red blood cells", "High oxygen causes brain swelling", "High oxygen blocks kidney clearance"], a: 0, tag: "Scenario", topic: "Bleomycin Hyperoxia Toxicity", exp: "Previous Bleomycin exposure sensitizes lungs to hyperoxia; elevated FiO2 triggers catastrophic oxygen-radical mediated acute lung injury." },
+      { q: "A pediatric patient with Wilms tumor is prescribed Dactinomycin. The nurse monitors for severe skin reaction when the child receives concurrent radiation. This phenomenon is called:", opts: ["Radiation Recall Phenomenon", "Hand-Foot Syndrome", "Raynaud's phenomenon", "Stevens-Johnson Syndrome"], a: 0, tag: "Scenario", topic: "Radiation Recall Recognition", exp: "Dactinomycin and Doxorubicin can trigger severe inflammatory skin reactions ('radiation recall') in previously irradiated tissue fields." },
+      { q: "A patient with acute promyelocytic leukemia is prescribed Idarubicin. The patient is startled by bright red urine 4 hours post-infusion. What is the nurse's priority response?", opts: ["Reassure the patient that red discoloration of urine is expected from the drug's red pigment and is harmless", "Prepare for emergency bladder irrigation", "Stop all chemotherapy", "Send urine for emergency culture"], a: 0, tag: "Scenario", topic: "Patient Reassurance Chromaturia", exp: "Anthracyclines impart a red color to urine; educating patients beforehand prevents panic and unnecessary diagnostic interventions." },
+      { q: "A patient scheduled for high-dose Doxorubicin has a history of mild heart failure. The oncologist adds Dexrazoxane. When should Dexrazoxane be infused relative to Doxorubicin?", opts: ["Infused 30 minutes BEFORE the Doxorubicin infusion", "Given 24 hours after doxorubicin", "Mixed together in the same bag", "Given orally at bedtime"], a: 0, tag: "Scenario", topic: "Dexrazoxane Infusion Sequence", exp: "Dexrazoxane must be administered within 30 minutes prior to Doxorubicin to chelate intracellular iron before anthracycline binding occurs." },
+      { q: "A patient receiving Mitomycin C develops acute anemia, thrombocytopenia, and sudden oliguric renal failure. What severe reaction is suspected?", opts: ["Mitomycin-induced Hemolytic Uremic Syndrome (HUS)", "Acute tubular necrosis", "Anaphylaxis", "Tumor lysis syndrome"], a: 0, tag: "Scenario", topic: "Mitomycin-Induced HUS", exp: "Mitomycin C causes microvascular endothelial damage, triggering Thrombotic Microangiopathy / HUS in up to 2-10% of treated patients." },
+      { q: "Why is baseline LVEF assessment via MUGA scan or Echocardiogram required before initiating Doxorubicin?", opts: ["To confirm baseline cardiac function; pre-existing LVEF < 50% is a contraindication to anthracycline therapy", "To check for heart valve infection", "To measure pulmonary pressure", "To calculate kidney clearance"], a: 0, tag: "Scenario", topic: "Baseline LVEF Pre-requisite", exp: "Patients with baseline left ventricular dysfunction (LVEF < 50%) are at catastrophic risk for acute cardiac collapse upon anthracycline exposure." },
+      { q: "A patient receiving Bleomycin develops low-grade fever, chills, and skin hyperpigmentation along flexor creases. Are these symptoms an indication to stop therapy?", opts: ["No; skin hyperpigmentation and transient post-infusion fevers are known side effects, not lung toxicity", "Yes; stop therapy immediately", "Yes; give immediate epinephrine", "Yes; start hemodialysis"], a: 0, tag: "Scenario", topic: "Bleomycin Cutaneous Side Effects", exp: "Bleomycin accumulates in skin, causing flagellate hyperpigmentation and pyrexia, which differ from life-threatening pulmonary toxicity." },
+      { q: "A patient receiving conventional Doxorubicin reaches a cumulative dose of 480 mg/m². What is the appropriate clinical management for future cycles?", opts: ["Discontinue Doxorubicin or switch to Pegylated Liposomal Doxorubicin / add Dexrazoxane", "Double the dose", "Continue standard dose without monitoring", "Switch to Cisplatin"], a: 0, tag: "Scenario", topic: "Cumulative Threshold Management", exp: "Approaching the 450-550 mg/m² ceiling requires stopping conventional anthracyclines or employing cardioprotective liposomal formulations." },
+
+      { q: "What is the precise biochemical mechanism by which Doxorubicin generates cytotoxic Reactive Oxygen Species (ROS) in cardiomyocytes?", opts: ["Single-electron reduction of quinone ring by NADH dehydrogenase forms a semiquinone radical, which reacts with O2 to generate superoxide radicals", "Direct cleavage of water molecules", "Inhibition of catalase", "Destruction of cell membrane lipids"], a: 0, tag: "Hard", topic: "Semiquinone Redox Cycling", exp: "Redox cycling of doxorubicin's quinone moiety by cardiac enzymes generates semiquinone radicals that react with molecular O2, forming toxic superoxide radicals." },
+      { q: "Why are cardiomyocytes uniquely vulnerable to anthracycline-induced free radical damage compared to other somatic cells?", opts: ["Cardiomyocytes express extremely low levels of catalase and glutathione peroxidase, and are rich in cardiolipin which tightly binds doxorubicin", "Heart cells have no mitochondria", "Heart cells lack DNA", "Anthracyclines cannot enter other cells"], a: 0, tag: "Hard", topic: "Cardiomyocyte Vulnerability Factors", exp: "Cardiomyocytes lack robust antioxidant enzymes (catalase/GPx) and contain high mitochondrial membrane cardiolipin, which concentrates cationic doxorubicin." },
+      { q: "How does Bleomycin Hydrolase deficiency in the lungs and skin explain Bleomycin's organ-specific toxicity profile?", opts: ["Bleomycin hydrolase cleaves the carboxamide group of bleomycin into an inactive metabolite; low tissue enzyme levels cause drug accumulation in lungs and skin", "Bleomycin hydrolase activates the drug in lungs", "Bleomycin hydrolase causes brain damage", "Bleomycin hydrolase is produced by tumors"], a: 0, tag: "Hard", topic: "Bleomycin Hydrolase Kinetics", exp: "Bleomycin hydrolase inactivates bleomycin. Liver and kidney have high enzyme concentrations, whereas lung and skin express negligible levels, driving localized toxicity." },
+      { q: "What dual catalytic mechanism enables Dexrazoxane to act as both a cardioprotectant and an extravasation antidote?", opts: ["Intracellular iron chelation (hydrolyzed to ADR-925) AND catalytic inhibition of Topoisomerase II", "Direct DNA repair", "Binding free oxygen", "Inhibition of alkaline phosphatase"], a: 0, tag: "Hard", topic: "Dexrazoxane Dual Action", exp: "Dexrazoxane hydrolyzes inside cells into ADR-925 (chelates iron to stop ROS) and binds closed Topoisomerase II complexes, halting anthracycline cleavage damage." },
+      { q: "Why does Mitomycin C exhibit selective cytotoxicity toward hypoxic core cells within solid tumors?", opts: ["Bioreductive activation requires single-electron reduction by NADPH-CYP450 reductase, a reaction favored in hypoxic environment", "Hypoxic cells lack DNA repair", "Hypoxic cells have high pH", "Oxygen destroys mitomycin C in blood"], a: 0, tag: "Hard", topic: "Bioreductive Hypoxic Activation", exp: "Under hypoxic conditions, single-electron reduction yields an alkylating mitosene species; in normoxic tissue, molecular oxygen re-oxidizes the intermediate, reducing toxicity." },
+      { q: "What is the role of Topoisomerase II-beta (Top2b) in mediating chronic anthracycline-induced cardiotoxicity?", opts: ["Doxorubicin binds Top2b in adult cardiomyocytes, triggering double-strand DNA breaks, mitochondrial biogenesis suppression, and cell death", "Top2b repairs damaged heart tissue", "Top2b converts doxorubicin to water", "Top2b increases cardiac output"], a: 0, tag: "Hard", topic: "Top2b Cardiotoxicity Pathway", exp: "Cardiomyocytes express Top2b. Doxorubicin-Top2b-DNA ternary complexes induce DNA cleavage and downregulate PGC-1alpha, destroying mitochondrial function." }
+    ]
+  },
+
+  // SUBCHAPTER 4: MICROTUBULE INHIBITORS (91-120)
+  {
+    chTitle: "Subchapter 4: Microtubule Inhibitors (Vinca Alkaloids & Taxanes)",
+    questions: [
+      { q: "Vinca alkaloids (Vincristine, Vinblastine, Vinorelbine) exert their cytotoxic effect during mitosis by:", opts: ["Binding beta-tubulin and INHIBITING tubulin polymerization, preventing mitotic spindle formation", "STABILIZING microtubules and preventing depolymerization", "Inhibiting topoisomerase I", "Alkylating DNA"], a: 0, tag: "Basic", topic: "Vinca Alkaloid Mechanism", exp: "Vinca alkaloids bind tubulin heterodimers, inhibiting polymerization into microtubules and causing M-phase cell cycle arrest." },
+      { q: "Taxanes (Paclitaxel, Docetaxel, Cabazitaxel) differ from Vinca alkaloids because they:", opts: ["Bind tubulin and STABILIZE microtubules, preventing depolymerization and breakdown", "Inhibit tubulin assembly", "Inhibit dihydrofolate reductase", "Cleave DNA strands"], a: 0, tag: "Basic", topic: "Taxane Mechanism", exp: "Taxanes bind to polymerized beta-tubulin, promoting assembly and stabilizing microtubules against depolymerization, locking cells in mitosis." },
+      { q: "Which specific route of administration is ABSOLUTELY CONTRAINDICATED for Vincristine due to 100% fatal neurotoxicity?", opts: ["Intrathecal (IT) injection", "Intravenous (IV) infusion", "Oral administration", "Subcutaneous injection"], a: 0, tag: "Basic", topic: "Vincristine Intrathecal Contraindication", exp: "Intrathecal administration of Vincristine causes ascending myeloencephalopathy, central demyelination, and predictable 100% mortality." },
+      { q: "What is the major dose-limiting toxicity of Vincristine therapy?", opts: ["Peripheral neuropathy (paresthesias, loss of deep tendon reflexes, foot drop)", "Severe bone marrow suppression", "Nephrotoxicity", "Cardiomyopathy"], a: 0, tag: "Basic", topic: "Vincristine Toxicity Profile", exp: "Vincristine is neurotoxic (disrupts axonal microtubule transport), causing peripheral sensorimotor neuropathy and autonomic ileus, but causes minimal myelosuppression." },
+      { q: "Unlike Vincristine, Vinblastine's major dose-limiting toxicity is:", opts: ["Severe bone marrow suppression (myelosuppression / neutropenia)", "Peripheral neuropathy", "Pulmonary fibrosis", "Hemorrhagic cystitis"], a: 0, tag: "Basic", topic: "Vinblastine Toxicity Profile", exp: "Mnemonic: 'Vincristine = Crisps nerves (neuropathy); Vinblastine = Blasts bone marrow (myelosuppression)'." },
+      { q: "Paclitaxel infusions frequently trigger acute severe hypersensitivity reactions due to the vehicle solvent:", opts: ["Cremophor EL (polyoxyethylated castor oil)", "Polysorbate 80", "Normal Saline", "Benzyl alcohol"], a: 0, tag: "Basic", topic: "Cremophor Hypersensitivity", exp: "Formulated Paclitaxel contains Cremophor EL, which triggers massive histamine release, requiring pre-medication with steroids and antihistamines." },
+      { q: "Which mandatory pre-medication regimen is administered prior to Paclitaxel infusion to prevent severe hypersensitivity reactions?", opts: ["Dexamethasone + H1 Blocker (Diphenhydramine) + H2 Blocker (Famotidine)", "MESNA + Leucovorin", "Aspirin + Heparin", "Dexrazoxane + Allopurinol"], a: 0, tag: "Basic", topic: "Paclitaxel Pre-medication Protocol", exp: "Pre-medication with IV Dexamethasone, Diphenhydramine, and an H2 blocker 30-60 minutes before Paclitaxel minimizes solvent-induced hypersensitivity." },
+      { q: "Eribulin is a non-taxane microtubule dynamics inhibitor derived from a marine sponge used in metastatic breast cancer that acts by:", opts: ["Inhibiting the growth phase of microtubules without affecting shortening, sequestering tubulin into non-functional aggregates", "Alkylating DNA", "Inhibiting Topoisomerase II", "Blocking estrogen receptors"], a: 0, tag: "Basic", topic: "Eribulin Mechanism", exp: "Eribulin is a synthetic analog of halichondrin B that binds microtubule plus-ends, inhibiting growth without disrupting shortening." },
+      { q: "Ixabepilone belongs to which class of non-taxane microtubule stabilizers that remain active in taxane-resistant tumors?", opts: ["Epothilones", "Vinca alkaloids", "Anthracyclines", "Camptothecins"], a: 0, tag: "Basic", topic: "Epothilone Classification", exp: "Epothilones (Ixabepilone) bind beta-tubulin at sites overlapping taxanes but retain activity in tumors overexpressing P-glycoprotein." },
+      { q: "Docetaxel uses which solvent vehicle, associated with fluid retention and peripheral edema requiring Dexamethasone premedication?", opts: ["Polysorbate 80 (Tween 80)", "Cremophor EL", "Ethanol", "Propylene glycol"], a: 0, tag: "Basic", topic: "Docetaxel Vehicle and Fluid Retention", exp: "Docetaxel is formulated in Polysorbate 80 and induces capillary protein leakage, causing severe fluid retention managed with oral Dexamethasone." },
+      { q: "Nab-Paclitaxel (Abraxane) is an albumin-bound paclitaxel formulation that offers which key clinical advantage over standard Paclitaxel?", opts: ["Eliminates Cremophor EL, reducing hypersensitivity reactions and avoiding mandatory steroid premedication", "Can be given orally", "Causes zero hair loss", "Crosses BBB completely"], a: 0, tag: "Basic", topic: "Nab-Paclitaxel Advantages", exp: "Nab-Paclitaxel uses albumin nanoparticles instead of Cremophor EL, eliminating vehicle hypersensitivity and allowing shorter infusion times without premedication." },
+      { q: "During which phase of the cell cycle do microtubule inhibitors arrest cancer cells?", opts: ["M-phase (Mitosis)", "S-phase", "G1-phase", "G0-phase"], a: 0, tag: "Basic", topic: "Cell-Cycle Phase Target", exp: "Microtubule assembly/disassembly is mandatory for mitotic spindle formation; disrupting dynamics halts cells at the metaphase-anaphase transition." },
+
+      { q: "A nurse is preparing to administer Vincristine IV. The physician writes an order for 'Vincristine 2 mg Intrathecal'. What is the nurse's priority action?", opts: ["NEVER administer; immediately notify pharmacy and physician of fatal error order", "Administer via lumbar puncture as ordered", "Dilute in saline before intrathecal injection", "Administer slowly over 2 hours intrathecally"], a: 0, tag: "Scenario", topic: "Intrathecal Safety Fatal Warning", exp: "Intrathecal Vincristine is 100% fatal. Safety standards mandate Vincristine be prepared ONLY in minibags (never in syringes) labeled 'FOR IV USE ONLY'." },
+      { q: "A patient receiving Paclitaxel for ovarian cancer develops sudden hypotension, dyspnea, facial flushing, and generalized urticaria 5 minutes into the infusion. What is the immediate action?", opts: ["Stop the Paclitaxel infusion immediately and initiate emergency hypersensitivity treatment", "Slow down the infusion rate", "Reassure patient and continue", "Increase IV fluid drip"], a: 0, tag: "Scenario", topic: "Taxane Hypersensitivity Emergency", exp: "Acute hypersensitivity occurs within minutes of taxane infusion start; stopping the infusion immediately is the critical first step." },
+      { q: "A patient taking Vincristine reports severe numbness/tingling in fingers, difficulty buttoning shirts, loss of ankle jerk reflexes, and severe constipation. What is the underlying cause?", opts: ["Vincristine-induced peripheral and autonomic neurotoxicity", "Bone marrow suppression", "Cisplatin ototoxicity", "Hypercalcemia"], a: 0, tag: "Scenario", topic: "Vincristine Neurotoxicity Signs", exp: "Vincristine disrupts fast axonal transport in long nerves, causing peripheral sensory-motor neuropathy and autonomic neuropathy (paralytic ileus/constipation)." },
+      { q: "A patient receives Docetaxel for breast cancer. The nurse notes progressive bilateral ankle edema and 4 kg weight gain over 2 cycles. Which drug should have been prescribed as premedication?", opts: ["Oral Dexamethasone (8 mg BID for 3 days starting 1 day pre-infusion)", "MESNA", "Furosemide alone", "Diphenhydramine"], a: 0, tag: "Scenario", topic: "Docetaxel Fluid Retention Protocol", exp: "Docetaxel causes cumulative fluid retention due to capillary permeability; 3-day premedication with oral Dexamethasone reduces fluid retention." },
+      { q: "A patient with metastatic breast cancer resistant to Paclitaxel due to P-glycoprotein (MDR1) efflux overexpression is considered for chemotherapy. Which microtubule agent remains effective?", opts: ["Ixabepilone (or Cabazitaxel)", "Vincristine", "Vinblastine", "Standard Paclitaxel"], a: 0, tag: "Scenario", topic: "Overcoming MDR1 Resistance", exp: "Ixabepilone (epothilone) and Cabazitaxel exhibit low affinity for P-glycoprotein efflux pumps, maintaining potency in multidrug-resistant tumors." },
+      { q: "When co-administering Paclitaxel and Cisplatin in combination chemotherapy, in what sequence MUST they be infused to prevent enhanced toxicity?", opts: ["Paclitaxel MUST be administered BEFORE Cisplatin", "Cisplatin must be given before Paclitaxel", "Mix both in the same bag", "Sequence does not matter"], a: 0, tag: "Scenario", topic: "Paclitaxel-Platinum Sequence", exp: "Giving Cisplatin first reduces hepatic clearance of Paclitaxel by 33%, causing profound myelosuppression; Paclitaxel must always precede Cisplatin." },
+      { q: "A patient receiving Vincristine develops severe abdominal distension, absent bowel sounds, and obstipation. What complication has developed?", opts: ["Vincristine-induced autonomic neurotoxicity causing paralytic ileus", "Acute appendicitis", "Bowel perforation", "Hemorrhagic cystitis"], a: 0, tag: "Scenario", topic: "Autonomic Neurotoxicity Recognition", exp: "Vincristine damages autonomic nerve fibers supplying the myenteric plexus, leading to hypomotility, paralytic ileus, and severe constipation." },
+      { q: "An oncology nurse accidentally spills Paclitaxel solution onto her bare skin. What is the immediate decontamination protocol?", opts: ["Wash skin immediately and thoroughly with warm water and soap", "Apply alcohol rub", "Apply topical steroids", "Neutralize with acid"], a: 0, tag: "Scenario", topic: "Chemotherapy Skin Decontamination", exp: "Immediate washing with soap and water minimizes hazardous drug absorption through dermal barriers." },
+      { q: "A patient scheduled for Vincristine receives an order for docusate and senna. What is the rational for prophylactic bowel regimen?", opts: ["To prevent Vincristine-induced autonomic neurotoxicity leading to severe constipation and ileus", "To prevent diarrhea", "To enhance vincristine absorption", "To prevent bladder spasms"], a: 0, tag: "Scenario", topic: "Prophylactic Bowel Regimen", exp: "Because Vincristine predictably impairs gut autonomic motility, aggressive prophylactic bowel regimens are routinely initiated alongside therapy." },
+      { q: "Why is Nab-Paclitaxel preferred for a patient with a history of severe severe asthma and allergic reactions to Cremophor EL?", opts: ["It is vehicle-free (bound to albumin), eliminating Cremophor EL hypersensitivity risks", "It is an oral tablet", "It acts as an antihistamine", "It contains no active drug"], a: 0, tag: "Scenario", topic: "Albumin-Bound Taxane Safety", exp: "Abraxane eliminates the Cremophor EL vehicle, enabling safe administration to patients with severe solvent allergies without steroid premedication." },
+      { q: "A patient receiving Vinblastine develops a neutrophil count of 300/mcL (severe neutropenia) on day 8. What is the clinical interpretation?", opts: ["Vinblastine causes dose-limiting myelosuppression; hold therapy and initiate G-CSF support", "Expected non-urgent response", "Indication to switch to Vincristine immediately", "Allergic reaction"], a: 0, tag: "Scenario", topic: "Vinblastine Myelosuppression Management", exp: "Vinblastine myelosuppression reaches nadir around 7-10 days; severe neutropenia requires dose adjustment and growth factor (G-CSF) support." },
+      { q: "A patient receiving IV Vincristine experiences extravasation at the infusion site. Unlike anthracyclines, what local therapy is applied for Vinca alkaloid extravasation?", opts: ["Apply WARM compresses and inject Hyaluronidase locally", "Apply ICE packs and cold compresses", "Apply topical DMSO", "Apply tight pressure bandage"], a: 0, tag: "Scenario", topic: "Vinca Alkaloid Extravasation Protocol", exp: "Vinca alkaloid extravasation is treated with WARM compresses (enhances systemic dispersion) and local Hyaluronidase injection (breaks down tissue matrix)." },
+
+      { q: "What is the precise binding site of Vinca alkaloids on the tubulin heterodimer?", opts: ["At the interface between alpha- and beta-tubulin subunits (Vinca domain), preventing straight protofilament assembly", "In the interior lumen of the microtubule", "On the outer surface of alpha-tubulin only", "At the ATP-binding pocket"], a: 0, tag: "Hard", topic: "Vinca Binding Site Kinetics", exp: "Vinca alkaloids bind at the interface between alpha and beta subunits. This introduces a 'bend' in tubulin dimers, preventing them from forming straight protofilaments." },
+      { q: "How do Taxanes bind and stabilize microtubules at a structural level?", opts: ["Bind to the interior surface of the beta-tubulin subunit, stabilizing hydrophobic inter-protofilament contacts", "Bind to the plus-end of alpha-tubulin", "Inhibit GTP hydrolysis directly", "Cross-link tubulin to DNA"], a: 0, tag: "Hard", topic: "Taxane Binding Site Kinetics", exp: "Taxanes penetrate the microtubule lumen and bind to the pore-facing side of beta-tubulin, strengthening lateral contacts between adjacent protofilaments." },
+      { q: "What is the primary mechanism of acquired resistance to Paclitaxel in recurrent ovarian cancer cells?", opts: ["Overexpression of ATP-Binding Cassette transporter ABCB1 (P-glycoprotein/MDR1) and beta-III-tubulin mutations", "Loss of DHFR enzyme", "Increased GST conjugation", "Downregulation of topoisomerase"], a: 0, tag: "Hard", topic: "Taxane Resistance Mechanisms", exp: "Overexpressed P-gp actively pumps taxanes out of cells; mutations or overexpression of beta-III tubulin isotypes alter taxane binding affinity." },
+      { q: "Why does Vincristine cause minimal myelosuppression compared to Vinblastine, despite identical tubulin binding mechanisms?", opts: ["Vincristine is rapidly taken up and retained in axonal neural tissues with lower concentrations in bone marrow stem cells", "Vinblastine is destroyed in blood", "Vincristine binds red cells", "Bone marrow lacks beta-tubulin"], a: 0, tag: "Hard", topic: "Differential Tissue Distribution Kinetics", exp: "Vincristine exhibits rapid peripheral tissue binding and high neuro-tropism, resulting in lower sustained free drug levels in bone marrow compared to Vinblastine." },
+      { q: "How does Cabazitaxel maintain efficacy in taxane-resistant metastatic castration-resistant prostate cancer?", opts: ["Cabazitaxel possesses two extra methyl groups that sterically hinder binding to the P-glycoprotein efflux pump", "Cabazitaxel is a prodrug of doxorubicin", "Cabazitaxel binds DNA directly", "Cabazitaxel does not target tubulin"], a: 0, tag: "Hard", topic: "Cabazitaxel Efflux Evasion", exp: "Cabazitaxel is a synthetic derivative engineered with bulky dimethoxy side groups that prevent substrate recognition and efflux by P-glycoprotein." },
+      { q: "What is the physiological role of Hyaluronidase in managing Vinca alkaloid extravasation?", opts: ["Degrades hyaluronic acid in the extracellular matrix, accelerating drug diffusion away from the extravasation site into capillaries", "Neutralizes vincristine chemically", "Inactivates beta-tubulin", "Constricts local capillaries"], a: 0, tag: "Hard", topic: "Hyaluronidase Enzymatic Action", exp: "Hyaluronidase cleaves interstitial hyaluronic acid polymers, reducing tissue viscosity and facilitating rapid absorption and dilution of the extravasated vesicant." }
+    ]
+  },
+
+  // SUBCHAPTER 5: HORMONAL AGENTS & ANTAGONISTS (121-150)
+  {
+    chTitle: "Subchapter 5: Hormonal Agents & Receptor Antagonists",
+    questions: [
+      { q: "Tamoxifen is classified as a Selective Estrogen Receptor Modulator (SERM) that acts as an:", opts: ["Estrogen receptor ANTAGONIST in breast tissue, but AGONIST in bone and endometrium", "Estrogen agonist in all tissues", "Estrogen antagonist in bone and endometrium", "Aromatase inhibitor"], a: 0, tag: "Basic", topic: "Tamoxifen Dual Action", exp: "Tamoxifen competitively blocks estrogen receptors in breast tissue, while exerting partial agonist effects on uterine tissue and bone." },
+      { q: "Which serious uterine adverse effect is associated with long-term Tamoxifen therapy due to its estrogenic agonist effect on the endometrium?", opts: ["Increased risk of Endometrial Hyperplasia and Endometrial Cancer", "Cervical erosion", "Ovarian cyst rupture", "Uterine prolapse"], a: 0, tag: "Basic", topic: "Tamoxifen Endometrial Risk", exp: "Tamoxifen's agonist action on uterine estrogen receptors stimulates endometrial proliferation, increasing endometrial cancer risk 2- to 3-fold." },
+      { q: "Anastrozole, Letrozole, and Exemestane belong to which drug class used in postmenopausal hormone-receptor-positive breast cancer?", opts: ["Aromatase Inhibitors (AIs)", "SERMs", "GnRH agonists", "Anti-androgens"], a: 0, tag: "Basic", topic: "Aromatase Inhibitor Classification", exp: "AIs block the aromatase enzyme (CYP19A1), preventing peripheral conversion of androgens to estrogens in postmenopausal women." },
+      { q: "Why are Aromatase Inhibitors (Anastrozole/Letrozole) ineffective as monotherapy in PREmenopausal women?", opts: ["Premenopausal ovaries produce high estrogens directly, triggering reflex gonadotropin surge that overcomes aromatase blockade", "Aromatase enzyme is absent in premenopausal women", "Premenopausal women lack estrogen receptors", "AIs cause immediate liver failure in young women"], a: 0, tag: "Basic", topic: "AIs in Premenopausal Women", exp: "In premenopausal women, lowering estrogen triggers hypothalamic-pituitary feedback to surge LH/FSH, driving ovarian estrogen production; AIs require concurrent ovarian suppression in young women." },
+      { q: "Fulvestrant is classified as a Selective Estrogen Receptor Degrader (SERD) that acts by:", opts: ["Binding estrogen receptors, blocking dimerization, and targeting the receptor for proteasomal degradation", "Blocking aromatase enzyme", "Stimulating progesterone receptors", "Inhibiting 5-alpha reductase"], a: 0, tag: "Basic", topic: "Fulvestrant SERD Mechanism", exp: "Fulvestrant is a pure estrogen receptor antagonist that destabilizes ER protein structure, inducing rapid receptor degradation without agonist activity." },
+      { q: "Bicalutamide, Enzalutamide, and Apalutamide are anti-androgens used in prostate cancer that act by:", opts: ["Competitively blocking androgen receptors in target tissues, inhibiting testosterone/DHT action", "Inhibiting 5-alpha reductase", "Suppressing LH release from pituitary", "Destroying Leydig cells"], a: 0, tag: "Basic", topic: "Anti-Androgen Target", exp: "Non-steroidal anti-androgens competitively block androgen binding to nuclear androgen receptors in prostate tumor cells." },
+      { q: "Leuprolide and Goserelin are GnRH (LHRH) receptor AGONISTS that suppress sex hormone production by:", opts: ["Continuous receptor stimulation causing desensitization and downregulation of pituitary GnRH receptors, stopping LH/FSH release", "Permanently destroying pituitary cells", "Directly blocking estrogen/testosterone synthesis in gonads", "Activating progesterone receptors"], a: 0, tag: "Basic", topic: "GnRH Agonist Downregulation", exp: "Continuous non-pulsatile administration of GnRH agonists downregulates pituitary GnRH receptors, producing chemical castration (castrate testosterone levels)." },
+      { q: "When initiating GnRH agonists (Leuprolide) in prostate cancer patients, what transient clinical phenomenon occurs during the first 1-2 weeks?", opts: ["Initial 'tumor flare' (transient surge in LH and Testosterone, worsening bone pain/urinary obstruction)", "Immediate drop in testosterone to zero", "Acute liver failure", "Severe hyperkalemia"], a: 0, tag: "Basic", topic: "Tumor Flare Concept", exp: "Initial GnRH receptor stimulation surges LH/FSH and testosterone for 7-14 days ('flare') before receptors downregulate; anti-androgens are co-prescribed to prevent flare." },
+      { q: "Degarelix and Relugolix belong to which class used in prostate cancer that suppresses testosterone rapidly WITHOUT causing an initial tumor flare?", opts: ["GnRH (LHRH) Receptor ANTAGONISTS", "GnRH agonists", "Aromatase inhibitors", "5-alpha reductase inhibitors"], a: 0, tag: "Basic", topic: "GnRH Antagonist Advantage", exp: "GnRH antagonists competitively block pituitary GnRH receptors immediately, dropping testosterone to castrate levels within 24-48 hours without a surge." },
+      { q: "Abiraterone acetate inhibits which enzyme to block androgen synthesis in the testes, adrenal glands, and prostate tumor tissue?", opts: ["CYP17A1 (17alpha-hydroxylase / 17,20-lyase)", "5-alpha reductase", "Aromatase", "CYP2D6"], a: 0, tag: "Basic", topic: "Abiraterone CYP17 Target", exp: "Abiraterone selectively inhibits CYP17A1, a rate-limiting enzyme in androgen biosynthesis across adrenal, testicular, and tumor tissues." },
+      { q: "Why MUST Prednisone or Dexamethasone be co-administered continuously with Abiraterone acetate?", opts: ["Abiraterone-induced CYP17 inhibition blocks cortisol, causing compensatory ACTH surge and mineralocorticoid excess (hypertension, hypokalemia)", "To prevent severe hair loss", "To enhance abiraterone absorption", "To prevent liver necrosis"], a: 0, tag: "Basic", topic: "Abiraterone Co-Steroid Requirement", exp: "Cortisol suppression by Abiraterone surges ACTH, driving aldosterone/mineralocorticoid precursors; low-dose prednisone restores cortisol feedback and stops mineralocorticoid excess." },
+      { q: "Which drug class causes loss of bone mineral density (osteoporosis) and high fracture risk in postmenopausal women due to complete estrogen deprivation?", opts: ["Aromatase Inhibitors (Anastrozole/Letrozole)", "Tamoxifen", "Megestrol acetate", "Fulvestrant"], a: 0, tag: "Basic", topic: "Aromatase Inhibitor Bone Loss", exp: "Unlike Tamoxifen (which is an estrogen agonist in bone), Aromatase Inhibitors eliminate all peripheral estrogen synthesis, accelerating bone resorption." },
+
+      { q: "A 52-year-old postmenopausal woman with ER-positive breast cancer is prescribed Anastrozole. What baseline diagnostic test should be performed before starting therapy?", opts: ["Dual-energy X-ray Absorptiometry (DEXA scan) to evaluate bone mineral density", "Endometrial biopsy", "Echocardiogram", "Audiometry"], a: 0, tag: "Scenario", topic: "Pre-AI DEXA Requirement", exp: "AIs accelerate bone loss; baseline bone mineral density assessment via DEXA scan is required to guide bisphosphonate/denosumab bone protection." },
+      { q: "A patient with metastatic prostate cancer and severe vertebral bone metastases is scheduled to start Leuprolide. What medication MUST be started 1-2 weeks BEFORE Leuprolide?", opts: ["Anti-androgen (e.g., Bicalutamide) to prevent initial testosterone flare and spinal cord compression", "Prednisone alone", "Tamoxifen", "Anastrozole"], a: 0, tag: "Scenario", topic: "Tumor Flare Prevention Protocol", exp: "Bicalutamide blocks androgen receptors prior to starting Leuprolide, neutralizing the transient 1-2 week testosterone surge and preventing spinal compression." },
+      { q: "A patient taking Tamoxifen for 3 years reports unexpected vaginal spotting and pelvic pressure. What diagnostic evaluation is urgent?", opts: ["Transvaginal Ultrasound and Endometrial Biopsy to rule out endometrial hyperplasia or endometrial carcinoma", "Pap smear only", "Complete blood count", "Urinalysis"], a: 0, tag: "Scenario", topic: "Tamoxifen Uterine Bleeding Evaluation", exp: "Vaginal bleeding in women on Tamoxifen requires immediate endometrial evaluation due to increased risk of Tamoxifen-induced endometrial neoplasia." },
+      { q: "A patient taking Tamoxifen is prescribed SSRI antidepressant therapy for hot flashes. Why should Paroxetine or Fluoxetine be AVOIDED in this patient?", opts: ["Paroxetine/Fluoxetine potently inhibit CYP2D6, preventing bioactivation of Tamoxifen into its active metabolite (Endoxifen)", "They increase Tamoxifen toxicity", "They cause severe diarrhea", "They block estrogen receptors"], a: 0, tag: "Scenario", topic: "Tamoxifen CYP2D6 Interaction", exp: "Tamoxifen is a prodrug activated by CYP2D6 into Endoxifen (100x more potent). Strong CYP2D6 inhibitors (Paroxetine/Fluoxetine) cause Tamoxifen treatment failure." },
+      { q: "Which antidepressant is considered safe for treating Tamoxifen-induced hot flashes because it does NOT significantly inhibit CYP2D6?", opts: ["Venlafaxine (or Citalopram / Escitalopram)", "Paroxetine", "Fluoxetine", "Bupropion"], a: 0, tag: "Scenario", topic: "Safe Antidepressants with Tamoxifen", exp: "Venlafaxine and Citalopram exhibit minimal CYP2D6 inhibition, making them safe options for managing vasomotor hot flashes during Tamoxifen therapy." },
+      { q: "A patient taking Abiraterone Acetate for prostate cancer forgets to take his prescribed daily Prednisone for 2 weeks. He presents with BP 170/100, K+ 2.9 mEq/L, and severe leg edema. Why?", opts: ["ACTH surge secondary to unsuppressed cortisol depletion drove excess mineralocorticoid precursor production", "Abiraterone destroyed his kidneys", "Excess testosterone synthesis occurred", "Prednisone withdrawal causes hypertension"], a: 0, tag: "Scenario", topic: "Abiraterone Mineralocorticoid Excess", exp: "Without replacement cortisol (Prednisone), uninhibited ACTH drives synthesis of 11-deoxycorticosterone (a mineralocorticoid), causing sodium retention, hypokalemia, and hypertension." },
+      { q: "A patient receiving Anastrozole complains of severe joint stiffness, arthralgias, and bone pain in wrists and knees. The nurse recognizes this as:", opts: ["Aromatase Inhibitor-Associated Musculoskeletal Syndrome (AIMSS)", "Acute gout", "Rheumatoid arthritis", "Bone metastasis surge"], a: 0, tag: "Scenario", topic: "AIMSS Recognition", exp: "Estrogen deprivation from AIs causes AIMSS (arthralgias, joint stiffness, myalgias) in up to 50% of patients, affecting treatment compliance." },
+      { q: "A premenopausal woman with high-risk ER-positive breast cancer is prescribed Tamoxifen. She asks if she can become pregnant. What counsel is essential?", opts: ["Tamoxifen is teratogenic; barrier contraception is mandatory during therapy and for 9 months after stopping", "Tamoxifen acts as a contraceptive", "Pregnancy is safe on Tamoxifen", "Tamoxifen causes permanent menopause"], a: 0, tag: "Scenario", topic: "Tamoxifen Teratogenicity Education", exp: "Tamoxifen causes fetal harm and congenital malformations; effective non-hormonal barrier contraception is mandatory during treatment." },
+      { q: "A patient with advanced prostate cancer develops acute urinary retention due to severe spinal cord compression from vertebral metastasis. Which medical castration agent drops testosterone fastest?", opts: ["Degarelix (GnRH antagonist) or emergency bilateral orchiectomy", "Leuprolide depot", "Goserelin depot", "Bicalutamide monotherapy"], a: 0, tag: "Scenario", topic: "Emergency Castration Choice", exp: "Degarelix drops testosterone to castrate levels within 24 hours without a flare, making it superior to GnRH agonists in acute cord compression." },
+      { q: "A postmenopausal patient with ER-positive breast cancer taking Tamoxifen develops deep vein thrombosis (DVT) and pulmonary embolism. What transition in therapy is indicated?", opts: ["Discontinue Tamoxifen and switch to an Aromatase Inhibitor (e.g., Anastrozole)", "Increase Tamoxifen dose", "Add oral estrogen", "Continue Tamoxifen with aspirin"], a: 0, tag: "Scenario", topic: "Tamoxifen Thromboembolism Management", exp: "Tamoxifen increases VTE risk 2- to 3-fold due to hepatic procoagulant protein synthesis. Developing a VTE warrants switching to an Aromatase Inhibitor (which lacks VTE risk)." },
+      { q: "Megestrol Acetate is a synthetic progestin used in oncology not only for hormone-responsive cancer, but also as an effective treatment for:", opts: ["Cancer anorexia-cachexia syndrome (stimulates appetite and weight gain)", "Severe nausea", "Bone loss", "Hair loss"], a: 0, tag: "Scenario", topic: "Megestrol Cachexia Indication", exp: "Megestrol Acetate is an orexigenic agent that stimulates appetite and induces weight gain in patients with advanced cancer cachexia." },
+      { q: "A patient taking Enzalutamide for metastatic prostate cancer has a history of cerebrovascular accident. The nurse monitors for which major neurological risk associated with Enzalutamide?", opts: ["Seizures (lowers seizure threshold)", "Peripheral neuropathy", "Blindness", "Acoustic neuroma"], a: 0, tag: "Scenario", topic: "Enzalutamide Seizure Risk", exp: "Enzalutamide crosses the BBB and inhibits GABA-A receptors, lowering the seizure threshold; it carries a warning for seizure risk." },
+
+      { q: "What is the molecular basis for why Tamoxifen acts as an antagonist in breast tissue but an agonist in endometrial tissue?", opts: ["Differential expression of nuclear receptor co-activators (SRC-1 high in endometrium) vs co-repressors (NCoR high in breast)", "Tamoxifen metabolizes into estrogen in uterine cells", "Breast cells lack estrogen receptors", "Tamoxifen binds progesterone receptors in uterus"], a: 0, tag: "Hard", topic: "SERM Tissue-Selective Molecular Biology", exp: "Tamoxifen-ER complexes recruit co-repressors (NCoR) in breast tissue (antagonism), but recruit co-activators (SRC-1) in endometrial tissue (agonism)." },
+      { q: "What structural feature differentiates Type I (Exemestane) from Type II (Anastrozole/Letrozole) Aromatase Inhibitors?", opts: ["Exemestane is a steroidal irreversible 'suicide' inhibitor; Anastrozole/Letrozole are non-steroidal reversible triazole competitive inhibitors", "Exemestane destroys the liver", "Anastrozole contains platinum", "Letrozole binds estrogen receptors"], a: 0, tag: "Hard", topic: "Aromatase Inhibitor Structural Classes", exp: "Exemestane irreversibly binds the substrate site of aromatase (suicide inactivation); Anastrozole/Letrozole reversibly bind the heme iron of CYP19A1." },
+      { q: "How does CYP17A1 inhibition by Abiraterone block both 17alpha-hydroxylase and 17,20-lyase enzymatic steps?", opts: ["Inhibits conversion of Pregnenolone to 17-OH-pregnenolone AND subsequent conversion to Dehydroepiandrosterone (DHEA)", "Blocks conversion of cholesterol to pregnenolone", "Blocks dihydrotestosterone binding to DNA", "Inhibits 5-alpha reductase"], a: 0, tag: "Hard", topic: "CYP17 Dual Reaction Cascade", exp: "CYP17A1 catalyzes both 17-alpha hydroxylation and C17-20 lyase cleavage; blocking both steps eliminates DHEA and Androstenedione synthesis." },
+      { q: "What is the molecular mechanism of Endoxifen formation from Tamoxifen by CYP2D6 and CYP3A4?", opts: ["CYP3A4 N-demethylation to N-desmethyltamoxifen, followed by CYP2D6 4-hydroxylation to Endoxifen (4-hydroxy-N-desmethyltamoxifen)", "Direct methylation of tamoxifen", "Glucuronidation in kidneys", "Cleavage of the ether ring"], a: 0, tag: "Hard", topic: "Endoxifen Metabolic Pathway", exp: "Endoxifen is produced primarily via sequential CYP3A4/5 N-demethylation and CYP2D6 4-hydroxylation; 4-hydroxylation increases ER affinity 100-fold." },
+      { q: "Why does Fulvestrant cause complete destruction of ER alpha proteins, whereas Tamoxifen preserves ER protein expression?", opts: ["Fulvestrant binding impairs ER receptor dimerization and exposes hydrophobic surface regions, triggering rapid ubiquitin-proteasome degradation", "Fulvestrant cleaves ER mRNA", "Tamoxifen phosphorylates ER proteins", "Fulvestrant inhibits protein translation"], a: 0, tag: "Hard", topic: "SERD Proteasomal Degradation Mechanism", exp: "Fulvestrant's hydrophobic side chain alters ER alpha conformation, inhibiting nucleocytoplasmic shuttling and marking the receptor for proteasomal destruction." },
+      { q: "How does Enzalutamide overcome anti-androgen resistance caused by androgen receptor (AR) overexpression in prostate cancer?", opts: ["Binds AR with 8-fold higher affinity than bicalutamide, prevents AR nuclear translocation, AND blocks AR DNA binding to ARE elements", "Destroys androgen receptors enzymatically", "Inhibits LH release from brain", "Converts testosterone to estrogen"], a: 0, tag: "Hard", topic: "Enzalutamide Multi-Step AR Blockade", exp: "Enzalutamide inhibits three distinct steps: androgen binding, AR nuclear translocation, and AR association with androgen response elements (ARE) on DNA." }
+    ]
+  },
+
+  // SUBCHAPTER 6: MONOCLONAL ANTIBODIES (151-180)
+  {
+    chTitle: "Subchapter 6: Targeted Monoclonal Antibodies",
+    questions: [
+      { q: "Rituximab is a chimeric monoclonal antibody that targets which surface antigen expressed on normal and malignant B-lymphocytes?", opts: ["CD20", "CD30", "CD52", "HER2/neu"], a: 0, tag: "Basic", topic: "Rituximab Target", exp: "Rituximab binds CD20 transmembrane antigen on pre-B and mature B-lymphocytes, triggering complement-dependent cytotoxicity (CDC) and ADCC." },
+      { q: "Trastuzumab (Herceptin) is a humanized monoclonal antibody indicated for breast cancers that overexpress which receptor?", opts: ["HER2 / ErbB2 (Human Epidermal Growth Factor Receptor 2)", "EGFR (HER1)", "VEGFR-2", "PD-1"], a: 0, tag: "Basic", topic: "Trastuzumab Target", exp: "Trastuzumab binds extracellular domain IV of the HER2 receptor, inhibiting HER2 homodimerization and downstream PI3K-Akt signaling." },
+      { q: "What is the major dose-limiting organ toxicity associated with Trastuzumab therapy?", opts: ["Cardiotoxicity (decreased LVEF and heart failure)", "Pulmonary fibrosis", "Nephrotoxicity", "Peripheral neuropathy"], a: 0, tag: "Basic", topic: "Trastuzumab Cardiotoxicity", exp: "HER2 signaling is required for cardiomyocyte survival; Trastuzumab causes non-dose-dependent, often reversible, decrease in LVEF and heart failure." },
+      { q: "Bevacizumab (Avastin) exerts its antineoplastic action by binding to which circulating ligand to inhibit tumor angiogenesis?", opts: ["Vascular Endothelial Growth Factor-A (VEGF-A)", "Epidermal Growth Factor (EGF)", "Platelet-Derived Growth Factor (PDGF)", "TNF-alpha"], a: 0, tag: "Basic", topic: "Bevacizumab Target", exp: "Bevacizumab neutralizes soluble VEGF-A, preventing interaction with VEGFR-1/2 on endothelial cells and starving tumors of new blood vessel supply." },
+      { q: "Which characteristic vascular adverse effects are associated with Bevacizumab therapy?", opts: ["Severe Hypertension, Proteinuria, arterial thromboembolism, and impaired wound healing", "Hypotension and hypoglycemia", "Severe bradycardia", "Pulmonary fibrosis"], a: 0, tag: "Basic", topic: "Bevacizumab Toxicity Profile", exp: "Blocking VEGF decreases endothelial nitric oxide (hypertension), disrupts glomerular filtration (proteinuria), and impairs wound repair." },
+      { q: "Cetuximab and Panitumumab are monoclonal antibodies that target which cell-surface receptor in colorectal and head/neck cancers?", opts: ["Epidermal Growth Factor Receptor (EGFR / HER1)", "HER2", "CD38", "VEGFR"], a: 0, tag: "Basic", topic: "Cetuximab Target", exp: "Cetuximab and Panitumumab bind the extracellular domain of EGFR, blocking ligand binding and receptor dimerization." },
+      { q: "The presence of which genetic mutation predicts complete RESISTANCE to Cetuximab or Panitumumab therapy in colorectal cancer?", opts: ["KRAS or NRAS gene mutations (downstream constitutive signaling)", "HER2 amplification", "BRCA1 mutation", "EGFR overexpression"], a: 0, tag: "Basic", topic: "KRAS Resistance Marker", exp: "Mutations in KRAS/NRAS codons 12/13 constitutively activate downstream RAS-RAF-MEK-ERK signaling, rendering upstream EGFR blockade useless." },
+      { q: "Which cutaneous adverse effect is a predictable biomarker for clinical response to EGFR inhibitors like Cetuximab?", opts: ["Acneiform papulopustular rash on face and upper trunk", "Alopecia universalis", "Hand-foot syndrome", "Melanoma"], a: 0, tag: "Basic", topic: "EGFR Acneiform Rash", exp: "EGFR is expressed in epidermal keratinocytes; blocking EGFR causes an acneiform papulopustular skin rash whose severity correlates with anti-tumor response." },
+      { q: "Pembrolizumab and Nivolumab belong to which revolutionizing class of immune checkpoint inhibitor monoclonal antibodies?", opts: ["Programmed Cell Death Protein-1 (PD-1) inhibitors", "CTLA-4 inhibitors", "HER2 inhibitors", "VEGF inhibitors"], a: 0, tag: "Basic", topic: "PD-1 Inhibitors", exp: "Pembrolizumab and Nivolumab block PD-1 receptors on T-cells, preventing tumor PD-L1 engagement and restoring cytotoxic T-cell anti-tumor immunity." },
+      { q: "Ipilimumab is an immune checkpoint inhibitor monoclonal antibody that targets which receptor on T-lymphocytes?", opts: ["CTLA-4 (Cytotoxic T-Lymphocyte-Associated Protein 4)", "PD-1", "PD-L1", "CD20"], a: 0, tag: "Basic", topic: "Ipilimumab Target", exp: "Ipilimumab blocks CTLA-4, an inhibitory receptor on T-cells, augmenting early T-cell priming and activation in lymph nodes." },
+      { q: "Atezolizumab, Durvalumab, and Avelumab target which immune ligand expressed on tumor cells and antigen-presenting cells?", opts: ["PD-L1 (Programmed Death-Ligand 1)", "PD-1", "CTLA-4", "CD30"], a: 0, tag: "Basic", topic: "PD-L1 Inhibitor Class", exp: "These monoclonal antibodies bind PD-L1 directly, preventing its interaction with both PD-1 and B7.1 receptors on T-cells." },
+      { q: "Daratumumab is a monoclonal antibody indicated for Multiple Myeloma that targets which surface glycoprotein?", opts: ["CD38", "CD20", "CD19", "HER2"], a: 0, tag: "Basic", topic: "Daratumumab CD38 Target", exp: "Daratumumab targets CD38, highly overexpressed on plasma cells in multiple myeloma, inducing cell lysis via CDC, ADCC, and ADCP." },
+
+      { q: "A patient receiving their first infusion of Rituximab for Non-Hodgkin Lymphoma develops fever, rigors, hypotension, bronchospasm, and urticaria 30 minutes in. What is this reaction?", opts: ["Acute Infusion-Related Reaction (cytokine release syndrome)", "Anaphylactic shock to mouse protein only", "Septic shock", "Tumor lysis syndrome"], a: 0, tag: "Scenario", topic: "Rituximab Infusion Reaction", exp: "First Rituximab infusions trigger rapid lysis of circulating B-cells and cytokine release (TNF-alpha, IL-6), producing acute infusion reactions." },
+      { q: "Prior to initiating a Rituximab infusion, which pre-medication regimen is routinely administered to attenuate infusion reactions?", opts: ["Acetaminophen + Antihistamine (Diphenhydramine) +/- IV Corticosteroid", "MESNA + Leucovorin", "Aspirin + Heparin", "Dexrazoxane"], a: 0, tag: "Scenario", topic: "Rituximab Pre-medication Protocol", exp: "Pre-medication with acetaminophen, diphenhydramine, and corticosteroids 30-60 minutes pre-infusion significantly reduces cytokine release symptoms." },
+      { q: "A patient scheduled for elective surgery takes Bevacizumab. Why MUST Bevacizumab be held for at least 4 to 6 weeks PRIOR to and AFTER major surgery?", opts: ["VEGF inhibition severely impairs physiological angiogenesis, risking wound dehiscence and fatal surgical site hemorrhage", "Bevacizumab causes acute anesthesia allergy", "Bevacizumab destroys liver enzymes", "Bevacizumab blocks muscle relaxants"], a: 0, tag: "Scenario", topic: "Bevacizumab Surgical Interruption", exp: "VEGF is essential for surgical wound healing and capillary repair; Bevacizumab carries a Black-Box warning for wound dehiscence and fatal bleeding." },
+      { q: "A patient receiving Pembrolizumab (PD-1 inhibitor) presents with severe watery diarrhea (8 times/day), abdominal pain, and elevated CRP. Stool cultures for infection are negative. The diagnosis is:", opts: ["Immune-Mediated Colitis (Immune-Related Adverse Event / irAE)", "C. difficile colitis", "Loperamide withdrawal", "Gastroenteritis"], a: 0, tag: "Scenario", topic: "irAE Colitis Recognition", exp: "Checkpoint inhibitors remove immune brakes, triggering autoimmune toxicities (irAEs) like immune-mediated colitis, pneumonitis, and endocrinopathies." },
+      { q: "What is the primary treatment for Moderate to Severe Immune-Related Adverse Events (irAEs) induced by PD-1 or CTLA-4 inhibitors?", opts: ["Withhold checkpoint inhibitor and initiate High-Dose Systemic Corticosteroids (e.g., Prednisone 1-2 mg/kg/day)", "Give broad-spectrum antibiotics", "Double the checkpoint inhibitor dose", "Administer antihistamines"], a: 0, tag: "Scenario", topic: "irAE Steroid Management Protocol", exp: "irAEs are autoimmune in origin; prompt initiation of high-dose systemic corticosteroids and tapering over 4 weeks is mandatory to suppress autoimmunity." },
+      { q: "A metastatic colorectal cancer patient undergoes tumor gene testing showing KRAS codon 12 mutation. Why will the oncologist exclude Cetuximab from the regimen?", opts: ["KRAS mutations constitutively activate downstream signaling, making upstream EGFR blockade with Cetuximab completely ineffective", "Cetuximab causes immediate death in KRAS mutants", "KRAS mutants destroy Cetuximab antibodies", "Cetuximab causes renal failure in mutants"], a: 0, tag: "Scenario", topic: "KRAS Exclusion Rationale", exp: "Mutated KRAS acts downstream of EGFR; blocking the EGFR receptor with Cetuximab cannot turn off mutant KRAS signal transduction." },
+      { q: "A patient receiving Trastuzumab for HER2-positive breast cancer undergoes routine monitoring. Which diagnostic test is required every 3 months?", opts: ["Echocardiogram or MUGA scan to monitor Left Ventricular Ejection Fraction (LVEF)", "Pulmonary function tests", "Chest CT scan", "Bone marrow biopsy"], a: 0, tag: "Scenario", topic: "Trastuzumab LVEF Monitoring", exp: "Trastuzumab carries a risk of subclinical or overt heart failure; periodic LVEF monitoring every 3 months is standard of care." },
+      { q: "A patient receiving Pembrolizumab develops severe fatigue, cold intolerance, constipation, and TSH of 28 mIU/L. What immune-related event has occurred?", opts: ["Immune-mediated Hypothyroidism (Endocrinopathy)", "Pituitary adenoma", "Adrenal crisis", "Chemo brain"], a: 0, tag: "Scenario", topic: "irAE Endocrinology Recognition", exp: "Immune checkpoint inhibitors frequently trigger thyroiditis, resulting in hypothyroidism or hyperthyroidism requiring hormone replacement." },
+      { q: "A patient with Chronic Lymphocytic Leukemia treated with Rituximab in the past develops sudden severe jaundice and elevated AST/ALT 3 months post-therapy. What screening test was missed beforehand?", opts: ["Hepatitis B Virus (HBV) screening (HBsAg and Anti-HBc)", "HIV screening", "Hepatitis C screening", "Tuberculosis skin test"], a: 0, tag: "Scenario", topic: "Rituximab HBV Reactivation Risk", exp: "Rituximab carries a Black-Box warning for severe, potentially fatal Hepatitis B virus reactivation; screening HBsAg/Anti-HBc prior to therapy is mandatory." },
+      { q: "A patient taking Cetuximab develops a severe acne-like rash on his face and chest. He wants to stop therapy. What counsel should the nurse provide?", opts: ["Reassure him that the rash is expected, indicates the drug is working effectively against the tumor, and manage with topical/oral antibiotics", "Agree and stop therapy immediately", "Tell him it is an acute drug allergy", "Advise scrubbing face with alcohol"], a: 0, tag: "Scenario", topic: "EGFR Rash Patient Counseling", exp: "The presence and severity of EGFR acneiform rash correlates positively with anti-tumor response and survival; management involves topical clindamycin and oral doxycycline." },
+      { q: "Why is the cardiotoxicity of Trastuzumab fundamentally different from Doxorubicin cardiotoxicity?", opts: ["Trastuzumab cardiotoxicity is Type II (not dose-dependent, no structural cell destruction, often reversible upon discontinuation)", "Trastuzumab destroys cardiac cells permanently", "Trastuzumab causes acute MI", "Trastuzumab cardiotoxicity is cumulative and fatal"], a: 0, tag: "Scenario", topic: "Type I vs Type II Cardiotoxicity", exp: "Doxorubicin causes Type I cardiotoxicity (cumulative, structural, irreversible loss of myocytes). Trastuzumab causes Type II (functional, non-cumulative, reversible loss of LVEF)." },
+      { q: "A patient receiving Ipilimumab + Nivolumab develops progressive dry cough, shortness of breath, and low oxygen saturation. High-resolution CT shows ground-glass opacities. What life-threatening irAE is suspected?", opts: ["Immune-Mediated Pneumonitis", "Bacterial pneumonia", "Pulmonary embolism", "Heart failure"], a: 0, tag: "Scenario", topic: "Immune Pneumonitis Recognition", exp: "Immune pneumonitis is a potentially fatal irAE of checkpoint inhibitors requiring immediate drug cessation and high-dose IV corticosteroids." },
+
+      { q: "What is the molecular mechanism of Antibody-Dependent Cellular Cytotoxicity (ADCC) triggered by Rituximab?", opts: ["Fc region of bound Rituximab binds FcgammaRIIIa (CD16) on Natural Killer (NK) cells, triggering perforin/granzyme release and B-cell lysis", "Rituximab cross-links DNA directly", "Rituximab neutralizes oxygen", "Rituximab inhibits topoisomerase"], a: 0, tag: "Hard", topic: "ADCC Molecular Pathway", exp: "Rituximab's Fab binds CD20 while its Fc tail engages CD16 on NK cells and macrophages, activating local cytotoxic exocytosis against target B-cells." },
+      { q: "How does the PD-1 / PD-L1 axis suppress cytotoxic T-cell activity within the tumor microenvironment?", opts: ["PD-1 engagement recruits SHP-2 phosphatase, which dephosphorylates CD28 and TCR activation motifs (ITAMs), blocking T-cell proliferation and cytokine release", "PD-1 causes physical lysis of T-cells", "PD-1 consumes all glucose", "PD-1 prevents antibody entry"], a: 0, tag: "Hard", topic: "PD-1 SHP-2 Phosphatase Cascade", exp: "When PD-L1 binds PD-1, intracellular ITIM/ITSM motifs recruit SHP-2 phosphatase, shutting down ZAP70 and PI3K signaling cascades downstream of the T-cell receptor." },
+      { q: "Why does combination therapy with CTLA-4 (Ipilimumab) and PD-1 (Nivolumab) inhibitors yield synergistic anti-tumor efficacy, but significantly higher irAE rates?", opts: ["CTLA-4 acts during T-cell priming in lymph nodes, while PD-1 acts in peripheral tumor tissues; dual blockade unleash global uninhibited immune autoreactivity", "Both drugs bind the same receptor", "Ipilimumab increases nivolumab blood levels 10-fold", "Dual therapy causes direct renal tube destruction"], a: 0, tag: "Hard", topic: "Dual Checkpoint Synergy and Toxicity", exp: "CTLA-4 blockade expands diverse autoreactive T-cell clones in lymphoid organs; PD-1 blockade prevents their inactivation in peripheral organs, driving systemic autoimmunity." },
+      { q: "What is the structural basis for why Panitumumab is less immunogenic and causes fewer infusion-related reactions than Cetuximab?", opts: ["Panitumumab is a fully human IgG2 monoclonal antibody; Cetuximab is a chimeric human-mouse IgG1 antibody containing murine amino acid sequences", "Panitumumab is a small molecule", "Cetuximab contains platinum", "Panitumumab is given orally"], a: 0, tag: "Hard", topic: "Chimeric vs Fully Human Antibodies", exp: "Chimeric antibodies (Cetuximab) retain ~33% murine variable framework sequences that elicit anti-chimeric antibodies (HACA), unlike fully human antibodies." },
+      { q: "How does Trastuzumab-Emtansine (T-DM1) act as an Antibody-Drug Conjugate (ADC) to deliver targeted cytotoxicity?", opts: ["Trastuzumab guides the conjugate to HER2+ cells; endocytosis and lysosomal degradation release Emtansine (DM1), a potent microtubule inhibitor", "T-DM1 delivers alkylating agent to DNA", "T-DM1 releases radioactive iodine", "T-DM1 inhibits aromatase"], a: 0, tag: "Hard", topic: "Antibody-Drug Conjugate Kinetics", exp: "T-DM1 links HER2-targeting Trastuzumab to DM1 (maytansinoid microtubule toxin). Internalization in HER2+ cells releases DM1, achieving intracellular cell killing." },
+      { q: "What is the mechanism by which Bevacizumab-induced VEGF inhibition leads to severe arterial thromboembolism (stroke/MI)?", opts: ["VEGF suppression inhibits endothelial cell regeneration, exposes subendothelial collagen, and reduces prostacyclin (PGI2) production", "Bevacizumab activates platelets directly", "Bevacizumab degrades antithrombin III", "Bevacizumab surges fibrinogen levels"], a: 0, tag: "Hard", topic: "VEGF Prothrombotic Pathophysiology", exp: "VEGF promotes endothelial integrity and survival. Inhibiting VEGF causes endothelial cell apoptosis, exposing pro-thrombotic basement membrane and triggering arterial thrombosis." }
+    ]
+  },
+
+  // SUBCHAPTER 7: TYROSINE KINASE INHIBITORS (181-210)
+  {
+    chTitle: "Subchapter 7: Small Molecule Tyrosine Kinase Inhibitors (TKIs)",
+    questions: [
+      { q: "Imatinib (Gleevec) revolutionized cancer therapy by selectively inhibiting which oncogenic fusion protein in Chronic Myeloid Leukemia (CML)?", opts: ["BCR-ABL tyrosine kinase", "HER2 kinase", "BRAF V600E", "ALK kinase"], a: 0, tag: "Basic", topic: "Imatinib Target", exp: "Imatinib fits into the ATP-binding site of the constitutively active BCR-ABL tyrosine kinase (encoded by Philadelphia chromosome t(9;22)), blocking substrate phosphorylation." },
+      { q: "Erlotinib, Gefitinib, and Osimertinib are small molecule TKIs that selectively target which receptor kinase in non-small cell lung cancer (NSCLC)?", opts: ["Epidermal Growth Factor Receptor (EGFR) kinase", "VEGFR kinase", "BCR-ABL kinase", "BTK kinase"], a: 0, tag: "Basic", topic: "EGFR TKI Class", exp: "These TKIs competitively inhibit the intracellular ATP-binding domain of EGFR, blocking autophosphorylation in EGFR-mutant NSCLC." },
+      { q: "Sunitinib and Sorafenib are multi-targeted TKIs whose primary anti-angiogenic activity stems from inhibiting which kinase family?", opts: ["Vascular Endothelial Growth Factor Receptors (VEGFR-1, -2, -3)", "BCR-ABL", "CDK4/6", "MEK1/2"], a: 0, tag: "Basic", topic: "Multi-Targeted Anti-Angiogenic TKIs", exp: "Sunitinib and Sorafenib inhibit VEGFR and PDGFR kinases, suppressing tumor vascularization and blood supply in RCC and HCC." },
+      { q: "Ibrutinib is a small molecule TKI used in B-cell malignancies (CLL, Mantle Cell Lymphoma) that covalently inhibits:", opts: ["Bruton's Tyrosine Kinase (BTK)", "Anaplastic Lymphoma Kinase (ALK)", "JAK2 kinase", "FLT3 kinase"], a: 0, tag: "Basic", topic: "Ibrutinib BTK Target", exp: "Ibrutinib binds Cysteine-481 in the ATP-binding pocket of Bruton's Tyrosine Kinase (BTK), disrupting B-cell receptor (BCR) signaling." },
+      { q: "Crizotinib and Alectinib are targeted TKIs indicated for non-small cell lung cancers harboring rearrangements in which gene?", opts: ["Anaplastic Lymphoma Kinase (ALK / EML4-ALK fusion)", "EGFR", "KRAS", "BRAF"], a: 0, tag: "Basic", topic: "ALK Inhibitors", exp: "Crizotinib and Alectinib inhibit the ATP-binding site of the oncogenic EML4-ALK fusion tyrosine kinase." },
+      { q: "Vemurafenib and Dabrafenib are targeted inhibitors prescribed specifically for tumors carrying which distinct kinase mutation?", opts: ["BRAF V600E mutation", "EGFR T790M", "BCR-ABL T315I", "ALK fusion"], a: 0, tag: "Basic", topic: "BRAF V600E Target", exp: "Vemurafenib and Dabrafenib selectively inhibit the mutated BRAF V600E monomeric kinase in metastatic melanoma." },
+      { q: "Why are Vemurafenib or Dabrafenib routinely combined with a MEK inhibitor (e.g., Trametinib or Cobimetinib)?", opts: ["Dual BRAF + MEK inhibition blocks vertical MAPK pathway signaling and prevents paradoxical MAPK reactivation and cutaneous squamous cell carcinoma", "To reduce nausea", "To improve oral bioavailability", "To prevent liver metabolism"], a: 0, tag: "Basic", topic: "BRAF + MEK Combination Principle", exp: "Combining BRAF + MEK inhibitors provides superior MAPK pathway blockade and suppresses paradoxical RAF dimerization that drives secondary skin papilomas." },
+      { q: "Palbociclib, Ribociclib, and Abemaciclib belong to which targeted drug class used in HR-positive, HER2-negative advanced breast cancer?", opts: ["Cyclin-Dependent Kinase 4 and 6 (CDK4/6) Inhibitors", "EGFR TKIs", "BTK inhibitors", "PARP inhibitors"], a: 0, tag: "Basic", topic: "CDK4/6 Inhibitor Classification", exp: "CDK4/6 inhibitors block phosphorylation of the Retinoblastoma (Rb) protein, preventing cell cycle progression from G1 to S phase." },
+      { q: "Olaparib, Rucaparib, and Niraparib target which DNA repair enzyme, causing synthetic lethality in tumors with BRCA1 or BRCA2 mutations?", opts: ["Poly(ADP-ribose) Polymerase (PARP)", "Topoisomerase I", "DNA Polymerase", "MGMT"], a: 0, tag: "Basic", topic: "PARP Inhibitors and Synthetic Lethality", exp: "PARP repairs single-strand DNA breaks. Inhibiting PARP in BRCA-deficient cells (lacking homologous recombination) leads to unrepairable double-strand breaks and cell death ('synthetic lethality')." },
+      { q: "Latinib agents such as Lapatinib and Neratinib are dual TKIs that inhibit intracellular domains of both EGFR and which second receptor?", opts: ["HER2 (ErbB2)", "VEGFR", "PDGFR", "IGFR"], a: 0, tag: "Basic", topic: "Dual EGFR/HER2 TKIs", exp: "Lapatinib and Neratinib are reversible/irreversible dual inhibitors targeting both EGFR and HER2 ATP-binding intracellular tyrosine kinase domains." },
+      { q: "Which BCR-ABL TKI was specifically designed to overcome the resistant gatekeeper T315I point mutation in CML?", opts: ["Ponatinib", "Nilotinib", "Dasatinib", "Imatinib"], a: 0, tag: "Basic", topic: "Ponatinib T315I Activity", exp: "The T315I isoleucine mutation creates steric hindrance blocking conventional TKIs. Ponatinib contains a carbon-carbon triple bond (ethynyl linkage) that bypasses isoleucine-315." },
+      { q: "What is the primary route of administration for small molecule Tyrosine Kinase Inhibitors (TKIs)?", opts: ["Oral (tablets / capsules)", "Intravenous infusion", "Intramuscular injection", "Subcutaneous injection"], a: 0, tag: "Basic", topic: "TKI Route Administration", exp: "Unlike large monoclonal antibodies (which require parenteral IV infusion), small molecule TKIs are orally bioavailable synthetic compounds." },
+
+      { q: "A patient with Chronic Myeloid Leukemia on Imatinib therapy presents with bilateral periorbital edema, facial puffiness, and ankle swelling. What is the nurse's assessment?", opts: ["Periorbital and peripheral fluid retention is a common, dose-dependent side effect of Imatinib", "Anaphylactic allergy", "Acute renal failure", "Congestive heart failure"], a: 0, tag: "Scenario", topic: "Imatinib Superficial Edema", exp: "Imatinib inhibits PDGFR in capillary pericytes, causing superficial fluid retention, periorbital edema, and mild fluid accumulation in >70% of patients." },
+      { q: "A patient taking Erlotinib for non-small cell lung cancer develops severe diarrhea (6 watery stools/day) and an acne-like rash on his face. How should this be managed?", opts: ["Administer Loperamide for diarrhea, apply topical clindamycin/oral doxycycline for rash, and continue TKI as managed", "Stop drug permanently", "Switch to IV Cisplatin immediately", "Double the Erlotinib dose"], a: 0, tag: "Scenario", topic: "EGFR TKI Side Effect Management", exp: "Diarrhea and acneiform rash are classic target-driven side effects of oral EGFR TKIs, managed symptomatically without immediate drug discontinuation." },
+      { q: "A patient taking Sunitinib for renal cell carcinoma presents with BP 168/104 mmHg and yellowing of the skin/hair. What explanations should be provided?", opts: ["Hypertension is caused by VEGFR inhibition; yellowing of skin/hair is a harmless cosmetic effect of Sunitinib's yellow drug color", "He has acute liver jaundice", "He has acute kidney failure", "Anaphylaxis"], a: 0, tag: "Scenario", topic: "Sunitinib Side Effect Profile", exp: "Sunitinib causes hypertension via VEGFR blockade; its yellow compound structure causes benign yellow skin/hair discoloration." },
+      { q: "A CML patient taking Imatinib experiences treatment failure. Mutation analysis reveals a BCR-ABL T315I gatekeeper mutation. Which TKI is indicated?", opts: ["Ponatinib", "Dasatinib", "Nilotinib", "Bosutinib"], a: 0, tag: "Scenario", topic: "T315I Mutation TKI Selection", exp: "Dasatinib, Nilotinib, and Bosutinib are inactive against the T315I mutation; Ponatinib is the only TKI engineered to inhibit T315I BCR-ABL." },
+      { q: "A patient taking Sunitinib develops severe chest pain. ECG shows QTc interval of 510 ms (prolonged). What cardiac monitoring precaution is required for multi-kinase TKIs?", opts: ["Baseline and periodic ECG and electrolyte (K+, Mg2+) monitoring", "Chest X-ray every week", "Brain MRI", "Echocardiogram only"], a: 0, tag: "Scenario", topic: "TKI QTc Prolongation Safety", exp: "Multi-kinase TKIs (Sunitinib, Sorafenib, Vandetanib) block cardiac hERG potassium channels, causing QTc prolongation and Torsades de Pointes." },
+      { q: "A patient taking Ibrutinib for Chronic Lymphocytic Leukemia (CLL) develops irregular heart rhythm. ECG confirms Atrial Fibrillation. What is the appropriate clinical response?", opts: ["Evaluate for Ibrutinib-induced Atrial Fibrillation, initiate rate control/anticoagulation, and monitor closely", "Stop all cardiac drugs", "Give IV digoxin push", "Ignore symptom"], a: 0, tag: "Scenario", topic: "Ibrutinib A-Fib Risk", exp: "BTK inhibition by Ibrutinib alters cardiac TEC kinase pathways, causing Atrial Fibrillation in 6-16% of treated patients." },
+      { q: "A female patient with BRCA2-mutant ovarian cancer is prescribed Olaparib. What mechanism enables Olaparib to kill cancer cells while sparing normal cells?", opts: ["Synthetic Lethality (PARP inhibition traps single-strand breaks; normal cells repair via homologous recombination, but BRCA-mutant cells die)", "Olaparib enters cancer cells exclusively", "Olaparib alkylates cancer DNA", "Olaparib blocks estrogen"], a: 0, tag: "Scenario", topic: "Synthetic Lethality Principle", exp: "Cancer cells with BRCA mutations lack homologous recombination DNA repair. Inhibiting PARP leaves single-strand breaks unrepaired, causing selective lethal double-strand breaks." },
+      { q: "A patient prescribed oral Erlotinib takes St. John's Wort for depression and drinks grapefruit juice daily. What drug interaction advice is vital?", opts: ["Avoid St. John's Wort (CYP3A4 inducer, lowers Erlotinib level) AND Grapefruit juice (CYP3A4 inhibitor, increases toxicity)", "Both are safe to consume", "Double the Erlotinib dose with grapefruit juice", "Take St. John's wort with meal"], a: 0, tag: "Scenario", topic: "TKI CYP3A4 Drug-Food Interactions", exp: "TKIs are heavily metabolized by CYP3A4. Inducers (St. John's wort, Rifampin) cause subtherapeutic failure; Inhibitors (grafruit juice, Ketoconazole) cause severe toxicity." },
+      { q: "A patient receiving Palbociclib + Letrozole for metastatic ER+ breast cancer has a CBC showing ANC 800/mcL (Grade 3 neutropenia) on Day 21. What is the standard protocol?", opts: ["Withhold Palbociclib for 7 days (Day 22-28 cycle break) to allow neutrophil recovery, then resume next cycle", "Discontinue therapy permanently", "Give high-dose steroids", "Switch to Cisplatin"], a: 0, tag: "Scenario", topic: "CDK4/6 Neutropenia Cycling", exp: "CDK4/6 inhibitors cause cell cycle arrest (quiescence) of marrow precursors rather than cell death; a 7-day drug holiday every 28-day cycle allows rapid neutrophil recovery." },
+      { q: "A patient taking Vemurafenib for BRAF-mutant melanoma develops new hyperkeratotic skin lesions on his arms, confirmed as Cutaneous Squamous Cell Carcinoma (cuSCC). Why did this occur?", opts: ["Paradoxical RAF dimerization and MAPK pathway activation in wild-type BRAF skin keratinocytes", "Vemurafenib contains UV radiation", "Allergic reaction", "Direct DNA alkylation"], a: 0, tag: "Scenario", topic: "Paradoxical MAPK Activation", exp: "In BRAF wild-type cells, monomeric BRAF inhibitors paradoxically induce RAF dimerization, driving downstream MEK-ERK signaling and secondary skin cancers." },
+      { q: "A patient taking Sorafenib develops painful erythema, swelling, and hyperkeratotic calluses on pressure points of hands and feet. The diagnosis is:", opts: ["TKI-Induced Hand-Foot Skin Reaction (HFSR)", "Chemotherapy hand-foot syndrome", "Gout", "Contact dermatitis"], a: 0, tag: "Scenario", topic: "TKI Hand-Foot Skin Reaction", exp: "Multi-kinase TKIs (Sorafenib/Sunitinib) cause HFSR, characterized by localized painful hyperkeratotic lesions on friction/pressure areas of palms/soles." },
+      { q: "A patient taking Dasatinib for CML develops progressive shortness of breath and dullness to percussion at the right lung base. Chest X-ray reveals Pleural Effusion. The nurse identifies this as:", opts: ["Dasatinib-induced Pleural Effusion", "Heart failure", "Pneumonia", "Lung metastasis"], a: 0, tag: "Scenario", topic: "Dasatinib Pleural Effusion", exp: "Dasatinib inhibits PDGFR-beta in pleural vessels, triggering exudative, lymphocyte-predominant pleural effusions in up to 30% of patients." },
+
+      { q: "What is the precise crystallographic mechanism by which the BCR-ABL T315I mutation causes resistance to Imatinib, Nilotinib, and Dasatinib?", opts: ["Threonine-315 substitution to Isoleucine replaces a polar hydroxyl group (hydrogen bond donor) with a bulky hydrophobic side chain that sterically clashes with TKIs", "T315I destroys the kinase enzyme", "T315I causes rapid TKI renal elimination", "T315I prevents TKI oral absorption"], a: 0, tag: "Hard", topic: "T315I Structural Resistance", exp: "Threonine-315 forms an essential hydrogen bond with Imatinib. Mutation to bulky Isoleucine eliminates the hydrogen bond and physically blocks TKI binding." },
+      { q: "Why does the EGFR T790M gatekeeper mutation cause resistance to first-generation EGFR TKIs (Erlotinib), and how does Osimertinib overcome it?", opts: ["T790M increases ATP binding affinity; Osimertinib forms an irreversible covalent bond with Cysteine-797 in the ATP pocket", "T790M destroys the EGFR receptor", "Osimertinib binds extracellularly", "Osimertinib is an antibody"], a: 0, tag: "Hard", topic: "Osimertinib Covalent Kinase Inhibition", exp: "T790M increases EGFR affinity for endogenous ATP. Osimertinib possesses an acrylamide group that forms a permanent covalent bond with Cys797 of mutant EGFR." },
+      { q: "What is the molecular mechanism of 'PARP trapping' induced by PARP inhibitors like Olaparib?", opts: ["PARP inhibitor traps PARP1 and PARP2 enzymes on damaged DNA, forming toxic PARP-DNA complexes that block replication forks", "PARP inhibitors degrade PARP protein", "PARP inhibitors methylate DNA", "PARP inhibitors block RNA polymerase"], a: 0, tag: "Hard", topic: "PARP Trapping Kinetics", exp: "Beyond catalytic inhibition, PARP inhibitors lock PARP1/2 onto single-strand DNA breaks. Trapped complexes stall replication forks during S-phase, generating double-strand breaks." },
+      { q: "How do CDK4/6 inhibitors (Palbociclib) block G1-to-S phase cell cycle progression at the molecular level?", opts: ["Inhibit CDK4/6-Cyclin D complex, preventing hyperphosphorylation of Retinoblastoma (Rb) protein and trapping E2F transcription factors", "Degrade Cyclin E directly", "Inhibit p53 protein", "Block tubulin assembly"], a: 0, tag: "Hard", topic: "CDK4/6-Rb-E2F Molecular Pathway", exp: "CDK4/6 phosphorylates Rb. Unphosphorylated Rb remains bound to E2F, blocking E2F-mediated transcription of S-phase genes and arresting cells in G1 phase." },
+      { q: "What is the biochemical mechanism of paradoxical MAPK activation induced by BRAF inhibitors in BRAF wild-type cells?", opts: ["Sub-saturating BRAF inhibitor levels drive transactivation of BRAF-CRAF heterodimers, surging downstream MEK/ERK phosphorylation", "Inhibitor converts into MEK agonist", "Inhibitor destroys RAS protein", "Inhibitor activates EGFR directly"], a: 0, tag: "Hard", topic: "Paradoxical RAF Dimerization", exp: "In BRAF wild-type cells with active RAS, monovalent BRAF inhibitors bind one subunit of a RAF dimer, paradoxically transactivating the uninhibited subunit." },
+      { q: "Why does Ibrutinib cause an initial, transient surge in peripheral absolute lymphocyte count (lymphocytosis) in CLL patients within weeks of starting therapy?", opts: ["BTK inhibition disrupts integrin-mediated adhesion (FAK/CXCR4 signaling), egressing CLL cells from lymph nodes into peripheral blood", "Ibrutinib stimulates CLL proliferation", "Ibrutinib transforms CLL to acute leukemia", "Ibrutinib blocks renal lymphocyte filtration"], a: 0, tag: "Hard", topic: "Ibrutinib Lymphocyte Egress Kinetics", exp: "BTK is required for chemokine-mediated adhesion of CLL cells in lymph node niches. BTK blockade releases CLL cells into circulation, causing transient lymphocytosis." }
+    ]
+  }
+];
+
+let currentChapter = 0;
+let currentQuestionIndex = 0;
+let overallScore = 0;
+let userAnswers = []; 
+let chapterScores = [0, 0, 0, 0, 0, 0, 0];
+let timerInterval = null;
+let timeRemaining = 1800; // 30 minutes in seconds
+
+const quizBox = document.getElementById('quiz-box');
+const dashProgress = document.getElementById('dash-progress');
+const dashTimer = document.getElementById('dash-timer');
+const dashScore = document.getElementById('dash-score');
+const dashChNum = document.getElementById('dash-ch-num');
+const chTitleText = document.getElementById('ch-title-text');
+const qDiffBadge = document.getElementById('q-diff-badge');
+const chBadgeContainer = document.getElementById('ch-badge-container');
+
+const chapterReport = document.getElementById('chapter-report');
+const finalReport = document.getElementById('final-report');
+
+function initQuiz() {
+  currentChapter = 0;
+  currentQuestionIndex = 0;
+  overallScore = 0;
+  userAnswers = [];
+  chapterScores = [0, 0, 0, 0, 0, 0, 0];
+  
+  chapterReport.classList.remove('show');
+  finalReport.classList.remove('show');
+  quizBox.style.display = 'block';
+  chBadgeContainer.style.display = 'flex';
+
+  startChapterTimer();
+  renderQuestion();
+  updateDashboard();
+}
+
+function startChapterTimer() {
+  clearInterval(timerInterval);
+  timeRemaining = 1800; // Reset to 30 mins
+  updateTimerDisplay();
+
+  timerInterval = setInterval(() => {
+    timeRemaining--;
+    updateTimerDisplay();
+
+    if (timeRemaining <= 0) {
+      clearInterval(timerInterval);
+      alert("⏰ Time is up for this subchapter! Auto-submitting current chapter.");
+      autoSubmitChapter();
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const minutes = Math.floor(timeRemaining / 60);
+  const seconds = timeRemaining % 60;
+  const displayStr = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  dashTimer.innerText = displayStr;
+
+  if (timeRemaining < 300) {
+    dashTimer.classList.add('timer-alert');
+  } else {
+    dashTimer.classList.remove('timer-alert');
+  }
+}
+
+function autoSubmitChapter() {
+  const chData = quizData[currentChapter];
+  while (currentQuestionIndex < 30) {
+    const qData = chData.questions[currentQuestionIndex];
+    userAnswers.push({
+      ch: currentChapter,
+      qIndex: currentQuestionIndex,
+      selected: -1,
+      correct: false,
+      topic: qData.topic,
+      tag: qData.tag
+    });
+    currentQuestionIndex++;
+  }
+  showChapterReport();
+}
+
+function renderQuestion() {
+  const chData = quizData[currentChapter];
+  const qData = chData.questions[currentQuestionIndex];
+
+  chTitleText.innerText = chData.chTitle;
+  qDiffBadge.innerText = `${qData.tag} Difficulty`;
+  qDiffBadge.className = `diff-tag ${qData.tag === 'Basic' ? 'tag-basic' : qData.tag === 'Scenario' ? 'tag-scenario' : 'tag-hard'}`;
+
+  const totalPrevQuestions = currentChapter * 30;
+  const currentGlobalNum = totalPrevQuestions + currentQuestionIndex + 1;
+
+  let html = `
+    <div class="mcq-card active">
+      <div class="q-number">QUESTION ${currentGlobalNum} OF 210 • [${qData.topic}]</div>
+      <div class="q-text">${qData.q}</div>
+      <div class="options-grid">
+  `;
+
+  qData.opts.forEach((opt, idx) => {
+    html += `
+      <button class="opt-btn" onclick="handleAnswer(${idx})" id="opt-${idx}">
+        <span><strong>${String.fromCharCode(65 + idx)}.</strong> ${opt}</span>
+        <span id="icon-${idx}"></span>
+      </button>
+    `;
+  });
+
+  html += `
+      </div>
+      <div class="explanation-box" id="exp-box">
+        <div class="exp-title">💡 WHY IS THIS CORRECT?</div>
+        <div class="exp-text">${qData.exp}</div>
+      </div>
+      <div class="nav-actions">
+        <div></div>
+        <button class="action-btn" id="next-btn" onclick="nextQuestion()" disabled>Next Question ➔</button>
+      </div>
+    </div>
+  `;
+
+  quizBox.innerHTML = html;
+}
+
+function handleAnswer(selectedIdx) {
+  const chData = quizData[currentChapter];
+  const qData = chData.questions[currentQuestionIndex];
+
+  const buttons = document.querySelectorAll('.opt-btn');
+  buttons.forEach(btn => btn.classList.add('disabled'));
+
+  const isCorrect = (selectedIdx === qData.a);
+
+  const selectedBtn = document.getElementById(`opt-${selectedIdx}`);
+  const correctBtn = document.getElementById(`opt-${qData.a}`);
+
+  if (isCorrect) {
+    selectedBtn.classList.add('correct');
+    document.getElementById(`icon-${selectedIdx}`).innerText = '✓';
+    overallScore++;
+    chapterScores[currentChapter]++;
+  } else {
+    selectedBtn.classList.add('incorrect');
+    document.getElementById(`icon-${selectedIdx}`).innerText = '✗';
+    correctBtn.classList.add('correct');
+    document.getElementById(`icon-${qData.a}`).innerText = '✓';
+  }
+
+  userAnswers.push({
+    ch: currentChapter,
+    qIndex: currentQuestionIndex,
+    selected: selectedIdx,
+    correct: isCorrect,
+    topic: qData.topic,
+    tag: qData.tag
+  });
+
+  document.getElementById('exp-box').classList.add('show');
+  document.getElementById('next-btn').disabled = false;
+
+  updateDashboard();
+}
+
+function updateDashboard() {
+  const totalAnswered = userAnswers.length;
+  dashProgress.innerText = `${totalAnswered} / 210`;
+  dashScore.innerText = `${overallScore}`;
+  dashChNum.innerText = `${currentChapter + 1} / 7`;
+}
+
+function nextQuestion() {
+  currentQuestionIndex++;
+
+  if (currentQuestionIndex < 30) {
+    renderQuestion();
+  } else {
+    clearInterval(timerInterval);
+    showChapterReport();
+  }
+}
+
+function showChapterReport() {
+  quizBox.style.display = 'none';
+  chBadgeContainer.style.display = 'none';
+
+  const chScore = chapterScores[currentChapter];
+  document.getElementById('ch-report-subtitle').innerText = `Performance breakdown for ${quizData[currentChapter].chTitle}`;
+  document.getElementById('ch-score-display').innerText = `${chScore} / 30 (${Math.round((chScore / 30) * 100)}%)`;
+
+  const chAnswers = userAnswers.filter(a => a.ch === currentChapter);
+  const incorrectAnswers = chAnswers.filter(a => !a.correct);
+
+  let weaknessHtml = "";
+  if (incorrectAnswers.length === 0) {
+    weaknessHtml = "<span style='color: var(--accent-green); font-weight: bold;'>🌟 Perfect Score! 100% Mastery in this Subchapter. No topic weaknesses detected.</span>";
+  } else {
+    const topicCounts = {};
+    incorrectAnswers.forEach(a => {
+      topicCounts[a.topic] = (topicCounts[a.topic] || 0) + 1;
+    });
+
+    weaknessHtml = "You lost marks in the following high-yield topics:<ul class='weakness-list'>";
+    for (const [topic, count] of Object.entries(topicCounts)) {
+      weaknessHtml += `<li><strong>${topic}:</strong> ${count} question(s) missed.</li>`;
+    }
+    weaknessHtml += "</ul> Review these specific drug mechanisms before sitting your university exam.";
+  }
+
+  document.getElementById('ch-weakness-text').innerHTML = weaknessHtml;
+
+  const nextBtn = document.getElementById('btn-next-ch');
+  if (currentChapter === 6) {
+    nextBtn.innerText = "View Final Cumulative Course Report 🏆";
+    nextBtn.onclick = showFinalReport;
+  } else {
+    nextBtn.innerText = "Begin Next Subchapter ➔";
+    nextBtn.onclick = startNextChapter;
+  }
+
+  chapterReport.classList.add('show');
+}
+
+function startNextChapter() {
+  currentChapter++;
+  currentQuestionIndex = 0;
+  chapterReport.classList.remove('show');
+  quizBox.style.display = 'block';
+  chBadgeContainer.style.display = 'flex';
+  
+  startChapterTimer();
+  renderQuestion();
+}
+
+function showFinalReport() {
+  chapterReport.classList.remove('show');
+  quizBox.style.display = 'none';
+  chBadgeContainer.style.display = 'none';
+
+  document.getElementById('final-score-display').innerText = `${overallScore} / 210 (${Math.round((overallScore / 210) * 100)}%)`;
+
+  let subScoresHtml = "";
+  quizData.forEach((ch, idx) => {
+    const score = chapterScores[idx];
+    const pct = Math.round((score / 30) * 100);
+    const color = pct >= 80 ? 'var(--accent-green)' : pct >= 60 ? 'var(--accent-amber)' : 'var(--accent-red)';
+    subScoresHtml += `
+      <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+        <span><strong>Subchapter ${idx + 1}:</strong> ${ch.chTitle.replace('Subchapter ' + (idx + 1) + ': ', '')}</span>
+        <span style="color: ${color}; font-weight: bold;">${score} / 30 (${pct}%)</span>
+      </div>
+    `;
+  });
+  document.getElementById('subchapter-scores-list').innerHTML = subScoresHtml;
+
+  const allIncorrect = userAnswers.filter(a => !a.correct);
+  let finalWeaknessHtml = "";
+
+  if (allIncorrect.length === 0) {
+    finalWeaknessHtml = "<li style='color: var(--accent-green);'>Perfect Score! You have mastered all 210 Anti-Neoplastic Pharmacology MCQs.</li>";
+  } else {
+    const globalTopicCounts = {};
+    allIncorrect.forEach(a => {
+      globalTopicCounts[a.topic] = (globalTopicCounts[a.topic] || 0) + 1;
+    });
+
+    const sortedTopics = Object.entries(globalTopicCounts).sort((a, b) => b[1] - a[1]);
+
+    sortedTopics.forEach(([topic, count]) => {
+      finalWeaknessHtml += `<li><strong>${topic}:</strong> ${count} total errors.</li>`;
+    });
+  }
+
+  document.getElementById('final-weakness-list').innerHTML = finalWeaknessHtml;
+  finalReport.classList.add('show');
+}
+
+function restartEntireQuiz() {
+  initQuiz();
+}
+
+window.onload = initQuiz;
+</script>
+</body>
+</html>
