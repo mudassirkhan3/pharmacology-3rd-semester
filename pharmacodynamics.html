@@ -29,27 +29,28 @@
     h2 { font-size: clamp(1.2rem, 4vw, 1.4rem); color: #1e293b; margin: 35px 0 20px; display: flex; align-items: center; gap: 10px; }
     h2::before { content: ''; display: inline-block; width: 5px; height: 22px; background: var(--primary); border-radius: 4px; flex-shrink: 0; }
 
-    /* INNOVATIVE ANIMATED DRUG-RECEPTOR HERO SECTION */
+    /* REALISTIC 3D DRUG-RECEPTOR ANIMATION HERO */
     .pd-hero-container {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      background: radial-gradient(circle at 50% 30%, #1e293b 0%, #0f172a 100%);
       border-radius: 20px;
       padding: 24px 18px;
       margin: 20px 0 30px;
       color: white;
-      box-shadow: 0 15px 30px rgba(15, 23, 42, 0.25);
+      box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.4);
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.12);
     }
     .pd-hero-title {
       text-align: center;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
     .pd-hero-title h3 {
       font-size: 1.25rem;
       font-weight: 800;
       color: #38bdf8;
       margin: 0;
+      letter-spacing: 0.5px;
     }
     .pd-hero-title p {
       font-size: 0.85rem;
@@ -57,36 +58,116 @@
       margin-top: 4px;
     }
 
-    /* TRACK ANIMATION */
-    .pd-track-wrapper {
+    /* REALISTIC CELLULAR CANVAS */
+    .bio-stage {
       position: relative;
-      height: 30px;
-      margin: 10px 10px 15px;
-    }
-    .pd-track-line {
-      position: absolute;
-      top: 14px; left: 5%; right: 5%;
-      height: 4px;
-      background: linear-gradient(90deg, #3b82f6, #06b6d4, #10b981, #f59e0b);
-      border-radius: 4px;
-      z-index: 1;
-    }
-    .animated-drug-molecule {
-      position: absolute;
-      top: -2px;
-      left: 0%;
-      font-size: 1.5rem;
-      z-index: 2;
-      animation: receptorBinding 7s ease-in-out infinite;
-      filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.9));
+      width: 100%;
+      height: 220px;
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 16px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
     }
 
-    @keyframes receptorBinding {
-      0% { left: 0%; transform: rotate(0deg); }
-      25% { left: 28%; transform: rotate(90deg); }
-      50% { left: 56%; transform: rotate(180deg); }
-      75% { left: 82%; transform: rotate(270deg); }
-      100% { left: 92%; transform: rotate(360deg); }
+    .cell-membrane {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 55px;
+      background: linear-gradient(180deg, rgba(14, 165, 233, 0.3) 0%, rgba(2, 132, 199, 0.6) 100%);
+      border-top: 3px dashed #38bdf8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+    .membrane-text {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #7dd3fc;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+    }
+
+    /* SVG REAL-DOCKING ANIMATION */
+    .docking-svg {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0; left: 0;
+      z-index: 2;
+    }
+
+    /* REALISTIC KEY & LOCK DOCKING PHYSICS */
+    .drug-ligand {
+      animation: floatAndDock 8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+      transform-origin: center;
+    }
+    .receptor-pocket {
+      animation: receptorPulse 8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+    }
+    .signal-wave {
+      animation: signalBurst 8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+    }
+
+    @keyframes floatAndDock {
+      0% { transform: translate(0px, -60px) rotate(-25deg); opacity: 0.4; }
+      20% { transform: translate(0px, 0px) rotate(0deg); opacity: 1; }
+      45% { transform: translate(0px, 42px) rotate(0deg); opacity: 1; } /* Locked into pocket */
+      70% { transform: translate(0px, 42px) rotate(0deg); opacity: 1; } /* Active State */
+      85% { transform: translate(0px, -20px) rotate(15deg); opacity: 0.7; }
+      100% { transform: translate(0px, -60px) rotate(-25deg); opacity: 0.4; }
+    }
+
+    @keyframes receptorPulse {
+      0%, 35% { filter: drop-shadow(0 0 2px rgba(56, 189, 248, 0.4)); stroke: #38bdf8; }
+      45%, 70% { filter: drop-shadow(0 0 15px rgba(52, 211, 153, 0.9)); stroke: #34d399; } /* Activated green glow */
+      80%, 100% { filter: drop-shadow(0 0 2px rgba(56, 189, 248, 0.4)); stroke: #38bdf8; }
+    }
+
+    @keyframes signalBurst {
+      0%, 42% { opacity: 0; transform: scale(0.5); }
+      50% { opacity: 1; transform: scale(1.1); stroke-width: 3; }
+      68% { opacity: 0; transform: scale(1.6); stroke-width: 0.5; }
+      100% { opacity: 0; transform: scale(0.5); }
+    }
+
+    /* LIVE STATUS INDICATOR CHIP */
+    .status-badge-container {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      z-index: 5;
+    }
+    .live-chip {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid #38bdf8;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(4px);
+    }
+    .pulse-dot {
+      width: 7px; height: 7px;
+      background: #34d399;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #34d399;
+      animation: pulseGlow 1.5s infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.75); }
     }
 
     .pd-pipeline-grid {
@@ -94,6 +175,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
+      margin-top: 16px;
     }
 
     .pd-step-card {
@@ -113,11 +195,11 @@
       transform: translateY(-3px);
     }
     .pd-icon-circle {
-      width: 44px; height: 44px;
+      width: 42px; height: 42px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 22px; margin: 0 auto 8px;
+      font-size: 20px; margin: 0 auto 8px;
       border: 1px solid rgba(255, 255, 255, 0.25);
     }
     .pd-step-card h4 {
@@ -231,6 +313,7 @@
       .card { padding: 18px 16px; }
       .nursing-item { padding: 14px; }
       
+      .bio-stage { height: 180px; }
       .pd-pipeline-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .pd-step-card h4 { font-size: 0.82rem; }
       .pd-step-card span { font-size: 0.68rem; }
@@ -246,37 +329,80 @@
       <p class="subtitle">What the drug does to the body: Receptor theory, signaling cascades, and therapeutic indexes.</p>
     </header>
 
-    <!-- INNOVATIVE ANIMATED DRUG-RECEPTOR HERO PIPELINE -->
+    <!-- INNOVATIVE REALISTIC 3D LOCK-AND-KEY RECEPTOR ANIMATION HERO -->
     <div class="pd-hero-container">
       <div class="pd-hero-title">
-        <h3>⚡ Cellular Receptor Action Pathway</h3>
-        <p>How a drug molecule binds to receptors to initiate a biological response</p>
+        <h3>⚡ Realistic Lock &amp; Key Receptor Docking</h3>
+        <p>Live simulation of drug-receptor affinity, activation, and intracellular signaling</p>
       </div>
 
-      <div class="pd-track-wrapper">
-        <div class="pd-track-line"></div>
-        <div class="animated-drug-molecule">🧪</div>
+      <!-- BIO STAGE CANVAS -->
+      <div class="bio-stage">
+        <div class="status-badge-container">
+          <div class="live-chip"><span class="pulse-dot"></span> Receptors Active</div>
+        </div>
+
+        <svg class="docking-svg" viewBox="0 0 400 180" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="drugGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#38bdf8" />
+              <stop offset="100%" stop-color="#2563eb" />
+            </linearGradient>
+            <linearGradient id="receptorGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#1e293b" />
+              <stop offset="100%" stop-color="#0f172a" />
+            </linearGradient>
+          </defs>
+
+          <!-- 1. DRUG LIGAND (FLOATING & DOCKING KEY) -->
+          <g class="drug-ligand" transform="translate(200, 35)">
+            <!-- Pill/Key Shape -->
+            <path d="M-15,-10 L15,-10 A10,10 0 0,1 25,0 L25,10 A10,10 0 0,1 15,20 L-15,20 A10,10 0 0,1 -25,10 L-25,0 A10,10 0 0,1 -15,-10 Z" fill="url(#drugGrad)" stroke="#60a5fa" stroke-width="2" />
+            <circle cx="0" cy="5" r="4" fill="#ffffff" opacity="0.8" />
+            <!-- Key Ridge Notch -->
+            <rect x="-4" y="18" width="8" height="10" rx="2" fill="#38bdf8" />
+          </g>
+
+          <!-- 2. TRANSMEMBRANE RECEPTOR POCKET (LOCK) -->
+          <g class="receptor-pocket" transform="translate(200, 125)">
+            <!-- Outer Transmembrane Structure -->
+            <path d="M-60,45 L-40,-25 Q-30,-35 -15,-20 L-12,-5 L12,-5 L15,-20 Q30,-35 40,-25 L60,45 Z" fill="url(#receptorGrad)" stroke="#38bdf8" stroke-width="2.5" />
+            <!-- Exact Lock Notch Binding Site -->
+            <rect x="-8" y="-12" width="16" height="14" rx="2" fill="#0f172a" stroke="#0284c7" stroke-width="1.5" />
+          </g>
+
+          <!-- 3. INTRACELLULAR SIGNALING BURST WAVE -->
+          <g transform="translate(200, 145)">
+            <circle class="signal-wave" cx="0" cy="0" r="35" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="6,4" />
+            <circle class="signal-wave" cx="0" cy="0" r="55" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4,4" />
+          </g>
+        </svg>
+
+        <div class="cell-membrane">
+          <span class="membrane-text">Phospholipid Bilayer Membrane</span>
+        </div>
       </div>
 
+      <!-- 4-STEP PIPELINE -->
       <div class="pd-pipeline-grid">
         <div class="pd-step-card">
           <div class="pd-icon-circle" title="1. Drug Ligand">🔑</div>
-          <h4>1. Drug Ligand</h4>
-          <span>Targeting Receptor</span>
+          <h4>1. Free Ligand</h4>
+          <span>Drug Molecular Key</span>
         </div>
         <div class="pd-step-card">
           <div class="pd-icon-circle" title="2. Lock & Key Fit">🔒</div>
-          <h4>2. Receptor Binding</h4>
-          <span>Conformational Fit</span>
+          <h4>2. Docking Fit</h4>
+          <span>Receptor Binding</span>
         </div>
         <div class="pd-step-card">
           <div class="pd-icon-circle" title="3. Signal Cascade">⚡</div>
-          <h4>3. Signal Cascade</h4>
-          <span>Second Messenger</span>
+          <h4>3. Activation</h4>
+          <span>Conformational Shift</span>
         </div>
         <div class="pd-step-card">
           <div class="pd-icon-circle" title="4. Cellular Response">🎯</div>
-          <h4>4. Clinical Effect</h4>
+          <h4>4. Cell Response</h4>
           <span>Therapeutic Action</span>
         </div>
       </div>
