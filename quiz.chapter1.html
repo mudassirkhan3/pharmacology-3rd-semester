@@ -42,6 +42,8 @@
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+        .timer-warning { color: #f87171 !important; animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
     </style>
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-white">
@@ -81,9 +83,19 @@
                             <h2 class="text-lg font-bold text-white flex items-center gap-2">
                                 <span id="currentQNum" class="text-brand-400 font-mono text-xl">1</span>
                                 <span class="text-slate-500">/</span>
-                                <span class="text-slate-400 font-mono text-sm">50</span>
+                                <span id="totalQNum" class="text-slate-400 font-mono text-sm">60</span>
                             </h2>
                         </div>
+
+                        <!-- COUNTDOWN TIMER DISPLAY -->
+                        <div class="flex items-center gap-2 bg-slate-900/90 border border-slate-700/80 px-4 py-2 rounded-xl">
+                            <i data-lucide="clock" class="w-4 h-4 text-brand-400"></i>
+                            <div>
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block leading-none">Time Left</span>
+                                <span id="timerDisplay" class="text-sm font-bold text-slate-200 font-mono">30:00</span>
+                            </div>
+                        </div>
+
                         <div class="flex items-center gap-4">
                             <div class="text-right">
                                 <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Score</span>
@@ -171,7 +183,7 @@
                 <div class="bg-slate-900/80 border border-slate-700/80 rounded-2xl p-6 max-w-sm mx-auto space-y-2">
                     <div class="text-5xl font-black text-medical-400 font-mono" id="finalPercentage">0%</div>
                     <div class="text-sm font-semibold text-slate-300">
-                        Score: <span id="finalScore" class="text-white font-bold">0</span> / 50 Questions
+                        Score: <span id="finalScore" class="text-white font-bold">0</span> / <span id="finalTotal">60</span> Questions
                     </div>
                 </div>
 
@@ -214,10 +226,10 @@
         <p>© 2026 MK Study Hub. Curated by Mudassir Khan for BSN 3rd Semester Students.</p>
     </footer>
 
-    <!-- QUIZ ENGINE & 50 MCQ DATA -->
+    <!-- QUIZ ENGINE & 60 EXPANDED MCQ DATABASE -->
     <script>
         const mcqDatabase = [
-            // --- 60% BASIC & CORE CONCEPTUAL (30 Questions) ---
+            // --- 60% BASIC & CORE CONCEPTUAL (36 Questions) ---
             {
                 category: "Pharmacokinetics",
                 difficulty: "Basic",
@@ -445,7 +457,7 @@
             {
                 category: "Pharmacodynamics",
                 difficulty: "Basic",
-                question: "What happens when an Non-Competitive Antagonist binds to an allosteric site on a receptor?",
+                question: "What happens when a Non-Competitive Antagonist binds to an allosteric site on a receptor?",
                 options: [
                     "It increases agonist binding affinity",
                     "It changes receptor shape, reducing agonist maximum efficacy",
@@ -491,7 +503,7 @@
             {
                 category: "Intro & Terminology",
                 difficulty: "Basic",
-                question: "An unwanted, unpredictable, and non-dose-related drug reaction caused by immunological response is termed a(n):",
+                question: "An unwanted, unpredictable, and non-dose-related drug reaction caused by an immunological response is termed a(n):",
                 options: ["Side Effect", "Toxic Effect", "Allergic / Hypersensitivity Reaction", "Idiosyncratic Response"],
                 correct: 2,
                 explanation: "Allergic reactions are immune-mediated and not directly predicted by drug dose size.",
@@ -509,7 +521,7 @@
             {
                 category: "Medication Supply",
                 difficulty: "Basic",
-                question: "In an Emergency Automated Dispensing Cabinet (e.g., Pyxis), drug removal is electronically tracked to prevent:",
+                question: "In an Automated Dispensing Cabinet (e.g., Pyxis), drug removal is electronically tracked primarily to prevent:",
                 options: [
                     "First-pass hepatic clearance",
                     "Medication diversion and inventory discrepancy",
@@ -543,8 +555,62 @@
                 explanation: "Inverse agonists bind active receptors and suppress intrinsic baseline signaling.",
                 why: "Unlike simple antagonists (which maintain baseline at 0), inverse agonists force active resting receptors into an inactive conformation."
             },
+            {
+                category: "Pharmacokinetics",
+                difficulty: "Basic",
+                question: "Phase II biotransformation reactions in the liver are primarily categorized as:",
+                options: ["Oxidative reactions", "Conjugation reactions", "Hydrolytic cleavage", "Reduction reactions"],
+                correct: 1,
+                explanation: "Phase II involves attaching endogenous polar groups (glucuronide, sulfate, glutathione) to drugs.",
+                why: "Conjugation turns lipid-soluble drugs into highly water-soluble metabolites easily excreted by kidneys or bile."
+            },
+            {
+                category: "Pharmacodynamics",
+                difficulty: "Basic",
+                question: "What term describes the maximum physiological effect that a drug can produce, regardless of dose?",
+                options: ["Potency", "Efficacy (Emax)", "Affinity", "Therapeutic Window"],
+                correct: 1,
+                explanation: "Efficacy reflects the ceiling response height on a dose-response curve.",
+                why: "Efficacy is clinically more important than potency when maximum symptom control is needed (e.g., Morphine vs. Aspirin)."
+            },
+            {
+                category: "Pharmacokinetics",
+                difficulty: "Basic",
+                question: "Steady-state plasma concentration of a drug is reached after approximately how many half-lives of continuous dosing?",
+                options: ["1 to 2 half-lives", "4 to 5 half-lives", "8 to 10 half-lives", "12 to 15 half-lives"],
+                correct: 1,
+                explanation: "Steady state occurs when drug elimination rate equals drug administration rate (~4-5 t1/2).",
+                why: "At 4 half-lives, plasma levels reach ~94% of steady state; at 5 half-lives, ~97% is achieved."
+            },
+            {
+                category: "Drug Routes",
+                difficulty: "Basic",
+                question: "Which route of administration provides the fastest therapeutic onset during a clinical emergency?",
+                options: ["Oral (PO)", "Intravenous (IV)", "Subcutaneous (SC)", "Transdermal"],
+                correct: 1,
+                explanation: "Intravenous injection deposits drug directly into systemic circulation without absorption delays.",
+                why: "IV bypasses membrane diffusion barriers, making 100% of the dose immediately bioavailable."
+            },
+            {
+                category: "Pharmacodynamics",
+                difficulty: "Basic",
+                question: "Up-regulation of cell surface receptors typically occurs in response to chronic exposure to a(n):",
+                options: ["Agonist", "Antagonist", "Partial Agonist", "Enzyme Inducer"],
+                correct: 1,
+                explanation: "Cells synthesize and expose more receptors when continuously blocked by antagonists.",
+                why: "Up-regulation causes hypersensitivity; abrupt withdrawal of antagonists (e.g., Beta Blockers) can trigger rebound hyperactivity."
+            },
+            {
+                category: "Pharmacokinetics",
+                difficulty: "Basic",
+                question: "Which primary plasma protein binds predominantly acidic drugs like Warfarin and Salicylates?",
+                options: ["Alpha-1 Acid Glycoprotein", "Albumin", "Gamma Globulin", "Fibrinogen"],
+                correct: 1,
+                explanation: "Albumin is the major circulating plasma protein that binds acidic drugs.",
+                why: "Alpha-1 acid glycoprotein binds basic drugs; hypoalbuminemia elevates unbound acidic drug fractions."
+            },
 
-            // --- 30% EXAM STYLE CLINICAL SCENARIOS (15 Questions) ---
+            // --- 30% EXAM STYLE CLINICAL SCENARIOS (18 Questions) ---
             {
                 category: "Pharmacokinetics",
                 difficulty: "Exam Style",
@@ -567,7 +633,7 @@
                     "Synergistic bronchodilation",
                     "Propranolol will competitively block Albuterol, preventing bronchodilation",
                     "Severe hypotension due to total drug inactivation",
-                    "Albuterol will convert Propranolol into a agonist"
+                    "Albuterol will convert Propranolol into an agonist"
                 ],
                 correct: 1,
                 explanation: "Propranolol blocks Beta-2 receptors in the lung, counteracting Albuterol's therapeutic effect.",
@@ -609,7 +675,7 @@
                     "Wide safety margin requiring no monitoring",
                     "Narrow Therapeutic Index where minor dose changes cause hemorrhage or thrombosis",
                     "High first-pass metabolism converting it to vitamin K",
-                    "Short half-life of less than 3 font minutes"
+                    "Short half-life of less than 3 minutes"
                 ],
                 correct: 1,
                 explanation: "Warfarin has a narrow therapeutic window; small variations can cause severe bleeding or blood clots.",
@@ -674,7 +740,7 @@
             {
                 category: "Pharmacokinetics",
                 difficulty: "Exam Style",
-                question: "Clinical Scenario: A acidic drug like Aspirin is ingested. In the acidic environment of the stomach (pH 1.5 - 2.0), the aspirin molecules will be predominantly:",
+                question: "Clinical Scenario: An acidic drug like Aspirin is ingested. In the acidic environment of the stomach (pH 1.5 - 2.0), the aspirin molecules will be predominantly:",
                 options: [
                     "Ionized and lipid insoluble",
                     "Un-ionized (non-polar) and rapidly absorbed across stomach mucosa",
@@ -750,8 +816,50 @@
                 explanation: "Synergism occurs when the combined effect of two drugs is greater than the sum of their individual effects (1+1 > 2).",
                 why: "Synergistic combinations target different pathways simultaneously to multiply therapeutic output beyond simple addition."
             },
+            {
+                category: "Pharmacokinetics",
+                difficulty: "Exam Style",
+                question: "Clinical Scenario: A patient receiving continuous IV Heparin therapy undergoes routine activated Partial Thromboplastin Time (aPTT) blood testing. Adjusting the IV drip rate based on laboratory blood values is essential because Heparin:",
+                options: [
+                    "Exhibits a narrow therapeutic window with high risk of bleeding",
+                    "Is destroyed instantly by saliva",
+                    "Has 100% oral bioavailability",
+                    "Is eliminated exclusively by exhalation"
+                ],
+                correct: 0,
+                explanation: "Anticoagulants require precise monitoring to maintain therapeutic efficacy while avoiding hemorrhage.",
+                why: "Overdosing causes fatal bleeding while underdosing risks thromboembolism; titration keeps aPTT within safe limits."
+            },
+            {
+                category: "Pharmacodynamics",
+                difficulty: "Exam Style",
+                question: "Clinical Scenario: A patient taking a chronic Beta-Blocker suddenly stops taking the medication. Within 24 hours, the patient presents with severe tachycardia and hypertension. This rebound effect is caused by:",
+                options: [
+                    "Receptor Up-Regulation during chronic blockade",
+                    "Receptor Down-Regulation",
+                    "Enzyme inhibition in kidneys",
+                    "Sudden loss of plasma albumin"
+                ],
+                correct: 0,
+                explanation: "Chronic antagonist exposure causes cells to up-regulate receptor density.",
+                why: "Abruptly removing the antagonist leaves an increased number of unblocked receptors vulnerable to endogenous catecholamines, causing rebound surges."
+            },
+            {
+                category: "Pharmacokinetics",
+                difficulty: "Exam Style",
+                question: "Clinical Scenario: A patient with severe diarrhea is given an oral drug designed for intestinal absorption. The nurse anticipates the drug's therapeutic effect will be reduced primarily due to:",
+                options: [
+                    "Decreased GI transit time reducing mucosal contact time",
+                    "Increased hepatic first-pass metabolism",
+                    "Rapid renal glomerular filtration",
+                    "Increased plasma protein binding"
+                ],
+                correct: 0,
+                explanation: "Hypermotility reduces the duration a drug stays in contact with intestinal absorbing membranes.",
+                why: "Rapid transit flushes the drug through the digestive tract before adequate passive diffusion can occur into mesenteric blood vessels."
+            },
 
-            // --- 10% ADVANCED CHALLENGING QUESTIONS (5 Questions) ---
+            // --- 10% ADVANCED CHALLENGING QUESTIONS (6 Questions) ---
             {
                 category: "Pharmacokinetics",
                 difficulty: "Challenging",
@@ -816,6 +924,20 @@
                 correct: 1,
                 explanation: "GFR depends directly on renal perfusion pressure; severe hypotension drops filtration and drug clearance.",
                 why: "Reduced arterial pressure lowers renal blood flow, decreasing glomerular filtration pressure and slowing clearance of plasma drugs into urine."
+            },
+            {
+                category: "Pharmacodynamics",
+                difficulty: "Challenging",
+                question: "Advanced Concept: According to the Spare Receptor Hypothesis, a tissue possesses spare receptors if the maximum physiological response (Emax) is achieved at an agonist concentration where:",
+                options: [
+                    "100% of available receptors are occupied",
+                    "Less than 100% of available receptors are occupied",
+                    "Receptors are completely destroyed by enzymes",
+                    "No agonist molecules are bound"
+                ],
+                correct: 1,
+                explanation: "Spare receptors exist when maximum cellular response occurs without full receptor occupancy.",
+                why: "Amplification cascades downstream of GPCRs allow maximum response to occur at low occupancy, reserving spare receptors to increase sensitivity."
             }
         ];
 
@@ -823,11 +945,15 @@
         let currentQIndex = 0;
         let score = 0;
         let answered = false;
+        let timerInterval = null;
+        let timeRemaining = 1800; // 30 minutes in seconds
 
         // DOM ELEMENTS
         const currentQNumEl = document.getElementById("currentQNum");
+        const totalQNumEl = document.getElementById("totalQNum");
         const scoreTrackerEl = document.getElementById("scoreTracker");
         const progressBarEl = document.getElementById("progressBar");
+        const timerDisplayEl = document.getElementById("timerDisplay");
         const questionCategoryEl = document.getElementById("questionCategory");
         const difficultyBadgeEl = document.getElementById("difficultyBadge");
         const questionTextEl = document.getElementById("questionText");
@@ -840,7 +966,38 @@
         const quizContainerEl = document.getElementById("quizContainer");
         const scoreContainerEl = document.getElementById("scoreContainer");
 
-        // INITIALIZE QUIZ
+        // TIMER FUNCTIONS
+        function startTimer() {
+            clearInterval(timerInterval);
+            timeRemaining = 1800; // 30 mins
+            updateTimerDisplay();
+
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                updateTimerDisplay();
+
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    alert("⏰ Time is up! Submitting your quiz now.");
+                    showResults();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            const formatted = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            timerDisplayEl.textContent = formatted;
+
+            if (timeRemaining < 300) { // Less than 5 minutes
+                timerDisplayEl.classList.add("timer-warning");
+            } else {
+                timerDisplayEl.classList.remove("timer-warning");
+            }
+        }
+
+        // INITIALIZE QUESTION
         function loadQuestion() {
             answered = false;
             explanationDrawerEl.classList.add("hidden");
@@ -850,6 +1007,7 @@
 
             // Update Progress Header
             currentQNumEl.textContent = currentQIndex + 1;
+            totalQNumEl.textContent = mcqDatabase.length;
             scoreTrackerEl.textContent = score;
             const progressPercent = ((currentQIndex + 1) / mcqDatabase.length) * 100;
             progressBarEl.style.width = `${progressPercent}%`;
@@ -947,12 +1105,14 @@
             if (currentQIndex < mcqDatabase.length) {
                 loadQuestion();
             } else {
+                clearInterval(timerInterval);
                 showResults();
             }
         });
 
         // SHOW SCORE OVERLAY
         function showResults() {
+            clearInterval(timerInterval);
             quizContainerEl.classList.add("hidden");
             scoreContainerEl.classList.remove("hidden");
 
@@ -963,6 +1123,7 @@
 
             document.getElementById("finalPercentage").textContent = `${percentage}%`;
             document.getElementById("finalScore").textContent = correctCount;
+            document.getElementById("finalTotal").textContent = totalQuestions;
             document.getElementById("correctCount").textContent = correctCount;
             document.getElementById("incorrectCount").textContent = incorrectCount;
 
@@ -984,11 +1145,13 @@
             score = 0;
             scoreContainerEl.classList.add("hidden");
             quizContainerEl.classList.remove("hidden");
+            startTimer();
             loadQuestion();
         });
 
         // START ON LOAD
         document.addEventListener("DOMContentLoaded", () => {
+            startTimer();
             loadQuestion();
         });
     </script>
