@@ -4,6 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Chapter 5: Oncology Pharmacology Hub</title>
+
+  <!-- URL ACCESS PROTECTION SCRIPT -->
+  <script>
+    if (localStorage.getItem('pharmacologyLoggedIn') !== 'true') {
+      alert('⚠️ Access Denied: Please log in first.');
+      window.location.replace('login.html');
+    } else if (localStorage.getItem('pharmacologyUnlocked') !== 'true') {
+      alert('🔒 Access Denied: You must enter a valid single-use access code on your dashboard to unlock Unit V.');
+      window.location.replace('dashboard.html');
+    }
+  </script>
+
   <style>
     :root {
       --bg-gradient: radial-gradient(circle at 10% 20%, rgb(124, 58, 237, 0.08) 0%, rgba(192, 38, 211, 0.05) 40%, #f8fafc 90%);
@@ -72,7 +84,7 @@
 
       <a href="hormones.html" class="card">
         <div class="card-icon">🔑</div>
-        <h3>Hormones & Antagonists</h3>
+        <h3>Hormones &amp; Antagonists</h3>
         <p>Modulating receptor-mediated signaling pathways (e.g., Tamoxifen).</p>
       </a>
 
