@@ -4,6 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Chapter 2: Anti-Infective Pharmacology</title>
+
+  <!-- URL ACCESS PROTECTION SCRIPT -->
+  <script>
+    if (localStorage.getItem('pharmacologyLoggedIn') !== 'true') {
+      alert('⚠️ Access Denied: Please log in first.');
+      window.location.replace('login.html');
+    } else if (localStorage.getItem('pharmacologyUnlocked') !== 'true') {
+      alert('🔒 Access Denied: You must enter a valid single-use access code on your dashboard to unlock Unit II.');
+      window.location.replace('dashboard.html');
+    }
+  </script>
+
   <style>
     :root {
       --primary: #2563eb;
