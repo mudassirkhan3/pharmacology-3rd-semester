@@ -1,1 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MK STUDY PORTAL | Pharmacology-I</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- URL ACCESS PROTECTION SCRIPT -->
+  <script>
+    if (localStorage.getItem('pharmacologyLoggedIn') !== 'true') {
+      window.location.replace('login.html');
+    }
+  </script>
 
+  <style>
+    /* Security & Reset */
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      font-family: 'Plus Jakarta Sans', sans-serif; 
+      -webkit-user-select: none; 
+      -moz-user-select: none; 
+      -ms-user-select: none; 
+      user-select: none; 
+    }
+    input, textarea {
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
+    }
+    body { background: #f8fafc; color: #0f172a; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; }
+
+    /* Welcome Modal / Desktop Experience Notice */
+    .desktop-welcome-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .desktop-welcome-card {
+      background: white;
+      width: 100%;
+      max-width: 460px;
+      border-radius: 24px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+      border-top: 6px solid #0284c7;
+    }
+    .desktop-welcome-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+      color: #0284c7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 18px;
+    }
+    .desktop-welcome-card h3 { font-size: 1.35rem; font-weight: 800; color: #0f172a; margin-bottom: 8px; }
+    .desktop-welcome-card p { font-size: 0.85rem; color: #475569; line-height: 1.5; margin-bottom: 16px; }
+    .steps-box { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 14px; padding: 14px; text-align: left; margin-bottom: 20px; }
+    .step-row { display: flex; align-items: flex-start; gap: 10px; font-size: 0.8rem; font-weight: 700; color: #1e293b; margin-bottom: 10px; }
+    .step-row:last-child { margin-bottom: 0; }
+    .step-badge { background: #0284c7; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+    .proceed-btn { width: 100%; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; border: none; padding: 14px; border-radius: 14px; font-weight: 800; font-size: 0.95rem; cursor: pointer; box-shadow: 0 6px 16px rgba(2, 132, 199, 0.35); }
+    .proceed-btn:hover { opacity: 0.92; transform: translateY(-2px); }
+
+    /* Header */
+    header { 
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); 
+      color: white; 
+      padding: 14px 24px; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15); 
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .header-title h1 { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.5px; }
+    .header-title p { font-size: 0.76rem; opacity: 0.95; font-weight: 600; }
+    
+    .header-search-container { flex: 1; max-width: 440px; position: relative; }
+    .search-box-wrapper { position: relative; width: 100%; }
+    .drug-search-input { 
+      width: 100%; 
+      padding: 10px 16px 10px 38px; 
+      border: 1px solid rgba(255, 255, 255, 0.4); 
+      border-radius: 12px; 
+      font-size: 0.88rem; 
+      font-weight: 600; 
+      outline: none; 
+      background: rgba(255, 255, 255, 0.2); 
+      color: white;
+      transition: all 0.2s;
+    }
+    .drug-search-input::placeholder { color: rgba(255, 255, 255, 0.85); }
+    .drug-search-input:focus { background: white; color: #0f172a; border-color: white; box-shadow: 0 4px 14px rgba(0,0,0,0.15); }
+    .drug-search-input:focus::placeholder { color: #94a3b8; }
+    .search-icon-abs { position: absolute; left: 12px; top: 11px; font-size: 0.9rem; color: rgba(255, 255, 255, 0.9); }
+    .drug-search-input:focus ~ .search-icon-abs { color: #64748b; }
+    
+    .drug-results-dropdown { 
+      display: none; 
+      position: absolute; 
+      top: 100%; 
+      left: 0; 
+      right: 0; 
+      background: white; 
+      border: 1px solid #cbd5e1; 
+      border-radius: 12px; 
+      margin-top: 6px; 
+      max-height: 280px; 
+      overflow-y: auto; 
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2); 
+      z-index: 1001; 
+      text-align: left;
+    }
+    .drug-result-item { padding: 12px 16px; border-bottom: 1px solid #f1f5f9; cursor: pointer; display: flex; flex-direction: column; gap: 2px; transition: background 0.15s; }
+    .drug-result-item:last-child { border-bottom: none; }
+    .drug-result-item:hover { background: #f0f9ff; }
+    .drug-name-main { font-weight: 800; color: #0f172a; font-size: 0.86rem; display: flex; justify-content: space-between; align-items: center; }
+
+    .header-actions { display: flex; gap: 8px; align-items: center; }
+    .action-btn { background: rgba(255, 255, 255, 0.2); color: white; border: none; padding: 8px 14px; border-radius: 10px; font-weight: 700; font-size: 0.78rem; cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 4px; transition: all 0.2s; }
+    .action-btn:hover { background: rgba(255, 255, 255, 0.3); }
+
+    @media(max-width: 768px) {
+      header { flex-direction: column; align-items: stretch; gap: 12px; padding: 14px 16px; }
+      .header-search-container { max-width: 100%; order: 3; }
+      .header-actions { justify-content: flex-end; order: 2; }
+      .header-title { order: 1; }
+    }
+
+    /* Layout Container */
+    .container { max-width: 1200px; margin: 24px auto; padding: 0 16px; width: 100%; display: grid; grid-template-columns: 280px 1fr; gap: 24px; }
+    @media(max-width: 900px) { .container { grid-template-columns: 1fr; margin: 16px auto; gap: 18px; } }
+
+    /* Profile Section */
+    .profile-card { background: white; border: 1px solid #e2e8f0; border-radius: 20px; padding: 22px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); height: fit-content; position: sticky; top: 80px; }
+    .avatar-wrapper { position: relative; width: 86px; height: 86px; margin: 0 auto 14px; }
+    .avatar-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid #0284c7; background: #f1f5f9; box-shadow: 0 4px 10px rgba(2, 132, 199, 0.15); }
+    .upload-label { position: absolute; bottom: 0; right: 0; background: #0284c7; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.78rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+    #file-input { display: none; }
+    .profile-info h3 { font-size: 1.05rem; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
+    .profile-info p { font-size: 0.8rem; color: #64748b; margin-bottom: 3px; word-break: break-all; }
+    .badge { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 20px; font-size: 0.74rem; font-weight: 700; margin-top: 6px; }
+    .edit-profile-btn { margin-top: 14px; width: 100%; background: #f8fafc; border: 1px solid #cbd5e1; color: #0369a1; padding: 8px; border-radius: 10px; font-weight: 700; font-size: 0.78rem; cursor: pointer; transition: background 0.2s; }
+    .edit-profile-btn:hover { background: #f1f5f9; }
+
+    .access-box { margin-top: 18px; padding-top: 16px; border-top: 1px solid #e2e8f0; text-align: left; }
+    .access-box label { display: block; font-size: 0.76rem; font-weight: 700; color: #334155; margin-bottom: 6px; }
+    .access-input-row { display: flex; gap: 6px; }
+    .access-input { flex: 1; padding: 10px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.82rem; font-weight: 700; outline: none; background: #f8fafc; }
+    .verify-btn { background: #0284c7; color: white; border: none; padding: 10px 12px; border-radius: 10px; font-weight: 700; font-size: 0.8rem; cursor: pointer; }
+    .access-status { margin-top: 8px; font-size: 0.76rem; font-weight: 700; }
+    .status-locked { color: #dc2626; }
+    .status-unlocked { color: #16a34a; }
+    .whatsapp-mini { display: block; margin-top: 12px; font-size: 0.76rem; color: #25d366; font-weight: 700; text-decoration: none; text-align: center; background: #f0fdf4; padding: 8px; border-radius: 8px; border: 1px solid #bbf7d0; transition: background 0.2s; }
+    .whatsapp-mini:hover { background: #dcfce7; }
+
+    /* Main Panel */
+    .main-content { display: flex; flex-direction: column; gap: 20px; }
+    .card { background: white; border: 1px solid #e2e8f0; border-radius: 20px; padding: 22px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); position: relative; overflow: hidden; }
+    .card-header-main { margin-bottom: 14px; }
+    .card h2 { font-size: 1.15rem; font-weight: 800; color: #0369a1; border-left: 4px solid #0284c7; padding-left: 10px; margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between; }
+    .card p { font-size: 0.84rem; color: #64748b; line-height: 1.5; }
+
+    /* Top Chapters Section Grid Styling */
+    .chapters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-top: 8px; }
+    .chapter-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; text-decoration: none; color: inherit; transition: all 0.2s; display: flex; flex-direction: column; justify-content: space-between; position: relative; min-height: 125px; }
+    .chapter-box:hover { border-color: #0284c7; transform: translateY(-2px); background: white; box-shadow: 0 6px 16px rgba(2, 132, 199, 0.08); }
+    .chapter-box h4 { color: #0284c7; font-size: 0.9rem; font-weight: 800; margin-bottom: 4px; padding-right: 50px; }
+    .chapter-box p { font-size: 0.76rem; color: #475569; margin-bottom: 12px; line-height: 1.4; }
+    .chapter-link-text { font-size: 0.76rem; font-weight: 800; color: #0369a1; margin-top: auto; display: flex; align-items: center; gap: 4px; }
+    .chapter-badge-lock { position: absolute; top: 14px; right: 14px; font-size: 0.65rem; background: #fee2e2; color: #dc2626; padding: 2px 8px; border-radius: 10px; font-weight: 800; }
+
+    /* Quiz Box Styling */
+    .quiz-box { border-top: 3px solid #8b5cf6; background: linear-gradient(135deg, #f8fafc 0%, #f3e8ff 100%); }
+    .quiz-box h4 { color: #7c3aed !important; }
+    .quiz-box .chapter-link-text { color: #7c3aed !important; }
+
+    .table-box { border-top: 3px solid #6366f1; background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%); }
+    .table-box h4 { color: #4f46e5 !important; }
+    .papers-box { border-top: 3px solid #d97706; background: linear-gradient(135deg, #f8fafc 0%, #fffbeb 100%); }
+    .papers-box h4 { color: #b45309 !important; }
+
+    footer { text-align: center; font-size: 0.78rem; color: #64748b; padding: 24px 0; border-top: 1px solid #e2e8f0; background: white; margin-top: 30px; font-weight: 500; }
+    footer span { color: #0284c7; font-weight: 700; }
+  </style>
+</head>
+<body>
+
+  <!-- Mobile-to-Desktop Site Guide Welcome Modal -->
+  <div id="desktopWelcomeModal" class="desktop-welcome-backdrop">
+    <div class="desktop-welcome-card">
+      <div class="desktop-welcome-icon">💻</div>
+      <h3>MK STUDY PORTAL</h3>
+      <p>Welcome, Mudassir! For the best interactive layout, drug search tools, and progress tracking, please switch your mobile browser to <strong>Desktop Site</strong> mode.</p>
+      <button class="proceed-btn" onclick="dismissWelcomeModal()">Enter Portal Now</button>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-title">
+      <h1>MK STUDY PORTAL</h1>
+      <p>Pharmacology-I Learning Hub</p>
+    </div>
+
+    <div class="header-search-container">
+      <div class="search-box-wrapper">
+        <span class="search-icon-abs">🔍</span>
+        <input type="text" id="drugSearchInput" class="drug-search-input" placeholder="Search any drug (e.g. fluconazole, cisplatin)..." oninput="filterDrugs()">
+        <div id="drugResultsDropdown" class="drug-results-dropdown"></div>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button onclick="logout()" class="action-btn">Log Out</button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- Sidebar Profile -->
+    <div class="profile-card">
+      <div class="avatar-wrapper">
+        <img id="profile-pic" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250" alt="Profile" class="avatar-img">
+        <label for="file-input" class="upload-label" title="Upload Photo">📷</label>
+        <input type="file" id="file-input" accept="image/*" onchange="previewImage(event)">
+      </div>
+      <div class="profile-info">
+        <h3 id="student-name">Mudassir Hussain Khan</h3>
+        <p id="student-institute">New Life Institute of Nursing</p>
+        <p id="student-email">rollno 002075</p>
+        <span class="badge" id="student-semester">4th Semester</span>
+      </div>
+
+      <div class="access-box">
+        <label>🔒 Single-Use Access Code</label>
+        <div class="access-input-row">
+          <input type="password" id="sidebarAccessInput" class="access-input" placeholder="Enter code">
+          <button class="verify-btn" onclick="verifySingleUseCode()">Verify</button>
+        </div>
+        <div id="accessStatusText" class="access-status status-locked">Status: Locked</div>
+      </div>
+    </div>
+
+    <!-- Main Content Panel -->
+    <div class="main-content">
+
+      <!-- CHAPTER NOTES & UNITS -->
+      <div class="card">
+        <div class="card-header-main">
+          <h2>Pharmacology Study Chapters</h2>
+          <p>Read full unit notes and clinical implications below:</p>
+        </div>
+        
+        <div class="chapters-grid">
+          <a href="chapter1.html" class="chapter-box" onclick="return markUnitRead(event, 1)">
+            <div>
+              <h4>Unit I: Basics</h4>
+              <p>Terminologies, history, drug sources &amp; pharmacokinetics.</p>
+            </div>
+            <span class="chapter-link-text">Read Notes (Open) →</span>
+          </a>
+
+          <a href="chapter2.html" class="chapter-box" onclick="return checkChapterAccess(event, 2)">
+            <div>
+              <span id="lockBadge2" class="chapter-badge-lock">🔒 Locked</span>
+              <h4>Unit II: Infections</h4>
+              <p>Antibacterial, antifungal, antiviral &amp; antimalarial drugs.</p>
+            </div>
+            <span class="chapter-link-text">Read Notes →</span>
+          </a>
+
+          <a href="chapter3.html" class="chapter-box" onclick="return checkChapterAccess(event, 3)">
+            <div>
+              <span id="lockBadge3" class="chapter-badge-lock">🔒 Locked</span>
+              <h4>Unit III: Gastrointestinal</h4>
+              <p>GI medications, antidiarrheals, laxatives &amp; antiemetics.</p>
+            </div>
+            <span class="chapter-link-text">Read Notes →</span>
+          </a>
+
+          <a href="chapter4.html" class="chapter-box" onclick="return checkChapterAccess(event, 4)">
+            <div>
+              <span id="lockBadge4" class="chapter-badge-lock">🔒 Locked</span>
+              <h4>Unit IV: Hematology</h4>
+              <p>Blood disorders, anticoagulants, antiplatelets &amp; lab tests.</p>
+            </div>
+            <span class="chapter-link-text">Read Notes →</span>
+          </a>
+
+          <a href="chapter5.html" class="chapter-box" onclick="return checkChapterAccess(event, 5)">
+            <div>
+              <span id="lockBadge5" class="chapter-badge-lock">🔒 Locked</span>
+              <h4>Unit V: Anti-Neoplastic</h4>
+              <p>Chemotherapy drugs, mechanisms &amp; safety protocols.</p>
+            </div>
+            <span class="chapter-link-text">Read Notes →</span>
+          </a>
+
+          <a href="important-tables.html" class="chapter-box table-box" onclick="return checkChapterAccess(event, 6)">
+            <div>
+              <span id="lockBadge6" class="chapter-badge-lock">🔒 Locked</span>
+              <h4>IMPORTANT TABLES</h4>
+              <p>High-yield classification &amp; dosage reference charts.</p>
+            </div>
+            <span class="chapter-link-text">Open Tables →</span>
+          </a>
+
+          <a href="uhs-past-papers.html" class="chapter-box papers-box" onclick="return checkChapterAccess(event, 7)">
+            <div>
+              <span id="lockBadge7" class="chapter-badge-lock">🔒 Locked</span>
+              <h4>UHS PAST PAPERS</h4>
+              <p>University of Health Sciences solved past exam papers.</p>
+            </div>
+            <span class="chapter-link-text">View Papers →</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- MASTER PRACTICE QUIZZES (CHAPTER 1 TO 5) -->
+      <div class="card">
+        <div class="card-header-main">
+          <h2>Master Chapter Quizzes</h2>
+          <p>Practice chapter-wise high-yield MCQs with built-in timers and rationale explanations:</p>
+        </div>
+
+        <div class="chapters-grid">
+          <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/quiz.chapter1.html" target="_blank" class="chapter-box quiz-box">
+            <div>
+              <h4>Quiz: Chapter 1</h4>
+              <p>Introduction to Pharmacology &amp; Pharmacokinetics MCQs.</p>
+            </div>
+            <span class="chapter-link-text">Take Chapter 1 Quiz →</span>
+          </a>
+
+          <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/quiz.chapter2.html" target="_blank" class="chapter-box quiz-box" onclick="return checkChapterAccess(event, 8)">
+            <div>
+              <span id="lockBadge8" class="chapter-badge-lock">🔒 Locked</span>
+              <h4>Quiz: Chapter 2</h4>
+              <p>Anti-Infective Pharmacology 150 Master MCQs.</p>
+            </div>
+            <span class="chapter-link-text">Take Chapter 2 Quiz →</span>
+          </a>
+
+          <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/quiz.chapter3.html" target="_blank" class="chapter-box quiz-box" onclick="return checkChapterAccess(event, 9)">
+            <div>
+              <span id="lockBadge9" class="chapter-badge-lock">🔒 Locked</span>
+              <h4>Quiz: Chapter 3</h4>
+              <p>Gastrointestinal Pharmacology 180 Master MCQs.</p>
+            </div>
+            <span class="chapter-link-text">Take Chapter 3 Quiz →</span>
+          </a>
+
+          <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/quiz.chapter4.html" target="_blank" class="chapter-box quiz-box" onclick="return checkChapterAccess(event, 10)">
+            <div>
+              <span id="lockBadge10" class="chapter-badge-lock">🔒 Locked</span>
+              <h4>Quiz: Chapter 4</h4>
+              <p>Hematology Pharmacology Master MCQs.</p>
+            </div>
+            <span class="chapter-link-text">Take Chapter 4 Quiz →</span>
+          </a>
+
+          <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/quiz.chapter5.html" target="_blank" class="chapter-box quiz-box" onclick="return checkChapterAccess(event, 11)">
+            <div>
+              <span id="lockBadge11" class="chapter-badge-lock">🔒 Locked</span>
+              <h4>Quiz: Chapter 5</h4>
+              <p>Oncology Pharmacology Master MCQs.</p>
+            </div>
+            <span class="chapter-link-text">Take Chapter 5 Quiz →</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Developed with clinical precision by <span>Mudassir Khan</span> • MK Study Portal</p>
+  </footer>
+
+  <script>
+    var validAccessCodesList = [
+      "BSN-CLASS-2026", "NEWLIFE-PHARMA-02", "MULTAN-BATCH-03",
+      "MK-IND-01", "MK-IND-02", "MK-IND-03", "MK-IND-04", "MK-IND-05",
+      "MK-IND-06", "MK-IND-07", "MK-IND-08", "MK-IND-09", "MK-IND-10",
+      "MK-IND-11", "MK-IND-12", "MK-IND-13", "MK-IND-14", "MK-IND-15",
+      "MK-IND-16", "MK-IND-17", "MK-IND-18", "MK-IND-19", "MK-IND-20",
+      "MK-IND-21", "MK-IND-22", "MK-IND-23", "MK-IND-24", "MK-IND-25",
+      "MK-IND-26", "MK-IND-27", "MK-IND-28", "MK-IND-29", "MK-IND-30"
+    ];
+
+    window.onload = function() {
+      if (localStorage.getItem('pharmacologyLoggedIn') !== 'true') {
+        window.location.replace('login.html');
+        return;
+      }
+
+      if (localStorage.getItem('pharmacologyUnlocked') === 'true') {
+        unlockAllChaptersUI();
+      }
+    };
+
+    function verifySingleUseCode() {
+      var rawInput = document.getElementById('sidebarAccessInput').value;
+      var enteredCode = rawInput.trim().toUpperCase();
+      
+      if (!enteredCode) { 
+        alert('Please enter an access code.'); 
+        return; 
+      }
+
+      var usedCodes = JSON.parse(localStorage.getItem('pharmacologyUsedCodes')) || [];
+
+      if (usedCodes.includes(enteredCode)) {
+        alert('🚫 Access Denied: This access code has ALREADY been used!');
+        return;
+      }
+
+      if (validAccessCodesList.includes(enteredCode)) {
+        usedCodes.push(enteredCode);
+        localStorage.setItem('pharmacologyUsedCodes', JSON.stringify(usedCodes));
+        localStorage.setItem('pharmacologyUnlocked', 'true');
+        unlockAllChaptersUI();
+        alert('🎉 Success! Access verified. All chapters, past papers, and quizzes are now unlocked.');
+      } else {
+        alert('❌ Invalid Access Code! Please check your code or contact support.');
+      }
+    }
+
+    function unlockAllChaptersUI() {
+      for (var i = 2; i <= 11; i++) {
+        var badge = document.getElementById('lockBadge' + i);
+        if (badge) {
+          badge.innerText = "✓ Unlocked";
+          badge.style.background = "#dcfce7";
+          badge.style.color = "#065f46";
+        }
+      }
+      var statusText = document.getElementById('accessStatusText');
+      if (statusText) {
+        statusText.innerText = "Status: All Chapters & Quizzes Unlocked ✓";
+        statusText.className = "access-status status-unlocked";
+      }
+      document.getElementById('sidebarAccessInput').value = "VERIFIED";
+      document.getElementById('sidebarAccessInput').disabled = true;
+    }
+
+    function checkChapterAccess(event, unitNum) {
+      if (localStorage.getItem('pharmacologyUnlocked') !== 'true') {
+        event.preventDefault();
+        alert('🔒 Access Denied! Please enter a valid single-use access code in the sidebar to unlock.');
+        return false;
+      }
+      return true;
+    }
+
+    function markUnitRead(event, unitNum) { return true; }
+    function dismissWelcomeModal() { document.getElementById('desktopWelcomeModal').style.display = 'none'; }
+    function logout() {
+      localStorage.removeItem('pharmacologyLoggedIn');
+      localStorage.removeItem('pharmacologyUnlocked');
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>
