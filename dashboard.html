@@ -1024,14 +1024,61 @@
     // Security
     document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
 
-    var validCodes = JSON.parse(localStorage.getItem('pharmacologyDatabaseCodes')) || {
-      "PHARMA-101": false,
-      "PHARMA-102": false,
-      "PHARMA-103": false,
-      "MUDASSIR-99": false
+    // SHA-256 Hashes for Access Codes (Raw plaintext codes are hidden from public JS)
+    // Pre-computed hashes for 3 Class/Batch Codes and 30 Individual Student Codes
+    var validCodeHashes = JSON.parse(localStorage.getItem('pharmacologyCodeHashes')) || {
+      // 3 BATCH / CLASS CODES
+      "4d7426815ef7ea44ee90f77b789efd95180cb9e2fa245dbdb5fc274e1e0a2ca3": false, // BSN-CLASS-2026
+      "b63bc58b29fce8f8bd4b4b2ef9a98ef1b11e2f7b8cfd52a2656910e53a2bbef1": false, // NEWLIFE-PHARMA-02
+      "0ef7dca1f5d81aee5db7dce4d98cbca38fbca0b2f56baea0c69d8aa0bfbeea2d": false, // MULTAN-BATCH-03
+
+      // 30 INDIVIDUAL STUDENT CODES
+      "ffebfb35099a5eeb55ea828c4e4f8d5bcdd99547ea87d195c898c607cf854f3a": false, // MK-IND-01
+      "a60c8227b9ef08967b578c75150e7b752251a37651a5e1201cb4d6d63bc3ebfa": false, // MK-IND-02
+      "eaae46654c60205d41bc3ccebb86bfcf7d0ec2086e1081a9bd288e4428054c3a": false, // MK-IND-03
+      "22bd7fae3ddf0a597ef678d4924cb91aa89c6d3283259b3bc1c6c8ed5084918e": false, // MK-IND-04
+      "ea1d09b23b36cf36070a75fe04e579bd666bc0f5fb9f7a73cdfd61ea9bc8ec73": false, // MK-IND-05
+      "05bf755f58c7333d7b878342dcadfa9ca467c648cc307cbefbcbebe3cb4787a7": false, // MK-IND-06
+      "fb486efc96cb8a48ef0e5a6a4f91e4aa96dfd2217c98e169424cf3beaa2d8e48": false, // MK-IND-07
+      "cbe44ae1dd76865d448bf8133543ebce4bc74dbe6cbdf8e85cd17a6aa0089bd2": false, // MK-IND-08
+      "402eb060b9bc318858dcd3fb20b8fa04b68071e6be31bb733671ffdf2e9d2983": false, // MK-IND-09
+      "fa3914a8bd97f08b3a0e10b2df7e8c4e09f5dbb2c9d2fbeae37ef93aa8dd206d": false, // MK-IND-10
+      "68bf76f2963660fb63ff68e9e436893699665bc7beec38a4d700e572013eb175": false, // MK-IND-11
+      "970ca881aa54f738fe283e7ff52f36077ff0a58129ccceeb43fc80d60d3d3a04": false, // MK-IND-12
+      "9fbbf0fddfe4eaee268e0d9b400fa4beeb74c058721bf1853609fc185011f0a2": false, // MK-IND-13
+      "1400dc9d7e5be4eb7ff421a1f81014cccebf4cb4432a9a7a66f7f6f94ffda322": false, // MK-IND-14
+      "0ee72d17ef2f05eb4b9fb3993ed7aed3c81e2dc2a5dfae98bf022bc437f17be2": false, // MK-IND-15
+      "ffed8366e6c1e57c6b90f42194d8721c43553ecfe1118fa3be98cc7ec856fdb1": false, // MK-IND-16
+      "cf1d5eb85b19db005b4122d20b66b4421bca961c0c2a26fb6ef7ef8053e16e68": false, // MK-IND-17
+      "49bd00cfc22b9b7d52f6fbf7ca04fbecc67290130d2fc21422ee85ccefcb11a9": false, // MK-IND-18
+      "44c8ed21eb1d3dd638e05a8b79b69113e1107567843d7c5ed7faefef89a31182": false, // MK-IND-19
+      "050c95cc5417b3eb1699f0dc91456bfeb8f48dfc4d5e9df53597fe2cd7217f25": false, // MK-IND-20
+      "123bbbf8f0907ebc6fca6bd042b43b67e00f9a2399bd51a13e2f183cf93806a0": false, // MK-IND-21
+      "95d52ca57e3f84f0010eb96ebf4b008d5dfdafeee321a69a91d810a9f0f9ca22": false, // MK-IND-22
+      "feadacdf8ccfe8044a677336181f72750ca8490a1846b006c0fcff4e414c4c51": false, // MK-IND-23
+      "22feef83a303dd5d6bd5b045e054bf2fb88bd82ebbd0f40d8531777d48fae9ca": false, // MK-IND-24
+      "511cc957cd7d2b2cd33a77dff0007823f6eeebcd7b2beffc1c1fdfddfc0aa328": false, // MK-IND-25
+      "02d8479e9ebdb4ddbe43586b6ee6ccfb45eb9d6f33333ec1dc2d2a417dd55a12": false, // MK-IND-26
+      "3365fa3e7f62c64dd43bd77b73c46e0caaa5fbd5fe6cd4f5ea7aa500cd527ce2": false, // MK-IND-27
+      "b59a685bcfe0d0cfefb30f5aee93060cf476cd8dd678d21c322b6c1eb2ea7ef7": false, // MK-IND-28
+      "665809fa6ffce19998889aa3bc5f891b2bf1d13dbfbaf37851bc312be03a5e84": false, // MK-IND-29
+      "fa19b06be33bc8cfbe09459cf9cf1e2e9cffbb745c1dcbe879f94eb9236e7ec5": false  // MK-IND-30
     };
 
+    async function hashString(str) {
+      const buffer = new TextEncoder().encode(str.trim().toUpperCase());
+      const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
     window.onload = function() {
+      // REQUIRE VALID LOGIN BEFORE ACCESSING DASHBOARD
+      if (localStorage.getItem('pharmacologyLoggedIn') !== 'true') {
+        window.location.replace('login.html');
+        return;
+      }
+
       if (!localStorage.getItem('pharmacologyUser')) {
         localStorage.setItem('pharmacologyUser', JSON.stringify({
           name: 'Mudassir Hussain Khan',
@@ -1040,8 +1087,6 @@
           semester: '4th Semester'
         }));
       }
-
-      localStorage.setItem('pharmacologyLoggedIn', 'true');
 
       loadUserDataToUI();
       initDailyMnemonic();
@@ -1098,16 +1143,18 @@
       closeForgotPasswordModal();
     }
 
-    function verifySingleUseCode() {
+    async function verifySingleUseCode() {
       var enteredCode = document.getElementById('sidebarAccessInput').value.trim();
       if (!enteredCode) { alert('Please enter an access code.'); return; }
 
-      if (validCodes.hasOwnProperty(enteredCode)) {
-        if (validCodes[enteredCode] === true) {
+      var inputHash = await hashString(enteredCode);
+
+      if (validCodeHashes.hasOwnProperty(inputHash)) {
+        if (validCodeHashes[inputHash] === true) {
           alert('Access Denied: This code has already been used!');
         } else {
-          validCodes[enteredCode] = true;
-          localStorage.setItem('pharmacologyDatabaseCodes', JSON.stringify(validCodes));
+          validCodeHashes[inputHash] = true;
+          localStorage.setItem('pharmacologyCodeHashes', JSON.stringify(validCodeHashes));
           localStorage.setItem('pharmacologyUnlocked', 'true');
           unlockAllChaptersUI();
           alert('Success! All advanced chapters and resources are now unlocked.');
@@ -1147,6 +1194,7 @@
 
     function logout() {
       localStorage.removeItem('pharmacologyLoggedIn');
+      localStorage.removeItem('pharmacologyUnlocked');
       window.location.href = 'login.html';
     }
   </script>
