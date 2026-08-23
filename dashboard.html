@@ -344,7 +344,7 @@
     <!-- Main Content Panel (Right Column) -->
     <div class="main-content">
 
-      <!-- SECTION 1: PHARMACOLOGY CHAPTERS & UNITS (Moved to Top) -->
+      <!-- SECTION 1: PHARMACOLOGY CHAPTERS & UNITS -->
       <div class="card">
         <div class="card-header-main">
           <h2>Pharmacology Chapters &amp; Units</h2>
@@ -592,61 +592,20 @@
   </footer>
 
   <script>
-    /* Comprehensive Drug Database Covering All Chapters & Classes */
+    /* Drug Database */
     var drugDatabase = [
-      // UNIT II: INFECTIONS
       { name: "Fluconazole", classTag: "Antifungal (Triazole)", chapter: "Unit II: Infections", moa: "Inhibits fungal CYP450 sterol C-14 alpha-demethylation.", uses: "Candidiasis, cryptococcal meningitis.", sideEffects: "Headache, nausea, elevated liver enzymes." },
       { name: "Amphotericin B", classTag: "Antifungal (Polyene)", chapter: "Unit II: Infections", moa: "Binds to ergosterol in fungal cell membranes, forming pores.", uses: "Severe systemic fungal infections.", sideEffects: "Fever, chills, nephrotoxicity, hypokalemia." },
-      { name: "Ketoconazole", classTag: "Antifungal (Imidazole)", chapter: "Unit II: Infections", moa: "Inhibits ergosterol synthesis in fungal membranes.", uses: "Topical and systemic fungal infections.", sideEffects: "Hepatotoxicity, gynecomastia, GI upset." },
-      { name: "Nystatin", classTag: "Antifungal (Polyene)", chapter: "Unit II: Infections", moa: "Binds ergosterol, increasing fungal membrane permeability.", uses: "Oral thrush, cutaneous candidiasis.", sideEffects: "Mild GI irritation, diarrhea." },
       { name: "Acyclovir", classTag: "Antiviral (Nucleoside Analogue)", chapter: "Unit II: Infections", moa: "Inhibits viral DNA polymerase after phosphorylation by thymidine kinase.", uses: "Herpes simplex and varicella-zoster infections.", sideEffects: "Nausea, headache, transient renal impairment." },
-      { name: "Valacyclovir", classTag: "Antiviral (Prodrug)", chapter: "Unit II: Infections", moa: "Converted to acyclovir; inhibits viral DNA replication.", uses: "Genital herpes, shingles, cold sores.", sideEffects: "Headache, abdominal pain, nausea." },
-      { name: "Oseltamivir", classTag: "Antiviral (Neuraminidase Inhibitor)", chapter: "Unit II: Infections", moa: "Inhibits influenza neuraminidase, preventing viral release.", uses: "Treatment and prophylaxis of Influenza A and B.", sideEffects: "Nausea, vomiting, neuropsychiatric events." },
-      { name: "Zidovudine (AZT)", classTag: "Antiviral (NRTI)", chapter: "Unit II: Infections", moa: "Inhibits HIV reverse transcriptase enzyme.", uses: "HIV-1 infection management and maternal transmission prevention.", sideEffects: "Bone marrow suppression, anemia, neutropenia." },
       { name: "Amoxicillin", classTag: "Antibiotic (Penicillin)", chapter: "Unit II: Infections", moa: "Inhibits bacterial cell wall synthesis by binding to PBPs.", uses: "Respiratory tract infections, otitis media, sinusitis.", sideEffects: "Nausea, diarrhea, skin rash." },
       { name: "Azithromycin", classTag: "Antibiotic (Macrolide)", chapter: "Unit II: Infections", moa: "Binds to 50S ribosomal subunit, inhibiting protein synthesis.", uses: "Pneumonia, pharyngitis, chlamydia.", sideEffects: "Abdominal pain, nausea, QT prolongation." },
       { name: "Ciprofloxacin", classTag: "Antibiotic (Fluoroquinolone)", chapter: "Unit II: Infections", moa: "Inhibits DNA gyrase and topoisomerase IV.", uses: "Urinary tract infections, pyelonephritis, infectious diarrhea.", sideEffects: "Nausea, tendonitis, photosensitivity." },
-      { name: "Ceftriaxone", classTag: "Antibiotic (3rd Gen Cephalosporin)", chapter: "Unit II: Infections", moa: "Inhibits bacterial cell wall cross-linking.", uses: "Meningitis, gonorrhea, severe sepsis.", sideEffects: "Biliary sludging, diarrhea, rash." },
-      { name: "Vancomycin", classTag: "Antibiotic (Glycopeptide)", chapter: "Unit II: Infections", moa: "Inhibits bacterial cell wall peptidoglycan synthesis.", uses: "MRSA infections, C. difficile colitis (oral).", sideEffects: "Red Man Syndrome, nephrotoxicity, ototoxicity." },
-      { name: "Gentamicin", classTag: "Antibiotic (Aminoglycoside)", chapter: "Unit II: Infections", moa: "Binds to 30S ribosomal subunit causing mistranslation.", uses: "Severe gram-negative aerobic bacillary infections.", sideEffects: "Ototoxicity (irreversible), nephrotoxicity." },
-      { name: "Doxycycline", classTag: "Antibiotic (Tetracycline)", chapter: "Unit II: Infections", moa: "Inhibits 30S ribosomal subunit preventing tRNA binding.", uses: "Lyme disease, rickettsia, acne, chlamydia.", sideEffects: "Pill esophagitis, tooth discoloration in children, photosensitivity." },
-      { name: "Chloroquine", classTag: "Antimalarial (4-Aminoquinoline)", chapter: "Unit II: Infections", moa: "Blocks heme detoxification in Plasmodium parasites.", uses: "Treatment and prophylaxis of sensitive malaria.", sideEffects: "Retinopathy, pruritus, GI distress." },
-      { name: "Artemether / Lumefantrine", classTag: "Antimalarial (ACT)", chapter: "Unit II: Infections", moa: "Generates free radicals damaging parasite membranes.", uses: "Uncomplicated Plasmodium falciparum malaria.", sideEffects: "Headache, dizziness, cardiac QT prolongations." },
-      { name: "Metronidazole", classTag: "Antiparasitic / Antiprotozoal", chapter: "Unit II: Infections", moa: "Forms toxic intermediate compounds that disrupt parasite DNA.", uses: "Amebiasis, giardiasis, trichomoniasis, anaerobic infections.", sideEffects: "Metallic taste, disulfiram-like reaction with alcohol." },
-      { name: "Mebendazole", classTag: "Anthelmintic", chapter: "Unit II: Infections", moa: "Inhibits microtubule synthesis in helminthes.", uses: "Pinworm, hookworm, and roundworm infestations.", sideEffects: "Abdominal discomfort, transient diarrhea." },
-
-      // UNIT III: GASTROINTESTINAL SYSTEM
       { name: "Loperamide", classTag: "Antidiarrheal (Opioid Agonist)", chapter: "Unit III: Gastrointestinal", moa: "Binds to gut opioid receptors, inhibiting peristalsis and prolonging transit time.", uses: "Symptomatic control of acute non-specific diarrhea.", sideEffects: "Constipation, abdominal cramps, dizziness." },
-      { name: "Bisacodyl", classTag: "Laxative (Stimulant)", chapter: "Unit III: Gastrointestinal", moa: "Stimulates colonic peristalsis and increases fluid/electrolyte secretion.", uses: "Treatment of constipation and bowel evacuation before procedures.", sideEffects: "Abdominal cramps, nausea, electrolyte imbalance." },
-      { name: "Lactulose", classTag: "Laxative (Osmotic Agent)", chapter: "Unit III: Gastrointestinal", moa: "Draws water into bowel by osmosis and lowers colon pH to reduce ammonia.", uses: "Constipation and hepatic encephalopathy.", sideEffects: "Flatulence, abdominal cramps, diarrhea, nausea." },
       { name: "Omeprazole", classTag: "Proton Pump Inhibitor (PPI)", chapter: "Unit III: Gastrointestinal", moa: "Inhibits gastric H+/K+ ATPase pump.", uses: "GERD, peptic ulcer disease, Zollinger-Ellison syndrome.", sideEffects: "Headache, abdominal pain, flatulence, diarrhea." },
-      { name: "Ranitidine", classTag: "H2 Receptor Antagonist", chapter: "Unit III: Gastrointestinal", moa: "Competitively blocks histamine H2 receptors on parietal cells.", uses: "Peptic ulcer disease, GERD, hypersecretory states.", sideEffects: "Headache, dizziness, mild GI alterations." },
-      { name: "Metoclopramide", classTag: "Prokinetic / Anti-emetic", chapter: "Unit III: Gastrointestinal", moa: "Dopamine receptor antagonist, increases upper GI motility.", uses: "Gastroparesis, chemotherapy nausea, GERD.", sideEffects: "Drowsiness, restlessness, extrapyramidal symptoms." },
-      { name: "Ondansetron", classTag: "Anti-emetic (5-HT3 Antagonist)", chapter: "Unit III: Gastrointestinal", moa: "Blocks serotonin receptors peripherally on vagal nerve terminals and centrally.", uses: "Chemotherapy/radiation-induced nausea, post-op vomiting.", sideEffects: "Headache, constipation, QT interval prolongation." },
-      { name: "Subsalicylate Bismuth", classTag: "Antidiarrheal / Anti-ulcer", chapter: "Unit III: Gastrointestinal", moa: "Exerts antisecretory, anti-inflammatory, and antimicrobial effects.", uses: "Traveler's diarrhea, H. pylori eradication.", sideEffects: "Harmless darkening of tongue and stool, tinnitus." },
-
-      // UNIT IV: HEMATOLOGY SYSTEM
       { name: "Warfarin", classTag: "Anticoagulant (Vitamin K Antagonist)", chapter: "Unit IV: Hematology", moa: "Inhibits synthesis of vitamin K-dependent clotting factors (II, VII, IX, X).", uses: "Prevention of DVT, pulmonary embolism, atrial fibrillation strokes.", sideEffects: "Bleeding tendencies, bruising, tissue necrosis." },
       { name: "Heparin", classTag: "Anticoagulant (Indirect Thrombin Inhibitor)", chapter: "Unit IV: Hematology", moa: "Potentiates antithrombin III to block thrombin and factor Xa.", uses: "Acute venous thrombosis, pulmonary embolism, MI.", sideEffects: "Bleeding, Heparin-Induced Thrombocytopenia (HIT)." },
-      { name: "Enoxaparin", classTag: "Low Molecular Weight Heparin", chapter: "Unit IV: Hematology", moa: "Inactivates factor Xa via antithrombin activation.", uses: "Prophylaxis and treatment of DVT and unstable angina.", sideEffects: "Bleeding, injection site hematoma, anemia." },
-      { name: "Aspirin", classTag: "Antiplatelet Agent", chapter: "Unit IV: Hematology", moa: "Irreversibly inhibits cyclooxygenase-1 (COX-1), blocking TXA2.", uses: "Prevention of myocardial infarction and ischemic stroke.", sideEffects: "GI bleeding, heartburn, peptic ulceration." },
-      { name: "Clopidogrel", classTag: "Antiplatelet (P2Y12 Inhibitor)", chapter: "Unit IV: Hematology", moa: "Inhibits ADP binding to platelet P2Y12 receptors.", uses: "ACS management, prevention of stent thrombosis.", sideEffects: "Bleeding, purpura, GI discomfort." },
-      { name: "Streptokinase", classTag: "Thrombolytic / Fibrinolytic", chapter: "Unit IV: Hematology", moa: "Converts plasminogen to active plasmin to degrade fibrin clots.", uses: "Acute myocardial infarction, massive PE, severe arterial thrombosis.", sideEffects: "Severe hemorrhage, allergic reactions, hypotension." },
-      { name: "Ferrous Sulfate", classTag: "Hematinic (Iron Supplement)", chapter: "Unit IV: Hematology", moa: "Replaces essential iron needed for hemoglobin synthesis.", uses: "Iron deficiency anemia treatment and prophylaxis.", sideEffects: "Dark stools, constipation, nausea, epigastric pain." },
-
-      // UNIT V: ANTI-NEOPLASTIC DRUGS
       { name: "Cisplatin", classTag: "Anti-Neoplastic (Alkylating-Like)", chapter: "Unit V: Anti-Neoplastic", moa: "Forms intrastrand and interstrand DNA cross-links, blocking replication.", uses: "Testicular, ovarian, bladder, and lung cancers.", sideEffects: "Nephrotoxicity, severe nausea/vomiting, ototoxicity." },
-      { name: "Cyclophosphamide", classTag: "Anti-Neoplastic (Alkylating Agent)", chapter: "Unit V: Anti-Neoplastic", moa: "Attaches alkyl group to DNA base causing cross-linking.", uses: "Lymphomas, leukemias, breast cancer, nephrotic syndrome.", sideEffects: "Hemorrhagic cystitis, alopecia, bone marrow suppression." },
-      { name: "Methotrexate", classTag: "Anti-Neoplastic (Antimetabolite)", chapter: "Unit V: Anti-Neoplastic", moa: "Inhibits dihydrofolate reductase (DHFR), blocking DNA synthesis.", uses: "Leukemias, osteosarcoma, RA, ectopic pregnancy.", sideEffects: "Mucositis, myelosuppression, hepatotoxicity, pulmonary fibrosis." },
-      { name: "5-Fluorouracil (5-FU)", classTag: "Anti-Neoplastic (Pyrimidine Analogue)", chapter: "Unit V: Anti-Neoplastic", moa: "Inhibits thymidylate synthase, halting DNA synthesis.", uses: "Colorectal, breast, stomach, and pancreatic cancers.", sideEffects: "Hand-foot syndrome, severe diarrhea, bone marrow suppression." },
-      { name: "Doxorubicin", classTag: "Anti-Neoplastic (Anthracycline)", chapter: "Unit V: Anti-Neoplastic", moa: "Intercalates DNA and inhibits topoisomerase II enzyme.", uses: "Breast cancer, lymphomas, sarcomas, leukemias.", sideEffects: "Cardiotoxicity (dose-dependent), red urine, alopecia." },
-      { name: "Vincristine", classTag: "Anti-Neoplastic (Vinca Alkaloid)", chapter: "Unit V: Anti-Neoplastic", moa: "Binds tubulin and arrests mitosis in metaphase.", uses: "Acute lymphocytic leukemia, Hodgkin's disease, neuroblastoma.", sideEffects: "Peripheral neuropathy, paralytic ileus (spares bone marrow)." },
-      { name: "Paclitaxel", classTag: "Anti-Neoplastic (Taxane)", chapter: "Unit V: Anti-Neoplastic", moa: "Hyper-stabilizes microtubule polymers, preventing disassembly.", uses: "Ovarian, breast, and non-small cell lung cancers.", sideEffects: "Peripheral neuropathy, severe hypersensitivity reactions, neutropenia." },
-
-      // UNIT I: BASICS & AUTONOMIC
-      { name: "Digoxin", classTag: "Cardiac Glycoside", chapter: "Unit I: Basics", moa: "Inhibits Na+/K+ ATPase pump, increasing intracellular calcium.", uses: "Heart failure, atrial fibrillation.", sideEffects: "Bradycardia, yellow vision, arrhythmias." },
-      { name: "Atropine", classTag: "Anticholinergic", chapter: "Unit I: Basics", moa: "Competitive antagonist at muscarinic acetylcholine receptors.", uses: "Symptomatic bradycardia, organophosphate poisoning.", sideEffects: "Dry mouth, blurred vision, tachycardia." },
-      { name: "Epinephrine", classTag: "Adrenergic Agonist", chapter: "Unit I: Basics", moa: "Stimulates alpha-1, beta-1, and beta-2 adrenergic receptors.", uses: "Acute anaphylaxis, cardiac arrest, severe asthma.", sideEffects: "Tachycardia, hypertension, anxiety." }
+      { name: "Doxorubicin", classTag: "Anti-Neoplastic (Anthracycline)", chapter: "Unit V: Anti-Neoplastic", moa: "Intercalates DNA and inhibits topoisomerase II enzyme.", uses: "Breast cancer, lymphomas, sarcomas, leukemias.", sideEffects: "Cardiotoxicity (dose-dependent), red urine, alopecia." }
     ];
 
     /* High-Yield Upgraded Rotating Mnemonics Database */
@@ -671,40 +630,6 @@
           { key: "S - Softener:", value: "Docusate Sodium (Surfactant, lowers stool surface tension)." }
         ],
         alert: "Nursing Priority: Avoid stimulant laxatives in patients with acute undiagnosed abdominal pain." 
-      },
-      { 
-        category: "Unit IV: Hematology", 
-        title: "Antidote Quick Match", 
-        formula: "Heparin = Protamine | Warfarin = Vitamin K",
-        breakdown: [
-          { key: "H - Heparin:", value: "Fast acting (IV/SC). Monitor aPTT. Reversed by Protamine Sulfate." },
-          { key: "W - Warfarin:", value: "Slow oral start. Monitor PT/INR. Reversed by Vitamin K & FFP." }
-        ],
-        alert: "Nursing Priority: Keep Protamine Sulfate immediately available during acute IV Heparin administration." 
-      },
-      { 
-        category: "Unit V: Anti-Neoplastic", 
-        title: "Chemotherapy Specific Organ Toxicities", 
-        formula: "C - D - V - M High-Yield Rule",
-        breakdown: [
-          { key: "C - Cisplatin:", value: "Nephrotoxicity & Ototoxicity (Hydrate aggressively)." },
-          { key: "D - Doxorubicin:", value: "Cardiotoxicity (Perform baseline Echo/LVEF)." },
-          { key: "V - Vincristine:", value: "Peripheral Neuropathy (Spares Bone Marrow)." },
-          { key: "M - Methotrexate:", value: "Myelosuppression & Mucositis (Give Leucovorin rescue)." }
-        ],
-        alert: "Nursing Priority: Always verify cumulative lifelong dose for Doxorubicin to prevent heart failure." 
-      },
-      { 
-        category: "Unit I: Basics", 
-        title: "Pharmacokinetics Processing", 
-        formula: "A - D - M - E Sequence",
-        breakdown: [
-          { key: "Absorption:", value: "Drug entry into circulation from site of administration." },
-          { key: "Distribution:", value: "Movement from blood to body tissues and fluid compartments." },
-          { key: "Metabolism:", value: "Biotransformation, primarily via Hepatic Cytochrome P450." },
-          { key: "Excretion:", value: "Elimination from body, primarily through Renal excretion." }
-        ],
-        alert: "Nursing Priority: Dose adjustments are vital in patients with renal impairment (CrCl < 30 mL/min)." 
       }
     ];
 
@@ -714,21 +639,6 @@
         "Review Unit I basic pharmacokinetics and half-life formulas",
         "Read Unit II antimicrobial spectrum and antiviral charts",
         "Practice daily 5-question clinical MCQ challenge"
-      ],
-      [
-        "Master Unit III gastrointestinal antidiarrheal and laxative mechanisms",
-        "Analyze Unit IV hematology anticoagulants (Heparin versus Warfarin)",
-        "Complete daily 5-question spaced-repetition quiz and check reasoning"
-      ],
-      [
-        "Study Unit V anti-neoplastic alkylating agents and safety protocols",
-        "Review high-yield autonomic drugs (Atropine, Epinephrine, Digoxin)",
-        "Review UHS past paper questions for recurring clinical patterns"
-      ],
-      [
-        "Deep dive into macrolide, azole, and antiviral drug interactions",
-        "Review clinical nursing administration guidelines for GI medications",
-        "Complete daily spaced-repetition MCQ practice and track score"
       ]
     ];
 
@@ -736,344 +646,25 @@
     var fullMCQBank = [
       { q: "Which medication is classified as an opioid receptor agonist used specifically for acute diarrhea?", opts: ["Loperamide", "Bisacodyl", "Omeprazole", "Fluconazole"], correct: 0, reason: "Loperamide acts on gut opioid receptors to inhibit peristalsis and prolong transit time without central nervous system opioid effects." },
       { q: "Acyclovir exerts its antiviral mechanism of action primarily by:", opts: ["Inhibiting viral neuraminidase", "Inhibiting viral DNA polymerase after phosphorylation", "Neutralizing stomach acid", "Chelating iron"], correct: 1, reason: "Acyclovir is phosphorylated by viral thymidine kinase and then selectively inhibits viral DNA polymerase." },
-      { q: "What is the primary pharmacological class and clinical use of Fluconazole?", opts: ["Antibiotic for sepsis", "Antiviral for influenza", "Antifungal (Triazole) for candidiasis", "Laxative for constipation"], correct: 2, reason: "Fluconazole is a triazole antifungal that inhibits CYP450 sterol demethylation to treat fungal infections." },
-      { q: "What is the specific antidote for Heparin overdose?", opts: ["Vitamin K", "Protamine sulfate", "Flumazenil", "Naloxone", "Atropine"], correct: 1, reason: "Protamine sulfate binds to heparin and neutralizes its anticoagulant activity instantly." },
-      { q: "Bisacodyl belongs to which pharmacological class of medications?", opts: ["Stimulant laxative", "Osmotic laxative", "Prokinetic agent", "Antidiarrheal"], correct: 0, reason: "Bisacodyl directly stimulates colonic peristalsis and increases fluid secretion." },
-      { q: "Which drug is an influenza neuraminidase inhibitor?", opts: ["Acyclovir", "Oseltamivir", "Fluconazole", "Amphotericin B"], correct: 1, reason: "Oseltamivir inhibits influenza neuraminidase, preventing the release of new viral particles." },
-      { q: "Amphotericin B is associated with which major dose-limiting adverse effect?", opts: ["Hyperglycemia", "Nephrotoxicity and hypokalemia", "Hypertension", "Tachycardia"], correct: 1, reason: "Amphotericin B binds to ergosterol in human renal membranes, causing renal vasoconstriction and electrolyte loss." },
-      { q: "Lactulose reduces ammonia levels in hepatic encephalopathy by:", opts: ["Inhibiting liver enzymes", "Drawing water and lowering colon pH to trap ammonia", "Binding bile acids", "Blocking urea synthesis"], correct: 1, reason: "Osmotic action and acidification trap ammonia as ammonium ions in the gut for excretion." },
-      { q: "Which antibiotic is a macrolide that inhibits the 50S ribosomal subunit?", opts: ["Amoxicillin", "Azithromycin", "Ciprofloxacin", "Cisplatin"], correct: 1, reason: "Azithromycin binds to bacterial 50S ribosomes, halting protein synthesis." },
-      { q: "Warfarin anticoagulation is monitored primarily using which laboratory test?", opts: ["aPTT", "PT / INR", "Platelet count", "Bleeding time"], correct: 1, reason: "Warfarin inhibits Vitamin K-dependent factors (II, VII, IX, X), monitored via Prothrombin Time / INR." },
-      { q: "Digoxin toxicity is classically characterized by which visual disturbance?", opts: ["Tunnel vision", "Yellow-green vision (xanthopsia)", "Complete blindness", "Double vision"], correct: 1, reason: "Cardiac glycosides affect retinal sodium pumps, often producing yellow halos or blurred vision." },
-      { q: "Ciprofloxacin belongs to which antibacterial class?", opts: ["Penicillin", "Fluoroquinolone", "Macrolide", "Cephalosporin"], correct: 1, reason: "Ciprofloxacin inhibits bacterial DNA gyrase and topoisomerase IV." },
-      { q: "Which anti-neoplastic medication is associated with cardiotoxicity as a key adverse effect?", opts: ["Cisplatin", "Doxorubicin", "Vincristine", "Methotrexate"], correct: 1, reason: "Doxorubicin generates free radicals that cause cardiac muscle toxicity." },
-      { q: "Doxorubicin is an anthracycline antibiotic noted for what organ toxicity?", opts: ["Hepatotoxicity", "Cardiotoxicity", "Pulmonary fibrosis", "Splenic infarction"], correct: 1, reason: "Doxorubicin generates reactive oxygen species that damage cardiac muscle tissue." },
-      { q: "Omeprazole's mechanism of action involves inhibition of:", opts: ["H+/K+ ATPase pump", "Carbonic anhydrase", "Cyclooxygenase", "Acetylcholinesterase"], correct: 0, reason: "Proton pump inhibitors block gastric parietal cell H+/K+ ATPase pumps." }
+      { q: "What is the primary pharmacological class and clinical use of Fluconazole?", opts: ["Antibiotic for sepsis", "Antiviral for influenza", "Antifungal (Triazole) for candidiasis", "Laxative for constipation"], correct: 2, reason: "Fluconazole is a triazole antifungal that inhibits CYP450 sterol demethylation to treat fungal infections." }
     ];
 
     var todaysMCQList = [];
     var currentMCQStep = 0;
     var dailyQuizScore = 0;
-    var quizCompletedToday = false;
 
-    function initDailyMnemonic() {
-      var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-      var item = mnemonicsDB[dayOfYear % mnemonicsDB.length];
-      
-      document.getElementById('mnemonicCategory').innerText = item.category;
-      document.getElementById('mnemonicTitle').innerText = item.title;
-      document.getElementById('mnemonicFormula').innerText = item.formula;
-      
-      var bdContainer = document.getElementById('mnemonicBreakdown');
-      var html = '';
-      for (var i = 0; i < item.breakdown.length; i++) {
-        html += '<div class="mnemonic-breakdown-item">' +
-                '<span class="mnemonic-breakdown-key">' + item.breakdown[i].key + '</span>' +
-                '<span>' + item.breakdown[i].value + '</span>' +
-                '</div>';
-      }
-      bdContainer.innerHTML = html;
-      document.getElementById('mnemonicAlert').innerText = item.alert;
-    }
-
-    function initDailyStudyPlan() {
-      var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-      var todaysTasks = studyPlansPool[dayOfYear % studyPlansPool.length];
-      var container = document.getElementById('dailyStudyPlanContainer');
-      var html = '';
-      for (var i = 0; i < todaysTasks.length; i++) {
-        html += '<label class="plan-task-item" id="taskItem' + i + '">' +
-                '<input type="checkbox" id="taskCheckbox' + i + '" onchange="saveAndUpdateProgress()">' +
-                '<span class="plan-task-text">' + todaysTasks[i] + '</span>' +
-                '</label>';
-      }
-      container.innerHTML = html;
-    }
-
-    function initDailyMCQs() {
-      var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-      todaysMCQList = [];
-      for (var i = 0; i < 5; i++) {
-        todaysMCQList.push(fullMCQBank[(dayOfYear * 5 + i) % fullMCQBank.length]);
-      }
-      
-      dailyQuizScore = parseInt(localStorage.getItem('pharmacologyDailyQuizScore_' + dayOfYear)) || 0;
-      quizCompletedToday = localStorage.getItem('pharmacologyQuizDone_' + dayOfYear) === 'true';
-      currentMCQStep = parseInt(localStorage.getItem('pharmacologyMCQStep_' + dayOfYear)) || 0;
-
-      if (quizCompletedToday || currentMCQStep >= 5) {
-        renderCompletedMCQState();
-      } else {
-        renderCurrentMCQ();
-      }
-    }
-
-    function renderCompletedMCQState() {
-      var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-      document.getElementById('srIntervalLabel').innerText = "Status: Completed Today";
-      document.getElementById('mcqCounterStatus').innerText = "All 5 Questions Done";
-      document.getElementById('mcqStreakCount').innerText = "Score: " + dailyQuizScore + " / 5";
-      document.getElementById('mcqQuestionText').innerText = "Fantastic job! You have completed today's 5-question daily challenge. Your final score is " + dailyQuizScore + " out of 5.";
-      document.getElementById('mcqOptionsContainer').innerHTML = '<button class="mcq-opt-btn" style="background:#f0fdf4; color:#065f46; font-weight:800; text-align:center;">Review completed successfully ✓ Locked for today! Come back tomorrow for 5 new questions.</button>';
-      document.getElementById('mcqExplanationBox').style.display = 'none';
-      document.getElementById('nextMCQBtn').style.display = 'none';
-    }
-
-    function renderCurrentMCQ() {
-      var mcq = todaysMCQList[currentMCQStep];
-      document.getElementById('srIntervalLabel').innerText = "Interval: Day " + ((currentMCQStep * 3) + 1) + " Spaced Review";
-      document.getElementById('mcqCounterStatus').innerText = "Question " + (currentMCQStep + 1) + " of 5";
-      document.getElementById('mcqStreakCount').innerText = "Score: " + dailyQuizScore + " / 5";
-      document.getElementById('mcqQuestionText').innerText = mcq.q;
-      document.getElementById('mcqReasonText').innerText = mcq.reason;
-
-      var optContainer = document.getElementById('mcqOptionsContainer');
-      var html = '';
-      for (var i = 0; i < mcq.opts.length; i++) {
-        html += '<button class="mcq-opt-btn" onclick="submitMCQAnswer(' + i + ', ' + mcq.correct + ')">' + (i + 1) + '. ' + mcq.opts[i] + '</button>';
-      }
-      optContainer.innerHTML = html;
-      document.getElementById('mcqExplanationBox').style.display = 'none';
-      document.getElementById('nextMCQBtn').style.display = 'none';
-    }
-
-    function submitMCQAnswer(selectedIndex, correctIndex) {
-      var optButtons = document.getElementsByClassName('mcq-opt-btn');
-      for (var i = 0; i < optButtons.length; i++) {
-        optButtons[i].disabled = true;
-        if (i === correctIndex) {
-          optButtons[i].classList.add('correct');
-        } else if (i === selectedIndex) {
-          optButtons[i].classList.add('incorrect');
-        }
-      }
-
-      if (selectedIndex === correctIndex) {
-        dailyQuizScore++;
-      }
-
-      var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-      localStorage.setItem('pharmacologyDailyQuizScore_' + dayOfYear, dailyQuizScore);
-      document.getElementById('mcqStreakCount').innerText = "Score: " + dailyQuizScore + " / 5";
-      document.getElementById('mcqExplanationBox').style.display = 'block';
-
-      currentMCQStep++;
-      localStorage.setItem('pharmacologyMCQStep_' + dayOfYear, currentMCQStep);
-
-      if (currentMCQStep >= 5) {
-        localStorage.setItem('pharmacologyQuizDone_' + dayOfYear, 'true');
-      }
-
-      document.getElementById('nextMCQBtn').style.display = 'block';
-      saveAndUpdateProgress();
-    }
-
-    function nextMCQQuestion() {
-      var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-      if (currentMCQStep >= 5 || localStorage.getItem('pharmacologyQuizDone_' + dayOfYear) === 'true') {
-        renderCompletedMCQState();
-      } else {
-        renderCurrentMCQ();
-      }
-    }
-
-    function filterDrugs() {
-      var query = document.getElementById('drugSearchInput').value.toLowerCase().trim();
-      var dropdown = document.getElementById('drugResultsDropdown');
-      
-      if (!query) {
-        dropdown.style.display = 'none';
-        return;
-      }
-
-      var matches = [];
-      for (var i = 0; i < drugDatabase.length; i++) {
-        if (drugDatabase[i].name.toLowerCase().indexOf(query) !== -1 || drugDatabase[i].classTag.toLowerCase().indexOf(query) !== -1) {
-          matches.push(drugDatabase[i]);
-        }
-      }
-      
-      if (matches.length === 0) {
-        dropdown.innerHTML = '<div class="drug-result-item"><span class="drug-name-main" style="color: #64748b;">No matching medications found (try fluconazole, cisplatin, metronidazole)</span></div>';
-        dropdown.style.display = 'block';
-        return;
-      }
-
-      var html = '';
-      for (var j = 0; j < matches.length; j++) {
-        html += '<div class="drug-result-item" onclick="openDrugDetailModal(\'' + matches[j].name + '\')">' +
-                '<div class="drug-name-main"><span>' + matches[j].name + '</span> <span class="drug-chapter-tag">' + matches[j].chapter + '</span></div>' +
-                '<span class="drug-class-tag">Class: ' + matches[j].classTag + '</span>' +
-                '</div>';
-      }
-      dropdown.innerHTML = html;
-      dropdown.style.display = 'block';
-    }
-
-    function openDrugDetailModal(drugName) {
-      var foundDrug = null;
-      for (var i = 0; i < drugDatabase.length; i++) {
-        if (drugDatabase[i].name === drugName) {
-          foundDrug = drugDatabase[i];
-          break;
-        }
-      }
-
-      if (foundDrug) {
-        document.getElementById('modalDrugName').innerText = foundDrug.name;
-        document.getElementById('modalDrugCategory').innerText = foundDrug.chapter;
-        document.getElementById('modalDrugClass').innerText = "Class: " + foundDrug.classTag;
-        document.getElementById('modalDrugMoa').innerText = foundDrug.moa;
-        document.getElementById('modalDrugUses').innerText = foundDrug.uses;
-        document.getElementById('modalDrugSideEffects').innerText = foundDrug.sideEffects;
-
-        document.getElementById('drugDetailModal').style.display = 'flex';
-        document.getElementById('drugResultsDropdown').style.display = 'none';
-        document.getElementById('drugSearchInput').value = '';
-      }
-    }
-
-    function closeDrugDetailModal() {
-      document.getElementById('drugDetailModal').style.display = 'none';
-    }
-
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('.header-search-container')) {
-        document.getElementById('drugResultsDropdown').style.display = 'none';
-      }
-    });
-
-    /* Progress Tracker Logic */
-    var unitsReadSet = JSON.parse(localStorage.getItem('pharmacologyUnitsReadSet')) || [];
-
-    function markUnitRead(event, unitNum) {
-      if (unitsReadSet.indexOf(unitNum) === -1) {
-        unitsReadSet.push(unitNum);
-        localStorage.setItem('pharmacologyUnitsReadSet', JSON.stringify(unitsReadSet));
-      }
-      saveAndUpdateProgress();
-      return true;
-    }
-
-    function checkChapterAccess(event, unitNum) {
-      if (localStorage.getItem('pharmacologyUnlocked') !== 'true') {
-        event.preventDefault();
-        alert('🔒 This chapter is locked! Please enter your valid single-use access code in the sidebar to unlock all advanced chapters.');
-        return false;
-      }
-      return markUnitRead(event, unitNum);
-    }
-
-    function saveAndUpdateProgress() {
-      var checkboxes = [
-        document.getElementById('taskCheckbox0'),
-        document.getElementById('taskCheckbox1'),
-        document.getElementById('taskCheckbox2')
-      ];
-
-      var checkedCount = 0;
-      var taskStates = [];
-
-      for (var i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i]) {
-          var isChecked = checkboxes[i].checked;
-          taskStates.push(isChecked);
-          var taskItem = document.getElementById('taskItem' + i);
-          if (isChecked) {
-            checkedCount++;
-            if (taskItem) taskItem.classList.add('completed');
-          } else {
-            if (taskItem) taskItem.classList.remove('completed');
-          }
-        }
-      }
-
-      localStorage.setItem('pharmacologyStudyTasks', JSON.stringify(taskStates));
-
-      var unitsReadCount = unitsReadSet.length;
-      var masteredMCQs = dailyQuizScore;
-
-      var totalPossibleScore = 16;
-      var currentScore = checkedCount + unitsReadCount + masteredMCQs;
-      var percent = Math.round((currentScore / totalPossibleScore) * 100);
-      if (percent > 100) percent = 100;
-
-      document.getElementById('progressText').innerText = "Tasks & Units Completed: " + percent + " percent";
-      document.getElementById('progressPercentNum').innerText = percent + "%";
-      document.getElementById('progressBarFill').style.width = percent + "%";
-      document.getElementById('completedCountNum').innerText = checkedCount + " / 3";
-      document.getElementById('unitsReadNum').innerText = unitsReadCount + " / 8";
-      document.getElementById('quizScoreNum').innerText = masteredMCQs + " / 5";
-    }
-
-    function loadSavedProgress() {
-      var savedStates = JSON.parse(localStorage.getItem('pharmacologyStudyTasks'));
-      if (savedStates) {
-        for (var i = 0; i < savedStates.length; i++) {
-          var cb = document.getElementById('taskCheckbox' + i);
-          if (cb) cb.checked = savedStates[i];
-        }
-      }
-      saveAndUpdateProgress();
-    }
-
-    function dismissWelcomeModal() {
-      document.getElementById('desktopWelcomeModal').style.display = 'none';
-    }
-
-    // Security
-    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-
-    // SHA-256 Hashes for Access Codes (Raw plaintext codes are hidden from public JS)
-    // Pre-computed hashes for 3 Class/Batch Codes and 30 Individual Student Codes
-    var validCodeHashes = JSON.parse(localStorage.getItem('pharmacologyCodeHashes')) || {
-      // 3 BATCH / CLASS CODES
-      "4d7426815ef7ea44ee90f77b789efd95180cb9e2fa245dbdb5fc274e1e0a2ca3": false, // BSN-CLASS-2026
-      "b63bc58b29fce8f8bd4b4b2ef9a98ef1b11e2f7b8cfd52a2656910e53a2bbef1": false, // NEWLIFE-PHARMA-02
-      "0ef7dca1f5d81aee5db7dce4d98cbca38fbca0b2f56baea0c69d8aa0bfbeea2d": false, // MULTAN-BATCH-03
-
-      // 30 INDIVIDUAL STUDENT CODES
-      "ffebfb35099a5eeb55ea828c4e4f8d5bcdd99547ea87d195c898c607cf854f3a": false, // MK-IND-01
-      "a60c8227b9ef08967b578c75150e7b752251a37651a5e1201cb4d6d63bc3ebfa": false, // MK-IND-02
-      "eaae46654c60205d41bc3ccebb86bfcf7d0ec2086e1081a9bd288e4428054c3a": false, // MK-IND-03
-      "22bd7fae3ddf0a597ef678d4924cb91aa89c6d3283259b3bc1c6c8ed5084918e": false, // MK-IND-04
-      "ea1d09b23b36cf36070a75fe04e579bd666bc0f5fb9f7a73cdfd61ea9bc8ec73": false, // MK-IND-05
-      "05bf755f58c7333d7b878342dcadfa9ca467c648cc307cbefbcbebe3cb4787a7": false, // MK-IND-06
-      "fb486efc96cb8a48ef0e5a6a4f91e4aa96dfd2217c98e169424cf3beaa2d8e48": false, // MK-IND-07
-      "cbe44ae1dd76865d448bf8133543ebce4bc74dbe6cbdf8e85cd17a6aa0089bd2": false, // MK-IND-08
-      "402eb060b9bc318858dcd3fb20b8fa04b68071e6be31bb733671ffdf2e9d2983": false, // MK-IND-09
-      "fa3914a8bd97f08b3a0e10b2df7e8c4e09f5dbb2c9d2fbeae37ef93aa8dd206d": false, // MK-IND-10
-      "68bf76f2963660fb63ff68e9e436893699665bc7beec38a4d700e572013eb175": false, // MK-IND-11
-      "970ca881aa54f738fe283e7ff52f36077ff0a58129ccceeb43fc80d60d3d3a04": false, // MK-IND-12
-      "9fbbf0fddfe4eaee268e0d9b400fa4beeb74c058721bf1853609fc185011f0a2": false, // MK-IND-13
-      "1400dc9d7e5be4eb7ff421a1f81014cccebf4cb4432a9a7a66f7f6f94ffda322": false, // MK-IND-14
-      "0ee72d17ef2f05eb4b9fb3993ed7aed3c81e2dc2a5dfae98bf022bc437f17be2": false, // MK-IND-15
-      "ffed8366e6c1e57c6b90f42194d8721c43553ecfe1118fa3be98cc7ec856fdb1": false, // MK-IND-16
-      "cf1d5eb85b19db005b4122d20b66b4421bca961c0c2a26fb6ef7ef8053e16e68": false, // MK-IND-17
-      "49bd00cfc22b9b7d52f6fbf7ca04fbecc67290130d2fc21422ee85ccefcb11a9": false, // MK-IND-18
-      "44c8ed21eb1d3dd638e05a8b79b69113e1107567843d7c5ed7faefef89a31182": false, // MK-IND-19
-      "050c95cc5417b3eb1699f0dc91456bfeb8f48dfc4d5e9df53597fe2cd7217f25": false, // MK-IND-20
-      "123bbbf8f0907ebc6fca6bd042b43b67e00f9a2399bd51a13e2f183cf93806a0": false, // MK-IND-21
-      "95d52ca57e3f84f0010eb96ebf4b008d5dfdafeee321a69a91d810a9f0f9ca22": false, // MK-IND-22
-      "feadacdf8ccfe8044a677336181f72750ca8490a1846b006c0fcff4e414c4c51": false, // MK-IND-23
-      "22feef83a303dd5d6bd5b045e054bf2fb88bd82ebbd0f40d8531777d48fae9ca": false, // MK-IND-24
-      "511cc957cd7d2b2cd33a77dff0007823f6eeebcd7b2beffc1c1fdfddfc0aa328": false, // MK-IND-25
-      "02d8479e9ebdb4ddbe43586b6ee6ccfb45eb9d6f33333ec1dc2d2a417dd55a12": false, // MK-IND-26
-      "3365fa3e7f62c64dd43bd77b73c46e0caaa5fbd5fe6cd4f5ea7aa500cd527ce2": false, // MK-IND-27
-      "b59a685bcfe0d0cfefb30f5aee93060cf476cd8dd678d21c322b6c1eb2ea7ef7": false, // MK-IND-28
-      "665809fa6ffce19998889aa3bc5f891b2bf1d13dbfbaf37851bc312be03a5e84": false, // MK-IND-29
-      "fa19b06be33bc8cfbe09459cf9cf1e2e9cffbb745c1dcbe879f94eb9236e7ec5": false  // MK-IND-30
-    };
-
-    async function hashString(str) {
-      const buffer = new TextEncoder().encode(str.trim().toUpperCase());
-      const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    }
+    /* MASTER VALID ACCESS CODES LIST */
+    var validAccessCodesList = [
+      "BSN-CLASS-2026", "NEWLIFE-PHARMA-02", "MULTAN-BATCH-03",
+      "MK-IND-01", "MK-IND-02", "MK-IND-03", "MK-IND-04", "MK-IND-05",
+      "MK-IND-06", "MK-IND-07", "MK-IND-08", "MK-IND-09", "MK-IND-10",
+      "MK-IND-11", "MK-IND-12", "MK-IND-13", "MK-IND-14", "MK-IND-15",
+      "MK-IND-16", "MK-IND-17", "MK-IND-18", "MK-IND-19", "MK-IND-20",
+      "MK-IND-21", "MK-IND-22", "MK-IND-23", "MK-IND-24", "MK-IND-25",
+      "MK-IND-26", "MK-IND-27", "MK-IND-28", "MK-IND-29", "MK-IND-30"
+    ];
 
     window.onload = function() {
-      // REQUIRE VALID LOGIN BEFORE ACCESSING DASHBOARD
       if (localStorage.getItem('pharmacologyLoggedIn') !== 'true') {
         window.location.replace('login.html');
         return;
@@ -1102,65 +693,33 @@
       }
     };
 
-    function loadUserDataToUI() {
-      var userJSON = localStorage.getItem('pharmacologyUser');
-      if (userJSON) {
-        var user = JSON.parse(userJSON);
-        document.getElementById('student-name').innerText = user.name || 'Mudassir Hussain Khan';
-        document.getElementById('student-institute').innerText = user.institute || 'New Life Institute of Nursing';
-        document.getElementById('student-email').innerText = user.email || 'rollno 002075';
-        document.getElementById('student-semester').innerText = user.semester || '4th Semester';
+    /* VERIFY CODE & EXCLUSIVITY TRACKING */
+    function verifySingleUseCode() {
+      var rawInput = document.getElementById('sidebarAccessInput').value;
+      var enteredCode = rawInput.trim().toUpperCase();
+      
+      if (!enteredCode) { 
+        alert('Please enter an access code.'); 
+        return; 
       }
-    }
 
-    function openEditProfileModal() {
-      var userJSON = localStorage.getItem('pharmacologyUser');
-      var user = userJSON ? JSON.parse(userJSON) : { name: 'Mudassir Hussain Khan', institute: 'New Life Institute of Nursing', email: 'rollno 002075', semester: '4th Semester' };
-      document.getElementById('editNameInput').value = user.name || '';
-      document.getElementById('editInstituteInput').value = user.institute || '';
-      document.getElementById('editEmailInput').value = user.email || '';
-      document.getElementById('editSemesterInput').value = user.semester || '';
-      document.getElementById('editProfileModal').style.display = 'flex';
-    }
-    function closeEditProfileModal() { document.getElementById('editProfileModal').style.display = 'none'; }
-    function saveProfileChanges() {
-      var updatedUser = {
-        name: document.getElementById('editNameInput').value.trim(),
-        institute: document.getElementById('editInstituteInput').value.trim(),
-        email: document.getElementById('editEmailInput').value.trim(),
-        semester: document.getElementById('editSemesterInput').value.trim()
-      };
-      localStorage.setItem('pharmacologyUser', JSON.stringify(updatedUser));
-      loadUserDataToUI();
-      closeEditProfileModal();
-      alert('Profile updated successfully!');
-    }
+      var usedCodes = JSON.parse(localStorage.getItem('pharmacologyUsedCodes')) || [];
 
-    function openForgotPasswordModal() { document.getElementById('forgotPasswordModal').style.display = 'flex'; }
-    function closeForgotPasswordModal() { document.getElementById('forgotPasswordModal').style.display = 'none'; }
-    function submitPasswordReset() {
-      alert('Password reset successfully completed!');
-      closeForgotPasswordModal();
-    }
+      // Check if code was already redeemed on this device
+      if (usedCodes.includes(enteredCode)) {
+        alert('🚫 Access Denied: This access code has ALREADY been used and spent!');
+        return;
+      }
 
-    async function verifySingleUseCode() {
-      var enteredCode = document.getElementById('sidebarAccessInput').value.trim();
-      if (!enteredCode) { alert('Please enter an access code.'); return; }
-
-      var inputHash = await hashString(enteredCode);
-
-      if (validCodeHashes.hasOwnProperty(inputHash)) {
-        if (validCodeHashes[inputHash] === true) {
-          alert('Access Denied: This code has already been used!');
-        } else {
-          validCodeHashes[inputHash] = true;
-          localStorage.setItem('pharmacologyCodeHashes', JSON.stringify(validCodeHashes));
-          localStorage.setItem('pharmacologyUnlocked', 'true');
-          unlockAllChaptersUI();
-          alert('Success! All advanced chapters and resources are now unlocked.');
-        }
+      // Validate against pre-approved list
+      if (validAccessCodesList.includes(enteredCode)) {
+        usedCodes.push(enteredCode);
+        localStorage.setItem('pharmacologyUsedCodes', JSON.stringify(usedCodes));
+        localStorage.setItem('pharmacologyUnlocked', 'true');
+        unlockAllChaptersUI();
+        alert('🎉 Success! Access verified. All advanced units and resources are now unlocked on your account.');
       } else {
-        alert('Invalid Access Code! Contact admin via WhatsApp (03241064487).');
+        alert('❌ Invalid Access Code! Please check your code or buy access via WhatsApp (03241064487).');
       }
     }
 
@@ -1180,23 +739,179 @@
       document.getElementById('sidebarAccessInput').disabled = true;
     }
 
-    function previewImage(event) {
-      var file = event.target.files[0];
-      if (file) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-          document.getElementById('profile-pic').src = e.target.result;
-          localStorage.setItem('pharmacologyUserPic', e.target.result);
-        };
-        reader.readAsDataURL(file);
+    function checkChapterAccess(event, unitNum) {
+      if (localStorage.getItem('pharmacologyUnlocked') !== 'true') {
+        event.preventDefault();
+        alert('🔒 This chapter is locked! Enter a valid single-use access code in the sidebar to unlock.');
+        return false;
+      }
+      return markUnitRead(event, unitNum);
+    }
+
+    function markUnitRead(event, unitNum) {
+      var unitsReadSet = JSON.parse(localStorage.getItem('pharmacologyUnitsReadSet')) || [];
+      if (unitsReadSet.indexOf(unitNum) === -1) {
+        unitsReadSet.push(unitNum);
+        localStorage.setItem('pharmacologyUnitsReadSet', JSON.stringify(unitsReadSet));
+      }
+      saveAndUpdateProgress();
+      return true;
+    }
+
+    function initDailyMnemonic() {
+      var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+      var item = mnemonicsDB[dayOfYear % mnemonicsDB.length];
+      document.getElementById('mnemonicCategory').innerText = item.category;
+      document.getElementById('mnemonicTitle').innerText = item.title;
+      document.getElementById('mnemonicFormula').innerText = item.formula;
+      
+      var bdContainer = document.getElementById('mnemonicBreakdown');
+      var html = '';
+      for (var i = 0; i < item.breakdown.length; i++) {
+        html += '<div class="mnemonic-breakdown-item"><span class="mnemonic-breakdown-key">' + item.breakdown[i].key + '</span><span>' + item.breakdown[i].value + '</span></div>';
+      }
+      bdContainer.innerHTML = html;
+      document.getElementById('mnemonicAlert').innerText = item.alert;
+    }
+
+    function initDailyStudyPlan() {
+      var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+      var todaysTasks = studyPlansPool[dayOfYear % studyPlansPool.length];
+      var container = document.getElementById('dailyStudyPlanContainer');
+      var html = '';
+      for (var i = 0; i < todaysTasks.length; i++) {
+        html += '<label class="plan-task-item" id="taskItem' + i + '"><input type="checkbox" id="taskCheckbox' + i + '" onchange="saveAndUpdateProgress()"><span class="plan-task-text">' + todaysTasks[i] + '</span></label>';
+      }
+      container.innerHTML = html;
+    }
+
+    function initDailyMCQs() {
+      var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+      todaysMCQList = [];
+      for (var i = 0; i < 3; i++) {
+        todaysMCQList.push(fullMCQBank[(dayOfYear * 3 + i) % fullMCQBank.length]);
+      }
+      renderCurrentMCQ();
+    }
+
+    function renderCurrentMCQ() {
+      var mcq = todaysMCQList[currentMCQStep];
+      if (!mcq) return;
+      document.getElementById('mcqQuestionText').innerText = mcq.q;
+      document.getElementById('mcqReasonText').innerText = mcq.reason;
+
+      var optContainer = document.getElementById('mcqOptionsContainer');
+      var html = '';
+      for (var i = 0; i < mcq.opts.length; i++) {
+        html += '<button class="mcq-opt-btn" onclick="submitMCQAnswer(' + i + ', ' + mcq.correct + ')">' + (i + 1) + '. ' + mcq.opts[i] + '</button>';
+      }
+      optContainer.innerHTML = html;
+      document.getElementById('mcqExplanationBox').style.display = 'none';
+      document.getElementById('nextMCQBtn').style.display = 'none';
+    }
+
+    function submitMCQAnswer(selectedIndex, correctIndex) {
+      var optButtons = document.getElementsByClassName('mcq-opt-btn');
+      for (var i = 0; i < optButtons.length; i++) {
+        optButtons[i].disabled = true;
+        if (i === correctIndex) optButtons[i].classList.add('correct');
+        else if (i === selectedIndex) optButtons[i].classList.add('incorrect');
+      }
+      if (selectedIndex === correctIndex) dailyQuizScore++;
+      document.getElementById('mcqExplanationBox').style.display = 'block';
+      document.getElementById('nextMCQBtn').style.display = 'block';
+    }
+
+    function nextMCQQuestion() {
+      currentMCQStep++;
+      if (currentMCQStep < todaysMCQList.length) {
+        renderCurrentMCQ();
+      } else {
+        document.getElementById('mcqQuestionText').innerText = "All daily questions complete!";
+        document.getElementById('mcqOptionsContainer').innerHTML = '';
+        document.getElementById('nextMCQBtn').style.display = 'none';
       }
     }
 
+    function saveAndUpdateProgress() {
+      var unitsReadSet = JSON.parse(localStorage.getItem('pharmacologyUnitsReadSet')) || [];
+      var percent = Math.round((unitsReadSet.length / 8) * 100);
+      document.getElementById('progressText').innerText = "Units Completed: " + percent + " percent";
+      document.getElementById('progressPercentNum').innerText = percent + "%";
+      document.getElementById('progressBarFill').style.width = percent + "%";
+      document.getElementById('unitsReadNum').innerText = unitsReadSet.length + " / 8";
+    }
+
+    function loadSavedProgress() { saveAndUpdateProgress(); }
+    function loadUserDataToUI() {
+      var user = JSON.parse(localStorage.getItem('pharmacologyUser'));
+      if (user) {
+        document.getElementById('student-name').innerText = user.name;
+        document.getElementById('student-institute').innerText = user.institute;
+        document.getElementById('student-email').innerText = user.email;
+        document.getElementById('student-semester').innerText = user.semester;
+      }
+    }
+
+    function openEditProfileModal() { document.getElementById('editProfileModal').style.display = 'flex'; }
+    function closeEditProfileModal() { document.getElementById('editProfileModal').style.display = 'none'; }
+    function saveProfileChanges() {
+      var updatedUser = {
+        name: document.getElementById('editNameInput').value.trim(),
+        institute: document.getElementById('editInstituteInput').value.trim(),
+        email: document.getElementById('editEmailInput').value.trim(),
+        semester: document.getElementById('editSemesterInput').value.trim()
+      };
+      localStorage.setItem('pharmacologyUser', JSON.stringify(updatedUser));
+      loadUserDataToUI();
+      closeEditProfileModal();
+    }
+
+    function openForgotPasswordModal() { document.getElementById('forgotPasswordModal').style.display = 'flex'; }
+    function closeForgotPasswordModal() { document.getElementById('forgotPasswordModal').style.display = 'none'; }
+    function submitPasswordReset() { closeForgotPasswordModal(); }
+    function dismissWelcomeModal() { document.getElementById('desktopWelcomeModal').style.display = 'none'; }
+    function previewImage(event) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('profile-pic').src = e.target.result;
+        localStorage.setItem('pharmacologyUserPic', e.target.result);
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
     function logout() {
       localStorage.removeItem('pharmacologyLoggedIn');
       localStorage.removeItem('pharmacologyUnlocked');
       window.location.href = 'login.html';
     }
+
+    function filterDrugs() {
+      var query = document.getElementById('drugSearchInput').value.toLowerCase().trim();
+      var dropdown = document.getElementById('drugResultsDropdown');
+      if (!query) { dropdown.style.display = 'none'; return; }
+      var html = '';
+      for (var i = 0; i < drugDatabase.length; i++) {
+        if (drugDatabase[i].name.toLowerCase().includes(query)) {
+          html += '<div class="drug-result-item" onclick="openDrugDetailModal(\'' + drugDatabase[i].name + '\')"><div class="drug-name-main">' + drugDatabase[i].name + '</div></div>';
+        }
+      }
+      dropdown.innerHTML = html || '<div class="drug-result-item">No match</div>';
+      dropdown.style.display = 'block';
+    }
+
+    function openDrugDetailModal(name) {
+      var drug = drugDatabase.find(d => d.name === name);
+      if (drug) {
+        document.getElementById('modalDrugName').innerText = drug.name;
+        document.getElementById('modalDrugCategory').innerText = drug.chapter;
+        document.getElementById('modalDrugClass').innerText = drug.classTag;
+        document.getElementById('modalDrugMoa').innerText = drug.moa;
+        document.getElementById('modalDrugUses').innerText = drug.uses;
+        document.getElementById('modalDrugSideEffects').innerText = drug.sideEffects;
+        document.getElementById('drugDetailModal').style.display = 'flex';
+      }
+    }
+    function closeDrugDetailModal() { document.getElementById('drugDetailModal').style.display = 'none'; }
   </script>
 </body>
 </html>
