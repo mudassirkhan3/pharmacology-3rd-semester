@@ -46,8 +46,7 @@
     
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.04) 0%, rgba(37, 99, 235, 0.02) 40%, #f8fafc 90%);
-      background-attachment: fixed;
+      background: #f8fafc;
       color: #0f172a;
     }
 
@@ -55,13 +54,13 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
-    /* ADME Journey Track Animation */
+    /* ADME Journey Track Animation - Fixed Non-Overlapping Path */
     @keyframes admePillMove {
-      0% { left: 0%; transform: translateY(-50%) rotate(0deg); }
-      25% { left: 26%; transform: translateY(-50%) rotate(90deg); }
-      50% { left: 52%; transform: translateY(-50%) rotate(180deg); }
-      75% { left: 78%; transform: translateY(-50%) rotate(270deg); }
-      100% { left: 92%; transform: translateY(-50%) rotate(360deg); }
+      0% { left: 2%; transform: rotate(0deg); }
+      25% { left: 27%; transform: rotate(90deg); }
+      50% { left: 52%; transform: rotate(180deg); }
+      75% { left: 77%; transform: rotate(270deg); }
+      100% { left: 92%; transform: rotate(360deg); }
     }
 
     .pill-animated {
@@ -101,8 +100,6 @@
 
     <!-- HERO HEADER -->
     <div class="bg-gradient-to-br from-brand-900 via-brand-800 to-brand-600 text-white rounded-3xl p-5 sm:p-8 shadow-xl shadow-brand-900/15 border border-brand-700/50 mb-6 relative overflow-hidden">
-      <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
-
       <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-white text-[11px] font-bold uppercase tracking-wide backdrop-blur-sm border border-white/20">
           <i data-lucide="activity" class="w-3.5 h-3.5 text-medical-200"></i> MK Study Hub • Core Module
@@ -186,74 +183,77 @@
       </div>
     </section>
 
-    <!-- 2. ADME OVERVIEW & MAIN VISUAL ANIMATION ENGINE -->
-    <section id="adme-visual" class="bg-slate-900 text-white rounded-3xl p-5 sm:p-7 border border-slate-800 shadow-xl mb-10 relative overflow-hidden">
+    <!-- 2. ADME OVERVIEW & NON-OVERLAPPING ANIMATION ENGINE -->
+    <section id="adme-visual" class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200 shadow-sm mb-10 relative">
       <div class="text-center max-w-xl mx-auto mb-6">
-        <span class="inline-block px-3 py-1 rounded-full bg-brand-500/20 text-brand-300 text-[11px] font-extrabold uppercase tracking-wider mb-2 border border-brand-500/30">
+        <span class="inline-block px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-[11px] font-extrabold uppercase tracking-wider mb-2 border border-brand-200">
           Main Visual Feature
         </span>
-        <h2 class="text-lg sm:text-2xl font-black text-white">2. Interactive ADME Journey Engine</h2>
-        <p class="text-xs sm:text-sm text-slate-400 mt-1">Watch how a drug molecule travels through the four major biological checkpoints</p>
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900">2. Interactive ADME Journey Engine</h2>
+        <p class="text-xs sm:text-sm text-slate-600 mt-1">Watch how a drug molecule travels through the four major biological checkpoints</p>
       </div>
 
-      <!-- ANIMATED PIPELINE TRACK -->
-      <div class="relative py-6 my-2 bg-slate-800/80 rounded-2xl border border-slate-700/60 px-4">
-        <div class="absolute top-1/2 left-[5%] right-[5%] h-1.5 bg-gradient-to-r from-brand-500 via-medical-500 to-amber-500 rounded-full -translate-y-1/2"></div>
+      <!-- ANIMATED PIPELINE TRACK WITH CLEAN SEPARATION -->
+      <div class="bg-slate-900 text-white rounded-2xl p-4 sm:p-6 shadow-inner space-y-4">
         
-        <!-- TRAVELING PILL MOLECULE -->
-        <div id="admePill" class="absolute top-1/2 left-0 pill-animated text-2xl z-20 cursor-pointer drop-shadow-[0_0_10px_rgba(56,189,248,0.9)]">
-          💊
+        <!-- DEDICATED ANIMATION BAR AT TOP -->
+        <div class="relative h-10 bg-slate-800 rounded-xl border border-slate-700 overflow-hidden flex items-center">
+          <div class="absolute left-[2%] right-[2%] h-1 bg-gradient-to-r from-brand-500 via-medical-500 to-amber-500 rounded-full"></div>
+          <div id="admePill" class="absolute pill-animated text-2xl z-10 drop-shadow-[0_0_8px_rgba(56,189,248,0.9)]">
+            💊
+          </div>
         </div>
 
-        <div class="grid grid-cols-4 gap-2 relative z-10">
+        <!-- STAGE CARDS BELOW (NO OVERLAP POSSIBLE) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
           <!-- STAGE 1 CARD -->
-          <a href="#absorption" class="flex flex-col items-center text-center group cursor-pointer">
-            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-600 text-white flex items-center justify-center font-bold text-lg mb-2 shadow-lg shadow-brand-600/30 border border-brand-400 group-hover:scale-105 transition">
+          <a href="#absorption" class="flex flex-col items-center text-center p-3 bg-slate-800 hover:bg-slate-700/80 rounded-xl border border-slate-700 transition group cursor-pointer">
+            <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold text-lg mb-1.5 shadow-md">
               🩸
             </div>
             <span class="text-xs font-black text-white group-hover:text-brand-300 transition">ABSORPTION</span>
-            <span class="text-[10px] text-slate-400 hidden sm:block">GI to Circulation</span>
+            <span class="text-[10px] text-slate-400">GI to Blood</span>
           </a>
 
           <!-- STAGE 2 CARD -->
-          <a href="#distribution" class="flex flex-col items-center text-center group cursor-pointer">
-            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-medical-600 text-white flex items-center justify-center font-bold text-lg mb-2 shadow-lg shadow-medical-600/30 border border-medical-400 group-hover:scale-105 transition">
+          <a href="#distribution" class="flex flex-col items-center text-center p-3 bg-slate-800 hover:bg-slate-700/80 rounded-xl border border-slate-700 transition group cursor-pointer">
+            <div class="w-10 h-10 rounded-xl bg-medical-600 text-white flex items-center justify-center font-bold text-lg mb-1.5 shadow-md">
               🫀
             </div>
             <span class="text-xs font-black text-white group-hover:text-medical-300 transition">DISTRIBUTION</span>
-            <span class="text-[10px] text-slate-400 hidden sm:block">Blood to Tissues</span>
+            <span class="text-[10px] text-slate-400">Blood to Tissues</span>
           </a>
 
           <!-- STAGE 3 CARD -->
-          <a href="#metabolism" class="flex flex-col items-center text-center group cursor-pointer">
-            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-amber-600 text-white flex items-center justify-center font-bold text-lg mb-2 shadow-lg shadow-amber-600/30 border border-amber-400 group-hover:scale-105 transition">
+          <a href="#metabolism" class="flex flex-col items-center text-center p-3 bg-slate-800 hover:bg-slate-700/80 rounded-xl border border-slate-700 transition group cursor-pointer">
+            <div class="w-10 h-10 rounded-xl bg-amber-600 text-white flex items-center justify-center font-bold text-lg mb-1.5 shadow-md">
               🧪
             </div>
             <span class="text-xs font-black text-white group-hover:text-amber-300 transition">METABOLISM</span>
-            <span class="text-[10px] text-slate-400 hidden sm:block">Hepatic Enzyme Transformation</span>
+            <span class="text-[10px] text-slate-400">Liver Breakdown</span>
           </a>
 
           <!-- STAGE 4 CARD -->
-          <a href="#elimination" class="flex flex-col items-center text-center group cursor-pointer">
-            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-rose-600 text-white flex items-center justify-center font-bold text-lg mb-2 shadow-lg shadow-rose-600/30 border border-rose-400 group-hover:scale-105 transition">
+          <a href="#elimination" class="flex flex-col items-center text-center p-3 bg-slate-800 hover:bg-slate-700/80 rounded-xl border border-slate-700 transition group cursor-pointer">
+            <div class="w-10 h-10 rounded-xl bg-rose-600 text-white flex items-center justify-center font-bold text-lg mb-1.5 shadow-md">
               💧
             </div>
             <span class="text-xs font-black text-white group-hover:text-rose-300 transition">ELIMINATION</span>
-            <span class="text-[10px] text-slate-400 hidden sm:block">Renal Output</span>
+            <span class="text-[10px] text-slate-400">Renal Output</span>
           </a>
         </div>
-      </div>
 
-      <!-- INTERACTIVE CONTROLS -->
-      <div class="flex items-center justify-center gap-3 mt-4">
-        <button onclick="togglePillAnimation()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold border border-slate-700 flex items-center gap-1.5 transition active:scale-95">
-          <i data-lucide="pause" class="w-3.5 h-3.5 text-medical-400"></i> Play / Pause
-        </button>
-        <button onclick="restartPillAnimation()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold border border-slate-700 flex items-center gap-1.5 transition active:scale-95">
-          <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 text-brand-400"></i> Replay Journey
-        </button>
+        <!-- CONTROLS -->
+        <div class="flex items-center justify-center gap-3 pt-2">
+          <button onclick="togglePillAnimation()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold border border-slate-700 flex items-center gap-1.5 transition active:scale-95">
+            <i data-lucide="pause" class="w-3.5 h-3.5 text-medical-400"></i> Play / Pause
+          </button>
+          <button onclick="restartPillAnimation()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold border border-slate-700 flex items-center gap-1.5 transition active:scale-95">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 text-brand-400"></i> Replay Journey
+          </button>
+        </div>
       </div>
-    </div>
+    </section>
 
     <!-- 3. ABSORPTION -->
     <section id="absorption" class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200 shadow-sm mb-8 space-y-4">
@@ -497,7 +497,7 @@
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
         <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
           <span class="w-7 h-7 rounded-xl bg-brand-600 text-white text-xs font-black flex items-center justify-center">8</span>
-          Elimination Half-Life ($t_{1/2}$)
+          Elimination Half-Life (t½)
         </h2>
         <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-extrabold uppercase tracking-wide border border-brand-200">
           Dosing Time
@@ -505,13 +505,13 @@
       </div>
 
       <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
-        <strong>Elimination Half-Life ($t_{1/2}$)</strong> is the time required for the plasma concentration of a drug to decrease by 50% (one-half) of its initial level.
+        <strong>Elimination Half-Life (t½)</strong> is the time required for the plasma concentration of a drug to decrease by 50% (one-half) of its initial level.
       </p>
 
       <div class="p-4 bg-medical-50 border border-medical-200 rounded-2xl text-xs sm:text-sm text-medical-950 leading-relaxed font-medium">
         <strong>The 4–5 Half-Lives Rule:</strong><br>
-        • It takes <strong>4 to 5 half-lives</strong> for repeated dosing of a drug to reach stable therapeutic blood levels (<strong>Steady State - $C_{ss}$</strong>).<br>
-        • It takes <strong>4 to 5 half-lives</strong> for a drug to be >96% completely cleared from the body once dosing stops.
+        • It takes <strong>4 to 5 half-lives</strong> for repeated dosing of a drug to reach stable therapeutic blood levels (<strong>Steady State - Css</strong>).<br>
+        • It takes <strong>4 to 5 half-lives</strong> for a drug to be &gt;96% completely cleared from the body once dosing stops.
       </div>
     </section>
 
@@ -541,7 +541,7 @@
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
         <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
           <span class="w-7 h-7 rounded-xl bg-brand-600 text-white text-xs font-black flex items-center justify-center">10</span>
-          Volume of Distribution ($V_d$)
+          Volume of Distribution (Vd)
         </h2>
         <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-extrabold uppercase tracking-wide border border-brand-200">
           Tissue Partitioning
@@ -549,7 +549,7 @@
       </div>
 
       <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
-        <strong>Volume of Distribution ($V_d$)</strong> is a calculated theoretical volume that relates the total amount of drug in the body to its concentration in blood plasma.
+        <strong>Volume of Distribution (Vd)</strong> is a calculated theoretical volume that relates the total amount of drug in the body to its concentration in blood plasma.
       </p>
 
       <div class="bg-slate-900 text-white p-4 rounded-2xl border border-slate-800 text-center font-mono-code text-xs sm:text-sm">
@@ -558,11 +558,11 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs pt-1">
         <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
-          <span class="font-bold text-brand-700 block mb-1">Low $V_d$ (~3–5 L, e.g., Heparin)</span>
+          <span class="font-bold text-brand-700 block mb-1">Low Vd (~3–5 L, e.g., Heparin)</span>
           The drug is confined inside blood plasma vessels due to high plasma protein binding or large molecular size.
         </div>
         <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
-          <span class="font-bold text-medical-700 block mb-1">High $V_d$ (>50 L, e.g., Digoxin)</span>
+          <span class="font-bold text-medical-700 block mb-1">High Vd (&gt;50 L, e.g., Digoxin)</span>
           The drug leaves blood plasma and distributes extensively into deep body tissues, skeletal muscle, or fat.
         </div>
       </div>
@@ -583,6 +583,11 @@
       <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
         The <strong>First-Pass Effect</strong> occurs when an orally ingested drug is absorbed through the intestinal mucosa into the portal vein and delivered directly to the liver, where liver enzymes metabolize a significant portion before it ever reaches systemic blood circulation.
       </p>
+
+      <!-- FIRST PASS DIAGRAM INTEGRATION -->
+      <div class="my-4 flex justify-center">
+        <Image src="image_agent_tag_14533229704489843277" alt="First pass effect in pharmacokinetics showing oral vs IV routes through liver and target sites" caption="First pass effect: Oral administration vs IV route" />
+      </div>
 
       <!-- FIRST PASS FLOW VISUAL -->
       <div class="bg-slate-900 text-white p-4 rounded-2xl border border-slate-800 text-center">
@@ -757,13 +762,13 @@
           <strong>Bioavailability (F):</strong> 100% for IV drugs; reduced for oral drugs by first-pass liver metabolism.
         </div>
         <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
-          <strong>Half-Life ($t_{1/2}$):</strong> Takes 4 to 5 half-lives to reach Steady State ($C_{ss}$) or full elimination.
+          <strong>Half-Life (t½):</strong> Takes 4 to 5 half-lives to reach Steady State (Css) or full elimination.
         </div>
         <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
           <strong>Clearance (CL):</strong> Volume of blood plasma completely cleared of drug per unit of time.
         </div>
         <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
-          <strong>Volume of Distribution ($V_d$):</strong> High $V_d$ = drug in tissues; Low $V_d$ = drug in blood plasma.
+          <strong>Volume of Distribution (Vd):</strong> High Vd = drug in tissues; Low Vd = drug in blood plasma.
         </div>
       </div>
     </section>
@@ -797,7 +802,7 @@
 
         <!-- QUESTION 2 -->
         <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
-          <p class="font-bold text-slate-900 text-xs sm:text-sm">Q2: How many half-lives ($t_{1/2}$) are required for a drug to reach Steady State ($C_{ss}$) during chronic dosing?</p>
+          <p class="font-bold text-slate-900 text-xs sm:text-sm">Q2: How many half-lives (t½) are required for a drug to reach Steady State (Css) during chronic dosing?</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
             <button onclick="checkMcq(this, false)" class="p-2.5 bg-white rounded-xl border border-slate-200 text-left hover:border-brand-300">A) 1 to 2 half-lives</button>
             <button onclick="checkMcq(this, true)" class="p-2.5 bg-white rounded-xl border border-slate-200 text-left hover:border-brand-300">B) 4 to 5 half-lives</button>
@@ -805,7 +810,7 @@
             <button onclick="checkMcq(this, false)" class="p-2.5 bg-white rounded-xl border border-slate-200 text-left hover:border-brand-300">D) 10 half-lives</button>
           </div>
           <div class="mcq-feedback hidden p-2 bg-emerald-50 text-emerald-900 text-xs font-medium rounded-xl border border-emerald-200 mt-2">
-            ✓ <strong>Correct!</strong> It takes 4 to 5 half-lives to reach steady state equilibrium or to be >96% eliminated from the body.
+            ✓ <strong>Correct!</strong> It takes 4 to 5 half-lives to reach steady state equilibrium or to be &gt;96% eliminated from the body.
           </div>
         </div>
       </div>
