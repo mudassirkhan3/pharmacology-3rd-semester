@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>Protein Synthesis Inhibitors — Ultimate Student Guide</title>
   <style>
     :root {
       --primary: #7c3aed;
+      --primary-dark: #6d28d9;
       --primary-gradient: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
       --accent: #06b6d4;
       --bg-gradient: linear-gradient(180deg, #f5f3ff 0%, #f8fafc 100%);
@@ -20,17 +21,14 @@
       --mnemonics-border: #ddd6fe;
       --warning-bg: #fff1f2;
       --warning-border: #fecdd3;
+      --exam-badge-bg: #ef4444;
+      --exam-badge-text: #ffffff;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      -webkit-touch-callout: none;
     }
 
     body {
@@ -38,15 +36,16 @@
       background: #f8fafc;
       color: var(--text-dark);
       line-height: 1.6;
-      padding: 20px 15px;
+      padding: 16px 8px 60px;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     .container {
       max-width: 1050px;
       margin: 0 auto;
       background: var(--card-bg);
-      padding: 40px 35px;
+      padding: 32px 20px;
       border-radius: 20px;
       border: 1px solid rgba(226, 232, 240, 0.8);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
@@ -77,34 +76,50 @@
       transition: background 0.2s ease;
     }
 
-    .badge:hover {
-      background: #ddd6fe;
+    /* EXAM HIGH-YIELD BADGE */
+    .exam-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--exam-badge-bg);
+      color: var(--exam-badge-text);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.25);
+      margin-left: 6px;
+      vertical-align: middle;
     }
 
     h1 {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       font-weight: 800;
       background: linear-gradient(135deg, #1e293b 0%, #7c3aed 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 10px;
+      line-height: 1.25;
     }
 
     .subtitle {
-      font-size: 1.08rem;
+      font-size: 1.02rem;
       color: var(--text-muted);
-      margin-bottom: 35px;
+      margin-bottom: 30px;
     }
 
     h2 {
-      font-size: 1.55rem;
+      font-size: 1.45rem;
       color: #1e293b;
-      margin: 45px 0 22px;
+      margin: 36px 0 20px;
       display: flex;
       align-items: center;
       gap: 10px;
       border-bottom: 2px solid #e2e8f0;
       padding-bottom: 10px;
+      flex-wrap: wrap;
     }
 
     h2::before {
@@ -114,12 +129,13 @@
       height: 24px;
       background: var(--primary);
       border-radius: 4px;
+      flex-shrink: 0;
     }
 
     h3 {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       color: #1e293b;
-      margin: 25px 0 12px;
+      margin: 22px 0 12px;
     }
 
     h4 {
@@ -134,64 +150,145 @@
     p {
       margin-bottom: 15px;
       color: var(--text-muted);
-      font-size: 0.98rem;
+      font-size: 0.96rem;
     }
 
-    /* Introduction Section & Flow Animation */
+    /* Introduction Section */
     .intro-box {
       background: #ffffff;
       border: 2px solid var(--card-border);
       border-radius: 16px;
-      padding: 28px;
+      padding: 24px;
       margin-bottom: 30px;
       box-shadow: var(--shadow-sm);
     }
 
-    .flow-container {
+    /* CONTINUOUS ADDITIVE FLOW ANIMATION WIDGET */
+    .moa-animation-widget {
+      background: #0f172a;
+      border-radius: 16px;
+      padding: 20px 16px;
+      margin: 22px 0 10px;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 10px 25px rgba(124, 58, 237, 0.2);
+    }
+
+    .moa-widget-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .moa-widget-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #c084fc;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .moa-controls {
+      display: flex;
+      gap: 6px;
+    }
+
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ctrl-btn:hover { background: rgba(255, 255, 255, 0.3); }
+
+    .moa-flow-track {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      margin-top: 25px;
-    }
-
-    .flow-step {
-      background: #f8fafc;
-      border: 2px dashed #cbd5e1;
-      border-radius: 12px;
-      padding: 18px;
-      text-align: center;
+      gap: 12px;
       position: relative;
-      animation: pulseGlow 3s infinite alternate;
     }
 
-    .flow-step:nth-child(1) { animation-delay: 0s; }
-    .flow-step:nth-child(2) { animation-delay: 0.75s; }
-    .flow-step:nth-child(3) { animation-delay: 1.5s; }
-    .flow-step:nth-child(4) { animation-delay: 2.25s; }
+    .moa-step-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px dashed rgba(255, 255, 255, 0.25);
+      border-radius: 12px;
+      padding: 16px 12px;
+      text-align: center;
+      transition: all 0.5s ease;
+    }
 
-    .flow-step .step-icon {
+    .moa-step-card .step-icon {
       font-size: 28px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
-    .flow-step strong {
+    .moa-step-card strong {
       display: block;
-      color: #1e293b;
-      font-size: 0.95rem;
+      color: #cbd5e1;
+      font-size: 0.92rem;
       margin-bottom: 4px;
+      transition: color 0.3s ease;
     }
 
-    .flow-step span {
-      font-size: 0.82rem;
-      color: var(--text-muted);
+    .moa-step-card span {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      line-height: 1.4;
+      display: block;
+      transition: color 0.3s ease;
     }
+
+    /* SMOOTH ADDITIVE SEQUENTIAL HIGHLIGHTS */
+    .moa-step-card.activated-step-1 {
+      background: rgba(124, 58, 237, 0.35);
+      border: 2px solid #c084fc;
+      box-shadow: 0 0 18px rgba(192, 132, 252, 0.45);
+    }
+    .moa-step-card.activated-step-1 strong { color: #d8b4fe; }
+    .moa-step-card.activated-step-1 span { color: #ffffff; }
+
+    .moa-step-card.activated-step-2 {
+      background: rgba(6, 182, 212, 0.35);
+      border: 2px solid #22d3ee;
+      box-shadow: 0 0 18px rgba(34, 211, 238, 0.45);
+    }
+    .moa-step-card.activated-step-2 strong { color: #67e8f9; }
+    .moa-step-card.activated-step-2 span { color: #ffffff; }
+
+    .moa-step-card.activated-step-3 {
+      background: rgba(245, 158, 11, 0.35);
+      border: 2px solid #fbbf24;
+      box-shadow: 0 0 18px rgba(251, 191, 36, 0.45);
+    }
+    .moa-step-card.activated-step-3 strong { color: #fde047; }
+    .moa-step-card.activated-step-3 span { color: #ffffff; }
+
+    .moa-step-card.activated-step-4 {
+      background: rgba(239, 68, 68, 0.35);
+      border: 2px solid #f87171;
+      box-shadow: 0 0 18px rgba(248, 113, 113, 0.45);
+    }
+    .moa-step-card.activated-step-4 strong { color: #fca5a5; }
+    .moa-step-card.activated-step-4 span { color: #ffffff; }
 
     /* Drug Card Framework */
     .drug-class-card {
       background: #ffffff;
       border: 2px solid var(--card-border);
       border-radius: 16px;
-      padding: 30px;
+      padding: 24px 20px;
       margin-bottom: 30px;
       box-shadow: var(--shadow-sm);
       position: relative;
@@ -213,22 +310,57 @@
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 18px 20px;
+      padding: 16px 18px;
       margin: 18px 0;
     }
 
-    /* Mnemonics Styling */
+    /* ALIGNED USES & ADRs LIST LAYOUT */
     .mnemonic-box {
       background: var(--mnemonics-bg);
       border: 1px solid var(--mnemonics-border);
       border-left: 5px solid var(--primary);
-      border-radius: 10px;
-      padding: 16px 20px;
-      margin: 15px 0;
+      border-radius: 12px;
+      padding: 18px;
+      margin: 16px 0;
     }
 
     .mnemonic-box h4 {
       color: #6d28d9;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .aligned-mnemonic-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .aligned-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #ffffff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #ddd6fe;
+      font-size: 0.92rem;
+      color: #4c1d95;
+    }
+
+    .letter-badge {
+      background: var(--primary);
+      color: white;
+      font-weight: 900;
+      font-size: 0.8rem;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
 
     /* Warning / Contraindication Styling */
@@ -271,27 +403,21 @@
       color: var(--text-muted);
     }
 
-    /* Keyframe Animations */
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
 
-    @keyframes pulseGlow {
-      0% { border-color: #cbd5e1; background: #f8fafc; }
-      100% { border-color: var(--primary); background: #f5f3ff; }
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 20px 16px;
-      }
-      h1 {
-        font-size: 1.8rem;
-      }
-      .flow-container {
-        grid-template-columns: 1fr;
-      }
+    /* MOBILE SPECIFIC IMPROVEMENTS */
+    @media (max-width: 640px) {
+      body { padding: 8px 4px 50px; }
+      .container { padding: 18px 12px; border-radius: 14px; }
+      h1 { font-size: 1.65rem; }
+      .subtitle { font-size: 0.9rem; }
+      h2 { font-size: 1.2rem; }
+      .drug-class-card { padding: 16px 12px; }
+      .moa-flow-track { grid-template-columns: 1fr; }
+      .aligned-item { padding: 8px 10px; font-size: 0.88rem; }
     }
   </style>
 </head>
@@ -300,7 +426,7 @@
   <div class="container">
     <header>
       <div class="badge-container">
-        <span class="badge" style="background: #ede9fe; color: #6d28d9;">Master Study Guide</span>
+        <span class="badge">Master Study Guide</span>
       </div>
       <h1>Protein Synthesis Inhibitors</h1>
       <p class="subtitle">An ultimate nursing pharmacology breakdown of 30S &amp; 50S ribosomal blockers: Classifications, Mechanisms, Mnemonics, and Clinical Safety Points.</p>
@@ -313,27 +439,37 @@
         <h2>1. General Introduction &amp; Ribosomal Target Mechanism</h2>
         <p>Bacteria rely heavily on protein translation to build functional enzymes, structures, and reproduce. Protein synthesis inhibitors target bacterial ribosomes (which differ from human ribosomes). They generally split into two primary ribosomal subunit targets: the <strong>30S Subunit</strong> and the <strong>50S Subunit</strong>. Most are <em>bacteriostatic</em> (halt growth), while Aminoglycosides are uniquely <em>bactericidal</em> (kill outright).</p>
         
-        <h3>Flow Animation: How Protein Synthesis Inhibitors Work</h3>
-        <div class="flow-container">
-          <div class="flow-step">
-            <div class="step-icon">🔬</div>
-            <strong>Step 1: Entry</strong>
-            <span>Antibiotic penetrates the bacterial cell wall and outer membrane.</span>
+        <!-- CONTINUOUS ADDITIVE CHAIN ANIMATION -->
+        <div class="moa-animation-widget">
+          <div class="moa-widget-header">
+            <span class="moa-widget-title">⚡ Flow Animation: Mechanism of Action (Protein Synthesis Inhibition)</span>
+            <div class="moa-controls">
+              <button class="ctrl-btn" id="playPauseBtn" onclick="toggleFlowAnimation()">Pause</button>
+              <button class="ctrl-btn" onclick="restartFlowAnimation()">↻ Replay</button>
+            </div>
           </div>
-          <div class="flow-step">
-            <div class="step-icon">🎯</div>
-            <strong>Step 2: Subunit Binding</strong>
-            <span>Binds specifically to either the 30S or 50S ribosomal subunits.</span>
-          </div>
-          <div class="flow-step">
-            <div class="step-icon">🛑</div>
-            <strong>Step 3: Translation Halt</strong>
-            <span>Blocks mRNA reading, amino acid transfer, or peptide bond formation.</span>
-          </div>
-          <div class="flow-step">
-            <div class="step-icon">🦠</div>
-            <strong>Step 4: Growth Arrest / Death</strong>
-            <span>Microbe fails to create structural proteins and stops growing or dies.</span>
+
+          <div id="moaTrack" class="moa-flow-track">
+            <div class="moa-step-card" id="step1">
+              <div class="step-icon">🔬</div>
+              <strong>Step 1: Entry</strong>
+              <span>Antibiotic penetrates the bacterial cell wall and outer membrane.</span>
+            </div>
+            <div class="moa-step-card" id="step2">
+              <div class="step-icon">🎯</div>
+              <strong>Step 2: Subunit Binding</strong>
+              <span>Binds specifically to either the 30S or 50S ribosomal subunits.</span>
+            </div>
+            <div class="moa-step-card" id="step3">
+              <div class="step-icon">🛑</div>
+              <strong>Step 3: Translation Halt</strong>
+              <span>Blocks mRNA reading, amino acid transfer, or peptide bond formation.</span>
+            </div>
+            <div class="moa-step-card" id="step4">
+              <div class="step-icon">🦠</div>
+              <strong>Step 4: Growth Arrest / Death</strong>
+              <span>Microbe fails to create structural proteins and stops growing or dies.</span>
+            </div>
           </div>
         </div>
       </section>
@@ -365,18 +501,32 @@
         </div>
 
         <div class="sub-block">
-          <h4>⚙️ Mechanism of Action</h4>
+          <h4>⚙️ Mechanism of Action <span class="exam-badge">IMP FOR EXAM</span></h4>
           <p>Irreversibly binds to the <strong>30S ribosomal subunit</strong>, causing misreading of the genetic code and premature termination of protein synthesis. Highly unique as a <strong>bactericidal</strong> protein synthesis inhibitor.</p>
         </div>
 
+        <!-- ALIGNED USES MNEMONIC -->
         <div class="mnemonic-box">
           <h4>💡 Uses with Mnemonic: "A.M.I.N.O."</h4>
-          <p><strong>A</strong>erobic gram-negative bacilli sepsis &bull; <strong>M</strong>ycobacterial infections (Streptomycin) &bull; <strong>I</strong>ntensive care synergism with beta-lactams &bull; <strong>N</strong>eonatal empirical sepsis &bull; <strong>O</strong>cular/UTI topical treatments.</p>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>erobic gram-negative bacilli sepsis</span></div>
+            <div class="aligned-item"><span class="letter-badge">M</span><span><strong>M</strong>ycobacterial infections (Streptomycin)</span></div>
+            <div class="aligned-item"><span class="letter-badge">I</span><span><strong>I</strong>ntensive care synergism with beta-lactams</span></div>
+            <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>eonatal empirical sepsis</span></div>
+            <div class="aligned-item"><span class="letter-badge">O</span><span><strong>O</strong>cular/UTI topical treatments</span></div>
+          </div>
         </div>
 
+        <!-- ALIGNED ADRs MNEMONIC -->
         <div class="mnemonic-box">
-          <h4>💡 Adverse Effects with Mnemonic: "O.T.O.N.E.P.H.R.O."</h4>
-          <p><strong>O</strong>totoxicity (irreversible hearing loss/tinnitus) &bull; <strong>T</strong>oxicity to kidneys (acute tubular necrosis) &bull; <strong>N</strong>euromuscular blockade (can cause respiratory paralysis) &bull; <strong>E</strong>lectrolyte wasting (Magnesium/Potassium) &bull; <strong>P</strong>eak and trough monitoring required.</p>
+          <h4>💡 Adverse Effects with Mnemonic: "O.T.O.N.E.P.H.R.O." <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">O</span><span><strong>O</strong>totoxicity (irreversible hearing loss/tinnitus)</span></div>
+            <div class="aligned-item"><span class="letter-badge">T</span><span><strong>T</strong>oxicity to kidneys (acute tubular necrosis)</span></div>
+            <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>euromuscular blockade (can cause respiratory paralysis)</span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>lectrolyte wasting (Magnesium/Potassium)</span></div>
+            <div class="aligned-item"><span class="letter-badge">P</span><span><strong>P</strong>eak and trough monitoring required</span></div>
+          </div>
         </div>
 
         <div class="warning-box">
@@ -386,7 +536,7 @@
 
         <div class="sub-block">
           <h4>⭐ Important Points for Nurses</h4>
-          <p>&bull; <strong>Therapeutic Drug Monitoring:</strong> Always draw peak and trough blood levels to prevent kidney damage and hearing loss.<br>&bull; Encourage high fluid intake (unless contraindicated) to protect renal tubules.</p>
+          <p>&bull; <strong>Therapeutic Drug Monitoring:</strong> <span class="exam-badge">IMP FOR EXAM</span> Always draw peak and trough blood levels to prevent kidney damage and hearing loss.<br>&bull; Encourage high fluid intake (unless contraindicated) to protect renal tubules.</p>
         </div>
       </section>
 
@@ -399,7 +549,7 @@
           <div class="subdrug-grid">
             <div class="subdrug-item">
               <strong>Doxycycline</strong>
-              <span>Long-acting, oral/IV. First-line for lyme disease, acne, and atypical bugs.</span>
+              <span>Long-acting, oral/IV. First-line for Lyme disease, acne, and atypical bugs.</span>
             </div>
             <div class="subdrug-item">
               <strong>Minocycline</strong>
@@ -417,30 +567,44 @@
           <p>Reversibly binds to the <strong>30S ribosomal subunit</strong>, blocking the access of aminoacyl-tRNA to the mRNA-ribosome complex. Functions as a <strong>bacteriostatic</strong> agent.</p>
         </div>
 
+        <!-- ALIGNED USES MNEMONIC -->
         <div class="mnemonic-box">
           <h4>💡 Uses with Mnemonic: "T.E.T.R.A."</h4>
-          <p><strong>T</strong>ick-borne infections (Lyme disease, Rocky Mountain spotted fever) &bull; <strong>E</strong>pidemic cholera and anthrax prophylaxis &bull; <strong>T</strong>rachoma and chlamydia infections &bull; <strong>R</strong>osacea and severe inflammatory acne &bull; <strong>A</strong>typical pneumonias.</p>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">T</span><span><strong>T</strong>ick-borne infections (Lyme disease, Rocky Mountain spotted fever)</span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>pidemic cholera and anthrax prophylaxis</span></div>
+            <div class="aligned-item"><span class="letter-badge">T</span><span><strong>T</strong>rachoma and chlamydia infections</span></div>
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>osacea and severe inflammatory acne</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>typical pneumonias</span></div>
+          </div>
         </div>
 
+        <!-- ALIGNED ADRs MNEMONIC -->
         <div class="mnemonic-box">
-          <h4>💡 Adverse Effects with Mnemonic: "T.E.E.T.H."</h4>
-          <p><strong>T</strong>ooth discoloration and enamel hypoplasia in young children &bull; <strong>E</strong>pigastric burning and esophageal ulcerations &bull; <strong>E</strong>rythema from severe photosensitivity &bull; <strong>T</strong>eratogenic effects in pregnancy &bull; <strong>H</strong>epatotoxicity with high doses.</p>
+          <h4>💡 Adverse Effects with Mnemonic: "T.E.E.T.H." <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">T</span><span><strong>T</strong>ooth discoloration and enamel hypoplasia in young children</span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>pigastric burning and esophageal ulcerations</span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>rythema from severe photosensitivity</span></div>
+            <div class="aligned-item"><span class="letter-badge">T</span><span><strong>T</strong>eratogenic effects in pregnancy</span></div>
+            <div class="aligned-item"><span class="letter-badge">H</span><span><strong>H</strong>epatotoxicity with high doses</span></div>
+          </div>
         </div>
 
         <div class="warning-box">
-          <h4>🚫 Contraindications</h4>
+          <h4>🚫 Contraindications <span class="exam-badge">IMP FOR EXAM</span></h4>
           <p>Contraindicated in pregnant women, breastfeeding mothers, and children under 8 years of age due to permanent bone and teeth binding.</p>
         </div>
 
         <div class="sub-block">
           <h4>⭐ Important Points for Nurses</h4>
-          <p>&bull; Do not administer with dairy products, antacids, or iron supplements (calcium and multi-valent cations bind tetracyclines and block absorption).<br>&bull; Instruct patients to take pills with a full glass of water and remain upright for 30 minutes to prevent esophageal ulcers.</p>
+          <p>&bull; <strong>Chelation Warning:</strong> Do not administer with dairy products, antacids, or iron supplements (calcium and multi-valent cations bind tetracyclines and block absorption).<br>&bull; Instruct patients to take pills with a full glass of water and remain upright for 30 minutes to prevent esophageal ulcers.</p>
         </div>
       </section>
 
       <!-- ================= 4. MACROLIDES ================= -->
       <section class="drug-class-card">
-        <h2>4. Macrolides ("The -thrimycins")</h2>
+        <h2>4. Macrolides ("The -thromycin Family")</h2>
 
         <div class="sub-block">
           <h4>📂 Classification &amp; Key Examples</h4>
@@ -465,14 +629,29 @@
           <p>Reversibly binds to the <strong>50S ribosomal subunit</strong>, inhibiting translocation and peptide chain elongation. Primarily <strong>bacteriostatic</strong> (can be bactericidal at high concentrations against sensitive organisms).</p>
         </div>
 
+        <!-- ALIGNED USES MNEMONIC -->
         <div class="mnemonic-box">
           <h4>💡 Uses with Mnemonic: "M.A.C.R.O."</h4>
-          <p><strong>M</strong>ycoplasma and atypical community-acquired pneumonia &bull; <strong>A</strong>typical mycobacterial infections (MAC in HIV) &bull; <strong>C</strong>hlamydia and pertussis (whooping cough) &bull; <strong>R</strong>espiratory tract streptococcal infections in penicillin-allergic patients &bull; <strong>O</strong>titis media.</p>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">M</span><span><strong>M</strong>ycoplasma and atypical community-acquired pneumonia</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>typical mycobacterial infections (MAC in HIV)</span></div>
+            <div class="aligned-item"><span class="letter-badge">C</span><span><strong>C</strong>hlamydia and pertussis (whooping cough)</span></div>
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>espiratory tract streptococcal infections in penicillin-allergic patients</span></div>
+            <div class="aligned-item"><span class="letter-badge">O</span><span><strong>O</strong>titis media</span></div>
+          </div>
         </div>
 
+        <!-- ALIGNED ADRs MNEMONIC -->
         <div class="mnemonic-box">
           <h4>💡 Adverse Effects with Mnemonic: "M.A.C.H.I.N.E."</h4>
-          <p><strong>M</strong>otility issues (severe GI upset, cramping, nausea from erythromycin) &bull; <strong>A</strong>rrhythmias (QT prolongation and fatal Torsades de Pointes) &bull; <strong>C</strong>holestatic hepatitis &bull; <strong>H</strong>earing loss / ototoxicity with high IV doses &bull; <strong>I</strong>nteraction via CYP450 enzyme inhibition &bull; <strong>E</strong>osinophilia / Allergic rash.</p>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">M</span><span><strong>M</strong>otility issues (severe GI upset, cramping, nausea from erythromycin)</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>rrhythmias (QT prolongation and fatal Torsades de Pointes) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="aligned-item"><span class="letter-badge">C</span><span><strong>C</strong>holestatic hepatitis</span></div>
+            <div class="aligned-item"><span class="letter-badge">H</span><span><strong>H</strong>earing loss / ototoxicity with high IV doses</span></div>
+            <div class="aligned-item"><span class="letter-badge">I</span><span><strong>I</strong>nteraction via CYP450 enzyme inhibition</span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>osinophilia / Allergic rash</span></div>
+          </div>
         </div>
 
         <div class="warning-box">
@@ -505,14 +684,29 @@
           <p>Binds exclusively to the <strong>50S ribosomal subunit</strong>, preventing peptide bond formation and halting protein elongation. Primarily <strong>bacteriostatic</strong>.</p>
         </div>
 
+        <!-- ALIGNED USES MNEMONIC -->
         <div class="mnemonic-box">
           <h4>💡 Uses with Mnemonic: "C.L.I.N.D.A."</h4>
-          <p><strong>C</strong>ellulitis and deep skin/soft tissue infections &bull; <strong>L</strong>ung abscesses and aspiration pneumonia &bull; <strong>I</strong>ntra-abdominal anaerobic coverage &bull; <strong>N</strong>ecrotizing fasciitis (suppresses toxin production) &bull; <strong>D</strong>ental and oral bone infections &bull; <strong>A</strong>lternative for penicillin-allergic staph/strep.</p>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">C</span><span><strong>C</strong>ellulitis and deep skin/soft tissue infections</span></div>
+            <div class="aligned-item"><span class="letter-badge">L</span><span><strong>L</strong>ung abscesses and aspiration pneumonia</span></div>
+            <div class="aligned-item"><span class="letter-badge">I</span><span><strong>I</strong>ntra-abdominal anaerobic coverage</span></div>
+            <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>ecrotizing fasciitis (suppresses toxin production)</span></div>
+            <div class="aligned-item"><span class="letter-badge">D</span><span><strong>D</strong>ental and oral bone infections</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>lternative for penicillin-allergic staph/strep</span></div>
+          </div>
         </div>
 
+        <!-- ALIGNED ADRs MNEMONIC -->
         <div class="mnemonic-box">
-          <h4>💡 Adverse Effects with Mnemonic: "C.D.I.F.F."</h4>
-          <p><strong>C</strong>lostridioides difficile overgrowth and severe pseudomembranous colitis &bull; <strong>D</strong>iarrhea and severe abdominal cramping &bull; <strong>I</strong>njection site thrombophlebitis &bull; <strong>F</strong>ouling metallic taste &bull; <strong>F</strong>requent hypersensitivity rashes.</p>
+          <h4>💡 Adverse Effects with Mnemonic: "C.D.I.F.F." <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">C</span><span><strong>C</strong>lostridioides difficile overgrowth and severe pseudomembranous colitis</span></div>
+            <div class="aligned-item"><span class="letter-badge">D</span><span><strong>D</strong>iarrhea and severe abdominal cramping</span></div>
+            <div class="aligned-item"><span class="letter-badge">I</span><span><strong>I</strong>njection site thrombophlebitis</span></div>
+            <div class="aligned-item"><span class="letter-badge">F</span><span><strong>F</strong>ouling metallic taste</span></div>
+            <div class="aligned-item"><span class="letter-badge">F</span><span><strong>F</strong>requent hypersensitivity rashes</span></div>
+          </div>
         </div>
 
         <div class="warning-box">
@@ -549,18 +743,30 @@
           <p>Binds to the 50S ribosomal subunit at a unique site close to the 30S interface, preventing the formation of the initial <strong>70S initiation complex</strong>. Highly effective against resistant strains.</p>
         </div>
 
+        <!-- ALIGNED USES MNEMONIC -->
         <div class="mnemonic-box">
           <h4>💡 Uses with Mnemonic: "V.R.S.A."</h4>
-          <p><strong>V</strong>ancomycin-Resistant Staphylococcus Aureus (VRSA) &bull; <strong>R</strong>esistant Enterococcus faecium (VRE) infections &bull; <strong>S</strong>evere hospital-acquired pneumonia &bull; <strong>A</strong>naerobic and complicated skin structure infections.</p>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">V</span><span><strong>V</strong>ancomycin-Resistant Staphylococcus Aureus (VRSA)</span></div>
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>esistant Enterococcus faecium (VRE) infections</span></div>
+            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>evere hospital-acquired pneumonia</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>naerobic and complicated skin structure infections</span></div>
+          </div>
         </div>
 
+        <!-- ALIGNED ADRs MNEMONIC -->
         <div class="mnemonic-box">
           <h4>💡 Adverse Effects with Mnemonic: "B.O.N.E."</h4>
-          <p><strong>B</strong>one marrow suppression (thrombocytopenia and anemia during prolonged use) &bull; <strong>O</strong>ptic neuritis with prolonged therapy (>2 weeks) &bull; <strong>N</strong>europathy (peripheral nerve damage) &bull; <strong>E</strong>nteric serotonin syndrome risk when mixed with SSRI antidepressants (weak MAOI activity).</p>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">B</span><span><strong>B</strong>one marrow suppression (thrombocytopenia and anemia during prolonged use)</span></div>
+            <div class="aligned-item"><span class="letter-badge">O</span><span><strong>O</strong>ptic neuritis with prolonged therapy (>2 weeks)</span></div>
+            <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>europathy (peripheral nerve damage)</span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>nteric serotonin syndrome risk when mixed with SSRI antidepressants (weak MAOI activity) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+          </div>
         </div>
 
         <div class="warning-box">
-          <h4>🚫 Contraindications</h4>
+          <h4>🚫 Contraindications <span class="exam-badge">IMP FOR EXAM</span></h4>
           <p>Do not co-administer with MAO inhibitors or SSRI antidepressants without extreme caution due to risk of dangerous serotonin syndrome and severe hypertension.</p>
         </div>
 
@@ -570,7 +776,7 @@
         </div>
       </section>
 
-      <!-- ================= 7. GLYCYLCYC LINES ================= -->
+      <!-- ================= 7. GLYCYLCYCLINES ================= -->
       <section class="drug-class-card">
         <h2>7. Glycylcyclines (Tigecycline)</h2>
 
@@ -589,14 +795,29 @@
           <p>Binds to the <strong>30S ribosomal subunit</strong> with a binding affinity up to 5 times stronger than standard tetracyclines, overcoming major resistance mechanisms.</p>
         </div>
 
+        <!-- ALIGNED USES MNEMONIC -->
         <div class="mnemonic-box">
           <h4>💡 Uses with Mnemonic: "B.R.O.A.D."</h4>
-          <p><strong>B</strong>road-spectrum multidrug-resistant intra-abdominal infections &bull; <strong>R</strong>esistant complicated skin and soft tissue infections &bull; <strong>O</strong>utpatient/inpatient severe polymicrobial sepsis &bull; <strong>A</strong>cinetobacter and CRE coverage &bull; <strong>D</strong>rug-resistant superbugs.</p>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">B</span><span><strong>B</strong>road-spectrum multidrug-resistant intra-abdominal infections</span></div>
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>esistant complicated skin and soft tissue infections</span></div>
+            <div class="aligned-item"><span class="letter-badge">O</span><span><strong>O</strong>utpatient/inpatient severe polymicrobial sepsis</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>cinetobacter and CRE coverage</span></div>
+            <div class="aligned-item"><span class="letter-badge">D</span><span><strong>D</strong>rug-resistant superbugs</span></div>
+          </div>
         </div>
 
+        <!-- ALIGNED ADRs MNEMONIC -->
         <div class="mnemonic-box">
           <h4>💡 Adverse Effects with Mnemonic: "N.A.U.S.E.A."</h4>
-          <p><strong>N</strong>oticeable, severe nausea and projectile vomiting &bull; <strong>A</strong>llergic hypersensitivity &bull; <strong>U</strong>pset stomach &bull; <strong>S</strong>evere acute pancreatitis reports &bull; <strong>E</strong>levated liver enzymes &bull; <strong>A</strong>zotemia.</p>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>oticeable, severe nausea and projectile vomiting</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>llergic hypersensitivity</span></div>
+            <div class="aligned-item"><span class="letter-badge">U</span><span><strong>U</strong>pset stomach</span></div>
+            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>evere acute pancreatitis reports</span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>levated liver enzymes</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>zotemia</span></div>
+          </div>
         </div>
 
         <div class="warning-box">
@@ -633,14 +854,27 @@
           <p>Chloramphenicol binds reversibly to the <strong>50S ribosomal subunit</strong>, inhibiting peptide bond formation (peptidyl transferase blockade). Streptogramins bind two distinct sites on the 50S subunit for synergistic bactericidal action.</p>
         </div>
 
+        <!-- ALIGNED USES MNEMONIC -->
         <div class="mnemonic-box">
           <h4>💡 Uses with Mnemonic: "B.R.A.I.N."</h4>
-          <p><strong>B</strong>rain abscesses and severe bacterial meningitis in penicillin-allergic patients &bull; <strong>R</strong>ocky Mountain spotted fever in pregnant patients where tetracyclines are forbidden &bull; <strong>A</strong>lternative for multi-drug resistant typhoid fever &bull; <strong>I</strong>ntraocular severe infections (excellent eye drop penetration) &bull; <strong>N</strong>osocomial life-threatening infections.</p>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">B</span><span><strong>B</strong>rain abscesses and severe bacterial meningitis in penicillin-allergic patients</span></div>
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>ocky Mountain spotted fever in pregnant patients where tetracyclines are forbidden</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>lternative for multi-drug resistant typhoid fever</span></div>
+            <div class="aligned-item"><span class="letter-badge">I</span><span><strong>I</strong>ntraocular severe infections (excellent eye drop penetration)</span></div>
+            <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>osocomial life-threatening infections</span></div>
+          </div>
         </div>
 
+        <!-- ALIGNED ADRs MNEMONIC -->
         <div class="mnemonic-box">
-          <h4>💡 Adverse Effects with Mnemonic: "G.R.A.Y."</h4>
-          <p><strong>G</strong>ray Baby Syndrome in neonates (hypotension, cyanosis, abdominal distension due to immature liver glucuronidation) &bull; <strong>R</strong>ed bone marrow suppression (dose-dependent reversible anemia &amp; irreversible, fatal aplastic anemia) &bull; <strong>A</strong>lergic skin reactions &bull; <strong>Y</strong>east (candida) superinfections.</p>
+          <h4>💡 Adverse Effects with Mnemonic: "G.R.A.Y." <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">G</span><span><strong>G</strong>ray Baby Syndrome in neonates (hypotension, cyanosis, abdominal distension due to immature liver glucuronidation)</span></div>
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>ed bone marrow suppression (dose-dependent reversible anemia &amp; irreversible, fatal aplastic anemia)</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>llergic skin reactions</span></div>
+            <div class="aligned-item"><span class="letter-badge">Y</span><span><strong>Y</strong>east (candida) superinfections</span></div>
+          </div>
         </div>
 
         <div class="warning-box">
@@ -657,33 +891,73 @@
     </main>
   </div>
 
+  <!-- ADDITIVE SEQUENTIAL CASCADE ANIMATION SCRIPT -->
   <script>
-    // Disable right-click context menu
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-    });
+    let activeStepCount = 0;
+    let isFlowRunning = true;
+    let flowInterval = null;
 
-    // Disable text selection start
-    document.addEventListener('selectstart', function(e) {
-      e.preventDefault();
-    });
+    function runAdditiveChainAnimation() {
+      activeStepCount++;
 
-    // Disable dragging elements/images
-    document.addEventListener('dragstart', function(e) {
-      e.preventDefault();
-    });
-
-    // Disable keyboard shortcuts for saving, printing, viewing source, and copying
-    document.addEventListener('keydown', function(e) {
-      if (
-        e.key === 'F12' || 
-        (e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'p' || e.key === 'c' || e.key === 'a')) ||
-        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))
-      ) {
-        e.preventDefault();
+      // Reset sequence smoothly after Step 4
+      if (activeStepCount > 4) {
+        for (let i = 1; i <= 4; i++) {
+          const step = document.getElementById('step' + i);
+          if (step) {
+            step.className = 'moa-step-card'; // Clear highlight
+          }
+        }
+        activeStepCount = 1; // Restart from Step 1
       }
+
+      // Addively light up the current step while keeping previous steps ON
+      const currentStepElement = document.getElementById('step' + activeStepCount);
+      if (currentStepElement) {
+        currentStepElement.classList.add('activated-step-' + activeStepCount);
+      }
+    }
+
+    function startAnimation() {
+      if (!flowInterval) {
+        runAdditiveChainAnimation();
+        flowInterval = setInterval(runAdditiveChainAnimation, 1500); // 1.5s step interval
+      }
+    }
+
+    function toggleFlowAnimation() {
+      const btn = document.getElementById('playPauseBtn');
+      if (isFlowRunning) {
+        clearInterval(flowInterval);
+        flowInterval = null;
+        isFlowRunning = false;
+        btn.innerText = 'Play';
+      } else {
+        isFlowRunning = true;
+        btn.innerText = 'Pause';
+        startAnimation();
+      }
+    }
+
+    function restartFlowAnimation() {
+      clearInterval(flowInterval);
+      flowInterval = null;
+      activeStepCount = 0;
+      for (let i = 1; i <= 4; i++) {
+        const step = document.getElementById('step' + i);
+        if (step) {
+          step.className = 'moa-step-card';
+        }
+      }
+      isFlowRunning = true;
+      document.getElementById('playPauseBtn').innerText = 'Pause';
+      startAnimation();
+    }
+
+    // Auto-start animation on load
+    window.addEventListener('DOMContentLoaded', () => {
+      startAnimation();
     });
   </script>
-
 </body>
 </html>
