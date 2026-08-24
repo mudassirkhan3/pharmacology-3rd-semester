@@ -23,7 +23,7 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #f8fafc; color: var(--text-dark); line-height: 1.6; padding: 16px 8px; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; overflow-x: hidden; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #f8fafc; color: var(--text-dark); line-height: 1.6; padding: 16px 8px; min-height: 100vh; display: flex; flex-direction: column; justify-space: space-between; overflow-x: hidden; }
     
     .container { max-width: 1000px; width: 100%; margin: 0 auto; background: var(--card-bg); padding: 30px 20px; border-radius: var(--radius); border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); backdrop-filter: blur(10px); animation: fadeIn 0.6s ease-out; }
     
@@ -56,7 +56,6 @@
 
     .badge { display: inline-block; padding: 5px 12px; background: #dbeafe; color: #1e40af; font-weight: 800; font-size: 12px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px; }
     
-    /* EXAM HIGH-YIELD BADGE */
     .exam-badge {
       display: inline-flex;
       align-items: center;
@@ -91,12 +90,6 @@
     .card h3 { font-size: 1.1rem; color: #1e293b; margin-bottom: 6px; font-weight: 700; }
     .card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.45; }
     .card-link { font-size: 0.82rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 6px; }
-
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 16px 0; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 16px 0; }
-    
-    .card-box { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
-    .card-box h3 { color: var(--primary); margin-bottom: 6px; font-size: 1.02rem; display: flex; align-items: center; gap: 6px; }
 
     .nursing-list { list-style: none; display: grid; gap: 12px; margin-top: 12px; }
     .nursing-item { background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--primary); border-radius: 10px; padding: 14px; display: flex; align-items: flex-start; gap: 12px; box-shadow: var(--shadow-sm); }
@@ -178,7 +171,6 @@
 
     .modal-body { padding: 16px; overflow-y: auto; flex: 1; -webkit-overflow-scrolling: touch; }
 
-    /* TOUCH TABLE STYLING FOR MODALS */
     .table-container {
       overflow-x: auto;
       border-radius: 10px;
@@ -215,7 +207,6 @@
 
     .summary-table tr:nth-child(even) { background: #f0f9ff; }
 
-    /* TREE DIAGRAM STYLES */
     .tree-container { display: flex; flex-direction: column; gap: 12px; padding: 4px; }
     .tree-node { background: #f0f9ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 12px; }
     .tree-title { font-weight: 800; color: #1e40af; font-size: 0.95rem; margin-bottom: 8px; }
@@ -235,10 +226,6 @@
     .drug-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; }
     .drug-section-box { background: #f8fafc; padding: 8px 10px; border-radius: 8px; border: 1px solid #e2e8f0; }
     .drug-section-box strong { color: var(--primary-dark); display: block; margin-bottom: 2px; font-size: 0.78rem; text-transform: uppercase; }
-
-    .mnemonic-box { background: #fffbeb; border-left: 5px solid #f59e0b; padding: 14px; border-radius: 10px; margin: 18px 0; border: 1px solid #fde68a; }
-    .mnemonic-box h4 { color: #b45309; font-size: 0.92rem; margin-bottom: 4px; font-weight: 800; }
-    .mnemonic-box p { color: var(--text-dark); margin-bottom: 0; font-weight: 500; font-size: 0.88rem; }
 
     /* SIMPLE MOBILE POPUP MODAL */
     .mobile-popup-overlay {
@@ -275,12 +262,8 @@
     .step-num { background: #2563eb; color: #ffffff; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; }
     .mobile-popup-btn { width: 100%; padding: 11px; background: var(--primary-gradient); color: #ffffff; font-weight: 800; font-size: 0.88rem; border: none; border-radius: 10px; cursor: pointer; }
 
-    mark.hl { background: #fef08a; color: #854d0e; font-weight: 700; padding: 1px 4px; border-radius: 4px; }
-    mark.green-hl { background: #d1fae5; color: #065f46; font-weight: 700; padding: 1px 4px; border-radius: 4px; }
-
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* MOBILE OPTIMIZATIONS (< 640px) */
     @media (max-width: 640px) {
       body { padding: 8px 4px; }
       .container { padding: 18px 12px; border-radius: 14px; }
@@ -351,242 +334,9 @@
 
       </div>
 
-      <!-- TOPIC 1: TERMINOLOGIES -->
-      <h2>1. Terminologies Related to Pharmacology <span class="exam-badge">IMP FOR EXAM</span></h2>
-      <p>Understanding clinical terminology is critical for safe medication administration, avoiding lethal clinical errors, and maintaining precise multidisciplinary communication:</p>
-      
-      <div class="grid-2">
-        <div class="card-box">
-          <h3>Pharmacology</h3>
-          <p>The comprehensive study of drugs, including their origin, chemical structure, physical properties, physiological actions, biochemical mechanisms, and therapeutic applications within living systems.</p>
-        </div>
-        <div class="card-box">
-          <h3>Pharmacokinetics (PK)</h3>
-          <p>What the <mark class="hl">body does to the drug</mark>. Examines the rate and extent of four sequential phases: <strong>Absorption</strong>, <strong>Distribution</strong>, <strong>Metabolism</strong> (Liver), and <strong>Excretion</strong> (Kidneys) (<mark class="green-hl">ADME</mark>).</p>
-        </div>
-        <div class="card-box">
-          <h3>Pharmacodynamics (PD)</h3>
-          <p>What the <mark class="hl">drug does to the body</mark>. Investigates molecular drug-receptor interactions, enzymatic alterations, intracellular signal transduction cascades, and biological responses.</p>
-        </div>
-        <div class="card-box">
-          <h3>Pharmacotherapeutics</h3>
-          <p>The practical, clinical application of drugs to prevent, diagnose, treat, or manage diseases and restore homeostasis.</p>
-        </div>
-      </div>
-
-      <div class="grid-3">
-        <div class="card-box">
-          <h3>Toxicology</h3>
-          <p>The branch concerned with poisons, adverse drug reactions (ADRs), overdosage, cellular toxicity, and antidotal treatments.</p>
-        </div>
-        <div class="card-box">
-          <h3>Pharmacognosy</h3>
-          <p>The study of physical, chemical, and biological properties of crude medicinal drugs derived from natural plant, animal, or mineral sources.</p>
-        </div>
-        <div class="card-box">
-          <h3>Pharmaceutics</h3>
-          <p>The science of converting pure active pharmaceutical ingredients (APIs) into stable, safe, and bioavailable dosage forms (tablets, syrups, injections).</p>
-        </div>
-      </div>
-
-      <!-- EXAM BONUS HIGHLIGHT FOR TERMINOLOGY -->
-      <div class="mnemonic-box">
-        <h4>📌 Exam Focus: Key Terminology Distinctions</h4>
-        <p style="font-size: 0.88rem;">
-          • <strong>Pro-drug:</strong> An inactive precursor that requires metabolic conversion (usually in the liver) to become pharmacologically active (e.g., Enalapril &rarr; Enalaprilat; Levodopa &rarr; Dopamine).<br>
-          • <strong>Bioavailability (F):</strong> The fraction of unchanged drug that reaches systemic circulation. IV route = 100% (F = 1.0).<br>
-          • <strong>Therapeutic Index (TI):</strong> Ratio comparing toxic dose to effective dose (TI = TD50 / ED50). Narrow TI drugs (e.g., Digoxin, Lithium, Warfarin) require strict blood lab monitoring!
-        </p>
-      </div>
-
-      <!-- TOPIC 2: HISTORY OF PHARMACOLOGY -->
-      <h2>2. Brief History of Pharmacology</h2>
-      <p>Pharmacology evolved from ancient herbal traditions and trial-and-error folk remedies into an exact biochemical and genomic science through distinct eras:</p>
-      
-      <div class="grid-2">
-        <div class="card-box">
-          <h3>Ancient &amp; Traditional Era</h3>
-          <p>Early civilizations relied on crude botanical remedies (e.g., <mark class="hl">Willow bark</mark> containing salicin for pain, <mark class="hl">Opium poppy</mark> for pain relief, and <mark class="hl">Cinchona bark</mark> containing quinine for malaria).</p>
-        </div>
-        <div class="card-box">
-          <h3>Emergence of Modern Science (19th Century)</h3>
-          <p>In 1805, <strong>Friedrich Sertürner</strong> isolated pure <mark class="hl">Morphine from opium</mark>, sparking the extraction of pure active chemical alkaloids. Rudolf Buchheim founded the first independent laboratory of pharmacology in 1847.</p>
-        </div>
-        <div class="card-box">
-          <h3>Twentieth Century &amp; Synthetic Era</h3>
-          <p>In 1928, <strong>Alexander Fleming</strong> discovered Penicillin. The development of synthetic sulfonamides, organ-specific receptor theory (Paul Ehrlich's "magic bullet"), and double-blind clinical trials transformed modern medicine.</p>
-        </div>
-        <div class="card-box">
-          <h3>Contemporary Genomic Era</h3>
-          <p>Focuses on <strong>Pharmacogenomics</strong> (customizing drug selection based on individual DNA profiling), recombinant DNA monoclonal antibodies, and targeted molecular therapies.</p>
-        </div>
-      </div>
-
-      <!-- TOPIC 3: PURPOSES OF MEDICATION -->
-      <h2>3. Purposes of Medication <span class="exam-badge">IMP FOR EXAM</span></h2>
-      <p>Medications are prescribed and administered in healthcare settings for several distinct, high-yield clinical objectives:</p>
-
-      <ul style="list-style: none; padding-left: 0;">
-        <li style="position: relative; padding-left: 20px; margin-bottom: 8px;"><strong>Prophylaxis (Prevention):</strong> Administered to prevent diseases or infections before exposure (e.g., vaccines, preoperative prophylactic antibiotics like Cefazolin, antimalarial tablets).</li>
-        <li style="position: relative; padding-left: 20px; margin-bottom: 8px;"><strong>Diagnosis:</strong> Utilized in clinical diagnostic procedures to confirm or locate pathological changes (e.g., radiocontrast dyes for angiography, barium meals, tuberculin PPD skin tests).</li>
-        <li style="position: relative; padding-left: 20px; margin-bottom: 8px;"><strong>Treatment (Cure / Therapeutic):</strong> Administered to eradicate pathogens or eliminate the root cause of a disease (e.g., penicillin curing bacterial endocarditis).</li>
-        <li style="position: relative; padding-left: 20px; margin-bottom: 8px;"><strong>Palliation (Symptom Relief):</strong> Designed to reduce symptom severity, pain, and suffering without curing the underlying terminal disease (e.g., IV morphine in end-stage oncology care).</li>
-        <li style="position: relative; padding-left: 20px; margin-bottom: 8px;"><strong>Restoration (Maintenance / Replacement):</strong> Used to restore normal body function or replenish deficient physiological hormones/electrolytes (e.g., levothyroxine for hypothyroidism, insulin for Type 1 diabetes).</li>
-      </ul>
-
-      <!-- TOPIC 4: SOURCES OF MEDICATION -->
-      <h2>4. Sources of Medication <span class="exam-badge">IMP FOR EXAM</span></h2>
-      <p>Drugs are derived from diverse natural, chemical, and biological sources in modern pharmaceutical manufacturing:</p>
-
-      <div class="grid-3">
-        <div class="card-box">
-          <h3>Plant Sources</h3>
-          <p>Active botanical substances extracted from leaves, seeds, roots, or bark.</p>
-          <p style="font-size: 0.85rem; color: var(--text-dark); font-weight: 700;">Key Examples:</p>
-          <ul style="list-style: none; padding-left: 0;">
-            <li><mark class="hl">Digoxin</mark> (Foxglove / Digitalis purpurea)</li>
-            <li><mark class="hl">Atropine</mark> (Deadly Nightshade / Belladonna)</li>
-            <li><mark class="hl">Quinine</mark> (Cinchona tree bark)</li>
-          </ul>
-        </div>
-        <div class="card-box">
-          <h3>Animal &amp; Mineral Sources</h3>
-          <p>Extracted from living animal tissues, fluids, or inorganic Earth elements.</p>
-          <p style="font-size: 0.85rem; color: var(--text-dark); font-weight: 700;">Key Examples:</p>
-          <ul style="list-style: none; padding-left: 0;">
-            <li>Porcine/Bovine Insulin &amp; Heparin</li>
-            <li>Premarin (Pregnant mare urine estrogen)</li>
-            <li>Ferrous Sulfate (Iron), Magnesium Sulfate</li>
-          </ul>
-        </div>
-        <div class="card-box">
-          <h3>Synthetic &amp; Biotechnology</h3>
-          <p>Engineered via chemical synthesis or recombinant DNA genetic technology.</p>
-          <p style="font-size: 0.85rem; color: var(--text-dark); font-weight: 700;">Key Examples:</p>
-          <ul style="list-style: none; padding-left: 0;">
-            <li>Humulin (Recombinant Human Insulin)</li>
-            <li>Synthetic Antibiotics (Fluoroquinolones)</li>
-            <li>Monoclonal Antibodies (Infliximab)</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- TOPIC 5: CLASSIFICATION OF DRUGS -->
-      <h2>5. Classification of Drugs</h2>
-      <p>Drugs are categorized into distinct groups to streamline clinical study, prescribing guidelines, and administration safety:</p>
-
-      <div class="grid-3">
-        <div class="card-box">
-          <h3>Body System Classification</h3>
-          <p>Grouped according to the specific anatomical organ system they primarily target.</p>
-          <p style="font-size: 0.88rem; margin-top: 6px;"><strong>Examples:</strong> Cardiovascular agents, Respiratory drugs, Central Nervous System depressants, Gastrointestinal medications.</p>
-        </div>
-        <div class="card-box">
-          <h3>Therapeutic Use</h3>
-          <p>Grouped according to the specific clinical disease state or symptom they treat.</p>
-          <p style="font-size: 0.88rem; margin-top: 6px;"><strong>Examples:</strong> Antihypertensives (lower blood pressure), Antipyretics (reduce fever), Analgesics (relieve pain), Antiemetics (prevent vomiting).</p>
-        </div>
-        <div class="card-box">
-          <h3>Mechanism of Action (MOA)</h3>
-          <p>Grouped by their precise molecular action at the cellular, receptor, or enzymatic level.</p>
-          <p style="font-size: 0.88rem; margin-top: 6px;"><strong>Examples:</strong> Beta-1 adrenergic blockers, ACE inhibitors, Calcium channel blockers, Proton pump inhibitors.</p>
-        </div>
-      </div>
-
-      <!-- TOPIC 6: THREE TYPES OF DRUG SUPPLY SYSTEM -->
-      <h2>6. Three Types of Drug Supply System <span class="exam-badge">IMP FOR EXAM</span></h2>
-      <p>Healthcare institutions utilize standardized medication distribution systems to control inventory, minimize drug theft, and ensure patient safety:</p>
-
-      <div class="grid-3">
-        <div class="card-box">
-          <h3>1. Floor Stock System</h3>
-          <p>Bulk containers of routine medications are stored directly in nursing unit cabinets.</p>
-          <p style="font-size: 0.85rem;"><strong>Pros:</strong> Immediate availability for emergency needs.<br><strong>Cons:</strong> <mark class="hl">Highest risk of medication errors</mark>, drug contamination, and inventory loss.</p>
-        </div>
-        <div class="card-box">
-          <h3>2. Unit Dose Distribution System</h3>
-          <p>Pharmacy dispenses single, individually packaged, patient-specific doses labeled for a 24-hour window.</p>
-          <p style="font-size: 0.85rem;"><strong>Pros:</strong> <mark class="green-hl">Safest system overall</mark>; double-checked by a pharmacist; drastically reduces nursing prep errors.</p>
-        </div>
-        <div class="card-box">
-          <h3>3. Automated Dispensing Cabinets (ADCs)</h3>
-          <p>Computerized automated dispensing units (e.g., Pyxis, Omnicell) located on the nursing unit.</p>
-          <p style="font-size: 0.85rem;"><strong>Pros:</strong> Biometric login, real-time electronic MAR integration, barcode scanning, controlled drug tracking.</p>
-        </div>
-      </div>
-
-      <!-- TOPIC 7: ROUTES OF DRUG ADMINISTRATION -->
-      <h2>7. Routes of Drug Administration <span class="exam-badge">IMP FOR EXAM</span></h2>
-      <p>The chosen route dictates the onset speed, duration of action, and bioavailability of the drug. Routes are classified into four main pathways:</p>
-
-      <div class="grid-2">
-        <div class="card-box">
-          <h3>1. Enteral Route (GI Tract)</h3>
-          <p><strong>Oral (PO):</strong> Swallowed via mouth. Most convenient and economical. Subject to <mark class="hl">Hepatic First-Pass Metabolism</mark> (portal vein carries drug to liver first, reducing active drug concentration).</p>
-          <p><strong>Sublingual (SL) &amp; Buccal:</strong> Dissolved under the tongue or against the inner cheek. Highly vascularized; <mark class="green-hl">bypasses liver first-pass effect</mark> for immediate rapid systemic entry (e.g., Nitroglycerin for angina).</p>
-          <p><strong>Rectal (PR):</strong> Suppositories or enemas. Useful for unconscious patients, severe vomiting, or pediatric fever spikes (partial first-pass bypass).</p>
-        </div>
-        <div class="card-box">
-          <h3>2. Parenteral Route (Injections)</h3>
-          <p>Bypasses the digestive tract entirely via direct needle injection:</p>
-          <p><strong>Intravenous (IV):</strong> Injected directly into veins. <mark class="hl">100% Bioavailability (F = 1.0)</mark>. Fastest onset (seconds to minutes). Ideal for emergencies but irreversible!</p>
-          <p><strong>Intramuscular (IM):</strong> Injected into deep muscle tissue at 90° angle (e.g., Ventrogluteal, Deltoid). Rapid absorption via muscular blood vessels.</p>
-          <p><strong>Subcutaneous (SC/SQ):</strong> Injected into adipose layer at 45° to 90° angle (e.g., Insulin, Heparin). Slow, steady absorption.</p>
-          <p><strong>Intradermal (ID):</strong> Injected into dermis at 10° to 15° angle (e.g., TB Mantoux tests, allergy testing).</p>
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div class="card-box">
-          <h3>3. Topical Route (Skin &amp; Mucous Membranes)</h3>
-          <p>Applied directly to local body surfaces or mucous linings:</p>
-          <p><strong>Transdermal Patches:</strong> Provides slow, continuous, multi-day systemic absorption through intact skin (e.g., Fentanyl, Nitroglycerin, Nicotine patches).</p>
-          <p><strong>Ophthalmic, Otic, &amp; Nasal:</strong> Local drops or sprays. <em>Clinical Tip:</em> Hold inner canthus pressure during eye drop administration to prevent systemic absorption!</p>
-        </div>
-        <div class="card-box">
-          <h3>4. Inhalation Route (Respiratory Tract)</h3>
-          <p>Gas or fine aerosolized droplets inhaled into bronchial airways via Metered-Dose Inhalers (MDIs), dry powder inhalers (DPIs), or nebulizers.</p>
-          <p><strong>Advantage:</strong> Massive alveolar surface area provides instantaneous local bronchial delivery with reduced systemic side effects (e.g., Albuterol, Ipratropium).</p>
-        </div>
-      </div>
-
-      <!-- TOPIC 8: DRUG STANDARDS AND LEGISLATION -->
-      <h2>8. Drug Standards and Legislation</h2>
-      <p>Statutory laws, drug regulatory authorities, and official compendia enforce strict quality control standards for drug purity, potency, bioavailability, and safety:</p>
-
-      <div class="grid-2">
-        <div class="card-box">
-          <h3>Official Drug Compendia &amp; Standards</h3>
-          <p>Official legal publications setting mandatory benchmarks for chemical purity, assay strength, packaging, and storage conditions:</p>
-          <ul style="list-style: none; padding-left: 0;">
-            <li><strong>USP (United States Pharmacopeia)</strong> / <strong>BP (British Pharmacopoeia)</strong></li>
-            <li><strong>National Formulary (NF)</strong></li>
-          </ul>
-        </div>
-        <div class="card-box">
-          <h3>Regulatory Legislation &amp; Schedules</h3>
-          <p>Statutory regulatory bodies (e.g., <mark class="hl">FDA</mark> in the USA, <mark class="hl">DRAP</mark> in Pakistan) enforce prescription laws and controlled substance tracking:</p>
-          <ul style="list-style: none; padding-left: 0;">
-            <li><mark class="hl">Controlled Substance Schedules (I to V):</mark> Schedule I = High abuse potential / No medical use (Heroin); Schedule V = Lowest abuse potential (Cough syrups with codeine).</li>
-            <li><mark class="hl">Pregnancy Risk Categories (A, B, C, D, X):</mark> Category A = Safe; Category X = Strictly contraindicated (Teratogenic!).</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- TOPIC 9: RESOURCES TO COLLECT & UTILIZE DRUG INFORMATION -->
-      <h2>9. Resources to Collect and Utilize Drug Information</h2>
-      <p>Nurses are legally held responsible for verifying drug mechanisms, safe dosage ranges, compatibility, and side effects prior to administration using validated resources:</p>
-
-      <ul style="list-style: none; padding-left: 0;">
-        <li style="position: relative; padding-left: 20px; margin-bottom: 8px;"><strong>Nursing Drug Handbooks:</strong> (e.g., <em>Davis's Drug Guide for Nurses</em>, <em>Lippincott Nursing Drug Handbook</em>) containing concise nursing implications, IV push rates, and black box warnings.</li>
-        <li style="position: relative; padding-left: 20px; margin-bottom: 8px;"><strong>Clinical Pharmacists:</strong> The premier interprofessional resource for complex drug compatibility, renal clearance adjustments, and drug-drug interactions.</li>
-        <li style="position: relative; padding-left: 20px; margin-bottom: 8px;"><strong>Official Hospital Formularies &amp; BNF:</strong> Institutional guides listing approved medications, therapeutic substitution rules, and local protocol guidelines.</li>
-        <li style="position: relative; padding-left: 20px; margin-bottom: 8px;"><strong>Validated Online Databases:</strong> Electronic clinical software including Micromedex, Lexicomp, UpToDate, and Medscape.</li>
-      </ul>
-
-      <!-- TOPIC 10: PREPARING DRUG CARDS (INTERACTIVE WIDGET) -->
-      <h2>10. Preparing Drug Cards <span class="exam-badge">STUDENT FAVORITE</span></h2>
-      <p>Drug cards are a nursing student's most effective tool for mastering core drug concepts. Click any medication below to interactively explore its structured layout:</p>
+      <!-- PREPARING DRUG CARDS (INTERACTIVE WIDGET) -->
+      <h2>Interactive Drug Cards <span class="exam-badge">STUDENT FAVORITE</span></h2>
+      <p style="font-size:0.88rem; color:var(--text-muted);">Drug cards are a nursing student's most effective tool for mastering core drug concepts. Click any medication below to explore its structured layout:</p>
 
       <div class="sim-stage">
         <h3 style="color: var(--primary-dark); text-align: center; margin-bottom: 6px;">Interactive Drug Card Viewer</h3>
@@ -622,12 +372,6 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- MNEMONIC BOX -->
-      <div class="mnemonic-box">
-        <h4>💡 Mnemonic for the 5 Primary Rights of Medication Administration: "T-DRAM"</h4>
-        <p><strong>T</strong>ime | <strong>D</strong>ose | <strong>R</strong>oute | <strong>A</strong>mount/Patient | <strong>M</strong>edication. Always perform 3 safety checks against the Medication Administration Record (MAR) before giving any dose!</p>
       </div>
 
       <h2>General Nursing Considerations</h2>
