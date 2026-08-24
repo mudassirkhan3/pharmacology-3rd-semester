@@ -23,64 +23,49 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8fafc; color: var(--text-dark); line-height: 1.6; padding: 20px 12px; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; overflow-x: hidden; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #f8fafc; color: var(--text-dark); line-height: 1.6; padding: 16px 8px; min-height: 100vh; display: flex; flex-direction: column; justify-space: space-between; overflow-x: hidden; }
     
-    .container { max-width: 950px; width: 100%; margin: 0 auto; background: var(--card-bg); padding: 35px 25px; border-radius: var(--radius); border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); backdrop-filter: blur(10px); animation: fadeIn 0.8s ease-out; }
+    .container { max-width: 1000px; width: 100%; margin: 0 auto; background: var(--card-bg); padding: 30px 20px; border-radius: var(--radius); border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); backdrop-filter: blur(10px); animation: fadeIn 0.6s ease-out; }
     
-    header {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 25px;
-    }
+    header { display: flex; flex-direction: column; margin-bottom: 25px; }
 
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
+    .header-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
 
-    .header-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+    .header-actions { display: flex; gap: 8px; flex-wrap: wrap; width: 100%; }
 
     .btn-header {
+      flex: 1 1 auto;
       background: var(--primary-gradient);
       color: #ffffff;
       border: none;
-      padding: 8px 16px;
+      padding: 10px 16px;
       border-radius: 50px;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       font-weight: 700;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
       box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      touch-action: manipulation;
     }
 
-    .btn-header:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.35);
-    }
+    .btn-header:active { transform: scale(0.97); }
 
-    .badge { display: inline-block; padding: 6px 14px; background: #dbeafe; color: #1e40af; font-weight: 700; font-size: 13px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .badge { display: inline-block; padding: 5px 12px; background: #dbeafe; color: #1e40af; font-weight: 800; font-size: 12px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px; }
     
     /* EXAM HIGH-YIELD BADGE */
     .exam-badge {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
       background: var(--exam-badge-bg);
       color: var(--exam-badge-text);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 800;
-      padding: 3px 8px;
+      padding: 2px 7px;
       border-radius: 6px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -89,303 +74,222 @@
       vertical-align: middle;
     }
 
-    h1 { font-size: clamp(1.6rem, 5vw, 2.2rem); font-weight: 800; background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; line-height: 1.2; }
-    .subtitle { font-size: clamp(0.92rem, 3vw, 1.05rem); color: var(--text-muted); margin-bottom: 30px; }
-    h2 { font-size: clamp(1.2rem, 4vw, 1.4rem); color: #1e293b; margin: 35px 0 20px; display: flex; align-items: center; gap: 10px; }
-    h2::before { content: ''; display: inline-block; width: 5px; height: 22px; background: var(--primary); border-radius: 4px; flex-shrink: 0; }
+    h1 { font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 800; background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; line-height: 1.25; }
+    .subtitle { font-size: clamp(0.88rem, 3vw, 1.02rem); color: var(--text-muted); margin-bottom: 24px; }
+    h2 { font-size: clamp(1.15rem, 4vw, 1.38rem); color: #1e293b; margin: 30px 0 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    h2::before { content: ''; display: inline-block; width: 5px; height: 20px; background: var(--primary); border-radius: 4px; flex-shrink: 0; }
 
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-    .card { position: relative; background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 22px; text-decoration: none; color: inherit; overflow: hidden; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; justify-content: space-between; opacity: 0; animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .card { position: relative; background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 18px; text-decoration: none; color: inherit; overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; }
     
-    .card:nth-child(1) { animation-delay: 0.10s; }
-    .card:nth-child(2) { animation-delay: 0.20s; }
-    .card:nth-child(3) { animation-delay: 0.30s; }
-    .card:nth-child(4) { animation-delay: 0.40s; }
-
     .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--primary-gradient); opacity: 0; transition: opacity 0.3s ease; }
-    .card:hover, .card:active { transform: translateY(-6px); border-color: #3b82f6; box-shadow: var(--shadow-lg); }
+    .card:hover, .card:active { transform: translateY(-4px); border-color: #3b82f6; box-shadow: var(--shadow-lg); }
     .card:hover::before, .card:active::before { opacity: 1; }
     
-    .card-icon { width: 48px; height: 48px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 14px; transition: transform 0.3s ease, background-color 0.3s ease; border: 1px solid #bfdbfe; }
-    .card:hover .card-icon, .card:active .card-icon { transform: scale(1.1) rotate(-5deg); background: #dbeafe; }
+    .card-icon { width: 44px; height: 44px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 12px; border: 1px solid #bfdbfe; }
     
-    .card h3 { font-size: 1.15rem; color: #1e293b; margin-bottom: 8px; font-weight: 700; }
-    .card p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5; }
-    .card-link { font-size: 0.85rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 6px; transition: gap 0.2s ease; }
-    .card:hover .card-link, .card:active .card-link { gap: 10px; }
+    .card h3 { font-size: 1.1rem; color: #1e293b; margin-bottom: 6px; font-weight: 700; }
+    .card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.45; }
+    .card-link { font-size: 0.82rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 6px; }
 
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; margin: 18px 0; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin: 18px 0; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 16px 0; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 16px 0; }
     
-    .card-box { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 16px; padding: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: 0.3s; position: relative; }
-    .card-box:hover { transform: translateY(-4px); border-color: var(--primary); box-shadow: 0 12px 25px rgba(37, 99, 235, 0.1); }
-    .card-box h3 { color: var(--primary); margin-bottom: 8px; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+    .card-box { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+    .card-box h3 { color: var(--primary); margin-bottom: 6px; font-size: 1.02rem; display: flex; align-items: center; gap: 6px; }
 
-    .nursing-list { list-style: none; display: grid; gap: 14px; margin-top: 15px; }
-    .nursing-item { background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--primary); border-radius: 10px; padding: 16px; display: flex; align-items: flex-start; gap: 12px; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: var(--shadow-sm); }
-    .nursing-number { background: #dbeafe; color: #1e40af; font-weight: 800; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+    .nursing-list { list-style: none; display: grid; gap: 12px; margin-top: 12px; }
+    .nursing-item { background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--primary); border-radius: 10px; padding: 14px; display: flex; align-items: flex-start; gap: 12px; box-shadow: var(--shadow-sm); }
+    .nursing-number { background: #dbeafe; color: #1e40af; font-weight: 800; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; margin-top: 2px; }
 
-    .site-footer { max-width: 950px; width: 100%; margin: 30px auto 10px; padding: 25px 20px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #e2e8f0; border-radius: 16px; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; border: 1px solid rgba(255, 255, 255, 0.08); }
-    .footer-brand { font-size: 1.05rem; font-weight: 700; letter-spacing: 0.5px; color: #ffffff; display: flex; align-items: center; gap: 8px; }
+    .site-footer { max-width: 1000px; width: 100%; margin: 25px auto 10px; padding: 20px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #e2e8f0; border-radius: 16px; text-align: center; font-size: 0.85rem; border: 1px solid rgba(255, 255, 255, 0.08); }
+    .footer-brand { font-weight: 700; color: #ffffff; margin-bottom: 4px; }
     .footer-brand span { color: #38bdf8; font-weight: 800; }
-    .footer-copy { font-size: 0.8rem; color: #64748b; margin-top: 4px; }
 
-    /* MODAL POPUP STYLES - FIXED HIGH CONTRAST HEADERS */
+    /* HIGH-CONTRAST MOBILE-OPTIMIZED MODAL POPUP STYLES */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(15, 23, 42, 0.7);
+      background: rgba(15, 23, 42, 0.75);
       backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 9999;
       opacity: 0;
       visibility: hidden;
-      transition: all 0.3s ease;
-      padding: 12px;
+      transition: all 0.25s ease;
+      padding: 8px;
     }
 
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
 
     .modal-card {
       background: #ffffff;
       border-radius: 18px;
-      max-width: 1000px;
+      max-width: 980px;
       width: 100%;
-      max-height: 90vh;
+      max-height: 92vh;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      border: 1px solid #e2e8f0;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+      border: 1px solid #cbd5e1;
       overflow: hidden;
-      transform: translateY(20px);
-      transition: transform 0.3s ease;
-    }
-
-    .modal-overlay.active .modal-card {
-      transform: translateY(0);
     }
 
     .modal-header {
-      padding: 18px 22px;
-      background: #0f172a; /* High-contrast solid dark navy background */
+      padding: 16px 18px;
+      background: #0f172a; /* High contrast solid dark navy */
       color: #ffffff;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 2px solid #2563eb;
+      border-bottom: 3px solid #2563eb;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
     .modal-header h3 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 800;
-      color: #ffffff !important; /* Force high visibility white text */
-      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+      color: #ffffff !important;
       margin: 0;
     }
 
     .close-btn {
       background: rgba(255, 255, 255, 0.2);
       border: none;
-      color: white;
-      width: 34px;
-      height: 34px;
+      color: #ffffff;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.2s;
+      touch-action: manipulation;
     }
 
-    .close-btn:hover {
-      background: rgba(255, 255, 255, 0.4);
-    }
+    .modal-body { padding: 16px; overflow-y: auto; flex: 1; -webkit-overflow-scrolling: touch; }
 
-    .modal-body {
-      padding: 22px;
-      overflow-y: auto;
-      flex: 1;
-    }
-
-    /* TABLE STYLING FOR MODAL */
+    /* TOUCH TABLE STYLING FOR MODALS */
     .table-container {
       overflow-x: auto;
       border-radius: 10px;
-      border: 1px solid #dbeafe;
-      margin-top: 10px;
+      border: 1px solid #bfdbfe;
+      margin-top: 8px;
+      -webkit-overflow-scrolling: touch;
     }
 
     .summary-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.85rem;
+      font-size: 0.83rem;
       text-align: left;
-      min-width: 750px;
+      min-width: 780px;
     }
 
     .summary-table th {
       background: #0f172a;
       color: #ffffff;
-      padding: 12px 14px;
+      padding: 11px 12px;
       font-weight: 700;
       position: sticky;
       top: 0;
+      white-space: nowrap;
     }
 
     .summary-table td {
-      padding: 10px 14px;
+      padding: 10px 12px;
       border-bottom: 1px solid #e2e8f0;
       color: var(--text-dark);
+      vertical-align: top;
+      line-height: 1.45;
     }
 
-    .summary-table tr:nth-child(even) {
-      background: #eff6ff;
-    }
+    .summary-table tr:nth-child(even) { background: #f0f9ff; }
 
     /* TREE DIAGRAM STYLES */
-    .tree-container {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      padding: 10px;
-    }
-
-    .tree-node {
-      background: #eff6ff;
-      border: 1px solid #dbeafe;
-      border-radius: 10px;
-      padding: 14px;
-    }
-
-    .tree-title {
-      font-weight: 800;
-      color: #1e40af;
-      font-size: 0.98rem;
-      margin-bottom: 8px;
-    }
-
-    .tree-sublist {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .tree-tag {
-      background: #dbeafe;
-      color: #1e293b;
-      border: 1px solid #bfdbfe;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      font-weight: 700;
-    }
+    .tree-container { display: flex; flex-direction: column; gap: 12px; padding: 4px; }
+    .tree-node { background: #f0f9ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 12px; }
+    .tree-title { font-weight: 800; color: #1e40af; font-size: 0.95rem; margin-bottom: 8px; }
+    .tree-sublist { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tree-tag { background: #dbeafe; color: #1e293b; border: 1px solid #93c5fd; padding: 5px 10px; border-radius: 6px; font-size: 0.82rem; font-weight: 700; }
 
     /* INTERACTIVE DRUG CARD GENERATOR WIDGET */
-    .sim-stage { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border: 2px solid #cbd5e1; border-radius: 18px; padding: 18px 12px; margin: 24px 0; box-shadow: 0 10px 25px rgba(0,0,0,0.04); }
-    .sim-controls { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 16px; }
-    .sim-btn { padding: 10px 14px; border-radius: 10px; border: none; font-weight: 800; cursor: pointer; transition: 0.2s; box-shadow: 0 3px 8px rgba(0,0,0,0.08); font-size: 0.85rem; background: var(--primary); color: white; flex: 1 1 120px; text-align: center; }
-    .sim-btn:hover, .sim-btn:active { background: var(--primary-dark); transform: translateY(-2px); }
+    .sim-stage { background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 16px; padding: 14px; margin: 20px 0; }
+    .sim-controls { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
+    .sim-btn { padding: 9px 12px; border-radius: 8px; border: none; font-weight: 800; cursor: pointer; font-size: 0.82rem; background: var(--primary); color: white; flex: 1 1 100px; text-align: center; touch-action: manipulation; }
+    .sim-btn:active { background: var(--primary-dark); }
     
-    .drug-card-display { background: white; border: 2px solid #3b82f6; border-radius: 14px; padding: 16px; box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08); margin-top: 10px; }
-    .drug-card-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px; flex-wrap: wrap; gap: 6px; }
-    .drug-card-title { font-size: 1.1rem; font-weight: 800; color: var(--primary-dark); }
-    .drug-card-class { background: #dbeafe; color: #1e40af; padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; }
-    .drug-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
-    .drug-section-box { background: #f8fafc; padding: 10px; border-radius: 10px; border: 1px solid #e2e8f0; }
-    .drug-section-box strong { color: var(--primary-dark); display: block; margin-bottom: 4px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .drug-card-display { background: white; border: 2px solid #3b82f6; border-radius: 12px; padding: 14px; margin-top: 8px; }
+    .drug-card-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 6px; margin-bottom: 10px; flex-wrap: wrap; gap: 6px; }
+    .drug-card-title { font-size: 1.05rem; font-weight: 800; color: var(--primary-dark); }
+    .drug-card-class { background: #dbeafe; color: #1e40af; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; }
+    .drug-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; }
+    .drug-section-box { background: #f8fafc; padding: 8px 10px; border-radius: 8px; border: 1px solid #e2e8f0; }
+    .drug-section-box strong { color: var(--primary-dark); display: block; margin-bottom: 2px; font-size: 0.78rem; text-transform: uppercase; }
 
-    .mnemonic-box { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-left: 5px solid #f59e0b; padding: 16px; border-radius: 12px; margin: 20px 0; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.08); border: 1px solid #fde68a; }
-    .mnemonic-box h4 { color: #b45309; font-size: 0.95rem; margin-bottom: 6px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
-    .mnemonic-box p { color: var(--text-dark); margin-bottom: 0; font-weight: 500; font-size: 0.9rem; }
+    .mnemonic-box { background: #fffbeb; border-left: 5px solid #f59e0b; padding: 14px; border-radius: 10px; margin: 18px 0; border: 1px solid #fde68a; }
+    .mnemonic-box h4 { color: #b45309; font-size: 0.92rem; margin-bottom: 4px; font-weight: 800; }
+    .mnemonic-box p { color: var(--text-dark); margin-bottom: 0; font-weight: 500; font-size: 0.88rem; }
 
-    /* SIMPLE MOBILE POPUP STYLES */
+    /* SIMPLE MOBILE POPUP MODAL */
     .mobile-popup-overlay {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
       background: rgba(15, 23, 42, 0.8);
       backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
       z-index: 9999;
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 16px;
+      padding: 12px;
     }
     .mobile-popup-card {
       background: #ffffff;
       width: 100%;
-      max-width: 340px;
-      border-radius: 20px;
-      padding: 24px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+      max-width: 320px;
+      border-radius: 18px;
+      padding: 20px;
       border: 1px solid #e2e8f0;
       text-align: center;
-      animation: popupScale 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     .mobile-popup-icon {
-      width: 52px; height: 52px;
+      width: 48px; height: 48px;
       background: #dbeafe; color: #2563eb;
-      border-radius: 16px;
+      border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 26px; margin: 0 auto 14px;
+      font-size: 24px; margin: 0 auto 12px;
     }
-    .mobile-popup-card h3 {
-      font-size: 1.2rem; font-weight: 800; color: #0f172a; margin-bottom: 12px;
-    }
-    .mobile-popup-steps {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 14px 12px;
-      text-align: left;
-      font-size: 0.88rem;
-      color: #334155;
-      margin-bottom: 20px;
-    }
-    .mobile-popup-step-item {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-weight: 600;
-    }
+    .mobile-popup-card h3 { font-size: 1.1rem; font-weight: 800; color: #0f172a; margin-bottom: 10px; }
+    .mobile-popup-steps { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; text-align: left; font-size: 0.85rem; color: #334155; margin-bottom: 16px; }
+    .mobile-popup-step-item { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-weight: 600; }
     .mobile-popup-step-item:last-child { margin-bottom: 0; }
-    .step-num {
-      background: #2563eb; color: #ffffff;
-      width: 22px; height: 22px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 800; flex-shrink: 0;
-    }
-    .mobile-popup-btn {
-      width: 100%; padding: 12px;
-      background: var(--primary-gradient);
-      color: #ffffff; font-weight: 800; font-size: 0.92rem;
-      border: none; border-radius: 12px; cursor: pointer;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
-    }
-    .mobile-popup-btn:active { transform: scale(0.98); }
+    .step-num { background: #2563eb; color: #ffffff; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; }
+    .mobile-popup-btn { width: 100%; padding: 11px; background: var(--primary-gradient); color: #ffffff; font-weight: 800; font-size: 0.88rem; border: none; border-radius: 10px; cursor: pointer; }
 
-    mark.hl { background: #fef08a; color: #854d0e; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
-    mark.green-hl { background: #d1fae5; color: #065f46; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+    mark.hl { background: #fef08a; color: #854d0e; font-weight: 700; padding: 1px 4px; border-radius: 4px; }
+    mark.green-hl { background: #d1fae5; color: #065f46; font-weight: 700; padding: 1px 4px; border-radius: 4px; }
 
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes popupScale { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
     /* MOBILE OPTIMIZATIONS (< 640px) */
     @media (max-width: 640px) {
-      body { padding: 12px 6px; }
-      .container { padding: 22px 14px; border-radius: 14px; }
-      .card-grid { grid-template-columns: 1fr; gap: 14px; }
-      .card { padding: 18px 16px; }
-      .nursing-item { padding: 14px; }
-      .header-top { flex-direction: column; align-items: flex-start; }
-      .modal-card { max-height: 95vh; margin: 4px; }
+      body { padding: 8px 4px; }
+      .container { padding: 18px 12px; border-radius: 14px; }
+      .card-grid { grid-template-columns: 1fr; gap: 12px; }
+      .card { padding: 14px; }
+      .nursing-item { padding: 12px; }
+      .header-actions { flex-direction: column; }
+      .btn-header { width: 100%; }
+      .modal-card { max-height: 96vh; }
     }
   </style>
 </head>
@@ -395,13 +299,14 @@
     <header>
       <div class="header-top">
         <span class="badge">Pharmacology — Unit I</span>
-        <div class="header-actions">
-          <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
-          <button class="btn-header" onclick="toggleModal('treeModal')">🧠 Concepts Mind Map</button>
-        </div>
       </div>
       <h1>Basic Principles of Pharmacology</h1>
       <p class="subtitle">Core concepts of drug movement, mechanism of action, and high-yield examination topics.</p>
+
+      <div class="header-actions">
+        <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
+        <button class="btn-header" onclick="toggleModal('treeModal')">🧠 Concepts Mind Map</button>
+      </div>
     </header>
 
     <main>
@@ -485,12 +390,12 @@
       </div>
 
       <!-- EXAM BONUS HIGHLIGHT FOR TERMINOLOGY -->
-      <div class="mnemonic-box" style="border-left-color: #2563eb; background: #f0f9ff; border-color: #bfdbfe;">
-        <h4 style="color: #1e40af;">📌 Exam Focus: Key Terminology Distinctions</h4>
+      <div class="mnemonic-box">
+        <h4>📌 Exam Focus: Key Terminology Distinctions</h4>
         <p style="font-size: 0.88rem;">
           • <strong>Pro-drug:</strong> An inactive precursor that requires metabolic conversion (usually in the liver) to become pharmacologically active (e.g., Enalapril &rarr; Enalaprilat; Levodopa &rarr; Dopamine).<br>
           • <strong>Bioavailability (F):</strong> The fraction of unchanged drug that reaches systemic circulation. IV route = 100% (F = 1.0).<br>
-          • <strong>Therapeutic Index (TI):</strong> Ratio comparing toxic dose to effective dose (TI = TD50 / ED50). Narrow TI drugs (e.g., Digoxin, Lithium, Warfarin) require strict blood lab monitoring!
+          • <strong>Therapeutic Index (TI):</strong> Ratio comparing toxic dose to effective dose ($TI = TD_{50} / ED_{50}$). Narrow TI drugs (e.g., Digoxin, Lithium, Warfarin) require strict blood lab monitoring!
         </p>
       </div>
 
@@ -522,11 +427,11 @@
       <p>Medications are prescribed and administered in healthcare settings for several distinct, high-yield clinical objectives:</p>
 
       <ul style="list-style: none; padding-left: 0;">
-        <li style="position: relative; padding-left: 22px; margin-bottom: 8px;"><strong>Prophylaxis (Prevention):</strong> Administered to prevent diseases or infections before exposure (e.g., vaccines, preoperative prophylactic antibiotics like Cefazolin, antimalarial tablets).</li>
-        <li style="position: relative; padding-left: 22px; margin-bottom: 8px;"><strong>Diagnosis:</strong> Utilized in clinical diagnostic procedures to confirm or locate pathological changes (e.g., radiocontrast dyes for angiography, barium meals, tuberculin PPD skin tests).</li>
-        <li style="position: relative; padding-left: 22px; margin-bottom: 8px;"><strong>Treatment (Cure / Therapeutic):</strong> Administered to eradicate pathogens or eliminate the root cause of a disease (e.g., penicillin curing bacterial endocarditis).</li>
-        <li style="position: relative; padding-left: 22px; margin-bottom: 8px;"><strong>Palliation (Symptom Relief):</strong> Designed to reduce symptom severity, pain, and suffering without curing the underlying terminal disease (e.g., IV morphine in end-stage oncology care).</li>
-        <li style="position: relative; padding-left: 22px; margin-bottom: 8px;"><strong>Restoration (Maintenance / Replacement):</strong> Used to restore normal body function or replenish deficient physiological hormones/electrolytes (e.g., levothyroxine for hypothyroidism, insulin for Type 1 diabetes).</li>
+        <li style="position: relative; padding-left: 20px; margin-bottom: 8px;"><strong>Prophylaxis (Prevention):</strong> Administered to prevent diseases or infections before exposure (e.g., vaccines, preoperative prophylactic antibiotics like Cefazolin, antimalarial tablets).</li>
+        <li style="position: relative; padding-left: 20px; margin-bottom: 8px;"><strong>Diagnosis:</strong> Utilized in clinical diagnostic procedures to confirm or locate pathological changes (e.g., radiocontrast dyes for angiography, barium meals, tuberculin PPD skin tests).</li>
+        <li style="position: relative; padding-left: 20px; margin-bottom: 8px;"><strong>Treatment (Cure / Therapeutic):</strong> Administered to eradicate pathogens or eliminate the root cause of a disease (e.g., penicillin curing bacterial endocarditis).</li>
+        <li style="position: relative; padding-left: 20px; margin-bottom: 8px;"><strong>Palliation (Symptom Relief):</strong> Designed to reduce symptom severity, pain, and suffering without curing the underlying terminal disease (e.g., IV morphine in end-stage oncology care).</li>
+        <li style="position: relative; padding-left: 20px; margin-bottom: 8px;"><strong>Restoration (Maintenance / Replacement):</strong> Used to restore normal body function or replenish deficient physiological hormones/electrolytes (e.g., levothyroxine for hypothyroidism, insulin for Type 1 diabetes).</li>
       </ul>
 
       <!-- TOPIC 4: SOURCES OF MEDICATION -->
@@ -673,10 +578,10 @@
       <p>Nurses are legally held responsible for verifying drug mechanisms, safe dosage ranges, compatibility, and side effects prior to administration using validated resources:</p>
 
       <ul style="list-style: none; padding-left: 0;">
-        <li style="position: relative; padding-left: 22px; margin-bottom: 8px;"><strong>Nursing Drug Handbooks:</strong> (e.g., <em>Davis's Drug Guide for Nurses</em>, <em>Lippincott Nursing Drug Handbook</em>) containing concise nursing implications, IV push rates, and black box warnings.</li>
-        <li style="position: relative; padding-left: 22px; margin-bottom: 8px;"><strong>Clinical Pharmacists:</strong> The premier interprofessional resource for complex drug compatibility, renal clearance adjustments, and drug-drug interactions.</li>
-        <li style="position: relative; padding-left: 22px; margin-bottom: 8px;"><strong>Official Hospital Formularies &amp; BNF:</strong> Institutional guides listing approved medications, therapeutic substitution rules, and local protocol guidelines.</li>
-        <li style="position: relative; padding-left: 22px; margin-bottom: 8px;"><strong>Validated Online Databases:</strong> Electronic clinical software including Micromedex, Lexicomp, UpToDate, and Medscape.</li>
+        <li style="position: relative; padding-left: 20px; margin-bottom: 8px;"><strong>Nursing Drug Handbooks:</strong> (e.g., <em>Davis's Drug Guide for Nurses</em>, <em>Lippincott Nursing Drug Handbook</em>) containing concise nursing implications, IV push rates, and black box warnings.</li>
+        <li style="position: relative; padding-left: 20px; margin-bottom: 8px;"><strong>Clinical Pharmacists:</strong> The premier interprofessional resource for complex drug compatibility, renal clearance adjustments, and drug-drug interactions.</li>
+        <li style="position: relative; padding-left: 20px; margin-bottom: 8px;"><strong>Official Hospital Formularies &amp; BNF:</strong> Institutional guides listing approved medications, therapeutic substitution rules, and local protocol guidelines.</li>
+        <li style="position: relative; padding-left: 20px; margin-bottom: 8px;"><strong>Validated Online Databases:</strong> Electronic clinical software including Micromedex, Lexicomp, UpToDate, and Medscape.</li>
       </ul>
 
       <!-- TOPIC 10: PREPARING DRUG CARDS (INTERACTIVE WIDGET) -->
@@ -685,7 +590,7 @@
 
       <div class="sim-stage">
         <h3 style="color: var(--primary-dark); text-align: center; margin-bottom: 6px;">Interactive Drug Card Viewer</h3>
-        <p style="text-align: center; font-size: 0.85rem; margin-bottom: 14px;">Select a medication to view its structured student drug card:</p>
+        <p style="text-align: center; font-size: 0.82rem; margin-bottom: 12px;">Select a medication to view its structured student drug card:</p>
 
         <div class="sim-controls">
           <button class="sim-btn" onclick="loadDrugCard('digoxin')">Digoxin (Lanoxin)</button>
@@ -701,19 +606,19 @@
           <div class="drug-grid">
             <div class="drug-section-box">
               <strong>Mechanism of Action</strong>
-              <span id="dcMoa" style="color: var(--text-muted); font-size: 0.85rem;">Click any drug button above to load details.</span>
+              <span id="dcMoa" style="color: var(--text-muted); font-size: 0.82rem;">Click any drug button above to load details.</span>
             </div>
             <div class="drug-section-box">
               <strong>Indications</strong>
-              <span id="dcInd" style="color: var(--text-muted); font-size: 0.85rem;">-</span>
+              <span id="dcInd" style="color: var(--text-muted); font-size: 0.82rem;">-</span>
             </div>
             <div class="drug-section-box">
               <strong>Key Side Effects &amp; Toxicity</strong>
-              <span id="dcSide" style="color: var(--text-muted); font-size: 0.85rem;">-</span>
+              <span id="dcSide" style="color: var(--text-muted); font-size: 0.82rem;">-</span>
             </div>
             <div class="drug-section-box">
               <strong>Priority Nursing Interventions</strong>
-              <span id="dcNurse" style="color: var(--text-muted); font-size: 0.85rem;">-</span>
+              <span id="dcNurse" style="color: var(--text-muted); font-size: 0.82rem;">-</span>
             </div>
           </div>
         </div>
@@ -744,75 +649,80 @@
     <div class="footer-copy">&copy; 2026 Pharmacology Study Portal. All rights reserved.</div>
   </footer>
 
-<!-- ================= MASTER SUMMARY TABLE MODAL (HIGH CONTRAST) ================= -->
+<!-- ================= HIGH-YIELD MASTER SUMMARY TABLE MODAL ================= -->
 <div class="modal-overlay" id="tableModal">
   <div class="modal-card">
     <div class="modal-header">
-      <h3>📊 Master Foundational Pharmacology Summary Table</h3>
+      <h3>📊 Master Exam Summary Table (PK, PD &amp; Safety)</h3>
       <button class="close-btn" onclick="toggleModal('tableModal')">&times;</button>
     </div>
     <div class="modal-body">
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;">High-yield comparative summary across foundational pharmacology sub-disciplines, clinical focus, and core parameters.</p>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">Comprehensive comparative breakdown of high-yield Pharmacokinetics, Pharmacodynamics, and Clinical Safety parameters.</p>
+      
       <div class="table-container">
         <table class="summary-table">
           <thead>
             <tr>
-              <th>Sub-Discipline</th>
-              <th>Core Definition</th>
-              <th>Primary Clinical Focus</th>
-              <th>Key Parameters / Assays</th>
-              <th>High-Yield Nursing / Safety Alert</th>
+              <th>Core Concept</th>
+              <th>Detailed Definition &amp; Mechanism</th>
+              <th>High-Yield Exam Formulas / Parameters</th>
+              <th>Clinical Significance &amp; Nursing Safety Alert</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>1. Pharmacokinetics (PK)</strong></td>
-              <td>What the body does to the drug (ADME)</td>
-              <td>Drug movement, absorption, bio-distribution, hepatic clearance, and renal elimination</td>
-              <td>t1/2 (Half-life), Vd (Volume of Distribution), Cl (Clearance), F (Bioavailability)</td>
-              <td>Assess renal/hepatic blood function (BUN/Cr, ALT/AST) prior to dosing to avoid drug toxicity</td>
+              <td><strong>1. Pharmacokinetics: Absorption</strong></td>
+              <td>Process of drug movement from site of administration into systemic circulation across biological membranes.</td>
+              <td><strong>Bioavailability ($F$):</strong> Fraction of unchanged drug reaching circulation. IV = 100% ($F = 1.0$). Oral ($F < 1.0$) due to incomplete absorption/first-pass.</td>
+              <td>Affected by gastric pH, GI motility, and food. Sublingual &amp; Parenteral routes bypass first-pass liver degradation!</td>
             </tr>
             <tr>
-              <td><strong>2. Pharmacodynamics (PD)</strong></td>
-              <td>What the drug does to the body</td>
-              <td>Biochemical mechanisms, receptor binding, enzyme inhibition, and dose-response curves</td>
-              <td>ED50, TD50, EC50, Therapeutic Index (TI = TD50/ED50)</td>
-              <td>Narrow Therapeutic Index drugs (e.g., Digoxin, Lithium, Warfarin) require strict blood lab monitoring</td>
+              <td><strong>2. Hepatic First-Pass Effect</strong></td>
+              <td>Initial metabolic breakdown of orally ingested drugs in the liver via portal vein prior to reaching systemic circulation.</td>
+              <td><strong>First-Pass Extraction Ratio ($ER$):</strong> High $ER$ drugs (e.g., Nitroglycerin, Morphine, Propranolol) require significantly larger oral doses than IV doses.</td>
+              <td>SL Nitroglycerin is given under the tongue to bypass portal hepatic circulation directly into superior vena cava!</td>
             </tr>
             <tr>
-              <td><strong>3. Pharmacotherapeutics</strong></td>
-              <td>Clinical application of drugs for disease management</td>
-              <td>Prophylaxis, diagnosis, therapeutic cure, palliative care, and hormonal replacement</td>
-              <td>Therapeutic response, clinical endpoint markers (e.g., BP, Blood Glucose)</td>
-              <td>Match prescription purpose with clinical indications and monitor for therapeutic efficacy</td>
+              <td><strong>3. Pharmacokinetics: Distribution</strong></td>
+              <td>Reversible translocation of drug from vascular compartment into interstitial tissues and intracellular fluid spaces.</td>
+              <td><strong>Volume of Distribution ($V_d$):</strong> $V_d = \text{Dose} / C_0$. High $V_d$ (>42 L) indicates drug is extensively bound in lipophilic tissues.</td>
+              <td><strong>Plasma Protein Binding:</strong> Only 'Free' (unbound) drug is active. Hypoalbuminemia leads to elevated free drug levels and severe drug toxicity!</td>
             </tr>
             <tr>
-              <td><strong>4. Toxicology</strong></td>
-              <td>Study of adverse effects, poisons, and overdoses</td>
-              <td>Adverse drug reactions (ADRs), cellular toxicity, side effect management, and antidotes</td>
-              <td>Toxic blood levels, organ function toxicity markers</td>
-              <td>Always keep specific antidotes accessible (e.g., Naloxone for opioids, Protamine for heparin)</td>
+              <td><strong>4. Pharmacokinetics: Metabolism</strong></td>
+              <td>Enzymatic biotransformation of drugs (primarily in liver hepatocytes) into polar, water-soluble metabolites for renal elimination.</td>
+              <td><strong>Phase I:</strong> Oxidation/Reduction via CYP450 enzymes.<br><strong>Phase II:</strong> Conjugation (Glucuronidation). <strong>CYP Inducers vs Inhibitors.</strong></td>
+              <td>CYP3A4 Inhibitors (e.g., Grapefruit juice, Erythromycin) increase drug accumulation and toxicity!</td>
             </tr>
             <tr>
-              <td><strong>5. Pharmaceutics</strong></td>
-              <td>Science of drug dosage form design</td>
-              <td>Formulating APIs into bioavailable tablets, capsules, syrups, sustained-release, and IV forms</td>
-              <td>Dissolution rate, disintegration time, formulation stability</td>
-              <td>NEVER crush or break Enteric-Coated (EC) or Extended-Release (ER/XL) oral formulations!</td>
+              <td><strong>5. Pharmacokinetics: Elimination</strong></td>
+              <td>Irreversible removal of drug from body via Renal Glomerular Filtration, Tubular Secretion, and Biliary/Fecal excretion.</td>
+              <td><strong>Half-Life ($t_{1/2}$):</strong> Time required for drug concentration to drop by 50%.<br><strong>Steady State ($SS$):</strong> Reached after 4 to 5 half-lives.</td>
+              <td>Renal failure prolongs $t_{1/2}$; calculate Serum Creatinine / eGFR to adjust dosing intervals and prevent fatal toxicity.</td>
             </tr>
             <tr>
-              <td><strong>6. Pharmacognosy</strong></td>
-              <td>Study of crude drugs from natural sources</td>
-              <td>Extracting active therapeutic alkaloids/glycosides from plants, animals, and minerals</td>
-              <td>Purity assay, active constituent standardization</td>
-              <td>Educate patients that 'natural' herbal supplements can interact dangerously with prescription drugs</td>
+              <td><strong>6. Pharmacodynamics: Receptor Theory</strong></td>
+              <td>Study of biochemical/molecular interactions between drugs and target cellular receptors producing a biological response.</td>
+              <td><strong>Agonist:</strong> Full activation ($E_{max}$).<br><strong>Partial Agonist:</strong> Submaximal response ($E_{max} < 100\%$).<br><strong>Antagonist:</strong> Blocks receptor activity.</td>
+              <td>Competitive antagonists shift dose-response curve to the right (surmountable by higher agonist doses); Non-competitive antagonists decrease $E_{max}$.</td>
             </tr>
             <tr>
-              <td><strong>7. Pharmacogenomics</strong></td>
-              <td>Study of genetic variations influencing drug response</td>
-              <td>Personalized medicine based on patient DNA profiling and metabolic enzyme gene variants</td>
-              <td>CYP450 gene polymorphisms (e.g., CYP2C19, CYP2D6, VKORC1)</td>
-              <td>Genetic variations explain why standard drug doses cause toxicity or non-response in certain patients</td>
+              <td><strong>7. Therapeutic Index ($TI$) &amp; Margin</strong></td>
+              <td>Quantitative measure of relative drug safety comparing toxic dose to therapeutically effective dose.</td>
+              <td>$$TI = \frac{TD_{50}}{ED_{50}}$$ (Ratio of Median Toxic Dose to Median Effective Dose).</td>
+              <td><strong>Narrow TI Drugs (HIGH ALERT):</strong> Digoxin, Lithium, Warfarin, Theophylline, Gentamicin. Require routine Therapeutic Drug Monitoring (TDM)!</td>
+            </tr>
+            <tr>
+              <td><strong>8. Pregnancy Safety Categories</strong></td>
+              <td>FDA risk classification system evaluating potential drug teratogenicity and fetal harm during pregnancy.</td>
+              <td><strong>Cat A:</strong> Safe in human studies.<br><strong>Cat B/C:</strong> Moderate risk.<br><strong>Cat D:</strong> Evidence of human risk.<br><strong>Cat X:</strong> Strictly Contraindicated!</td>
+              <td>Category X drugs (e.g., Warfarin, Isotretinoin, Thalidomide, Methotrexate) cause severe congenital birth defects!</td>
+            </tr>
+            <tr>
+              <td><strong>9. Controlled Substance Schedules</strong></td>
+              <td>Legal classification of habit-forming medications based on medical utility and liability for physical/psychological addiction.</td>
+              <td><strong>Schedule I:</strong> High abuse / No medical use (Heroin).<br><strong>Schedule II:</strong> High abuse / Medical use (Morphine).<br><strong>Schedule V:</strong> Lowest abuse.</td>
+              <td>Schedule II drug orders require dual-nurse sign-off, double locked storage cabinets, and strict inventory count logs!</td>
             </tr>
           </tbody>
         </table>
@@ -821,7 +731,7 @@
   </div>
 </div>
 
-<!-- ================= CONCEPTS MIND MAP MODAL (HIGH CONTRAST) ================= -->
+<!-- ================= CONCEPTS MIND MAP MODAL ================= -->
 <div class="modal-overlay" id="treeModal">
   <div class="modal-card">
     <div class="modal-header">
@@ -829,15 +739,15 @@
       <button class="close-btn" onclick="toggleModal('treeModal')">&times;</button>
     </div>
     <div class="modal-body">
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Visual hierarchy of core foundational concepts governing Unit I Pharmacology.</p>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">Visual hierarchy of core foundational concepts governing Unit I Pharmacology.</p>
       <div class="tree-container">
         <div class="tree-node">
           <div class="tree-title">🩺 1. Pharmacokinetics (ADME Framework)</div>
           <div class="tree-sublist">
             <span class="tree-tag">Absorption: Bioavailability (F), First-Pass Metabolism</span>
-            <span class="tree-tag">Distribution: Plasma Protein Binding (Albumin), BBB</span>
+            <span class="tree-tag">Distribution: Plasma Protein Binding (Albumin), Vd</span>
             <span class="tree-tag">Metabolism: Hepatic CYP450 Enzymes, Phase I/II Reactions</span>
-            <span class="tree-tag">Excretion: Renal Glomerular Filtration &amp; Tubular Secretion</span>
+            <span class="tree-tag">Excretion: Half-life (t1/2), Renal Clearance, Steady State</span>
           </div>
         </div>
         <div class="tree-node">
@@ -846,21 +756,23 @@
             <span class="tree-tag">Agonists: Full vs. Partial Agonists</span>
             <span class="tree-tag">Antagonists: Competitive (reversible) vs. Non-competitive</span>
             <span class="tree-tag">Safety Margin: Therapeutic Index (TI = TD50 / ED50)</span>
+            <span class="tree-tag">Potency vs Efficacy: EC50 vs Emax</span>
           </div>
         </div>
         <div class="tree-node">
           <div class="tree-title">🌿 3. Drug Sources &amp; Classification Schemes</div>
           <div class="tree-sublist">
-            <span class="tree-tag">Sources: Plant (Digoxin), Animal (Heparin), Synthetic (Fluoroquinolones)</span>
+            <span class="tree-tag">Sources: Plant (Digoxin), Animal (Heparin), Synthetic</span>
             <span class="tree-tag">Classification: Body System, Therapeutic Use, Mechanism of Action (MOA)</span>
           </div>
         </div>
         <div class="tree-node">
-          <div class="tree-title">💉 4. Administration Routes &amp; Distribution Systems</div>
+          <div class="tree-title">💉 4. Administration Routes &amp; Clinical Safety</div>
           <div class="tree-sublist">
             <span class="tree-tag">Enteral: Oral (PO), Sublingual (SL - bypasses liver), Rectal</span>
             <span class="tree-tag">Parenteral: IV (100% F), IM (90°), SC (45-90°), ID (10-15°)</span>
-            <span class="tree-tag">Supply Systems: Floor Stock, Unit Dose (Safest), Automated Cabinets (Pyxis)</span>
+            <span class="tree-tag">Supply Systems: Floor Stock, Unit Dose (Safest), Pyxis ADCs</span>
+            <span class="tree-tag">Legislation: Controlled Schedules (I-V), Pregnancy Risk (A-X)</span>
           </div>
         </div>
       </div>
