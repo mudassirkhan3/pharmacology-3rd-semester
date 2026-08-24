@@ -62,11 +62,50 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
     }
 
+    header {
+      margin-bottom: 25px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-header {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 10px rgba(13, 148, 136, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-header:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(13, 148, 136, 0.35);
+    }
+
     .badge-container {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 12px;
       flex-wrap: wrap;
     }
 
@@ -138,7 +177,7 @@
     .subtitle {
       font-size: 1.02rem;
       color: var(--text-muted);
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     h2 {
@@ -416,6 +455,150 @@
       flex-wrap: wrap;
     }
 
+    /* MODAL POPUP STYLES */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      padding: 12px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 18px;
+      max-width: 950px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      padding: 16px 20px;
+      background: var(--primary-gradient);
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .close-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .close-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    /* TABLE STYLING FOR MODAL */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      margin-top: 10px;
+    }
+
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      text-align: left;
+      min-width: 650px;
+    }
+
+    .summary-table th {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 14px;
+      font-weight: 700;
+      position: sticky;
+      top: 0;
+    }
+
+    .summary-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .summary-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    /* TREE DIAGRAM STYLES */
+    .tree-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 10px;
+    }
+
+    .tree-node {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .tree-title {
+      font-weight: 800;
+      color: var(--primary-dark);
+      font-size: 0.98rem;
+      margin-bottom: 8px;
+    }
+
+    .tree-sublist {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
     @media (max-width: 640px) {
       body { padding: 8px 4px 50px; }
       .container { padding: 18px 12px; border-radius: 14px; }
@@ -425,6 +608,8 @@
       .drug-class-card { padding: 16px 12px; }
       .subdrug-grid { grid-template-columns: 1fr; }
       .flow-steps-grid { grid-template-columns: 1fr; }
+      .header-top { flex-direction: column; align-items: flex-start; }
+      .modal-card { max-height: 95vh; margin: 4px; }
     }
   </style>
 </head>
@@ -432,8 +617,14 @@
 
   <div class="container">
     <header>
-      <div class="badge-container">
-        <span class="badge">Simplified Nursing Pharmacology — Mudassir Khan</span>
+      <div class="header-top">
+        <div class="badge-container">
+          <span class="badge">Simplified Nursing Pharmacology — Mudassir Khan</span>
+        </div>
+        <div class="header-actions">
+          <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
+          <button class="btn-header" onclick="toggleModal('treeModal')">🌳 Classification Tree</button>
+        </div>
       </div>
       <h1>Antiviral Pharmacology Master Study Guide</h1>
       <p class="subtitle">A clear breakdown of antiviral classifications, simplified Mechanisms of Action (MOA), flowchart visuals, nursing alerts, and high-yield exam points.</p>
@@ -467,11 +658,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Reference Visual Diagram -->
-      <p style="text-align: center; margin: 15px 0;">
-        <Image src="image_agent_tag_17748664004887017177" alt="Schematic diagram illustrating the mechanisms of action for key antiviral drugs inside host cells" caption="Antiviral Target Mechanisms Inside Host Cells" />
-      </p>
 
       <!-- ================= 1. RESPIRATORY VIRUSES ================= -->
       <section class="drug-class-card">
@@ -557,11 +743,6 @@
           <p><span class="drug-name-tag">Oseltamivir</span> &bull; <span class="drug-name-tag">Baloxavir</span> &bull; <span class="drug-name-tag">Amantadine</span> &bull; <span class="drug-name-tag">Palivizumab</span> &bull; <span class="drug-name-tag">Remdesivir</span></p>
         </div>
       </section>
-
-      <!-- Reference HIV Replication Diagram -->
-      <p style="text-align: center; margin: 15px 0;">
-        <Image src="image_agent_tag_17748664004887018776" alt="Comprehensive diagram detailing the seven steps of the HIV replication cycle" caption="The Complete HIV Replication Cycle" />
-      </p>
 
       <!-- ================= 2. HIV: NRTIs VS NtRTIs ================= -->
       <section class="drug-class-card">
@@ -756,11 +937,6 @@
         </div>
       </section>
 
-      <!-- Reference Herpesvirus Replication Diagram -->
-      <p style="text-align: center; margin: 15px 0;">
-        <Image src="image_agent_tag_17748664004887016279" alt="Detailed replication cycle diagram of Herpesviruses showing nuclear injection and DNA packaging" caption="Herpesvirus Nuclear Replication Cycle" />
-      </p>
-
       <!-- ================= 5. HERPESVIRUS & CMV ================= -->
       <section class="drug-class-card">
         <h2>5. Herpesvirus (HSV/VZV) &amp; Cytomegalovirus (CMV) Drugs</h2>
@@ -904,7 +1080,202 @@
     </main>
   </div>
 
+  <!-- ================= MASTER SUMMARY TABLE MODAL ================= -->
+  <div class="modal-overlay" id="tableModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>📊 Master Antiviral Summary Table</h3>
+        <button class="close-btn" onclick="toggleModal('tableModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;">High-yield table matching all categories, drugs, MOAs, primary clinical uses, and key nursing ADR alerts.</p>
+        <div class="table-container">
+          <table class="summary-table">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Drug Class</th>
+                <th>Representative Drugs</th>
+                <th>Mechanism of Action</th>
+                <th>Primary Clinical Uses</th>
+                <th>Key ADRs / Nursing Alerts</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Respiratory</strong></td>
+                <td>Neuraminidase Inhibitors</td>
+                <td>Oseltamivir, Zanamivir</td>
+                <td>Prevents viral release from sialic acid</td>
+                <td>Influenza A &amp; B (within 48 hrs)</td>
+                <td>Nausea, bronchospasm (Zanamivir)</td>
+              </tr>
+              <tr>
+                <td><strong>Respiratory</strong></td>
+                <td>M2 Channel Blockers</td>
+                <td>Amantadine, Rimantadine</td>
+                <td>Blocks viral uncoating inside host cell</td>
+                <td>Influenza A (Legacy)</td>
+                <td>CNS effects (dizziness, insomnia)</td>
+              </tr>
+              <tr>
+                <td><strong>HIV</strong></td>
+                <td>NRTIs</td>
+                <td>Zidovudine, Abacavir, Emtricitabine</td>
+                <td>Fake nucleosides cause chain termination</td>
+                <td>cART Backbone for HIV-1</td>
+                <td>Lactic acidosis, HLA-B*5701 alert (Abacavir)</td>
+              </tr>
+              <tr>
+                <td><strong>HIV</strong></td>
+                <td>NtRTI</td>
+                <td>Tenofovir (TDF / TAF)</td>
+                <td>Fake nucleotide causes chain termination</td>
+                <td>HIV cART &amp; Hepatitis B</td>
+                <td>Fanconi syndrome / bone loss (TDF)</td>
+              </tr>
+              <tr>
+                <td><strong>HIV</strong></td>
+                <td>NNRTIs</td>
+                <td>Efavirenz, Rilpivirine</td>
+                <td>Allosteric non-competitive RT block</td>
+                <td>cART for HIV-1</td>
+                <td>Vivid dreams (Efavirenz), SJS rash</td>
+              </tr>
+              <tr>
+                <td><strong>HIV</strong></td>
+                <td>Integrase Inhibitors</td>
+                <td>Bictegravir, Dolutegravir</td>
+                <td>Chelates Mg²⁺ to stop strand transfer</td>
+                <td>Frontline HIV Treatment</td>
+                <td>Weight gain, insomnia, headache</td>
+              </tr>
+              <tr>
+                <td><strong>HIV</strong></td>
+                <td>Protease Inhibitors</td>
+                <td>Darunavir, Atazanavir</td>
+                <td>Blocks cleavage of Gag-Pol polyprotein</td>
+                <td>Treatment-experienced HIV</td>
+                <td>Hyperglycemia, lipodystrophy, jaundice</td>
+              </tr>
+              <tr>
+                <td><strong>Hepatitis B</strong></td>
+                <td>HBV Polymerase Blockers</td>
+                <td>Entecavir, Tenofovir</td>
+                <td>Blocks HBV priming &amp; DNA elongation</td>
+                <td>Chronic Hepatitis B</td>
+                <td>Creatine kinase rise, renal toxicity</td>
+              </tr>
+              <tr>
+                <td><strong>Hepatitis C</strong></td>
+                <td>NS5B Polymerase Inhibitor</td>
+                <td>Sofosbuvir (-buvir)</td>
+                <td>Blocks HCV RNA-dependent RNA polymerase</td>
+                <td>Pan-genotypic HCV Cure</td>
+                <td>Severe bradycardia with Amiodarone!</td>
+              </tr>
+              <tr>
+                <td><strong>Hepatitis C</strong></td>
+                <td>NS5A Complex Inhibitor</td>
+                <td>Ledipasvir, Velpatasvir (-asvir)</td>
+                <td>Blocks RNA replication complex</td>
+                <td>Chronic HCV Combination</td>
+                <td>Headache, fatigue, nausea</td>
+              </tr>
+              <tr>
+                <td><strong>Hepatitis C</strong></td>
+                <td>NS3/4A Protease Inhibitor</td>
+                <td>Glecaprevir (-previr)</td>
+                <td>Blocks polyprotein cleavage</td>
+                <td>Chronic HCV Combination</td>
+                <td>Bilirubin elevation, nausea</td>
+              </tr>
+              <tr>
+                <td><strong>Herpes / CMV</strong></td>
+                <td>Thymidine Kinase-Dependent</td>
+                <td>Acyclovir, Valacyclovir</td>
+                <td>Activated by TK; stops DNA polymerase</td>
+                <td>Genital HSV, VZV Shingles</td>
+                <td>Crystalline nephropathy (hydrate IV!)</td>
+              </tr>
+              <tr>
+                <td><strong>Herpes / CMV</strong></td>
+                <td>UL97 Kinase-Dependent</td>
+                <td>Ganciclovir, Valganciclovir</td>
+                <td>Activated by UL97; stops CMV DNA poly</td>
+                <td>Severe CMV Retinitis</td>
+                <td>Severe bone marrow suppression</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CLASSIFICATION TREE MODAL ================= -->
+  <div class="modal-overlay" id="treeModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>🌳 Antiviral Classification Tree</h3>
+        <button class="close-btn" onclick="toggleModal('treeModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Interactive visual tree hierarchy breakdown of all classes and drugs.</p>
+        <div class="tree-container">
+          <div class="tree-node">
+            <div class="tree-title">🫁 1. Respiratory Viruses</div>
+            <div class="tree-sublist">
+              <span class="drug-class-tag">Neuraminidase: Oseltamivir</span>
+              <span class="drug-class-tag">Endonuclease: Baloxavir</span>
+              <span class="drug-class-tag">M2 Channel: Amantadine</span>
+              <span class="drug-class-tag">RSV F-Protein: Palivizumab</span>
+            </div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-title">🎗️ 2. Human Immunodeficiency Virus (HIV)</div>
+            <div class="tree-sublist">
+              <span class="drug-class-tag">NRTIs: Abacavir, Zidovudine, Emtricitabine</span>
+              <span class="drug-class-tag">NtRTI: Tenofovir (TDF/TAF)</span>
+              <span class="drug-class-tag">NNRTIs: Efavirenz, Rilpivirine</span>
+              <span class="drug-class-tag">INSTIs: Bictegravir, Dolutegravir</span>
+              <span class="drug-class-tag">Protease Inhibitors: Darunavir, Atazanavir</span>
+            </div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-title">🩺 3. Hepatitis B Virus (HBV)</div>
+            <div class="tree-sublist">
+              <span class="drug-class-tag">Polymerase Inhibitors: Entecavir, Tenofovir, Adefovir</span>
+              <span class="drug-class-tag">Cytokine: Peginterferon Alfa-2a</span>
+            </div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-title">🧬 4. Hepatitis C Virus (HCV)</div>
+            <div class="tree-sublist">
+              <span class="drug-class-tag">NS5B Polymerase (-buvir): Sofosbuvir</span>
+              <span class="drug-class-tag">NS5A Complex (-asvir): Ledipasvir, Velpatasvir</span>
+              <span class="drug-class-tag">NS3/4A Protease (-previr): Glecaprevir</span>
+            </div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-title">🔬 5. Herpes (HSV/VZV) &amp; Cytomegalovirus (CMV)</div>
+            <div class="tree-sublist">
+              <span class="drug-class-tag">HSV/VZV Kinase-Dependent: Acyclovir, Valacyclovir</span>
+              <span class="drug-class-tag">CMV Kinase-Dependent: Ganciclovir, Valganciclovir</span>
+              <span class="drug-class-tag">Kinase-Independent: Foscarnet, Cidofovir</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
+    function toggleModal(modalId) {
+      const modal = document.getElementById(modalId);
+      modal.classList.toggle('active');
+    }
+
     function showStage(stage) {
       const title = document.getElementById('stageTitle');
       const desc = document.getElementById('stageDesc');
