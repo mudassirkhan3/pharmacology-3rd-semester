@@ -3,35 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Unit I: Introduction to Pharmacology</title>
+  <title>Unit I: Introduction to Pharmacology | Demo Chapter</title>
   <style>
     :root {
       --primary: #2563eb;
       --primary-dark: #1d4ed8;
       --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
       --accent: #06b6d4;
+      --accent-gold: #f59e0b;
       --bg-gradient: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%);
       --text-dark: #0f172a;
       --text-muted: #475569;
       --card-bg: rgba(255, 255, 255, 0.95);
       --card-border: #e2e8f0;
       --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-      --shadow-lg: 0 20px 25px -5px rgba(37, 99, 235, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-      --exam-badge-bg: #ef4444;
-      --exam-badge-text: #ffffff;
+      --shadow-lg: 0 20px 25px -5px rgba(37, 99, 235, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
       --radius: 20px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #f8fafc; color: var(--text-dark); line-height: 1.6; padding: 16px 8px; min-height: 100vh; display: flex; flex-direction: column; justify-space: space-between; overflow-x: hidden; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #f8fafc; color: var(--text-dark); line-height: 1.6; padding: 0 0 16px 0; min-height: 100vh; display: flex; flex-direction: column; justify-space: space-between; overflow-x: hidden; }
     
-    .container { max-width: 1000px; width: 100%; margin: 0 auto; background: var(--card-bg); padding: 30px 20px; border-radius: var(--radius); border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); backdrop-filter: blur(10px); animation: fadeIn 0.6s ease-out; }
+    /* DEMO BANNER */
+    .demo-banner { background: linear-gradient(90deg, #1e3a8a, #2563eb, #0d9488); color: #ffffff; text-align: center; padding: 8px 12px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .demo-banner span { background: #f59e0b; color: #0f172a; padding: 2px 8px; border-radius: 50px; font-size: 0.75rem; margin-right: 6px; }
+
+    .container { max-width: 1000px; width: 100%; margin: 16px auto 0; background: var(--card-bg); padding: 30px 20px; border-radius: var(--radius); border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); backdrop-filter: blur(10px); animation: fadeIn 0.6s ease-out; }
     
     header { display: flex; flex-direction: column; margin-bottom: 25px; }
 
     .header-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
 
-    .header-actions { display: flex; gap: 8px; flex-wrap: wrap; width: 100%; }
+    .header-actions { display: flex; gap: 8px; flex-wrap: wrap; width: 100%; margin-top: 10px; }
 
     .btn-header {
       flex: 1 1 auto;
@@ -50,32 +53,34 @@
       box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       touch-action: manipulation;
+      text-decoration: none;
     }
 
     .btn-header:active { transform: scale(0.97); }
+    .btn-cta-gold { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3); }
 
     .badge { display: inline-block; padding: 5px 12px; background: #dbeafe; color: #1e40af; font-weight: 800; font-size: 12px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px; }
     
-    .exam-badge {
+    .feature-tag {
       display: inline-flex;
       align-items: center;
-      gap: 3px;
-      background: var(--exam-badge-bg);
-      color: var(--exam-badge-text);
-      font-size: 0.7rem;
+      background: #10b981;
+      color: #ffffff;
+      font-size: 0.68rem;
       font-weight: 800;
       padding: 2px 7px;
       border-radius: 6px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.25);
       margin-left: 6px;
       vertical-align: middle;
     }
+    .feature-tag.preview { background: #3b82f6; }
+    .feature-tag.gold { background: #f59e0b; color: #0f172a; }
 
     h1 { font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 800; background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; line-height: 1.25; }
     .subtitle { font-size: clamp(0.88rem, 3vw, 1.02rem); color: var(--text-muted); margin-bottom: 24px; }
-    h2 { font-size: clamp(1.15rem, 4vw, 1.38rem); color: #1e293b; margin: 30px 0 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    h2 { font-size: clamp(1.15rem, 4vw, 1.38rem); color: #1e293b; margin: 26px 0 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     h2::before { content: ''; display: inline-block; width: 5px; height: 20px; background: var(--primary); border-radius: 4px; flex-shrink: 0; }
 
     .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
@@ -85,11 +90,17 @@
     .card:hover, .card:active { transform: translateY(-4px); border-color: #3b82f6; box-shadow: var(--shadow-lg); }
     .card:hover::before, .card:active::before { opacity: 1; }
     
-    .card-icon { width: 44px; height: 44px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 12px; border: 1px solid #bfdbfe; }
+    /* SPECIAL BUY CARD */
+    .card.buy-card { background: linear-gradient(135deg, #fefce8 0%, #fffbeb 100%); border: 2px solid #fde68a; }
+    .card.buy-card::before { background: linear-gradient(90deg, #f59e0b, #d97706); opacity: 1; }
     
+    .card-icon { width: 44px; height: 44px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 12px; border: 1px solid #bfdbfe; }
+    .buy-card .card-icon { background: #fef3c7; border-color: #fde68a; }
+
     .card h3 { font-size: 1.1rem; color: #1e293b; margin-bottom: 6px; font-weight: 700; }
     .card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.45; }
     .card-link { font-size: 0.82rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 6px; }
+    .buy-card .card-link { color: #b45309; }
 
     .nursing-list { list-style: none; display: grid; gap: 12px; margin-top: 12px; }
     .nursing-item { background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--primary); border-radius: 10px; padding: 14px; display: flex; align-items: flex-start; gap: 12px; box-shadow: var(--shadow-sm); }
@@ -98,6 +109,7 @@
     .site-footer { max-width: 1000px; width: 100%; margin: 25px auto 10px; padding: 20px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #e2e8f0; border-radius: 16px; text-align: center; font-size: 0.85rem; border: 1px solid rgba(255, 255, 255, 0.08); }
     .footer-brand { font-weight: 700; color: #ffffff; margin-bottom: 4px; }
     .footer-brand span { color: #38bdf8; font-weight: 800; }
+    .footer-cta { margin-top: 10px; font-size: 0.8rem; color: #94a3b8; }
 
     /* HIGH-CONTRAST MOBILE-OPTIMIZED MODAL POPUP STYLES */
     .modal-overlay {
@@ -265,8 +277,8 @@
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
     @media (max-width: 640px) {
-      body { padding: 8px 4px; }
-      .container { padding: 18px 12px; border-radius: 14px; }
+      body { padding: 0 0 12px 0; }
+      .container { padding: 18px 12px; border-radius: 14px; margin-top: 10px; }
       .card-grid { grid-template-columns: 1fr; gap: 12px; }
       .card { padding: 14px; }
       .nursing-item { padding: 12px; }
@@ -278,29 +290,35 @@
 </head>
 <body>
 
+  <!-- DEMO PREVIEW HEADER BAR -->
+  <div class="demo-banner">
+    <span>FREE DEMO</span> Experience Chapter 1 — Unlock Full Nursing Notes &amp; Practice Quizzes via WhatsApp!
+  </div>
+
   <div class="container">
     <header>
       <div class="header-top">
-        <span class="badge">Pharmacology — Unit I</span>
+        <span class="badge">Pharmacology Portal — Unit I</span>
       </div>
       <h1>Basic Principles of Pharmacology</h1>
-      <p class="subtitle">Core concepts of drug movement, mechanism of action, and high-yield examination topics.</p>
+      <p class="subtitle">Interactive student demo: Explore core concepts, interactive drug cards, and self-assessment tools.</p>
 
       <div class="header-actions">
         <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
         <button class="btn-header" onclick="toggleModal('treeModal')">🧠 Concepts Mind Map</button>
+        <a href="https://wa.me/?text=Hi%20Mudassir!%20I%20am%20interested%20in%20getting%20the%20full%20Pharmacology%20study%20package." target="_blank" class="btn-header btn-cta-gold">⭐ Get Full Package</a>
       </div>
     </header>
 
     <main>
-      <h2>Select Study Module</h2>
+      <h2>Explore Demo Content</h2>
       <div class="card-grid">
 
         <a href="pharmacokinetics.html" class="card">
           <div>
             <div class="card-icon" title="Pharmacokinetics - Drug Pathway">🩺</div>
-            <h3>Pharmacokinetics <span class="exam-badge">IMP FOR EXAM</span></h3>
-            <p>ADME processes: Absorption, Distribution, Metabolism, and Excretion.</p>
+            <h3>Pharmacokinetics <span class="feature-tag preview">FREE PREVIEW</span></h3>
+            <p>ADME processes: Absorption, Distribution, Metabolism, and Excretion explained clearly.</p>
           </div>
           <span class="card-link">Explore Module &rarr;</span>
         </a>
@@ -308,17 +326,8 @@
         <a href="pharmacodynamics.html" class="card">
           <div>
             <div class="card-icon" title="Pharmacodynamics - Cellular Mechanism">🔬</div>
-            <h3>Pharmacodynamics <span class="exam-badge"></span></h3>
-            <p>Mechanism of action, receptor theory, dose-response, and efficacy.</p>
-          </div>
-          <span class="card-link">Explore Module &rarr;</span>
-        </a>
-
-        <a href="uhsContent1.html" class="card">
-          <div>
-            <div class="card-icon" title="UHS Exam High-Yield Target">🎯</div>
-            <h3>UHS Content #1 <span class="exam-badge"></span></h3>
-            <p>High-yield study points and essential practice questions for UHS exams.</p>
+            <h3>Pharmacodynamics <span class="feature-tag preview">FREE PREVIEW</span></h3>
+            <p>Mechanism of action, receptor theory, dose-response relationships, and drug efficacy.</p>
           </div>
           <span class="card-link">Explore Module &rarr;</span>
         </a>
@@ -326,21 +335,31 @@
         <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/quiz.chapter1.html" class="card">
           <div>
             <div class="card-icon" title="Self-Assessment Quiz">🧪</div>
-            <h3>Chapter 1 Quiz <span class="exam-badge">60 MCQs</span></h3>
-            <p>Test your knowledge with 60 high-yield MCQs and instant rationale explanations.</p>
+            <h3>Chapter 1 Practice Quiz <span class="feature-tag">50 MCQs</span></h3>
+            <p>Test your knowledge with 50 practice MCQs featuring instant rationale explanations.</p>
           </div>
-          <span class="card-link">Start Practice &rarr;</span>
+          <span class="card-link">Start Practice Quiz &rarr;</span>
+        </a>
+
+        <!-- PROMOTIONAL CTA CARD -->
+        <a href="https://wa.me/?text=Hi!%20I%20want%20to%20buy%20the%20Complete%20Pharmacology%20Study%20Notes." target="_blank" class="card buy-card">
+          <div>
+            <div class="card-icon" title="Unlock Full Course">📚</div>
+            <h3>Unlock All Chapters <span class="feature-tag gold">PREMIUM</span></h3>
+            <p>Get complete unit notes, high-yield exam summaries, printable sheets &amp; full quiz banks.</p>
+          </div>
+          <span class="card-link">Order Full Content &rarr;</span>
         </a>
 
       </div>
 
       <!-- PREPARING DRUG CARDS (INTERACTIVE WIDGET) -->
-      <h2>Interactive Drug Cards <span class="exam-badge">STUDENT FAVORITE</span></h2>
-      <p style="font-size:0.88rem; color:var(--text-muted);">Drug cards are a nursing student's most effective tool for mastering core drug concepts. Click any medication below to explore its structured layout:</p>
+      <h2>Interactive Drug Cards <span class="feature-tag gold">STUDENT FAVORITE</span></h2>
+      <p style="font-size:0.88rem; color:var(--text-muted);">Interactive drug cards help students master essential drug mechanisms, side effects, and nursing interventions efficiently:</p>
 
       <div class="sim-stage">
         <h3 style="color: var(--primary-dark); text-align: center; margin-bottom: 6px;">Interactive Drug Card Viewer</h3>
-        <p style="text-align: center; font-size: 0.82rem; margin-bottom: 12px;">Select a medication to view its structured student drug card:</p>
+        <p style="text-align: center; font-size: 0.82rem; margin-bottom: 12px;">Click a drug below to preview its formatted study profile:</p>
 
         <div class="sim-controls">
           <button class="sim-btn" onclick="loadDrugCard('digoxin')">Digoxin (Lanoxin)</button>
@@ -378,11 +397,11 @@
       <ul class="nursing-list">
         <li class="nursing-item">
           <div class="nursing-number">1</div>
-          <div><strong>Patient Assessment:</strong> Always review the medical history for renal or hepatic impairment, as these significantly affect drug clearance (Pharmacokinetics). <span class="exam-badge"></span></div>
+          <div><strong>Patient Assessment:</strong> Always review patient history for renal or hepatic impairment prior to drug administration, as organ function significantly alters drug clearance.</div>
         </li>
         <li class="nursing-item">
           <div class="nursing-number">2</div>
-          <div><strong>Dose Accuracy:</strong> Double-check high-alert medication orders against patient weight and renal function markers. <span class="exam-badge"></span></div>
+          <div><strong>Dose Accuracy:</strong> Perform independent double-checks on high-alert medications and verify dosage calculations against patient parameters.</div>
         </li>
       </ul>
     </main>
@@ -391,6 +410,7 @@
   <footer class="site-footer">
     <div class="footer-brand">Crafted with precision by <span>Mudassir Khan</span></div>
     <div class="footer-copy">&copy; 2026 Pharmacology Study Portal. All rights reserved.</div>
+    <div class="footer-cta">Like this demo? Contact us to buy access to the complete semester notes &amp; quiz banks!</div>
   </footer>
 
 <!-- ================= HIGH-YIELD MASTER SUMMARY TABLE MODAL ================= -->
@@ -535,7 +555,7 @@
           <span class="step-num">1</span> Click <b>Three Dots (⋮)</b> in top right
         </div>
         <div class="mobile-popup-step-item">
-          <span class="step-num">2</span> Tap & check <b>"Desktop site"</b>
+          <span class="step-num">2</span> Tap &amp; check <b>"Desktop site"</b>
         </div>
       </div>
 
