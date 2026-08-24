@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Chapter 5: Oncology Pharmacology Hub</title>
+  <title>Chapter 5:  Anti-Neoplastic Pharmacology</title>
 
   <!-- URL ACCESS PROTECTION SCRIPT -->
   <script>
@@ -22,6 +22,7 @@
       --primary: #7c3aed;
       --primary-dark: #6d28d9;
       --primary-gradient: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+      --quiz-gradient: linear-gradient(135deg, #c026d3 0%, #7c3aed 100%);
       --accent: #d946ef;
       --card-bg: rgba(255, 255, 255, 0.85);
       --card-border: rgba(216, 180, 254, 0.8);
@@ -29,6 +30,7 @@
       --text-dark: #0f172a;
       --text-muted: #475569;
       --shadow-glow: 0 20px 40px -15px rgba(124, 58, 237, 0.25);
+      --shadow-quiz-glow: 0 20px 40px -15px rgba(192, 38, 211, 0.3);
       --exam-badge-bg: #ef4444;
       --exam-badge-text: #ffffff;
       --radius: 20px;
@@ -80,12 +82,23 @@
     h2 { font-size: 1.4rem; margin: 40px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
     
     .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-    .card { position: relative; background: #ffffff; border: 2px solid var(--card-border); border-radius: 18px; padding: 30px 24px; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.03); }
+    .card { position: relative; background: #ffffff; border: 2px solid var(--card-border); border-radius: 18px; padding: 30px 24px; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.03); }
     .card:hover { transform: translateY(-10px) scale(1.02); box-shadow: var(--shadow-glow); border-color: transparent; }
     .card-icon { width: 58px; height: 58px; background: #f5f3ff; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 20px; transition: 0.4s; }
     .card:hover .card-icon { transform: scale(1.1) rotate(-5deg); background: var(--primary); color: white; }
     .card h3 { margin-bottom: 8px; font-size: 1.2rem; color: var(--text-main); }
-    .card p { font-size: 0.95rem; color: #475569; }
+    .card p { font-size: 0.95rem; color: #475569; margin-bottom: 16px; }
+
+    .card-link { font-size: 0.88rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 6px; transition: gap 0.2s ease; margin-top: auto; }
+    .card:hover .card-link { gap: 10px; }
+
+    /* CUSTOM STYLING FOR PRACTICE QUIZ CARD */
+    .card-quiz { border-color: #f0abfc !important; }
+    .card-quiz::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--quiz-gradient); border-radius: 18px 18px 0 0; }
+    .card-quiz:hover { box-shadow: var(--shadow-quiz-glow); border-color: transparent !important; }
+    .card-quiz .card-icon { background: #fae8ff !important; color: #c026d3; }
+    .card-quiz:hover .card-icon { background: var(--quiz-gradient) !important; color: white !important; }
+    .card-quiz .card-link { color: #c026d3 !important; }
 
     /* EXAM HIGH-YIELD BADGE */
     .exam-badge {
@@ -281,7 +294,7 @@
 
 <div class="container">
   <div class="hero-header">
-    <h1>Chapter 5: Oncology Pharmacology Hub</h1>
+    <h1>Chapter 5: Anti-Neoplastic Pharmacology</h1>
     <div class="header-actions">
       <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
       <button class="btn-header" onclick="toggleModal('treeModal')">🌳 Classification Tree</button>
@@ -291,45 +304,76 @@
   <main>
     <div class="card-grid">
       <a href="alkylating.html" class="card">
-        <div class="card-icon">⛓️</div>
-        <h3>Alkylating Agents <span class="exam-badge">IMP FOR EXAM</span></h3>
-        <p>DNA cross-linking causing strand breakage (e.g., Nitrogen mustards, Platinums).</p>
+        <div>
+          <div class="card-icon">⛓️</div>
+          <h3>Alkylating Agents <span class="exam-badge">IMP FOR EXAM</span></h3>
+          <p>DNA cross-linking causing strand breakage (e.g., Nitrogen mustards, Platinums).</p>
+        </div>
+        <span class="card-link">Explore Details &rarr;</span>
       </a>
 
       <a href="antimetabolites.html" class="card">
-        <div class="card-icon">🧩</div>
-        <h3>Antimetabolites <span class="exam-badge">IMP FOR EXAM</span></h3>
-        <p>Mimics natural bases to inhibit S-phase enzyme function (e.g., 5-FU, Methotrexate).</p>
+        <div>
+          <div class="card-icon">🧩</div>
+          <h3>Antimetabolites <span class="exam-badge">IMP FOR EXAM</span></h3>
+          <p>Mimics natural bases to inhibit S-phase enzyme function (e.g., 5-FU, Methotrexate).</p>
+        </div>
+        <span class="card-link">Explore Details &rarr;</span>
       </a>
 
       <a href="antibiotics.html" class="card">
-        <div class="card-icon">🧬</div>
-        <h3>Antitumor Antibiotics <span class="exam-badge">IMP FOR EXAM</span></h3>
-        <p>Intercalation into DNA and Topoisomerase interference (e.g., Doxorubicin).</p>
+        <div>
+          <div class="card-icon">🧬</div>
+          <h3>Antitumor Antibiotics <span class="exam-badge">IMP FOR EXAM</span></h3>
+          <p>Intercalation into DNA and Topoisomerase interference (e.g., Doxorubicin).</p>
+        </div>
+        <span class="card-link">Explore Details &rarr;</span>
       </a>
 
       <a href="microtubule.html" class="card">
-        <div class="card-icon">🧶</div>
-        <h3>Microtubule Inhibitors <span class="exam-badge">IMP FOR EXAM</span></h3>
-        <p>Inhibiting mitotic spindle formation to halt cell division (e.g., Vinca alkaloids, Taxanes).</p>
+        <div>
+          <div class="card-icon">🧶</div>
+          <h3>Microtubule Inhibitors <span class="exam-badge">IMP FOR EXAM</span></h3>
+          <p>Inhibiting mitotic spindle formation to halt cell division (e.g., Vinca alkaloids, Taxanes).</p>
+        </div>
+        <span class="card-link">Explore Details &rarr;</span>
       </a>
 
       <a href="hormones.html" class="card">
-        <div class="card-icon">🔑</div>
-        <h3>Hormones &amp; Antagonists</h3>
-        <p>Modulating receptor-mediated signaling pathways (e.g., Tamoxifen, Leuprolide).</p>
+        <div>
+          <div class="card-icon">🔑</div>
+          <h3>Hormones &amp; Antagonists</h3>
+          <p>Modulating receptor-mediated signaling pathways (e.g., Tamoxifen, Leuprolide).</p>
+        </div>
+        <span class="card-link">Explore Details &rarr;</span>
       </a>
 
       <a href="mabs.html" class="card">
-        <div class="card-icon">🛡️</div>
-        <h3>Monoclonal Antibodies <span class="exam-badge">IMP FOR EXAM</span></h3>
-        <p>Targeted binding to surface antigens for immune-mediated lysis (e.g., Rituximab, Trastuzumab).</p>
+        <div>
+          <div class="card-icon">🛡️</div>
+          <h3>Monoclonal Antibodies <span class="exam-badge">IMP FOR EXAM</span></h3>
+          <p>Targeted binding to surface antigens for immune-mediated lysis (e.g., Rituximab, Trastuzumab).</p>
+        </div>
+        <span class="card-link">Explore Details &rarr;</span>
       </a>
 
       <a href="tkis.html" class="card">
-        <div class="card-icon">📡</div>
-        <h3>Tyrosine Kinase Inhibitors</h3>
-        <p>Blocking intracellular growth signaling pathways (e.g., Imatinib, Erlotinib).</p>
+        <div>
+          <div class="card-icon">📡</div>
+          <h3>Tyrosine Kinase Inhibitors</h3>
+          <p>Blocking intracellular growth signaling pathways (e.g., Imatinib, Erlotinib).</p>
+        </div>
+        <span class="card-link">Explore Details &rarr;</span>
+      </a>
+
+      <!-- 8. PRACTICE MASTER QUIZ CARD -->
+      <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/quiz.chapter5.html" class="card card-quiz" target="_blank">
+        <div>
+          <div class="card-icon">🎯</div>
+          <h3>Practice Master Quiz <span class="exam-badge">210 MCQs</span></h3>
+          <p>Test your knowledge with 210 high-yield MCQs covering all 7 antineoplastic categories with timed diagnostics.</p>
+        </div>
+        <span class="card-link">Take Quiz Now &rarr;</span>
       </a>
     </div>
 
