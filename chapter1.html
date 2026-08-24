@@ -11,6 +11,8 @@
       --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
       --accent: #06b6d4;
       --accent-gold: #f59e0b;
+      --whatsapp-green: #25d366;
+      --whatsapp-dark: #128c7e;
       --bg-gradient: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%);
       --text-dark: #0f172a;
       --text-muted: #475569;
@@ -22,7 +24,7 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #f8fafc; color: var(--text-dark); line-height: 1.6; padding: 0 0 16px 0; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; overflow-x: hidden; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #f8fafc; color: var(--text-dark); line-height: 1.6; padding: 0 0 16px 0; min-height: 100vh; display: flex; flex-direction: column; justify-space: space-between; overflow-x: hidden; }
     
     /* DEMO BANNER */
     .demo-banner { background: linear-gradient(90deg, #1e3a8a, #2563eb, #0d9488); color: #ffffff; text-align: center; padding: 8px 12px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
@@ -57,6 +59,15 @@
     }
 
     .btn-header:active { transform: scale(0.97); }
+    
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    }
+    .btn-whatsapp:hover, .btn-whatsapp:active {
+      background: linear-gradient(135deg, #128c7e 0%, #075e54 100%);
+    }
 
     .badge { display: inline-block; padding: 5px 12px; background: #dbeafe; color: #1e40af; font-weight: 800; font-size: 12px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px; }
     
@@ -90,16 +101,16 @@
     .card:hover::before, .card:active::before { opacity: 1; }
     
     /* SPECIAL BUY CARD */
-    .card.buy-card { background: linear-gradient(135deg, #fefce8 0%, #fffbeb 100%); border: 2px solid #fde68a; }
-    .card.buy-card::before { background: linear-gradient(90deg, #f59e0b, #d97706); opacity: 1; }
+    .card.buy-card { background: linear-gradient(135deg, #f0fdf4 0%, #e8f5e9 100%); border: 2px solid #a7f3d0; }
+    .card.buy-card::before { background: linear-gradient(90deg, #25d366, #128c7e); opacity: 1; }
     
     .card-icon { width: 44px; height: 44px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 12px; border: 1px solid #bfdbfe; }
-    .buy-card .card-icon { background: #fef3c7; border-color: #fde68a; }
+    .buy-card .card-icon { background: #dcfce7; border-color: #86efac; }
 
     .card h3 { font-size: 1.1rem; color: #1e293b; margin-bottom: 6px; font-weight: 700; }
     .card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.45; }
     .card-link { font-size: 0.82rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 6px; }
-    .buy-card .card-link { color: #b45309; }
+    .buy-card .card-link { color: #15803d; }
 
     .nursing-list { list-style: none; display: grid; gap: 12px; margin-top: 12px; }
     .nursing-item { background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--primary); border-radius: 10px; padding: 14px; display: flex; align-items: flex-start; gap: 12px; box-shadow: var(--shadow-sm); }
@@ -109,7 +120,7 @@
     .footer-brand { font-weight: 700; color: #ffffff; margin-bottom: 4px; }
     .footer-brand span { color: #38bdf8; font-weight: 800; }
     .footer-cta { margin-top: 10px; font-size: 0.82rem; color: #94a3b8; }
-    .footer-cta a { color: #38bdf8; font-weight: 700; text-decoration: none; }
+    .footer-cta a { color: #25d366; font-weight: 700; text-decoration: none; }
 
     /* HIGH-CONTRAST MOBILE-OPTIMIZED MODAL POPUP STYLES */
     .modal-overlay {
@@ -301,11 +312,12 @@
         <span class="badge">Pharmacology Portal — Unit I</span>
       </div>
       <h1>Basic Principles of Pharmacology</h1>
-      <p class="subtitle">Interactive student demo: Explore core concepts, interactive drug cards, and self-assessment tools.</p>
+      <p class="subtitle">Interactive student demo: Explore core concepts, interactive drug cards, animated simulations, and self-assessment tools.</p>
 
       <div class="header-actions">
         <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
         <button class="btn-header" onclick="toggleModal('treeModal')">🧠 Concepts Mind Map</button>
+        <a href="https://wa.me/92324104487?text=Hi%20Mudassir!%20%F0%9F%90%8B%20I%20tried%20your%20Chapter%201%20demo%20notes.%20I%20want%20to%20buy%20the%20full%20Pharmacology%20course%20package%20with%20all%20chapter%20dashboards%2C%20MCQs%2C%20interactive%20simulations%2C%20and%20mnemonics!" target="_blank" class="btn-header btn-whatsapp">💬 Buy Full Course on WhatsApp</a>
       </div>
     </header>
 
@@ -341,13 +353,13 @@
         </a>
 
         <!-- PROMOTIONAL CTA CARD -->
-        <a href="https://wa.me/923024104487?text=Hi%20Mudassir!%20I%20am%20interested%20in%20getting%20the%20full%20Pharmacology%20study%20package." target="_blank" class="card buy-card">
+        <a href="https://wa.me/92324104487?text=Hi%20Mudassir!%20%F0%9F%90%8B%20I%20tried%20your%20Chapter%201%20demo%20notes.%20I%20want%20to%20buy%20the%20full%20Pharmacology%20course%20package%20with%20all%20chapter%20dashboards%2C%20MCQs%2C%20interactive%20simulations%2C%20and%20mnemonics!" target="_blank" class="card buy-card">
           <div>
-            <div class="card-icon" title="Unlock Full Course">📚</div>
+            <div class="card-icon" title="Unlock Full Course">📱</div>
             <h3>Unlock Full Package <span class="feature-tag gold">PREMIUM</span></h3>
-            <p>Unlock all chapter dashboards, complete chapter quiz banks, unit summary tables, and printable revision notes!</p>
+            <p>Access all chapter dashboards, complete practice quiz banks, interactive simulations, animated drug widgets, and high-yield mnemonics!</p>
           </div>
-          <span class="card-link">Contact on WhatsApp (0302-4104487) &rarr;</span>
+          <span class="card-link">Order via WhatsApp (0324-104487) &rarr;</span>
         </a>
 
       </div>
@@ -409,7 +421,7 @@
   <footer class="site-footer">
     <div class="footer-brand">Crafted with precision by <span>Mudassir Khan</span></div>
     <div class="footer-copy">&copy; 2026 Pharmacology Study Portal. All rights reserved.</div>
-    <div class="footer-cta">Enjoyed this free demo chapter? <a href="https://wa.me/923024104487?text=Hi%20Mudassir!%20I%20want%20to%20get%20access%20to%20the%20complete%20Pharmacology%20course." target="_blank">Contact via WhatsApp (0302-4104487)</a> to purchase full course access!</div>
+    <div class="footer-cta">Enjoyed this demo? <a href="https://wa.me/92324104487?text=Hi%20Mudassir!%20%F0%9F%90%8B%20I%20tried%20your%20Chapter%201%20demo%20notes.%20I%20want%20to%20buy%20the%20full%20Pharmacology%20course%20package%20with%20all%20chapter%20dashboards%2C%20MCQs%2C%20interactive%20simulations%2C%20and%20mnemonics!" target="_blank">Contact on WhatsApp (0324-104487)</a> to get the full course package!</div>
   </footer>
 
 <!-- ================= HIGH-YIELD MASTER SUMMARY TABLE MODAL ================= -->
