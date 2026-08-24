@@ -24,6 +24,15 @@
       --exam-badge-bg: #ef4444;
       --exam-badge-text: #ffffff;
       --radius: 20px;
+
+      /* DISTINCT CLASS VS DRUG COLOR PALETTE */
+      --class-color: #4338ca;
+      --class-bg: #e0e7ff;
+      --class-border: #c7d2fe;
+
+      --drug-color: #0d9488;
+      --drug-bg: #ccfbf1;
+      --drug-border: #99f6e4;
     }
 
     * {
@@ -90,6 +99,30 @@
       box-shadow: 0 2px 4px rgba(239, 68, 68, 0.25);
       margin-left: 6px;
       vertical-align: middle;
+    }
+
+    /* DISTINCT COLOR TAGS FOR CLASSIFICATIONS AND DRUGS */
+    .drug-class-tag {
+      display: inline-block;
+      background: var(--class-bg);
+      color: var(--class-color);
+      border: 1px solid var(--class-border);
+      padding: 2px 10px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 0.92rem;
+      margin-bottom: 6px;
+    }
+
+    .drug-name-tag {
+      display: inline-block;
+      background: var(--drug-bg);
+      color: var(--drug-color);
+      border: 1px solid var(--drug-border);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 500; /* Unbolded as requested */
+      font-size: 0.88rem;
     }
 
     h1 {
@@ -321,45 +354,11 @@
       padding: 12px 14px;
     }
 
-    .subdrug-item strong {
-      display: block;
-      color: #0f172a;
-      font-size: 0.9rem;
-      margin-bottom: 2px;
-    }
-
     .subdrug-item span {
       font-size: 0.82rem;
       color: var(--text-muted);
       display: block;
-    }
-
-    ul.bullet-list {
-      list-style-type: none;
-      padding-left: 0;
-      margin-bottom: 20px;
-    }
-
-    ul.bullet-list li {
-      position: relative;
-      padding-left: 26px;
-      margin-bottom: 10px;
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    ul.bullet-list li::before {
-      content: '▪';
-      position: absolute;
-      left: 8px;
-      color: var(--primary);
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      margin-top: 4px;
     }
 
     /* MOBILE SPECIFIC IMPROVEMENTS */
@@ -393,23 +392,36 @@
         <p><em>Used for deep-seated, life-threatening internal fungal infections (e.g., Candidiasis, Cryptococcal Meningitis, Aspergillosis) and deep subcutaneous tissue infections.</em></p>
         
         <div class="sub-block">
-          <h4>📂 Clear Drug Classes &amp; Examples</h4>
+          <h4>📂 Drug Classifications &amp; Specific Agents</h4>
           <div class="subdrug-grid">
             <div class="subdrug-item">
-              <strong>1. Polyene Antibiotic</strong>
-              <span><strong>e.g Amphotericin B</strong> — Heavy-hitter for life-threatening systemic fungal infections.</span>
+              <div class="drug-class-tag">1. Polyene Antibiotic</div>
+              <div><span class="drug-name-tag">e.g. Amphotericin B</span></div>
+              <span>Heavy-hitter for life-threatening systemic fungal infections.</span>
             </div>
             <div class="subdrug-item">
-              <strong>2. Pyrimidine Antimetabolite</strong>
-              <span><strong>e.g Flucytosine (5-FC)</strong> — Synergistic partner given with Amphotericin B for fungal meningitis.</span>
+              <div class="drug-class-tag">2. Pyrimidine Antimetabolite</div>
+              <div><span class="drug-name-tag">e.g. Flucytosine (5-FC)</span></div>
+              <span>Synergistic partner given with Amphotericin B for fungal meningitis.</span>
             </div>
             <div class="subdrug-item">
-              <strong>3. Systemic Azoles</strong>
-              <span><strong>drugs: Fluconazole, Itraconazole, Voriconazole, Posaconazole</strong> — Broad-spectrum oral/IV agents.</span>
+              <div class="drug-class-tag">3. Systemic Azoles</div>
+              <div>
+                <span class="drug-name-tag">Fluconazole</span>
+                <span class="drug-name-tag">Itraconazole</span>
+                <span class="drug-name-tag">Voriconazole</span>
+                <span class="drug-name-tag">Posaconazole</span>
+              </div>
+              <span>Broad-spectrum oral/IV agents.</span>
             </div>
             <div class="subdrug-item">
-              <strong>4. Echinocandins</strong>
-              <span><strong>drugs:Caspofungin, Micafungin, Anidulafungin</strong> — First-line IV agents for invasive Candida &amp; Aspergillus.</span>
+              <div class="drug-class-tag">4. Echinocandins</div>
+              <div>
+                <span class="drug-name-tag">Caspofungin</span>
+                <span class="drug-name-tag">Micafungin</span>
+                <span class="drug-name-tag">Anidulafungin</span>
+              </div>
+              <span>First-line IV agents for invasive Candida &amp; Aspergillus.</span>
             </div>
           </div>
         </div>
@@ -419,14 +431,14 @@
 
         <!-- Amphotericin B MOA -->
         <div class="moa-enhanced-box">
-          <h4>⚙️ Amphotericin B: "Poking Pores in the Membrane" <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <h4>⚙️ Polyene (Amphotericin B): "Poking Pores in the Membrane" <span class="exam-badge">IMP FOR EXAM</span></h4>
           <div class="moa-concept-summary">💡 Concept: Binds directly to fungal ergosterol (the fungal version of cholesterol) and tears open holes in the cell membrane so vital potassium leaks out.</div>
           <div class="moa-steps-list">
             <div class="moa-step-item">
               <div class="moa-step-number">1</div>
               <div class="moa-step-content">
                 <strong>Target Binding:</strong>
-                <span>Amphotericin B binds tightly to ergosterol in the fungal lipid membrane.</span>
+                <span><span class="drug-name-tag">Amphotericin B</span> binds tightly to ergosterol in the fungal lipid membrane.</span>
               </div>
             </div>
             <div class="moa-step-item">
@@ -448,7 +460,7 @@
 
         <!-- Systemic Azoles MOA -->
         <div class="moa-enhanced-box">
-          <h4>⚙️ Systemic Azoles (Fluconazole / Voriconazole): "Blocking Ergosterol Construction"</h4>
+          <h4>⚙️ Systemic Azoles: "Blocking Ergosterol Construction"</h4>
           <div class="moa-concept-summary">💡 Concept: Blocks the fungal CYP450 enzyme that builds ergosterol, leaving the fungal membrane weak, leaky, and unable to grow.</div>
           <div class="moa-steps-list">
             <div class="moa-step-item">
@@ -470,7 +482,7 @@
 
         <!-- Echinocandins MOA -->
         <div class="moa-enhanced-box">
-          <h4>⚙️ Echinocandins (Caspofungin): "Destroying the Cell Wall Glue"</h4>
+          <h4>⚙️ Echinocandins: "Destroying the Cell Wall Glue"</h4>
           <div class="moa-concept-summary">💡 Concept: Human cells have membranes, but fungal cells also have a hard cell wall. Echinocandins block the glue ($\beta$-1,3-D-glucan) that holds the cell wall together!</div>
           <div class="moa-steps-list">
             <div class="moa-step-item">
@@ -492,7 +504,7 @@
 
         <!-- Flucytosine MOA -->
         <div class="moa-enhanced-box">
-          <h4>⚙️ Flucytosine (5-FC): "DNA Fake-Out (Antimetabolite)" <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <h4>⚙️ Pyrimidine Antimetabolite (Flucytosine): "DNA Fake-Out" <span class="exam-badge">IMP FOR EXAM</span></h4>
           <div class="moa-concept-summary">💡 Concept: Enters the fungus and converts into 5-FU (a chemotherapy toxin) to block fungal DNA and RNA synthesis.</div>
           <div class="moa-steps-list">
             <div class="moa-step-item">
@@ -517,9 +529,9 @@
           <h4>💡 Systemic Uses Mnemonic: "S.Y.S.T.E.M."</h4>
           <div class="aligned-mnemonic-list">
             <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>ystemic bloodstream Candidiasis</span></div>
-            <div class="aligned-item"><span class="letter-badge">Y</span><span><strong>Y</strong>east Cryptococcal meningitis (Amphotericin B + Flucytosine) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="aligned-item"><span class="letter-badge">Y</span><span><strong>Y</strong>east Cryptococcal meningitis (<span class="drug-name-tag">Amphotericin B</span> + <span class="drug-name-tag">Flucytosine</span>) <span class="exam-badge">IMP FOR EXAM</span></span></div>
             <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>ubcutaneous Sporotrichosis</span></div>
-            <div class="aligned-item"><span class="letter-badge">T</span><span><strong>T</strong>ough invasive Aspergillosis (Voriconazole / Caspofungin)</span></div>
+            <div class="aligned-item"><span class="letter-badge">T</span><span><strong>T</strong>ough invasive Aspergillosis (<span class="drug-name-tag">Voriconazole</span> / <span class="drug-name-tag">Caspofungin</span>)</span></div>
             <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>ndemic Histoplasmosis &amp; Blastomycosis</span></div>
             <div class="aligned-item"><span class="letter-badge">M</span><span><strong>M</strong>ucormycosis fungal emergencies</span></div>
           </div>
@@ -531,8 +543,8 @@
           <div class="aligned-mnemonic-list">
             <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>haking chills, fever, &amp; rigors during IV infusion ("Shake &amp; Bake" reaction)</span></div>
             <div class="aligned-item"><span class="letter-badge">H</span><span><strong>H</strong>epatotoxicity &amp; liver enzyme spikes across azoles</span></div>
-            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>nemia &amp; bone marrow suppression (Flucytosine toxicity)</span></div>
-            <div class="aligned-item"><span class="letter-badge">K</span><span><strong>K</strong>idney damage / Nephrotoxicity (Amphotericin B) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>nemia &amp; bone marrow suppression (<span class="drug-name-tag">Flucytosine</span> toxicity)</span></div>
+            <div class="aligned-item"><span class="letter-badge">K</span><span><strong>K</strong>idney damage / Nephrotoxicity (<span class="drug-name-tag">Amphotericin B</span>) <span class="exam-badge">IMP FOR EXAM</span></span></div>
             <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>lectrolyte wasting (severe hypokalemia &amp; hypomagnesemia)</span></div>
           </div>
         </div>
@@ -549,23 +561,31 @@
         <p><em>Target superficial fungal infections localized to keratinized tissues (skin, hair, nails) such as Ringworm, Athlete's Foot, Jock Itch, and Mucosal Yeast infections.</em></p>
 
         <div class="sub-block">
-          <h4>📂 Clear Drug Classes &amp; Examples</h4>
+          <h4>📂 Drug Classifications &amp; Specific Agents</h4>
           <div class="subdrug-grid">
             <div class="subdrug-item">
-              <strong>1. Squalene Epoxidase Inhibitor</strong>
-              <span><strong>Terbinafine (Lamisil)</strong> — First-line oral/topical choice for nail fungus (Onychomycosis).</span>
+              <div class="drug-class-tag">1. Squalene Epoxidase Inhibitor</div>
+              <div><span class="drug-name-tag">Terbinafine (Lamisil)</span></div>
+              <span>First-line oral/topical choice for nail fungus (Onychomycosis).</span>
             </div>
             <div class="subdrug-item">
-              <strong>2. Mitotic Spindle Disrupter</strong>
-              <span><strong>Griseofulvin</strong> — Oral drug that deposits in keratin for scalp ringworm (Tinea capitis).</span>
+              <div class="drug-class-tag">2. Mitotic Spindle Disrupter</div>
+              <div><span class="drug-name-tag">Griseofulvin</span></div>
+              <span>Oral drug that deposits in keratin for scalp ringworm (Tinea capitis).</span>
             </div>
             <div class="subdrug-item">
-              <strong>3. Topical Polyene Antibiotic</strong>
-              <span><strong>Nystatin</strong> — Used strictly topically/orally for Candida thrush ("Swish and Swallow").</span>
+              <div class="drug-class-tag">3. Topical Polyene Antibiotic</div>
+              <div><span class="drug-name-tag">Nystatin</span></div>
+              <span>Used strictly topically/orally for Candida thrush ("Swish and Swallow").</span>
             </div>
             <div class="subdrug-item">
-              <strong>4. Topical Azoles</strong>
-              <span><strong>Clotrimazole, Miconazole, Ketoconazole</strong> — Creams for athlete's foot and vaginal yeast.</span>
+              <div class="drug-class-tag">4. Topical Azoles</div>
+              <div>
+                <span class="drug-name-tag">Clotrimazole</span>
+                <span class="drug-name-tag">Miconazole</span>
+                <span class="drug-name-tag">Ketoconazole</span>
+              </div>
+              <span>Creams for athlete's foot and vaginal yeast.</span>
             </div>
           </div>
         </div>
@@ -575,7 +595,7 @@
 
         <!-- Terbinafine MOA -->
         <div class="moa-enhanced-box">
-          <h4>⚙️ Terbinafine: "Trapping Toxic Squalene" <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <h4>⚙️ Squalene Epoxidase Inhibitor (Terbinafine): "Trapping Toxic Squalene" <span class="exam-badge">IMP FOR EXAM</span></h4>
           <div class="moa-concept-summary">💡 Concept: Blocks squalene epoxidase early in the ergosterol pathway. Toxic squalene builds up inside the fungus, causing rapid cell death.</div>
           <div class="moa-steps-list">
             <div class="moa-step-item">
@@ -597,7 +617,7 @@
 
         <!-- Griseofulvin MOA -->
         <div class="moa-enhanced-box">
-          <h4>⚙️ Griseofulvin: "Freezing Fungal Cell Division"</h4>
+          <h4>⚙️ Mitotic Disrupter (Griseofulvin): "Freezing Fungal Cell Division"</h4>
           <div class="moa-concept-summary">💡 Concept: Binds fungal microtubules and stops mitosis (cell division). It deposits into human keratin so new growing hair/nails are completely resistant to fungus!</div>
           <div class="moa-steps-list">
             <div class="moa-step-item">
@@ -619,7 +639,7 @@
 
         <!-- Nystatin MOA -->
         <div class="moa-enhanced-box">
-          <h4>⚙️ Nystatin: "Topical Membrane Hole-Puncher" <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <h4>⚙️ Topical Polyene (Nystatin): "Topical Membrane Hole-Puncher" <span class="exam-badge">IMP FOR EXAM</span></h4>
           <div class="moa-concept-summary">💡 Concept: Same mechanism as Amphotericin B (binds ergosterol to poke membrane holes), but too toxic for IV use—strictly used topically or swallowed for local gut thrush.</div>
           <div class="moa-steps-list">
             <div class="moa-step-item">
@@ -637,10 +657,10 @@
           <h4>💡 Cutaneous Uses Mnemonic: "S.K.I.N.S."</h4>
           <div class="aligned-mnemonic-list">
             <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>uperficial ringworm (Tinea corporis / Tinea cruris)</span></div>
-            <div class="aligned-item"><span class="letter-badge">K</span><span><strong>K</strong>eratin-rich scalp infection (Tinea capitis treated with Griseofulvin)</span></div>
+            <div class="aligned-item"><span class="letter-badge">K</span><span><strong>K</strong>eratin-rich scalp infection (Tinea capitis treated with <span class="drug-name-tag">Griseofulvin</span>)</span></div>
             <div class="aligned-item"><span class="letter-badge">I</span><span><strong>I</strong>nterdigital Athlete's Foot (Tinea pedis)</span></div>
-            <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>ail fungal infections / Onychomycosis (Terbinafine) <span class="exam-badge">IMP FOR EXAM</span></span></div>
-            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>wish-and-swallow oral Candida thrush (Nystatin suspension) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>ail fungal infections / Onychomycosis (<span class="drug-name-tag">Terbinafine</span>) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>wish-and-swallow oral Candida thrush (<span class="drug-name-tag">Nystatin</span> suspension) <span class="exam-badge">IMP FOR EXAM</span></span></div>
           </div>
         </div>
 
@@ -649,10 +669,10 @@
           <h4>💡 Cutaneous Side Effects Mnemonic: "R.A.S.H.E.S."</h4>
           <div class="aligned-mnemonic-list">
             <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>edness, burning, and local contact irritation</span></div>
-            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>bdominal distress &amp; metallic taste disturbance (Terbinafine)</span></div>
-            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>unlight photosensitivity &amp; Disulfiram-like alcohol reaction (Griseofulvin)</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>bdominal distress &amp; metallic taste disturbance (<span class="drug-name-tag">Terbinafine</span>)</span></div>
+            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>unlight photosensitivity &amp; Disulfiram-like alcohol reaction (<span class="drug-name-tag">Griseofulvin</span>)</span></div>
             <div class="aligned-item"><span class="letter-badge">H</span><span><strong>H</strong>eadaches</span></div>
-            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>levated liver enzymes (check baseline LFTs with oral Terbinafine) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>levated liver enzymes (check baseline LFTs with oral <span class="drug-name-tag">Terbinafine</span>) <span class="exam-badge">IMP FOR EXAM</span></span></div>
             <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>kin rash &amp; hives</span></div>
           </div>
         </div>
