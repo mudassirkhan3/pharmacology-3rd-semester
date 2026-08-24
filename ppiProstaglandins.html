@@ -2,53 +2,600 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Proton Pump Inhibitors & Prostaglandin Analogs | GI Pharmacology</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Proton Pump Inhibitors &amp; Prostaglandin Analogs | GI Pharmacology</title>
   <style>
     :root {
       --bg-gradient: radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.08) 0%, rgba(99, 102, 241, 0.05) 40%, #f8fafc 90%);
       --primary: #4f46e5;
       --primary-dark: #4338ca;
+      --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
       --accent: #6366f1;
-      --card-bg: rgba(255, 255, 255, 0.9);
-      --card-border: rgba(199, 210, 254, 0.8);
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --card-border: #c7d2fe;
       --text-main: #312e81;
+      --text-dark: #0f172a;
       --text-muted: #475569;
       --shadow-glow: 0 20px 40px -15px rgba(79, 70, 229, 0.25);
+      --mnemonics-bg: #e0e7ff;
+      --mnemonics-border: #c7d2fe;
+      --warning-bg: #fff1f2;
+      --warning-border: #fecdd3;
+      --exam-badge-bg: #ef4444;
+      --exam-badge-text: #ffffff;
       --radius: 20px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.8; padding: 40px 16px; min-height: 100vh; }
-    
-    .container { max-width: 950px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(16px); padding: 50px 40px; border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: var(--shadow-glow); }
-    
-    .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; margin-bottom: 30px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2); }
-    .back-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    .badge { display: inline-block; padding: 6px 14px; background: #e0e7ff; color: var(--primary); font-weight: 800; font-size: 0.8rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; border: 1px solid #c7d2fe; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 16px 8px 60px;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-    h1 { font-size: 2.5rem; font-weight: 900; background: linear-gradient(135deg, #312e81 0%, var(--primary) 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
-    
-    h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #c7d2fe; padding-bottom: 10px; }
-    h2::before { content: ''; display: inline-block; width: 6px; height: 24px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; }
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      padding: 32px 20px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: var(--shadow-glow);
+    }
 
-    p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 20px; }
+    header {
+      margin-bottom: 25px;
+    }
 
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 25px 0; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin: 25px 0; }
-    
-    .card-box { background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); transition: 0.3s; }
-    .card-box:hover { transform: translateY(-5px); border-color: var(--primary); }
-    .card-box h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
 
-    .mnemonic-box { background: linear-gradient(135deg, #e0e7ff 0%, #ede9fe 100%); border-left: 6px solid var(--primary); padding: 22px; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.08); }
-    .mnemonic-box h4 { color: var(--primary); font-size: 1.1rem; margin-bottom: 8px; font-weight: 800; display: flex; align-items: center; gap: 12px; }
-    .mnemonic-box p { color: #312e81; margin-bottom: 0; font-weight: 500; }
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
-    ul { list-style-type: none; padding-left: 0; margin-bottom: 20px; }
-    ul li { position: relative; padding-left: 28px; margin-bottom: 12px; color: var(--text-muted); font-size: 1.05rem; }
-    ul li::before { content: '▪'; position: absolute; left: 8px; color: var(--primary); font-weight: bold; font-size: 1.2rem; }
+    .btn-header {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-header:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(79, 70, 229, 0.35);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+    }
+    .back-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .badge-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #e0e7ff;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.8rem;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      border: 1px solid #c7d2fe;
+    }
+
+    /* EXAM HIGH-YIELD BADGE */
+    .exam-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--exam-badge-bg);
+      color: var(--exam-badge-text);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.25);
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #312e81 0%, var(--primary) 50%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .subtitle {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      color: var(--text-main);
+      margin: 36px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid #c7d2fe;
+      padding-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 24px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 15px;
+      color: var(--text-muted);
+      font-size: 0.96rem;
+    }
+
+    /* Section & Grid Styling */
+    .drug-class-card {
+      background: #ffffff;
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px 20px;
+      margin-bottom: 35px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      position: relative;
+    }
+
+    .drug-class-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-gradient);
+      border-radius: 16px 16px 0 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .card-box {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card-box:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+    }
+
+    .card-box h3 {
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sub-block {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin: 18px 0;
+    }
+
+    /* MOA ENHANCED STEP-BY-STEP BOX */
+    .moa-enhanced-box {
+      background: #f5f3ff;
+      border: 2px solid #c7d2fe;
+      border-radius: 14px;
+      padding: 20px;
+      margin: 18px 0;
+    }
+
+    .moa-enhanced-box h4 {
+      color: var(--text-main);
+      font-weight: 800;
+      font-size: 1.02rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .moa-concept-summary {
+      font-size: 0.9rem;
+      color: #312e81;
+      background: #e0e7ff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .moa-steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .moa-step-item {
+      background: #ffffff;
+      border: 1px solid #c7d2fe;
+      border-radius: 8px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .moa-step-number {
+      background: var(--primary);
+      color: white;
+      font-weight: 900;
+      font-size: 0.78rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .moa-step-content strong {
+      display: block;
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+
+    .moa-step-content span {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    /* ALIGNED MNEMONIC LIST LAYOUT */
+    .mnemonic-box {
+      background: var(--mnemonics-bg);
+      border: 1px solid var(--mnemonics-border);
+      border-left: 5px solid var(--primary);
+      border-radius: 12px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .mnemonic-box h4 {
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 1.02rem;
+      margin-bottom: 12px;
+    }
+
+    .aligned-mnemonic-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .aligned-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #ffffff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #c7d2fe;
+      font-size: 0.92rem;
+      color: var(--text-main);
+    }
+
+    .letter-badge {
+      background: var(--primary);
+      color: white;
+      font-weight: 900;
+      font-size: 0.8rem;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Warning / Contraindication Styling */
+    .warning-box {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-left: 5px solid #e11d48;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 15px 0;
+    }
+
+    .warning-box h4 {
+      color: #9f1239;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    ul.bullet-list {
+      list-style-type: none;
+      padding-left: 0;
+      margin-bottom: 20px;
+    }
+
+    ul.bullet-list li {
+      position: relative;
+      padding-left: 26px;
+      margin-bottom: 10px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    ul.bullet-list li::before {
+      content: '▪';
+      position: absolute;
+      left: 8px;
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    /* MODAL POPUP STYLES */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      padding: 12px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 18px;
+      max-width: 950px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      padding: 16px 20px;
+      background: var(--primary-gradient);
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .close-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .close-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    /* TABLE STYLING FOR MODAL */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid #c7d2fe;
+      margin-top: 10px;
+    }
+
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      text-align: left;
+      min-width: 650px;
+    }
+
+    .summary-table th {
+      background: #312e81;
+      color: #ffffff;
+      padding: 12px 14px;
+      font-weight: 700;
+      position: sticky;
+      top: 0;
+    }
+
+    .summary-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .summary-table tr:nth-child(even) {
+      background: #f5f3ff;
+    }
+
+    /* TREE DIAGRAM STYLES */
+    .tree-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 10px;
+    }
+
+    .tree-node {
+      background: #f5f3ff;
+      border: 1px solid #c7d2fe;
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .tree-title {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 0.98rem;
+      margin-bottom: 8px;
+    }
+
+    .tree-sublist {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tree-tag {
+      background: #e0e7ff;
+      color: var(--primary-dark);
+      border: 1px solid #c7d2fe;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    /* MOBILE SPECIFIC IMPROVEMENTS */
+    @media (max-width: 640px) {
+      body { padding: 8px 4px 50px; }
+      .container { padding: 18px 12px; border-radius: 14px; }
+      h1 { font-size: 1.65rem; }
+      .subtitle { font-size: 0.9rem; }
+      h2 { font-size: 1.2rem; }
+      .drug-class-card { padding: 16px 12px; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .aligned-item { padding: 8px 10px; font-size: 0.88rem; }
+      .header-top { flex-direction: column; align-items: flex-start; }
+      .modal-card { max-height: 95vh; margin: 4px; }
+    }
   </style>
 </head>
 <body>
@@ -56,93 +603,285 @@
 <div class="container">
   <a href="chapter3.html" class="back-btn">&larr; Back to Chapter 3 Hub</a>
   
-  <div class="badge">Pharmacology Class Deep-Dive</div>
-  <h1>Proton Pump Inhibitors (PPIs) & Prostaglandin Analogs</h1>
-  <p>Potent acid-suppressive agents and mucosal defensive protectants designed to heal erosive esophagitis, treat severe peptic ulcer disease, and prevent NSAID-induced gastric injury.</p>
-
-  <!-- INTRODUCTION -->
-  <h2>1. Introduction to Acid Suppression & Mucosal Defense</h2>
-  <p>While H2RAs offer moderate acid control, Proton Pump Inhibitors (PPIs) represent the gold standard for profound and long-lasting gastric acid suppression by disabling the final enzymatic pathway. Conversely, Prostaglandin Analogs (like Misoprostol) reinforce the stomach's natural defense barriers, making them uniquely suited to protect against NSAID-induced mucosal damage.</p>
-
-  <!-- CLASSIFICATION -->
-  <h2>2. Classification & Prototype Drugs</h2>
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>💊 Proton Pump Inhibitors (PPIs)</h3>
-      <p><strong>Prototypes:</strong> Omeprazole, Esomeprazole, Lansoprazole, Pantoprazole, Rabeprazole.</p>
-      <p style="margin-top: 10px;"><strong>Characteristics:</strong> End in "-prazole". Highly effective, irreversible inhibitors of gastric acid secretion.</p>
+  <header>
+    <div class="header-top">
+      <div class="badge-container">
+        <span class="badge">Pharmacology Class Deep-Dive</span>
+      </div>
+      <div class="header-actions">
+        <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
+        <button class="btn-header" onclick="toggleModal('treeModal')">🌳 Classification Tree</button>
+      </div>
     </div>
-    <div class="card-box">
-      <h3>🛡️ Prostaglandin Analogs</h3>
-      <p><strong>Prototype:</strong> Misoprostol.</p>
-      <p style="margin-top: 10px;"><strong>Characteristics:</strong> Synthetic analog of prostaglandin E1 designed to replace depleted mucosal prostaglandins.</p>
-    </div>
-  </div>
+    
+    <h1>Proton Pump Inhibitors (PPIs) &amp; Prostaglandin Analogs</h1>
+    <p class="subtitle">Potent acid-suppressive agents and mucosal defensive protectants designed to heal erosive esophagitis, treat severe peptic ulcer disease, and prevent NSAID-induced gastric injury.</p>
+  </header>
 
-  <!-- MECHANISM OF ACTION -->
-  <h2>3. Mechanisms of Action</h2>
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>⚡ PPIs: Irreversible Proton Pump Blockade</h3>
-      <p>PPIs are prodrugs that accumulate in the acidic secretory canaliculi of parietal cells, where they convert to active sulfenamides. These bind irreversibly to the <math><msup><mi>H</mi><mo>+</mo></msup><mo>/</mo><msup><mi>K</mi><mo>+</mo></msup><mo>-</mo><mi>ATP</mi><mi>ase</mi></math> pump enzyme, shutting down acid secretion for 24–48 hours until new pumps are synthesized.</p>
-    </div>
-    <div class="card-box">
-      <h3>🌊 Misoprostol: Mucosal Defense Enhancement</h3>
-      <p>Misoprostol mimics natural prostaglandins to inhibit basal and meal-stimulated gastric acid secretion while directly stimulating the secretion of protective bicarbonate and thick mucus, increasing local mucosal blood flow.</p>
-    </div>
-  </div>
+  <main>
 
-  <!-- CLINICAL USES -->
-  <h2>4. Clinical Uses & Therapeutic Indications</h2>
-  <ul>
-    <li>Severe Gastroesophageal Reflux Disease (GERD) and Erosive Esophagitis</li>
-    <li>Peptic Ulcer Disease (Gastric & Duodenal Ulcers) and *H. pylori* eradication regimens</li>
-    <li>Zollinger-Ellison Syndrome (hypersecretory conditions)</li>
-    <li>Stress Ulcer Prophylaxis in high-risk ICU patients</li>
-    <li>Prevention of NSAID-induced gastric ulcers (Misoprostol)</li>
-  </ul>
+    <!-- ================= 1. INTRODUCTION ================= -->
+    <section class="drug-class-card">
+      <h2>1. Introduction to Acid Suppression &amp; Mucosal Defense</h2>
+      <p>While H2RAs offer moderate acid control, Proton Pump Inhibitors (PPIs) represent the gold standard for profound and long-lasting gastric acid suppression by disabling the final enzymatic pathway. Conversely, Prostaglandin Analogs (like Misoprostol) reinforce the stomach's natural defense barriers, making them uniquely suited to protect against NSAID-induced mucosal damage.</p>
+    </section>
 
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for Clinical Uses: "Z-G-E-P-N"</h4>
-    <p><strong>Z</strong>ollinger-Ellison | <strong>G</strong>ERD | <strong>E</strong>rosive esophagitis | <strong>P</strong>eptic ulcers | <strong>N</strong>SAID ulcer prevention (Misoprostol)</p>
-  </div>
+    <!-- ================= 2. CLASSIFICATION & PROTOTYPES ================= -->
+    <section class="drug-class-card">
+      <h2>2. Classification &amp; Prototype Drugs</h2>
+      <div class="grid-2">
+        <div class="card-box">
+          <h3>💊 Proton Pump Inhibitors (PPIs)</h3>
+          <p><strong>Prototypes:</strong> Omeprazole, Esomeprazole, Lansoprazole, Pantoprazole, Rabeprazole. <span class="exam-badge">IMP FOR EXAM</span></p>
+          <p style="margin-top: 10px;"><strong>Characteristics:</strong> End in "-prazole". Highly effective, irreversible inhibitors of gastric acid secretion.</p>
+        </div>
+        <div class="card-box">
+          <h3>🛡️ Prostaglandin Analogs</h3>
+          <p><strong>Prototype:</strong> Misoprostol. <span class="exam-badge">IMP FOR EXAM</span></p>
+          <p style="margin-top: 10px;"><strong>Characteristics:</strong> Synthetic analog of prostaglandin E1 designed to replace depleted mucosal prostaglandins.</p>
+        </div>
+      </div>
+    </section>
 
-  <!-- ADVERSE DRUG REACTIONS -->
-  <h2>5. Adverse Drug Reactions (ADRs)</h2>
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>⚠️ PPI Long-Term Risks</h3>
-      <p>Headache, nausea, diarrhea. Long-term risks include *Clostridioides difficile* infections, hypomagnesemia, calcium malabsorption leading to osteoporosis/fractures, and vitamin B12 deficiency.</p>
-    </div>
-    <div class="card-box">
-      <h3>⚠️ Misoprostol Risks</h3>
-      <p>Significant dose-dependent diarrhea and abdominal cramping. <strong>Strict Contraindication:</strong> Absolute pregnancy category X due to strong uterotonic properties that stimulate uterine contractions and cause miscarriage.</p>
-    </div>
-  </div>
+    <!-- ================= 3. MECHANISMS OF ACTION ================= -->
+    <section class="drug-class-card">
+      <h2>3. Mechanisms of Action</h2>
+      <p>Here is how each class operates at the parietal cell level:</p>
 
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for Misoprostol Warning: "PREG = NO"</h4>
-    <p><strong>P</strong>regnancy risk: <strong>R</strong>emember <strong>E</strong>xtreme <strong>G</strong>uard -> <strong>N</strong>o <strong>O</strong>stensible use in pregnancy (abortifacient risk).</p>
-  </div>
+      <!-- 3.1 PPIS -->
+      <div class="moa-enhanced-box">
+        <h4>⚡ 1. PPIs: Irreversible Proton Pump Blockade <span class="exam-badge">IMP FOR EXAM</span></h4>
+        <div class="moa-concept-summary">💡 Simple Concept: Disables the cell's final "acid pump" engine permanently until a brand-new pump is synthesized.</div>
+        <div class="moa-steps-list">
+          <div class="moa-step-item">
+            <div class="moa-step-number">1</div>
+            <div class="moa-step-content">
+              <strong>Acid Activation (Prodrug):</strong>
+              <span>Passes absorbed into the blood and enters the acidic canaliculi of parietal cells, converting into active sulfenamide.</span>
+            </div>
+          </div>
+          <div class="moa-step-item">
+            <div class="moa-step-number">2</div>
+            <div class="moa-step-content">
+              <strong>Covalent Disulfide Binding:</strong>
+              <span>Forms a covalent bond with the sulfhydryl groups of the <math><msup><mi>H</mi><mo>+</mo></msup><mo>/</mo><msup><mi>K</mi><mo>+</mo></msup><mo>-</mo><mi>ATP</mi><mi>ase</mi></math> enzyme pump.</span>
+            </div>
+          </div>
+          <div class="moa-step-item">
+            <div class="moa-step-number">3</div>
+            <div class="moa-step-content">
+              <strong>Profound Acid Shutdown:</strong>
+              <span>Irreversibly shuts down acid secretion for 24–48 hours until new proton pump enzymes are synthesized.</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!-- PHARMACOKINETICS -->
-  <h2>6. Pharmacokinetics & Administration Timing</h2>
-  <ul>
-    <li><strong>PPI Administration:</strong> Taken orally as delayed-release capsules or tablets (or IV pantoprazole). Must be administered <strong>30 to 60 minutes before the first meal of the day</strong> to ensure peak pump activation coincide with peak drug levels.</li>
-    <li><strong>Metabolism:</strong> Both classes undergo hepatic metabolism via cytochrome P450 enzymes (particularly CYP2C19 for PPIs).</li>
-  </ul>
+      <!-- 3.2 MISOPROSTOL -->
+      <div class="moa-enhanced-box">
+        <h4>🌊 2. Misoprostol: Mucosal Defense Enhancement</h4>
+        <div class="moa-concept-summary">💡 Simple Concept: Replaces natural stomach prostaglandins wiped out by NSAIDs to rebuild the stomach's protective mucus shield.</div>
+        <div class="moa-steps-list">
+          <div class="moa-step-item">
+            <div class="moa-step-number">1</div>
+            <div class="moa-step-content">
+              <strong>EP3 Receptor Binding:</strong>
+              <span>Binds to prostaglandin EP3 receptors on parietal cells, inhibiting basal and meal-stimulated gastric acid release.</span>
+            </div>
+          </div>
+          <div class="moa-step-item">
+            <div class="moa-step-number">2</div>
+            <div class="moa-step-content">
+              <strong>Mucosal Shield Stimulation:</strong>
+              <span>Directly stimulates bicarbonate and mucus secretion while increasing local mucosal blood flow.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <!-- KEY NURSING TAKEAWAYS -->
-  <h2>7. Key Nursing Takeaways & Patient Safety</h2>
-  <ul>
-    <li><strong>Verify Optimal Timing:</strong> Instruct patients to take PPIs 30–60 minutes prior to breakfast for maximal pharmacological efficacy. Do not crush enteric-coated capsules.</li>
-    <li><strong>Screen Women of Childbearing Age:</strong> Prior to prescribing Misoprostol, verify a negative pregnancy test and counsel patients on reliable birth control methods due to severe abortion risks.</li>
-    <li><strong>Monitor Bone and Mineral Health:</strong> For patients on chronic, long-term PPI therapy, assess baseline bone density and monitor magnesium and vitamin B12 levels.</li>
-    <li><strong>Evaluate for Diarrhea & Infections:</strong> Monitor patients for severe watery diarrhea, which could signify *C. diff* overgrowth secondary to prolonged hypochlorhydria.</li>
-    <li><strong>Reassess Indication:</strong> Regularly evaluate whether chronic PPI therapy is still clinically required to avoid long-term adverse sequelae.</li>
-  </ul>
+    <!-- ================= 4. CLINICAL USES & ALIGNED MNEMONIC ================= -->
+    <section class="drug-class-card">
+      <h2>4. Clinical Uses &amp; Therapeutic Indications</h2>
+      <ul class="bullet-list">
+        <li>Severe Gastroesophageal Reflux Disease (GERD) and Erosive Esophagitis.</li>
+        <li>Peptic Ulcer Disease (Gastric &amp; Duodenal Ulcers) and <em>H. pylori</em> eradication regimens.</li>
+        <li>Zollinger-Ellison Syndrome (hypersecretory conditions).</li>
+        <li>Stress Ulcer Prophylaxis in high-risk ICU patients.</li>
+        <li>Prevention of NSAID-induced gastric ulcers (Misoprostol).</li>
+      </ul>
 
+      <!-- ALIGNED USES MNEMONIC -->
+      <div class="mnemonic-box">
+        <h4>💡 Mnemonic for Clinical Uses: "Z.G.E.P.N."</h4>
+        <div class="aligned-mnemonic-list">
+          <div class="aligned-item">
+            <span class="letter-badge">Z</span>
+            <span><strong>Z</strong>ollinger-Ellison syndrome &amp; severe hypersecretory states <span class="exam-badge">IMP FOR EXAM</span></span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">G</span>
+            <span><strong>G</strong>ERD management and symptom suppression</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">E</span>
+            <span><strong>E</strong>rosive esophagitis healing</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">P</span>
+            <span><strong>P</strong>eptic ulcer disease &amp; <em>H. pylori</em> eradication cocktails</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">N</span>
+            <span><strong>N</strong>SAID ulcer prevention (specifically Misoprostol)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5. ADVERSE DRUG REACTIONS & ALIGNED MNEMONIC ================= -->
+    <section class="drug-class-card">
+      <h2>5. Adverse Drug Reactions (ADRs)</h2>
+      
+      <div class="grid-2">
+        <div class="card-box">
+          <h3>⚠️ PPI Long-Term Risks</h3>
+          <p>Headache, nausea, diarrhea. Long-term risks include <em>Clostridioides difficile</em> infections, hypomagnesemia, calcium malabsorption leading to osteoporosis/fractures, and vitamin B12 deficiency. <span class="exam-badge">IMP FOR EXAM</span></p>
+        </div>
+        <div class="card-box">
+          <h3>⚠️ Misoprostol Risks</h3>
+          <p>Significant dose-dependent diarrhea and abdominal cramping. <strong>Strict Contraindication:</strong> Absolute pregnancy category X due to strong uterotonic properties that stimulate uterine contractions and cause miscarriage. <span class="exam-badge">IMP FOR EXAM</span></p>
+        </div>
+      </div>
+
+      <!-- ALIGNED MISOPROSTOL WARNING MNEMONIC -->
+      <div class="mnemonic-box">
+        <h4>💡 Mnemonic for Misoprostol Warning: "P.R.E.G. = N.O."</h4>
+        <div class="aligned-mnemonic-list">
+          <div class="aligned-item">
+            <span class="letter-badge">P</span>
+            <span><strong>P</strong>regnancy absolute contraindication (Category X) <span class="exam-badge">IMP FOR EXAM</span></span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">R</span><span><strong>R</strong>emember uterine contractions &amp; severe cramps</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">E</span><span><strong>E</strong>xtreme abortifacient risk (causes complete miscarriage)</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">G</span><span><strong>G</strong>uard childbearing women with mandatory negative pregnancy tests</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">N</span><span><strong>N</strong>o ostensible use in pregnancy</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">O</span><span><strong>O</strong>ff-limits without effective contraception</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 6. PHARMACOKINETICS & ADMINISTRATION ================= -->
+    <section class="drug-class-card">
+      <h2>6. Pharmacokinetics &amp; Administration Timing</h2>
+      
+      <div class="sub-block">
+        <h4>🔬 Essential Timing &amp; Metabolic Rules</h4>
+        <p>&bull; <strong>PPI Administration Timing:</strong> Taken orally as delayed-release capsules or tablets (or IV pantoprazole). Must be administered <strong>30 to 60 minutes before the first meal of the day</strong> to ensure peak drug levels coincide with maximal meal-stimulated pump activation! <span class="exam-badge">IMP FOR EXAM</span><br>
+        &bull; <strong>Metabolism:</strong> Both classes undergo hepatic metabolism via cytochrome P450 enzymes (particularly CYP2C19 for PPIs such as Omeprazole, which can alter Clopidogrel activation).</p>
+      </div>
+    </section>
+
+    <!-- ================= 7. KEY NURSING TAKEAWAYS ================= -->
+    <section class="drug-class-card">
+      <h2>7. Key Nursing Takeaways &amp; Patient Safety</h2>
+      <ul class="bullet-list">
+        <li><strong>Verify Optimal Timing:</strong> Instruct patients to take PPIs 30–60 minutes prior to breakfast for maximal pharmacological efficacy. Do not crush enteric-coated capsules. <span class="exam-badge">IMP FOR EXAM</span></li>
+        <li><strong>Screen Women of Childbearing Age:</strong> Prior to prescribing Misoprostol, verify a negative pregnancy test and counsel patients on reliable birth control methods due to severe abortion risks. <span class="exam-badge">IMP FOR EXAM</span></li>
+        <li><strong>Monitor Bone and Mineral Health:</strong> For patients on chronic, long-term PPI therapy, assess baseline bone density and monitor magnesium and vitamin B12 levels.</li>
+        <li><strong>Evaluate for Diarrhea &amp; Infections:</strong> Monitor patients for severe watery diarrhea, which could signify <em>C. diff</em> overgrowth secondary to prolonged hypochlorhydria.</li>
+        <li><strong>Reassess Indication:</strong> Regularly evaluate whether chronic PPI therapy is still clinically required to avoid long-term adverse sequelae.</li>
+      </ul>
+    </section>
+
+  </main>
 </div>
+
+<!-- ================= MASTER SUMMARY TABLE MODAL ================= -->
+<div class="modal-overlay" id="tableModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>📊 Master Acid Suppression Summary Table</h3>
+      <button class="close-btn" onclick="toggleModal('tableModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;">High-yield comparative breakdown of Proton Pump Inhibitors vs. Prostaglandin Analogs.</p>
+      <div class="table-container">
+        <table class="summary-table">
+          <thead>
+            <tr>
+              <th>Drug Class</th>
+              <th>Prototype Drugs</th>
+              <th>Mechanism of Action</th>
+              <th>Primary Clinical Uses</th>
+              <th>Key ADRs / Nursing Warnings</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Proton Pump Inhibitors (PPIs)</strong></td>
+              <td>Omeprazole, Esomeprazole, Pantoprazole, Lansoprazole</td>
+              <td>Irreversibly inhibits H+/K+-ATPase proton pump; shuts down acid secretion</td>
+              <td>Severe GERD, erosive esophagitis, PUD, H. pylori, Zollinger-Ellison</td>
+              <td>C. diff risk, hypomagnesemia, B12 deficiency, bone fractures (long-term); Take 30–60 min before breakfast</td>
+            </tr>
+            <tr>
+              <td><strong>Prostaglandin Analogs</strong></td>
+              <td>Misoprostol</td>
+              <td>Synthetic PGE1 analog; stimulates mucus/bicarbonate shield &amp; reduces acid</td>
+              <td>Prevention of NSAID-induced gastric mucosal ulcers</td>
+              <td>Abdominal cramps, diarrhea; Absolute Category X (Abortifacient risk in pregnancy)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CLASSIFICATION TREE MODAL ================= -->
+<div class="modal-overlay" id="treeModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>🌳 Acid Suppression &amp; Defense Classification Tree</h3>
+      <button class="close-btn" onclick="toggleModal('treeModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Visual physiological hierarchy based on acid reduction vs. mucosal fortification.</p>
+      <div class="tree-container">
+        <div class="tree-node">
+          <div class="tree-title">⚡ 1. Irreversible Enzymatic Acid Inhibitors</div>
+          <div class="tree-sublist">
+            <span class="tree-tag">H+/K+-ATPase Pump Blockers: Omeprazole, Esomeprazole, Pantoprazole, Lansoprazole, Rabeprazole</span>
+          </div>
+        </div>
+        <div class="tree-node">
+          <div class="tree-title">🛡️ 2. Synthetic Prostaglandins &amp; Cytoprotectants</div>
+          <div class="tree-sublist">
+            <span class="tree-tag">PGE1 Receptor Agonist: Misoprostol</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.toggle('active');
+  }
+</script>
 
 </body>
 </html>
