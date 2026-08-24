@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Antifungal Pharmacology Guide — Detailed Mechanisms of Action (MOA)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Antifungal Pharmacology Guide — Lippincott Framework</title>
   <style>
     :root {
       --primary: #7c3aed;
+      --primary-dark: #6d28d9;
       --primary-gradient: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
       --accent: #a78bfa;
-      --bg-gradient: linear-gradient(180deg, #f5f3ff 0%, #f8fafc 100%);
+      --bg-gradient: radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.08) 0%, rgba(167, 139, 250, 0.05) 40%, #f8fafc 90%);
       --text-dark: #0f172a;
       --text-muted: #475569;
       --card-bg: rgba(255, 255, 255, 0.98);
@@ -20,38 +21,37 @@
       --mnemonics-border: #ddd6fe;
       --warning-bg: #fff1f2;
       --warning-border: #fecdd3;
+      --exam-badge-bg: #ef4444;
+      --exam-badge-text: #ffffff;
+      --radius: 20px;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      -webkit-touch-callout: none;
     }
 
     body {
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: #f8fafc;
+      background: var(--bg-gradient);
+      background-attachment: fixed;
       color: var(--text-dark);
       line-height: 1.6;
-      padding: 20px 15px;
+      padding: 16px 8px 60px;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     .container {
       max-width: 1050px;
       margin: 0 auto;
       background: var(--card-bg);
-      padding: 40px 35px;
-      border-radius: 20px;
+      backdrop-filter: blur(16px);
+      padding: 32px 20px;
+      border-radius: var(--radius);
       border: 1px solid rgba(226, 232, 240, 0.8);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-      backdrop-filter: blur(10px);
-      animation: fadeIn 0.8s ease-out;
     }
 
     .badge-container {
@@ -74,30 +74,50 @@
       letter-spacing: 0.5px;
     }
 
+    /* EXAM HIGH-YIELD BADGE */
+    .exam-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--exam-badge-bg);
+      color: var(--exam-badge-text);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.25);
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
     h1 {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       font-weight: 800;
       background: linear-gradient(135deg, #1e293b 0%, #7c3aed 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 10px;
+      line-height: 1.25;
     }
 
     .subtitle {
-      font-size: 1.08rem;
+      font-size: 1.02rem;
       color: var(--text-muted);
-      margin-bottom: 35px;
+      margin-bottom: 30px;
     }
 
     h2 {
-      font-size: 1.55rem;
+      font-size: 1.45rem;
       color: #1e293b;
-      margin: 45px 0 22px;
+      margin: 36px 0 20px;
       display: flex;
       align-items: center;
       gap: 10px;
       border-bottom: 2px solid #e2e8f0;
       padding-bottom: 10px;
+      flex-wrap: wrap;
     }
 
     h2::before {
@@ -107,28 +127,26 @@
       height: 24px;
       background: var(--primary);
       border-radius: 4px;
+      flex-shrink: 0;
     }
 
-    h4 {
-      font-size: 1.05rem;
+    h3 {
+      font-size: 1.15rem;
       color: #6d28d9;
       margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     p {
       margin-bottom: 15px;
       color: var(--text-muted);
-      font-size: 0.98rem;
+      font-size: 0.96rem;
     }
 
     .drug-class-card {
       background: #ffffff;
       border: 2px solid var(--card-border);
       border-radius: 16px;
-      padding: 30px;
+      padding: 24px 20px;
       margin-bottom: 35px;
       box-shadow: var(--shadow-sm);
       position: relative;
@@ -149,74 +167,131 @@
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 18px 20px;
+      padding: 16px 18px;
       margin: 18px 0;
     }
 
-    .moa-flow-box {
+    /* MOA ENHANCED STEP-BY-STEP BOX */
+    .moa-enhanced-box {
       background: #f5f3ff;
       border: 2px solid #ddd6fe;
       border-radius: 14px;
-      padding: 22px;
-      margin: 20px 0;
+      padding: 20px;
+      margin: 18px 0;
     }
 
-    .moa-flow-box h4 {
+    .moa-enhanced-box h4 {
       color: #5b21b6;
-      margin-bottom: 15px;
+      font-weight: 800;
+      font-size: 1.02rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .flow-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    .moa-concept-summary {
+      font-size: 0.9rem;
+      color: #6d28d9;
+      background: #ede9fe;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .moa-steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .moa-step-item {
+      background: #ffffff;
+      border: 1px solid #c4b5fd;
+      border-radius: 8px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: flex-start;
       gap: 12px;
     }
 
-    .flow-step {
-      background: #ffffff;
-      border: 2px dashed #c4b5fd;
-      border-radius: 10px;
-      padding: 16px;
-      text-align: center;
-      position: relative;
-      animation: pulseGlow 3s infinite alternate;
+    .moa-step-number {
+      background: var(--primary);
+      color: white;
+      font-weight: 900;
+      font-size: 0.78rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
 
-    .flow-step:nth-child(1) { animation-delay: 0s; }
-    .flow-step:nth-child(2) { animation-delay: 0.75s; }
-    .flow-step:nth-child(3) { animation-delay: 1.5s; }
-    .flow-step:nth-child(4) { animation-delay: 2.25s; }
-
-    .flow-step .step-icon {
-      font-size: 26px;
-      margin-bottom: 6px;
-    }
-
-    .flow-step strong {
+    .moa-step-content strong {
       display: block;
       color: #4c1d95;
-      font-size: 0.92rem;
-      margin-bottom: 4px;
+      font-size: 0.9rem;
     }
 
-    .flow-step span {
-      font-size: 0.8rem;
-      color: #5b21b6;
+    .moa-step-content span {
+      font-size: 0.84rem;
+      color: var(--text-muted);
     }
 
+    /* ALIGNED MNEMONIC LIST LAYOUT */
     .mnemonic-box {
       background: var(--mnemonics-bg);
       border: 1px solid var(--mnemonics-border);
       border-left: 5px solid var(--primary);
-      border-radius: 10px;
-      padding: 16px 20px;
-      margin: 15px 0;
+      border-radius: 12px;
+      padding: 18px;
+      margin: 18px 0;
     }
 
     .mnemonic-box h4 {
       color: #6d28d9;
+      font-weight: 800;
+      font-size: 1.02rem;
+      margin-bottom: 12px;
     }
 
+    .aligned-mnemonic-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .aligned-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #ffffff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #ddd6fe;
+      font-size: 0.92rem;
+      color: #4c1d95;
+    }
+
+    .letter-badge {
+      background: var(--primary);
+      color: white;
+      font-weight: 900;
+      font-size: 0.8rem;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Warning / Contraindication Styling */
     .warning-box {
       background: var(--warning-bg);
       border: 1px solid var(--warning-border);
@@ -228,12 +303,14 @@
 
     .warning-box h4 {
       color: #9f1239;
+      font-size: 1rem;
+      margin-bottom: 6px;
     }
 
     .subdrug-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
       margin-top: 12px;
     }
 
@@ -241,31 +318,43 @@
       background: #ffffff;
       border: 1px solid #cbd5e1;
       border-radius: 8px;
-      padding: 14px 16px;
+      padding: 12px 14px;
     }
 
     .subdrug-item strong {
       display: block;
       color: #0f172a;
-      font-size: 0.95rem;
-      margin-bottom: 4px;
-    }
-
-    .subdrug-item .moa-tag {
-      display: inline-block;
-      font-size: 0.75rem;
-      background: #ede9fe;
-      color: #6d28d9;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-weight: 600;
-      margin-bottom: 4px;
+      font-size: 0.9rem;
+      margin-bottom: 2px;
     }
 
     .subdrug-item span {
-      display: block;
       font-size: 0.82rem;
       color: var(--text-muted);
+      display: block;
+    }
+
+    ul.bullet-list {
+      list-style-type: none;
+      padding-left: 0;
+      margin-bottom: 20px;
+    }
+
+    ul.bullet-list li {
+      position: relative;
+      padding-left: 26px;
+      margin-bottom: 10px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    ul.bullet-list li::before {
+      content: '▪';
+      position: absolute;
+      left: 8px;
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 1.1rem;
     }
 
     @keyframes fadeIn {
@@ -273,21 +362,15 @@
       to { opacity: 1; }
     }
 
-    @keyframes pulseGlow {
-      0% { border-color: #c4b5fd; background: #ffffff; }
-      100% { border-color: #7c3aed; background: #f5f3ff; }
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 20px 16px;
-      }
-      h1 {
-        font-size: 1.8rem;
-      }
-      .flow-container {
-        grid-template-columns: 1fr;
-      }
+    /* MOBILE SPECIFIC IMPROVEMENTS */
+    @media (max-width: 640px) {
+      body { padding: 8px 4px 50px; }
+      .container { padding: 18px 12px; border-radius: 14px; }
+      h1 { font-size: 1.65rem; }
+      .subtitle { font-size: 0.9rem; }
+      h2 { font-size: 1.2rem; }
+      .drug-class-card { padding: 16px 12px; }
+      .aligned-item { padding: 8px 10px; font-size: 0.88rem; }
     }
   </style>
 </head>
@@ -296,177 +379,294 @@
   <div class="container">
     <header>
       <div class="badge-container">
-        <span class="badge">Simplified Nursing Study Guide</span>
+        <span class="badge">Lippincott Framework Guide</span>
       </div>
-      <h1>Antifungal Drugs &amp; Detailed Mechanisms of Action (MOA)</h1>
-      <p class="subtitle">Complete pharmacological breakdown featuring drug classifications, exact molecular mechanisms, clinical indications, and mnemonics.</p>
+      <h1>Antifungal Pharmacology Guide</h1>
+      <p class="subtitle">A simplified student study breakdown based on the Lippincott classification: Drugs for Systemic/Subcutaneous Mycoses vs. Drugs for Cutaneous/Superficial Mycoses.</p>
     </header>
 
     <main>
 
-      <!-- ================= 1. DRUGS FOR SUBCUTANEOUS & SYSTEMIC MYCOSES ================= -->
+      <!-- ================= 1. SYSTEMIC & SUBCUTANEOUS MYCOSES ================= -->
       <section class="drug-class-card">
-        <h2>Drugs for Subcutaneous and Systemic Mycoses</h2>
-        <p><em>Potent antifungal medications targeting deep-seated, life-threatening systemic fungal infections and localized subcutaneous mycoses.</em></p>
+        <h2>1. Drugs for Systemic &amp; Subcutaneous Mycoses</h2>
+        <p><em>Used for deep-seated, life-threatening internal fungal infections (e.g., Candidiasis, Cryptococcal Meningitis, Aspergillosis) and deep subcutaneous tissue infections.</em></p>
         
         <div class="sub-block">
-          <h4>📂 Important Drug Names &amp; Detailed Molecular MOA</h4>
+          <h4>📂 Clear Drug Classes &amp; Examples</h4>
           <div class="subdrug-grid">
             <div class="subdrug-item">
-              <strong>Amphotericin B</strong>
-              <span class="moa-tag">MOA: Polyene Membrane Pore Formers</span>
-              <span>Binds irreversibly to ergosterol in the fungal cell membrane, creating pores that cause leakage of vital ions (K+ and Mg2+), leading to cell death.</span>
+              <strong>1. Polyene Antibiotic</strong>
+              <span><strong>Amphotericin B</strong> — Heavy-hitter for life-threatening systemic fungal infections.</span>
             </div>
             <div class="subdrug-item">
-              <strong>Fluconazole / Itraconazole / Voriconazole</strong>
-              <span class="moa-tag">MOA: Azole Demethylase Inhibitors</span>
-              <span>Inhibits fungal cytochrome P450 enzyme (14-alpha-demethylase), blocking lanosterol conversion to ergosterol, disrupting membrane fluidity.</span>
+              <strong>2. Pyrimidine Antimetabolite</strong>
+              <span><strong>Flucytosine (5-FC)</strong> — Synergistic partner given with Amphotericin B for fungal meningitis.</span>
             </div>
             <div class="subdrug-item">
-              <strong>Caspofungin (Echinocandins)</strong>
-              <span class="moa-tag">MOA: Cell Wall Glucan Synthesis Blockers</span>
-              <span>Non-competitively inhibits beta-(1,3)-D-glucan synthase enzyme, preventing formation of essential fungal cell wall structural polymers.</span>
+              <strong>3. Systemic Azoles</strong>
+              <span><strong>Fluconazole, Itraconazole, Voriconazole, Posaconazole</strong> — Broad-spectrum oral/IV agents.</span>
             </div>
             <div class="subdrug-item">
-              <strong>Flucytosine</strong>
-              <span class="moa-tag">MOA: Pyrimidine Antimetabolite</span>
-              <span>Enters fungal cells via cytosine permease, converts into 5-fluorouracil (5-FU), and halts DNA/RNA protein synthesis.</span>
+              <strong>4. Echinocandins</strong>
+              <span><strong>Caspofungin, Micafungin, Anidulafungin</strong> — First-line IV agents for invasive Candida &amp; Aspergillus.</span>
             </div>
           </div>
         </div>
 
-        <div class="moa-flow-box">
-          <h4>⚡ Animated MOA Workflow: Systemic Fungal Disruption</h4>
-          <div class="flow-container">
-            <div class="flow-step">
-              <div class="step-icon">🍄</div>
-              <strong>Step 1: Target Binding</strong>
-              <span>Drugs locate fungal cellular components (ergosterol, glucan synthase, or DNA precursors).</span>
+        <!-- MOA DISRUPTIONS FOR SYSTEMIC MYCOSES -->
+        <h3>Simplified Mechanisms of Action (MOA)</h3>
+
+        <!-- Amphotericin B MOA -->
+        <div class="moa-enhanced-box">
+          <h4>⚙️ Amphotericin B: "Poking Pores in the Membrane" <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <div class="moa-concept-summary">💡 Concept: Binds directly to fungal ergosterol (the fungal version of cholesterol) and tears open holes in the cell membrane so vital potassium leaks out.</div>
+          <div class="moa-steps-list">
+            <div class="moa-step-item">
+              <div class="moa-step-number">1</div>
+              <div class="moa-step-content">
+                <strong>Target Binding:</strong>
+                <span>Amphotericin B binds tightly to ergosterol in the fungal lipid membrane.</span>
+              </div>
             </div>
-            <div class="flow-step">
-              <div class="step-icon">🕳️</div>
-              <strong>Step 2: Structural Breakdown</strong>
-              <span>Membrane integrity is compromised or cell wall synthesis is abruptly halted.</span>
+            <div class="moa-step-item">
+              <div class="moa-step-number">2</div>
+              <div class="moa-step-content">
+                <strong>Pore Formation:</strong>
+                <span>Multiple molecules form transmembrane pores (holes) in the cell wall barrier.</span>
+              </div>
             </div>
-            <div class="flow-step">
-              <div class="step-icon">💧</div>
-              <strong>Step 3: Internal Leakage</strong>
-              <span>Essential intracellular contents and potassium leak outward into extracellular space.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">💥</div>
-              <strong>Step 4: Rapid Destruction</strong>
-              <span>Fungal cells undergo osmotic lysis and rapid clearance.</span>
+            <div class="moa-step-item">
+              <div class="moa-step-number">3</div>
+              <div class="moa-step-content">
+                <strong>Ion Leakage &amp; Death:</strong>
+                <span>Essential ions (K+ and Mg2+) gush out, causing rapid osmotic lysis and fungal death.</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="mnemonic-box">
-          <h4>💡 Uses with Mnemonic: "S.Y.S.T.E.M."</h4>
-          <p><strong>S</strong>ystemic candidiasis &bull; <strong>Y</strong>east meningitis (Cryptococcus) &bull; <strong>S</strong>ubcutaneous sporotrichosis &bull; <strong>T</strong>ough aspergillosis &bull; <strong>E</strong>ndemic histoplasmosis &bull; <strong>M</strong>ucormycosis infections.</p>
+        <!-- Systemic Azoles MOA -->
+        <div class="moa-enhanced-box">
+          <h4>⚙️ Systemic Azoles (Fluconazole / Voriconazole): "Blocking Ergosterol Construction"</h4>
+          <div class="moa-concept-summary">💡 Concept: Blocks the fungal CYP450 enzyme that builds ergosterol, leaving the fungal membrane weak, leaky, and unable to grow.</div>
+          <div class="moa-steps-list">
+            <div class="moa-step-item">
+              <div class="moa-step-number">1</div>
+              <div class="moa-step-content">
+                <strong>Enzyme Blockade:</strong>
+                <span>Inhibits 14-alpha-demethylase (a fungal CYP450 enzyme).</span>
+              </div>
+            </div>
+            <div class="moa-step-item">
+              <div class="moa-step-number">2</div>
+              <div class="moa-step-content">
+                <strong>Membrane Weakening:</strong>
+                <span>Halts ergosterol production, causing toxic sterol accumulation and membrane leakage (bacteriostatic/fungistatic).</span>
+              </div>
+            </div>
+          </div>
         </div>
 
+        <!-- Echinocandins MOA -->
+        <div class="moa-enhanced-box">
+          <h4>⚙️ Echinocandins (Caspofungin): "Destroying the Cell Wall Glue"</h4>
+          <div class="moa-concept-summary">💡 Concept: Human cells have membranes, but fungal cells also have a hard cell wall. Echinocandins block the glue ($\beta$-1,3-D-glucan) that holds the cell wall together!</div>
+          <div class="moa-steps-list">
+            <div class="moa-step-item">
+              <div class="moa-step-number">1</div>
+              <div class="moa-step-content">
+                <strong>Glucan Synthase Inhibition:</strong>
+                <span>Blocks $\beta$-(1,3)-D-glucan synthase enzyme in the cell wall.</span>
+              </div>
+            </div>
+            <div class="moa-step-item">
+              <div class="moa-step-number">2</div>
+              <div class="moa-step-content">
+                <strong>Cell Wall Collapse:</strong>
+                <span>Without glucan glue, the cell wall loses structural strength and ruptures under osmotic pressure.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flucytosine MOA -->
+        <div class="moa-enhanced-box">
+          <h4>⚙️ Flucytosine (5-FC): "DNA Fake-Out (Antimetabolite)" <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <div class="moa-concept-summary">💡 Concept: Enters the fungus and converts into 5-FU (a chemotherapy toxin) to block fungal DNA and RNA synthesis.</div>
+          <div class="moa-steps-list">
+            <div class="moa-step-item">
+              <div class="moa-step-number">1</div>
+              <div class="moa-step-content">
+                <strong>Conversion to 5-FU:</strong>
+                <span>Converted inside fungal cells by cytosine deaminase into 5-fluorouracil (5-FU).</span>
+              </div>
+            </div>
+            <div class="moa-step-item">
+              <div class="moa-step-number">2</div>
+              <div class="moa-step-content">
+                <strong>DNA/Protein Shut Off:</strong>
+                <span>Inhibits thymidylate synthase, shutting down fungal DNA and protein production.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ALIGNED USES MNEMONIC -->
         <div class="mnemonic-box">
-          <h4>💡 Adverse Effects with Mnemonic: "S.H.A.K.E."</h4>
-          <p><strong>S</strong>haking chills &amp; fever infusion reactions (Amphotericin B "shake and bake") &bull; <strong>H</strong>epatic enzyme bumps &bull; <strong>A</strong>nemia / bone marrow suppression &bull; <strong>K</strong>idney / nephrotoxicity &bull; <strong>E</strong>lectrolyte loss (low potassium and magnesium).</p>
+          <h4>💡 Systemic Uses Mnemonic: "S.Y.S.T.E.M."</h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>ystemic bloodstream Candidiasis</span></div>
+            <div class="aligned-item"><span class="letter-badge">Y</span><span><strong>Y</strong>east Cryptococcal meningitis (Amphotericin B + Flucytosine) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>ubcutaneous Sporotrichosis</span></div>
+            <div class="aligned-item"><span class="letter-badge">T</span><span><strong>T</strong>ough invasive Aspergillosis (Voriconazole / Caspofungin)</span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>ndemic Histoplasmosis &amp; Blastomycosis</span></div>
+            <div class="aligned-item"><span class="letter-badge">M</span><span><strong>M</strong>ucormycosis fungal emergencies</span></div>
+          </div>
+        </div>
+
+        <!-- ALIGNED ADRs MNEMONIC -->
+        <div class="mnemonic-box">
+          <h4>💡 Systemic Side Effects Mnemonic: "S.H.A.K.E." <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>haking chills, fever, &amp; rigors during IV infusion ("Shake &amp; Bake" reaction)</span></div>
+            <div class="aligned-item"><span class="letter-badge">H</span><span><strong>H</strong>epatotoxicity &amp; liver enzyme spikes across azoles</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>nemia &amp; bone marrow suppression (Flucytosine toxicity)</span></div>
+            <div class="aligned-item"><span class="letter-badge">K</span><span><strong>K</strong>idney damage / Nephrotoxicity (Amphotericin B) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>lectrolyte wasting (severe hypokalemia &amp; hypomagnesemia)</span></div>
+          </div>
         </div>
 
         <div class="warning-box">
-          <h4>🚫 Clinical Warnings</h4>
-          <p>Amphotericin B requires premedication (antipyretics, antihistamines, IV normal saline hydration) to manage severe infusion reactions and nephrotoxicity risks.</p>
+          <h4>🚫 Clinical Safety Rules (Amphotericin B) <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <p>Pre-medicate patients with Acetaminophen, Diphenhydramine, and administer 1 Liter of IV Normal Saline bolus before infusion to protect the kidneys and reduce "shake and bake" reactions!</p>
         </div>
       </section>
 
-      <!-- ================= 2. DRUGS FOR CUTANEOUS & SUPERFICIAL MYCOSES ================= -->
+      <!-- ================= 2. CUTANEOUS & SUPERFICIAL MYCOSES ================= -->
       <section class="drug-class-card">
-        <h2>Drugs for Cutaneous Mycoses</h2>
-        <p><em>Topical and oral medications designed to treat superficial fungal infections affecting skin, hair, and nails (dermatophytes and superficial yeasts).</em></p>
-        
+        <h2>2. Drugs for Cutaneous &amp; Superficial Mycoses</h2>
+        <p><em>Target superficial fungal infections localized to keratinized tissues (skin, hair, nails) such as Ringworm, Athlete's Foot, Jock Itch, and Mucosal Yeast infections.</em></p>
+
         <div class="sub-block">
-          <h4>📂 Important Drug Names &amp; Detailed Molecular MOA</h4>
+          <h4>📂 Clear Drug Classes &amp; Examples</h4>
           <div class="subdrug-grid">
             <div class="subdrug-item">
-              <strong>Terbinafine</strong>
-              <span class="moa-tag">MOA: Squalene Epoxidase Inhibitor</span>
-              <span>Blocks squalene epoxidase enzyme early in ergosterol biosynthesis, causing toxic intracellular accumulation of squalene and fungal death.</span>
+              <strong>1. Squalene Epoxidase Inhibitor</strong>
+              <span><strong>Terbinafine (Lamisil)</strong> — First-line oral/topical choice for nail fungus (Onychomycosis).</span>
             </div>
             <div class="subdrug-item">
-              <strong>Griseofulvin</strong>
-              <span class="moa-tag">MOA: Mitotic Spindle Disrupter</span>
-              <span>Binds to fungal micro-tubules, disrupting mitotic spindle formation and arresting fungal cell division (metaphase arrest).</span>
+              <strong>2. Mitotic Spindle Disrupter</strong>
+              <span><strong>Griseofulvin</strong> — Oral drug that deposits in keratin for scalp ringworm (Tinea capitis).</span>
             </div>
             <div class="subdrug-item">
-              <strong>Nystatin</strong>
-              <span class="moa-tag">MOA: Polyene Membrane Binder</span>
-              <span>Binds to ergosterol in fungal cell membranes, forming pores and causing ion leakage (used locally for oral/topical candidiasis).</span>
+              <strong>3. Topical Polyene Antibiotic</strong>
+              <span><strong>Nystatin</strong> — Used strictly topically/orally for Candida thrush ("Swish and Swallow").</span>
             </div>
             <div class="subdrug-item">
-              <strong>Clotrimazole / Miconazole</strong>
-              <span class="moa-tag">MOA: Topical Azole Inhibitor</span>
-              <span>Inhibits 14-alpha-demethylase locally in superficial layers, blocking ergosterol synthesis in ringworm and yeast rashes.</span>
+              <strong>4. Topical Azoles</strong>
+              <span><strong>Clotrimazole, Miconazole, Ketoconazole</strong> — Creams for athlete's foot and vaginal yeast.</span>
             </div>
           </div>
         </div>
 
-        <div class="moa-flow-box">
-          <h4>⚡ Animated MOA Workflow: Superficial Ergosterol &amp; Keratin Protection</h4>
-          <div class="flow-container">
-            <div class="flow-step">
-              <div class="step-icon">🧴</div>
-              <strong>Step 1: Drug Delivery</strong>
-              <span>Topical application or systemic absorption delivers drug directly to keratin tissues (skin, hair, nails).</span>
+        <!-- MOA DISRUPTIONS FOR CUTANEOUS MYCOSES -->
+        <h3>Simplified Mechanisms of Action (MOA)</h3>
+
+        <!-- Terbinafine MOA -->
+        <div class="moa-enhanced-box">
+          <h4>⚙️ Terbinafine: "Trapping Toxic Squalene" <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <div class="moa-concept-summary">💡 Concept: Blocks squalene epoxidase early in the ergosterol pathway. Toxic squalene builds up inside the fungus, causing rapid cell death.</div>
+          <div class="moa-steps-list">
+            <div class="moa-step-item">
+              <div class="moa-step-number">1</div>
+              <div class="moa-step-content">
+                <strong>Early Pathway Block:</strong>
+                <span>Inhibits squalene epoxidase enzyme early in sterol building.</span>
+              </div>
             </div>
-            <div class="flow-step">
-              <div class="step-icon">⚙️</div>
-              <strong>Step 2: Enzyme or Mitotic Block</strong>
-              <span>Inhibits squalene epoxidase or binds tubulin to stop fungal division and growth.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">🛡️</div>
-              <strong>Step 3: Keratin Shielding</strong>
-              <span>Incoporates into keratin matrix, preventing newly growing tissue from being infected by dermatophytes.</span>
-            </div>
-            <div class="flow-step">
-              <div class="step-icon">✨</div>
-              <strong>Step 4: Superficial Clearance</strong>
-              <span>Eradicates superficial colonies, relieving itching, scaling, and inflammation.</span>
+            <div class="moa-step-item">
+              <div class="moa-step-number">2</div>
+              <div class="moa-step-content">
+                <strong>Toxic Squalene Poisoning:</strong>
+                <span>Squalene accumulates toxically inside fungal cells, causing membrane rupture (fungicidal).</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="mnemonic-box">
-          <h4>💡 Uses with Mnemonic: "S.K.I.N.S."</h4>
-          <p><strong>S</strong>uperficial ringworm (tinea corporis) &bull; <strong>K</strong>aposi-alternative fungal rashes &bull; <strong>I</strong>nfections of athlete's foot (tinea pedis) &bull; <strong>N</strong>ail fungus (onychomycosis) &bull; <strong>S</strong>wish-and-swallow oral thrush (Nystatin).</p>
+        <!-- Griseofulvin MOA -->
+        <div class="moa-enhanced-box">
+          <h4>⚙️ Griseofulvin: "Freezing Fungal Cell Division"</h4>
+          <div class="moa-concept-summary">💡 Concept: Binds fungal microtubules and stops mitosis (cell division). It deposits into human keratin so new growing hair/nails are completely resistant to fungus!</div>
+          <div class="moa-steps-list">
+            <div class="moa-step-item">
+              <div class="moa-step-number">1</div>
+              <div class="moa-step-content">
+                <strong>Microtubule Binding:</strong>
+                <span>Binds fungal polymerized microtubules, arresting mitosis in metaphase.</span>
+              </div>
+            </div>
+            <div class="moa-step-item">
+              <div class="moa-step-number">2</div>
+              <div class="moa-step-content">
+                <strong>Keratin Binding:</strong>
+                <span>Binds tightly to human keratin in hair and skin, shielding new tissue growth from infection.</span>
+              </div>
+            </div>
+          </div>
         </div>
 
+        <!-- Nystatin MOA -->
+        <div class="moa-enhanced-box">
+          <h4>⚙️ Nystatin: "Topical Membrane Hole-Puncher" <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <div class="moa-concept-summary">💡 Concept: Same mechanism as Amphotericin B (binds ergosterol to poke membrane holes), but too toxic for IV use—strictly used topically or swallowed for local gut thrush.</div>
+          <div class="moa-steps-list">
+            <div class="moa-step-item">
+              <div class="moa-step-number">1</div>
+              <div class="moa-step-content">
+                <strong>Local Surface Action:</strong>
+                <span>Binds surface ergosterol on Candida yeasts without systemic oral absorption.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ALIGNED USES MNEMONIC -->
         <div class="mnemonic-box">
-          <h4>💡 Adverse Effects with Mnemonic: "R.A.S.H.E.S."</h4>
-          <p><strong>R</strong>edness and local skin irritation &bull; <strong>A</strong>bdominal stomach upset &bull; <strong>S</strong>unlight photosensitivity &bull; <strong>H</strong>eadache &bull; <strong>E</strong>levated liver enzymes (oral terbinafine/griseofulvin) &bull; <strong>S</strong>kin contact dermatitis.</p>
+          <h4>💡 Cutaneous Uses Mnemonic: "S.K.I.N.S."</h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>uperficial ringworm (Tinea corporis / Tinea cruris)</span></div>
+            <div class="aligned-item"><span class="letter-badge">K</span><span><strong>K</strong>eratin-rich scalp infection (Tinea capitis treated with Griseofulvin)</span></div>
+            <div class="aligned-item"><span class="letter-badge">I</span><span><strong>I</strong>nterdigital Athlete's Foot (Tinea pedis)</span></div>
+            <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>ail fungal infections / Onychomycosis (Terbinafine) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>wish-and-swallow oral Candida thrush (Nystatin suspension) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+          </div>
+        </div>
+
+        <!-- ALIGNED ADRs MNEMONIC -->
+        <div class="mnemonic-box">
+          <h4>💡 Cutaneous Side Effects Mnemonic: "R.A.S.H.E.S."</h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>edness, burning, and local contact irritation</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>bdominal distress &amp; metallic taste disturbance (Terbinafine)</span></div>
+            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>unlight photosensitivity &amp; Disulfiram-like alcohol reaction (Griseofulvin)</span></div>
+            <div class="aligned-item"><span class="letter-badge">H</span><span><strong>H</strong>eadaches</span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>levated liver enzymes (check baseline LFTs with oral Terbinafine) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>kin rash &amp; hives</span></div>
+          </div>
         </div>
 
         <div class="warning-box">
-          <h4>🚫 Clinical Warnings</h4>
-          <p>Oral terbinafine and griseofulvin require baseline liver function checks. Avoid alcohol consumption during treatment due to potential hepatic strain.</p>
+          <h4>🚫 Nursing Clinical Practice Rules</h4>
+          <p>&bull; <strong>Terbinafine:</strong> Monitor baseline LFTs (liver function tests) before starting oral therapy for nail fungus.<br>
+          &bull; <strong>Griseofulvin:</strong> Instruct patients to take with <strong>fatty foods</strong> (like ice cream or milk) to increase absorption! <span class="exam-badge">IMP FOR EXAM</span><br>
+          &bull; <strong>Nystatin Thrush:</strong> Instruct patient to swish suspension thoroughly in mouth for several minutes and SWALLOW (do not spit!).</p>
         </div>
       </section>
 
     </main>
   </div>
-
-  <script>
-    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-    document.addEventListener('selectstart', function(e) { e.preventDefault(); });
-    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
-    document.addEventListener('keydown', function(e) {
-      if (
-        e.key === 'F12' || 
-        (e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'p' || e.key === 'c' || e.key === 'a')) ||
-        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))
-      ) {
-        e.preventDefault();
-      }
-    });
-  </script>
 
 </body>
 </html>
