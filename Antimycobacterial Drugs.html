@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>Antimycobacterial Guide — Tuberculosis &amp; Leprosy Treatments</title>
   <style>
     :root {
       --primary: #0284c7;
+      --primary-dark: #0369a1;
       --primary-gradient: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
       --accent: #38bdf8;
       --bg-gradient: linear-gradient(180deg, #f0f9ff 0%, #f8fafc 100%);
@@ -20,17 +21,14 @@
       --mnemonics-border: #bae6fd;
       --warning-bg: #fff1f2;
       --warning-border: #fecdd3;
+      --exam-badge-bg: #ef4444;
+      --exam-badge-text: #ffffff;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      -webkit-touch-callout: none;
     }
 
     body {
@@ -38,15 +36,16 @@
       background: #f8fafc;
       color: var(--text-dark);
       line-height: 1.6;
-      padding: 20px 15px;
+      padding: 16px 8px 60px;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     .container {
       max-width: 1050px;
       margin: 0 auto;
       background: var(--card-bg);
-      padding: 40px 35px;
+      padding: 32px 20px;
       border-radius: 20px;
       border: 1px solid rgba(226, 232, 240, 0.8);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
@@ -74,30 +73,50 @@
       letter-spacing: 0.5px;
     }
 
+    /* EXAM HIGH-YIELD BADGE */
+    .exam-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--exam-badge-bg);
+      color: var(--exam-badge-text);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.25);
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
     h1 {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       font-weight: 800;
       background: linear-gradient(135deg, #1e293b 0%, #0284c7 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 10px;
+      line-height: 1.25;
     }
 
     .subtitle {
-      font-size: 1.08rem;
+      font-size: 1.02rem;
       color: var(--text-muted);
-      margin-bottom: 35px;
+      margin-bottom: 30px;
     }
 
     h2 {
-      font-size: 1.55rem;
+      font-size: 1.45rem;
       color: #1e293b;
-      margin: 45px 0 22px;
+      margin: 36px 0 20px;
       display: flex;
       align-items: center;
       gap: 10px;
       border-bottom: 2px solid #e2e8f0;
       padding-bottom: 10px;
+      flex-wrap: wrap;
     }
 
     h2::before {
@@ -107,6 +126,7 @@
       height: 24px;
       background: var(--primary);
       border-radius: 4px;
+      flex-shrink: 0;
     }
 
     h4 {
@@ -121,14 +141,14 @@
     p {
       margin-bottom: 15px;
       color: var(--text-muted);
-      font-size: 0.98rem;
+      font-size: 0.96rem;
     }
 
     .drug-class-card {
       background: #ffffff;
       border: 2px solid var(--card-border);
       border-radius: 16px;
-      padding: 30px;
+      padding: 24px 20px;
       margin-bottom: 35px;
       box-shadow: var(--shadow-sm);
       position: relative;
@@ -149,74 +169,180 @@
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 18px 20px;
+      padding: 16px 18px;
       margin: 18px 0;
     }
 
-    .moa-flow-box {
-      background: #f0fdf4;
-      border: 2px solid #bbf7d0;
-      border-radius: 14px;
-      padding: 22px;
-      margin: 20px 0;
+    /* CONTINUOUS ADDITIVE FLOW ANIMATION WIDGET */
+    .moa-animation-widget {
+      background: #0f172a;
+      border-radius: 16px;
+      padding: 20px 16px;
+      margin: 22px 0 10px;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 10px 25px rgba(2, 132, 199, 0.2);
     }
 
-    .moa-flow-box h4 {
-      color: #166534;
-      margin-bottom: 15px;
+    .moa-widget-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    .flow-container {
+    .moa-widget-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .moa-controls {
+      display: flex;
+      gap: 6px;
+    }
+
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ctrl-btn:hover { background: rgba(255, 255, 255, 0.3); }
+
+    .moa-flow-track {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 12px;
-    }
-
-    .flow-step {
-      background: #ffffff;
-      border: 2px dashed #86efac;
-      border-radius: 10px;
-      padding: 16px;
-      text-align: center;
       position: relative;
-      animation: pulseGlow 3s infinite alternate;
     }
 
-    .flow-step:nth-child(1) { animation-delay: 0s; }
-    .flow-step:nth-child(2) { animation-delay: 0.75s; }
-    .flow-step:nth-child(3) { animation-delay: 1.5s; }
-    .flow-step:nth-child(4) { animation-delay: 2.25s; }
+    .moa-step-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px dashed rgba(255, 255, 255, 0.25);
+      border-radius: 12px;
+      padding: 16px 12px;
+      text-align: center;
+      transition: all 0.5s ease;
+    }
 
-    .flow-step .step-icon {
-      font-size: 26px;
+    .moa-step-card .step-icon {
+      font-size: 28px;
       margin-bottom: 6px;
     }
 
-    .flow-step strong {
+    .moa-step-card strong {
       display: block;
-      color: #14532d;
+      color: #cbd5e1;
       font-size: 0.92rem;
       margin-bottom: 4px;
+      transition: color 0.3s ease;
     }
 
-    .flow-step span {
+    .moa-step-card span {
       font-size: 0.8rem;
-      color: #166534;
+      color: #94a3b8;
+      line-height: 1.4;
+      display: block;
+      transition: color 0.3s ease;
     }
 
+    /* SMOOTH ADDITIVE SEQUENTIAL HIGHLIGHTS */
+    .moa-step-card.activated-step-1 {
+      background: rgba(2, 132, 199, 0.35);
+      border: 2px solid #38bdf8;
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.45);
+    }
+    .moa-step-card.activated-step-1 strong { color: #7dd3fc; }
+    .moa-step-card.activated-step-1 span { color: #ffffff; }
+
+    .moa-step-card.activated-step-2 {
+      background: rgba(245, 158, 11, 0.35);
+      border: 2px solid #fbbf24;
+      box-shadow: 0 0 18px rgba(251, 191, 36, 0.45);
+    }
+    .moa-step-card.activated-step-2 strong { color: #fde047; }
+    .moa-step-card.activated-step-2 span { color: #ffffff; }
+
+    .moa-step-card.activated-step-3 {
+      background: rgba(16, 185, 129, 0.35);
+      border: 2px solid #34d399;
+      box-shadow: 0 0 18px rgba(52, 211, 153, 0.45);
+    }
+    .moa-step-card.activated-step-3 strong { color: #6ee7b7; }
+    .moa-step-card.activated-step-3 span { color: #ffffff; }
+
+    .moa-step-card.activated-step-4 {
+      background: rgba(239, 68, 68, 0.35);
+      border: 2px solid #f87171;
+      box-shadow: 0 0 18px rgba(248, 113, 113, 0.45);
+    }
+    .moa-step-card.activated-step-4 strong { color: #fca5a5; }
+    .moa-step-card.activated-step-4 span { color: #ffffff; }
+
+    /* ALIGNED USES & ADRs LIST LAYOUT */
     .mnemonic-box {
       background: var(--mnemonics-bg);
       border: 1px solid var(--mnemonics-border);
       border-left: 5px solid var(--primary);
-      border-radius: 10px;
-      padding: 16px 20px;
-      margin: 15px 0;
+      border-radius: 12px;
+      padding: 18px;
+      margin: 16px 0;
     }
 
     .mnemonic-box h4 {
       color: #0369a1;
+      font-weight: 800;
+      margin-bottom: 12px;
     }
 
+    .aligned-mnemonic-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .aligned-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #ffffff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #bae6fd;
+      font-size: 0.92rem;
+      color: #0369a1;
+    }
+
+    .letter-badge {
+      background: var(--primary);
+      color: white;
+      font-weight: 900;
+      font-size: 0.8rem;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Warning / Contraindication Styling */
     .warning-box {
       background: var(--warning-bg);
       border: 1px solid var(--warning-border);
@@ -260,21 +386,16 @@
       to { opacity: 1; }
     }
 
-    @keyframes pulseGlow {
-      0% { border-color: #86efac; background: #ffffff; }
-      100% { border-color: #22c55e; background: #f0fdf4; }
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 20px 16px;
-      }
-      h1 {
-        font-size: 1.8rem;
-      }
-      .flow-container {
-        grid-template-columns: 1fr;
-      }
+    /* MOBILE SPECIFIC IMPROVEMENTS */
+    @media (max-width: 640px) {
+      body { padding: 8px 4px 50px; }
+      .container { padding: 18px 12px; border-radius: 14px; }
+      h1 { font-size: 1.65rem; }
+      .subtitle { font-size: 0.9rem; }
+      h2 { font-size: 1.2rem; }
+      .drug-class-card { padding: 16px 12px; }
+      .moa-flow-track { grid-template-columns: 1fr; }
+      .aligned-item { padding: 8px 10px; font-size: 0.88rem; }
     }
   </style>
 </head>
@@ -306,25 +427,33 @@
           </div>
         </div>
 
-        <div class="moa-flow-box">
-          <h4>⚡ Animated MOA Workflow: Multi-Target Mycobacterial Attack</h4>
-          <div class="flow-container">
-            <div class="flow-step">
+        <!-- CONTINUOUS ADDITIVE CHAIN ANIMATION -->
+        <div class="moa-animation-widget">
+          <div class="moa-widget-header">
+            <span class="moa-widget-title">⚡ Flow Animation: Mechanism of Action (Multi-Target Mycobacterial Attack)</span>
+            <div class="moa-controls">
+              <button class="ctrl-btn" onclick="toggleFlowAnimation(1, this)">Pause</button>
+              <button class="ctrl-btn" onclick="restartFlowAnimation(1)">↻ Replay</button>
+            </div>
+          </div>
+
+          <div class="moa-flow-track" id="moaTrack1">
+            <div class="moa-step-card" id="track1-step1">
               <div class="step-icon">🦠</div>
               <strong>Step 1: Ingestion</strong>
               <span>Drugs penetrate waxy mycobacterial cell walls and enter infection sites.</span>
             </div>
-            <div class="flow-step">
+            <div class="moa-step-card" id="track1-step2">
               <div class="step-icon">🧱</div>
               <strong>Step 2: Wall &amp; RNA Disruption</strong>
               <span>INH &amp; EMB destroy cell wall components; RIF stops RNA transcription.</span>
             </div>
-            <div class="flow-step">
+            <div class="moa-step-card" id="track1-step3">
               <div class="step-icon">💤</div>
               <strong>Step 3: Dormant Kill</strong>
               <span>PZA targets semi-dormant bacteria hiding inside immune cells.</span>
             </div>
-            <div class="flow-step">
+            <div class="moa-step-card" id="track1-step4">
               <div class="step-icon">✨</div>
               <strong>Step 4: Eradication</strong>
               <span>Prevents resistance emergence through powerful four-drug synergy.</span>
@@ -332,14 +461,27 @@
           </div>
         </div>
 
+        <!-- ALIGNED DRUG NAMES MNEMONIC -->
         <div class="mnemonic-box">
-          <h4>💡 Drug Names Mnemonic: "R.I.P.E."</h4>
-          <p><strong>R</strong>ifampin &bull; <strong>I</strong>soniazid &bull; <strong>P</strong>yrazinamide &bull; <strong>E</strong>thambutol.</p>
+          <h4>💡 Drug Names Mnemonic: "R.I.P.E." <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>ifampin</span></div>
+            <div class="aligned-item"><span class="letter-badge">I</span><span><strong>I</strong>soniazid</span></div>
+            <div class="aligned-item"><span class="letter-badge">P</span><span><strong>P</strong>yrazinamide</span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>thambutol</span></div>
+          </div>
         </div>
 
+        <!-- ALIGNED ADRs MNEMONIC -->
         <div class="mnemonic-box">
           <h4>💡 Side Effects Mnemonic: "N.O.R.P.H."</h4>
-          <p><strong>N</strong>europathy (INH - give Vitamin B6) &bull; <strong>O</strong>ptic neuritis (Ethambutol - color blindness) &bull; <strong>R</strong>ed-orange body fluids (Rifampin) &bull; <strong>P</strong>ainful joints / Gout (Pyrazinamide) &bull; <strong>H</strong>epato-toxicity (liver enzyme bumps across all).</p>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>europathy (INH - co-administer Vitamin B6 / Pyridoxine) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="aligned-item"><span class="letter-badge">O</span><span><strong>O</strong>ptic neuritis (Ethambutol - optic nerve damage &amp; red-green color blindness) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>ed-orange body fluids discoloration (Rifampin) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="aligned-item"><span class="letter-badge">P</span><span><strong>P</strong>ainful joints / Hyperuricemia &amp; Gout (Pyrazinamide)</span></div>
+            <div class="aligned-item"><span class="letter-badge">H</span><span><strong>H</strong>epatotoxicity (liver toxicity across INH, RIF, and PZA)</span></div>
+          </div>
         </div>
 
         <div class="warning-box">
@@ -363,25 +505,33 @@
           </div>
         </div>
 
-        <div class="moa-flow-box">
-          <h4>⚡ Animated MOA Workflow: Alternative Resistant Pathogen Attack</h4>
-          <div class="flow-container">
-            <div class="flow-step">
+        <!-- CONTINUOUS ADDITIVE CHAIN ANIMATION -->
+        <div class="moa-animation-widget">
+          <div class="moa-widget-header">
+            <span class="moa-widget-title">⚡ Flow Animation: Mechanism of Action (Alternative Resistant Pathogen Attack)</span>
+            <div class="moa-controls">
+              <button class="ctrl-btn" onclick="toggleFlowAnimation(2, this)">Pause</button>
+              <button class="ctrl-btn" onclick="restartFlowAnimation(2)">↻ Replay</button>
+            </div>
+          </div>
+
+          <div class="moa-flow-track" id="moaTrack2">
+            <div class="moa-step-card" id="track2-step1">
               <div class="step-icon">🎯</div>
               <strong>Step 1: New Targets</strong>
               <span>Bypasses standard pathways by targeting bacterial ATP production or protein translation.</span>
             </div>
-            <div class="flow-step">
+            <div class="moa-step-card" id="track2-step2">
               <div class="step-icon">🛑</div>
               <strong>Step 2: Replication Halt</strong>
               <span>Stops resistant bacteria from multiplying inside lung cavities.</span>
             </div>
-            <div class="flow-step">
+            <div class="moa-step-card" id="track2-step3">
               <div class="step-icon">🛡️</div>
               <strong>Step 3: Resistance Shield</strong>
               <span>Added to combination protocols to protect against total treatment failure.</span>
             </div>
-            <div class="flow-step">
+            <div class="moa-step-card" id="track2-step4">
               <div class="step-icon">💡</div>
               <strong>Step 4: Long-term Cure</strong>
               <span>Extends treatment duration (up to 18–24 months) to secure complete clearance.</span>
@@ -389,14 +539,28 @@
           </div>
         </div>
 
+        <!-- ALIGNED USES MNEMONIC -->
         <div class="mnemonic-box">
           <h4>💡 Uses Mnemonic: "M.D.R.T.B."</h4>
-          <p><strong>M</strong>ulti-drug resistant strains &bull; <strong>D</strong>rug intolerance reactions &bull; <strong>R</strong>ecurrent treatment failure &bull; <strong>T</strong>oxic side effect management &bull; <strong>B</strong>acterial load reduction.</p>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">M</span><span><strong>M</strong>ulti-drug resistant strains</span></div>
+            <div class="aligned-item"><span class="letter-badge">D</span><span><strong>D</strong>rug intolerance reactions</span></div>
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>ecurrent treatment failure</span></div>
+            <div class="aligned-item"><span class="letter-badge">T</span><span><strong>T</strong>oxic side effect management</span></div>
+            <div class="aligned-item"><span class="letter-badge">B</span><span><strong>B</strong>acterial load reduction</span></div>
+          </div>
         </div>
 
+        <!-- ALIGNED ADRs MNEMONIC -->
         <div class="mnemonic-box">
           <h4>💡 Adverse Effects Mnemonic: "O.T.T.E.R."</h4>
-          <p><strong>O</strong>totoxicity / hearing loss (injectables) &bull; <strong>T</strong>endon issues (fluoroquinolones) &bull; <strong>T</strong>oxicity to kidneys / nephrotoxicity &bull; <strong>E</strong>lectrolyte imbalances &bull; <strong>R</strong>etinal / optic nerve damage.</p>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">O</span><span><strong>O</strong>totoxicity / hearing loss (injectables)</span></div>
+            <div class="aligned-item"><span class="letter-badge">T</span><span><strong>T</strong>endon issues (fluoroquinolones)</span></div>
+            <div class="aligned-item"><span class="letter-badge">T</span><span><strong>T</strong>oxicity to kidneys / nephrotoxicity</span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>lectrolyte imbalances</span></div>
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>etinal / optic nerve damage</span></div>
+          </div>
         </div>
 
         <div class="warning-box">
@@ -419,25 +583,33 @@
           </div>
         </div>
 
-        <div class="moa-flow-box">
-          <h4>⚡ Animated MOA Workflow: Leprosy Multidrug Clearance</h4>
-          <div class="flow-container">
-            <div class="flow-step">
+        <!-- CONTINUOUS ADDITIVE CHAIN ANIMATION -->
+        <div class="moa-animation-widget">
+          <div class="moa-widget-header">
+            <span class="moa-widget-title">⚡ Flow Animation: Mechanism of Action (Leprosy Multidrug Clearance)</span>
+            <div class="moa-controls">
+              <button class="ctrl-btn" onclick="toggleFlowAnimation(3, this)">Pause</button>
+              <button class="ctrl-btn" onclick="restartFlowAnimation(3)">↻ Replay</button>
+            </div>
+          </div>
+
+          <div class="moa-flow-track" id="moaTrack3">
+            <div class="moa-step-card" id="track3-step1">
               <div class="step-icon">💊</div>
               <strong>Step 1: MDT Blister Pack</strong>
               <span>Combining Dapsone, Rifampin, and Clofazimine prevents single-drug resistance.</span>
             </div>
-            <div class="flow-step">
+            <div class="moa-step-card" id="track3-step2">
               <div class="step-icon">🔬</div>
               <strong>Step 2: Dual Inhibition</strong>
               <span>Dapsone blocks folate; Rifampin blocks RNA; Clofazimine targets DNA &amp; inflammation.</span>
             </div>
-            <div class="flow-step">
+            <div class="moa-step-card" id="track3-step3">
               <div class="step-icon">🌿</div>
               <strong>Step 3: Skin &amp; Nerve Rescue</strong>
               <span>Clears bacilli from skin lesions and peripheral nerves to stop deformity progression.</span>
             </div>
-            <div class="flow-step">
+            <div class="moa-step-card" id="track3-step4">
               <div class="step-icon">✨</div>
               <strong>Step 4: Clinical Cure</strong>
               <span>Achieves permanent microbiological cure over 6 to 12+ months.</span>
@@ -445,39 +617,116 @@
           </div>
         </div>
 
+        <!-- ALIGNED REGIMEN MNEMONIC -->
         <div class="mnemonic-box">
           <h4>💡 Treatment Regimen Mnemonic: "D.R.C."</h4>
-          <p><strong>D</strong>apsone (daily baseline) &bull; <strong>R</strong>ifampin (monthly supervised dose) &bull; <strong>C</strong>lofazimine (monthly supervised + daily anti-inflammatory support).</p>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">D</span><span><strong>D</strong>apsone (daily baseline oral therapy)</span></div>
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>ifampin (monthly supervised dose)</span></div>
+            <div class="aligned-item"><span class="letter-badge">C</span><span><strong>C</strong>lofazimine (monthly supervised + daily anti-inflammatory support)</span></div>
+          </div>
         </div>
 
+        <!-- ALIGNED ADRs MNEMONIC -->
         <div class="mnemonic-box">
           <h4>💡 Adverse Effects Mnemonic: "S.K.I.N.S."</h4>
-          <p><strong>S</strong>inister hemolysis in G6PD deficiency (Dapsone) &bull; <strong>K</strong>idney / liver strain &bull; <strong>I</strong>ron deficiency anemia risk &bull; <strong>N</strong>atural reddish-brown skin discoloration (Clofazimine) &bull; <strong>S</strong>evere hypersensitivity skin rashes.</p>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>inister hemolysis in G6PD deficiency (Dapsone) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="aligned-item"><span class="letter-badge">K</span><span><strong>K</strong>idney / liver strain</span></div>
+            <div class="aligned-item"><span class="letter-badge">I</span><span><strong>I</strong>ron deficiency anemia risk</span></div>
+            <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>atural reddish-brown skin discoloration (Clofazimine) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>evere hypersensitivity skin rashes</span></div>
+          </div>
         </div>
 
         <div class="warning-box">
-          <h4>🚫 Clinical Warnings</h4>
-          <p>Screen patients for G6PD deficiency before starting Dapsone to avoid acute hemolytic anemia. Warn patients about temporary skin pigmentation changes caused by Clofazimine.</p>
+          <h4>🚫 Clinical Warnings <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <p>Screen patients for G6PD deficiency before starting Dapsone to avoid acute hemolytic anemia. Warn patients about temporary reddish-brown skin pigmentation changes caused by Clofazimine.</p>
         </div>
       </section>
 
     </main>
   </div>
 
+  <!-- MULTI-TRACK ADDITIVE SEQUENTIAL CASCADE ANIMATION SCRIPT -->
   <script>
-    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-    document.addEventListener('selectstart', function(e) { e.preventDefault(); });
-    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
-    document.addEventListener('keydown', function(e) {
-      if (
-        e.key === 'F12' || 
-        (e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'p' || e.key === 'c' || e.key === 'a')) ||
-        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))
-      ) {
-        e.preventDefault();
+    // State controller for all 3 animation tracks
+    const animState = {
+      1: { activeStep: 0, isRunning: true, interval: null },
+      2: { activeStep: 0, isRunning: true, interval: null },
+      3: { activeStep: 0, isRunning: true, interval: null }
+    };
+
+    function runTrackAnimation(trackNum) {
+      const state = animState[trackNum];
+      state.activeStep++;
+
+      // Reset sequence after Step 4
+      if (state.activeStep > 4) {
+        for (let i = 1; i <= 4; i++) {
+          const step = document.getElementById(`track${trackNum}-step${i}`);
+          if (step) {
+            step.className = 'moa-step-card'; // Clear highlight
+          }
+        }
+        state.activeStep = 1;
+      }
+
+      // Addively light up current step while keeping previous ON
+      const currentStep = document.getElementById(`track${trackNum}-step${state.activeStep}`);
+      if (currentStep) {
+        currentStep.classList.add('activated-step-' + state.activeStep);
+      }
+    }
+
+    function startTrackAnimation(trackNum) {
+      if (!animState[trackNum].interval) {
+        runTrackAnimation(trackNum);
+        animState[trackNum].interval = setInterval(() => runTrackAnimation(trackNum), 1500);
+      }
+    }
+
+    function toggleFlowAnimation(trackNum, btn) {
+      const state = animState[trackNum];
+      if (state.isRunning) {
+        clearInterval(state.interval);
+        state.interval = null;
+        state.isRunning = false;
+        btn.innerText = 'Play';
+      } else {
+        state.isRunning = true;
+        btn.innerText = 'Pause';
+        startTrackAnimation(trackNum);
+      }
+    }
+
+    function restartFlowAnimation(trackNum) {
+      const state = animState[trackNum];
+      clearInterval(state.interval);
+      state.interval = null;
+      state.activeStep = 0;
+
+      for (let i = 1; i <= 4; i++) {
+        const step = document.getElementById(`track${trackNum}-step${i}`);
+        if (step) {
+          step.className = 'moa-step-card';
+        }
+      }
+
+      state.isRunning = true;
+      const widget = document.getElementById(`moaTrack${trackNum}`).parentElement;
+      const pauseBtn = widget.querySelector('.ctrl-btn');
+      if (pauseBtn) pauseBtn.innerText = 'Pause';
+
+      startTrackAnimation(trackNum);
+    }
+
+    // Auto-start all tracks on DOM load
+    window.addEventListener('DOMContentLoaded', () => {
+      for (let i = 1; i <= 3; i++) {
+        startTrackAnimation(i);
       }
     });
   </script>
-
 </body>
 </html>
