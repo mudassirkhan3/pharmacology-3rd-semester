@@ -314,27 +314,39 @@
       20% { background: rgba(37, 99, 235, 0.4); border-color: #38bdf8; transform: scale(1.03); box-shadow: 0 0 12px rgba(56, 189, 248, 0.5); }
     }
 
-    /* 30-SECOND REVISION CARDS */
+    /* COMPLETE SINGLE 30-SECOND REVISION CONTAINER */
     .revision-box {
-      background: #f8fafc;
-      border: 1.5px solid #cbd5e1;
-      border-left: 5px solid var(--primary-dark);
-      padding: 16px;
-      border-radius: 12px;
-      margin: 18px 0 6px;
+      background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+      border: 2px solid #93c5fd;
+      border-left: 6px solid var(--primary-dark);
+      padding: 22px 18px;
+      border-radius: 16px;
+      margin: 28px 0;
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08);
     }
-    .revision-box h5 {
-      font-size: 0.85rem;
+    .revision-box h3 {
+      font-size: 1.1rem;
       font-weight: 800;
       color: var(--primary-dark);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-bottom: 8px;
+      margin-bottom: 14px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
-    .revision-flow-text { font-size: 0.88rem; font-weight: 600; color: var(--text-main); line-height: 1.6; }
+    .revision-item {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 12px 14px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      font-size: 0.88rem;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+    .revision-item:last-child { margin-bottom: 0; }
+    .revision-item strong { color: var(--primary-dark); font-weight: 800; }
 
     /* TABLES */
     .table-container {
@@ -472,6 +484,7 @@
       <a href="#pembrolizumab" class="nav-chip">Pembrolizumab / Nivolumab</a>
       <a href="#adcs" class="nav-chip">ADCs</a>
       <a href="#pharmacokinetics" class="nav-chip">Pharmacokinetics</a>
+      <a href="#complete-revision" class="nav-chip">⚡ 30-Sec Revision</a>
       <a href="#nursing" class="nav-chip">Nursing Safety</a>
     </div>
   </nav>
@@ -493,25 +506,25 @@
     <div class="grid-2">
       <div class="card-box">
         <h3>🎯 Targeted Surface Antigen mAbs</h3>
-        <p><strong>Prototypes:</strong> <mark.hl>Rituximab</mark> (CD20), <mark.hl>Trastuzumab</mark> (HER2), <mark.hl>Cetuximab</mark> (EGFR).</p>
+        <p><strong>Prototypes:</strong> <mark class="hl">Rituximab</mark> (CD20), <mark class="hl">Trastuzumab</mark> (HER2), <mark class="hl">Cetuximab</mark> (EGFR).</p>
         <p><em>(Bind directly to growth receptors or tumor-specific proteins to block proliferation and trigger immune attack.)</em></p>
       </div>
 
       <div class="card-box">
         <h3>🩸 Angiogenesis Inhibitor mAbs</h3>
-        <p><strong>Prototype:</strong> <mark.hl>Bevacizumab</mark>.</p>
+        <p><strong>Prototype:</strong> <mark class="hl">Bevacizumab</mark>.</p>
         <p><em>(Binds to Vascular Endothelial Growth Factor [VEGF], preventing blood vessel formation supplying the tumor.)</em></p>
       </div>
 
       <div class="card-box">
         <h3>⚡ Immune Checkpoint Inhibitors</h3>
-        <p><strong>Prototypes:</strong> <mark.hl>Pembrolizumab</mark>, <mark.hl>Nivolumab</mark> (PD-1 inhibitors), <mark.hl>Ipilimumab</mark> (CTLA-4 inhibitor).</p>
+        <p><strong>Prototypes:</strong> <mark class="hl">Pembrolizumab</mark>, <mark class="hl">Nivolumab</mark> (PD-1 inhibitors), <mark class="hl">Ipilimumab</mark> (CTLA-4 inhibitor).</p>
         <p><em>(Block inhibitory pathways on T-cells, enabling the immune system to attack cancer cells.)</em></p>
       </div>
 
       <div class="card-box">
         <h3>🚀 Antibody-Drug Conjugates (ADCs)</h3>
-        <p><strong>Prototypes:</strong> <mark.hl>Trastuzumab deruxtecan</mark> (T-DXd), <mark.hl>Brentuximab vedotin</mark>.</p>
+        <p><strong>Prototypes:</strong> <mark class="hl">Trastuzumab deruxtecan</mark> (T-DXd), <mark class="hl">Brentuximab vedotin</mark>.</p>
         <p><em>(mAbs linked to potent cytotoxic payloads, acting as targeted "guided missiles".)</em></p>
       </div>
     </div>
@@ -575,21 +588,13 @@
     <span class="badge-label">[ADRs]</span>
     <h3>Adverse Drug Reactions & Complications</h3>
     <ul>
-      <li><mark.hl>Infusion-Related Reactions:</mark> Fever, chills, rigors, flushing, bronchospasm, and hypotension (most common during the first infusion).</li>
+      <li><mark class="hl">Infusion-Related Reactions:</mark> Fever, chills, rigors, flushing, bronchospasm, and hypotension (most common during the first infusion).</li>
     </ul>
 
     <!-- ADR MNEMONIC -->
     <div class="mnemonic-card">
       <h4>💡 ADR MEMORY TRICK</h4>
       <p><strong>"R-I-T"</strong> &rarr; <strong>R</strong>igors & chills | <strong>I</strong>nfusion-related hypotension | <strong>T</strong>emperature spikes (Fever).</p>
-    </div>
-
-    <!-- 30-SECOND REVISION -->
-    <div class="revision-box">
-      <h5>⚡ 30-SECOND REVISION</h5>
-      <div class="revision-flow-text">
-        Rituximab &rarr; CD20 Targeted mAb &rarr; Flags B-cells for CDC/ADCC destruction &rarr; Treats B-Cell Lymphomas/Leukemias &rarr; Watch for Infusion Reactions (fever, chills, hypotension).
-      </div>
     </div>
   </article>
 
@@ -653,7 +658,7 @@
     <span class="badge-label">[ADRs]</span>
     <h3>Adverse Drug Reactions & Complications</h3>
     <ul>
-      <li><mark.hl>Cardiotoxicity:</mark> Decreased left ventricular ejection fraction (LVEF) and heart failure.</li>
+      <li><mark class="hl">Cardiotoxicity:</mark> Decreased left ventricular ejection fraction (LVEF) and heart failure.</li>
       <li><strong>Infusion-Related Reactions:</strong> Fever, chills, and flushing.</li>
     </ul>
 
@@ -661,14 +666,6 @@
     <div class="mnemonic-card">
       <h4>💡 ADR MEMORY TRICK</h4>
       <p><strong>"TRAS breaks the Heart"</strong> &rarr; Classic risk of <strong>Cardiotoxicity</strong> (decreased LVEF / Heart Failure).</p>
-    </div>
-
-    <!-- 30-SECOND REVISION -->
-    <div class="revision-box">
-      <h5>⚡ 30-SECOND REVISION</h5>
-      <div class="revision-flow-text">
-        Trastuzumab &rarr; Anti-HER2 mAb &rarr; Blocks HER2 growth signaling &rarr; Treats HER2+ Breast & Gastric Cancers &rarr; Key Toxicity: Cardiotoxicity (Monitor LVEF/ECHO).
-      </div>
     </div>
   </article>
 
@@ -725,14 +722,6 @@
       <li><strong>Infusion-Related Reactions:</strong> Hypersensitivity, chills, fever, and hypotension.</li>
       <li><strong>Dermatologic Toxicities:</strong> Acneiform rash (indicates active EGFR inhibition).</li>
     </ul>
-
-    <!-- 30-SECOND REVISION -->
-    <div class="revision-box">
-      <h5>⚡ 30-SECOND REVISION</h5>
-      <div class="revision-flow-text">
-        Cetuximab &rarr; Anti-EGFR mAb &rarr; Blocks growth signals &rarr; Treats Colorectal & Head/Neck Cancers &rarr; Watch for Infusion reactions & Acneiform rash.
-      </div>
-    </div>
   </article>
 
 
@@ -793,22 +782,14 @@
     <span class="badge-label">[ADRs]</span>
     <h3>Adverse Drug Reactions & Complications</h3>
     <ul>
-      <li><mark.hl>Vascular Complications:</mark> Severe Hypertension and Arterial Thromboembolism.</li>
-      <li><mark.hl>Renal & Surgical Toxicities:</mark> Proteinuria and Delayed Surgical Wound Healing / Wound Dehiscence.</li>
+      <li><mark class="hl">Vascular Complications:</mark> Severe Hypertension and Arterial Thromboembolism.</li>
+      <li><mark class="hl">Renal & Surgical Toxicities:</mark> Proteinuria and Delayed Surgical Wound Healing / Wound Dehiscence.</li>
     </ul>
 
     <!-- ADR MNEMONIC -->
     <div class="mnemonic-card">
       <h4>💡 ADR MEMORY TRICK</h4>
       <p><strong>"B-E-V"</strong> &rarr; <strong>B</strong>lood pressure elevation (Hypertension) | <strong>E</strong>xcretion of protein (Proteinuria) | <strong>V</strong>essel/Wound healing impairment.</p>
-    </div>
-
-    <!-- 30-SECOND REVISION -->
-    <div class="revision-box">
-      <h5>⚡ 30-SECOND REVISION</h5>
-      <div class="revision-flow-text">
-        Bevacizumab &rarr; Anti-VEGF Angiogenesis Inhibitor &rarr; Starves tumor blood supply &rarr; Treats Colorectal, Renal, & Lung Cancers &rarr; Key Risks: Hypertension, Proteinuria, Delayed Wound Healing.
-      </div>
     </div>
   </article>
 
@@ -870,19 +851,11 @@
     <span class="badge-label">[ADRs & COMPLICATIONS]</span>
     <h3>Adverse Drug Reactions & Management</h3>
     <ul>
-      <li><mark.hl>Immune-Related Adverse Events (irAEs):</mark> Autoimmune inflammatory conditions affecting the lungs (pneumonitis), colon (colitis), skin, and endocrine glands.</li>
+      <li><mark class="hl">Immune-Related Adverse Events (irAEs):</mark> Autoimmune inflammatory conditions affecting the lungs (pneumonitis), colon (colitis), skin, and endocrine glands.</li>
     </ul>
 
     <div class="example-box">
       <strong>⚠️ Managing Checkpoint Toxicity:</strong> Immune-related adverse events (irAEs) caused by checkpoint inhibitors are managed by holding immunotherapy doses and administering systemic high-dose corticosteroids depending on organ severity grade.
-    </div>
-
-    <!-- 30-SECOND REVISION -->
-    <div class="revision-box">
-      <h5>⚡ 30-SECOND REVISION</h5>
-      <div class="revision-flow-text">
-        Pembrolizumab/Nivolumab &rarr; PD-1 Checkpoint Inhibitors &rarr; Removes T-cell brakes &rarr; Treats Melanoma, Lung & Renal Cancers &rarr; Key Risk: Autoimmune irAEs (Pneumonitis, Colitis) managed via Corticosteroids.
-      </div>
     </div>
   </article>
 
@@ -903,20 +876,12 @@
     <span class="badge-label">[MOA]</span>
     <h3>Mechanism of Action</h3>
     <p>Monoclonal antibodies linked to potent cytotoxic payloads, acting as targeted "guided missiles" that deliver high concentrations of chemotherapy directly into antigen-expressing tumor cells while avoiding healthy tissues.</p>
-
-    <!-- 30-SECOND REVISION -->
-    <div class="revision-box">
-      <h5>⚡ 30-SECOND REVISION</h5>
-      <div class="revision-flow-text">
-        ADCs &rarr; mAb + Cytotoxic Payload &rarr; Targeted "guided missile" delivery &rarr; Delivers potent chemo exclusively inside antigen-positive tumor cells.
-      </div>
-    </div>
   </article>
 
   <!-- DRUG COMPARISON TABLE -->
   <section>
     <span class="badge-label">[CLASS COMPARISON]</span>
-    <h2>4. Prototype Drug Comparison Matrix</h2>
+    Replace "<h2>4. Prototype Drug Comparison Matrix</h2>"
     <div class="table-container">
       <table>
         <thead>
@@ -1012,6 +977,37 @@
     </div>
   </section>
 
+  <!-- SINGLE COMPLETE 30-SECOND RAPID CLASS REVISION -->
+  <section id="complete-revision">
+    <div class="revision-box">
+      <h3>⚡ 30-Second Rapid Class Revision (All Monoclonal Antibodies)</h3>
+      
+      <div class="revision-item">
+        <strong>1. Rituximab:</strong> Anti-CD20 mAb &rarr; Flags B-cells for CDC/ADCC destruction &rarr; B-cell Lymphomas/Leukemias &rarr; Watch for First-Infusion Reactions (fever, chills, hypotension).
+      </div>
+
+      <div class="revision-item">
+        <strong>2. Trastuzumab:</strong> Anti-HER2 mAb &rarr; Blocks HER2 growth signaling &rarr; HER2+ Breast & Gastric Cancers &rarr; Key Toxicity: Cardiotoxicity (Monitor LVEF/ECHO).
+      </div>
+
+      <div class="revision-item">
+        <strong>3. Cetuximab:</strong> Anti-EGFR mAb &rarr; Blocks EGF ligand binding &rarr; Colorectal & Head/Neck Cancers &rarr; Key Toxicity: Acneiform Rash & Infusion Reactions.
+      </div>
+
+      <div class="revision-item">
+        <strong>4. Bevacizumab:</strong> Anti-VEGF mAb &rarr; Inhibits tumor angiogenesis (starves blood supply) &rarr; Colorectal, Renal, & Lung Cancers &rarr; Key Risks: Severe Hypertension, Proteinuria, Delayed Wound Healing.
+      </div>
+
+      <div class="revision-item">
+        <strong>5. Pembrolizumab / Nivolumab:</strong> Anti-PD-1 Checkpoint Inhibitors &rarr; Removes T-cell inhibitory brakes &rarr; Melanoma, NSCLC, Renal Cancers &rarr; Key Risk: Autoimmune irAEs (Colitis, Pneumonitis) managed with Corticosteroids.
+      </div>
+
+      <div class="revision-item">
+        <strong>6. ADCs (e.g. T-DXd):</strong> mAb + Cytotoxic Payload &rarr; Targeted "guided missile" chemo delivery directly inside antigen-positive tumor cells.
+      </div>
+    </div>
+  </section>
+
   <!-- 8. KEY NURSING TAKEAWAYS -->
   <section id="nursing">
     <span class="badge-label badge-important">[PATIENT SAFETY]</span>
@@ -1045,7 +1041,7 @@
 <div class="mobile-bottom-bar">
   <a href="#overview"><span>📖</span>Intro</a>
   <a href="#class-summary"><span>🎯</span>Drugs</a>
-  <a href="#pharmacokinetics"><span>🧪</span>PK</a>
+  <a href="#complete-revision"><span>⚡</span>Revision</a>
   <a href="#nursing"><span>🛡️</span>Nursing</a>
 </div>
 
