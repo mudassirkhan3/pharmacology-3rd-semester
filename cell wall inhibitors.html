@@ -147,7 +147,7 @@
       box-shadow: var(--shadow-sm);
     }
 
-    /* SINGLE MOA ANIMATED PATHWAY WIDGET */
+    /* MOA ANIMATED PATHWAY WIDGET */
     .moa-animation-widget {
       background: #0f172a;
       border-radius: 16px;
@@ -162,7 +162,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       flex-wrap: wrap;
       gap: 8px;
     }
@@ -199,18 +199,20 @@
 
     .moa-flow-track {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 12px;
       position: relative;
     }
 
     .moa-step-card {
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.05);
       border: 2px dashed rgba(255, 255, 255, 0.2);
       border-radius: 12px;
       padding: 16px 12px;
       text-align: center;
       transition: all 0.4s ease;
+      opacity: 0.5;
+      transform: scale(0.98);
     }
 
     .moa-step-card .step-icon {
@@ -220,42 +222,60 @@
 
     .moa-step-card strong {
       display: block;
-      color: #60a5fa;
+      color: #cbd5e1;
       font-size: 0.92rem;
       margin-bottom: 4px;
+      transition: color 0.3s ease;
     }
 
     .moa-step-card span {
       font-size: 0.8rem;
-      color: #cbd5e1;
+      color: #94a3b8;
       line-height: 1.4;
       display: block;
+      transition: color 0.3s ease;
     }
 
-    /* SYNCHRONIZED SEQUENTIAL MOA ANIMATION STATE */
-    .moa-flow-track.running .moa-step-card:nth-child(1) { animation: activeStep1 6s infinite 0s; }
-    .moa-flow-track.running .moa-step-card:nth-child(2) { animation: activeStep2 6s infinite 1.5s; }
-    .moa-flow-track.running .moa-step-card:nth-child(3) { animation: activeStep3 6s infinite 3.0s; }
-    .moa-flow-track.running .moa-step-card:nth-child(4) { animation: activeStep4 6s infinite 4.5s; }
+    /* HIGHLY INTENSE STEP-BY-STEP HIGHLIGHT CLASSES */
+    .moa-step-card.active-step-1 {
+      opacity: 1;
+      transform: scale(1.03) translateY(-4px);
+      background: rgba(37, 99, 235, 0.35);
+      border: 2px solid #38bdf8;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+    }
+    .moa-step-card.active-step-1 strong { color: #60a5fa; }
+    .moa-step-card.active-step-1 span { color: #ffffff; }
 
-    @keyframes activeStep1 {
-      0%, 25% { background: rgba(37, 99, 235, 0.35); border-color: #38bdf8; transform: translateY(-3px); box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
-      30%, 100% { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.2); transform: translateY(0); }
+    .moa-step-card.active-step-2 {
+      opacity: 1;
+      transform: scale(1.03) translateY(-4px);
+      background: rgba(245, 158, 11, 0.35);
+      border: 2px solid #fbbf24;
+      box-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
     }
-    @keyframes activeStep2 {
-      0%, 25% { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.2); transform: translateY(0); }
-      30%, 55% { background: rgba(245, 158, 11, 0.35); border-color: #fbbf24; transform: translateY(-3px); box-shadow: 0 0 15px rgba(251, 191, 36, 0.4); }
-      60%, 100% { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.2); transform: translateY(0); }
+    .moa-step-card.active-step-2 strong { color: #fde047; }
+    .moa-step-card.active-step-2 span { color: #ffffff; }
+
+    .moa-step-card.active-step-3 {
+      opacity: 1;
+      transform: scale(1.03) translateY(-4px);
+      background: rgba(6, 182, 212, 0.35);
+      border: 2px solid #22d3ee;
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
     }
-    @keyframes activeStep3 {
-      0%, 55% { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.2); transform: translateY(0); }
-      60%, 80% { background: rgba(6, 182, 212, 0.35); border-color: #22d3ee; transform: translateY(-3px); box-shadow: 0 0 15px rgba(34, 211, 238, 0.4); }
-      85%, 100% { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.2); transform: translateY(0); }
+    .moa-step-card.active-step-3 strong { color: #67e8f9; }
+    .moa-step-card.active-step-3 span { color: #ffffff; }
+
+    .moa-step-card.active-step-4 {
+      opacity: 1;
+      transform: scale(1.03) translateY(-4px);
+      background: rgba(239, 68, 68, 0.35);
+      border: 2px solid #f87171;
+      box-shadow: 0 0 20px rgba(248, 113, 113, 0.5);
     }
-    @keyframes activeStep4 {
-      0%, 80% { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.2); transform: translateY(0); }
-      85%, 100% { background: rgba(239, 68, 68, 0.35); border-color: #f87171; transform: translateY(-3px); box-shadow: 0 0 15px rgba(248, 113, 113, 0.4); }
-    }
+    .moa-step-card.active-step-4 strong { color: #fca5a5; }
+    .moa-step-card.active-step-4 span { color: #ffffff; }
 
     /* Drug Card Framework */
     .drug-class-card {
@@ -377,7 +397,6 @@
       color: var(--text-muted);
     }
 
-    /* Keyframe Animations */
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -385,32 +404,14 @@
 
     /* MOBILE SPECIFIC IMPROVEMENTS */
     @media (max-width: 640px) {
-      body {
-        padding: 8px 4px 50px;
-      }
-      .container {
-        padding: 18px 12px;
-        border-radius: 14px;
-      }
-      h1 {
-        font-size: 1.65rem;
-      }
-      .subtitle {
-        font-size: 0.9rem;
-      }
-      h2 {
-        font-size: 1.2rem;
-      }
-      .drug-class-card {
-        padding: 16px 12px;
-      }
-      .moa-flow-track {
-        grid-template-columns: 1fr;
-      }
-      .aligned-item {
-        padding: 8px 10px;
-        font-size: 0.88rem;
-      }
+      body { padding: 8px 4px 50px; }
+      .container { padding: 18px 12px; border-radius: 14px; }
+      h1 { font-size: 1.65rem; }
+      .subtitle { font-size: 0.9rem; }
+      h2 { font-size: 1.2rem; }
+      .drug-class-card { padding: 16px 12px; }
+      .moa-flow-track { grid-template-columns: 1fr; }
+      .aligned-item { padding: 8px 10px; font-size: 0.88rem; }
     }
   </style>
 </head>
@@ -432,33 +433,33 @@
         <h2>1. General Introduction &amp; Mechanism of Action</h2>
         <p>Bacterial cells live under immense internal osmotic pressure. To prevent from bursting, they build a rigid structural shield called the <strong>peptidoglycan cell wall</strong>. Cell wall inhibitors target and disrupt this construction network. Because human host cells lack peptidoglycan walls entirely, these agents exhibit selective toxicity and are primarily <strong>bactericidal</strong> (killing active bacteria directly).</p>
         
-        <!-- SINGLE ANIMATION: MECHANISM OF ACTION OF CELL WALL SYNTHESIS INHIBITORS -->
+        <!-- STEP-BY-STEP SEQUENTIAL HIGHLIGHT ANIMATION -->
         <div class="moa-animation-widget">
           <div class="moa-widget-header">
             <span class="moa-widget-title">⚡ Flow Animation: Mechanism of Action (Cell Wall Synthesis Inhibition)</span>
             <div class="moa-controls">
-              <button class="ctrl-btn" onclick="toggleAnimation('moa-track', this)">Pause</button>
-              <button class="ctrl-btn" onclick="replayAnimation('moa-track')">↻ Replay</button>
+              <button class="ctrl-btn" id="playPauseBtn" onclick="toggleFlowAnimation()">Pause</button>
+              <button class="ctrl-btn" onclick="restartFlowAnimation()">↻ Replay</button>
             </div>
           </div>
 
-          <div id="moa-track" class="moa-flow-track running">
-            <div class="moa-step-card">
+          <div id="moaTrack" class="moa-flow-track">
+            <div class="moa-step-card" id="step1">
               <div class="step-icon">🧱</div>
               <strong>Step 1: PBP Binding</strong>
               <span>Antibiotics bind to Penicillin-Binding Proteins (PBPs) embedded in bacterial cell membranes.</span>
             </div>
-            <div class="moa-step-card">
+            <div class="moa-step-card" id="step2">
               <div class="step-icon">⛓️</div>
               <strong>Step 2: Synthesis Block</strong>
               <span>Cross-linking of peptidoglycan chains is halted, weakening the wall structure.</span>
             </div>
-            <div class="moa-step-card">
+            <div class="moa-step-card" id="step3">
               <div class="step-icon">💧</div>
               <strong>Step 3: Osmotic Influx</strong>
               <span>Water rushes unchecked into the bacterial cell due to extreme internal pressure gradients.</span>
             </div>
-            <div class="moa-step-card">
+            <div class="moa-step-card" id="step4">
               <div class="step-icon">💥</div>
               <strong>Step 4: Cell Lysis</strong>
               <span>The bacterial cell wall ruptures and the microbe undergoes osmotic lysis (Bactericidal action).</span>
@@ -784,25 +785,68 @@
     </main>
   </div>
 
-  <!-- LIGHTWEIGHT JAVASCRIPT ANIMATION CONTROLLER -->
+  <!-- PRECISE STEP-BY-STEP SEQUENTIAL FLOW ANIMATION SCRIPT -->
   <script>
-    function toggleAnimation(elementId, btn) {
-      const track = document.getElementById(elementId);
-      if (track.classList.contains('running')) {
-        track.classList.remove('running');
-        btn.innerText = 'Play';
-      } else {
-        track.classList.add('running');
-        btn.innerText = 'Pause';
+    let currentStep = 1;
+    let isFlowRunning = true;
+    let flowInterval = null;
+
+    function runSequentialHighlight() {
+      // Remove active highlight from all steps
+      for (let i = 1; i <= 4; i++) {
+        const step = document.getElementById('step' + i);
+        if (step) {
+          step.className = 'moa-step-card';
+        }
+      }
+
+      // Add high-yield highlight to current active step
+      const activeStep = document.getElementById('step' + currentStep);
+      if (activeStep) {
+        activeStep.classList.add('active-step-' + currentStep);
+      }
+
+      // Advance step 1 -> 2 -> 3 -> 4 -> back to 1
+      currentStep++;
+      if (currentStep > 4) {
+        currentStep = 1;
       }
     }
 
-    function replayAnimation(elementId) {
-      const track = document.getElementById(elementId);
-      track.classList.remove('running');
-      void track.offsetWidth; // Trigger DOM reflow to restart keyframes
-      track.classList.add('running');
+    function startAnimation() {
+      if (!flowInterval) {
+        runSequentialHighlight();
+        flowInterval = setInterval(runSequentialHighlight, 1800); // 1.8 seconds per step
+      }
     }
+
+    function toggleFlowAnimation() {
+      const btn = document.getElementById('playPauseBtn');
+      if (isFlowRunning) {
+        clearInterval(flowInterval);
+        flowInterval = null;
+        isFlowRunning = false;
+        btn.innerText = 'Play';
+      } else {
+        isFlowRunning = true;
+        btn.innerText = 'Pause';
+        startAnimation();
+      }
+    }
+
+    function restartFlowAnimation() {
+      clearInterval(flowInterval);
+      flowInterval = null;
+      currentStep = 1;
+      isFlowRunning = true;
+      document.getElementById('playPauseBtn').innerText = 'Pause';
+      startAnimation();
+    }
+
+    // Auto-start animation on load
+    window.addEventListener('DOMContentLoaded', () => {
+      startAnimation();
+    });
   </script>
 </body>
 </html>
