@@ -21,6 +21,8 @@
       --mnemonics-border: #bfdbfe;
       --warning-bg: #fff1f2;
       --warning-border: #fecdd3;
+      --exam-badge-bg: #ef4444;
+      --exam-badge-text: #ffffff;
     }
 
     * {
@@ -52,11 +54,50 @@
     }
 
     /* Header Styling */
+    header {
+      margin-bottom: 25px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-header {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-header:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.35);
+    }
+
     .badge-container {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 12px;
       flex-wrap: wrap;
     }
 
@@ -74,8 +115,22 @@
       transition: background 0.2s ease;
     }
 
-    .badge:hover {
-      background: #bfdbfe;
+    /* EXAM HIGH-YIELD BADGE */
+    .exam-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--exam-badge-bg);
+      color: var(--exam-badge-text);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.25);
+      margin-left: 6px;
+      vertical-align: middle;
     }
 
     h1 {
@@ -235,7 +290,7 @@
       transition: color 0.3s ease;
     }
 
-    /* SMOOTH ADDITIVE SEQUENTIAL HIGHLIGHTS (ALWAYS REMAINING VISIBLE) */
+    /* SMOOTH ADDITIVE SEQUENTIAL HIGHLIGHTS */
     .moa-step-card.activated-step-1 {
       background: rgba(37, 99, 235, 0.35);
       border: 2px solid #38bdf8;
@@ -388,6 +443,160 @@
       color: var(--text-muted);
     }
 
+    /* MODAL POPUP STYLES */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      padding: 12px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 18px;
+      max-width: 950px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      padding: 16px 20px;
+      background: var(--primary-gradient);
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .close-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .close-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    /* TABLE STYLING FOR MODAL */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      margin-top: 10px;
+    }
+
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      text-align: left;
+      min-width: 650px;
+    }
+
+    .summary-table th {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 14px;
+      font-weight: 700;
+      position: sticky;
+      top: 0;
+    }
+
+    .summary-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .summary-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    /* TREE DIAGRAM STYLES */
+    .tree-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 10px;
+    }
+
+    .tree-node {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .tree-title {
+      font-weight: 800;
+      color: var(--primary-dark);
+      font-size: 0.98rem;
+      margin-bottom: 8px;
+    }
+
+    .tree-sublist {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tree-tag {
+      background: #dbeafe;
+      color: #1e40af;
+      border: 1px solid #bfdbfe;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -403,6 +612,8 @@
       .drug-class-card { padding: 16px 12px; }
       .moa-flow-track { grid-template-columns: 1fr; }
       .aligned-item { padding: 8px 10px; font-size: 0.88rem; }
+      .header-top { flex-direction: column; align-items: flex-start; }
+      .modal-card { max-height: 95vh; margin: 4px; }
     }
   </style>
 </head>
@@ -410,8 +621,14 @@
 
   <div class="container">
     <header>
-      <div class="badge-container">
-        <span class="badge" style="background: #e2e8f0; color: #334155;">Master Study Guide</span>
+      <div class="header-top">
+        <div class="badge-container">
+          <span class="badge" style="background: #e2e8f0; color: #334155;">Master Study Guide</span>
+        </div>
+        <div class="header-actions">
+          <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
+          <button class="btn-header" onclick="toggleModal('treeModal')">🌳 Classification Tree</button>
+        </div>
       </div>
       <h1>Cell Wall Inhibitors &amp; Beta-Lactams</h1>
       <p class="subtitle">An intuitive, high-yield nursing pharmacology masterclass: Introduction, Classifications, Mechanisms with Flow Animation, Mnemonics, and Clinical Points.</p>
@@ -423,7 +640,7 @@
       <section class="intro-box">
         <h2>1. General Introduction &amp; Mechanism of Action</h2>
         <p>Bacterial cells live under immense internal osmotic pressure. To prevent from bursting, they build a rigid structural shield called the <strong>peptidoglycan cell wall</strong>. Cell wall inhibitors target and disrupt this construction network. Because human host cells lack peptidoglycan walls entirely, these agents exhibit selective toxicity and are primarily <strong>bactericidal</strong> (killing active bacteria directly).</p>
-        
+
         <!-- CONTINUOUS ADDITIVE CHAIN ANIMATION -->
         <div class="moa-animation-widget">
           <div class="moa-widget-header">
@@ -458,6 +675,11 @@
           </div>
         </div>
       </section>
+
+      <!-- Reference Visual Diagram -->
+      <p style="text-align: center; margin: 15px 0;">
+        <Image src="image_agent_tag_5872318436570027868" alt="Diagram comparing Gram-Positive and Gram-Negative bacterial cell wall structures" caption="Gram-Positive vs. Gram-Negative Cell Wall Architecture" />
+      </p>
 
       <!-- ================= 2. PENICILLINS ================= -->
       <section class="drug-class-card">
@@ -497,7 +719,7 @@
             <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>ecrotizing infections / strep throat</span></div>
             <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>nthrax prophylaxis</span></div>
             <div class="aligned-item"><span class="letter-badge">P</span><span><strong>P</strong>neumonia &amp; meningitis</span></div>
-            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>yphilis gold standard treatment (Penicillin G)</span></div>
+            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>yphilis gold standard treatment (Penicillin G) <span class="exam-badge">IMP FOR EXAM</span></span></div>
           </div>
         </div>
 
@@ -510,7 +732,7 @@
             <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>ausea &amp; vomiting</span></div>
             <div class="aligned-item"><span class="letter-badge">I</span><span><strong>I</strong>nterstitial nephritis</span></div>
             <div class="aligned-item"><span class="letter-badge">C</span><span><strong>C</strong>. diff colitis</span></div>
-            <div class="aligned-item"><span class="letter-badge">I</span><span><strong>I</strong>mmunologic hypersensitivity (Anaphylaxis)</span></div>
+            <div class="aligned-item"><span class="letter-badge">I</span><span><strong>I</strong>mmunologic hypersensitivity (Anaphylaxis) <span class="exam-badge">IMP FOR EXAM</span></span></div>
             <div class="aligned-item"><span class="letter-badge">L</span><span><strong>L</strong>eukopenia</span></div>
             <div class="aligned-item"><span class="letter-badge">L</span><span><strong>L</strong>iver enzyme elevation</span></div>
             <div class="aligned-item"><span class="letter-badge">I</span><span><strong>I</strong>tching / Rash</span></div>
@@ -546,7 +768,7 @@
             </div>
             <div class="subdrug-item">
               <strong>3rd Generation</strong>
-              <span>Ceftriaxone, Ceftazidime. Crosses Blood-Brain Barrier; top choice for meningitis.</span>
+              <span>Ceftriaxone, Ceftazidime. Crosses Blood-Brain Barrier; top choice for meningitis. <span class="exam-badge">IMP FOR EXAM</span></span>
             </div>
             <div class="subdrug-item">
               <strong>4th &amp; 5th Generation</strong>
@@ -579,7 +801,7 @@
             <div class="aligned-item"><span class="letter-badge">L</span><span><strong>L</strong>iver enzyme spikes</span></div>
             <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>lectrolyte shifts</span></div>
             <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>nterocolitis (C. diff overgrowth)</span></div>
-            <div class="aligned-item"><span class="letter-badge">D</span><span><strong>D</strong>isulfiram-like reaction (severe alcohol intolerance with cefotetan)</span></div>
+            <div class="aligned-item"><span class="letter-badge">D</span><span><strong>D</strong>isulfiram-like reaction (severe alcohol intolerance with cefotetan) <span class="exam-badge">IMP FOR EXAM</span></span></div>
           </div>
         </div>
 
@@ -634,7 +856,7 @@
         <div class="mnemonic-box">
           <h4>💡 Adverse Effects with Mnemonic: "S.N.A.P."</h4>
           <div class="aligned-mnemonic-list">
-            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>eizures (Imipenem can lower seizure threshold, especially in renal impairment)</span></div>
+            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>eizures (Imipenem lowers seizure threshold in renal impairment!) <span class="exam-badge">IMP FOR EXAM</span></span></div>
             <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>ausea and vomiting</span></div>
             <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>llergic cross-sensitivity (extremely rare with Aztreonam)</span></div>
             <div class="aligned-item"><span class="letter-badge">P</span><span><strong>P</strong>ain / phlebitis at the IV infusion site</span></div>
@@ -648,7 +870,7 @@
 
         <div class="sub-block">
           <h4>⭐ Important Points for Nurses</h4>
-          <p>&bull; <strong>The Aztreonam Lifesaver:</strong> Aztreonam does not cross-react with penicillin antibodies, making it completely safe to administer to patients with severe penicillin/cephalosporin anaphylaxis history.<br>&bull; Monitor neurological status for mental status changes or twitching.</p>
+          <p>&bull; <strong>The Aztreonam Lifesaver:</strong> Aztreonam does not cross-react with penicillin antibodies, making it completely safe to administer to patients with severe penicillin/cephalosporin anaphylaxis history! <span class="exam-badge">IMP FOR EXAM</span><br>&bull; Monitor neurological status for mental status changes or twitching.</p>
         </div>
       </section>
 
@@ -714,7 +936,7 @@
         </div>
       </section>
 
-      <!-- ================= 6. GLYCOPEPTIDES & LIPOPEPTIDES (VANCOMYCIN, ETC.) ================= -->
+      <!-- ================= 6. GLYCOPEPTIDES & LIPOPEPTIDES ================= -->
       <section class="drug-class-card">
         <h2>6. Glycopeptides &amp; Lipopeptides (Vancomycin, Daptomycin)</h2>
 
@@ -741,8 +963,8 @@
         <div class="mnemonic-box">
           <h4>💡 Uses with Mnemonic: "V.A.N.C.S."</h4>
           <div class="aligned-mnemonic-list">
-            <div class="aligned-item"><span class="letter-badge">V</span><span><strong>V</strong>ancomycin IV for MRSA</span></div>
-            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>ntibiotic-associated C. diff colitis (Oral Vancomycin)</span></div>
+            <div class="aligned-item"><span class="letter-badge">V</span><span><strong>V</strong>ancomycin IV for MRSA <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>ntibiotic-associated C. diff colitis (Oral Vancomycin only!) <span class="exam-badge">IMP FOR EXAM</span></span></div>
             <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>osocomial resistant staph infections</span></div>
             <div class="aligned-item"><span class="letter-badge">C</span><span><strong>C</strong>ardiac endocarditis in penicillin-allergic patients</span></div>
             <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>kin and soft tissue infections (Daptomycin)</span></div>
@@ -753,9 +975,9 @@
         <div class="mnemonic-box">
           <h4>💡 Adverse Effects with Mnemonic: "R.E.D. M.A.N."</h4>
           <div class="aligned-mnemonic-list">
-            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>ed Man Syndrome (histamine flush from rapid IV vancomycin infusion)</span></div>
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>ed Man Syndrome (histamine flush from rapid IV vancomycin infusion!) <span class="exam-badge">IMP FOR EXAM</span></span></div>
             <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>ar toxicity / Ototoxicity (with high troughs)</span></div>
-            <div class="aligned-item"><span class="letter-badge">D</span><span><strong>D</strong>amage to kidneys / Nephrotoxicity</span></div>
+            <div class="aligned-item"><span class="letter-badge">D</span><span><strong>D</strong>amage to kidneys / Nephrotoxicity <span class="exam-badge">IMP FOR EXAM</span></span></div>
             <div class="aligned-item"><span class="letter-badge">M</span><span><strong>M</strong>uscle pain / myopathy (with Daptomycin)</span></div>
             <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>naphylactoid reactions</span></div>
             <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>o IM administration permitted for vancomycin</span></div>
@@ -776,11 +998,169 @@
     </main>
   </div>
 
+  <!-- ================= MASTER SUMMARY TABLE MODAL ================= -->
+  <div class="modal-overlay" id="tableModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>📊 Master Cell Wall Inhibitors Summary Table</h3>
+        <button class="close-btn" onclick="toggleModal('tableModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;">High-yield table matching all categories, drugs, MOAs, primary clinical uses, and key nursing ADR alerts.</p>
+        <div class="table-container">
+          <table class="summary-table">
+            <thead>
+              <tr>
+                <th>Drug Class</th>
+                <th>Representative Drugs</th>
+                <th>Mechanism of Action</th>
+                <th>Primary Clinical Uses</th>
+                <th>Key ADRs / Nursing Alerts</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Natural Penicillins</strong></td>
+                <td>Penicillin G, Penicillin V</td>
+                <td>Binds PBPs; blocks peptidoglycan cross-linking</td>
+                <td>Syphilis, Strep throat, Anthrax</td>
+                <td>Anaphylaxis hypersensitivity, IV site pain</td>
+              </tr>
+              <tr>
+                <td><strong>Aminopenicillins</strong></td>
+                <td>Amoxicillin, Ampicillin</td>
+                <td>Enhanced entry through Gram-neg porins</td>
+                <td>Otitis media, UTIs, H. pylori</td>
+                <td>Rash, diarrhea, C. diff colitis</td>
+              </tr>
+              <tr>
+                <td><strong>Antistaphylococcal</strong></td>
+                <td>Nafcillin, Oxacillin, Dicloxacillin</td>
+                <td>Resists Staph beta-lactamase enzymes</td>
+                <td>MSSA staph skin &amp; soft tissue infections</td>
+                <td>Interstitial nephritis, phlebitis</td>
+              </tr>
+              <tr>
+                <td><strong>Antipseudomonal</strong></td>
+                <td>Piperacillin (+ Tazobactam)</td>
+                <td>Extensive Gram-neg &amp; Pseudomonas coverage</td>
+                <td>Severe hospital sepsis, pneumonia</td>
+                <td>Bone marrow toxicity, electrolyte shift</td>
+              </tr>
+              <tr>
+                <td><strong>1st Gen Cephalosporins</strong></td>
+                <td>Cefazolin, Cephalexin</td>
+                <td>Binds PBPs; halts Gram-pos wall growth</td>
+                <td>Surgical prophylaxis, skin abscesses</td>
+                <td>GI upset, cross-allergy with Penicillin</td>
+              </tr>
+              <tr>
+                <td><strong>3rd Gen Cephalosporins</strong></td>
+                <td>Ceftriaxone, Ceftazidime</td>
+                <td>Crosses blood-brain barrier to stop PBPs</td>
+                <td>Meningitis, Gonorrhea, Lyme disease</td>
+                <td>Biliary sludging (Ceftriaxone), C. diff</td>
+              </tr>
+              <tr>
+                <td><strong>Carbapenems</strong></td>
+                <td>Meropenem, Imipenem</td>
+                <td>Ultra-broad PBP blockade; resists beta-lactamase</td>
+                <td>Severe multi-drug resistant nosocomial infections</td>
+                <td>Seizures (Imipenem in renal failure!)</td>
+              </tr>
+              <tr>
+                <td><strong>Monobactams</strong></td>
+                <td>Aztreonam</td>
+                <td>Binds PBP-3 of aerobic Gram-negative rods</td>
+                <td>Gram-neg infections in penicillin-allergic patients</td>
+                <td>Phlebitis; NO cross-reactivity with Penicillins!</td>
+              </tr>
+              <tr>
+                <td><strong>Beta-Lactamase Inhibitors</strong></td>
+                <td>Clavulanic acid, Tazobactam</td>
+                <td>Suicide inhibitor of beta-lactamase enzymes</td>
+                <td>Combined with penicillins to restore activity</td>
+                <td>Increased incidence of diarrhea / GI upset</td>
+              </tr>
+              <tr>
+                <td><strong>Glycopeptides</strong></td>
+                <td>Vancomycin</td>
+                <td>Binds D-Ala-D-Ala to block wall synthesis</td>
+                <td>IV for MRSA; Oral for C. diff colitis</td>
+                <td>Red Man Syndrome (infuse slowly!), Nephrotoxicity</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CLASSIFICATION TREE MODAL ================= -->
+  <div class="modal-overlay" id="treeModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>🌳 Cell Wall Inhibitors Classification Tree</h3>
+        <button class="close-btn" onclick="toggleModal('treeModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Visual hierarchy breakdown of all cell wall targeting antibiotic classes.</p>
+        <div class="tree-container">
+          <div class="tree-node">
+            <div class="tree-title">💊 1. Penicillins (Beta-Lactam Ring)</div>
+            <div class="tree-sublist">
+              <span class="tree-tag">Natural: Penicillin G/V</span>
+              <span class="tree-tag">Amino: Amoxicillin, Ampicillin</span>
+              <span class="tree-tag">Antistaph: Nafcillin, Oxacillin</span>
+              <span class="tree-tag">Antipseudomonal: Piperacillin</span>
+            </div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-title">🧬 2. Cephalosporins (1st - 5th Generation)</div>
+            <div class="tree-sublist">
+              <span class="tree-tag">1st Gen: Cefazolin, Cephalexin</span>
+              <span class="tree-tag">2nd Gen: Cefuroxime, Cefaclor</span>
+              <span class="tree-tag">3rd Gen: Ceftriaxone, Ceftazidime</span>
+              <span class="tree-tag">4th/5th Gen: Cefepime, Ceftaroline</span>
+            </div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-title">🛡️ 3. Carbapenems &amp; Monobactams</div>
+            <div class="tree-sublist">
+              <span class="tree-tag">Carbapenems: Meropenem, Imipenem, Ertapenem</span>
+              <span class="tree-tag">Monobactam: Aztreonam</span>
+            </div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-title">💉 4. Beta-Lactamase Inhibitors</div>
+            <div class="tree-sublist">
+              <span class="tree-tag">Augmentin (Amoxicillin + Clavulanate)</span>
+              <span class="tree-tag">Unasyn (Ampicillin + Sulbactam)</span>
+              <span class="tree-tag">Zosyn (Piperacillin + Tazobactam)</span>
+            </div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-title">🧱 5. Non-Beta-Lactam Glycopeptides</div>
+            <div class="tree-sublist">
+              <span class="tree-tag">Glycopeptide: Vancomycin (IV &amp; Oral)</span>
+              <span class="tree-tag">Lipopeptide: Daptomycin</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ADDITIVE SEQUENTIAL CASCADE ANIMATION SCRIPT -->
   <script>
     let activeStepCount = 0;
     let isFlowRunning = true;
     let flowInterval = null;
+
+    function toggleModal(modalId) {
+      const modal = document.getElementById(modalId);
+      modal.classList.toggle('active');
+    }
 
     function runAdditiveChainAnimation() {
       activeStepCount++;
@@ -796,7 +1176,7 @@
         activeStepCount = 1; // Start chain over from Step 1
       }
 
-      // Addively light up the current step while keeping previous steps ON
+      // Additively light up the current step while keeping previous steps ON
       const currentStepElement = document.getElementById('step' + activeStepCount);
       if (currentStepElement) {
         currentStepElement.classList.add('activated-step-' + activeStepCount);
