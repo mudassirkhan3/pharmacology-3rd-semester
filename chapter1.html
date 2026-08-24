@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Unit I: Introduction to Pharmacology | Demo Chapter</title>
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/mudassirkhan3/pharmacology-3rd-semester/8c8fe34a9509b39aa51f7370c84c74bb7eb4c473/images/1000125814.png">
+
+  <!-- OPEN GRAPH META TAGS FOR WHATSAPP & SOCIAL SHARING -->
+  <meta property="og:title" content="Unit I: Introduction to Pharmacology | Demo Chapter">
+  <meta property="og:description" content="Explore core pharmacology principles, interactive drug cards, animated simulations, and 60 MCQ practice quizzes.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/mudassirkhan3/pharmacology-3rd-semester/8c8fe34a9509b39aa51f7370c84c74bb7eb4c473/images/1000125814.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:type" content="website">
+
   <style>
     :root {
       --primary: #2563eb;
@@ -43,7 +54,7 @@
       background: var(--primary-gradient);
       color: #ffffff;
       border: none;
-      padding: 10px 16px;
+      padding: 12px 18px;
       border-radius: 50px;
       font-size: 0.88rem;
       font-weight: 700;
@@ -56,6 +67,7 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       touch-action: manipulation;
       text-decoration: none;
+      min-height: 44px;
     }
 
     .btn-header:active { transform: scale(0.97); }
@@ -85,7 +97,7 @@
     h2::before { content: ''; display: inline-block; width: 5px; height: 20px; background: var(--primary); border-radius: 4px; flex-shrink: 0; }
 
     .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-    .card { position: relative; background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 18px; text-decoration: none; color: inherit; overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; }
+    .card { position: relative; background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 18px; text-decoration: none; color: inherit; overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; justify-space: space-between; -webkit-tap-highlight-color: transparent; }
     
     .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--primary-gradient); opacity: 0; transition: opacity 0.3s ease; }
     .card:hover, .card:active { transform: translateY(-4px); border-color: #3b82f6; box-shadow: var(--shadow-lg); }
@@ -110,8 +122,6 @@
     .site-footer { max-width: 1000px; width: 100%; margin: 25px auto 10px; padding: 20px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #e2e8f0; border-radius: 16px; text-align: center; font-size: 0.85rem; border: 1px solid rgba(255, 255, 255, 0.08); }
     .footer-brand { font-weight: 700; color: #ffffff; margin-bottom: 4px; }
     .footer-brand span { color: #38bdf8; font-weight: 800; }
-    .footer-cta { margin-top: 10px; font-size: 0.82rem; color: #94a3b8; }
-    .footer-cta a { color: #25d366; font-weight: 700; text-decoration: none; }
 
     /* HIGH-CONTRAST MOBILE-OPTIMIZED MODAL POPUP STYLES */
     .modal-overlay {
@@ -172,8 +182,8 @@
       background: rgba(255, 255, 255, 0.2);
       border: none;
       color: #ffffff;
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       font-size: 1.2rem;
       cursor: pointer;
@@ -229,8 +239,8 @@
 
     /* INTERACTIVE DRUG CARD GENERATOR WIDGET */
     .sim-stage { background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 16px; padding: 14px; margin: 20px 0; }
-    .sim-controls { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
-    .sim-btn { padding: 9px 12px; border-radius: 8px; border: none; font-weight: 800; cursor: pointer; font-size: 0.82rem; background: var(--primary); color: white; flex: 1 1 100px; text-align: center; touch-action: manipulation; }
+    .sim-controls { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
+    .sim-btn { padding: 10px 14px; border-radius: 10px; border: none; font-weight: 800; cursor: pointer; font-size: 0.85rem; background: var(--primary); color: white; flex: 1 1 110px; text-align: center; touch-action: manipulation; min-height: 42px; }
     .sim-btn:active { background: var(--primary-dark); }
     
     .drug-card-display { background: white; border: 2px solid #3b82f6; border-radius: 12px; padding: 14px; margin-top: 8px; }
@@ -238,8 +248,8 @@
     .drug-card-title { font-size: 1.05rem; font-weight: 800; color: var(--primary-dark); }
     .drug-card-class { background: #dbeafe; color: #1e40af; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; }
     .drug-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; }
-    .drug-section-box { background: #f8fafc; padding: 8px 10px; border-radius: 8px; border: 1px solid #e2e8f0; }
-    .drug-section-box strong { color: var(--primary-dark); display: block; margin-bottom: 2px; font-size: 0.78rem; text-transform: uppercase; }
+    .drug-section-box { background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0; }
+    .drug-section-box strong { color: var(--primary-dark); display: block; margin-bottom: 3px; font-size: 0.78rem; text-transform: uppercase; }
 
     /* SIMPLE MOBILE POPUP MODAL */
     .mobile-popup-overlay {
@@ -274,19 +284,21 @@
     .mobile-popup-step-item { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-weight: 600; }
     .mobile-popup-step-item:last-child { margin-bottom: 0; }
     .step-num { background: #2563eb; color: #ffffff; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; }
-    .mobile-popup-btn { width: 100%; padding: 11px; background: var(--primary-gradient); color: #ffffff; font-weight: 800; font-size: 0.88rem; border: none; border-radius: 10px; cursor: pointer; }
+    .mobile-popup-btn { width: 100%; padding: 12px; background: var(--primary-gradient); color: #ffffff; font-weight: 800; font-size: 0.88rem; border: none; border-radius: 10px; cursor: pointer; min-height: 44px; }
 
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
+    /* MOBILE INTERFACE ENHANCEMENTS */
     @media (max-width: 640px) {
       body { padding: 0 0 12px 0; }
-      .container { padding: 18px 12px; border-radius: 14px; margin-top: 10px; }
+      .container { padding: 16px 12px; border-radius: 14px; margin-top: 10px; }
       .card-grid { grid-template-columns: 1fr; gap: 12px; }
-      .card { padding: 14px; }
+      .card { padding: 16px 14px; }
       .nursing-item { padding: 12px; }
-      .header-actions { flex-direction: column; }
-      .btn-header { width: 100%; }
+      .header-actions { flex-direction: column; width: 100%; }
+      .btn-header { width: 100%; text-align: center; }
       .modal-card { max-height: 96vh; }
+      .drug-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -333,11 +345,21 @@
           <span class="card-link">Explore Module &rarr;</span>
         </a>
 
+        <!-- UHS CONTENT BLOCK -->
+        <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/uhsContent1.html" class="card">
+          <div>
+            <div class="card-icon" title="UHS Exam High-Yield Target">🎯</div>
+            <h3>UHS Content <span class="feature-tag">60 MCQs</span></h3>
+            <p>High-yield study points and essential practice questions tailored for UHS examinations.</p>
+          </div>
+          <span class="card-link">Explore UHS Content &rarr;</span>
+        </a>
+
         <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/quiz.chapter1.html" class="card">
           <div>
             <div class="card-icon" title="Self-Assessment Quiz">🧪</div>
-            <h3>Chapter 1 Practice Quiz <span class="feature-tag">50 MCQs</span></h3>
-            <p>Test your knowledge with 50 practice MCQs featuring instant rationale explanations.</p>
+            <h3>Chapter 1 Practice Quiz <span class="feature-tag">60 MCQs</span></h3>
+            <p>Test your knowledge with 60 practice MCQs featuring instant rationale explanations.</p>
           </div>
           <span class="card-link">Start Practice Quiz &rarr;</span>
         </a>
@@ -411,7 +433,6 @@
   <footer class="site-footer">
     <div class="footer-brand">Crafted with precision by <span>Mudassir Khan</span></div>
     <div class="footer-copy">&copy; 2026 Pharmacology Study Portal. All rights reserved.</div>
-    <div class="footer-cta">Enjoyed this demo? <a href="https://wa.me/92324104487?text=Hi%20Mudassir!%20%F0%9F%90%8B%20I%20tried%20your%20Chapter%201%20demo%20notes.%20I%20want%20to%20buy%20the%20full%20Pharmacology%20course%20package%20with%20all%20chapter%20dashboards%2C%20MCQs%2C%20interactive%20simulations%2C%20and%20mnemonics!" target="_blank">Order via WhatsApp</a> to get full course access!</div>
   </footer>
 
 <!-- ================= HIGH-YIELD MASTER SUMMARY TABLE MODAL ================= -->
