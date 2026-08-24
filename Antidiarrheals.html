@@ -2,53 +2,600 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>Antidiarrheals | Gastrointestinal Pharmacology</title>
   <style>
     :root {
       --bg-gradient: radial-gradient(circle at 10% 20%, rgba(21, 128, 61, 0.08) 0%, rgba(34, 197, 94, 0.05) 40%, #f8fafc 90%);
       --primary: #15803d;
       --primary-dark: #166534;
+      --primary-gradient: linear-gradient(135deg, #15803d 0%, #166534 100%);
       --accent: #22c55e;
-      --card-bg: rgba(255, 255, 255, 0.9);
-      --card-border: rgba(187, 247, 208, 0.8);
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --card-border: #bbf7d0;
       --text-main: #14532d;
+      --text-dark: #0f172a;
       --text-muted: #475569;
       --shadow-glow: 0 20px 40px -15px rgba(21, 128, 61, 0.25);
+      --mnemonics-bg: #f0fdf4;
+      --mnemonics-border: #bbf7d0;
+      --warning-bg: #fff1f2;
+      --warning-border: #fecdd3;
+      --exam-badge-bg: #ef4444;
+      --exam-badge-text: #ffffff;
       --radius: 20px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.8; padding: 40px 16px; min-height: 100vh; }
-    
-    .container { max-width: 950px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(16px); padding: 50px 40px; border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: var(--shadow-glow); }
-    
-    .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; margin-bottom: 30px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 12px rgba(21, 128, 61, 0.2); }
-    .back-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    .badge { display: inline-block; padding: 6px 14px; background: #dcfce7; color: var(--primary); font-weight: 800; font-size: 0.8rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; border: 1px solid #bbf7d0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 16px 8px 60px;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-    h1 { font-size: 2.5rem; font-weight: 900; background: linear-gradient(135deg, #14532d 0%, var(--primary) 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
-    
-    h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #bbf7d0; padding-bottom: 10px; }
-    h2::before { content: ''; display: inline-block; width: 6px; height: 24px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; }
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      padding: 32px 20px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: var(--shadow-glow);
+    }
 
-    p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 20px; }
+    header {
+      margin-bottom: 25px;
+    }
 
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 25px 0; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin: 25px 0; }
-    
-    .card-box { background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); transition: 0.3s; }
-    .card-box:hover { transform: translateY(-5px); border-color: var(--primary); }
-    .card-box h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
 
-    .mnemonic-box { background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%); border-left: 6px solid var(--primary); padding: 22px; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 15px rgba(21, 128, 61, 0.08); }
-    .mnemonic-box h4 { color: var(--primary); font-size: 1.1rem; margin-bottom: 8px; font-weight: 800; display: flex; align-items: center; gap: 12px; }
-    .mnemonic-box p { color: #14532d; margin-bottom: 0; font-weight: 500; }
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
-    ul { list-style-type: none; padding-left: 0; margin-bottom: 20px; }
-    ul li { position: relative; padding-left: 28px; margin-bottom: 12px; color: var(--text-muted); font-size: 1.05rem; }
-    ul li::before { content: '▪'; position: absolute; left: 8px; color: var(--primary); font-weight: bold; font-size: 1.2rem; }
+    .btn-header {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 10px rgba(21, 128, 61, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-header:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(21, 128, 61, 0.35);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(21, 128, 61, 0.2);
+    }
+    .back-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .badge-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #dcfce7;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.8rem;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      border: 1px solid #bbf7d0;
+    }
+
+    /* EXAM HIGH-YIELD BADGE */
+    .exam-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--exam-badge-bg);
+      color: var(--exam-badge-text);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.25);
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #14532d 0%, var(--primary) 50%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .subtitle {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      color: var(--text-main);
+      margin: 36px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid #bbf7d0;
+      padding-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 24px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 15px;
+      color: var(--text-muted);
+      font-size: 0.96rem;
+    }
+
+    /* Section & Grid Styling */
+    .drug-class-card {
+      background: #ffffff;
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px 20px;
+      margin-bottom: 35px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      position: relative;
+    }
+
+    .drug-class-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-gradient);
+      border-radius: 16px 16px 0 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .card-box {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card-box:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+    }
+
+    .card-box h3 {
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sub-block {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin: 18px 0;
+    }
+
+    /* MOA ENHANCED STEP-BY-STEP BOX */
+    .moa-enhanced-box {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 14px;
+      padding: 20px;
+      margin: 18px 0;
+    }
+
+    .moa-enhanced-box h4 {
+      color: var(--text-main);
+      font-weight: 800;
+      font-size: 1.02rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .moa-concept-summary {
+      font-size: 0.9rem;
+      color: #14532d;
+      background: #dcfce7;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .moa-steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .moa-step-item {
+      background: #ffffff;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .moa-step-number {
+      background: var(--primary);
+      color: white;
+      font-weight: 900;
+      font-size: 0.78rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .moa-step-content strong {
+      display: block;
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+
+    .moa-step-content span {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    /* ALIGNED MNEMONIC LIST LAYOUT */
+    .mnemonic-box {
+      background: var(--mnemonics-bg);
+      border: 1px solid var(--mnemonics-border);
+      border-left: 5px solid var(--primary);
+      border-radius: 12px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .mnemonic-box h4 {
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 1.02rem;
+      margin-bottom: 12px;
+    }
+
+    .aligned-mnemonic-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .aligned-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #ffffff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #bbf7d0;
+      font-size: 0.92rem;
+      color: var(--text-main);
+    }
+
+    .letter-badge {
+      background: var(--primary);
+      color: white;
+      font-weight: 900;
+      font-size: 0.8rem;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Warning / Contraindication Styling */
+    .warning-box {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-left: 5px solid #e11d48;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 15px 0;
+    }
+
+    .warning-box h4 {
+      color: #9f1239;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    ul.bullet-list {
+      list-style-type: none;
+      padding-left: 0;
+      margin-bottom: 20px;
+    }
+
+    ul.bullet-list li {
+      position: relative;
+      padding-left: 26px;
+      margin-bottom: 10px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    ul.bullet-list li::before {
+      content: '▪';
+      position: absolute;
+      left: 8px;
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    /* MODAL POPUP STYLES */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      padding: 12px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 18px;
+      max-width: 950px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      padding: 16px 20px;
+      background: var(--primary-gradient);
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .close-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .close-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    /* TABLE STYLING FOR MODAL */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid #bbf7d0;
+      margin-top: 10px;
+    }
+
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      text-align: left;
+      min-width: 650px;
+    }
+
+    .summary-table th {
+      background: #14532d;
+      color: #ffffff;
+      padding: 12px 14px;
+      font-weight: 700;
+      position: sticky;
+      top: 0;
+    }
+
+    .summary-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .summary-table tr:nth-child(even) {
+      background: #f0fdf4;
+    }
+
+    /* TREE DIAGRAM STYLES */
+    .tree-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 10px;
+    }
+
+    .tree-node {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .tree-title {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 0.98rem;
+      margin-bottom: 8px;
+    }
+
+    .tree-sublist {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tree-tag {
+      background: #dcfce7;
+      color: var(--primary-dark);
+      border: 1px solid #bbf7d0;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    /* MOBILE SPECIFIC IMPROVEMENTS */
+    @media (max-width: 640px) {
+      body { padding: 8px 4px 50px; }
+      .container { padding: 18px 12px; border-radius: 14px; }
+      h1 { font-size: 1.65rem; }
+      .subtitle { font-size: 0.9rem; }
+      h2 { font-size: 1.2rem; }
+      .drug-class-card { padding: 16px 12px; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .aligned-item { padding: 8px 10px; font-size: 0.88rem; }
+      .header-top { flex-direction: column; align-items: flex-start; }
+      .modal-card { max-height: 95vh; margin: 4px; }
+    }
   </style>
 </head>
 <body>
@@ -56,101 +603,328 @@
 <div class="container">
   <a href="chapter3.html" class="back-btn">&larr; Back to Chapter 3 Hub</a>
   
-  <div class="badge">Pharmacology Class Deep-Dive</div>
-  <h1>Antidiarrheals</h1>
-  <p>Targeted pharmacological agents designed to reduce bowel motility, increase fluid absorption, and bind toxins or microorganisms to manage acute and chronic diarrheal disorders.</p>
-
-  <!-- INTRODUCTION -->
-  <h2>1. Introduction to Intestinal Motility & Secretion</h2>
-  <p>Diarrhea is characterized by increased frequency, fluidity, and volume of fecal discharge resulting from altered electrolyte transport, hyperperistalsis, or mucosal inflammation. Antidiarrheal agents restore normal bowel function by slowing intestinal transit time, promoting water and electrolyte absorption, or neutralizing causative luminal toxins.</p>
-
-  <!-- CLASSIFICATION -->
-  <h2>2. Classification & Prototype Drugs</h2>
-  <div class="grid-3">
-    <div class="card-box">
-      <h3>💊 Opioid Agonists</h3>
-      <p><strong>Prototypes:</strong> Loperamide, Diphenoxylate with Atropine.</p>
-      <p style="margin-top: 10px;"><strong>Characteristics:</strong> Act on intestinal smooth muscle to decrease motility without significant central nervous system opioid effects (at standard doses).</p>
+  <header>
+    <div class="header-top">
+      <div class="badge-container">
+        <span class="badge">Pharmacology Class Deep-Dive</span>
+      </div>
+      <div class="header-actions">
+        <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
+        <button class="btn-header" onclick="toggleModal('treeModal')">🌳 Classification Tree</button>
+      </div>
     </div>
-    <div class="card-box">
-      <h3>🛡️ Adsorbents & Protectants</h3>
-      <p><strong>Prototype:</strong> Bismuth subsalicylate, Polycarbophil.</p>
-      <p style="margin-top: 10px;"><strong>Characteristics:</strong> Bind toxins, bacteria, and excess fluid within the intestinal lumen and provide mild anti-inflammatory action.</p>
-    </div>
-    <div class="card-box">
-      <h3>⚡ Antisecretory & Somatostatin Analogs</h3>
-      <p><strong>Prototype:</strong> Octreotide.</p>
-      <p style="margin-top: 10px;"><strong>Characteristics:</strong> Specialized agents inhibiting severe secretory diarrhea caused by neuroendocrine tumors or chemotherapy.</p>
-    </div>
-  </div>
+    
+    <h1>Antidiarrheals</h1>
+    <p class="subtitle">Targeted pharmacological agents designed to reduce bowel motility, increase fluid absorption, and bind toxins or microorganisms to manage acute and chronic diarrheal disorders.</p>
+  </header>
 
-  <!-- MECHANISM OF ACTION -->
-  <h2>3. Mechanisms of Action</h2>
-  <div class="grid-3">
-    <div class="card-box">
-      <h3>⚡ Opioid Agonists: Motility Inhibition</h3>
-      <p>Bind to mu-opioid receptors in the enteric nervous system of the intestinal wall, inhibiting acetylcholine release, decreasing peristalsis, and increasing segmental transit time to enhance water absorption.</p>
-    </div>
-    <div class="card-box">
-      <h3>🎯 Adsorbents: Toxin Trapping</h3>
-      <p>Bismuth subsalicylate breaks down into salicylic acid to suppress intestinal prostaglandin synthesis and inflammation while physically coating the mucosa and binding bacterial enterotoxins.</p>
-    </div>
-    <div class="card-box">
-      <h3>🌊 Octreotide: Secretion Suppression</h3>
-      <p>Mimics natural somatostatin to inhibit the secretion of gut hormones and active electrolytes (such as vasoactive intestinal peptide), drastically reducing massive fluid loss.</p>
-    </div>
-  </div>
+  <main>
 
-  <!-- CLINICAL USES -->
-  <h2>4. Clinical Uses & Therapeutic Indications</h2>
-  <ul>
-    <li>Symptomatic relief of acute nonspecific diarrhea and acute viral gastroenteritis</li>
-    <li>Prevention and treatment of Traveler's Diarrhea (Bismuth subsalicylate, Loperamide)</li>
-    <li>Management of chronic diarrhea associated with Irritable Bowel Syndrome with diarrhea (IBS-D)</li>
-    <li>Control of severe secretory diarrhea caused by neuroendocrine tumors (carcinoid syndrome)</li>
-    <li>Reduction of ileostomy output volume</li>
-  </ul>
+    <!-- ================= 1. INTRODUCTION ================= -->
+    <section class="drug-class-card">
+      <h2>1. Introduction to Intestinal Motility &amp; Secretion</h2>
+      <p>Diarrhea is characterized by increased frequency, fluidity, and volume of fecal discharge resulting from altered electrolyte transport, hyperperistalsis, or mucosal inflammation. Antidiarrheal agents restore normal bowel function by slowing intestinal transit time, promoting water and electrolyte absorption, or neutralizing causative luminal toxins.</p>
+    </section>
 
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for Clinical Indications: "T-I-C-A"</h4>
-    <p><strong>T</strong>raveler's diarrhea | <strong>I</strong>BS-D (irritable bowel syndrome) | <strong>C</strong>arcinoid tumors & secretory states | <strong>A</strong>cute viral gastroenteritis</p>
-  </div>
+    <!-- ================= 2. CLASSIFICATION & PROTOTYPES ================= -->
+    <section class="drug-class-card">
+      <h2>2. Classification &amp; Prototype Drugs</h2>
+      <div class="grid-3">
+        <div class="card-box">
+          <h3>💊 Opioid Agonists</h3>
+          <p><strong>Prototypes:</strong> Loperamide, Diphenoxylate with Atropine. <span class="exam-badge">IMP FOR EXAM</span></p>
+          <p style="margin-top: 10px;"><strong>Characteristics:</strong> Act on intestinal smooth muscle to decrease motility without significant central nervous system opioid effects (at standard doses).</p>
+        </div>
+        <div class="card-box">
+          <h3>🛡️ Adsorbents &amp; Protectants</h3>
+          <p><strong>Prototypes:</strong> Bismuth subsalicylate, Polycarbophil.</p>
+          <p style="margin-top: 10px;"><strong>Characteristics:</strong> Bind toxins, bacteria, and excess fluid within the intestinal lumen and provide mild anti-inflammatory action.</p>
+        </div>
+        <div class="card-box">
+          <h3>⚡ Antisecretory &amp; Somatostatin Analogs</h3>
+          <p><strong>Prototype:</strong> Octreotide.</p>
+          <p style="margin-top: 10px;"><strong>Characteristics:</strong> Specialized agents inhibiting severe secretory diarrhea caused by neuroendocrine tumors or chemotherapy.</p>
+        </div>
+      </div>
+    </section>
 
-  <!-- ADVERSE DRUG REACTIONS -->
-  <h2>5. Adverse Drug Reactions (ADRs)</h2>
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>⚠️ Gastrointestinal & Motility Risks</h3>
-      <p>Severe constipation, abdominal distention, nausea, and toxic megacolon (particularly if antimotility agents are used in invasive bacterial infections or *Clostridioides difficile*).</p>
-    </div>
-    <div class="card-box">
-      <h3>⚠️ Drug-Specific Adverse Effects</h3>
-      <p><strong>Diphenoxylate:</strong> CNS depression and drowsiness at high doses (formulated with atropine to discourage abuse).<br><strong>Bismuth subsalicylate:</strong> Harmless black discoloration of tongue and stool, and potential salicylate toxicity.</p>
-    </div>
-  </div>
+    <!-- ================= 3. MECHANISM OF ACTION ================= -->
+    <section class="drug-class-card">
+      <h2>3. Mechanisms of Action</h2>
+      <p>Here is how each class targets gut physiology to arrest watery diarrhea:</p>
 
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for Antidiarrheal Complications: "C-O-N-S-T"</h4>
-    <p><strong>C</strong>onstipation (rebound) | <strong>O</strong>vergrowth of bacteria if misused | <strong>N</strong>arcotic CNS effects (high dose diphenoxylate) | <strong>S</strong>tomach cramps | <strong>T</strong>oxic megacolon risk in infectious colitis</p>
-  </div>
+      <!-- 3.1 OPIOID AGONISTS -->
+      <div class="moa-enhanced-box">
+        <h4>⚡ 1. Opioid Agonists: Motility Inhibition <span class="exam-badge">IMP FOR EXAM</span></h4>
+        <div class="moa-concept-summary">💡 Simple Concept: Slows down intestinal churning so the colon has time to reabsorb water and solidify stool.</div>
+        <div class="moa-steps-list">
+          <div class="moa-step-item">
+            <div class="moa-step-number">1</div>
+            <div class="moa-step-content">
+              <strong>Mu-Opioid Binding:</strong>
+              <span>Binds directly to mu-opioid receptors in the enteric nervous system within the intestinal wall.</span>
+            </div>
+          </div>
+          <div class="moa-step-item">
+            <div class="moa-step-number">2</div>
+            <div class="moa-step-content">
+              <strong>Acetylcholine Blockade:</strong>
+              <span>Inhibits acetylcholine release, decreasing longitudinal muscle contraction and peristaltic waves.</span>
+            </div>
+          </div>
+          <div class="moa-step-item">
+            <div class="moa-step-number">3</div>
+            <div class="moa-step-content">
+              <strong>Enhanced Fluid Absorption:</strong>
+              <span>Increases segmental transit time, allowing maximized passive reabsorption of fluid and electrolytes.</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!-- PHARMACOKINETICS & ADMINISTRATION -->
-  <h2>6. Pharmacokinetics & Contraindications</h2>
-  <ul>
-    <li><strong>Systemic Absorption:</strong> Loperamide has poor central nervous system penetration because it is actively pumped out of the blood-brain barrier by P-glycoprotein, keeping its action localized to the gut.</li>
-    <li><strong>Infectious Diarrhea Contraindication:</strong> Avoid antimotility agents in patients with high fever, bloody diarrhea, or invasive bacterial enteritis (*Salmonella*, *Shigella*, *C. diff*), as slowing motility traps pathogens and worsens systemic toxicity.</li>
-  </ul>
+      <!-- 3.2 ADSORBENTS -->
+      <div class="moa-enhanced-box">
+        <h4>🎯 2. Adsorbents &amp; Bismuth: Toxin Trapping</h4>
+        <div class="moa-concept-summary">💡 Simple Concept: Coats the lining of the stomach/gut, neutralizes enterotoxins, and reduces prostaglandin inflammation.</div>
+        <div class="moa-steps-list">
+          <div class="moa-step-item">
+            <div class="moa-step-number">1</div>
+            <div class="moa-step-content">
+              <strong>Salicylate Dissociation:</strong>
+              <span>Bismuth subsalicylate breaks down into salicylate (anti-inflammatory) and bismuth in the gut.</span>
+            </div>
+          </div>
+          <div class="moa-step-item">
+            <div class="moa-step-number">2</div>
+            <div class="moa-step-content">
+              <strong>Toxin Binding &amp; Coating:</strong>
+              <span>Physical coating of the mucosal lining while directly binding bacterial enterotoxins and fluid.</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!-- KEY NURSING TAKEAWAYS -->
-  <h2>7. Key Nursing Takeaways & Patient Safety</h2>
-  <ul>
-    <li><strong>Screen for Infectious Causes:</strong> Ensure diarrhea is not caused by an invasive bacterial pathogen or *C. diff* before administering antimotility drugs to prevent toxic megacolon.</li>
-    <li><strong>Monitor Hydration and Electrolytes:</strong> Assess fluid balance, skin turgor, mucous membranes, and electrolyte panels, as fluid loss can rapidly lead to dehydration and electrolyte imbalance.</li>
-    <li><strong>Educate on Dosage Limits:</strong> Instruct patients to strictly follow prescribed or package directions for loperamide, as massive overdoses can trigger fatal cardiac arrhythmias and QT prolongation.</li>
-    <li><strong>Reassure Regarding Harmless Side Effects:</strong> Inform patients taking bismuth subsalicylate that dark stools and black tongue discoloration are normal and temporary.</li>
-  </ul>
+      <!-- 3.3 OCTREOTIDE -->
+      <div class="moa-enhanced-box">
+        <h4>🌊 3. Octreotide: Secretion Suppression</h4>
+        <div class="moa-concept-summary">💡 Simple Concept: Synthetic hormone that halts active GI fluid secretion caused by tumor hormone surges.</div>
+        <div class="moa-steps-list">
+          <div class="moa-step-item">
+            <div class="moa-step-number">1</div>
+            <div class="moa-step-content">
+              <strong>Somatostatin Mimicry:</strong>
+              <span>Mimics natural somatostatin to inhibit the hypersecretion of gut peptides (e.g., VIP, serotonin).</span>
+            </div>
+          </div>
+          <div class="moa-step-item">
+            <div class="moa-step-number">2</div>
+            <div class="moa-step-content">
+              <strong>Secretory Arrest:</strong>
+              <span>Reduces GI blood flow, gallbladder contraction, and intestinal fluid secretion.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- ================= 4. CLINICAL USES & ALIGNED MNEMONIC ================= -->
+    <section class="drug-class-card">
+      <h2>4. Clinical Uses &amp; Therapeutic Indications</h2>
+      <ul class="bullet-list">
+        <li>Symptomatic relief of acute nonspecific diarrhea and acute viral gastroenteritis.</li>
+        <li>Prevention and treatment of Traveler's Diarrhea (Bismuth subsalicylate, Loperamide).</li>
+        <li>Management of chronic diarrhea associated with Irritable Bowel Syndrome with diarrhea (IBS-D).</li>
+        <li>Control of severe secretory diarrhea caused by neuroendocrine tumors (carcinoid syndrome).</li>
+        <li>Reduction of high-volume output from an ileostomy.</li>
+      </ul>
+
+      <!-- ALIGNED USES MNEMONIC -->
+      <div class="mnemonic-box">
+        <h4>💡 Mnemonic for Clinical Indications: "T.I.C.A."</h4>
+        <div class="aligned-mnemonic-list">
+          <div class="aligned-item">
+            <span class="letter-badge">T</span>
+            <span><strong>T</strong>raveler's diarrhea prevention &amp; management</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">I</span>
+            <span><strong>I</strong>BS-D (Irritable Bowel Syndrome with diarrhea) control</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">C</span>
+            <span><strong>C</strong>arcinoid tumors &amp; neuroendocrine severe secretory states (Octreotide) <span class="exam-badge">IMP FOR EXAM</span></span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">A</span>
+            <span><strong>A</strong>cute nonspecific viral gastroenteritis</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5. ADVERSE DRUG REACTIONS & ALIGNED MNEMONIC ================= -->
+    <section class="drug-class-card">
+      <h2>5. Adverse Drug Reactions (ADRs)</h2>
+      
+      <div class="grid-2">
+        <div class="card-box">
+          <h3>⚠️ Gastrointestinal &amp; Motility Risks</h3>
+          <p>Severe constipation, abdominal distention, nausea, and toxic megacolon (particularly if antimotility agents are used in invasive bacterial infections or <em>Clostridioides difficile</em>). <span class="exam-badge">IMP FOR EXAM</span></p>
+        </div>
+        <div class="card-box">
+          <h3>⚠️ Drug-Specific Adverse Effects</h3>
+          <p><strong>Diphenoxylate:</strong> CNS depression and drowsiness at high doses (formulated with atropine to discourage abuse).<br>
+          <strong>Bismuth subsalicylate:</strong> Harmless black discoloration of tongue and stool, and potential salicylate toxicity. <span class="exam-badge">IMP FOR EXAM</span></p>
+        </div>
+      </div>
+
+      <!-- ALIGNED ADRs MNEMONIC -->
+      <div class="mnemonic-box">
+        <h4>💡 Mnemonic for Antidiarrheal Complications: "C.O.N.S.T."</h4>
+        <div class="aligned-mnemonic-list">
+          <div class="aligned-item">
+            <span class="letter-badge">C</span>
+            <span><strong>C</strong>onstipation (rebound over-correction)</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">O</span>
+            <span><strong>O</strong>vergrowth / trapping of invasive pathogens if misused</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">N</span>
+            <span><strong>N</strong>arcotic CNS effects &amp; atropine dryness (high-dose diphenoxylate)</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">S</span>
+            <span><strong>S</strong>tomach cramps, nausea, &amp; black stool/tongue (bismuth subsalicylate)</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">T</span>
+            <span><strong>T</strong>oxic megacolon risk in active C. diff or bloody colitis <span class="exam-badge">IMP FOR EXAM</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 6. PHARMACOKINETICS & CONTRAINDICATIONS ================= -->
+    <section class="drug-class-card">
+      <h2>6. Pharmacokinetics &amp; Contraindications</h2>
+      
+      <div class="sub-block">
+        <h4>🔬 Pharmacokinetic Highlights</h4>
+        <p>&bull; <strong>Systemic Absorption Limit:</strong> Loperamide has poor central nervous system penetration because it is actively pumped out of the blood-brain barrier by P-glycoprotein, keeping its opioid action localized almost exclusively to the gut wall. <span class="exam-badge">IMP FOR EXAM</span></p>
+      </div>
+
+      <div class="warning-box">
+        <h4>🚫 Infectious Diarrhea Contraindication</h4>
+        <p>&bull; <strong>Avoid Antimotility Agents in Infectious Enteritis:</strong> Strictly avoid opioid antimotility agents (Loperamide / Diphenoxylate) in patients with high fever, bloody diarrhea (dysentery), or invasive bacterial enteritis (<em>Salmonella</em>, <em>Shigella</em>, <em>C. difficile</em>). Slowing intestinal transit traps pathogens and toxins inside the gut, dramatically increasing the risk of systemic toxicity and fatal <strong>Toxic Megacolon</strong>! <span class="exam-badge">IMP FOR EXAM</span></p>
+      </div>
+    </section>
+
+    <!-- ================= 7. KEY NURSING TAKEAWAYS ================= -->
+    <section class="drug-class-card">
+      <h2>7. Key Nursing Takeaways &amp; Patient Safety</h2>
+      <ul class="bullet-list">
+        <li><strong>Screen for Infectious Causes:</strong> Ensure diarrhea is not caused by an invasive bacterial pathogen or <em>C. diff</em> before administering antimotility drugs to prevent toxic megacolon.</li>
+        <li><strong>Monitor Hydration and Electrolytes:</strong> Assess fluid balance, skin turgor, mucous membranes, and electrolyte panels, as fluid loss can rapidly lead to severe dehydration and hypokalemia.</li>
+        <li><strong>Educate on Dosage Limits:</strong> Instruct patients to strictly follow prescribed or package directions for loperamide, as massive overdoses can trigger fatal cardiac arrhythmias and QT prolongation. <span class="exam-badge">IMP FOR EXAM</span></li>
+        <li><strong>Reassure Regarding Harmless Side Effects:</strong> Inform patients taking bismuth subsalicylate that dark stools and black tongue discoloration are normal, temporary, and harmless (bismuth reacting with intestinal sulfur).</li>
+      </ul>
+    </section>
+
+  </main>
 </div>
+
+<!-- ================= MASTER SUMMARY TABLE MODAL ================= -->
+<div class="modal-overlay" id="tableModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>📊 Master Antidiarrheal Summary Table</h3>
+      <button class="close-btn" onclick="toggleModal('tableModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;">High-yield comparative summary of antidiarrheal categories, prototypes, mechanisms, uses, and key nursing safety alerts.</p>
+      <div class="table-container">
+        <table class="summary-table">
+          <thead>
+            <tr>
+              <th>Drug Class</th>
+              <th>Prototype Drugs</th>
+              <th>Mechanism of Action</th>
+              <th>Primary Clinical Uses</th>
+              <th>Key ADRs / Nursing Alerts</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Opioid Agonists</strong></td>
+              <td>Loperamide, Diphenoxylate + Atropine</td>
+              <td>Stimulates gut mu-opioid receptors; decreases peristalsis &amp; fluid loss</td>
+              <td>Acute nonspecific diarrhea, IBS-D, ileostomy volume reduction</td>
+              <td>Constipation, toxic megacolon in C. diff; QTc risk in massive overdose</td>
+            </tr>
+            <tr>
+              <td><strong>Adsorbents &amp; Protectants</strong></td>
+              <td>Bismuth Subsalicylate, Polycarbophil</td>
+              <td>Coats gut lining, binds bacterial enterotoxins; anti-inflammatory salicylate</td>
+              <td>Traveler's diarrhea, acute dyspepsia, viral gastroenteritis</td>
+              <td>Black tongue/stool (harmless); avoid in pediatric viral illness (Reye Syndrome)</td>
+            </tr>
+            <tr>
+              <td><strong>Somatostatin Analogs</strong></td>
+              <td>Octreotide</td>
+              <td>Inhibits secretion of gut peptides &amp; active electrolytes</td>
+              <td>Severe secretory diarrhea (Carcinoid syndrome, VIPomas, chemo-induced)</td>
+              <td>Gallstones, altered blood glucose levels, injection site discomfort</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CLASSIFICATION TREE MODAL ================= -->
+<div class="modal-overlay" id="treeModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>🌳 Antidiarrheal Classification Tree</h3>
+      <button class="close-btn" onclick="toggleModal('treeModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Visual physiological breakdown of antidiarrheal pharmacotherapeutic classes.</p>
+      <div class="tree-container">
+        <div class="tree-node">
+          <div class="tree-title">⚡ 1. Motility Inhibitors (Antimotility Agents)</div>
+          <div class="tree-sublist">
+            <span class="tree-tag">Peripheral Mu-Opioid Agonist: Loperamide</span>
+            <span class="tree-tag">Central/Peripheral Opioid + Anticholinergic: Diphenoxylate + Atropine</span>
+          </div>
+        </div>
+        <div class="tree-node">
+          <div class="tree-title">🛡️ 2. Luminal Adsorbents &amp; Mucosal Protectants</div>
+          <div class="tree-sublist">
+            <span class="tree-tag">Bismuth Compound: Bismuth Subsalicylate</span>
+            <span class="tree-tag">Bulk-Forming Adsorbent: Polycarbophil</span>
+          </div>
+        </div>
+        <div class="tree-node">
+          <div class="tree-title">🌊 3. Antisecretory Hormonal Regulators</div>
+          <div class="tree-sublist">
+            <span class="tree-tag">Synthetic Somatostatin Analog: Octreotide (SC / IV)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.toggle('active');
+  }
+</script>
 
 </body>
 </html>
