@@ -2,40 +2,382 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Antiparasitic Master Clinical Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Antiparasitic Master class </title>
   <style>
     :root {
       --bg: #f8fafc;
       --card-bg: #ffffff;
-      --proto-border: #4f46e5;
-      --helm-border: #059669;
-      --ecto-border: #e11d48;
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --card-border: #e2e8f0;
+
+      /* SECTION DISTINCT COLOR THEMES */
+      --proto-theme: #4f46e5;
+      --proto-bg: #eef2ff;
+      --proto-border: #c7d2fe;
+
+      --helm-theme: #059669;
+      --helm-bg: #ecfdf5;
+      --helm-border: #a7f3d0;
+
+      --ecto-theme: #e11d48;
+      --ecto-bg: #fff1f2;
+      --ecto-border: #fecdd3;
+
+      --exam-badge-bg: #ef4444;
+      --exam-badge-text: #ffffff;
     }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg); color: #1e293b; line-height: 1.6; padding: 20px; }
-    .container { max-width: 1000px; margin: auto; }
-    h1 { text-align: center; color: #0f172a; margin-bottom: 40px; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 16px 8px 60px;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 32px 20px;
+      border-radius: 20px;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #0f172a 0%, #4f46e5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 30px;
+      line-height: 1.25;
+    }
+
+    /* EXAM HIGH-YIELD BADGE */
+    .exam-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--exam-badge-bg);
+      color: var(--exam-badge-text);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.25);
+      margin-left: 6px;
+      vertical-align: middle;
+    }
 
     /* Section Styling */
-    .section-card { background: var(--card-bg); border-radius: 16px; padding: 30px; margin-bottom: 40px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-left: 10px solid; }
-    .header-group { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-    h2 { margin: 0; font-size: 1.8rem; }
-    h3 { margin-bottom: 15px; text-decoration: underline; color: #475569; }
+    .section-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 35px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border: 2px solid var(--card-border);
+      position: relative;
+    }
+
+    .section-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .card-proto::before { background: var(--proto-theme); }
+    .card-helm::before { background: var(--helm-theme); }
+    .card-ecto::before { background: var(--ecto-theme); }
+
+    .header-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+    }
+
+    .proto-title { color: var(--proto-theme); }
+    .helm-title { color: var(--helm-theme); }
+    .ecto-title { color: var(--ecto-theme); }
+
+    h3 {
+      font-size: 1.15rem;
+      margin: 18px 0 10px;
+      color: #334155;
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      margin-bottom: 15px;
+    }
 
     /* Layout: Split Flow vs Text */
-    .layout-wrapper { display: flex; gap: 30px; flex-wrap: wrap; }
-    .col-flow { flex: 1; min-width: 280px; background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; }
-    .col-text { flex: 1.5; min-width: 320px; }
+    .layout-wrapper {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
 
-    /* Flow Chart Elements */
-    .moa-header { text-align: center; font-weight: 800; margin-bottom: 15px; color: #334155; text-transform: uppercase; font-size: 0.9rem; }
-    .step { background: white; padding: 10px; margin: 8px 0; border-radius: 8px; border: 1px solid #cbd5e1; text-align: center; font-weight: 600; font-size: 0.85rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-    .arrow { text-align: center; font-size: 1.2rem; color: #94a3b8; font-weight: bold; }
+    .col-flow {
+      flex: 1;
+      min-width: 280px;
+      background: #0f172a;
+      padding: 20px 16px;
+      border-radius: 14px;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-    /* Content Styling */
-    ul { padding-left: 20px; margin-bottom: 20px; }
-    .meta-box { background: #f1f5f9; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
-    .mnemonic { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 12px; margin-top: 10px; font-weight: 600; font-size: 0.9rem; }
+    .col-text {
+      flex: 1.5;
+      min-width: 300px;
+    }
+
+    /* CONTINUOUS ADDITIVE ANIMATION TRACKS */
+    .moa-widget-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .moa-header {
+      font-weight: 800;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .proto-moa-title { color: #818cf8; }
+    .helm-moa-title { color: #34d399; }
+    .ecto-moa-title { color: #fb7185; }
+
+    .moa-controls { display: flex; gap: 6px; }
+
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .ctrl-btn:hover { background: rgba(255, 255, 255, 0.3); }
+
+    .moa-flow-track {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .moa-step-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px dashed rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 10px 12px;
+      text-align: center;
+      transition: all 0.4s ease;
+    }
+
+    .moa-step-card strong {
+      display: block;
+      color: #94a3b8;
+      font-size: 0.88rem;
+    }
+
+    /* ADDITIVE HIGHLIGHT STATES PER SECTION */
+    /* Antiprotozoal (Indigo) */
+    .proto-step.activated-step-1, .proto-step.activated-step-2,
+    .proto-step.activated-step-3, .proto-step.activated-step-4 {
+      background: rgba(79, 70, 229, 0.35);
+      border: 2px solid #818cf8;
+      box-shadow: 0 0 12px rgba(129, 140, 248, 0.4);
+    }
+    .proto-step[class*="activated-step"] strong { color: #ffffff; }
+
+    /* Antihelminthic (Emerald) */
+    .helm-step.activated-step-1, .helm-step.activated-step-2,
+    .helm-step.activated-step-3, .helm-step.activated-step-4 {
+      background: rgba(5, 150, 105, 0.35);
+      border: 2px solid #34d399;
+      box-shadow: 0 0 12px rgba(52, 211, 153, 0.4);
+    }
+    .helm-step[class*="activated-step"] strong { color: #ffffff; }
+
+    /* Ectoparasiticide (Rose) */
+    .ecto-step.activated-step-1, .ecto-step.activated-step-2,
+    .ecto-step.activated-step-3, .ecto-step.activated-step-4 {
+      background: rgba(225, 29, 72, 0.35);
+      border: 2px solid #fb7185;
+      box-shadow: 0 0 12px rgba(251, 113, 133, 0.4);
+    }
+    .ecto-step[class*="activated-step"] strong { color: #ffffff; }
+
+    /* Meta Box & Subdrug Grid */
+    .meta-box {
+      background: #f8fafc;
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 18px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .meta-box strong {
+      display: block;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+
+    .subdrug-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .subdrug-item {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .subdrug-item strong {
+      font-size: 0.88rem;
+      margin-bottom: 2px;
+    }
+
+    .subdrug-item span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    /* ALIGNED MNEMONIC LIST LAYOUTS */
+    .mnemonic-box {
+      border-radius: 12px;
+      padding: 18px;
+      margin: 18px 0;
+      border: 1px solid;
+    }
+
+    .box-proto {
+      background: var(--proto-bg);
+      border-color: var(--proto-border);
+      border-left: 5px solid var(--proto-theme);
+    }
+
+    .box-helm {
+      background: var(--helm-bg);
+      border-color: var(--helm-border);
+      border-left: 5px solid var(--helm-theme);
+    }
+
+    .box-ecto {
+      background: var(--ecto-bg);
+      border-color: var(--ecto-border);
+      border-left: 5px solid var(--ecto-theme);
+    }
+
+    .mnemonic-box h4 {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .title-proto { color: var(--proto-theme); }
+    .title-helm { color: var(--helm-theme); }
+    .title-ecto { color: var(--ecto-theme); }
+
+    .aligned-mnemonic-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .aligned-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #ffffff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .letter-badge {
+      color: white;
+      font-weight: 900;
+      font-size: 0.78rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .badge-proto { background: var(--proto-theme); }
+    .badge-helm { background: var(--helm-theme); }
+    .badge-ecto { background: var(--ecto-theme); }
+
+    /* Warning / Contraindication Styling */
+    .warning-box {
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+      border-left: 5px solid #e11d48;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 15px 0;
+    }
+
+    .warning-box h4 {
+      color: #9f1239;
+      font-size: 0.98rem;
+      margin-bottom: 4px;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 8px 4px 40px; }
+      .container { padding: 18px 12px; border-radius: 14px; }
+      h1 { font-size: 1.65rem; }
+      .section-card { padding: 16px 12px; }
+      .col-flow { min-width: 100%; }
+      .aligned-item { padding: 8px; font-size: 0.85rem; }
+    }
   </style>
 </head>
 <body>
@@ -43,134 +385,294 @@
 <div class="container">
   <h1>💊 Antiparasitic Master Clinical Dashboard</h1>
 
-  <!-- 1. ANTIPROTOZOALS -->
-  <section class="section-card" style="border-color: var(--proto-border);">
+  <!-- ================= 1. ANTIPROTOZOALS ================= -->
+  <section class="section-card card-proto">
     <div class="header-group">
-      <h2 style="color: var(--proto-border);">1. Antiprotozoals</h2>
+      <h2 class="proto-title">1. Antiprotozoals</h2>
     </div>
     <div class="layout-wrapper">
+      
+      <!-- ADDITIVE MOA FLOW -->
       <div class="col-flow">
-        <div class="moa-header">Mechanism of Action (MOA)</div>
-        <div class="step">1. Drug enters parasite cell</div>
-        <div class="arrow">↓</div>
-        <div class="step">2. Reduced to toxic radicals</div>
-        <div class="arrow">↓</div>
-        <div class="step">3. DNA strand fragmentation</div>
-        <div class="arrow">↓</div>
-        <div class="step">4. Parasite replication death</div>
+        <div class="moa-widget-header">
+          <span class="moa-header proto-moa-title">⚡ MOA Workflow</span>
+          <div class="moa-controls">
+            <button class="ctrl-btn" onclick="toggleFlowAnimation(1, this)">Pause</button>
+            <button class="ctrl-btn" onclick="restartFlowAnimation(1)">↻ Replay</button>
+          </div>
+        </div>
+
+        <div class="moa-flow-track" id="moaTrack1">
+          <div class="moa-step-card proto-step" id="track1-step1">
+            <strong>1. Entry into Parasite</strong>
+          </div>
+          <div class="moa-step-card proto-step" id="track1-step2">
+            <strong>2. Reduced to Toxic Radicals</strong>
+          </div>
+          <div class="moa-step-card proto-step" id="track1-step3">
+            <strong>3. DNA Strand Fragmentation</strong>
+          </div>
+          <div class="moa-step-card proto-step" id="track1-step4">
+            <strong>4. Replication Death</strong>
+          </div>
+        </div>
       </div>
+
       <div class="col-text">
-        <p><strong>Concept:</strong> These agents act as intracellular saboteurs. They enter the single-celled organism, get activated into toxic chemical radicals, and systematically destroy the parasite's DNA, preventing further replication.</p>
+        <p><strong>Concept:</strong> These agents act as intracellular saboteurs. They enter single-celled protozoa, get activated into toxic chemical nitro-radicals, and cause irreversible DNA strand fragmentation.</p>
         
         <div class="meta-box">
-          <strong>Common Drugs:</strong>
-          <ul>
-            <li>1. Metronidazole / Tinidazole</li>
-            <li>2. Chloroquine / Hydroxychloroquine</li>
-            <li>3. Atovaquone</li>
-          </ul>
+          <strong>Common Drugs &amp; Features:</strong>
+          <div class="subdrug-grid">
+            <div class="subdrug-item"><strong>Metronidazole / Tinidazole</strong><span>First-line nitroimidazole for anaerobic bugs &amp; protozoa.</span></div>
+            <div class="subdrug-item"><strong>Chloroquine / Hydroxy-</strong><span>Blocks heme detox in malaria plasmodium parasites.</span></div>
+            <div class="subdrug-item"><strong>Atovaquone</strong><span>Inhibits fungal &amp; protozoal mitochondrial electron transport.</span></div>
+          </div>
         </div>
 
         <h3>Clinical Uses:</h3>
-        <ul>
-          <li>Malaria (treatment & prophylaxis)</li>
-          <li>Giardiasis & Amoebic dysentery</li>
-          <li>Trichomoniasis (STI)</li>
-          <li>Toxoplasmosis</li>
-        </ul>
+        <p>&bull; Malaria prophylaxis and acute attack treatment<br>
+        &bull; Giardiasis &amp; Amoebic dysentery (stomach/gut infections)<br>
+        &bull; Trichomoniasis (STI - treat both partners)<br>
+        &bull; Toxoplasmosis in immunocompromised patients</p>
 
-        <div class="mnemonic"><strong>ADRs & Mnemonic:</strong> M.E.T.A.L.<br>
-        (<strong>M</strong>etallic taste, <strong>E</strong>pigastric distress, <strong>T</strong>oxic to CNS, <strong>A</strong>bdominal cramps, <strong>L</strong>eukopenia)</div>
+        <!-- ALIGNED ADRs MNEMONIC (INDIGO COLOR-MATCHED) -->
+        <div class="mnemonic-box box-proto">
+          <h4 class="title-proto">💡 Adverse Effects Mnemonic: "M.E.T.A.L."</h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge badge-proto">M</span><span><strong>M</strong>etallic taste in mouth <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="aligned-item"><span class="letter-badge badge-proto">E</span><span><strong>E</strong>pigastric distress &amp; nausea</span></div>
+            <div class="aligned-item"><span class="letter-badge badge-proto">T</span><span><strong>T</strong>oxic to CNS (dizziness, ataxia, seizures)</span></div>
+            <div class="aligned-item"><span class="letter-badge badge-proto">A</span><span><strong>A</strong>bdominal cramping &amp; dark urine</span></div>
+            <div class="aligned-item"><span class="letter-badge badge-proto">L</span><span><strong>L</strong>eukopenia (monitor CBC during prolonged courses)</span></div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Clinical Safety Warning <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <p><strong>Disulfiram-like Reaction:</strong> Strictly instruct patients taking Metronidazole to avoid all alcohol during treatment and for at least 48 hours after to prevent severe flushing, vomiting, and tachycardia.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 2. ANTIHELMINTHICS -->
-  <section class="section-card" style="border-color: var(--helm-border);">
+  <!-- ================= 2. ANTIHELMINTHICS ================= -->
+  <section class="section-card card-helm">
     <div class="header-group">
-      <h2 style="color: var(--helm-border);">2. Antihelminthics</h2>
+      <h2 class="helm-title">2. Antihelminthics</h2>
     </div>
     <div class="layout-wrapper">
+      
+      <!-- ADDITIVE MOA FLOW -->
       <div class="col-flow">
-        <div class="moa-header">Mechanism of Action (MOA)</div>
-        <div class="step">1. Bind to Tubulin/Nerves</div>
-        <div class="arrow">↓</div>
-        <div class="step">2. Block nutrient/glucose absorption</div>
-        <div class="arrow">↓</div>
-        <div class="step">3. Flaccid paralysis of worm</div>
-        <div class="arrow">↓</div>
-        <div class="step">4. Expulsion by bowel movement</div>
-      </div>
-      <div class="col-text">
-        <p><strong>Concept:</strong> These drugs focus on structural starvation and immobilization. By targeting the worm's internal protein network (tubulin) or nerve receptors, they stop the worm from feeding or moving. Once paralyzed and starved, the worm loses its grip and is naturally expelled.</p>
-
-        <div class="meta-box">
-          <strong>Common Drugs:</strong>
-          <ul>
-            <li>1. Albendazole / Mebendazole</li>
-            <li>2. Ivermectin</li>
-            <li>3. Praziquantel</li>
-            <li>4. Pyrantel Pamoate</li>
-          </ul>
+        <div class="moa-widget-header">
+          <span class="moa-header helm-moa-title">⚡ MOA Workflow</span>
+          <div class="moa-controls">
+            <button class="ctrl-btn" onclick="toggleFlowAnimation(2, this)">Pause</button>
+            <button class="ctrl-btn" onclick="restartFlowAnimation(2)">↻ Replay</button>
+          </div>
         </div>
 
-        <h3>Clinical Uses:</h3>
-        <ul>
-          <li>Pinworms & Roundworms</li>
-          <li>Tapeworm infestations</li>
-          <li>Hookworms</li>
-          <li>Strongyloidiasis</li>
-        </ul>
+        <div class="moa-flow-track" id="moaTrack2">
+          <div class="moa-step-card helm-step" id="track2-step1">
+            <strong>1. Bind Tubulin / Ion Nerves</strong>
+          </div>
+          <div class="moa-step-card helm-step" id="track2-step2">
+            <strong>2. Block Glucose Absorption</strong>
+          </div>
+          <div class="moa-step-card helm-step" id="track2-step3">
+            <strong>3. Flaccid Worm Paralysis</strong>
+          </div>
+          <div class="moa-step-card helm-step" id="track2-step4">
+            <strong>4. Expulsion by Peristalsis</strong>
+          </div>
+        </div>
+      </div>
 
-        <div class="mnemonic"><strong>Uses & Mnemonic:</strong> W.O.R.M.S.<br>
-        (<strong>W</strong>hipworms, <strong>O</strong>xyuriasis/Pinworms, <strong>R</strong>oundworms, <strong>M</strong>igrating larvae, <strong>S</strong>tapeworms)</div>
+      <div class="col-text">
+        <p><strong>Concept:</strong> These drugs focus on structural starvation and immobilization. By targeting the worm's internal microtubule network (tubulin) or hyperpolarizing nerve channels, they starve and paralyze parasitic worms for natural intestinal expulsion.</p>
+
+        <div class="meta-box">
+          <strong>Common Drugs &amp; Features:</strong>
+          <div class="subdrug-grid">
+            <div class="subdrug-item"><strong>Albendazole / Mebendazole</strong><span>Inhibits microtubule assembly; broad spectrum. <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="subdrug-item"><strong>Ivermectin</strong><span>Opens GABA/glutamate-gated chloride channels causing paralysis.</span></div>
+            <div class="subdrug-item"><strong>Praziquantel</strong><span>Increases calcium permeability causing worm muscle spasms.</span></div>
+            <div class="subdrug-item"><strong>Pyrantel Pamoate</strong><span>Depolarizing neuromuscular blocker (OTC pinworm drug).</span></div>
+          </div>
+        </div>
+
+        <!-- ALIGNED USES MNEMONIC (EMERALD COLOR-MATCHED) -->
+        <div class="mnemonic-box box-helm">
+          <h4 class="title-helm">💡 Clinical Uses Mnemonic: "W.O.R.M.S."</h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge badge-helm">W</span><span><strong>W</strong>hipworms (Trichuris trichiura)</span></div>
+            <div class="aligned-item"><span class="letter-badge badge-helm">O</span><span><strong>O</strong>xyuriasis / Pinworms (Enterobius vermicularis)</span></div>
+            <div class="aligned-item"><span class="letter-badge badge-helm">R</span><span><strong>R</strong>oundworms (Ascaris lumbricoides)</span></div>
+            <div class="aligned-item"><span class="letter-badge badge-helm">M</span><span><strong>M</strong>igrating larvae (Cutaneous larva migrans)</span></div>
+            <div class="aligned-item"><span class="letter-badge badge-helm">S</span><span><strong>S</strong>tapeworms &amp; Schistosomiasis (Flukes)</span></div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Clinical Safety Warning</h4>
+          <p>Administer Albendazole with high-fat meals when treating tissue infections (like neurocysticercosis) to maximize systemic absorption. When treating luminal gut worms, give on an empty stomach.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 3. ECTOPARASITICIDES -->
-  <section class="section-card" style="border-color: var(--ecto-border);">
+  <!-- ================= 3. ECTOPARASITICIDES ================= -->
+  <section class="section-card card-ecto">
     <div class="header-group">
-      <h2 style="color: var(--ecto-border);">3. Ectoparasiticides</h2>
+      <h2 class="ecto-title">3. Ectoparasiticides</h2>
     </div>
     <div class="layout-wrapper">
+      
+      <!-- ADDITIVE MOA FLOW -->
       <div class="col-flow">
-        <div class="moa-header">Mechanism of Action (MOA)</div>
-        <div class="step">1. Absorbed into shell</div>
-        <div class="arrow">↓</div>
-        <div class="step">2. Sodium channel lock</div>
-        <div class="arrow">↓</div>
-        <div class="step">3. Continuous nerve firing</div>
-        <div class="arrow">↓</div>
-        <div class="step">4. Paralysis & Death</div>
+        <div class="moa-widget-header">
+          <span class="moa-header ecto-moa-title">⚡ MOA Workflow</span>
+          <div class="moa-controls">
+            <button class="ctrl-btn" onclick="toggleFlowAnimation(3, this)">Pause</button>
+            <button class="ctrl-btn" onclick="restartFlowAnimation(3)">↻ Replay</button>
+          </div>
+        </div>
+
+        <div class="moa-flow-track" id="moaTrack3">
+          <div class="moa-step-card ecto-step" id="track3-step1">
+            <strong>1. Absorption into Exoskeleton</strong>
+          </div>
+          <div class="moa-step-card ecto-step" id="track3-step2">
+            <strong>2. Sodium Channel Lock</strong>
+          </div>
+          <div class="moa-step-card ecto-step" id="track3-step3">
+            <strong>3. Continuous Nerve Firing</strong>
+          </div>
+          <div class="moa-step-card ecto-step" id="track3-step4">
+            <strong>4. Pest Paralysis &amp; Death</strong>
+          </div>
+        </div>
       </div>
+
       <div class="col-text">
-        <p><strong>Concept:</strong> These are powerful, surface-acting neurotoxins. They penetrate the hard shell of parasites living on the skin, "jamming" their sodium channels open. This causes uncontrollable nerve firing that leads to total paralysis and death of the pest.</p>
+        <p><strong>Concept:</strong> Surface-acting neurotoxins that penetrate the hard chitin exoskeleton of lice and mites. By binding voltage-gated sodium channels, they cause non-stop neuronal depolarization, paralysis, and death of external parasites.</p>
 
         <div class="meta-box">
-          <strong>Common Drugs:</strong>
-          <ul>
-            <li>1. Permethrin</li>
-            <li>2. Malathion</li>
-            <li>3. Spinosad</li>
-            <li>4. Benzyl Alcohol</li>
-          </ul>
+          <strong>Common Drugs &amp; Features:</strong>
+          <div class="subdrug-grid">
+            <div class="subdrug-item"><strong>Permethrin (5% Cream / 1% Lotion)</strong><span>First-line topical choice for Scabies and Head Lice.</span></div>
+            <div class="subdrug-item"><strong>Malathion</strong><span>Organophosphate acetylcholinesterase inhibitor (flammable!).</span></div>
+            <div class="subdrug-item"><strong>Spinosad</strong><span>Causes neuronal hyperexcitation in lice nicotinic receptors.</span></div>
+            <div class="subdrug-item"><strong>Spinosad / Benzyl Alcohol</strong><span>Asphyxiates lice by blocking breathing spiracles.</span></div>
+          </div>
         </div>
 
         <h3>Clinical Uses:</h3>
-        <ul>
-          <li>Head & Body Lice (Pediculosis)</li>
-          <li>Pubic Lice ("Crabs")</li>
-          <li>Scabies Mites</li>
-        </ul>
+        <p>&bull; Head &amp; Body Lice (Pediculosis capitis / corporis)<br>
+        &bull; Pubic Lice ("Crabs" - Phthirus pubis)<br>
+        &bull; Scabies Mites (Sarcoptes scabiei infestation)</p>
 
-        <div class="mnemonic"><strong>ADRs & Mnemonic:</strong> S.K.I.N.<br>
-        (<strong>S</strong>tinging, <strong>K</strong>eep out of eyes, <strong>I</strong>rritation, <strong>N</strong>umbness)</div>
+        <!-- ALIGNED ADRs MNEMONIC (ROSE COLOR-MATCHED) -->
+        <div class="mnemonic-box box-ecto">
+          <h4 class="title-ecto">💡 Adverse Effects Mnemonic: "S.K.I.N."</h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge badge-ecto">S</span><span><strong>S</strong>tinging, burning, and localized erythema</span></div>
+            <div class="aligned-item"><span class="letter-badge badge-ecto">K</span><span><strong>K</strong>eep strictly out of eyes and mucous membranes</span></div>
+            <div class="aligned-item"><span class="letter-badge badge-ecto">I</span><span><strong>I</strong>rritation and contact dermatitis</span></div>
+            <div class="aligned-item"><span class="letter-badge badge-ecto">N</span><span><strong>N</strong>umbness or transient paresthesias at application site</span></div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Nursing Clinical Application Rules <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <p><strong>Scabies Protocol:</strong> Apply 5% Permethrin cream from the neck down to the soles of the feet. Leave on for 8 to 14 hours before washing off. Treat all household contacts simultaneously and wash bedding in hot water.</p>
+        </div>
       </div>
     </div>
   </section>
 
 </div>
 
+<!-- MULTI-TRACK ADDITIVE SEQUENTIAL ANIMATION ENGINE -->
+<script>
+  // Controller state for 3 dashboard tracks
+  const animState = {
+    1: { activeStep: 0, isRunning: true, interval: null, prefix: 'proto-step' },
+    2: { activeStep: 0, isRunning: true, interval: null, prefix: 'helm-step' },
+    3: { activeStep: 0, isRunning: true, interval: null, prefix: 'ecto-step' }
+  };
+
+  function runTrackAnimation(trackNum) {
+    const state = animState[trackNum];
+    state.activeStep++;
+
+    // Reset sequence after Step 4
+    if (state.activeStep > 4) {
+      for (let i = 1; i <= 4; i++) {
+        const step = document.getElementById(`track${trackNum}-step${i}`);
+        if (step) {
+          step.className = `moa-step-card ${state.prefix}`; // Clear highlight
+        }
+      }
+      state.activeStep = 1;
+    }
+
+    // Addively light up current step while keeping previous ON
+    const currentStep = document.getElementById(`track${trackNum}-step${state.activeStep}`);
+    if (currentStep) {
+      currentStep.classList.add('activated-step-' + state.activeStep);
+    }
+  }
+
+  function startTrackAnimation(trackNum) {
+    if (!animState[trackNum].interval) {
+      runTrackAnimation(trackNum);
+      animState[trackNum].interval = setInterval(() => runTrackAnimation(trackNum), 1500);
+    }
+  }
+
+  function toggleFlowAnimation(trackNum, btn) {
+    const state = animState[trackNum];
+    if (state.isRunning) {
+      clearInterval(state.interval);
+      state.interval = null;
+      state.isRunning = false;
+      btn.innerText = 'Play';
+    } else {
+      state.isRunning = true;
+      btn.innerText = 'Pause';
+      startTrackAnimation(trackNum);
+    }
+  }
+
+  function restartFlowAnimation(trackNum) {
+    const state = animState[trackNum];
+    clearInterval(state.interval);
+    state.interval = null;
+    state.activeStep = 0;
+
+    for (let i = 1; i <= 4; i++) {
+      const step = document.getElementById(`track${trackNum}-step${i}`);
+      if (step) {
+        step.className = `moa-step-card ${state.prefix}`;
+      }
+    }
+
+    state.isRunning = true;
+    const widget = document.getElementById(`moaTrack${trackNum}`).parentElement;
+    const pauseBtn = widget.querySelector('.ctrl-btn');
+    if (pauseBtn) pauseBtn.innerText = 'Pause';
+
+    startTrackAnimation(trackNum);
+  }
+
+  // Auto-start all tracks on DOM load
+  window.addEventListener('DOMContentLoaded', () => {
+    for (let i = 1; i <= 3; i++) {
+      startTrackAnimation(i);
+    }
+  });
+</script>
 </body>
 </html>
