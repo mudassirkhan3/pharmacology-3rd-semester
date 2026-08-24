@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>Antiviral Pharmacology Master Study Guide</title>
+  <title>Antiviral Pharmacology Master Guide — Student Edition</title>
   <style>
     :root {
       --primary: #0d9488;
@@ -346,6 +346,76 @@
       color: #1e293b;
     }
 
+    /* INTERACTIVE VISUALIZER WIDGET STYLES */
+    .interactive-visualizer {
+      background: #0f172a;
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 20px;
+      margin: 25px 0;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .visualizer-header {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stage-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .stage-btn {
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid #334155;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .stage-btn.active, .stage-btn:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .stage-display {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .stage-display h4 {
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .stage-display p {
+      color: #cbd5e1;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .drug-block-list {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
     @media (max-width: 640px) {
       body { padding: 8px 4px 50px; }
       .container { padding: 18px 12px; border-radius: 14px; }
@@ -370,6 +440,38 @@
     </header>
 
     <main>
+
+      <!-- ================= INTERACTIVE VISUALIZER WIDGET ================= -->
+      <div class="interactive-visualizer">
+        <div class="visualizer-header">
+          ⚡ Interactive Antiviral Target Visualizer
+        </div>
+        <p style="color: #94a3b8; font-size: 0.88rem; margin-bottom: 14px;">Click on any replication step below to highlight which antiviral drug classes block the virus at that exact point:</p>
+        
+        <div class="stage-buttons">
+          <button class="stage-btn active" onclick="showStage('entry')">1. Attachment &amp; Entry</button>
+          <button class="stage-btn" onclick="showStage('uncoating')">2. Uncoating</button>
+          <button class="stage-btn" onclick="showStage('rt')">3. Reverse Transcription</button>
+          <button class="stage-btn" onclick="showStage('integration')">4. Integration</button>
+          <button class="stage-btn" onclick="showStage('assembly')">5. Protease / Assembly</button>
+          <button class="stage-btn" onclick="showStage('release')">6. Viral Release</button>
+        </div>
+
+        <div class="stage-display" id="stageDisplay">
+          <h4 id="stageTitle">1. Attachment &amp; Entry Blockade</h4>
+          <p id="stageDesc">Prevents the virus from docking onto host cell receptors or fusing with the cell membrane.</p>
+          <div class="drug-block-list" id="stageDrugs">
+            <span class="drug-name-tag">Maraviroc (CCR5)</span>
+            <span class="drug-name-tag">Enfuvirtide (gp41)</span>
+            <span class="drug-name-tag">Palivizumab (RSV F-protein)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reference Visual Diagram -->
+      <p style="text-align: center; margin: 15px 0;">
+        <Image src="image_agent_tag_17748664004887017177" alt="Schematic diagram illustrating the mechanisms of action for key antiviral drugs inside host cells" caption="Antiviral Target Mechanisms Inside Host Cells" />
+      </p>
 
       <!-- ================= 1. RESPIRATORY VIRUSES ================= -->
       <section class="drug-class-card">
@@ -455,6 +557,11 @@
           <p><span class="drug-name-tag">Oseltamivir</span> &bull; <span class="drug-name-tag">Baloxavir</span> &bull; <span class="drug-name-tag">Amantadine</span> &bull; <span class="drug-name-tag">Palivizumab</span> &bull; <span class="drug-name-tag">Remdesivir</span></p>
         </div>
       </section>
+
+      <!-- Reference HIV Replication Diagram -->
+      <p style="text-align: center; margin: 15px 0;">
+        <Image src="image_agent_tag_17748664004887018776" alt="Comprehensive diagram detailing the seven steps of the HIV replication cycle" caption="The Complete HIV Replication Cycle" />
+      </p>
 
       <!-- ================= 2. HIV: NRTIs VS NtRTIs ================= -->
       <section class="drug-class-card">
@@ -649,6 +756,11 @@
         </div>
       </section>
 
+      <!-- Reference Herpesvirus Replication Diagram -->
+      <p style="text-align: center; margin: 15px 0;">
+        <Image src="image_agent_tag_17748664004887016279" alt="Detailed replication cycle diagram of Herpesviruses showing nuclear injection and DNA packaging" caption="Herpesvirus Nuclear Replication Cycle" />
+      </p>
+
       <!-- ================= 5. HERPESVIRUS & CMV ================= -->
       <section class="drug-class-card">
         <h2>5. Herpesvirus (HSV/VZV) &amp; Cytomegalovirus (CMV) Drugs</h2>
@@ -791,6 +903,44 @@
 
     </main>
   </div>
+
+  <script>
+    function showStage(stage) {
+      const title = document.getElementById('stageTitle');
+      const desc = document.getElementById('stageDesc');
+      const drugs = document.getElementById('stageDrugs');
+      
+      const buttons = document.querySelectorAll('.stage-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      if (stage === 'entry') {
+        title.innerText = '1. Attachment & Entry Blockade';
+        desc.innerText = 'Prevents the virus from docking onto host cell receptors or fusing with the cell membrane.';
+        drugs.innerHTML = '<span class="drug-name-tag">Maraviroc (CCR5)</span><span class="drug-name-tag">Enfuvirtide (gp41)</span><span class="drug-name-tag">Palivizumab (RSV F-protein)</span>';
+      } else if (stage === 'uncoating') {
+        title.innerText = '2. Uncoating Blockade';
+        desc.innerText = 'Blocks M2 proton ion channels to stop viral uncoating inside host cytoplasm.';
+        drugs.innerHTML = '<span class="drug-name-tag">Amantadine</span><span class="drug-name-tag">Rimantadine</span>';
+      } else if (stage === 'rt') {
+        title.innerText = '3. Reverse Transcription / Polymerase Blockade';
+        desc.innerText = 'Incorporates fake nucleosides/nucleotides into viral DNA/RNA chains to cause immediate chain termination.';
+        drugs.innerHTML = '<span class="drug-name-tag">NRTIs (Zidovudine, Abacavir)</span><span class="drug-name-tag">NtRTIs (Tenofovir)</span><span class="drug-name-tag">NNRTIs (Efavirenz)</span><span class="drug-name-tag">Acyclovir</span><span class="drug-name-tag">Sofosbuvir</span>';
+      } else if (stage === 'integration') {
+        title.innerText = '4. Integrase Strand Transfer Blockade';
+        desc.innerText = 'Chelates magnesium ions at the integrase catalytic core to prevent viral DNA from splicing into host chromosomes.';
+        drugs.innerHTML = '<span class="drug-name-tag">Bictegravir</span><span class="drug-name-tag">Dolutegravir</span><span class="drug-name-tag">Raltegravir</span>';
+      } else if (stage === 'assembly') {
+        title.innerText = '5. Protease / Assembly Blockade';
+        desc.innerText = 'Inhibits viral protease from chopping polyproteins into functional units, yielding immature non-infectious particles.';
+        drugs.innerHTML = '<span class="drug-name-tag">Darunavir</span><span class="drug-name-tag">Atazanavir</span><span class="drug-name-tag">Glecaprevir (HCV)</span>';
+      } else if (stage === 'release') {
+        title.innerText = '6. Viral Release Blockade';
+        desc.innerText = 'Inhibits neuraminidase to prevent newly built viruses from cleaving sialic acid anchors and spreading.';
+        drugs.innerHTML = '<span class="drug-name-tag">Oseltamivir</span><span class="drug-name-tag">Zanamivir</span>';
+      }
+    }
+  </script>
 
 </body>
 </html>
