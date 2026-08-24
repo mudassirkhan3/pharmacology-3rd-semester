@@ -23,7 +23,7 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #f8fafc; color: var(--text-dark); line-height: 1.6; padding: 16px 8px; min-height: 100vh; display: flex; flex-direction: column; justify-space: space-between; overflow-x: hidden; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #f8fafc; color: var(--text-dark); line-height: 1.6; padding: 16px 8px; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; overflow-x: hidden; }
     
     .container { max-width: 1000px; width: 100%; margin: 0 auto; background: var(--card-bg); padding: 30px 20px; border-radius: var(--radius); border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); backdrop-filter: blur(10px); animation: fadeIn 0.6s ease-out; }
     
@@ -395,7 +395,7 @@
         <p style="font-size: 0.88rem;">
           • <strong>Pro-drug:</strong> An inactive precursor that requires metabolic conversion (usually in the liver) to become pharmacologically active (e.g., Enalapril &rarr; Enalaprilat; Levodopa &rarr; Dopamine).<br>
           • <strong>Bioavailability (F):</strong> The fraction of unchanged drug that reaches systemic circulation. IV route = 100% (F = 1.0).<br>
-          • <strong>Therapeutic Index (TI):</strong> Ratio comparing toxic dose to effective dose ($TI = TD_{50} / ED_{50}$). Narrow TI drugs (e.g., Digoxin, Lithium, Warfarin) require strict blood lab monitoring!
+          • <strong>Therapeutic Index (TI):</strong> Ratio comparing toxic dose to effective dose (TI = TD50 / ED50). Narrow TI drugs (e.g., Digoxin, Lithium, Warfarin) require strict blood lab monitoring!
         </p>
       </div>
 
@@ -673,19 +673,19 @@
             <tr>
               <td><strong>1. Pharmacokinetics: Absorption</strong></td>
               <td>Process of drug movement from site of administration into systemic circulation across biological membranes.</td>
-              <td><strong>Bioavailability ($F$):</strong> Fraction of unchanged drug reaching circulation. IV = 100% ($F = 1.0$). Oral ($F < 1.0$) due to incomplete absorption/first-pass.</td>
+              <td><strong>Bioavailability (F):</strong> Fraction of unchanged drug reaching circulation. IV = 100% (F = 1.0). Oral (F &lt; 1.0) due to incomplete absorption/first-pass.</td>
               <td>Affected by gastric pH, GI motility, and food. Sublingual &amp; Parenteral routes bypass first-pass liver degradation!</td>
             </tr>
             <tr>
               <td><strong>2. Hepatic First-Pass Effect</strong></td>
               <td>Initial metabolic breakdown of orally ingested drugs in the liver via portal vein prior to reaching systemic circulation.</td>
-              <td><strong>First-Pass Extraction Ratio ($ER$):</strong> High $ER$ drugs (e.g., Nitroglycerin, Morphine, Propranolol) require significantly larger oral doses than IV doses.</td>
+              <td><strong>First-Pass Extraction Ratio (ER):</strong> High ER drugs (e.g., Nitroglycerin, Morphine, Propranolol) require significantly larger oral doses than IV doses.</td>
               <td>SL Nitroglycerin is given under the tongue to bypass portal hepatic circulation directly into superior vena cava!</td>
             </tr>
             <tr>
               <td><strong>3. Pharmacokinetics: Distribution</strong></td>
               <td>Reversible translocation of drug from vascular compartment into interstitial tissues and intracellular fluid spaces.</td>
-              <td><strong>Volume of Distribution ($V_d$):</strong> $V_d = \text{Dose} / C_0$. High $V_d$ (>42 L) indicates drug is extensively bound in lipophilic tissues.</td>
+              <td><strong>Volume of Distribution (Vd):</strong> Vd = Dose / C0. High Vd (&gt;42 L) indicates drug is extensively bound in lipophilic tissues.</td>
               <td><strong>Plasma Protein Binding:</strong> Only 'Free' (unbound) drug is active. Hypoalbuminemia leads to elevated free drug levels and severe drug toxicity!</td>
             </tr>
             <tr>
@@ -697,19 +697,19 @@
             <tr>
               <td><strong>5. Pharmacokinetics: Elimination</strong></td>
               <td>Irreversible removal of drug from body via Renal Glomerular Filtration, Tubular Secretion, and Biliary/Fecal excretion.</td>
-              <td><strong>Half-Life ($t_{1/2}$):</strong> Time required for drug concentration to drop by 50%.<br><strong>Steady State ($SS$):</strong> Reached after 4 to 5 half-lives.</td>
-              <td>Renal failure prolongs $t_{1/2}$; calculate Serum Creatinine / eGFR to adjust dosing intervals and prevent fatal toxicity.</td>
+              <td><strong>Half-Life (t1/2):</strong> Time required for drug concentration to drop by 50%.<br><strong>Steady State (SS):</strong> Reached after 4 to 5 half-lives.</td>
+              <td>Renal failure prolongs t1/2; calculate Serum Creatinine / eGFR to adjust dosing intervals and prevent fatal toxicity.</td>
             </tr>
             <tr>
               <td><strong>6. Pharmacodynamics: Receptor Theory</strong></td>
               <td>Study of biochemical/molecular interactions between drugs and target cellular receptors producing a biological response.</td>
-              <td><strong>Agonist:</strong> Full activation ($E_{max}$).<br><strong>Partial Agonist:</strong> Submaximal response ($E_{max} < 100\%$).<br><strong>Antagonist:</strong> Blocks receptor activity.</td>
-              <td>Competitive antagonists shift dose-response curve to the right (surmountable by higher agonist doses); Non-competitive antagonists decrease $E_{max}$.</td>
+              <td><strong>Agonist:</strong> Full activation (Emax).<br><strong>Partial Agonist:</strong> Submaximal response (Emax &lt; 100%).<br><strong>Antagonist:</strong> Blocks receptor activity.</td>
+              <td>Competitive antagonists shift dose-response curve to the right (surmountable by higher agonist doses); Non-competitive antagonists decrease Emax.</td>
             </tr>
             <tr>
-              <td><strong>7. Therapeutic Index ($TI$) &amp; Margin</strong></td>
+              <td><strong>7. Therapeutic Index (TI) &amp; Margin</strong></td>
               <td>Quantitative measure of relative drug safety comparing toxic dose to therapeutically effective dose.</td>
-              <td>$$TI = \frac{TD_{50}}{ED_{50}}$$ (Ratio of Median Toxic Dose to Median Effective Dose).</td>
+              <td>TI = TD50 / ED50 (Ratio of Median Toxic Dose to Median Effective Dose).</td>
               <td><strong>Narrow TI Drugs (HIGH ALERT):</strong> Digoxin, Lithium, Warfarin, Theophylline, Gentamicin. Require routine Therapeutic Drug Monitoring (TDM)!</td>
             </tr>
             <tr>
