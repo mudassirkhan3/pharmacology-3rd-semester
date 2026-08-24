@@ -205,21 +205,18 @@
     }
 
     .moa-step-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 2px dashed rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px dashed rgba(255, 255, 255, 0.25);
       border-radius: 12px;
       padding: 16px 12px;
       text-align: center;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      opacity: 0.4;
-      transform: scale(0.97);
+      transition: all 0.5s ease;
     }
 
     .moa-step-card .step-icon {
       font-size: 28px;
       margin-bottom: 6px;
-      filter: grayscale(80%);
-      transition: filter 0.4s ease;
+      transition: transform 0.3s ease;
     }
 
     .moa-step-card strong {
@@ -227,7 +224,7 @@
       color: #cbd5e1;
       font-size: 0.92rem;
       margin-bottom: 4px;
-      transition: color 0.4s ease;
+      transition: color 0.3s ease;
     }
 
     .moa-step-card span {
@@ -235,53 +232,41 @@
       color: #94a3b8;
       line-height: 1.4;
       display: block;
-      transition: color 0.4s ease;
+      transition: color 0.3s ease;
     }
 
-    /* ACCUMULATIVE / PROGRESSIVE HIGHLIGHT CLASSES (STAYS ON) */
-    .moa-step-card.active-lit-1 {
-      opacity: 1;
-      transform: scale(1.02) translateY(-2px);
-      background: rgba(37, 99, 235, 0.28);
+    /* SMOOTH ADDITIVE SEQUENTIAL HIGHLIGHTS (ALWAYS REMAINING VISIBLE) */
+    .moa-step-card.activated-step-1 {
+      background: rgba(37, 99, 235, 0.35);
       border: 2px solid #38bdf8;
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.35);
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.45);
     }
-    .moa-step-card.active-lit-1 .step-icon { filter: grayscale(0%); }
-    .moa-step-card.active-lit-1 strong { color: #60a5fa; }
-    .moa-step-card.active-lit-1 span { color: #ffffff; }
+    .moa-step-card.activated-step-1 strong { color: #60a5fa; }
+    .moa-step-card.activated-step-1 span { color: #ffffff; }
 
-    .moa-step-card.active-lit-2 {
-      opacity: 1;
-      transform: scale(1.02) translateY(-2px);
-      background: rgba(245, 158, 11, 0.28);
+    .moa-step-card.activated-step-2 {
+      background: rgba(245, 158, 11, 0.35);
       border: 2px solid #fbbf24;
-      box-shadow: 0 0 15px rgba(251, 191, 36, 0.35);
+      box-shadow: 0 0 18px rgba(251, 191, 36, 0.45);
     }
-    .moa-step-card.active-lit-2 .step-icon { filter: grayscale(0%); }
-    .moa-step-card.active-lit-2 strong { color: #fde047; }
-    .moa-step-card.active-lit-2 span { color: #ffffff; }
+    .moa-step-card.activated-step-2 strong { color: #fde047; }
+    .moa-step-card.activated-step-2 span { color: #ffffff; }
 
-    .moa-step-card.active-lit-3 {
-      opacity: 1;
-      transform: scale(1.02) translateY(-2px);
-      background: rgba(6, 182, 212, 0.28);
+    .moa-step-card.activated-step-3 {
+      background: rgba(6, 182, 212, 0.35);
       border: 2px solid #22d3ee;
-      box-shadow: 0 0 15px rgba(34, 211, 238, 0.35);
+      box-shadow: 0 0 18px rgba(34, 211, 238, 0.45);
     }
-    .moa-step-card.active-lit-3 .step-icon { filter: grayscale(0%); }
-    .moa-step-card.active-lit-3 strong { color: #67e8f9; }
-    .moa-step-card.active-lit-3 span { color: #ffffff; }
+    .moa-step-card.activated-step-3 strong { color: #67e8f9; }
+    .moa-step-card.activated-step-3 span { color: #ffffff; }
 
-    .moa-step-card.active-lit-4 {
-      opacity: 1;
-      transform: scale(1.04) translateY(-4px);
+    .moa-step-card.activated-step-4 {
       background: rgba(239, 68, 68, 0.35);
       border: 2px solid #f87171;
-      box-shadow: 0 0 22px rgba(248, 113, 113, 0.5);
+      box-shadow: 0 0 18px rgba(248, 113, 113, 0.45);
     }
-    .moa-step-card.active-lit-4 .step-icon { filter: grayscale(0%); }
-    .moa-step-card.active-lit-4 strong { color: #fca5a5; }
-    .moa-step-card.active-lit-4 span { color: #ffffff; }
+    .moa-step-card.activated-step-4 strong { color: #fca5a5; }
+    .moa-step-card.activated-step-4 span { color: #ffffff; }
 
     /* Drug Card Framework */
     .drug-class-card {
@@ -439,10 +424,10 @@
         <h2>1. General Introduction &amp; Mechanism of Action</h2>
         <p>Bacterial cells live under immense internal osmotic pressure. To prevent from bursting, they build a rigid structural shield called the <strong>peptidoglycan cell wall</strong>. Cell wall inhibitors target and disrupt this construction network. Because human host cells lack peptidoglycan walls entirely, these agents exhibit selective toxicity and are primarily <strong>bactericidal</strong> (killing active bacteria directly).</p>
         
-        <!-- CUMULATIVE SEQUENTIAL FLOW ANIMATION -->
+        <!-- CONTINUOUS ADDITIVE CHAIN ANIMATION -->
         <div class="moa-animation-widget">
           <div class="moa-widget-header">
-            <span class="moa-widget-title">⚡ Cumulative Flow Animation: Mechanism of Action</span>
+            <span class="moa-widget-title">⚡ Flow Animation: Mechanism of Action (Cell Wall Synthesis Inhibition)</span>
             <div class="moa-controls">
               <button class="ctrl-btn" id="playPauseBtn" onclick="toggleFlowAnimation()">Pause</button>
               <button class="ctrl-btn" onclick="restartFlowAnimation()">↻ Replay</button>
@@ -791,39 +776,37 @@
     </main>
   </div>
 
-  <!-- CUMULATIVE SEQUENTIAL FLOW SCRIPT -->
+  <!-- ADDITIVE SEQUENTIAL CASCADE ANIMATION SCRIPT -->
   <script>
-    let stepCount = 0;
+    let activeStepCount = 0;
     let isFlowRunning = true;
     let flowInterval = null;
 
-    function runCumulativeFlow() {
-      stepCount++;
+    function runAdditiveChainAnimation() {
+      activeStepCount++;
 
-      // When reaching step 5, pause briefly then reset all steps back to 0
-      if (stepCount > 4) {
-        // Hold full pathway for a brief pause before resetting
-        setTimeout(() => {
-          for (let i = 1; i <= 4; i++) {
-            const step = document.getElementById('step' + i);
-            if (step) step.className = 'moa-step-card';
+      // If we exceeded step 4, reset the sequence smoothly
+      if (activeStepCount > 4) {
+        for (let i = 1; i <= 4; i++) {
+          const step = document.getElementById('step' + i);
+          if (step) {
+            step.className = 'moa-step-card'; // Clear highlight
           }
-          stepCount = 0;
-        }, 800);
-        return;
+        }
+        activeStepCount = 1; // Start chain over from Step 1
       }
 
-      // Add cumulative class (Step 1 stays lit when Step 2 lights up!)
-      const currentElement = document.getElementById('step' + stepCount);
-      if (currentElement) {
-        currentElement.classList.add('active-lit-' + stepCount);
+      // Addively light up the current step while keeping previous steps ON
+      const currentStepElement = document.getElementById('step' + activeStepCount);
+      if (currentStepElement) {
+        currentStepElement.classList.add('activated-step-' + activeStepCount);
       }
     }
 
     function startAnimation() {
       if (!flowInterval) {
-        runCumulativeFlow();
-        flowInterval = setInterval(runCumulativeFlow, 1600); // 1.6 seconds per step building up
+        runAdditiveChainAnimation();
+        flowInterval = setInterval(runAdditiveChainAnimation, 1500); // 1.5 seconds step-by-step
       }
     }
 
@@ -844,17 +827,19 @@
     function restartFlowAnimation() {
       clearInterval(flowInterval);
       flowInterval = null;
-      stepCount = 0;
+      activeStepCount = 0;
       for (let i = 1; i <= 4; i++) {
         const step = document.getElementById('step' + i);
-        if (step) step.className = 'moa-step-card';
+        if (step) {
+          step.className = 'moa-step-card';
+        }
       }
       isFlowRunning = true;
       document.getElementById('playPauseBtn').innerText = 'Pause';
       startAnimation();
     }
 
-    // Auto-start continuous sequence on page load
+    // Auto-start animation on load
     window.addEventListener('DOMContentLoaded', () => {
       startAnimation();
     });
