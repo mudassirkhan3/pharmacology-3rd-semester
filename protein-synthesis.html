@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>Antimalarial Agents | Simplified Nursing Pharmacology</title>
+  <title>Protein Synthesis Inhibitors — Ultimate Student Guide</title>
   <style>
     :root {
-      --bg-gradient: radial-gradient(circle at 10% 20%, rgba(5, 150, 105, 0.08) 0%, rgba(16, 185, 129, 0.05) 40%, #f8fafc 90%);
-      --primary: #059669;
-      --primary-dark: #047857;
-      --primary-gradient: linear-gradient(135deg, #059669 0%, #047857 100%);
-      --accent: #10b981;
-      --card-bg: rgba(255, 255, 255, 0.98);
-      --card-border: #a7f3d0;
-      --text-main: #064e3b;
+      --primary: #7c3aed;
+      --primary-dark: #6d28d9;
+      --primary-gradient: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+      --accent: #06b6d4;
+      --bg-gradient: linear-gradient(180deg, #f5f3ff 0%, #f8fafc 100%);
       --text-dark: #0f172a;
       --text-muted: #475569;
-      --shadow-glow: 0 20px 40px -15px rgba(5, 150, 105, 0.2);
-      --mnemonics-bg: #ecfdf5;
-      --mnemonics-border: #a7f3d0;
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --card-border: #e2e8f0;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(124, 58, 237, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --mnemonics-bg: #f5f3ff;
+      --mnemonics-border: #ddd6fe;
       --warning-bg: #fff1f2;
       --warning-border: #fecdd3;
       --exam-badge-bg: #ef4444;
@@ -34,8 +34,7 @@
 
     body {
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: var(--bg-gradient);
-      background-attachment: fixed;
+      background: #f8fafc;
       color: var(--text-dark);
       line-height: 1.6;
       padding: 16px 8px 60px;
@@ -47,13 +46,15 @@
       max-width: 1050px;
       margin: 0 auto;
       background: var(--card-bg);
-      backdrop-filter: blur(16px);
       padding: 32px 20px;
       border-radius: var(--radius);
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      box-shadow: var(--shadow-glow);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.8s ease-out;
     }
 
+    /* Header Styling */
     header {
       margin-bottom: 25px;
     }
@@ -85,13 +86,13 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      box-shadow: 0 4px 10px rgba(5, 150, 105, 0.25);
+      box-shadow: 0 4px 10px rgba(124, 58, 237, 0.25);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .btn-header:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(5, 150, 105, 0.35);
+      box-shadow: 0 6px 14px rgba(124, 58, 237, 0.35);
     }
 
     .back-btn {
@@ -107,7 +108,7 @@
       font-weight: 700;
       font-size: 0.88rem;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
     }
     .back-btn:hover {
       background: var(--primary-dark);
@@ -125,14 +126,14 @@
     .badge {
       display: inline-block;
       padding: 6px 14px;
-      background: #ecfdf5;
-      color: var(--primary-dark);
-      font-weight: 800;
-      font-size: 0.8rem;
+      background: #ede9fe;
+      color: #6d28d9;
+      font-weight: 700;
+      font-size: 13px;
       border-radius: 50px;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
-      border: 1px solid #a7f3d0;
+      letter-spacing: 0.5px;
+      text-decoration: none;
     }
 
     /* EXAM HIGH-YIELD BADGE */
@@ -155,8 +156,8 @@
 
     h1 {
       font-size: 2.2rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, #064e3b 0%, var(--primary) 50%, var(--accent) 100%);
+      font-weight: 800;
+      background: linear-gradient(135deg, #1e293b 0%, #7c3aed 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 10px;
@@ -171,12 +172,12 @@
 
     h2 {
       font-size: 1.45rem;
-      color: var(--text-main);
+      color: #1e293b;
       margin: 36px 0 20px;
       display: flex;
       align-items: center;
       gap: 10px;
-      border-bottom: 2px solid #a7f3d0;
+      border-bottom: 2px solid #e2e8f0;
       padding-bottom: 10px;
       flex-wrap: wrap;
     }
@@ -186,15 +187,24 @@
       display: inline-block;
       width: 5px;
       height: 24px;
-      background: linear-gradient(to bottom, var(--primary), var(--accent));
+      background: var(--primary);
       border-radius: 4px;
       flex-shrink: 0;
     }
 
     h3 {
-      font-size: 1.15rem;
-      color: var(--primary-dark);
+      font-size: 1.2rem;
+      color: #1e293b;
+      margin: 22px 0 12px;
+    }
+
+    h4 {
+      font-size: 1.05rem;
+      color: #6d28d9;
       margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     p {
@@ -203,14 +213,144 @@
       font-size: 0.96rem;
     }
 
-    /* Section & Grid Styling */
+    /* Introduction Section */
+    .intro-box {
+      background: #ffffff;
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* CONTINUOUS ADDITIVE FLOW ANIMATION WIDGET */
+    .moa-animation-widget {
+      background: #0f172a;
+      border-radius: 16px;
+      padding: 20px 16px;
+      margin: 22px 0 10px;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 10px 25px rgba(124, 58, 237, 0.2);
+    }
+
+    .moa-widget-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .moa-widget-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #c084fc;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .moa-controls {
+      display: flex;
+      gap: 6px;
+    }
+
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ctrl-btn:hover { background: rgba(255, 255, 255, 0.3); }
+
+    .moa-flow-track {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      position: relative;
+    }
+
+    .moa-step-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px dashed rgba(255, 255, 255, 0.25);
+      border-radius: 12px;
+      padding: 16px 12px;
+      text-align: center;
+      transition: all 0.5s ease;
+    }
+
+    .moa-step-card .step-icon {
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .moa-step-card strong {
+      display: block;
+      color: #cbd5e1;
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+      transition: color 0.3s ease;
+    }
+
+    .moa-step-card span {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      line-height: 1.4;
+      display: block;
+      transition: color 0.3s ease;
+    }
+
+    /* SMOOTH ADDITIVE SEQUENTIAL HIGHLIGHTS */
+    .moa-step-card.activated-step-1 {
+      background: rgba(124, 58, 237, 0.35);
+      border: 2px solid #c084fc;
+      box-shadow: 0 0 18px rgba(192, 132, 252, 0.45);
+    }
+    .moa-step-card.activated-step-1 strong { color: #d8b4fe; }
+    .moa-step-card.activated-step-1 span { color: #ffffff; }
+
+    .moa-step-card.activated-step-2 {
+      background: rgba(6, 182, 212, 0.35);
+      border: 2px solid #22d3ee;
+      box-shadow: 0 0 18px rgba(34, 211, 238, 0.45);
+    }
+    .moa-step-card.activated-step-2 strong { color: #67e8f9; }
+    .moa-step-card.activated-step-2 span { color: #ffffff; }
+
+    .moa-step-card.activated-step-3 {
+      background: rgba(245, 158, 11, 0.35);
+      border: 2px solid #fbbf24;
+      box-shadow: 0 0 18px rgba(251, 191, 36, 0.45);
+    }
+    .moa-step-card.activated-step-3 strong { color: #fde047; }
+    .moa-step-card.activated-step-3 span { color: #ffffff; }
+
+    .moa-step-card.activated-step-4 {
+      background: rgba(239, 68, 68, 0.35);
+      border: 2px solid #f87171;
+      box-shadow: 0 0 18px rgba(248, 113, 113, 0.45);
+    }
+    .moa-step-card.activated-step-4 strong { color: #fca5a5; }
+    .moa-step-card.activated-step-4 span { color: #ffffff; }
+
+    /* Drug Card Framework */
     .drug-class-card {
       background: #ffffff;
       border: 2px solid var(--card-border);
       border-radius: 16px;
       padding: 24px 20px;
-      margin-bottom: 35px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-sm);
       position: relative;
     }
 
@@ -225,37 +365,7 @@
       border-radius: 16px 16px 0 0;
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-      margin: 20px 0;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin: 20px 0;
-    }
-
-    .card-box {
-      background: #ffffff;
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 18px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-    }
-
-    .card-box h3 {
-      color: var(--primary-dark);
-      margin-bottom: 8px;
-      font-size: 1.05rem;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
+    /* Sub-sections inside Cards */
     .sub-block {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
@@ -264,90 +374,19 @@
       margin: 18px 0;
     }
 
-    /* MOA ENHANCED STEP-BY-STEP BOX */
-    .moa-enhanced-box {
-      background: #f0fdf4;
-      border: 2px solid #a7f3d0;
-      border-radius: 14px;
-      padding: 20px;
-      margin: 18px 0;
-    }
-
-    .moa-enhanced-box h4 {
-      color: var(--text-main);
-      font-weight: 800;
-      font-size: 1.02rem;
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .moa-concept-summary {
-      font-size: 0.9rem;
-      color: #047857;
-      background: #dcfce7;
-      padding: 8px 12px;
-      border-radius: 8px;
-      margin-bottom: 14px;
-      font-weight: 600;
-    }
-
-    .moa-steps-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .moa-step-item {
-      background: #ffffff;
-      border: 1px solid #bbf7d0;
-      border-radius: 8px;
-      padding: 10px 14px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .moa-step-number {
-      background: var(--primary);
-      color: white;
-      font-weight: 900;
-      font-size: 0.78rem;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .moa-step-content strong {
-      display: block;
-      color: var(--text-main);
-      font-size: 0.9rem;
-    }
-
-    .moa-step-content span {
-      font-size: 0.84rem;
-      color: var(--text-muted);
-    }
-
-    /* ALIGNED MNEMONIC LIST LAYOUT */
+    /* ALIGNED USES & ADRs LIST LAYOUT */
     .mnemonic-box {
       background: var(--mnemonics-bg);
       border: 1px solid var(--mnemonics-border);
       border-left: 5px solid var(--primary);
       border-radius: 12px;
       padding: 18px;
-      margin: 18px 0;
+      margin: 16px 0;
     }
 
     .mnemonic-box h4 {
-      color: var(--primary-dark);
+      color: #6d28d9;
       font-weight: 800;
-      font-size: 1.02rem;
       margin-bottom: 12px;
     }
 
@@ -365,9 +404,9 @@
       background: #ffffff;
       padding: 10px 14px;
       border-radius: 8px;
-      border: 1px solid #a7f3d0;
+      border: 1px solid #ddd6fe;
       font-size: 0.92rem;
-      color: var(--text-main);
+      color: #4c1d95;
     }
 
     .letter-badge {
@@ -396,31 +435,32 @@
 
     .warning-box h4 {
       color: #9f1239;
-      font-size: 1rem;
-      margin-bottom: 6px;
     }
 
-    ul.bullet-list {
-      list-style-type: none;
-      padding-left: 0;
-      margin-bottom: 20px;
+    /* Grid for sub-drugs */
+    .subdrug-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
     }
 
-    ul.bullet-list li {
-      position: relative;
-      padding-left: 26px;
-      margin-bottom: 10px;
+    .subdrug-item {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .subdrug-item strong {
+      display: block;
+      color: #0f172a;
+      font-size: 0.9rem;
+    }
+
+    .subdrug-item span {
+      font-size: 0.82rem;
       color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    ul.bullet-list li::before {
-      content: '▪';
-      position: absolute;
-      left: 8px;
-      color: var(--primary);
-      font-weight: bold;
-      font-size: 1.1rem;
     }
 
     /* MODAL POPUP STYLES */
@@ -509,7 +549,7 @@
     .table-container {
       overflow-x: auto;
       border-radius: 10px;
-      border: 1px solid #a7f3d0;
+      border: 1px solid #ddd6fe;
       margin-top: 10px;
     }
 
@@ -518,11 +558,11 @@
       border-collapse: collapse;
       font-size: 0.85rem;
       text-align: left;
-      min-width: 650px;
+      min-width: 680px;
     }
 
     .summary-table th {
-      background: #064e3b;
+      background: #4c1d95;
       color: #ffffff;
       padding: 12px 14px;
       font-weight: 700;
@@ -536,7 +576,7 @@
     }
 
     .summary-table tr:nth-child(even) {
-      background: #f0fdf4;
+      background: #f5f3ff;
     }
 
     /* TREE DIAGRAM STYLES */
@@ -548,15 +588,15 @@
     }
 
     .tree-node {
-      background: #f0fdf4;
-      border: 1px solid #a7f3d0;
+      background: #f5f3ff;
+      border: 1px solid #ddd6fe;
       border-radius: 10px;
       padding: 14px;
     }
 
     .tree-title {
       font-weight: 800;
-      color: var(--primary-dark);
+      color: #6d28d9;
       font-size: 0.98rem;
       margin-bottom: 8px;
     }
@@ -568,13 +608,18 @@
     }
 
     .tree-tag {
-      background: #ecfdf5;
-      color: var(--primary-dark);
-      border: 1px solid #a7f3d0;
+      background: #ede9fe;
+      color: #4c1d95;
+      border: 1px solid #c4b5fd;
       padding: 4px 10px;
       border-radius: 6px;
       font-size: 0.85rem;
       font-weight: 700;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     /* MOBILE SPECIFIC IMPROVEMENTS */
@@ -585,7 +630,7 @@
       .subtitle { font-size: 0.9rem; }
       h2 { font-size: 1.2rem; }
       .drug-class-card { padding: 16px 12px; }
-      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .moa-flow-track { grid-template-columns: 1fr; }
       .aligned-item { padding: 8px 10px; font-size: 0.88rem; }
       .header-top { flex-direction: column; align-items: flex-start; }
       .modal-card { max-height: 95vh; margin: 4px; }
@@ -594,401 +639,670 @@
 </head>
 <body>
 
-<div class="container">
-  <a href="chapter2.html" class="back-btn">&larr; Back to Chapter 2 Hub</a>
-  
-  <header>
-    <div class="header-top">
-      <div class="badge-container">
-        <span class="badge">Simplified Student Study Guide</span>
-      </div>
-      <div class="header-actions">
-        <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
-        <button class="btn-header" onclick="toggleModal('treeModal')">🌳 Classification Tree</button>
-      </div>
-    </div>
+  <div class="container">
+    <a href="chapter2.html" class="back-btn">&larr; Back to Chapter 2 Hub</a>
     
-    <h1>Antimalarial Agents</h1>
-    <p class="subtitle">A clear nursing breakdown of medications used to prevent and treat malaria caused by <em>Plasmodium</em> parasites transmitted through female <em>Anopheles</em> mosquito bites.</p>
-  </header>
-
-  <main>
-
-    <!-- ================= 1. INTRODUCTION ================= -->
-    <section class="drug-class-card">
-      <h2>1. The 3 Stages of Malaria Parasites</h2>
-      <p>To understand antimalarials easily, look at where the parasite lives in the human body:</p>
+    <header>
+      <div class="header-top">
+        <div class="badge-container">
+          <span class="badge">Master Study Guide</span>
+        </div>
+        <div class="header-actions">
+          <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
+          <button class="btn-header" onclick="toggleModal('treeModal')">🌳 Classification Tree</button>
+        </div>
+      </div>
       
-      <div class="grid-3">
-        <div class="card-box">
-          <h3>🌱 1. Liver Stage</h3>
-          <p>Mosquito bites &rarr; Parasites enter human blood &rarr; Go directly to the <strong>liver</strong> to grow and multiply.</p>
-        </div>
-        <div class="card-box">
-          <h3>🩸 2. Red Blood Cell (RBC) Stage</h3>
-          <p>Parasites leave the liver &rarr; Invade <strong>red blood cells</strong> &rarr; Burst RBCs open, causing fever spikes and chills.</p>
-        </div>
-        <div class="card-box">
-          <h3>💤 3. Sleeping (Hypnozoite) Stage</h3>
-          <p><em>P. vivax</em> and <em>P. ovale</em> strains sleep in liver cells for months &rarr; Cause <strong>relapses later</strong> if not killed.</p>
-        </div>
-      </div>
-    </section>
+      <h1>Protein Synthesis Inhibitors</h1>
+      <p class="subtitle">An ultimate nursing pharmacology breakdown of 30S &amp; 50S ribosomal blockers: Classifications, Mechanisms, Mnemonics, and Clinical Safety Points.</p>
+    </header>
 
-    <!-- ================= 2. CLASSIFICATION & PROTOTYPES ================= -->
-    <section class="drug-class-card">
-      <h2>2. Drug Classifications Made Simple</h2>
-      <p>Antimalarial drugs are grouped by which parasite stage they attack:</p>
+    <main>
 
-      <div class="grid-3">
-        <div class="card-box">
-          <h3>🩸 Blood Killers (Schizontocides)</h3>
-          <p><strong>Drugs:</strong> Chloroquine, Artemether-Lumefantrine, Quinine, Mefloquine.</p>
-          <p style="margin-top: 8px; font-size: 0.88rem;">Kills parasites in <strong>red blood cells</strong>. Stops active fever and symptoms.</p>
-        </div>
-        <div class="card-box">
-          <h3>🧬 Liver &amp; Sleep Killers</h3>
-          <p><strong>Drugs:</strong> Primaquine, Tafenoquine.</p>
-          <p style="margin-top: 8px; font-size: 0.88rem;">Kills parasites in the <strong>liver</strong> and wipes out sleeping hypnozoites so malaria doesn't return.</p>
-        </div>
-        <div class="card-box">
-          <h3>🛡️ Travel Protection (Prophylactic)</h3>
-          <p><strong>Drugs:</strong> Atovaquone-Proguanil, Mefloquine.</p>
-          <p style="margin-top: 8px; font-size: 0.88rem;">Protects <strong>travelers</strong> before they get sick and stops mosquito transmission.</p>
-        </div>
-      </div>
-    </section>
+      <!-- Ribosomal Subunit Structure Diagram -->
+      <p style="text-align: center; margin: 15px 0;">
+        <Image src="image_agent_tag_5270075068812318261" alt="Diagram detailing prokaryotic 70S ribosome subunits 50S and 30S compared with eukaryotic 80S ribosome" caption="Ribosomal Subunit Structures (Prokaryotic 70S vs Eukaryotic 80S)" />
+      </p>
 
-    <!-- ================= 3. EASY MECHANISMS OF ACTION ================= -->
-    <section class="drug-class-card">
-      <h2>3. Simplified Mechanisms of Action (MOA)</h2>
-      <p>Here is exactly how each drug kills the parasite without confusing technical jargon:</p>
-
-      <!-- 3.1 CHLOROQUINE & QUINOLINES -->
-      <div class="moa-enhanced-box">
-        <h4>⚙️ 1. Chloroquine &amp; Quinine: "Poisoning the Parasite's Trash Can" <span class="exam-badge">IMP FOR EXAM</span></h4>
-        <div class="moa-concept-summary">💡 Simple Concept: The parasite eats blood (hemoglobin) and creates toxic trash (heme). Normally it turns toxic trash into safe crystals. Chloroquine stops this, so toxic trash builds up and poisons the parasite.</div>
-        <div class="moa-steps-list">
-          <div class="moa-step-item">
-            <div class="moa-step-number">1</div>
-            <div class="moa-step-content">
-              <strong>Parasite Eats Blood:</strong>
-              <span>The parasite enters red blood cells and eats hemoglobin for food.</span>
+      <!-- ================= 1. GENERAL INTRODUCTION & MECHANISM ================= -->
+      <section class="intro-box">
+        <h2>1. General Introduction &amp; Ribosomal Target Mechanism</h2>
+        <p>Bacteria rely heavily on protein translation to build functional enzymes, structures, and reproduce. Protein synthesis inhibitors target bacterial ribosomes (which differ from human ribosomes). They generally split into two primary ribosomal subunit targets: the <strong>30S Subunit</strong> and the <strong>50S Subunit</strong>. Most are <em>bacteriostatic</em> (halt growth), while Aminoglycosides are uniquely <em>bactericidal</em> (kill outright).</p>
+        
+        <!-- CONTINUOUS ADDITIVE CHAIN ANIMATION -->
+        <div class="moa-animation-widget">
+          <div class="moa-widget-header">
+            <span class="moa-widget-title">⚡ Flow Animation: Mechanism of Action (Protein Synthesis Inhibition)</span>
+            <div class="moa-controls">
+              <button class="ctrl-btn" id="playPauseBtn" onclick="toggleFlowAnimation()">Pause</button>
+              <button class="ctrl-btn" onclick="restartFlowAnimation()">↻ Replay</button>
             </div>
           </div>
-          <div class="moa-step-item">
-            <div class="moa-step-number">2</div>
-            <div class="moa-step-content">
-              <strong>Drug Traps Toxic Trash:</strong>
-              <span>Chloroquine enters the parasite and stops toxic free heme from being safely packaged into harmless crystals.</span>
+
+          <div id="moaTrack" class="moa-flow-track">
+            <div class="moa-step-card" id="step1">
+              <div class="step-icon">🔬</div>
+              <strong>Step 1: Entry</strong>
+              <span>Antibiotic penetrates the bacterial cell wall and outer membrane.</span>
             </div>
-          </div>
-          <div class="moa-step-item">
-            <div class="moa-step-number">3</div>
-            <div class="moa-step-content">
-              <strong>Parasite Explodes:</strong>
-              <span>Toxic heme accumulates to high levels, destroying the parasite from the inside out.</span>
+            <div class="moa-step-card" id="step2">
+              <div class="step-icon">🎯</div>
+              <strong>Step 2: Subunit Binding</strong>
+              <span>Binds specifically to either the 30S or 50S ribosomal subunits.</span>
+            </div>
+            <div class="moa-step-card" id="step3">
+              <div class="step-icon">🛑</div>
+              <strong>Step 3: Translation Halt</strong>
+              <span>Blocks mRNA reading, amino acid transfer, or peptide bond formation.</span>
+            </div>
+            <div class="moa-step-card" id="step4">
+              <div class="step-icon">🦠</div>
+              <strong>Step 4: Growth Arrest / Death</strong>
+              <span>Microbe fails to create structural proteins and stops growing or dies.</span>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- 3.2 ARTEMISININ DERIVATIVES -->
-      <div class="moa-enhanced-box">
-        <h4>⚙️ 2. Artemisinin Combination (Coartem / Artemether): "Free Radical Bombs"</h4>
-        <div class="moa-concept-summary">💡 Simple Concept: Reacts with iron inside the parasite to launch free radical "bombs" that tear apart parasite proteins instantly.</div>
-        <div class="moa-steps-list">
-          <div class="moa-step-item">
-            <div class="moa-step-number">1</div>
-            <div class="moa-step-content">
-              <strong>Reacts with Iron:</strong>
-              <span>The drug enters the parasite and reacts with internal iron atoms.</span>
+      <!-- ================= 2. AMINOGLYCOSIDES ================= -->
+      <section class="drug-class-card">
+        <h2>2. Aminoglycosides (The "-ycin" / "-micin" High-Hitters)</h2>
+        
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Gentamicin</strong>
+              <span>Standard IV/IM agent for severe gram-negative rod infections.</span>
             </div>
-          </div>
-          <div class="moa-step-item">
-            <div class="moa-step-number">2</div>
-            <div class="moa-step-content">
-              <strong>Releases Toxic Free Radicals:</strong>
-              <span>This reaction generates unstable free radicals (chemical explosive bombs).</span>
+            <div class="subdrug-item">
+              <strong>Amikacin</strong>
+              <span>Broadest spectrum; used for resistant hospital strains.</span>
             </div>
-          </div>
-          <div class="moa-step-item">
-            <div class="moa-step-number">3</div>
-            <div class="moa-step-content">
-              <strong>Rapid Blood Clearance:</strong>
-              <span>Free radicals destroy essential parasite cell membranes and enzymes within hours.</span>
+            <div class="subdrug-item">
+              <strong>Tobramycin</strong>
+              <span>Highly effective against <em>Pseudomonas aeruginosa</em> (inhaled for cystic fibrosis).</span>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3.3 ATOVAQUONE-PROGUANIL -->
-      <div class="moa-enhanced-box">
-        <h4>⚙️ 3. Atovaquone + Proguanil (Malarone): "Shutting Off Power &amp; DNA"</h4>
-        <div class="moa-concept-summary">💡 Simple Concept: Two drugs work together as a team—one shuts off the parasite's power plant (mitochondria), and the other blocks its DNA factory.</div>
-        <div class="moa-steps-list">
-          <div class="moa-step-item">
-            <div class="moa-step-number">1</div>
-            <div class="moa-step-content">
-              <strong>Atovaquone Cuts Power:</strong>
-              <span>Shuts down mitochondrial electron transport, starving the parasite of cellular energy.</span>
-            </div>
-          </div>
-          <div class="moa-step-item">
-            <div class="moa-step-number">2</div>
-            <div class="moa-step-content">
-              <strong>Proguanil Blocks DNA:</strong>
-              <span>Inhibits folate enzymes needed by the parasite to build new DNA.</span>
+            <div class="subdrug-item">
+              <strong>Streptomycin</strong>
+              <span>Historic agent used for tuberculosis and plague.</span>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- 3.4 PRIMAQUINE -->
-      <div class="moa-enhanced-box">
-        <h4>⚙️ 4. Primaquine: "Hunting Sleeping Parasites in the Liver"</h4>
-        <div class="moa-concept-summary">💡 Simple Concept: The only drug that travels deep into liver tissue to wake up and kill sleeping parasites (hypnozoites) so malaria never comes back.</div>
-        <div class="moa-steps-list">
-          <div class="moa-step-item">
-            <div class="moa-step-number">1</div>
-            <div class="moa-step-content">
-              <strong>Penetrates Liver Tissue:</strong>
-              <span>Concentrates directly inside infected liver hepatocytes.</span>
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <p>Irreversibly binds to the <strong>30S ribosomal subunit</strong>, causing misreading of the genetic code and premature termination of protein synthesis. Highly unique as a <strong>bactericidal</strong> protein synthesis inhibitor.</p>
+        </div>
+
+        <!-- ALIGNED USES MNEMONIC -->
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "A.M.I.N.O."</h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>erobic gram-negative bacilli sepsis</span></div>
+            <div class="aligned-item"><span class="letter-badge">M</span><span><strong>M</strong>ycobacterial infections (Streptomycin)</span></div>
+            <div class="aligned-item"><span class="letter-badge">I</span><span><strong>I</strong>ntensive care synergism with beta-lactams</span></div>
+            <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>eonatal empirical sepsis</span></div>
+            <div class="aligned-item"><span class="letter-badge">O</span><span><strong>O</strong>cular/UTI topical treatments</span></div>
+          </div>
+        </div>
+
+        <!-- ALIGNED ADRs MNEMONIC -->
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "O.T.O.N.E.P.H.R.O." <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">O</span><span><strong>O</strong>totoxicity (irreversible hearing loss/tinnitus)</span></div>
+            <div class="aligned-item"><span class="letter-badge">T</span><span><strong>T</strong>oxicity to kidneys (acute tubular necrosis)</span></div>
+            <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>euromuscular blockade (can cause respiratory paralysis)</span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>lectrolyte wasting (Magnesium/Potassium)</span></div>
+            <div class="aligned-item"><span class="letter-badge">P</span><span><strong>P</strong>eak and trough monitoring required</span></div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Contraindications</h4>
+          <p>Absolute caution with pre-existing renal impairment, myasthenia gravis (worsens muscle weakness), and co-administration with loop diuretics or vancomycin.</p>
+        </div>
+
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; <strong>Therapeutic Drug Monitoring:</strong> <span class="exam-badge">IMP FOR EXAM</span> Always draw peak and trough blood levels to prevent kidney damage and hearing loss.<br>&bull; Encourage high fluid intake (unless contraindicated) to protect renal tubules.</p>
+        </div>
+      </section>
+
+      <!-- ================= 3. TETRACYCLINES ================= -->
+      <section class="drug-class-card">
+        <h2>3. Tetracyclines (The "-cycline" Family)</h2>
+
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Doxycycline</strong>
+              <span>Long-acting, oral/IV. First-line for Lyme disease, acne, and atypical bugs.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Minocycline</strong>
+              <span>Lipophilic, penetrates skin and CNS well; used for severe acne and RA.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Tetracycline</strong>
+              <span>Classic short-acting oral agent (less frequently used today due to resistance).</span>
             </div>
           </div>
-          <div class="moa-step-item">
-            <div class="moa-step-number">2</div>
-            <div class="moa-step-content">
-              <strong>Destroys Sleeping Hypnozoites:</strong>
-              <span>Creates oxidative stress that kills latent <em>P. vivax</em> and <em>P. ovale</em> parasites, securing a complete radical cure.</span>
+        </div>
+
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action</h4>
+          <p>Reversibly binds to the <strong>30S ribosomal subunit</strong>, blocking the access of aminoacyl-tRNA to the mRNA-ribosome complex. Functions as a <strong>bacteriostatic</strong> agent.</p>
+        </div>
+
+        <!-- ALIGNED USES MNEMONIC -->
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "T.E.T.R.A."</h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">T</span><span><strong>T</strong>ick-borne infections (Lyme disease, Rocky Mountain spotted fever)</span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>pidemic cholera and anthrax prophylaxis</span></div>
+            <div class="aligned-item"><span class="letter-badge">T</span><span><strong>T</strong>rachoma and chlamydia infections</span></div>
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>osacea and severe inflammatory acne</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>typical pneumonias</span></div>
+          </div>
+        </div>
+
+        <!-- ALIGNED ADRs MNEMONIC -->
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "T.E.E.T.H." <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">T</span><span><strong>T</strong>ooth discoloration and enamel hypoplasia in young children</span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>pigastric burning and esophageal ulcerations</span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>rythema from severe photosensitivity</span></div>
+            <div class="aligned-item"><span class="letter-badge">T</span><span><strong>T</strong>eratogenic effects in pregnancy</span></div>
+            <div class="aligned-item"><span class="letter-badge">H</span><span><strong>H</strong>epatotoxicity with high doses</span></div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Contraindications <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <p>Contraindicated in pregnant women, breastfeeding mothers, and children under 8 years of age due to permanent bone and teeth binding.</p>
+        </div>
+
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; <strong>Chelation Warning:</strong> Do not administer with dairy products, antacids, or iron supplements (calcium and multi-valent cations bind tetracyclines and block absorption).<br>&bull; Instruct patients to take pills with a full glass of water and remain upright for 30 minutes to prevent esophageal ulcers.</p>
+        </div>
+      </section>
+
+      <!-- ================= 4. MACROLIDES ================= -->
+      <section class="drug-class-card">
+        <h2>4. Macrolides ("The -thromycin Family")</h2>
+
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Azithromycin</strong>
+              <span>Z-Pak. Long tissue half-life, minimal CYP450 drug interactions.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Clarithromycin</strong>
+              <span>Enhanced coverage for H. pylori and respiratory bugs; strong CYP inhibitor.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Erythromycin</strong>
+              <span>Classic older agent; powerful GI motility stimulant, highly prone to interactions.</span>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ================= 4. CLINICAL USES & ALIGNED MNEMONIC ================= -->
-    <section class="drug-class-card">
-      <h2>4. Clinical Uses &amp; Therapeutic Indications</h2>
-      <p>How doctors and nurses choose antimalarials in clinical practice:</p>
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action</h4>
+          <p>Reversibly binds to the <strong>50S ribosomal subunit</strong>, inhibiting translocation and peptide chain elongation. Primarily <strong>bacteriostatic</strong> (can be bactericidal at high concentrations against sensitive organisms).</p>
+        </div>
 
-      <ul class="bullet-list">
-        <li><strong>Treating Acute Fever Attacks:</strong> Artemether-Lumefantrine (Coartem) is 1st-line for severe <em>P. falciparum</em> malaria; Chloroquine is used for basic sensitive strains.</li>
-        <li><strong>Preventing Infection in Travelers:</strong> Atovaquone-Proguanil (Malarone) or Doxycycline taken daily by travelers.</li>
-        <li><strong>Preventing Relapses (Radical Cure):</strong> 14-day daily course of Primaquine after blood symptoms disappear.</li>
-      </ul>
-
-      <!-- ALIGNED USES MNEMONIC -->
-      <div class="mnemonic-box">
-        <h4>💡 Mnemonic for Clinical Goals: "T.P.R."</h4>
-        <div class="aligned-mnemonic-list">
-          <div class="aligned-item">
-            <span class="letter-badge">T</span>
-            <span><strong>T</strong>reatment of acute red blood cell attacks (ACTs / Chloroquine)</span>
-          </div>
-          <div class="aligned-item">
-            <span class="letter-badge">P</span>
-            <span><strong>P</strong>rophylaxis for travelers going to malaria-endemic countries (Malarone / Mefloquine)</span>
-          </div>
-          <div class="aligned-item">
-            <span class="letter-badge">R</span>
-            <span><strong>R</strong>adical cure of sleeping liver hypnozoites to stop relapses (Primaquine) <span class="exam-badge">IMP FOR EXAM</span></span>
+        <!-- ALIGNED USES MNEMONIC -->
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "M.A.C.R.O."</h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">M</span><span><strong>M</strong>ycoplasma and atypical community-acquired pneumonia</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>typical mycobacterial infections (MAC in HIV)</span></div>
+            <div class="aligned-item"><span class="letter-badge">C</span><span><strong>C</strong>hlamydia and pertussis (whooping cough)</span></div>
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>espiratory tract streptococcal infections in penicillin-allergic patients</span></div>
+            <div class="aligned-item"><span class="letter-badge">O</span><span><strong>O</strong>titis media</span></div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ================= 5. ADVERSE REACTIONS & ALIGNED MNEMONIC ================= -->
-    <section class="drug-class-card">
-      <h2>5. Side Effects &amp; Nursing Safety</h2>
-      
-      <div class="grid-2">
-        <div class="card-box">
-          <h3>⚠️ Key Drug Toxicity Signals</h3>
-          <p><strong>Quinine (Cinchonism):</strong> Tinnitus (ear ringing), headache, dizziness, and visual blurring.<br>
-          <strong>Mefloquine (Neuropsychiatric):</strong> Vivid nightmares, severe anxiety, confusion, and psychosis. <span class="exam-badge">IMP FOR EXAM</span></p>
-        </div>
-        <div class="card-box">
-          <h3>⚠️ Organ Toxicity Signals</h3>
-          <p><strong>Chloroquine (Eye Toxicity):</strong> Irreversible retinal eye damage with prolonged high-dose use.<br>
-          <strong>Primaquine (Blood Rupture):</strong> Causes acute red blood cell breakdown (hemolysis) in G6PD deficiency.</p>
-        </div>
-      </div>
-
-      <!-- ALIGNED ADRs MNEMONIC -->
-      <div class="mnemonic-box">
-        <h4>💡 Mnemonic for Antimalarial Complications: "C.H.I.N.A."</h4>
-        <div class="aligned-mnemonic-list">
-          <div class="aligned-item">
-            <span class="letter-badge">C</span>
-            <span><strong>C</strong>inchonism with Quinine (ear ringing, headache, vision loss) <span class="exam-badge">IMP FOR EXAM</span></span>
-          </div>
-          <div class="aligned-item">
-            <span class="letter-badge">H</span>
-            <span><strong>H</strong>emolysis risk in G6PD deficiency with Primaquine <span class="exam-badge">IMP FOR EXAM</span></span>
-          </div>
-          <div class="aligned-item">
-            <span class="letter-badge">I</span>
-            <span><strong>I</strong>ntravenous IV Quinine monitoring (causes severe low blood sugar &amp; low blood pressure)</span>
-          </div>
-          <div class="aligned-item">
-            <span class="letter-badge">N</span>
-            <span><strong>N</strong>ightmares, anxiety, and psychosis with Mefloquine</span>
-          </div>
-          <div class="aligned-item">
-            <span class="letter-badge">A</span>
-            <span><strong>A</strong>rrhythmias &amp; QTc prolongation on ECG (Quinine &amp; Lumefantrine)</span>
+        <!-- ALIGNED ADRs MNEMONIC -->
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "M.A.C.H.I.N.E."</h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">M</span><span><strong>M</strong>otility issues (severe GI upset, cramping, nausea from erythromycin)</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>rrhythmias (QT prolongation and fatal Torsades de Pointes) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+            <div class="aligned-item"><span class="letter-badge">C</span><span><strong>C</strong>holestatic hepatitis</span></div>
+            <div class="aligned-item"><span class="letter-badge">H</span><span><strong>H</strong>earing loss / ototoxicity with high IV doses</span></div>
+            <div class="aligned-item"><span class="letter-badge">I</span><span><strong>I</strong>nteraction via CYP450 enzyme inhibition</span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>osinophilia / Allergic rash</span></div>
           </div>
         </div>
+
+        <div class="warning-box">
+          <h4>🚫 Contraindications</h4>
+          <p>Use with extreme caution in patients with baseline QT prolongation, cardiac arrhythmias, or severe hepatic impairment.</p>
+        </div>
+
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; Monitor ECG for QTc interval prolongation if given IV or combined with other cardiac medications.<br>&bull; Azithromycin is typically dosed as a convenient 3-day or 5-day taper course due to its long tissue retention.</p>
+        </div>
+      </section>
+
+      <!-- ================= 5. LINCOSAMIDES ================= -->
+      <section class="drug-class-card">
+        <h2>5. Lincosamides (Clindamycin)</h2>
+
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Clindamycin</strong>
+              <span>Primary lincosamide. Excellent tissue penetration for bone, skin, and anaerobic infections.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action</h4>
+          <p>Binds exclusively to the <strong>50S ribosomal subunit</strong>, preventing peptide bond formation and halting protein elongation. Primarily <strong>bacteriostatic</strong>.</p>
+        </div>
+
+        <!-- ALIGNED USES MNEMONIC -->
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "C.L.I.N.D.A."</h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">C</span><span><strong>C</strong>ellulitis and deep skin/soft tissue infections</span></div>
+            <div class="aligned-item"><span class="letter-badge">L</span><span><strong>L</strong>ung abscesses and aspiration pneumonia</span></div>
+            <div class="aligned-item"><span class="letter-badge">I</span><span><strong>I</strong>ntra-abdominal anaerobic coverage</span></div>
+            <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>ecrotizing fasciitis (suppresses toxin production)</span></div>
+            <div class="aligned-item"><span class="letter-badge">D</span><span><strong>D</strong>ental and oral bone infections</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>lternative for penicillin-allergic staph/strep</span></div>
+          </div>
+        </div>
+
+        <!-- ALIGNED ADRs MNEMONIC -->
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "C.D.I.F.F." <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">C</span><span><strong>C</strong>lostridioides difficile overgrowth and severe pseudomembranous colitis</span></div>
+            <div class="aligned-item"><span class="letter-badge">D</span><span><strong>D</strong>iarrhea and severe abdominal cramping</span></div>
+            <div class="aligned-item"><span class="letter-badge">I</span><span><strong>I</strong>njection site thrombophlebitis</span></div>
+            <div class="aligned-item"><span class="letter-badge">F</span><span><strong>F</strong>ouling metallic taste</span></div>
+            <div class="aligned-item"><span class="letter-badge">F</span><span><strong>F</strong>requent hypersensitivity rashes</span></div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Contraindications</h4>
+          <p>Avoid in patients with a history of inflammatory bowel disease (IBD) or antibiotic-associated colitis due to extreme risk of C. diff triggering.</p>
+        </div>
+
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; Educate patients to immediately report watery or bloody diarrhea during or weeks after finishing treatment.<br>&bull; Never administer IV push; always infuse diluted over at least 10–60 minutes.</p>
+        </div>
+      </section>
+
+      <!-- ================= 6. OXAZOLIDINONES ================= -->
+      <section class="drug-class-card">
+        <h2>6. Oxazolidinones (Linezolid &amp; Tedizolid)</h2>
+
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Linezolid</strong>
+              <span>First-line oral/IV heavy-hitter for multi-drug resistant Gram-positive bugs.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Tedizolid</strong>
+              <span>Second-generation oxazolidinone with once-daily dosing for skin infections.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action</h4>
+          <p>Binds to the 50S ribosomal subunit at a unique site close to the 30S interface, preventing the formation of the initial <strong>70S initiation complex</strong>. Highly effective against resistant strains.</p>
+        </div>
+
+        <!-- ALIGNED USES MNEMONIC -->
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "V.R.S.A."</h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">V</span><span><strong>V</strong>ancomycin-Resistant Staphylococcus Aureus (VRSA)</span></div>
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>esistant Enterococcus faecium (VRE) infections</span></div>
+            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>evere hospital-acquired pneumonia</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>naerobic and complicated skin structure infections</span></div>
+          </div>
+        </div>
+
+        <!-- ALIGNED ADRs MNEMONIC -->
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "B.O.N.E."</h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">B</span><span><strong>B</strong>one marrow suppression (thrombocytopenia and anemia during prolonged use)</span></div>
+            <div class="aligned-item"><span class="letter-badge">O</span><span><strong>O</strong>ptic neuritis with prolonged therapy (&gt;2 weeks)</span></div>
+            <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>europathy (peripheral nerve damage)</span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>nteric serotonin syndrome risk when mixed with SSRI antidepressants (weak MAOI activity) <span class="exam-badge">IMP FOR EXAM</span></span></div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Contraindications <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <p>Do not co-administer with MAO inhibitors or SSRI antidepressants without extreme caution due to risk of dangerous serotonin syndrome and severe hypertension.</p>
+        </div>
+
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; Monitor weekly complete blood counts (CBC) for platelet drops if treatment exceeds 10–14 days.<br>&bull; Instruct patients to avoid foods exceptionally high in tyramine (aged cheeses, cured meats) while on therapy.</p>
+        </div>
+      </section>
+
+      <!-- ================= 7. GLYCYLCYCLINES ================= -->
+      <section class="drug-class-card">
+        <h2>7. Glycylcyclines (Tigecycline)</h2>
+
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Tigecycline</strong>
+              <span>Derivation of minocycline designed to bypass traditional tetracycline efflux pumps.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action</h4>
+          <p>Binds to the <strong>30S ribosomal subunit</strong> with a binding affinity up to 5 times stronger than standard tetracyclines, overcoming major resistance mechanisms.</p>
+        </div>
+
+        <!-- ALIGNED USES MNEMONIC -->
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "B.R.O.A.D."</h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">B</span><span><strong>B</strong>road-spectrum multidrug-resistant intra-abdominal infections</span></div>
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>esistant complicated skin and soft tissue infections</span></div>
+            <div class="aligned-item"><span class="letter-badge">O</span><span><strong>O</strong>utpatient/inpatient severe polymicrobial sepsis</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>cinetobacter and CRE coverage</span></div>
+            <div class="aligned-item"><span class="letter-badge">D</span><span><strong>D</strong>rug-resistant superbugs</span></div>
+          </div>
+        </div>
+
+        <!-- ALIGNED ADRs MNEMONIC -->
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "N.A.U.S.E.A."</h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>oticeable, severe nausea and projectile vomiting</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>llergic hypersensitivity</span></div>
+            <div class="aligned-item"><span class="letter-badge">U</span><span><strong>U</strong>pset stomach</span></div>
+            <div class="aligned-item"><span class="letter-badge">S</span><span><strong>S</strong>evere acute pancreatitis reports</span></div>
+            <div class="aligned-item"><span class="letter-badge">E</span><span><strong>E</strong>levated liver enzymes</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>zotemia</span></div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Contraindications</h4>
+          <p>Avoid in pregnant women and pediatric patients under 8 (same tooth/bone binding rules as tetracyclines). Boxed warning for increased all-cause mortality risk in clinical trials.</p>
+        </div>
+
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; Administer antiemetics preemptively prior to infusion, as severe nausea is extremely common with tigecycline.<br>&bull; Reconstitute IV vials carefully to a yellow-orange color before further dilution.</p>
+        </div>
+      </section>
+
+      <!-- ================= 8. CHLORAMPHENICOL & OTHERS ================= -->
+      <section class="drug-class-card">
+        <h2>8. Chloramphenicol &amp; Other Protein Synthesis Inhibitors</h2>
+
+        <div class="sub-block">
+          <h4>📂 Classification &amp; Key Examples</h4>
+          <div class="subdrug-grid">
+            <div class="subdrug-item">
+              <strong>Chloramphenicol</strong>
+              <span>Historic broad-spectrum 50S inhibitor reserved for life-threatening emergencies.</span>
+            </div>
+            <div class="subdrug-item">
+              <strong>Quinupristin / Dalfopristin</strong>
+              <span>Streptogramin combination targeting 50S subunit for VRE bacteremia.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h4>⚙️ Mechanism of Action</h4>
+          <p>Chloramphenicol binds reversibly to the <strong>50S ribosomal subunit</strong>, inhibiting peptide bond formation (peptidyl transferase blockade). Streptogramins bind two distinct sites on the 50S subunit for synergistic bactericidal action.</p>
+        </div>
+
+        <!-- ALIGNED USES MNEMONIC -->
+        <div class="mnemonic-box">
+          <h4>💡 Uses with Mnemonic: "B.R.A.I.N."</h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">B</span><span><strong>B</strong>rain abscesses and severe bacterial meningitis in penicillin-allergic patients</span></div>
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>ocky Mountain spotted fever in pregnant patients where tetracyclines are forbidden</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>lternative for multi-drug resistant typhoid fever</span></div>
+            <div class="aligned-item"><span class="letter-badge">I</span><span><strong>I</strong>ntraocular severe infections (excellent eye drop penetration)</span></div>
+            <div class="aligned-item"><span class="letter-badge">N</span><span><strong>N</strong>osocomial life-threatening infections</span></div>
+          </div>
+        </div>
+
+        <!-- ALIGNED ADRs MNEMONIC -->
+        <div class="mnemonic-box">
+          <h4>💡 Adverse Effects with Mnemonic: "G.R.A.Y." <span class="exam-badge">IMP FOR EXAM</span></h4>
+          <div class="aligned-mnemonic-list">
+            <div class="aligned-item"><span class="letter-badge">G</span><span><strong>G</strong>ray Baby Syndrome in neonates (hypotension, cyanosis, abdominal distension due to immature liver glucuronidation)</span></div>
+            <div class="aligned-item"><span class="letter-badge">R</span><span><strong>R</strong>ed bone marrow suppression (dose-dependent reversible anemia &amp; irreversible, fatal aplastic anemia)</span></div>
+            <div class="aligned-item"><span class="letter-badge">A</span><span><strong>A</strong>llergic skin reactions</span></div>
+            <div class="aligned-item"><span class="letter-badge">Y</span><span><strong>Y</strong>east (candida) superinfections</span></div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>🚫 Contraindications</h4>
+          <p>Avoid systemic use when safer alternatives exist. Strictly contraindicated for minor infections or routine prophylaxis due to the high risk of fatal aplastic anemia.</p>
+        </div>
+
+        <div class="sub-block">
+          <h4>⭐ Important Points for Nurses</h4>
+          <p>&bull; Monitor blood levels and perform frequent serial baseline blood cell counts (CBC) during systemic therapy.<br>&bull; In neonates, monitor serum levels closely to prevent toxic drug accumulation and Gray Baby Syndrome.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ================= MASTER SUMMARY TABLE MODAL ================= -->
+  <div class="modal-overlay" id="tableModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>📊 Master Summary Table: Protein Synthesis Inhibitors</h3>
+        <button class="close-btn" onclick="toggleModal('tableModal')">&times;</button>
       </div>
-    </section>
-
-    <!-- ================= 6. PHARMACOKINETICS & CONTRAINDICATIONS ================= -->
-    <section class="drug-class-card">
-      <h2>6. Crucial Clinical Safety Rules</h2>
-      
-      <div class="sub-block">
-        <h4>🔬 Must-Know Exam &amp; Practice Rules</h4>
-        <p>&bull; <strong>G6PD Lab Test Mandatory:</strong> <span class="exam-badge">IMP FOR EXAM</span> Always check for Glucose-6-Phosphate Dehydrogenase (G6PD) deficiency before giving Primaquine. Giving it to a G6PD-deficient patient causes massive red blood cell destruction!<br>
-        &bull; <strong>Always Combine Artemisinins (ACTs):</strong> Artemisinins act fast but leave the body quickly (&lt; 2 hours). They must be paired with a long-acting partner drug (like Lumefantrine) to prevent malaria resistance.<br>
-        &bull; <strong>Give with Fatty Meals:</strong> <span class="exam-badge">IMP FOR EXAM</span> Lumefantrine and Atovaquone absorb up to 16 times better when taken with milk, food, or fatty meals.</p>
-      </div>
-
-      <div class="warning-box">
-        <h4>🚫 Absolute Contraindications</h4>
-        <p>&bull; <strong>Primaquine:</strong> Strictly forbidden in G6PD deficiency, pregnancy, and infants under 6 months.<br>
-        &bull; <strong>Mefloquine:</strong> Strictly forbidden in patients with a history of depression, anxiety, seizures, or psychiatric disorders.</p>
-      </div>
-    </section>
-
-    <!-- ================= 7. KEY NURSING TAKEAWAYS ================= -->
-    <section class="drug-class-card">
-      <h2>7. Key Nursing Responsibilities</h2>
-      
-      <ul class="bullet-list">
-        <li><strong>Check G6PD Results First:</strong> Verify lab values before starting Primaquine. Watch for dark/tea-colored urine or severe yellowing of skin (signs of RBC destruction).</li>
-        <li><strong>Monitor Cardiac Rhythm &amp; Blood Sugar:</strong> Keep patients receiving IV Quinine on continuous heart monitoring (ECG). Check blood glucose levels frequently because IV Quinine causes severe hypoglycemia!</li>
-        <li><strong>Educate on Eye Exams:</strong> Patients taking long-term Chloroquine require baseline and yearly ophthalmology retinal eye exams.</li>
-        <li><strong>Counsel Travelers on Compliance:</strong> Instruct travelers to take prophylactic meds with food, start before traveling, and complete all doses after returning home (e.g., continue Malarone for 7 days or Doxycycline for 4 weeks post-trip).</li>
-      </ul>
-    </section>
-  </main>
-</div>
-
-<!-- ================= MASTER SUMMARY TABLE MODAL ================= -->
-<div class="modal-overlay" id="tableModal">
-  <div class="modal-card">
-    <div class="modal-header">
-      <h3>📊 Master Antimalarial Summary Table</h3>
-      <button class="close-btn" onclick="toggleModal('tableModal')">&times;</button>
-    </div>
-    <div class="modal-body">
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;">High-yield comparison table matching stage targets, drug examples, mechanisms, clinical uses, and critical safety warnings.</p>
-      <div class="table-container">
-        <table class="summary-table">
-          <thead>
-            <tr>
-              <th>Target Stage</th>
-              <th>Representative Drugs</th>
-              <th>Mechanism of Action</th>
-              <th>Primary Clinical Uses</th>
-              <th>Key ADRs / Nursing Warnings</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Blood Schizontocide</strong></td>
-              <td>Chloroquine</td>
-              <td>Blocks heme detox; toxic free heme accumulates</td>
-              <td>Uncomplicated sensitive <em>P. falciparum</em></td>
-              <td>Retinal eye toxicity (long-term), pruritus</td>
-            </tr>
-            <tr>
-              <td><strong>Blood Schizontocide (ACT)</strong></td>
-              <td>Artemether + Lumefantrine (Coartem)</td>
-              <td>Generates free radical "bombs" via iron reaction</td>
-              <td>1st-line for acute <em>P. falciparum</em> attacks</td>
-              <td>QTc prolongation; take with fatty meals!</td>
-            </tr>
-            <tr>
-              <td><strong>Blood Schizontocide</strong></td>
-              <td>Quinine / Quinidine</td>
-              <td>Blocks heme polymerization inside RBCs</td>
-              <td>Severe intravenous malaria treatment</td>
-              <td>Cinchonism (tinnitus), hypoglycemia, hypotension</td>
-            </tr>
-            <tr>
-              <td><strong>Blood &amp; Prophylactic</strong></td>
-              <td>Mefloquine</td>
-              <td>Disrupts parasite food vacuole membrane</td>
-              <td>Traveler prophylaxis &amp; resistant malaria</td>
-              <td>Vivid nightmares, severe neuropsychiatric effects</td>
-            </tr>
-            <tr>
-              <td><strong>Tissue &amp; Hypnozoitocide</strong></td>
-              <td>Primaquine / Tafenoquine</td>
-              <td>Kills liver schizonts &amp; sleeping hypnozoites</td>
-              <td>Radical cure for <em>P. vivax / ovale</em> relapses</td>
-              <td>Massive RBC hemolysis in G6PD deficiency!</td>
-            </tr>
-            <tr>
-              <td><strong>Causal Prophylactic</strong></td>
-              <td>Atovaquone + Proguanil (Malarone)</td>
-              <td>Atovaquone cuts power; Proguanil blocks folate</td>
-              <td>Traveler malaria prevention &amp; treatment</td>
-              <td>GI distress, abdominal pain; take with food</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="modal-body">
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;">Comprehensive comparative breakdown of ribosomal targets, prototypes, action types, clinical uses, and high-yield warnings.</p>
+        <div class="table-container">
+          <table class="summary-table">
+            <thead>
+              <tr>
+                <th>Drug Class</th>
+                <th>Target Subunit</th>
+                <th>Action &amp; Prototypes</th>
+                <th>Mechanism of Action</th>
+                <th>Key ADRs / Nursing Warnings</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Aminoglycosides</strong></td>
+                <td><span class="badge" style="background:#ddd6fe; color:#4c1d95;">30S</span></td>
+                <td>Bactericidal<br>(Gentamicin, Amikacin)</td>
+                <td>Irreversible 30S binding; misreads genetic code</td>
+                <td>Ototoxicity, Nephrotoxicity, Neuromuscular block; Monitor Peak/Trough</td>
+              </tr>
+              <tr>
+                <td><strong>Tetracyclines</strong></td>
+                <td><span class="badge" style="background:#ddd6fe; color:#4c1d95;">30S</span></td>
+                <td>Bacteriostatic<br>(Doxycycline, Minocycline)</td>
+                <td>Blocks aminoacyl-tRNA access to mRNA complex</td>
+                <td>Tooth discoloration in &lt;8 yrs, photosensitivity, esophageal ulcers; Chelation with cations</td>
+              </tr>
+              <tr>
+                <td><strong>Glycylcyclines</strong></td>
+                <td><span class="badge" style="background:#ddd6fe; color:#4c1d95;">30S</span></td>
+                <td>Bacteriostatic<br>(Tigecycline)</td>
+                <td>High-affinity 30S binding; evades efflux pumps</td>
+                <td>Severe nausea/vomiting, pancreatitis risk; All-cause mortality boxed warning</td>
+              </tr>
+              <tr>
+                <td><strong>Macrolides</strong></td>
+                <td><span class="badge" style="background:#e0f2fe; color:#0369a1;">50S</span></td>
+                <td>Bacteriostatic<br>(Azithromycin, Erythromycin)</td>
+                <td>Inhibits translocation &amp; peptide elongation</td>
+                <td>QTc Prolongation (Torsades risk), GI motility distress, CYP450 interactions</td>
+              </tr>
+              <tr>
+                <td><strong>Lincosamides</strong></td>
+                <td><span class="badge" style="background:#e0f2fe; color:#0369a1;">50S</span></td>
+                <td>Bacteriostatic<br>(Clindamycin)</td>
+                <td>Blocks peptide bond formation on 50S</td>
+                <td>Severe <em>C. difficile</em> colitis risk; Metallic taste, rash</td>
+              </tr>
+              <tr>
+                <td><strong>Oxazolidinones</strong></td>
+                <td><span class="badge" style="background:#e0f2fe; color:#0369a1;">50S</span></td>
+                <td>Bacteriostatic<br>(Linezolid, Tedizolid)</td>
+                <td>Prevents formation of 70S initiation complex</td>
+                <td>Bone marrow suppression (thrombocytopenia), Serotonin Syndrome with SSRIs/MAOIs</td>
+              </tr>
+              <tr>
+                <td><strong>Chloramphenicol</strong></td>
+                <td><span class="badge" style="background:#e0f2fe; color:#0369a1;">50S</span></td>
+                <td>Bacteriostatic<br>(Chloramphenicol)</td>
+                <td>Peptidyl transferase blockade on 50S</td>
+                <td>Gray Baby Syndrome in neonates, fatal aplastic anemia</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ================= CLASSIFICATION TREE MODAL ================= -->
-<div class="modal-overlay" id="treeModal">
-  <div class="modal-card">
-    <div class="modal-header">
-      <h3>🌳 Antimalarial Classification Tree</h3>
-      <button class="close-btn" onclick="toggleModal('treeModal')">&times;</button>
-    </div>
-    <div class="modal-body">
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Visual hierarchy breakdown based on anatomical stage of anti-parasitic action.</p>
-      <div class="tree-container">
-        <div class="tree-node">
-          <div class="tree-title">🩸 1. Blood Schizontocides (Erythrocytic Stage)</div>
-          <div class="tree-sublist">
-            <span class="tree-tag">4-Aminoquinolines: Chloroquine</span>
-            <span class="tree-tag">Artemisinin Combination (ACT): Artemether + Lumefantrine</span>
-            <span class="tree-tag">Cinchona Alkaloid: Quinine</span>
-            <span class="tree-tag">Quinoline Methanol: Mefloquine</span>
+  <!-- ================= CLASSIFICATION TREE MODAL ================= -->
+  <div class="modal-overlay" id="treeModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>🌳 Classification Tree: Ribosomal Target Subunits</h3>
+        <button class="close-btn" onclick="toggleModal('treeModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Visual hierarchy based on 30S vs. 50S bacterial ribosomal subunit binding.</p>
+        <div class="tree-container">
+          <div class="tree-node">
+            <div class="tree-title">🎯 1. 30S Ribosomal Subunit Inhibitors</div>
+            <div class="tree-sublist">
+              <span class="tree-tag">Aminoglycosides (Bactericidal): Gentamicin, Amikacin, Tobramycin</span>
+              <span class="tree-tag">Tetracyclines (Bacteriostatic): Doxycycline, Minocycline</span>
+              <span class="tree-tag">Glycylcyclines (Bacteriostatic): Tigecycline</span>
+            </div>
           </div>
-        </div>
-        <div class="tree-node">
-          <div class="tree-title">🌱 2. Tissue Schizontocides &amp; Hypnozoitocides (Exoerythrocytic Liver Stage)</div>
-          <div class="tree-sublist">
-            <span class="tree-tag">8-Aminoquinoline: Primaquine (Relapse Prevention)</span>
-            <span class="tree-tag">Long-Acting 8-Aminoquinoline: Tafenoquine</span>
-          </div>
-        </div>
-        <div class="tree-node">
-          <div class="tree-title">🛡️ 3. Prophylactic &amp; Combination Regimens</div>
-          <div class="tree-sublist">
-            <span class="tree-tag">Malarone: Atovaquone + Proguanil</span>
-            <span class="tree-tag">Antibiotic Prophylaxis: Doxycycline</span>
+          <div class="tree-node">
+            <div class="tree-title">🎯 2. 50S Ribosomal Subunit Inhibitors</div>
+            <div class="tree-sublist">
+              <span class="tree-tag">Macrolides: Azithromycin, Clarithromycin, Erythromycin</span>
+              <span class="tree-tag">Lincosamides: Clindamycin</span>
+              <span class="tree-tag">Oxazolidinones: Linezolid, Tedizolid</span>
+              <span class="tree-tag">Amphenicols: Chloramphenicol</span>
+              <span class="tree-tag">Streptogramins: Quinupristin / Dalfopristin</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<script>
-  function toggleModal(modalId) {
-    const modal = document.getElementById(modalId);
-    modal.classList.toggle('active');
-  }
-</script>
+  <!-- ADDITIVE SEQUENTIAL CASCADE ANIMATION SCRIPT & MODAL TOGGLE -->
+  <script>
+    let activeStepCount = 0;
+    let isFlowRunning = true;
+    let flowInterval = null;
 
+    function runAdditiveChainAnimation() {
+      activeStepCount++;
+
+      // Reset sequence smoothly after Step 4
+      if (activeStepCount > 4) {
+        for (let i = 1; i <= 4; i++) {
+          const step = document.getElementById('step' + i);
+          if (step) {
+            step.className = 'moa-step-card'; // Clear highlight
+          }
+        }
+        activeStepCount = 1; // Restart from Step 1
+      }
+
+      // Additively light up the current step while keeping previous steps ON
+      const currentStepElement = document.getElementById('step' + activeStepCount);
+      if (currentStepElement) {
+        currentStepElement.classList.add('activated-step-' + activeStepCount);
+      }
+    }
+
+    function startAnimation() {
+      if (!flowInterval) {
+        runAdditiveChainAnimation();
+        flowInterval = setInterval(runAdditiveChainAnimation, 1500); // 1.5s step interval
+      }
+    }
+
+    function toggleFlowAnimation() {
+      const btn = document.getElementById('playPauseBtn');
+      if (isFlowRunning) {
+        clearInterval(flowInterval);
+        flowInterval = null;
+        isFlowRunning = false;
+        btn.innerText = 'Play';
+      } else {
+        isFlowRunning = true;
+        btn.innerText = 'Pause';
+        startAnimation();
+      }
+    }
+
+    function restartFlowAnimation() {
+      clearInterval(flowInterval);
+      flowInterval = null;
+      activeStepCount = 0;
+      for (let i = 1; i <= 4; i++) {
+        const step = document.getElementById('step' + i);
+        if (step) {
+          step.className = 'moa-step-card';
+        }
+      }
+      isFlowRunning = true;
+      document.getElementById('playPauseBtn').innerText = 'Pause';
+      startAnimation();
+    }
+
+    function toggleModal(modalId) {
+      const modal = document.getElementById(modalId);
+      modal.classList.toggle('active');
+    }
+
+    // Auto-start animation on load
+    window.addEventListener('DOMContentLoaded', () => {
+      startAnimation();
+    });
+  </script>
 </body>
 </html>
