@@ -2,53 +2,393 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>Antimalarial Agents | Infectious Disease Pharmacology</title>
   <style>
     :root {
       --bg-gradient: radial-gradient(circle at 10% 20%, rgba(5, 150, 105, 0.08) 0%, rgba(16, 185, 129, 0.05) 40%, #f8fafc 90%);
       --primary: #059669;
       --primary-dark: #047857;
+      --primary-gradient: linear-gradient(135deg, #059669 0%, #047857 100%);
       --accent: #10b981;
-      --card-bg: rgba(255, 255, 255, 0.9);
-      --card-border: rgba(167, 243, 208, 0.8);
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --card-border: #a7f3d0;
       --text-main: #064e3b;
+      --text-dark: #0f172a;
       --text-muted: #475569;
-      --shadow-glow: 0 20px 40px -15px rgba(5, 150, 105, 0.25);
+      --shadow-glow: 0 20px 40px -15px rgba(5, 150, 105, 0.2);
+      --mnemonics-bg: #ecfdf5;
+      --mnemonics-border: #a7f3d0;
+      --warning-bg: #fff1f2;
+      --warning-border: #fecdd3;
+      --exam-badge-bg: #ef4444;
+      --exam-badge-text: #ffffff;
       --radius: 20px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.8; padding: 40px 16px; min-height: 100vh; }
-    
-    .container { max-width: 950px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(16px); padding: 50px 40px; border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: var(--shadow-glow); }
-    
-    .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; margin-bottom: 30px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2); }
-    .back-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    .badge { display: inline-block; padding: 6px 14px; background: #ecfdf5; color: var(--primary); font-weight: 800; font-size: 0.8rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; border: 1px solid #a7f3d0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 16px 8px 60px;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-    h1 { font-size: 2.5rem; font-weight: 900; background: linear-gradient(135deg, #064e3b 0%, var(--primary) 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
-    
-    h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #a7f3d0; padding-bottom: 10px; }
-    h2::before { content: ''; display: inline-block; width: 6px; height: 24px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; }
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      padding: 32px 20px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: var(--shadow-glow);
+    }
 
-    p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 20px; }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
+    }
+    .back-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
 
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 25px 0; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin: 25px 0; }
-    
-    .card-box { background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); transition: 0.3s; }
-    .card-box:hover { transform: translateY(-5px); border-color: var(--primary); }
-    .card-box h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
+    .badge-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
 
-    .mnemonic-box { background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%); border-left: 6px solid var(--primary); padding: 22px; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 15px rgba(5, 150, 105, 0.08); }
-    .mnemonic-box h4 { color: var(--primary); font-size: 1.1rem; margin-bottom: 8px; font-weight: 800; display: flex; align-items: center; gap: 12px; }
-    .mnemonic-box p { color: #064e3b; margin-bottom: 0; font-weight: 500; }
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #ecfdf5;
+      color: var(--primary-dark);
+      font-weight: 800;
+      font-size: 0.8rem;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      border: 1px solid #a7f3d0;
+    }
 
-    ul { list-style-type: none; padding-left: 0; margin-bottom: 20px; }
-    ul li { position: relative; padding-left: 28px; margin-bottom: 12px; color: var(--text-muted); font-size: 1.05rem; }
-    ul li::before { content: '▪'; position: absolute; left: 8px; color: var(--primary); font-weight: bold; font-size: 1.2rem; }
+    /* EXAM HIGH-YIELD BADGE */
+    .exam-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--exam-badge-bg);
+      color: var(--exam-badge-text);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.25);
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #064e3b 0%, var(--primary) 50%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .subtitle {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      color: var(--text-main);
+      margin: 36px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid #a7f3d0;
+      padding-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 24px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 15px;
+      color: var(--text-muted);
+      font-size: 0.96rem;
+    }
+
+    /* Section & Grid Styling */
+    .drug-class-card {
+      background: #ffffff;
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px 20px;
+      margin-bottom: 35px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      position: relative;
+    }
+
+    .drug-class-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-gradient);
+      border-radius: 16px 16px 0 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .card-box {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .card-box h3 {
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sub-block {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin: 18px 0;
+    }
+
+    /* MOA ENHANCED STEP-BY-STEP BOX */
+    .moa-enhanced-box {
+      background: #f0fdf4;
+      border: 2px solid #a7f3d0;
+      border-radius: 14px;
+      padding: 20px;
+      margin: 18px 0;
+    }
+
+    .moa-enhanced-box h4 {
+      color: var(--text-main);
+      font-weight: 800;
+      font-size: 1.02rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .moa-steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .moa-step-item {
+      background: #ffffff;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .moa-step-number {
+      background: var(--primary);
+      color: white;
+      font-weight: 900;
+      font-size: 0.78rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .moa-step-content strong {
+      display: block;
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+
+    .moa-step-content span {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    /* ALIGNED MNEMONIC LIST LAYOUT (GREEN THEME MATCHED) */
+    .mnemonic-box {
+      background: var(--mnemonics-bg);
+      border: 1px solid var(--mnemonics-border);
+      border-left: 5px solid var(--primary);
+      border-radius: 12px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .mnemonic-box h4 {
+      color: var(--primary-dark);
+      font-weight: 800;
+      font-size: 1.02rem;
+      margin-bottom: 12px;
+    }
+
+    .aligned-mnemonic-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .aligned-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #ffffff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #a7f3d0;
+      font-size: 0.92rem;
+      color: var(--text-main);
+    }
+
+    .letter-badge {
+      background: var(--primary);
+      color: white;
+      font-weight: 900;
+      font-size: 0.8rem;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Warning / Contraindication Styling */
+    .warning-box {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-left: 5px solid #e11d48;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 15px 0;
+    }
+
+    .warning-box h4 {
+      color: #9f1239;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    ul.bullet-list {
+      list-style-type: none;
+      padding-left: 0;
+      margin-bottom: 20px;
+    }
+
+    ul.bullet-list li {
+      position: relative;
+      padding-left: 26px;
+      margin-bottom: 10px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    ul.bullet-list li::before {
+      content: '▪';
+      position: absolute;
+      left: 8px;
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* MOBILE SPECIFIC IMPROVEMENTS */
+    @media (max-width: 640px) {
+      body { padding: 8px 4px 50px; }
+      .container { padding: 18px 12px; border-radius: 14px; }
+      h1 { font-size: 1.65rem; }
+      .subtitle { font-size: 0.9rem; }
+      h2 { font-size: 1.2rem; }
+      .drug-class-card { padding: 16px 12px; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .aligned-item { padding: 8px 10px; font-size: 0.88rem; }
+    }
   </style>
 </head>
 <body>
@@ -56,98 +396,268 @@
 <div class="container">
   <a href="chapter2.html" class="back-btn">&larr; Back to Chapter 2 Hub</a>
   
-  <div class="badge">Pharmacology Class Deep-Dive</div>
+  <div class="badge-container">
+    <span class="badge">Pharmacology Class Deep-Dive</span>
+  </div>
+  
   <h1>Antimalarial Agents</h1>
-  <p>Specialized antiparasitic medications designed to prevent and treat malaria caused by *Plasmodium* species (*P. falciparum, P. vivax, P. ovale, P. malariae*), transmitted through the bite of infected female *Anopheles* mosquitoes.</p>
+  <p class="subtitle">Specialized antiparasitic medications designed to prevent and treat malaria caused by <em>Plasmodium</em> species (<em>P. falciparum, P. vivax, P. ovale, P. malariae</em>), transmitted through the bite of infected female <em>Anopheles</em> mosquitoes.</p>
 
-  <!-- INTRODUCTION -->
-  <h2>1. Introduction to the Malaria Parasite Lifecycle</h2>
-  <p>The malaria parasite has a complex lifecycle involving human liver stages (exoerythrocytic), blood stages (erythrocytic), and mosquito vectors. Antimalarials target specific developmental stages of the parasite to clear acute infection, prevent relapses, or provide chemoprophylaxis for travelers.</p>
-
-  <!-- CLASSIFICATION -->
-  <h2>2. Classification & Prototype Drugs</h2>
-  <div class="grid-3">
-    <div class="card-box">
-      <h3>🩸 Blood Schizontocides</h3>
-      <p><strong>Prototypes:</strong> Chloroquine, Artemether-Lumefantrine, Quinine.</p>
-      <p style="margin-top: 10px;"><strong>Characteristics:</strong> Rapidly destroy asexual parasite forms replicating inside red blood cells, curing acute symptoms.</p>
+  <!-- ================= 1. INTRODUCTION ================= -->
+  <section class="drug-class-card">
+    <h2>1. Introduction to the Malaria Parasite Lifecycle</h2>
+    <p>The malaria parasite exhibits a complex life cycle divided between the human host and the female <em>Anopheles</em> mosquito. Understanding these distinct lifecycle stages is crucial for selecting appropriate antimalarial therapy:</p>
+    
+    <div class="grid-3">
+      <div class="card-box">
+        <h3>🌱 Exoerythrocytic Stage</h3>
+        <p>Mosquito injects sporozoites into human blood, which invade liver hepatocytes within minutes to mature into tissue schizonts.</p>
+      </div>
+      <div class="card-box">
+        <h3>🩸 Erythrocytic Stage</h3>
+        <p>Merozoites rupture from liver cells and invade red blood cells (RBCs), undergoing asexual multiplication that causes periodic fever spikes and clinical symptoms.</p>
+      </div>
+      <div class="card-box">
+        <h3>💤 Latent / Dormant Stage</h3>
+        <p><em>P. vivax</em> and <em>P. ovale</em> form dormant <strong>hypnozoites</strong> in liver cells that can remain latent for months or years, causing recurrent relapses.</p>
+      </div>
     </div>
-    <div class="card-box">
-      <h3>🧬 Tissue Schizontocides</h3>
-      <p><strong>Prototype:</strong> Primaquine.</p>
-      <p style="margin-top: 10px;"><strong>Characteristics:</strong> Eradicates dormant liver hypnozoites (*P. vivax* and *P. ovale*) to prevent clinical relapses.</p>
-    </div>
-    <div class="card-box">
-      <h3>🛡️ Prophylactic & Combination Agents</h3>
-      <p><strong>Prototype:</strong> Atovaquone-Proguanil, Mefloquine.</p>
-      <p style="margin-top: 10px;"><strong>Characteristics:</strong> Used for travel prophylaxis and multi-drug resistant strains of *P. falciparum*.</p>
-    </div>
-  </div>
+  </section>
 
-  <!-- MECHANISM OF ACTION -->
-  <h2>3. Mechanisms of Action</h2>
-  <div class="grid-3">
-    <div class="card-box">
-      <h3>⚡ Chloroquine: Heme Polymerization Block</h3>
-      <p>Concentrates inside the parasite's acidic food vacuole, preventing the conversion of toxic free heme into insoluble hemozoin, leading to parasite lysis from accumulated free heme.</p>
+  <!-- ================= 2. CLASSIFICATION & PROTOTYPES ================= -->
+  <section class="drug-class-card">
+    <h2>2. Classification &amp; Prototype Drugs</h2>
+    <p>Antimalarial drugs are classified primarily according to the specific developmental stage of the parasite they target:</p>
+
+    <div class="grid-3">
+      <div class="card-box">
+        <h3>🩸 Blood Schizontocides</h3>
+        <p><strong>Prototypes:</strong> Chloroquine, Artemether-Lumefantrine, Quinine, Mefloquine.</p>
+        <p style="margin-top: 8px; font-size: 0.88rem;">Destroys asexual erythrocytic parasites inside RBCs; terminates acute clinical attacks.</p>
+      </div>
+      <div class="card-box">
+        <h3>🧬 Tissue Schizontocides</h3>
+        <p><strong>Prototypes:</strong> Primaquine, Tafenoquine.</p>
+        <p style="margin-top: 8px; font-size: 0.88rem;">Kills liver-stage schizonts and eradicates dormant <em>hypnozoites</em> to achieve a radical cure.</p>
+      </div>
+      <div class="card-box">
+        <h3>🛡️ Prophylactic &amp; Gametocidals</h3>
+        <p><strong>Prototypes:</strong> Atovaquone-Proguanil, Primaquine.</p>
+        <p style="margin-top: 8px; font-size: 0.88rem;">Prevents primary liver infection in travelers and kills sexual gametocytes to stop mosquito transmission.</p>
+      </div>
     </div>
-    <div class="card-box">
-      <h3>🧪 Artemisinins: Free Radical Generation</h3>
-      <p>Endoperoxide bridge interacts with intracellular iron inside the parasite, generating reactive oxygen species and free radicals that damage vital parasite macromolecules.</p>
+  </section>
+
+  <!-- ================= 3. ENHANCED MECHANISMS OF ACTION ================= -->
+  <section class="drug-class-card">
+    <h2>3. Comprehensive Mechanisms of Action</h2>
+    <p>Each antimalarial drug class disrupts a distinct, critical metabolic process inside the parasite:</p>
+
+    <!-- 3.1 CHLOROQUINE & QUINOLINES -->
+    <div class="moa-enhanced-box">
+      <h4>⚙️ 1. 4-Aminoquinolines (Chloroquine / Quinine): Heme Polymerization Blockade <span class="exam-badge">IMP FOR EXAM</span></h4>
+      <div class="moa-steps-list">
+        <div class="moa-step-item">
+          <div class="moa-step-number">1</div>
+          <div class="moa-step-content">
+            <strong>Acidic Vacuole Uptake:</strong>
+            <span>Drug diffuses into the parasite's acidic digestive vacuole where hemoglobin breakdown occurs.</span>
+          </div>
+        </div>
+        <div class="moa-step-item">
+          <div class="moa-step-number">2</div>
+          <div class="moa-step-content">
+            <strong>Inhibition of Hemozoin Formation:</strong>
+            <span>Binds tightly to toxic free heme (ferriprotoporphyrin IX), blocking its biocrystallization into non-toxic <em>hemozoin</em>.</span>
+          </div>
+        </div>
+        <div class="moa-step-item">
+          <div class="moa-step-number">3</div>
+          <div class="moa-step-content">
+            <strong>Membrane Lysis &amp; Autodigestion:</strong>
+            <span>Accumulated toxic free heme poisons the parasite, lyse its digestive vacuole membranes, and causes autophagic death.</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="card-box">
-      <h3>🌊 Atovaquone-Proguanil: Electron Transport Inhibition</h3>
-      <p>Disrupts the parasite mitochondrial electron transport chain and inhibits dihydrofolate reductase, halting nucleic acid synthesis.</p>
+
+    <!-- 3.2 ARTEMISININ DERIVATIVES -->
+    <div class="moa-enhanced-box">
+      <h4>⚙️ 2. Artemisinin Derivatives (Artemether / Artesunate): Free Radical Bioactivation</h4>
+      <div class="moa-steps-list">
+        <div class="moa-step-item">
+          <div class="moa-step-number">1</div>
+          <div class="moa-step-content">
+            <strong>Endoperoxide Bridge Cleavage:</strong>
+            <span>Intracellular heme-iron inside the parasite cleaves the drug's essential endoperoxide bridge.</span>
+          </div>
+        </div>
+        <div class="moa-step-item">
+          <div class="moa-step-number">2</div>
+          <div class="moa-step-content">
+            <strong>Free Radical Generation:</strong>
+            <span>Cleavage releases short-lived, highly reactive carbon-centered free radicals and reactive oxygen species (ROS).</span>
+          </div>
+        </div>
+        <div class="moa-step-item">
+          <div class="moa-step-number">3</div>
+          <div class="moa-step-content">
+            <strong>Macromolecular Alkylation:</strong>
+            <span>Radicals alkylate and damage parasite PfATP6 (SERCA Ca²⁺-ATPase) and membrane proteins, inducing rapid parasite clearance.</span>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <!-- CLINICAL USES -->
-  <h2>4. Clinical Uses & Therapeutic Indications</h2>
-  <ul>
-    <li>Treatment of acute, uncomplicated and severe malaria infections (*P. falciparum* and *P. vivax*)</li>
-    <li>Chemoprophylaxis for travelers visiting malaria-endemic regions</li>
-    <li>Radical cure and prevention of relapse for *P. vivax* and *P. ovale* using primaquine</li>
-    <li>Management of multi-drug resistant malaria via artemisinin-based combination therapies (ACTs)</li>
-  </ul>
-
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for Clinical Goals: "T-P-R"</h4>
-    <p><strong>T</strong>reatment of acute blood-stage attack | <strong>P</strong>rophylaxis for travelers | <strong>R</strong>adical cure of liver hypnozoites (Primaquine)</p>
-  </div>
-
-  <!-- ADVERSE DRUG REACTIONS -->
-  <h2>5. Adverse Drug Reactions (ADRs)</h2>
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>⚠️ Systemic & CNS Adverse Effects</h3>
-      <p><strong>Quinine:</strong> Cinchonism (tinnitus, headache, visual blurring, dizziness).<br><strong>Mefloquine:</strong> Vivid dreams, anxiety, psychosis, and neuropsychiatric disturbances.</p>
+    <!-- 3.3 ATOVAQUONE-PROGUANIL -->
+    <div class="moa-enhanced-box">
+      <h4>⚙️ 3. Combination Agents (Atovaquone + Proguanil): Dual Mitochondrial &amp; Folate Blockade</h4>
+      <div class="moa-steps-list">
+        <div class="moa-step-item">
+          <div class="moa-step-number">1</div>
+          <div class="moa-step-content">
+            <strong>Mitochondrial ETC Collapse (Atovaquone):</strong>
+            <span>Selectively inhibits parasite cytochrome <em>bc1</em> complex (Complex III), collapsing mitochondrial membrane potential.</span>
+          </div>
+        </div>
+        <div class="moa-step-item">
+          <div class="moa-step-number">2</div>
+          <div class="moa-step-content">
+            <strong>Folate Synthesis Blockade (Proguanil):</strong>
+            <span>Proguanil's active metabolite (cycloguanil) inhibits parasite Dihydrofolate Reductase (DHFR), shutting down pyrimidine and DNA synthesis.</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="card-box">
-      <h3>⚠️ Blood & Vision Risks</h3>
-      <p><strong>Primaquine:</strong> Severe acute hemolytic anemia in patients with Glucose-6-Phosphate Dehydrogenase (G6PD) deficiency.<br><strong>Chloroquine:</strong> Irreversible retinal toxicity and visual field loss with prolonged high-dose use.</p>
+
+    <!-- 3.4 PRIMAQUINE -->
+    <div class="moa-enhanced-box">
+      <h4>⚙️ 4. 8-Aminoquinolines (Primaquine / Tafenoquine): Hypnozoite &amp; Tissue Clearance</h4>
+      <div class="moa-steps-list">
+        <div class="moa-step-item">
+          <div class="moa-step-number">1</div>
+          <div class="moa-step-content">
+            <strong>Metabolic Oxidation:</strong>
+            <span>Generates active electrophilic quinone-imine intermediates inside hepatic cells.</span>
+          </div>
+        </div>
+        <div class="moa-step-item">
+          <div class="moa-step-number">2</div>
+          <div class="moa-step-content">
+            <strong>Dormant Hypnozoite Destruction:</strong>
+            <span>Disrupts electron transport and creates oxidative stress specifically killing latent liver hypnozoites (<em>P. vivax/ovale</em>).</span>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for Antimalarial Complications: "C-H-I-N-A"</h4>
-    <p><strong>C</strong>inchonism (Quinine toxicity) | <strong>H</strong>emolysis risk in G6PD deficiency (Primaquine) | <strong>I</strong>nravenous cardiac monitoring required | <strong>N</strong>europsychiatric effects (Mefloquine) | <strong>A</strong>rrhythmias & QT prolongation</p>
-  </div>
+  <!-- ================= 4. CLINICAL USES & ALIGNED MNEMONIC ================= -->
+  <section class="drug-class-card">
+    <h2>4. Clinical Uses &amp; Therapeutic Indications</h2>
+    <p>Antimalarial selection depends heavily on geographic resistance patterns, parasite species, and the clinical goal:</p>
 
-  <!-- PHARMACOKINETICS & CONTRAINDICATIONS -->
-  <h2>6. Pharmacokinetics & Screening Precautions</h2>
-  <ul>
-    <li><strong>G6PD Testing Mandatory:</strong> Patients must be screened for G6PD enzyme deficiency prior to initiating primaquine or tafenoquine therapy to prevent catastrophic hemolysis.</li>
-    <li><strong>Combination Therapy:</strong> Artemisinins are short-acting and must always be combined with a longer-acting partner drug (like lumefantrine) to ensure complete parasite clearance and prevent resistance.</li>
-  </ul>
+    <ul class="bullet-list">
+      <li><strong>Acute Attack Clearance:</strong> ACTs (Artemether-Lumefantrine) for acute uncomplicated <em>P. falciparum</em>; Oral Chloroquine for sensitive <em>P. vivax</em>.</li>
+      <li><strong>Traveler Chemoprophylaxis:</strong> Atovaquone-Proguanil (Malarone), Doxycycline, or Mefloquine started prior to travel into endemic areas.</li>
+      <li><strong>Radical Relapse Prevention:</strong> 14-day Primaquine course following blood clearance of <em>P. vivax</em> or <em>P. Ovale</em>.</li>
+      <li><strong>Severe Sepsis/Malaria:</strong> Intravenous Artesunate or IV Quinine for complicated falciparum malaria with high parasitemia.</li>
+    </ul>
 
-  <!-- KEY NURSING TAKEAWAYS -->
-  <h2>7. Key Nursing Takeaways & Patient Safety</h2>
-  <ul>
-    <li><strong>Screen for G6PD Deficiency:</strong> Always verify G6PD lab status before administering primaquine to avoid acute hemolytic anemia.</li>
-    <li><strong>Monitor Cardiac Rhythm:</strong> Observe patients receiving intravenous quinine or artemisinin derivatives for QT interval prolongation and cardiac arrhythmias.</li>
-    <li><strong>Educate on Vision Checks:</strong> Instruct patients on long-term chloroquine therapy to undergo baseline and periodic ophthalmologic examinations for retinal damage.</li>
-    <li><strong>Emphasize Adherence for Prophylaxis:</strong> Counsel travelers on starting prophylactic medications before exposure, continuing during travel, and completing the course post-return as prescribed.</li>
-  </ul>
+    <!-- ALIGNED USES MNEMONIC (GREEN COLOR MATCHED) -->
+    <div class="mnemonic-box">
+      <h4>💡 Mnemonic for Clinical Goals: "T.P.R."</h4>
+      <div class="aligned-mnemonic-list">
+        <div class="aligned-item">
+          <span class="letter-badge">T</span>
+          <span><strong>T</strong>reatment of acute blood-stage erythrocytic attacks (ACTs / Chloroquine)</span>
+        </div>
+        <div class="aligned-item">
+          <span class="letter-badge">P</span>
+          <span><strong>P</strong>rophylaxis for travelers visiting endemic regions (Atovaquone-Proguanil / Mefloquine)</span>
+        </div>
+        <div class="aligned-item">
+          <span class="letter-badge">R</span>
+          <span><strong>R</strong>adical cure of dormant liver hypnozoites to prevent relapse (Primaquine / Tafenoquine) <span class="exam-badge">IMP FOR EXAM</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 5. ADVERSE REACTIONS & ALIGNED MNEMONIC ================= -->
+  <section class="drug-class-card">
+    <h2>5. Adverse Drug Reactions (ADRs)</h2>
+    
+    <div class="grid-2">
+      <div class="card-box">
+        <h3>⚠️ Systemic &amp; Neuropsychiatric Effects</h3>
+        <p><strong>Quinine Toxicity (Cinchonism):</strong> Tinnitus, vertigo, high-tone deafness, headache, and visual blurring.<br>
+        <strong>Mefloquine:</strong> Severe neuropsychiatric symptoms including vivid nightmares, anxiety, depression, and psychosis. <span class="exam-badge">IMP FOR EXAM</span></p>
+      </div>
+      <div class="card-box">
+        <h3>⚠️ Ocular &amp; Hematologic Toxicity</h3>
+        <p><strong>Chloroquine:</strong> Irreversible bull's-eye maculopathy / retinal toxicity with long-term high dose therapy.<br>
+        <strong>Primaquine:</strong> Severe acute intravascular hemolysis and hemoglobinuria in G6PD deficient patients.</p>
+      </div>
+    </div>
+
+    <!-- ALIGNED ADRs MNEMONIC (GREEN COLOR MATCHED) -->
+    <div class="mnemonic-box">
+      <h4>💡 Mnemonic for Antimalarial Complications: "C.H.I.N.A."</h4>
+      <div class="aligned-mnemonic-list">
+        <div class="aligned-item">
+          <span class="letter-badge">C</span>
+          <span><strong>C</strong>inchonism syndrome with Quinine (tinnitus, headache, blurred vision) <span class="exam-badge">IMP FOR EXAM</span></span>
+        </div>
+        <div class="aligned-item">
+          <span class="letter-badge">H</span>
+          <span><strong>H</strong>emolysis risk in G6PD deficiency with Primaquine <span class="exam-badge">IMP FOR EXAM</span></span>
+        </div>
+        <div class="aligned-item">
+          <span class="letter-badge">I</span>
+          <span><strong>I</strong>ntravenous infusion rate control (IV Quinine causes severe hypoglycemia &amp; hypotension)</span>
+        </div>
+        <div class="aligned-item">
+          <span class="letter-badge">N</span>
+          <span><strong>N</strong>europsychiatric reactions &amp; vivid dreams with Mefloquine</span>
+        </div>
+        <div class="aligned-item">
+          <span class="letter-badge">A</span>
+          <span><strong>A</strong>rrhythmias &amp; QTc prolongation (monitor ECG with Quinine and Lumefantrine)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 6. PHARMACOKINETICS & CONTRAINDICATIONS ================= -->
+  <section class="drug-class-card">
+    <h2>6. Pharmacokinetics &amp; Screening Precautions</h2>
+    
+    <div class="sub-block">
+      <h4>🔬 Critical Pharmacokinetic Rules</h4>
+      <p>&bull; <strong>G6PD Screening Mandatory:</strong> <span class="exam-badge">IMP FOR EXAM</span> Patients MUST be tested for Glucose-6-Phosphate Dehydrogenase (G6PD) deficiency prior to administering Primaquine or Tafenoquine. In G6PD deficiency, oxidative stress from these drugs triggers massive RBC hemolysis.<br>
+      &bull; <strong>Combination Synergy (ACTs):</strong> Artemisinins have extremely short half-lives (&lt; 2 hours) and are rapidly bactericidal. They MUST be combined with a long-acting partner drug (e.g., Lumefantrine, Piperaquine) to clear remaining parasites and prevent resistance.<br>
+      &bull; <strong>Food Effect:</strong> Lumefantrine and Atovaquone absorption increases up to 16-fold when taken with fatty meals.</p>
+    </div>
+
+    <div class="warning-box">
+      <h4>🚫 Contraindications</h4>
+      <p>&bull; <strong>Primaquine:</strong> Strictly contraindicated in severe G6PD deficiency, pregnancy, and infants under 6 months.<br>
+      &bull; <strong>Mefloquine:</strong> Contraindicated in patients with active or past history of depression, generalized anxiety, psychosis, or seizures.</p>
+    </div>
+  </section>
+
+  <!-- ================= 7. KEY NURSING TAKEAWAYS ================= -->
+  <section class="drug-class-card">
+    <h2>7. Key Nursing Takeaways &amp; Patient Safety</h2>
+    
+    <ul class="bullet-list">
+      <li><strong>Verify G6PD Status:</strong> Always check baseline G6PD laboratory results before administering Primaquine. Monitor for dark/tea-colored urine, jaundice, and fatigue (signs of acute hemolysis).</li>
+      <li><strong>Monitor Cardiac Rhythm &amp; Blood Glucose:</strong> Perform continuous ECG monitoring during IV Quinine administration (risk of QTc prolongation and Torsades de Pointes). Check blood glucose frequently as Quinine stimulates pancreatic insulin release causing severe hypoglycemia.</li>
+      <li><strong>Educate on Ophthalmic Checks:</strong> Patients on long-term Chloroquine or Hydroxychloroquine (e.g., for lupus or rheumatoid arthritis) require baseline and annual retinal screening.</li>
+      <li><strong>Traveler Adherence Counseling:</strong> Instruct travelers to take prophylactic drugs consistently with meals, start before entering the endemic area, and complete the full post-return course (e.g., continue Malarone for 7 days or Doxycycline for 4 weeks after leaving).</li>
+    </ul>
+  </section>
 
 </div>
 
