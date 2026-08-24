@@ -3,75 +3,299 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Chapter 3: Gastrointestinal Pharmacology</title>
-
-  <!-- URL ACCESS PROTECTION SCRIPT -->
-  <script>
-    if (localStorage.getItem('pharmacologyLoggedIn') !== 'true') {
-      alert('⚠️ Access Denied: Please log in first.');
-      window.location.replace('login.html');
-    } else if (localStorage.getItem('pharmacologyUnlocked') !== 'true') {
-      alert('🔒 Access Denied: You must enter a valid single-use access code on your dashboard to unlock Unit III.');
-      window.location.replace('dashboard.html');
-    }
-  </script>
-
+  <title>Chapter 4: Hematology Pharmacology</title>
   <style>
     :root {
-      --primary: #059669;
-      --primary-gradient: linear-gradient(135deg, #059669 0%, #047857 100%);
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
       --quiz-gradient: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+      --accent: #06b6d4;
       --bg-gradient: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%);
-      --text-dark: #064e3b;
+      --text-dark: #0f172a;
       --text-muted: #475569;
       --card-bg: rgba(255, 255, 255, 0.95);
-      --card-border: #d1fae5;
+      --card-border: #e2e8f0;
       --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-      --shadow-lg: 0 20px 25px -5px rgba(5, 150, 105, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 20px 25px -5px rgba(37, 99, 235, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --exam-badge-bg: #ef4444;
+      --exam-badge-text: #ffffff;
+      --radius: 20px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f8fafc; color: var(--text-dark); line-height: 1.6; padding: 20px 15px; min-height: 100vh; }
-    .container { max-width: 950px; margin: 0 auto; background: var(--card-bg); padding: 35px 30px; border-radius: 20px; border: 1px solid rgba(209, 250, 229, 0.8); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8fafc; color: var(--text-dark); line-height: 1.6; padding: 20px 15px; min-height: 100vh; }
     
-    .badge { display: inline-block; padding: 6px 14px; background: #d1fae5; color: #065f46; font-weight: 700; font-size: 13px; border-radius: 50px; text-transform: uppercase; margin-bottom: 12px; }
-    h1 { font-size: 2.2rem; font-weight: 800; background: linear-gradient(135deg, #064e3b 0%, #059669 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+    .container { max-width: 950px; margin: 0 auto; background: var(--card-bg); padding: 35px 30px; border-radius: var(--radius); border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); backdrop-filter: blur(10px); animation: fadeIn 0.8s ease-out; }
+    
+    header {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 25px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-header {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-header:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.35);
+    }
+
+    .badge { display: inline-block; padding: 6px 14px; background: #dbeafe; color: #1e40af; font-weight: 700; font-size: 13px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px; }
+    
+    /* EXAM HIGH-YIELD BADGE */
+    .exam-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--exam-badge-bg);
+      color: var(--exam-badge-text);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.25);
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    h1 { font-size: 2.2rem; font-weight: 800; background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
     .subtitle { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 30px; }
-    h2 { font-size: 1.4rem; color: #064e3b; margin: 35px 0 20px; display: flex; align-items: center; gap: 10px; }
+    h2 { font-size: 1.4rem; color: #1e293b; margin: 35px 0 20px; display: flex; align-items: center; gap: 10px; }
     h2::before { content: ''; display: inline-block; width: 5px; height: 22px; background: var(--primary); border-radius: 4px; }
 
     .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-    .card { position: relative; background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 22px; text-decoration: none; color: inherit; transition: all 0.35s ease; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
+    .card { position: relative; background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 22px; text-decoration: none; color: inherit; overflow: hidden; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; justify-content: space-between; opacity: 0; animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     
+    /* Animation Delays for 5 Cards */
+    .card:nth-child(1) { animation-delay: 0.15s; } 
+    .card:nth-child(2) { animation-delay: 0.30s; } 
+    .card:nth-child(3) { animation-delay: 0.45s; } 
+    .card:nth-child(4) { animation-delay: 0.60s; }
+    .card:nth-child(5) { animation-delay: 0.75s; }
+
     .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--primary-gradient); opacity: 0; transition: opacity 0.3s ease; }
-    .card:hover { transform: translateY(-8px); border-color: #34d399; box-shadow: var(--shadow-lg); }
+    .card:hover { transform: translateY(-8px); border-color: #3b82f6; box-shadow: var(--shadow-lg); }
     .card:hover::before { opacity: 1; }
 
-    /* Custom Styling for Practice Quiz Card */
+    /* Custom Styling for Quiz Card */
     .card-quiz::before { background: var(--quiz-gradient) !important; }
     .card-quiz:hover { border-color: #8b5cf6 !important; }
     .card-quiz .card-icon { background: #f3e8ff !important; color: #7c3aed; }
     .card-quiz:hover .card-icon { background: #e9d5ff !important; }
     .card-quiz .card-link { color: #7c3aed !important; }
 
-    .card-icon { width: 42px; height: 42px; background: #ecfdf5; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 14px; transition: transform 0.3s ease; }
-    .card:hover .card-icon { transform: scale(1.1) rotate(-5deg); }
-    .card h3 { font-size: 1.1rem; color: #064e3b; margin-bottom: 8px; }
-    .card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px; }
+    .card-icon { width: 42px; height: 42px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 14px; transition: transform 0.3s ease; }
+    .card:hover .card-icon { transform: scale(1.1) rotate(-5deg); background: #dbeafe; }
+    .card h3 { font-size: 1.15rem; color: #1e293b; margin-bottom: 8px; }
+    .card p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; }
     .card-link { font-size: 0.85rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 6px; transition: gap 0.2s ease; }
     .card:hover .card-link { gap: 10px; }
 
     .nursing-list { list-style: none; display: grid; gap: 14px; margin-top: 15px; }
-    .nursing-item { background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--primary); border-radius: 10px; padding: 18px; display: flex; align-items: flex-start; gap: 14px; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: var(--shadow-sm); }
-    .nursing-item:hover { transform: translateX(6px); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06); }
-    .nursing-number { background: #d1fae5; color: #065f46; font-weight: 800; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; margin-top: 2px; }
-    .nursing-content h4 { color: #064e3b; font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
-    .nursing-content p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
+    .nursing-item { background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--primary); border-radius: 10px; padding: 16px; display: flex; align-items: flex-start; gap: 12px; box-shadow: var(--shadow-sm); }
+    .nursing-number { background: #dbeafe; color: #1e40af; font-weight: 800; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; margin-top: 2px; }
 
-    @media (max-width: 600px) {
-      .container { padding: 20px 16px; }
-      h1 { font-size: 1.75rem; }
+    /* MODAL POPUP STYLES - FIXED HIGH CONTRAST HEADERS */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      padding: 12px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 18px;
+      max-width: 1000px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      padding: 18px 22px;
+      background: #0f172a; /* High-contrast solid dark navy background */
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #2563eb;
+    }
+
+    .modal-header h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #ffffff !important; /* Force high visibility white text */
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+      margin: 0;
+    }
+
+    .close-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .close-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .modal-body {
+      padding: 22px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    /* TABLE STYLING FOR MODAL */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid #dbeafe;
+      margin-top: 10px;
+    }
+
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      text-align: left;
+      min-width: 750px;
+    }
+
+    .summary-table th {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 14px;
+      font-weight: 700;
+      position: sticky;
+      top: 0;
+    }
+
+    .summary-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e2e8f0;
+      color: var(--text-dark);
+    }
+
+    .summary-table tr:nth-child(even) {
+      background: #eff6ff;
+    }
+
+    /* TREE DIAGRAM STYLES */
+    .tree-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 10px;
+    }
+
+    .tree-node {
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .tree-title {
+      font-weight: 800;
+      color: #1e40af;
+      font-size: 0.98rem;
+      margin-bottom: 8px;
+    }
+
+    .tree-sublist {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tree-tag {
+      background: #dbeafe;
+      color: #1e293b;
+      border: 1px solid #bfdbfe;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 640px) {
+      body { padding: 12px 6px 40px; }
+      .container { padding: 20px 14px; border-radius: 14px; }
+      h1 { font-size: 1.7rem; }
       .card-grid { grid-template-columns: 1fr; }
+      .modal-card { max-height: 95vh; margin: 4px; }
+      .header-top { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -79,151 +303,202 @@
 
   <div class="container">
     <header>
-      <span class="badge">Pharmacology — Unit III</span>
-      <h1>Gastrointestinal Pharmacology</h1>
-      <p class="subtitle">Complete clinical guide to digestive medications, mechanisms of action, and essential nursing implications.</p>
+      <div class="header-top">
+        <span class="badge">Pharmacology — Unit IV</span>
+        <div class="header-actions">
+          <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
+          <button class="btn-header" onclick="toggleModal('treeModal')">🌳 Classification Tree</button>
+        </div>
+      </div>
+      <h1>Drugs Affecting the Hematology System</h1>
+      <p class="subtitle">Coagulation management, thrombolysis, and hemostatic protocols for nursing practice.</p>
     </header>
 
     <main>
       <h2>Select Drug Category</h2>
       <div class="card-grid">
 
-        <!-- 1. Antimicrobial Agents -->
-        <a href="antimicrobialAgents.html" class="card">
+        <a href="plateletInhibitors.html" class="card">
           <div>
-            <div class="card-icon">🦠</div>
-            <h3>Antimicrobial Agents</h3>
-            <p>Eradication therapy for H. Pylori, including Amoxicillin and Clarithromycin.</p>
+            <div class="card-icon">🩸</div>
+            <h3>Platelet Inhibitors <span class="exam-badge">IMP FOR EXAM</span></h3>
+            <p>Mechanisms of inhibiting platelet aggregation to prevent arterial thrombosis.</p>
           </div>
-          <span class="card-link">View Details &rarr;</span>
+          <span class="card-link">Explore Details &rarr;</span>
         </a>
 
-        <!-- 2. H2 Receptor Blockers -->
-        <a href="h2ReceptorBlockers.html" class="card">
+        <a href="anticoagulants.html" class="card">
           <div>
             <div class="card-icon">🧪</div>
-            <h3>H2 Receptor Blockers</h3>
-            <p>Reducing acid production by blocking histamine receptors (e.g., Famotidine).</p>
+            <h3>Anticoagulants <span class="exam-badge">IMP FOR EXAM</span></h3>
+            <p>Interfering with clotting factors (Heparin/Warfarin) to manage VTE.</p>
           </div>
-          <span class="card-link">View Details &rarr;</span>
+          <span class="card-link">Explore Details &rarr;</span>
         </a>
 
-        <!-- 3. PPIs & Prostaglandins -->
-        <a href="ppiProstaglandins.html" class="card">
+        <a href="thrombolyticAgents.html" class="card">
           <div>
-            <div class="card-icon">💊</div>
-            <h3>PPIs &amp; Prostaglandins</h3>
-            <p>Proton pump inhibition (Omeprazole) and mucus-stimulating protective analogs.</p>
+            <div class="card-icon">⚡</div>
+            <h3>Thrombolytic Agents <span class="exam-badge">IMP FOR EXAM</span></h3>
+            <p>Fibrinolytic drugs (Alteplase) used to dissolve life-threatening clots.</p>
           </div>
-          <span class="card-link">View Details &rarr;</span>
+          <span class="card-link">Explore Details &rarr;</span>
         </a>
 
-        <!-- 4. Antimuscarinics & Antacids -->
-        <a href="antimuscarinicsAntacids.html" class="card">
+        <a href="treatmentOfBleeding.html" class="card">
           <div>
-            <div class="card-icon">🛡️</div>
-            <h3>Antimuscarinics &amp; Antacids</h3>
-            <p>Acid neutralization and mucosal protective agents (Sucralfate).</p>
+            <div class="card-icon">🩹</div>
+            <h3>Treatment of Bleedings <span class="exam-badge">IMP FOR EXAM</span></h3>
+            <p>Hemostatic agents and reversal protocols to manage hemorrhage.</p>
           </div>
-          <span class="card-link">View Details &rarr;</span>
+          <span class="card-link">Explore Details &rarr;</span>
         </a>
 
-        <!-- 5. Antidiarrheals -->
-        <a href="Antidiarrheals.html" class="card">
-          <div>
-            <div class="card-icon">💧</div>
-            <h3>Antidiarrheals</h3>
-            <p>Medications to reduce intestinal motility and control diarrheal symptoms.</p>
-          </div>
-          <span class="card-link">View Details &rarr;</span>
-        </a>
-
-        <!-- 6. Antiemetics -->
-        <a href="Antiemetics.html" class="card">
-          <div>
-            <div class="card-icon">🤢</div>
-            <h3>Antiemetics</h3>
-            <p>Agents to treat nausea and vomiting, including serotonin antagonists.</p>
-          </div>
-          <span class="card-link">View Details &rarr;</span>
-        </a>
-
-        <!-- 7. Constipation -->
-        <a href="Constipation.html" class="card">
-          <div>
-            <div class="card-icon">🚽</div>
-            <h3>Constipation</h3>
-            <p>Laxatives, stool softeners, and bulk-forming agents for bowel regularity.</p>
-          </div>
-          <span class="card-link">View Details &rarr;</span>
-        </a>
-
-        <!-- 8. Practice Master Quiz -->
-        <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/quiz.chapter3.html" class="card card-quiz" target="_blank">
+        <!-- 5. Practice Master Quiz Block -->
+        <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/quiz.chapter4.html" class="card card-quiz" target="_blank">
           <div>
             <div class="card-icon">🎯</div>
             <h3>Practice Master Quiz</h3>
-            <p>Practice 180 high-yield MCQs covering all 7 gastrointestinal drug categories with a built-in timer.</p>
+            <p>Test your knowledge with high-yield MCQs covering all hematology drug categories with a built-in timer.</p>
           </div>
           <span class="card-link">Take Quiz Now &rarr;</span>
         </a>
 
       </div>
 
-      <h2>General Nursing Measures &amp; Patient Education</h2>
+      <h2>General Nursing Measures</h2>
       <ul class="nursing-list">
-        
         <li class="nursing-item">
           <div class="nursing-number">1</div>
-          <div class="nursing-content">
-            <h4>Administration Timing &amp; Meal Interactions</h4>
-            <p>Instruct patients to take Proton Pump Inhibitors (PPIs) 30–60 minutes <strong>before breakfast</strong> for optimal proton pump inhibition. Sucralfate should be taken on an empty stomach 1 hour before meals, while antacids should be given 1–2 hours apart from other oral drugs to prevent chelation.</p>
-          </div>
+          <div><strong>Monitoring Coagulation:</strong> Regularly check lab values (PT/INR for Warfarin; aPTT for Heparin) before administering doses. <span class="exam-badge">IMP FOR EXAM</span></div>
         </li>
-
         <li class="nursing-item">
           <div class="nursing-number">2</div>
-          <div class="nursing-content">
-            <h4>Fluid Balance &amp; Electrolyte Monitoring</h4>
-            <p>Continuously evaluate fluid intake/output, skin turgor, and serum electrolytes (sodium, potassium, magnesium) in patients experiencing acute diarrhea or severe vomiting before and during administration of antidiarrheals or antiemetics.</p>
-          </div>
+          <div><strong>Bleeding Precautions:</strong> Implement strict bleeding precautions: use a soft-bristle toothbrush, electric razor, and minimize trauma.</div>
         </li>
-
         <li class="nursing-item">
           <div class="nursing-number">3</div>
-          <div class="nursing-content">
-            <h4>Laxative Safety &amp; Hydration Guidance</h4>
-            <p>Warn patients taking bulk-forming laxatives (e.g., Psyllium) to ingest at least 240 mL (8 oz) of fluid per dose to prevent esophageal obstruction or intestinal impaction. Avoid long-term continuous use of stimulant laxatives to prevent cathartic colon dependency.</p>
-          </div>
+          <div><strong>Antidote Readiness:</strong> Always verify that reversal agents (Vitamin K, Protamine Sulfate) are readily available for emergency use. <span class="exam-badge">IMP FOR EXAM</span></div>
         </li>
-
         <li class="nursing-item">
           <div class="nursing-number">4</div>
-          <div class="nursing-content">
-            <h4>Antiemetic Timing &amp; Prophylactic Use</h4>
-            <p>Administer prophylactic antiemetics 30 to 60 minutes prior to chemotherapy or surgical procedures. Monitor patients taking dopamine-antagonist antiemetics (e.g., Metoclopramide) for acute extrapyramidal symptoms or tardive dyskinesia.</p>
-          </div>
+          <div><strong>Injection Safety:</strong> Avoid IM injections for patients on anticoagulants to prevent hematoma formation at the site.</div>
         </li>
-
-        <li class="nursing-item">
-          <div class="nursing-number">5</div>
-          <div class="nursing-content">
-            <h4>Pregnancy Safety Warnings</h4>
-            <p>Verify pregnancy status before administering Misoprostol due to its potent abortifacient actions and uterine-stimulating effects. Ensure women of childbearing potential use effective contraception during PGE1 therapy.</p>
-          </div>
-        </li>
-
-        <li class="nursing-item">
-          <div class="nursing-number">6</div>
-          <div class="nursing-content">
-            <h4>Contraindications in Infectious Diarrhea</h4>
-            <p>Do not administer antimotility antidiarrheal agents (e.g., Loperamide, Diphenoxylate) to patients with high fever, bloody stool (dysentery), or confirmed <em>C. difficile</em> colitis to prevent pathogen retention and toxic megacolon.</p>
-          </div>
-        </li>
-
       </ul>
     </main>
   </div>
+
+<!-- ================= MASTER SUMMARY TABLE MODAL (HIGH CONTRAST) ================= -->
+<div class="modal-overlay" id="tableModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>📊 Master Hematology Pharmacology Summary Table</h3>
+      <button class="close-btn" onclick="toggleModal('tableModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;">High-yield comparative summary across all 4 major hematologic drug categories, mechanisms, lab monitoring, and reversal agents.</p>
+      <div class="table-container">
+        <table class="summary-table">
+          <thead>
+            <tr>
+              <th>Drug Category</th>
+              <th>Prototype Drugs</th>
+              <th>Mechanism of Action</th>
+              <th>Lab Monitoring</th>
+              <th>Primary Clinical Uses</th>
+              <th>Reversal Agent / Key Alert</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Platelet Inhibitors</strong></td>
+              <td>Aspirin, Clopidogrel, Abciximab</td>
+              <td>Inhibits COX-1 (Aspirin) or blocks P2Y12 ADP receptors to prevent platelet aggregation</td>
+              <td>Bleeding Time, Platelet count</td>
+              <td>Arterial thrombosis prevention, ACS, post-PCI, ischemic stroke</td>
+              <td>Platelet transfusion (if severe hemorrhage); Stop 5-7 days before elective surgery</td>
+            </tr>
+            <tr>
+              <td><strong>2. Anticoagulants</strong></td>
+              <td>UFH (Heparin), LMWH (Enoxaparin), Warfarin, Rivaroxaban</td>
+              <td>Inactivates Thrombin IIa/Xa (Heparin) or inhibits Vitamin K Factors II, VII, IX, X (Warfarin)</td>
+              <td>aPTT (Heparin); PT/INR (Warfarin, target 2.0-3.0)</td>
+              <td>VTE prophylaxis/treatment, DVT, PE, Atrial Fibrillation stroke prevention</td>
+              <td>Protamine Sulfate (Heparin); Vitamin K / Kcentra (Warfarin); Andexanet alfa (Factor Xa)</td>
+            </tr>
+            <tr>
+              <td><strong>3. Thrombolytic Agents</strong></td>
+              <td>Alteplase (tPA), Reteplase, Tenecteplase</td>
+              <td>Converts plasminogen to plasmin, actively cleaving and dissolving fibrin clots</td>
+              <td>Fibrinogen levels, PT/aPTT, CBC</td>
+              <td>Acute ischemic stroke (&lt; 4.5 hrs), acute STEMI, massive PE with hemodynamics</td>
+              <td>Aminocaproic Acid / Tranexamic Acid; Extreme hemorrhage risk (contraindicated in recent trauma/surgery)</td>
+            </tr>
+            <tr>
+              <td><strong>4. Treatment of Bleeding</strong></td>
+              <td>Aminocaproic Acid, Tranexamic Acid, Vitamin K, Protamine</td>
+              <td>Inhibits plasminogen activation (Antifibrinolytics) or restores active clotting factors</td>
+              <td>PT/INR, aPTT, Fibrinogen</td>
+              <td>Hyperfibrinolysis, surgical bleeding, anticoagulant reversal, hemophilia</td>
+              <td>Thrombosis risk with overuse; Administer IV Vitamin K slowly to avoid anaphylaxis</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CLASSIFICATION TREE MODAL (HIGH CONTRAST) ================= -->
+<div class="modal-overlay" id="treeModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>🌳 Chapter 4 Hematology Classification Tree</h3>
+      <button class="close-btn" onclick="toggleModal('treeModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Visual physiological hierarchy based on stage of hemostasis and therapeutic target.</p>
+      <div class="tree-container">
+        <div class="tree-node">
+          <div class="tree-title">🩸 1. Primary Hemostasis Modulators (Antiplatelets)</div>
+          <div class="tree-sublist">
+            <span class="tree-tag">COX-1 Inhibitor: Aspirin</span>
+            <span class="tree-tag">P2Y12 ADP Antagonists: Clopidogrel, Prasugrel, Ticagrelor</span>
+            <span class="tree-tag">GPIIb/IIIa Blockers: Abciximab, Eptifibatide</span>
+          </div>
+        </div>
+        <div class="tree-node">
+          <div class="tree-title">🧪 2. Secondary Hemostasis Modulators (Anticoagulants)</div>
+          <div class="tree-sublist">
+            <span class="tree-tag">Parenteral Thrombin/Xa Inhibitors: UFH (Heparin), LMWH (Enoxaparin)</span>
+            <span class="tree-tag">Vitamin K Antagonist: Warfarin (Coumadin)</span>
+            <span class="tree-tag">DOACs (Direct Factor Xa / IIa): Rivaroxaban, Apixaban, Dabigatran</span>
+          </div>
+        </div>
+        <div class="tree-node">
+          <div class="tree-title">⚡ 3. Fibrinolytic System Modulators (Thrombolytics)</div>
+          <div class="tree-sublist">
+            <span class="tree-tag">Recombinant Tissue Plasminogen Activators (tPA): Alteplase, Tenecteplase</span>
+          </div>
+        </div>
+        <div class="tree-node">
+          <div class="tree-title">🩹 4. Hemostatic &amp; Reversal Agents</div>
+          <div class="tree-sublist">
+            <span class="tree-tag">Antifibrinolytics: Tranexamic Acid (TXA), Aminocaproic Acid</span>
+            <span class="tree-tag">Specific Antidotes: Protamine Sulfate, Vitamin K1, Idarucizumab</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.toggle('active');
+  }
+</script>
 
 </body>
 </html>
