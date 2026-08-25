@@ -113,6 +113,16 @@
       animation: autoSignalWave 8s infinite ease-in-out;
     }
 
+    /* NEW RECEPTOR SHOWCASE ANIMATION PULSE */
+    @keyframes familyPulse {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    .family-pulse-anim {
+      animation: familyPulse 2.5s infinite ease-in-out;
+    }
+
     .anim-paused {
       animation-play-state: paused !important;
     }
@@ -328,8 +338,8 @@
       </div>
     </section>
 
-    <!-- 3. THE 4 MAJOR RECEPTOR FAMILIES -->
-    <section id="receptor-families" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-6 sm:mb-10 space-y-4 sm:space-y-5">
+    <!-- 3. THE 4 MAJOR RECEPTOR FAMILIES (AUTOMATED SHOWCASE + EASY EXPLANATIONS) -->
+    <section id="receptor-families" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-6 sm:mb-10 space-y-4 sm:space-y-6">
       <div class="flex items-center justify-between border-b border-slate-200 pb-3 sm:pb-4">
         <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
           <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">3</span>
@@ -340,68 +350,115 @@
         </span>
       </div>
 
-      <!-- RESPONSIVE INLINE SVG WITH TOUCH SCROLL HINT -->
-      <div class="relative bg-slate-50 border border-slate-300 rounded-xl sm:rounded-2xl p-2 sm:p-6 my-2 sm:my-4 shadow-inner">
-        <div class="sm:hidden flex items-center justify-end gap-1 text-[10px] font-bold text-slate-500 mb-1">
-          <span>Scroll diagram horizontally</span> <i data-lucide="arrow-right" class="w-3 h-3"></i>
+      <p class="text-slate-800 text-sm sm:text-lg leading-relaxed">
+        Receptors are categorized into <strong>4 major families</strong> based on their physical structure, location, and speed of signal transmission. Watch the automatic cycle below or tap any tab to inspect each receptor type:
+      </p>
+
+      <!-- AUTOMATED & INTERACTIVE RECEPTOR SHOWCASE STAGE -->
+      <div class="bg-slate-900 text-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-slate-800 shadow-xl space-y-4">
+        
+        <!-- TOP AUTOMATED TAB SELECTOR -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <button onclick="setReceptorFamily(1)" id="famTab1" class="p-2.5 rounded-xl border text-center transition active:scale-95 bg-brand-600 border-brand-400 text-white shadow-md">
+            <div class="text-lg sm:text-xl mb-0.5">⚡</div>
+            <div class="text-[11px] sm:text-xs font-black uppercase tracking-wider">1. Ion Channels</div>
+            <div class="text-[9px] text-brand-200 font-bold">Milliseconds</div>
+          </button>
+
+          <button onclick="setReceptorFamily(2)" id="famTab2" class="p-2.5 rounded-xl border text-center transition active:scale-95 bg-slate-800 border-slate-700 text-slate-400">
+            <div class="text-lg sm:text-xl mb-0.5">🧬</div>
+            <div class="text-[11px] sm:text-xs font-black uppercase tracking-wider">2. GPCRs</div>
+            <div class="text-[9px] text-slate-400 font-bold">Seconds</div>
+          </button>
+
+          <button onclick="setReceptorFamily(3)" id="famTab3" class="p-2.5 rounded-xl border text-center transition active:scale-95 bg-slate-800 border-slate-700 text-slate-400">
+            <div class="text-lg sm:text-xl mb-0.5">🧪</div>
+            <div class="text-[11px] sm:text-xs font-black uppercase tracking-wider">3. Enzyme-Linked</div>
+            <div class="text-[9px] text-slate-400 font-bold">Minutes - Hours</div>
+          </button>
+
+          <button onclick="setReceptorFamily(4)" id="famTab4" class="p-2.5 rounded-xl border text-center transition active:scale-95 bg-slate-800 border-slate-700 text-slate-400">
+            <div class="text-lg sm:text-xl mb-0.5">🎯</div>
+            <div class="text-[11px] sm:text-xs font-black uppercase tracking-wider">4. Intracellular</div>
+            <div class="text-[9px] text-slate-400 font-bold">Hours - Days</div>
+          </button>
         </div>
-        <div class="overflow-x-auto custom-scroll pb-2">
-          <svg viewBox="0 0 800 240" class="min-w-[650px] w-full h-auto max-w-4xl mx-auto" xmlns="http://www.w3.org/2000/svg">
-            <!-- Box 1 -->
-            <g transform="translate(20, 40)">
-              <rect width="170" height="160" rx="16" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-              <text x="85" y="40" fill="#1d4ed8" font-size="24" text-anchor="middle">⚡</text>
-              <text x="85" y="70" fill="#1e3a8a" font-size="14" font-weight="bold" text-anchor="middle">1. Ion Channels</text>
-              <text x="85" y="95" fill="#2563eb" font-size="11" font-weight="bold" text-anchor="middle">Speed: Milliseconds</text>
-              <text x="85" y="120" fill="#475569" font-size="10" text-anchor="middle">Direct ion flux</text>
-              <text x="85" y="138" fill="#475569" font-size="10" text-anchor="middle">(Nicotinic ACh, GABA-A)</text>
-            </g>
 
-            <!-- Box 2 -->
-            <g transform="translate(215, 40)">
-              <rect width="170" height="160" rx="16" fill="#f0fdf4" stroke="#059669" stroke-width="2"/>
-              <text x="85" y="40" fill="#047857" font-size="24" text-anchor="middle">🧬</text>
-              <text x="85" y="70" fill="#065f46" font-size="14" font-weight="bold" text-anchor="middle">2. GPCRs</text>
-              <text x="85" y="95" fill="#059669" font-size="11" font-weight="bold" text-anchor="middle">Speed: Seconds</text>
-              <text x="85" y="120" fill="#475569" font-size="10" text-anchor="middle">G-Protein middleman</text>
-              <text x="85" y="138" fill="#475569" font-size="10" text-anchor="middle">(Beta-1, Alpha-1)</text>
-            </g>
+        <!-- STAGE ANIMATION CANVAS & PROGRESS BAR -->
+        <div class="relative bg-slate-950 rounded-xl border border-slate-800 p-4 sm:p-6 text-center space-y-3">
+          <div id="famBadge" class="inline-block px-3 py-1 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-wider bg-brand-900 text-brand-300 border border-brand-700">
+            Fastest Response Speed: Milliseconds
+          </div>
 
-            <!-- Box 3 -->
-            <g transform="translate(410, 40)">
-              <rect width="170" height="160" rx="16" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
-              <text x="85" y="40" fill="#b45309" font-size="24" text-anchor="middle">🧪</text>
-              <text x="85" y="70" fill="#78350f" font-size="14" font-weight="bold" text-anchor="middle">3. Enzyme-Linked</text>
-              <text x="85" y="95" fill="#d97706" font-size="11" font-weight="bold" text-anchor="middle">Speed: Minutes-Hours</text>
-              <text x="85" y="120" fill="#475569" font-size="10" text-anchor="middle">Tyrosine Kinase</text>
-              <text x="85" y="138" fill="#475569" font-size="10" text-anchor="middle">(Insulin Receptor)</text>
-            </g>
+          <div id="famIcon" class="text-5xl sm:text-6xl family-pulse-anim my-2">⚡</div>
 
-            <!-- Box 4 -->
-            <g transform="translate(605, 40)">
-              <rect width="170" height="160" rx="16" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
-              <text x="85" y="40" fill="#b91c1c" font-size="24" text-anchor="middle">🎯</text>
-              <text x="85" y="70" fill="#7f1d1d" font-size="14" font-weight="bold" text-anchor="middle">4. Intracellular</text>
-              <text x="85" y="95" fill="#dc2626" font-size="11" font-weight="bold" text-anchor="middle">Speed: Hours-Days</text>
-              <text x="85" y="120" fill="#475569" font-size="10" text-anchor="middle">DNA gene alteration</text>
-              <text x="85" y="138" fill="#475569" font-size="10" text-anchor="middle">(Steroid Receptors)</text>
-            </g>
-          </svg>
+          <h3 id="famTitle" class="text-lg sm:text-2xl font-black text-white">1. Ligand-Gated Ion Channels</h3>
+          
+          <p id="famDesc" class="text-xs sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            Drug binds directly to a pore on the cell membrane, opening the channel instantly to let ions (Na⁺, Cl⁻, Ca²⁺) rush in or out of the cell.
+          </p>
+
+          <!-- AUTO PLAYBACK PROGRESS TRACK -->
+          <div class="pt-2 max-w-md mx-auto">
+            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+              <div id="famProgressBar" class="bg-brand-500 h-full w-0 transition-all duration-300"></div>
+            </div>
+            <div class="flex justify-between items-center text-[9px] sm:text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-1">
+              <span>Automated Cycle Active</span>
+              <button onclick="toggleFamAutoCycle()" id="famPauseBtn" class="text-brand-400 hover:text-brand-300">Pause Auto Cycle</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- DYNAMIC DETAILED BREAKDOWN CARDS -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm">
+          <div class="p-3 bg-slate-800/90 rounded-xl border border-slate-700">
+            <strong class="text-brand-400 block mb-1">📍 Location &amp; Structure:</strong>
+            <span id="famLoc">Cell Membrane (Transmembrane channel pore)</span>
+          </div>
+          <div class="p-3 bg-slate-800/90 rounded-xl border border-slate-700">
+            <strong class="text-emerald-400 block mb-1">💡 Easy Real-World Analogy:</strong>
+            <span id="famAnalogy">Electric trapdoor: Key unlocks door, ions rush right through!</span>
+          </div>
+          <div class="p-3 bg-slate-800/90 rounded-xl border border-slate-700">
+            <strong class="text-amber-400 block mb-1">💊 High-Yield Exam Examples:</strong>
+            <span id="famExamples">Nicotinic ACh Receptors, GABA-A Receptors</span>
+          </div>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-base pt-1">
-        <div class="p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200">
-          <strong>1. Ligand-Gated Ion Channels:</strong> Millisecond speed. Drug binding opens membrane channels directly so ions (Na+, Cl-) rush in (e.g., Nicotinic ACh receptors).
+      <!-- DETAILED SIMPLE EXPLANATIONS FOR ALL 4 FAMILIES -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-base pt-2">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5">
+          <strong class="text-brand-700 text-sm sm:text-base block">1. Ligand-Gated Ion Channels (Milliseconds)</strong>
+          <p class="text-slate-800 leading-relaxed">
+            • <strong>How it works:</strong> The drug binds directly to an ion channel protein on the cell membrane, forcing the pore to open or close immediately.<br>
+            • <strong>Clinical Result:</strong> Causes instant electrical changes (e.g., nerve impulses, muscle contractions).
+          </p>
         </div>
-        <div class="p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200">
-          <strong>2. G Protein-Coupled Receptors (GPCRs):</strong> Second-scale speed. Drug binds a 7-pass membrane receptor that alerts G-proteins (Gs, Gi, Gq) (e.g., Beta-1 receptors).
+
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5">
+          <strong class="text-medical-700 text-sm sm:text-base block">2. G Protein-Coupled Receptors / GPCRs (Seconds)</strong>
+          <p class="text-slate-800 leading-relaxed">
+            • <strong>How it works:</strong> Drug binds a 7-pass membrane receptor, which alerts an internal <strong>G-protein middleman</strong> (Gs, Gi, Gq) to generate second messengers (cAMP, IP3).<br>
+            • <strong>Clinical Result:</strong> Regulates heart rate, smooth muscle contraction, and secretions.
+          </p>
         </div>
-        <div class="p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200">
-          <strong>3. Enzyme-Linked Receptors:</strong> Minute-to-hour speed. Drug binding activates internal kinase domains to phosphorylate target proteins (e.g., Insulin receptors).
+
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5">
+          <strong class="text-amber-700 text-sm sm:text-base block">3. Enzyme-Linked Receptors (Minutes to Hours)</strong>
+          <p class="text-slate-800 leading-relaxed">
+            • <strong>How it works:</strong> Drug binds the outer receptor site, activating an internal enzyme domain (like <strong>Tyrosine Kinase</strong>) to add phosphate groups to cell proteins.<br>
+            • <strong>Clinical Result:</strong> Regulates cell growth, metabolism, and glucose uptake.
+          </p>
         </div>
-        <div class="p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200">
-          <strong>4. Intracellular / Nuclear Receptors:</strong> Hours-to-days speed (Slowest). Lipid-soluble drugs enter the nucleus directly to modify gene transcription (e.g., Steroids).
+
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5">
+          <strong class="text-rose-700 text-sm sm:text-base block">4. Intracellular / Nuclear Receptors (Hours to Days)</strong>
+          <p class="text-slate-800 leading-relaxed">
+            • <strong>How it works:</strong> Lipid-soluble drugs cross the lipid cell membrane and enter the nucleus to bind intracellular DNA transcription factors.<br>
+            • <strong>Clinical Result:</strong> Alters protein synthesis and gene expression (Slowest but longest lasting).
+          </p>
         </div>
       </div>
     </section>
@@ -1090,6 +1147,122 @@
 
     // Start auto sync on page load
     startAutoLoop();
+
+    // ==========================================
+    // NEW 4 RECEPTOR FAMILIES SHOWCASE ENGINE
+    // ==========================================
+    const famData = [
+      {
+        id: 1,
+        badge: "Fastest Response Speed: Milliseconds",
+        icon: "⚡",
+        title: "1. Ligand-Gated Ion Channels",
+        desc: "Drug binds directly to a pore on the cell membrane, opening the channel instantly to let ions (Na⁺, Cl⁻, Ca²⁺) rush in or out of the cell.",
+        loc: "Cell Membrane (Transmembrane channel pore)",
+        analogy: "Electric trapdoor: Key unlocks door, ions rush right through!",
+        examples: "Nicotinic ACh Receptors, GABA-A Receptors",
+        colorClass: "bg-brand-600 border-brand-400 text-white"
+      },
+      {
+        id: 2,
+        badge: "Fast Response Speed: Seconds",
+        icon: "🧬",
+        title: "2. G Protein-Coupled Receptors (GPCRs)",
+        desc: "Drug binds a 7-pass membrane receptor. This activates a G-protein middleman (Gs, Gi, Gq) inside the cell, producing second messengers like cAMP.",
+        loc: "Cell Membrane (7-Transmembrane Spanning Domain)",
+        analogy: "Middleman relay: Boss presses button, manager instructs workers!",
+        examples: "Beta-1, Beta-2, Alpha-1, Muscarinic Receptors",
+        colorClass: "bg-emerald-600 border-emerald-400 text-white"
+      },
+      {
+        id: 3,
+        badge: "Moderate Speed: Minutes to Hours",
+        icon: "🧪",
+        title: "3. Enzyme-Linked Receptors",
+        desc: "Drug binding on the outer cell surface activates an enzyme domain (Tyrosine Kinase) inside the cell, phosphorylating proteins to turn on cellular machinery.",
+        loc: "Cell Membrane (Single-pass with cytoplasmic enzyme site)",
+        analogy: "Enzyme ignition switch: Turn key to start metabolic engine!",
+        examples: "Insulin Receptor, Growth Factor Receptors (EGFR)",
+        colorClass: "bg-amber-600 border-amber-400 text-white"
+      },
+      {
+        id: 4,
+        badge: "Slowest Speed: Hours to Days (Longest-Lasting)",
+        icon: "🎯",
+        title: "4. Intracellular & Nuclear Receptors",
+        desc: "Lipid-soluble drug crosses the cell membrane, enters cytoplasm/nucleus, and binds nuclear receptors to regulate gene expression and protein synthesis.",
+        loc: "Intracellular Cytoplasm / Cell Nucleus",
+        analogy: "Vault Key: Lipophilic drug enters main office to rewrite blueprint!",
+        examples: "Steroids (Cortisol, Estrogen, Testosterone), Thyroid Hormones",
+        colorClass: "bg-rose-600 border-rose-400 text-white"
+      }
+    ];
+
+    let currentFamIndex = 0;
+    let famTimer = null;
+    let famProgressTimer = null;
+    let famAutoPaused = false;
+    let progressVal = 0;
+
+    function setReceptorFamily(num) {
+      currentFamIndex = num - 1;
+      const data = famData[currentFamIndex];
+
+      // Update Tabs styling
+      for (let i = 1; i <= 4; i++) {
+        const tab = document.getElementById('famTab' + i);
+        if (i === num) {
+          tab.className = "p-2.5 rounded-xl border text-center transition active:scale-95 shadow-md " + data.colorClass;
+        } else {
+          tab.className = "p-2.5 rounded-xl border border-slate-700 bg-slate-800 text-slate-400 text-center transition active:scale-95";
+        }
+      }
+
+      // Update Card content
+      document.getElementById('famBadge').innerText = data.badge;
+      document.getElementById('famIcon').innerText = data.icon;
+      document.getElementById('famTitle').innerText = data.title;
+      document.getElementById('famDesc').innerText = data.desc;
+      document.getElementById('famLoc').innerText = data.loc;
+      document.getElementById('famAnalogy').innerText = data.analogy;
+      document.getElementById('famExamples').innerText = data.examples;
+
+      // Reset progress bar
+      progressVal = 0;
+      document.getElementById('famProgressBar').style.width = '0%';
+    }
+
+    function startFamAutoCycle() {
+      famTimer = setInterval(() => {
+        if (!famAutoPaused) {
+          currentFamIndex = (currentFamIndex + 1) % 4;
+          setReceptorFamily(currentFamIndex + 1);
+        }
+      }, 4000);
+
+      famProgressTimer = setInterval(() => {
+        if (!famAutoPaused) {
+          progressVal += 2.5;
+          if (progressVal > 100) progressVal = 0;
+          document.getElementById('famProgressBar').style.width = progressVal + '%';
+        }
+      }, 100);
+    }
+
+    function toggleFamAutoCycle() {
+      famAutoPaused = !famAutoPaused;
+      const btn = document.getElementById('famPauseBtn');
+      if (famAutoPaused) {
+        btn.innerText = "Play Auto Cycle";
+        btn.className = "text-emerald-400 hover:text-emerald-300";
+      } else {
+        btn.innerText = "Pause Auto Cycle";
+        btn.className = "text-brand-400 hover:text-brand-300";
+      }
+    }
+
+    // Start Receptor Showcase Loop
+    startFamAutoCycle();
 
     // Interactive Receptor Simulator Logic
     function runSim(mode) {
