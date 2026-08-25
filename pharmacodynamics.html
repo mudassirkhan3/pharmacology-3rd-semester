@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+html_content = """<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
@@ -56,8 +56,21 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    /* CUSTOM SLEEK SCROLLBAR FOR NAV CHIPS & PC COMPATIBILITY */
+    .custom-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #0f172a;
+      border-radius: 8px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 8px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #2563eb;
+    }
 
     mark {
       background-color: #fef08a;
@@ -149,13 +162,20 @@
       </div>
     </div>
 
-    <!-- QUICK CHIP NAVIGATION -->
+    <!-- QUICK CHIP NAVIGATION (WITH WORKING PC SCROLL BUTTONS & MOUSE WHEEL DRAG) -->
     <div class="sticky top-18 z-40 bg-slate-900/95 backdrop-blur-md p-3 rounded-2xl border border-slate-800 shadow-xl mb-10">
       <div class="text-xs font-black text-brand-400 uppercase tracking-wider px-2 mb-2 flex items-center justify-between">
-        <span>⚡ Quick Jump Navigation</span>
-        <span class="text-slate-400 font-normal">Scroll &rarr;</span>
+        <span class="flex items-center gap-1">⚡ Quick Jump Navigation</span>
+        <div class="flex items-center gap-1.5">
+          <button onclick="scrollNav(-200)" class="p-1 rounded-lg bg-slate-800 hover:bg-brand-600 text-slate-300 hover:text-white transition active:scale-95" title="Scroll Left">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </button>
+          <button onclick="scrollNav(200)" class="p-1 rounded-lg bg-slate-800 hover:bg-brand-600 text-slate-300 hover:text-white transition active:scale-95" title="Scroll Right">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
       </div>
-      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 px-1">
+      <div id="navChipContainer" class="flex items-center gap-2 overflow-x-auto custom-scroll pb-2 px-1 select-none">
         <a href="#docking-engine" class="px-3.5 py-2 rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-bold whitespace-nowrap hover:bg-brand-500 transition shrink-0 flex items-center gap-1.5">
           <i data-lucide="play" class="w-4 h-4"></i> Auto Binding Flow
         </a>
@@ -228,7 +248,7 @@
         <div id="autoSignal" class="auto-signal-motion absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full opacity-0 z-10"></div>
 
         <!-- Membrane Floor -->
-        <div class="absolute bottom-0 left-0 right-0 h-9 bg-gradient-to-r from-brand-900 via-medical-800 to-brand-900 border-t-2 border-brand-400 flex items-center justify-between px-6 text-[10px] font-black uppercase tracking-widest text-slate-300 z-20">
+        <div class="absolute bottom-0 left-0 right-0 h-9 bg-gradient-to-r from-brand-900 via-medical-800 to-brand-900 border-t-2 border-brand-400 flex items-center justify-between px-3 sm:px-6 text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-300 z-20">
           <span>Extracellular Space</span>
           <span>Cell Membrane Layer</span>
           <span>Intracellular Cytoplasm</span>
@@ -318,9 +338,9 @@
         </span>
       </div>
 
-      <!-- INLINE SVG: 4 RECEPTOR FAMILIES -->
-      <div class="bg-slate-50 border border-slate-300 rounded-2xl p-4 sm:p-6 my-4 shadow-inner">
-        <svg viewBox="0 0 800 240" class="w-full h-auto max-w-4xl mx-auto" xmlns="http://www.w3.org/2000/svg">
+      <!-- RESPONSIVE INLINE SVG: 4 RECEPTOR FAMILIES -->
+      <div class="bg-slate-50 border border-slate-300 rounded-2xl p-2 sm:p-6 my-4 shadow-inner overflow-x-auto">
+        <svg viewBox="0 0 800 240" class="w-full min-w-[650px] sm:min-w-0 h-auto max-w-4xl mx-auto" xmlns="http://www.w3.org/2000/svg">
           <!-- Box 1 -->
           <g transform="translate(20, 40)">
             <rect width="170" height="160" rx="16" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
@@ -568,11 +588,11 @@
       </div>
 
       <!-- GRAPH A: POTENCY VS EFFICACY COMPARISON -->
-      <div class="bg-slate-50 border border-slate-300 rounded-2xl p-4 sm:p-6 shadow-inner text-center space-y-2">
+      <div class="bg-slate-50 border border-slate-300 rounded-2xl p-2 sm:p-6 shadow-inner text-center space-y-2 overflow-x-auto">
         <h3 class="font-black text-slate-900 text-base">Graph A: Visualizing Potency (Horizontal) vs. Efficacy (Vertical)</h3>
         <p class="text-xs text-slate-600">Drug A is more potent than Drug B (Curve A is to the left). Drug C has lower efficacy (Ceiling is lower).</p>
         
-        <svg viewBox="0 0 700 280" class="w-full h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 700 280" class="w-full min-w-[500px] sm:min-w-0 h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
           <line x1="60" y1="230" x2="650" y2="230" stroke="#475569" stroke-width="3"/>
           <line x1="60" y1="30" x2="60" y2="230" stroke="#475569" stroke-width="3"/>
           <text x="355" y="265" fill="#0f172a" font-size="12" font-weight="bold" text-anchor="middle">Log Drug Concentration &rarr;</text>
@@ -590,11 +610,11 @@
       </div>
 
       <!-- GRAPH B: ANTAGONIST EFFECTS ON GRADED CURVE -->
-      <div class="bg-slate-50 border border-slate-300 rounded-2xl p-4 sm:p-6 shadow-inner text-center space-y-2">
+      <div class="bg-slate-50 border border-slate-300 rounded-2xl p-2 sm:p-6 shadow-inner text-center space-y-2 overflow-x-auto">
         <h3 class="font-black text-slate-900 text-base">Graph B: Competitive vs. Irreversible Antagonist Shifts</h3>
         <p class="text-xs text-slate-600">Competitive shifts curve RIGHT. Irreversible shifts curve DOWN.</p>
 
-        <svg viewBox="0 0 700 280" class="w-full h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 700 280" class="w-full min-w-[500px] sm:min-w-0 h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
           <line x1="60" y1="230" x2="650" y2="230" stroke="#475569" stroke-width="3"/>
           <line x1="60" y1="30" x2="60" y2="230" stroke="#475569" stroke-width="3"/>
           <text x="355" y="265" fill="#0f172a" font-size="12" font-weight="bold" text-anchor="middle">Log Drug Concentration &rarr;</text>
@@ -629,9 +649,9 @@
       </p>
 
       <!-- SVG GRAPH: QUANTAL CURVE -->
-      <div class="bg-slate-50 border border-slate-300 rounded-2xl p-4 sm:p-6 my-4 shadow-inner text-center">
+      <div class="bg-slate-50 border border-slate-300 rounded-2xl p-2 sm:p-6 my-4 shadow-inner text-center overflow-x-auto">
         <h3 class="font-black text-slate-900 text-sm sm:text-base mb-2">Quantal Curve: ED50 vs TD50 Safety Window</h3>
-        <svg viewBox="0 0 700 240" class="w-full h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 700 240" class="w-full min-w-[500px] sm:min-w-0 h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
           <line x1="60" y1="200" x2="650" y2="200" stroke="#475569" stroke-width="3"/>
           <line x1="60" y1="30" x2="60" y2="200" stroke="#475569" stroke-width="3"/>
           <text x="355" y="235" fill="#0f172a" font-size="12" font-weight="bold" text-anchor="middle">Log Dose &rarr;</text>
@@ -675,9 +695,9 @@
       </div>
 
       <!-- WIDE VS NARROW TI SVG GRAPH -->
-      <div class="bg-slate-50 border border-slate-300 rounded-2xl p-4 sm:p-6 my-4 shadow-inner text-center">
+      <div class="bg-slate-50 border border-slate-300 rounded-2xl p-2 sm:p-6 my-4 shadow-inner text-center overflow-x-auto">
         <h3 class="font-black text-slate-900 text-sm sm:text-base mb-2">Wide vs. Narrow Therapeutic Index Comparison</h3>
-        <svg viewBox="0 0 700 200" class="w-full h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 700 200" class="w-full min-w-[500px] sm:min-w-0 h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
           <text x="40" y="40" fill="#047857" font-size="12" font-weight="bold">Wide TI (Penicillin): Large Safety Gap</text>
           <line x1="40" y1="60" x2="650" y2="60" stroke="#e2e8f0" stroke-width="8" stroke-linecap="round"/>
           <circle cx="100" cy="60" r="10" fill="#059669"/>
@@ -757,6 +777,19 @@
   <script>
     // Initialize Lucide Icons
     lucide.createIcons();
+
+    // NAV BAR HORIZONTAL SCROLL FUNCTION FOR PC & MOBILE
+    function scrollNav(offset) {
+      const container = document.getElementById('navChipContainer');
+      container.scrollBy({ left: offset, behavior: 'smooth' });
+    }
+
+    // ENABLE MOUSE WHEEL SCROLLING & DRAG FOR PC NAV CHIPS
+    const navContainer = document.getElementById('navChipContainer');
+    navContainer.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      navContainer.scrollLeft += e.deltaY;
+    }, { passive: false });
 
     // AUTOMATIC BINDING SYNC LOGIC
     let autoInterval = null;
@@ -891,4 +924,7 @@
     }
   </script>
 </body>
-</html>
+</html>"""
+
+with open("Pharmacodynamics.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
