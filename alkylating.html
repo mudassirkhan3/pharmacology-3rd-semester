@@ -1,208 +1,437 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alkylating Agents | Oncology Pharmacology</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Alkylating Agents | Oncology Pharmacology | MK Study Hub</title>
+  <meta name="description" content="Clear, student-friendly 3rd Semester BSN Oncology Pharmacology module on Alkylating Agents.">
+
+  <!-- TAILWIND CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              200: '#ddd6fe',
+              500: '#a855f7',
+              600: '#9333ea',
+              700: '#7e22ce',
+              800: '#6b21a8',
+              900: '#581c87',
+            },
+            oncology: {
+              50: '#faf5ff',
+              100: '#f3e8ff',
+              500: '#d946ef',
+              600: '#c026d3',
+              700: '#a21caf',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- LUCIDE ICONS CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <style>
-    :root {
-      --bg-gradient: radial-gradient(circle at 10% 20%, rgb(124, 58, 237, 0.08) 0%, rgba(192, 38, 211, 0.05) 40%, #f8fafc 90%);
-      --primary: #7c3aed;
-      --primary-dark: #6d28d9;
-      --accent: #d946ef;
-      --card-bg: rgba(255, 255, 255, 0.9);
-      --card-border: rgba(216, 180, 254, 0.8);
-      --text-main: #1e1b4b;
-      --text-muted: #475569;
-      --shadow-glow: 0 20px 40px -15px rgba(124, 58, 237, 0.25);
-      --radius: 20px;
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.8; padding: 40px 16px; min-height: 100vh; }
-    
-    .container { max-width: 950px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(16px); padding: 50px 40px; border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: var(--shadow-glow); }
-    
-    .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; margin-bottom: 30px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2); }
-    .back-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-    .badge { display: inline-block; padding: 6px 14px; background: #ede9fe; color: var(--primary); font-weight: 800; font-size: 0.8rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; border: 1px solid #ddd6fe; }
+    /* MOBILE SMOOTH HORIZONTAL SCROLLING */
+    .custom-scroll {
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      height: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #0f172a;
+      border-radius: 8px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 8px;
+    }
 
-    h1 { font-size: 2.5rem; font-weight: 900; background: linear-gradient(135deg, #1e1b4b 0%, var(--primary) 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
-    
-    h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #ede9fe; padding-bottom: 10px; }
-    h2::before { content: ''; display: inline-block; width: 6px; height: 24px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; }
-
-    p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 20px; }
-
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 25px 0; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin: 25px 0; }
-    
-    .card-box { background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); transition: 0.3s; }
-    .card-box:hover { transform: translateY(-5px); border-color: var(--primary); }
-    .card-box h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
-
-    .mnemonic-box { background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); border-left: 6px solid var(--primary); padding: 22px; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 15px rgba(124, 58, 237, 0.08); }
-    .mnemonic-box h4 { color: var(--primary); font-size: 1.1rem; margin-bottom: 8px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
-    .mnemonic-box p { color: #3b0764; margin-bottom: 0; font-weight: 500; }
-
-    ul { list-style-type: none; padding-left: 0; margin-bottom: 20px; }
-    ul li { position: relative; padding-left: 28px; margin-bottom: 12px; color: var(--text-muted); font-size: 1.05rem; }
-    ul li::before { content: '▪'; position: absolute; left: 8px; color: var(--primary); font-weight: bold; font-size: 1.2rem; }
-
-    .table-container { overflow-x: auto; margin: 25px 0; border-radius: 14px; border: 1px solid var(--card-border); }
-    table { width: 100%; border-collapse: collapse; background: white; text-align: left; }
-    th { background: #f5f3ff; color: var(--primary); padding: 16px; font-weight: 800; border-bottom: 2px solid var(--card-border); }
-    td { padding: 16px; border-bottom: 1px solid #f1f5f9; color: var(--text-muted); font-size: 0.95rem; }
-    tr:last-child td { border-bottom: none; }
+    mark {
+      background-color: #fef08a;
+      color: #713f12;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
   </style>
 </head>
-<body>
+<body class="antialiased text-slate-900 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 pt-4 sm:pt-6">
 
-<div class="container">
-  <a href="chapter5.html" class="back-btn">&larr; Back to Chapter 5 Hub</a>
-  
-  <div class="badge">Pharmacology Class Deep-Dive</div>
-  <h1>Alkylating Agents</h1>
-  <p>The oldest and most widely utilized class of cytotoxic chemotherapy drugs. They act as potent electrophiles that covalently bind alkyl groups to cellular macromolecules, predominantly targeting nuclear DNA.</p>
+  <!-- TOP STICKY BAR -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-300 shadow-sm max-w-5xl mx-auto rounded-2xl mb-6">
+    <div class="px-4 h-16 flex items-center justify-between gap-2">
+      <a href="chapter5.html" class="inline-flex items-center gap-1.5 text-xs sm:text-base font-extrabold text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-2 rounded-xl border border-brand-200 transition active:scale-95">
+        <i data-lucide="arrow-left" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+        <span>Chapter 5 Hub</span>
+      </a>
 
-  <!-- INTRODUCTION -->
-  <h2>1. Introduction</h2>
-  <p>Alkylating agents were developed from sulfur mustard gases studied during World War II. They are classified as <strong>cell-cycle phase non-specific</strong> agents because they can exert their cytotoxic effects throughout the entire cell cycle, though cells are typically most vulnerable during late G1 and S phases. Their primary target is rapidly proliferating malignant tissue, though they also impact healthy fast-dividing cells (e.g., bone marrow, GI mucosa, hair follicles).</p>
+      <div class="flex items-center gap-2">
+        <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-800 text-[10px] sm:text-xs font-black uppercase tracking-wider border border-slate-300">
+          3rd Sem BSN
+        </span>
+        <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center font-black text-xs sm:text-sm shadow-md shadow-brand-600/20">
+          MK
+        </div>
+      </div>
+    </div>
+  </header>
 
-  <!-- CLASSIFICATION -->
-  <h2>2. Classification & Prototype Drugs</h2>
-  <p>Alkylating agents are divided into several structural subclasses based on their chemical composition:</p>
-  
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>Subclass</th>
-          <th>Prototype Drugs</th>
-          <th>Key Clinical Notes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Nitrogen Mustards</strong></td>
-          <td>Cyclophosphamide, Ifosfamide, Melphalan, Chlorambucil, Bendamustine</td>
-          <td>Most common broad-spectrum class; heavily used in lymphomas and solid tumors.</td>
-        </tr>
-        <tr>
-          <td><strong>Nitrosoureas</strong></td>
-          <td>Carmustine (BCNU), Lomustine (CCNU), Streptozocin</td>
-          <td>Highly lipophilic; uniquely capable of crossing the <strong>Blood-Brain Barrier (BBB)</strong> to treat brain tumors.</td>
-        </tr>
-        <tr>
-          <td><strong>Platinum Coordination Complexes</strong></td>
-          <td>Cisplatin, Carboplatin, Oxaliplatin</td>
-          <td>Technically coordination compounds acting similarly to alkylators; form heavy DNA cross-links.</td>
-        </tr>
-        <tr>
-          <td><strong>Alkyl Sulfonates</strong></td>
-          <td>Busulfan</td>
-          <td>Used primarily in conditioning regimens prior to hematopoietic stem cell transplantation.</td>
-        </tr>
-        <tr>
-          <td><strong>Triazines & Hydrazines</strong></td>
-          <td>Dacarbazine, Temozolomide</td>
-          <td>Oral/IV agents active against melanoma and central nervous system tumors.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <main class="max-w-5xl mx-auto space-y-6 sm:space-y-10">
 
-  <!-- MECHANISM OF ACTION -->
-  <h2>3. Mechanism of Action (Detailed & Simple Explanations)</h2>
-  <p>At a general level, alkylating agents work by attaching alkyl groups to electron-rich sites on cellular DNA (most notably the N7 position of guanine bases). Because these drugs have two reactive arms, they link opposite DNA strands together, causing breaks and preventing cell division. Below is how specific important groups accomplish this:</p>
+    <!-- HERO HEADER -->
+    <div class="bg-gradient-to-br from-purple-900 via-brand-900 to-brand-800 text-white rounded-2xl sm:rounded-3xl p-5 sm:p-10 shadow-xl border border-brand-700/50 relative overflow-hidden">
+      <span class="inline-block px-3 py-1 rounded-full bg-white/15 text-purple-200 text-[10px] sm:text-xs font-black uppercase tracking-widest mb-3 border border-white/20">
+        Oncology Pharmacology Deep-Dive
+      </span>
+      
+      <h1 class="text-2xl sm:text-5xl font-black tracking-tight text-white mb-3 leading-tight break-words">
+        Alkylating Agents
+      </h1>
+      <p class="text-purple-100 text-xs sm:text-xl font-medium max-w-3xl leading-relaxed">
+        The foundational class of cytotoxic chemotherapy drugs: mechanisms, classifications, organ toxicities, and crucial nursing safety protocols.
+      </p>
+    </div>
 
-  <div class="grid-3">
-    <div class="card-box">
-      <h3>💊 Cyclophosphamide & Ifosfamide</h3>
-      <p><strong>The Liver Activation Process:</strong> These are prodrugs that do nothing on their own until they enter the liver. Hepatic CYP450 enzymes convert them into active metabolites. Once activated, they split into two components:</p>
-      <ul style="margin-top: 10px;">
-        <li><strong>Phosphoramide Mustard:</strong> The active warrior that enters cancer cells, cross-links DNA strands, and triggers cell death.</li>
-        <li><strong>Acrolein:</strong> A toxic byproduct that irritates the bladder lining (leading to hemorrhagic cystitis unless neutralized by fluids or Mesna).</li>
+    <!-- 1. INTRODUCTION -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">1</span>
+          Introduction &amp; Core Concepts
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-brand-200">
+          Basics
+        </span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-lg leading-relaxed">
+        Alkylating agents originated from sulfur mustard gases studied during World War II. They act as potent electrophiles that covalently bind alkyl groups to cellular macromolecules, predominantly targeting nuclear DNA.
+      </p>
+
+      <div class="p-4 sm:p-5 bg-purple-50/90 border border-purple-200 rounded-xl sm:rounded-2xl space-y-2">
+        <h3 class="font-black text-purple-900 text-sm sm:text-lg flex items-center gap-2">
+          <i data-lucide="shield-alert" class="w-5 h-5 text-purple-600 shrink-0"></i>
+          Key Pharmacological Feature
+        </h3>
+        <p class="text-xs sm:text-base text-purple-950 leading-relaxed">
+          They are classified as <strong>cell-cycle phase non-specific</strong> drugs. This means they exert cytotoxic effects throughout the entire cell cycle, attacking both rapidly dividing cancer cells and normal healthy cells with high turnover rates (bone marrow, GI tract, hair follicles).
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. CLASSIFICATION & PROTOTYPE DRUGS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">2</span>
+          Classification &amp; Prototype Drugs
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-brand-200">
+          Subclasses
+        </span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-lg leading-relaxed">
+        Alkylating agents are divided into structural subclasses based on their chemical composition and clinical utility:
+      </p>
+
+      <div class="overflow-x-auto custom-scroll border border-slate-200 rounded-2xl shadow-sm">
+        <table class="w-full text-left text-xs sm:text-sm bg-white border-collapse">
+          <thead>
+            <tr class="bg-purple-50 text-brand-900 border-b border-slate-200 font-black">
+              <th class="p-3 sm:p-4">Subclass</th>
+              <th class="p-3 sm:p-4">Prototype Drugs</th>
+              <th class="p-3 sm:p-4">Key Clinical Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-700">
+            <tr>
+              <td class="p-3 sm:p-4 font-bold text-slate-900">Nitrogen Mustards</td>
+              <td class="p-3 sm:p-4 font-mono-code text-xs">Cyclophosphamide, Ifosfamide, Melphalan, Chlorambucil, Bendamustine</td>
+              <td class="p-3 sm:p-4">Most common broad-spectrum class; heavily used in lymphomas and solid tumors.</td>
+            </tr>
+            <tr>
+              <td class="p-3 sm:p-4 font-bold text-slate-900">Nitrosoureas</td>
+              <td class="p-3 sm:p-4 font-mono-code text-xs">Carmustine (BCNU), Lomustine (CCNU), Streptozocin</td>
+              <td class="p-3 sm:p-4">Highly lipophilic; uniquely crosses the <strong>Blood-Brain Barrier (BBB)</strong> for brain tumors.</td>
+            </tr>
+            <tr>
+              <td class="p-3 sm:p-4 font-bold text-slate-900">Platinum Complexes</td>
+              <td class="p-3 sm:p-4 font-mono-code text-xs">Cisplatin, Carboplatin, Oxaliplatin</td>
+              <td class="p-3 sm:p-4">Heavy metal coordination complexes; form rigid DNA cross-links.</td>
+            </tr>
+            <tr>
+              <td class="p-3 sm:p-4 font-bold text-slate-900">Alkyl Sulfonates</td>
+              <td class="p-3 sm:p-4 font-mono-code text-xs">Busulfan</td>
+              <td class="p-3 sm:p-4">Used primarily in conditioning regimens before stem cell transplantation.</td>
+            </tr>
+            <tr>
+              <td class="p-3 sm:p-4 font-bold text-slate-900">Triazines &amp; Hydrazines</td>
+              <td class="p-3 sm:p-4 font-mono-code text-xs">Dacarbazine, Temozolomide</td>
+              <td class="p-3 sm:p-4">Active against melanoma and central nervous system tumors.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 3. MECHANISM OF ACTION + INTERACTIVE FLOWCHART -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">3</span>
+          Mechanism of Action &amp; Interactive Flowchart
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-purple-100 text-purple-800 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-purple-200">
+          Core Biology
+        </span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-lg leading-relaxed">
+        Alkylating agents attach alkyl groups to electron-rich sites on cellular DNA (most notably the N7 position of guanine). Because these drugs have two reactive arms, they link opposite DNA strands together, causing breaks and preventing cell division.
+      </p>
+
+      <!-- STUDENT-FRIENDLY VISUAL FLOWCHART FOR CYCLOPHOSPHAMIDE -->
+      <div class="p-5 sm:p-6 bg-slate-900 text-white rounded-2xl border border-slate-800 space-y-4 shadow-xl">
+        <div class="text-center">
+          <span class="text-xs font-black text-purple-400 uppercase tracking-widest">High-Yield Visual Flowchart</span>
+          <h3 class="text-base sm:text-xl font-black text-white mt-0.5">Cyclophosphamide &amp; Ifosfamide Bioactivation Pathway</h3>
+          <p class="text-xs text-slate-400">Step-by-step transformation from prodrug to active tumor destruction</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
+          <!-- Step 1 -->
+          <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 space-y-2 relative">
+            <div class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center">1</div>
+            <h4 class="font-extrabold text-brand-300 text-sm">Inactive Prodrug Administered</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">Drug is given via IV or oral routes. It does not harm cells until processed by the liver.</p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 space-y-2 relative">
+            <div class="w-7 h-7 rounded-lg bg-amber-600 text-white text-xs font-black flex items-center justify-center">2</div>
+            <h4 class="font-extrabold text-amber-300 text-sm">Liver CYP450 Activation</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">Hepatic microsomal enzymes convert the prodrug into active metabolites, splitting into two distinct paths.</p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 space-y-2 relative">
+            <div class="w-7 h-7 rounded-lg bg-rose-600 text-white text-xs font-black flex items-center justify-center">3</div>
+            <h4 class="font-extrabold text-rose-300 text-sm">Dual Pathway Result</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">• <strong>Phosphoramide Mustard:</strong> Kills cancer cells.<br>• <strong>Acrolein:</strong> Toxic bladder byproduct (needs Mesna).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARDS FOR OTHER AGENTS -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+          <h3 class="font-black text-slate-900 text-base flex items-center gap-2 text-brand-700">
+            <i data-lucide="brain" class="w-5 h-5 shrink-0"></i> Nitrosoureas (Carmustine, Lomustine)
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-800 leading-relaxed">
+            <strong>The Brain-Barrier Breakers:</strong> Highly lipophilic (fat-soluble), allowing them to easily slip through the Blood-Brain Barrier (BBB) to treat primary and metastatic brain tumors. They also undergo <em>carbamoylation</em> of cellular proteins to shut down DNA repair enzymes.
+          </p>
+        </div>
+
+        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+          <h3 class="font-black text-slate-900 text-base flex items-center gap-2 text-purple-700">
+            <i data-lucide="zap" class="w-5 h-5 shrink-0"></i> Platinum Complexes (Cisplatin)
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-800 leading-relaxed">
+            <strong>The Heavy Metal Benders:</strong> Though coordination complexes rather than pure alkylators, platinum atoms form rigid intra-strand cross-links that violently kink the DNA helix, forcing the cancer cell into permanent apoptosis.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CLINICAL USES & MNEMONIC -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">4</span>
+          Clinical Uses &amp; Therapeutic Indications
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-brand-200">
+          Indications
+        </span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-lg leading-relaxed">
+        Alkylating agents are foundational in treating hematological malignancies and solid tumors:
+      </p>
+
+      <ul class="space-y-2 text-xs sm:text-base text-slate-800 pl-2">
+        <li class="flex items-start gap-2"><span class="text-brand-600 font-bold">•</span> Chronic Lymphocytic Leukemia (CLL) &amp; Chronic Myeloid Leukemia (CML)</li>
+        <li class="flex items-start gap-2"><span class="text-brand-600 font-bold">•</span> Hodgkin and Non-Hodgkin Lymphomas</li>
+        <li class="flex items-start gap-2"><span class="text-brand-600 font-bold">•</span> Multiple Myeloma (e.g., Melphalan)</li>
+        <li class="flex items-start gap-2"><span class="text-brand-600 font-bold">•</span> Solid tumors including ovarian, testicular, breast, lung, and brain tumors (gliomas/glioblastomas).</li>
       </ul>
+
+      <div class="p-5 bg-gradient-to-br from-purple-50 to-brand-50 border-l-6 border-brand-600 rounded-2xl shadow-sm space-y-1.5">
+        <h4 class="text-brand-900 font-extrabold text-sm sm:text-base flex items-center gap-2">
+          <i data-lucide="lightbulb" class="w-4 h-4 text-brand-600"></i> High-Yield Mnemonic: "CANCER BLOC"
+        </h4>
+        <p class="text-xs sm:text-sm text-brand-950 leading-relaxed font-medium">
+          <strong>C</strong>LL/CML | <strong>A</strong>cute Leukemias | <strong>N</strong>on-Hodgkin Lymphoma | <strong>C</strong>arcinomas (Breast/Ovarian/Lung) | <strong>E</strong>pendymomas/Brain Tumors | <strong>R</strong>habdomyosarcoma | <strong>B</strong>rain Cancers (Gliomas via Nitrosoureas) | <strong>L</strong>ymphomas (Hodgkin) | <strong>O</strong>varian Cancer | <strong>C</strong>irculating Myeloma
+        </p>
+      </div>
+    </section>
+
+    <!-- 5. ADES & MNEMONIC -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">5</span>
+          Adverse Drug Reactions (ADRs)
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-rose-200">
+          Side Effects
+        </span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-lg leading-relaxed">
+        Due to their non-specific mechanism, fast-renewing normal tissues are heavily impacted, leading to multi-system toxicity:
+      </p>
+
+      <ul class="space-y-2.5 text-xs sm:text-base text-slate-800 pl-2">
+        <li class="flex items-start gap-2"><span class="text-rose-600 font-bold">▪</span> <strong>Bone Marrow Suppression (Myelosuppression):</strong> Leukopenia, thrombocytopenia, and anemia. Nadir typically occurs in 7–14 days.</li>
+        <li class="flex items-start gap-2"><span class="text-rose-600 font-bold">▪</span> <strong>Gastrointestinal Distress:</strong> Severe nausea, vomiting, and stomatitis/mucositis.</li>
+        <li class="flex items-start gap-2"><span class="text-rose-600 font-bold">▪</span> <strong>Alopecia:</strong> Complete or partial hair loss.</li>
+        <li class="flex items-start gap-2"><span class="text-rose-600 font-bold">▪</span> <strong>Gonadal Dysfunction:</strong> Permanent or temporary sterility, azoospermia, and premature ovarian failure.</li>
+        <li class="flex items-start gap-2"><span class="text-rose-600 font-bold">▪</span> <strong>Teratogenicity:</strong> Highly embryotoxic and mutagenic; strictly contraindicated in pregnancy.</li>
+      </ul>
+
+      <div class="p-5 bg-rose-50 border-l-6 border-rose-600 rounded-2xl shadow-sm space-y-1.5">
+        <h4 class="text-rose-900 font-extrabold text-sm sm:text-base flex items-center gap-2">
+          <i data-lucide="lightbulb" class="w-4 h-4 text-rose-600"></i> High-Yield Mnemonic: "BOMBS"
+        </h4>
+        <p class="text-xs sm:text-sm text-rose-950 leading-relaxed font-medium">
+          <strong>B</strong>one marrow depression | <strong>O</strong>ral mucositis &amp; GI distress | <strong>M</strong>ucositis / Mutagenic risks | <strong>B</strong>ladder toxicity (Hemorrhagic cystitis) | <strong>S</strong>terility &amp; Secondary malignancies
+        </p>
+      </div>
+    </section>
+
+    <!-- 6. AGENT-SPECIFIC COMPLICATIONS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">6</span>
+          Agent-Specific Toxicities
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-amber-200">
+          Critical Alerts
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+          <h3 class="font-black text-rose-700 text-sm sm:text-base flex items-center gap-2">
+            <i data-lucide="droplet" class="w-5 h-5"></i> Hemorrhagic Cystitis
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-800 leading-relaxed">
+            Caused specifically by the metabolite <strong>Acrolein</strong> accumulating in the bladder with Cyclophosphamide and Ifosfamide. Causes gross hematuria, dysuria, and bladder fibrosis if left unprotected.
+          </p>
+        </div>
+
+        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+          <h3 class="font-black text-amber-700 text-sm sm:text-base flex items-center gap-2">
+            <i data-lucide="alert-triangle" class="w-5 h-5"></i> Organ-Specific Damage
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-800 leading-relaxed">
+            • <strong>Cisplatin:</strong> Severe nephrotoxicity and ototoxicity (high-frequency hearing loss), peripheral neuropathy.<br>
+            • <strong>Busulfan:</strong> Pulmonary fibrosis ("Busulfan lung").<br>
+            • <strong>Oxaliplatin:</strong> Acute cold-induced paresthesias.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. KEY NURSING TAKEAWAYS & PATIENT SAFETY -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">7</span>
+          Key Nursing Takeaways &amp; Patient Safety
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-medical-100 text-medical-800 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-medical-200">
+          Clinical Practice
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-base text-slate-800 pt-1">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 shadow-sm">
+          <strong class="text-brand-700 block">1. Aggressive Hydration</strong>
+          Administer copious IV/oral hydration before, during, and after cisplatin or cyclophosphamide to flush kidneys and prevent acute kidney injury.
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 shadow-sm">
+          <strong class="text-brand-700 block">2. Uroprotection (Mesna)</strong>
+          For high-dose Cyclophosphamide or Ifosfamide, administer <strong>Mesna</strong> to bind and neutralize acrolein in the bladder, preventing hemorrhagic cystitis.
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 shadow-sm">
+          <strong class="text-brand-700 block">3. Nadir Monitoring</strong>
+          Check baseline and serial Complete Blood Counts (CBC). Institute strict neutropenic and bleeding precautions if blood counts drop.
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 shadow-sm">
+          <strong class="text-brand-700 block">4. Antiemetic Premedication</strong>
+          Administer 5-HT3 receptor antagonists (e.g., Ondansetron) and corticosteroids proactively, as agents like Cisplatin are highly emetogenic.
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 shadow-sm sm:col-span-2">
+          <strong class="text-brand-700 block">5. Extravasation Vigilance</strong>
+          Many alkylating agents are vesicants or irritants. Ensure patent IV access with blood return prior to infusion and know institutional extravasation protocols.
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVIGATION FOOTER -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-slate-300">
+      <a href="chapter5.html" class="w-full sm:w-auto px-5 py-3.5 rounded-xl font-bold text-slate-800 bg-white border border-slate-300 hover:bg-slate-100 flex items-center justify-center gap-2 transition active:scale-95 text-xs sm:text-base shadow-sm">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Chapter 5 Hub
+      </a>
+      <a href="antimetabolites.html" class="w-full sm:w-auto px-5 py-3.5 rounded-xl font-extrabold text-white bg-brand-600 hover:bg-brand-500 flex items-center justify-center gap-2 transition active:scale-95 text-xs sm:text-base shadow-lg shadow-brand-600/20">
+        Next: Antimetabolites <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
     </div>
 
-    <div class="card-box">
-      <h3>🧠 Nitrosoureas (Carmustine, Lomustine)</h3>
-      <p><strong>The Brain-Barrier Breakers:</strong> Most chemotherapy drugs cannot enter the brain because of the protective Blood-Brain Barrier (BBB). Nitrosoureas are uniquely high in fat solubility (lipophilic), allowing them to easily slip through the BBB.</p>
-      <p style="margin-top: 10px;">Once inside, they not only alkylate DNA but also undergo <strong>carbamoylation</strong> of cellular proteins, shutting down essential enzymes the cancer cell uses to repair its DNA.</p>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-12 sm:mt-16 bg-white border-t border-slate-300 py-6 sm:py-8 text-center text-xs sm:text-sm text-slate-600 max-w-5xl mx-auto rounded-2xl">
+    <div class="px-4 space-y-1">
+      <p class="font-extrabold text-slate-900 text-sm sm:text-base">✨ Curated with excellence by Mudassir Khan</p>
+      <p>© 2026 MK Study Hub. BSN Oncology Pharmacology Learning Portal.</p>
     </div>
+  </footer>
 
-    <div class="card-box">
-      <h3>⚡ Platinum Complexes (Cisplatin)</h3>
-      <p><strong>The Heavy Metal Benders:</strong> Though chemically coordination complexes rather than pure alkylators, they behave similarly. The platinum atom targets guanine bases on DNA.</p>
-      <p style="margin-top: 10px;">It forms rigid intra-strand cross-links that violently bend and kink the DNA double helix. This halts transcription, confuses replication machinery, and forces the cancer cell into permanent apoptosis.</p>
-    </div>
-  </div>
-
-  <!-- USES & MNEMONIC -->
-  <h2>4. Clinical Uses & Therapeutic Indications</h2>
-  <p>Alkylating agents are foundational in the treatment of a wide variety of hematological malignancies and solid tumors.</p>
-  <ul>
-    <li>Chronic Lymphocytic Leukemia (CLL) & Chronic Myeloid Leukemia (CML)</li>
-    <li>Hodgkin and Non-Hodgkin Lymphomas</li>
-    <li>Multiple Myeloma (e.g., Melphalan)</li>
-    <li>Solid tumors including ovarian, testicular, breast, lung, and brain tumors (gliomas/glioblastomas).</li>
-  </ul>
-
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for Clinical Uses: "CANCER BLOC"</h4>
-    <p><strong>C</strong>LL/CML | <strong>A</strong>cute Leukemias | <strong>N</strong>on-Hodgkin Lymphoma | <strong>C</strong>arcinomas (Breast/Ovarian/Lung) | <strong>E</strong>pendymomas/Brain Tumors | <strong>R</strong>habdomyosarcoma | <strong>B</strong>rain Cancers (Gliomas via Nitrosoureas) | <strong>L</strong>ymphomas (Hodgkin) | <strong>O</strong>varian Cancer | <strong>C</strong>irculating Myeloma (Multiple Myeloma)</p>
-  </div>
-
-  <!-- ADRS & MNEMONIC -->
-  <h2>5. Adverse Drug Reactions (ADRs)</h2>
-  <p>Due to their non-specific mechanism, fast-renewing normal tissues are heavily impacted, leading to multi-system toxicity.</p>
-  <ul>
-    <li><strong>Bone Marrow Suppression (Myelosuppression):</strong> Leukopenia, thrombocytopenia, and anemia. Nadir typically occurs in 7–14 days.</li>
-    <li><strong>Gastrointestinal Distress:</strong> Severe nausea, vomiting, and stomatitis/mucositis.</li>
-    <li><strong>Alopecia:</strong> Complete or partial hair loss.</li>
-    <li><strong>Gonadal Dysfunction:</strong> Permanent or temporary sterility, azoospermia, and premature ovarian failure.</li>
-    <li><strong>Teratogenicity:</strong> Highly embryotoxic and mutagenic; strictly contraindicated in pregnancy.</li>
-  </ul>
-
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for ADRs: "BOMBS"</h4>
-    <p><strong>B</strong>one marrow depression | <strong>O</strong>ral mucositis & GI distress | <strong>M</strong>ucositis / Mutagenic risks | <strong>B</strong>ladder toxicity (Hemorrhagic cystitis) | <strong>S</strong>terility & Secondary malignancies</p>
-  </div>
-
-  <!-- PHARMACOKINETICS -->
-  <h2>6. Pharmacokinetics</h2>
-  <ul>
-    <li><strong>Administration:</strong> Available via intravenous (IV), oral (e.g., Chlorambucil, Melphalan, Temozolomide), and regional/intraperitoneal routes. Cyclophosphamide is a prodrug requiring hepatic CYP450 bioactivation into active metabolites.</li>
-    <li><strong>Distribution:</strong> Widely distributed throughout body tissues. Nitrosoureas cross the blood-brain barrier exceptionally well due to high lipid solubility.</li>
-    <li><strong>Excretion:</strong> Predominantly eliminated via renal clearance of inactive metabolites. Dose adjustments are required in renal impairment.</li>
-  </ul>
-
-  <!-- COMPLICATIONS -->
-  <h2>7. Agent-Specific Complications</h2>
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>🩸 Hemorrhagic Cystitis</h3>
-      <p>Caused specifically by the metabolite <strong>Acrolein</strong> accumulating in the bladder with Cyclophosphamide and Ifosfamide. Can cause gross hematuria and bladder fibrosis.</p>
-    </div>
-    <div class="card-box">
-      <h3>⚡ Organ Toxicities</h3>
-      <p><strong>Cisplatin:</strong> Severe nephrotoxicity and ototoxicity (high-frequency hearing loss), peripheral neuropathy. <br><strong>Busulfan:</strong> Pulmonary fibrosis ("Busulfan lung"). <br><strong>Oxaliplatin:</strong> Acute cold-induced paresthesias.</p>
-    </div>
-  </div>
-
-  <!-- KEY NURSING TAKEAWAYS -->
-  <h2>8. Key Nursing Takeaways & Patient Safety</h2>
-  <ul>
-    <li><strong>Aggressive Hydration:</strong> Administer copious IV/oral hydration before, during, and after cisplatin or cyclophosphamide administration to flush kidneys and prevent toxicity.</li>
-    <li><strong>Uroprotection (Mesna):</strong> For high-dose Cyclophosphamide or Ifosfamide, administer <strong>Mesna</strong> (sodium 2-mercaptoethanesulfonate) to bind and neutralize acrolein in the bladder, preventing hemorrhagic cystitis.</li>
-    <li><strong>Nadir Monitoring:</strong> Check baseline and serial Complete Blood Counts (CBC) with differential. Institute strict neutropenic and bleeding precautions if counts drop.</li>
-    <li><strong>Antiemetic Premedication:</strong> Administer high-efficacy 5-HT3 receptor antagonists (e.g., Palonosetron, Ondansetron) and corticosteroids proactively, as alkylating agents (especially Cisplatin) are highly emetogenic.</li>
-    <li><strong>Extravasation Vigilance:</strong> Many alkylating agents are vesicants or irritants. Ensure patent IV access with blood return prior to infusion. Know institutional extravasation protocols.</li>
-  </ul>
-
-</div>
-
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+  </script>
 </body>
 </html>
