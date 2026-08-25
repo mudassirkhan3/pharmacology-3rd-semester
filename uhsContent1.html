@@ -1,437 +1,674 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Unit I: Introduction to Pharmacology | Nursing Study Portal</title>
+  <title>Chapter 1: Introduction to Pharmacology | MK Study Hub</title>
+  <meta name="description" content="Complete UHS Curriculum Chapter 1 Module for BSN Nursing Students. Terminologies, History, Medication Sources, Drug Supply, Legislation & Drug Cards.">
+
+  <!-- TAILWIND CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            },
+            medical: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              200: '#a7f3d0',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- LUCIDE ICONS CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <style>
-    :root {
-      --bg-gradient: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #faf5ff 100%);
-      --primary: #2563eb;
-      --primary-dark: #1e40af;
-      --primary-light: #60a5fa;
-      --accent: #f59e0b;
-      --accent-green: #10b981;
-      --card-bg: rgba(255, 255, 255, 0.96);
-      --card-border: rgba(37, 99, 235, 0.2);
-      --text-main: #0f172a;
-      --text-muted: #475569;
-      --shadow-glow: 0 20px 40px -15px rgba(37, 99, 235, 0.15);
-      --radius: 20px;
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-size: 16px;
+      line-height: 1.7;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.75; padding: 12px 6px 60px; min-height: 100vh; overflow-x: hidden; }
-    
-    .container { max-width: 1050px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(20px); padding: 32px 20px; border-radius: var(--radius); border: 1px solid var(--card-border); box-shadow: var(--shadow-glow); position: relative; overflow: hidden; }
-    .container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #2563eb, #10b981, #f59e0b); }
-    
-    .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; margin-bottom: 20px; font-weight: 700; font-size: 0.88rem; transition: 0.3s; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25); }
-    .back-btn:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35); }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-    .badge { display: inline-block; padding: 5px 12px; background: #dbeafe; color: var(--primary-dark); font-weight: 800; font-size: 0.75rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; border: 1px solid #bfdbfe; }
-    
-    .high-yield-badge { display: inline-block; background: linear-gradient(135deg, #d97706, #b45309); color: #fff; font-size: 0.7rem; font-weight: 900; padding: 3px 8px; border-radius: 6px; margin-left: 6px; text-transform: uppercase; letter-spacing: 0.5px; vertical-align: middle; box-shadow: 0 2px 8px rgba(217, 119, 6, 0.25); }
+    .custom-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #0f172a;
+      border-radius: 8px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 8px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #2563eb;
+    }
 
-    mark.hl { background: #fef08a; color: #854d0e; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
-    mark.green-hl { background: #d1fae5; color: #065f46; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+    mark {
+      background-color: #fef08a;
+      color: #713f12;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
 
-    h1 { font-size: clamp(1.7rem, 5vw, 2.5rem); font-weight: 900; background: linear-gradient(135deg, #0f172a 0%, #1e40af 50%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 14px; line-height: 1.2; }
-    
-    h2 { font-size: clamp(1.2rem, 4vw, 1.5rem); margin: 32px 0 16px; color: var(--text-main); display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; flex-wrap: wrap; }
-    h2::before { content: ''; display: inline-block; width: 5px; height: 22px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; flex-shrink: 0; }
-
-    h3 { font-size: 1.08rem; color: var(--primary-dark); margin: 14px 0 6px; }
-
-    p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 14px; }
-    p strong { color: var(--text-main); }
-
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; margin: 18px 0; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin: 18px 0; }
-    
-    .card-box { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 16px; padding: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: 0.3s; position: relative; }
-    .card-box:hover { transform: translateY(-4px); border-color: var(--primary); box-shadow: 0 12px 25px rgba(37, 99, 235, 0.1); }
-    .card-box h3 { color: var(--primary); margin-bottom: 8px; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
-
-    /* INTERACTIVE DRUG CARD GENERATOR WIDGET */
-    .sim-stage { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border: 2px solid #cbd5e1; border-radius: 18px; padding: 18px 12px; margin: 24px 0; box-shadow: 0 10px 25px rgba(0,0,0,0.04); }
-    .sim-controls { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 16px; }
-    .sim-btn { padding: 10px 14px; border-radius: 10px; border: none; font-weight: 800; cursor: pointer; transition: 0.2s; box-shadow: 0 3px 8px rgba(0,0,0,0.08); font-size: 0.85rem; background: var(--primary); color: white; flex: 1 1 120px; text-align: center; }
-    .sim-btn:hover, .sim-btn:active { background: var(--primary-dark); transform: translateY(-2px); }
-    
-    .drug-card-display { background: white; border: 2px solid #3b82f6; border-radius: 14px; padding: 16px; box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08); margin-top: 10px; }
-    .drug-card-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px; flex-wrap: wrap; gap: 6px; }
-    .drug-card-title { font-size: 1.1rem; font-weight: 800; color: var(--primary-dark); }
-    .drug-card-class { background: #dbeafe; color: #1e40af; padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; }
-    .drug-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
-    .drug-section-box { background: #f8fafc; padding: 10px; border-radius: 10px; border: 1px solid #e2e8f0; }
-    .drug-section-box strong { color: var(--primary-dark); display: block; margin-bottom: 4px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
-
-    .mnemonic-box { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-left: 5px solid var(--accent); padding: 16px; border-radius: 12px; margin: 20px 0; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.08); border: 1px solid #fde68a; }
-    .mnemonic-box h4 { color: #b45309; font-size: 0.95rem; margin-bottom: 6px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
-    .mnemonic-box p { color: var(--text-main); margin-bottom: 0; font-weight: 500; font-size: 0.9rem; }
-
-    ul { list-style-type: none; padding-left: 0; margin-bottom: 14px; }
-    ul li { position: relative; padding-left: 22px; margin-bottom: 8px; color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; }
-    ul li::before { content: '✦'; position: absolute; left: 2px; color: var(--primary); font-size: 0.78rem; }
-    ul li strong { color: var(--text-main); }
-
-    /* MOBILE SPECIFIC BREAKPOINTS (<640px) */
-    @media (max-width: 640px) {
-      body { padding: 6px 2px 40px; }
-      .container { padding: 16px 10px; border-radius: 14px; }
-      .high-yield-badge { margin-left: 0; margin-top: 4px; }
-      .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 10px; }
-      .card-box { padding: 14px 10px; }
-      .sim-stage { padding: 12px 8px; }
-      .sim-btn { width: 100%; flex: 1 1 100%; }
-      .drug-card-display { padding: 12px 8px; }
+    /* TIMELINE CONTINUOUS PULSE ANIMATION */
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+    .pulse-node {
+      animation: pulseGlow 2.5s infinite ease-in-out;
     }
   </style>
 </head>
-<body>
+<body class="antialiased text-slate-900 pb-24 md:pb-12">
 
-<div class="container">
-  <a href="chapter1.html" class="back-btn">&larr; Back to Pharmacology Hub</a>
-  
-  <div class="badge">Nursing Foundation Masterclass</div>
-  <h1>Unit I: Introduction to Pharmacology</h1>
-  <p>Welcome to the foundational bedrock of pharmacology! This unit introduces essential drug terminologies, historical milestones, medication purposes, sources, classifications, supply systems, legislation, routes of administration, and reliable reference resources to ensure safe clinical nursing practice.</p>
+  <!-- TOP STICKY BAR -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-300 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 h-16 sm:h-18 flex items-center justify-between gap-3">
+      <a href="index.html" class="inline-flex items-center gap-2 text-sm sm:text-base font-extrabold text-brand-700 bg-brand-50 hover:bg-brand-100 px-3.5 py-2 rounded-xl border border-brand-200 transition active:scale-95">
+        <i data-lucide="home" class="w-5 h-5"></i>
+        <span>Portal Home</span>
+      </a>
 
-  <!-- TOPIC 1: TERMINOLOGIES -->
-  <h2>1. Terminologies Related to Pharmacology <span class="high-yield-badge">⭐ High-Yield Focus</span></h2>
-  <p>Understanding clinical terminology is critical for safe medication administration, avoiding lethal clinical errors, and maintaining precise multidisciplinary communication:</p>
-  
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>Pharmacology</h3>
-      <p>The comprehensive study of drugs, including their origin, chemical structure, physical properties, physiological actions, biochemical mechanisms, and therapeutic applications within living systems.</p>
-    </div>
-    <div class="card-box">
-      <h3>Pharmacokinetics (PK)</h3>
-      <p>What the <mark class="hl">body does to the drug</mark>. Examines the rate and extent of four sequential phases: <strong>Absorption</strong>, <strong>Distribution</strong>, <strong>Metabolism</strong> (Liver), and <strong>Excretion</strong> (Kidneys) (<mark class="green-hl">ADME</mark>).</p>
-    </div>
-    <div class="card-box">
-      <h3>Pharmacodynamics (PD)</h3>
-      <p>What the <mark class="hl">drug does to the body</mark>. Investigates molecular drug-receptor interactions, enzymatic alterations, intracellular signal transduction cascades, and biological responses.</p>
-    </div>
-    <div class="card-box">
-      <h3>Pharmacotherapeutics</h3>
-      <p>The practical, clinical application of drugs to prevent, diagnose, treat, or manage diseases and restore homeostasis.</p>
-    </div>
-  </div>
-
-  <div class="grid-3">
-    <div class="card-box">
-      <h3>Toxicology</h3>
-      <p>The branch concerned with poisons, adverse drug reactions (ADRs), overdosage, cellular toxicity, and antidotal treatments.</p>
-    </div>
-    <div class="card-box">
-      <h3>Pharmacognosy</h3>
-      <p>The study of physical, chemical, and biological properties of crude medicinal drugs derived from natural plant, animal, or mineral sources.</p>
-    </div>
-    <div class="card-box">
-      <h3>Pharmaceutics</h3>
-      <p>The science of converting pure active pharmaceutical ingredients (APIs) into stable, safe, and bioavailable dosage forms (tablets, syrups, injections).</p>
-    </div>
-  </div>
-
-  <!-- EXAM BONUS HIGHLIGHT FOR TERMINOLOGY -->
-  <div class="mnemonic-box" style="border-left-color: #2563eb; background: #f0f9ff; border-color: #bfdbfe;">
-    <h4 style="color: #1e40af;">📌 Exam Focus: Key Terminology Distinctions</h4>
-    <p style="font-size: 0.88rem;">
-      • <strong>Pro-drug:</strong> An inactive precursor that requires metabolic conversion (usually in the liver) to become pharmacologically active (e.g., Enalapril &rarr; Enalaprilat; Levodopa &rarr; Dopamine).<br>
-      • <strong>Bioavailability (F):</strong> The fraction of unchanged drug that reaches systemic circulation. IV route = 100% (F = 1.0).<br>
-      • <strong>Therapeutic Index (TI):</strong> Ratio comparing toxic dose to effective dose (TI = TD50 / ED50). Narrow TI drugs (e.g., Digoxin, Lithium, Warfarin) require strict blood lab monitoring!
-    </p>
-  </div>
-
-  <!-- TOPIC 2: HISTORY OF PHARMACOLOGY -->
-  <h2>2. Brief History of Pharmacology <span class="high-yield-badge">Historical Milestones</span></h2>
-  <p>Pharmacology evolved from ancient herbal traditions and trial-and-error folk remedies into an exact biochemical and genomic science through distinct eras:</p>
-  
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>Ancient &amp; Traditional Era</h3>
-      <p>Early civilizations relied on crude botanical remedies (e.g., <mark class="hl">Willow bark</mark> containing salicin for pain, <mark class="hl">Opium poppy</mark> for pain relief, and <mark class="hl">Cinchona bark</mark> containing quinine for malaria).</p>
-    </div>
-    <div class="card-box">
-      <h3>Emergence of Modern Science (19th Century)</h3>
-      <p>In 1805, <strong>Friedrich Sertürner</strong> isolated pure <mark class="hl">Morphine from opium</mark>, sparking the extraction of pure active chemical alkaloids. Rudolf Buchheim founded the first independent laboratory of pharmacology in 1847.</p>
-    </div>
-    <div class="card-box">
-      <h3>Twentieth Century &amp; Synthetic Era</h3>
-      <p>In 1928, <strong>Alexander Fleming</strong> discovered Penicillin. The development of synthetic sulfonamides, organ-specific receptor theory (Paul Ehrlich's "magic bullet"), and double-blind clinical trials transformed modern medicine.</p>
-    </div>
-    <div class="card-box">
-      <h3>Contemporary Genomic Era</h3>
-      <p>Focuses on <strong>Pharmacogenomics</strong> (customizing drug selection based on individual DNA profiling), recombinant DNA monoclonal antibodies, and targeted molecular therapies.</p>
-    </div>
-  </div>
-
-  <!-- TOPIC 3: PURPOSES OF MEDICATION -->
-  <h2>3. Purposes of Medication <span class="high-yield-badge">⭐ Clinical Applications</span></h2>
-  <p>Medications are prescribed and administered in healthcare settings for several distinct, high-yield clinical objectives:</p>
-
-  <ul>
-    <li><strong>Prophylaxis (Prevention):</strong> Administered to prevent diseases or infections before exposure (e.g., vaccines, preoperative prophylactic antibiotics like Cefazolin, antimalarial tablets).</li>
-    <li><strong>Diagnosis:</strong> Utilized in clinical diagnostic procedures to confirm or locate pathological changes (e.g., radiocontrast dyes for angiography, barium meals, tuberculin PPD skin tests).</li>
-    <li><strong>Treatment (Cure / Therapeutic):</strong> Administered to eradicate pathogens or eliminate the root cause of a disease (e.g., penicillin curing bacterial endocarditis).</li>
-    <li><strong>Palliation (Symptom Relief):</strong> Designed to reduce symptom severity, pain, and suffering without curing the underlying terminal disease (e.g., IV morphine in end-stage oncology care).</li>
-    <li><strong>Restoration (Maintenance / Replacement):</strong> Used to restore normal body function or replenish deficient physiological hormones/electrolytes (e.g., levothyroxine for hypothyroidism, insulin for Type 1 diabetes).</li>
-  </ul>
-
-  <!-- TOPIC 4: SOURCES OF MEDICATION -->
-  <h2>4. Sources of Medication <span class="high-yield-badge">⭐ Exam Favorites</span></h2>
-  <p>Drugs are derived from diverse natural, chemical, and biological sources in modern pharmaceutical manufacturing:</p>
-
-  <div class="grid-3">
-    <div class="card-box">
-      <h3>Plant Sources</h3>
-      <p>Active botanical substances extracted from leaves, seeds, roots, or bark.</p>
-      <p style="font-size: 0.85rem; color: var(--text-main); font-weight: 700;">Key Examples:</p>
-      <ul>
-        <li><mark class="hl">Digoxin</mark> (Foxglove / Digitalis purpurea)</li>
-        <li><mark class="hl">Atropine</mark> (Deadly Nightshade / Belladonna)</li>
-        <li><mark class="hl">Quinine</mark> (Cinchona tree bark)</li>
-      </ul>
-    </div>
-    <div class="card-box">
-      <h3>Animal &amp; Mineral Sources</h3>
-      <p>Extracted from living animal tissues, fluids, or inorganic Earth elements.</p>
-      <p style="font-size: 0.85rem; color: var(--text-main); font-weight: 700;">Key Examples:</p>
-      <ul>
-        <li>Porcine/Bovine Insulin &amp; Heparin</li>
-        <li>Premarin (Pregnant mare urine estrogen)</li>
-        <li>Ferrous Sulfate (Iron), Magnesium Sulfate</li>
-      </ul>
-    </div>
-    <div class="card-box">
-      <h3>Synthetic &amp; Biotechnology</h3>
-      <p>Engineered via chemical synthesis or recombinant DNA genetic technology.</p>
-      <p style="font-size: 0.85rem; color: var(--text-main); font-weight: 700;">Key Examples:</p>
-      <ul>
-        <li>Humulin (Recombinant Human Insulin)</li>
-        <li>Synthetic Antibiotics (Fluoroquinolones)</li>
-        <li>Monoclonal Antibodies (Infliximab)</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- TOPIC 5: CLASSIFICATION OF DRUGS -->
-  <h2>5. Classification of Drugs <span class="high-yield-badge">Core Categorization</span></h2>
-  <p>Drugs are categorized into distinct groups to streamline clinical study, prescribing guidelines, and administration safety:</p>
-
-  <div class="grid-3">
-    <div class="card-box">
-      <h3>Body System Classification</h3>
-      <p>Grouped according to the specific anatomical organ system they primarily target.</p>
-      <p style="font-size: 0.88rem; margin-top: 6px;"><strong>Examples:</strong> Cardiovascular agents, Respiratory drugs, Central Nervous System depressants, Gastrointestinal medications.</p>
-    </div>
-    <div class="card-box">
-      <h3>Therapeutic Use</h3>
-      <p>Grouped according to the specific clinical disease state or symptom they treat.</p>
-      <p style="font-size: 0.88rem; margin-top: 6px;"><strong>Examples:</strong> Antihypertensives (lower blood pressure), Antipyretics (reduce fever), Analgesics (relieve pain), Antiemetics (prevent vomiting).</p>
-    </div>
-    <div class="card-box">
-      <h3>Mechanism of Action (MOA)</h3>
-      <p>Grouped by their precise molecular action at the cellular, receptor, or enzymatic level.</p>
-      <p style="font-size: 0.88rem; margin-top: 6px;"><strong>Examples:</strong> Beta-1 adrenergic blockers, ACE inhibitors, Calcium channel blockers, Proton pump inhibitors.</p>
-    </div>
-  </div>
-
-  <!-- TOPIC 6: THREE TYPES OF DRUG SUPPLY SYSTEM -->
-  <h2>6. Three Types of Drug Supply System <span class="high-yield-badge">⭐ Clinical Safety</span></h2>
-  <p>Healthcare institutions utilize standardized medication distribution systems to control inventory, minimize drug theft, and ensure patient safety:</p>
-
-  <div class="grid-3">
-    <div class="card-box">
-      <h3>1. Floor Stock System</h3>
-      <p>Bulk containers of routine medications are stored directly in nursing unit cabinets.</p>
-      <p style="font-size: 0.85rem;"><strong>Pros:</strong> Immediate availability for emergency needs.<br><strong>Cons:</strong> <mark class="hl">Highest risk of medication errors</mark>, drug contamination, and inventory loss.</p>
-    </div>
-    <div class="card-box">
-      <h3>2. Unit Dose Distribution System</h3>
-      <p>Pharmacy dispenses single, individually packaged, patient-specific doses labeled for a 24-hour window.</p>
-      <p style="font-size: 0.85rem;"><strong>Pros:</strong> <mark class="green-hl">Safest system overall</mark>; double-checked by a pharmacist; drastically reduces nursing prep errors.</p>
-    </div>
-    <div class="card-box">
-      <h3>3. Automated Dispensing Cabinets (ADCs)</h3>
-      <p>Computerized automated dispensing units (e.g., Pyxis, Omnicell) located on the nursing unit.</p>
-      <p style="font-size: 0.85rem;"><strong>Pros:</strong> Biometric login, real-time electronic MAR integration, barcode scanning, controlled drug tracking.</p>
-    </div>
-  </div>
-
-  <!-- TOPIC 7: ROUTES OF DRUG ADMINISTRATION -->
-  <h2>7. Routes of Drug Administration <span class="high-yield-badge">⭐ Exam Core Topic</span></h2>
-  <p>The chosen route dictates the onset speed, duration of action, and bioavailability of the drug. Routes are classified into four main pathways:</p>
-
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>1. Enteral Route (GI Tract)</h3>
-      <p><strong>Oral (PO):</strong> Swallowed via mouth. Most convenient and economical. Subject to <mark class="hl">Hepatic First-Pass Metabolism</mark> (portal vein carries drug to liver first, reducing active drug concentration).</p>
-      <p><strong>Sublingual (SL) &amp; Buccal:</strong> Dissolved under the tongue or against the inner cheek. Highly vascularized; <mark class="green-hl">bypasses liver first-pass effect</mark> for immediate rapid systemic entry (e.g., Nitroglycerin for angina).</p>
-      <p><strong>Rectal (PR):</strong> Suppositories or enemas. Useful for unconscious patients, severe vomiting, or pediatric fever spikes (partial first-pass bypass).</p>
-    </div>
-    <div class="card-box">
-      <h3>2. Parenteral Route (Injections)</h3>
-      <p>Bypasses the digestive tract entirely via direct needle injection:</p>
-      <p><strong>Intravenous (IV):</strong> Injected directly into veins. <mark class="hl">100% Bioavailability (F = 1.0)</mark>. Fastest onset (seconds to minutes). Ideal for emergencies but irreversible!</p>
-      <p><strong>Intramuscular (IM):</strong> Injected into deep muscle tissue at 90° angle (e.g., Ventrogluteal, Deltoid). Rapid absorption via muscular blood vessels.</p>
-      <p><strong>Subcutaneous (SC/SQ):</strong> Injected into adipose layer at 45° to 90° angle (e.g., Insulin, Heparin). Slow, steady absorption.</p>
-      <p><strong>Intradermal (ID):</strong> Injected into dermis at 10° to 15° angle (e.g., TB Mantoux tests, allergy testing).</p>
-    </div>
-  </div>
-
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>3. Topical Route (Skin &amp; Mucous Membranes)</h3>
-      <p>Applied directly to local body surfaces or mucous linings:</p>
-      <p><strong>Transdermal Patches:</strong> Provides slow, continuous, multi-day systemic absorption through intact skin (e.g., Fentanyl, Nitroglycerin, Nicotine patches).</p>
-      <p><strong>Ophthalmic, Otic, &amp; Nasal:</strong> Local drops or sprays. <em>Clinical Tip:</em> Hold inner canthus pressure during eye drop administration to prevent systemic absorption!</p>
-    </div>
-    <div class="card-box">
-      <h3>4. Inhalation Route (Respiratory Tract)</h3>
-      <p>Gas or fine aerosolized droplets inhaled into bronchial airways via Metered-Dose Inhalers (MDIs), dry powder inhalers (DPIs), or nebulizers.</p>
-      <p><strong>Advantage:</strong> Massive alveolar surface area provides instantaneous local bronchial delivery with reduced systemic side effects (e.g., Albuterol, Ipratropium).</p>
-    </div>
-  </div>
-
-  <!-- TOPIC 8: DRUG STANDARDS AND LEGISLATION -->
-  <h2>8. Drug Standards and Legislation <span class="high-yield-badge">Must-Know Regulations</span></h2>
-  <p>Statutory laws, drug regulatory authorities, and official compendia enforce strict quality control standards for drug purity, potency, bioavailability, and safety:</p>
-
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>Official Drug Compendia &amp; Standards</h3>
-      <p>Official legal publications setting mandatory benchmarks for chemical purity, assay strength, packaging, and storage conditions:</p>
-      <ul>
-        <li><strong>USP (United States Pharmacopeia)</strong> / <strong>BP (British Pharmacopoeia)</strong></li>
-        <li><strong>National Formulary (NF)</strong></li>
-      </ul>
-    </div>
-    <div class="card-box">
-      <h3>Regulatory Legislation &amp; Schedules</h3>
-      <p>Statutory regulatory bodies (e.g., <mark class="hl">FDA</mark> in the USA, <mark class="hl">DRAP</mark> in Pakistan) enforce prescription laws and controlled substance tracking:</p>
-      <ul>
-        <li><mark class="hl">Controlled Substance Schedules (I to V):</mark> Schedule I = High abuse potential / No medical use (Heroin); Schedule V = Lowest abuse potential (Cough syrups with codeine).</li>
-        <li><mark class="hl">Pregnancy Risk Categories (A, B, C, D, X):</mark> Category A = Safe; Category X = Strictly contraindicated (Teratogenic!).</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- TOPIC 9: RESOURCES TO COLLECT & UTILIZE DRUG INFORMATION -->
-  <h2>9. Resources to Collect and Utilize Drug Information <span class="high-yield-badge">⭐ Clinical Practice</span></h2>
-  <p>Nurses are legally held responsible for verifying drug mechanisms, safe dosage ranges, compatibility, and side effects prior to administration using validated resources:</p>
-
-  <ul>
-    <li><strong>Nursing Drug Handbooks:</strong> (e.g., <em>Davis's Drug Guide for Nurses</em>, <em>Lippincott Nursing Drug Handbook</em>) containing concise nursing implications, IV push rates, and black box warnings.</li>
-    <li><strong>Clinical Pharmacists:</strong> The premier interprofessional resource for complex drug compatibility, renal clearance adjustments, and drug-drug interactions.</li>
-    <li><strong>Official Hospital Formularies &amp; BNF:</strong> Institutional guides listing approved medications, therapeutic substitution rules, and local protocol guidelines.</li>
-    <li><strong>Validated Online Databases:</strong> Electronic clinical software including Micromedex, Lexicomp, UpToDate, and Medscape.</li>
-  </ul>
-
-  <!-- TOPIC 10: PREPARING DRUG CARDS (INTERACTIVE WIDGET) -->
-  <h2>10. Preparing Drug Cards <span class="high-yield-badge">Student Favorite</span></h2>
-  <p>Drug cards are a nursing student's most effective tool for mastering core drug concepts. Click any medication below to interactively explore its structured layout:</p>
-
-  <div class="sim-stage">
-    <h3 style="color: var(--primary-dark); text-align: center; margin-bottom: 6px;">Interactive Drug Card Viewer</h3>
-    <p style="text-align: center; font-size: 0.85rem; margin-bottom: 14px;">Select a medication to view its structured student drug card:</p>
-
-    <div class="sim-controls">
-      <button class="sim-btn" onclick="loadDrugCard('digoxin')">Digoxin (Lanoxin)</button>
-      <button class="sim-btn" onclick="loadDrugCard('furosemide')">Furosemide (Lasix)</button>
-      <button class="sim-btn" onclick="loadDrugCard('morphine')">Morphine Sulfate</button>
-    </div>
-
-    <div class="drug-card-display" id="drugCardDisplay">
-      <div class="drug-card-header">
-        <span class="drug-card-title" id="dcTitle">Select a drug above</span>
-        <span class="drug-card-class" id="dcClass">Classification</span>
-      </div>
-      <div class="drug-grid">
-        <div class="drug-section-box">
-          <strong>Mechanism of Action</strong>
-          <span id="dcMoa" style="color: var(--text-muted); font-size: 0.85rem;">Click any drug button above to load details.</span>
-        </div>
-        <div class="drug-section-box">
-          <strong>Indications</strong>
-          <span id="dcInd" style="color: var(--text-muted); font-size: 0.85rem;">-</span>
-        </div>
-        <div class="drug-section-box">
-          <strong>Key Side Effects &amp; Toxicity</strong>
-          <span id="dcSide" style="color: var(--text-muted); font-size: 0.85rem;">-</span>
-        </div>
-        <div class="drug-section-box">
-          <strong>Priority Nursing Interventions</strong>
-          <span id="dcNurse" style="color: var(--text-muted); font-size: 0.85rem;">-</span>
+      <div class="flex items-center gap-2">
+        <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs sm:text-sm font-black uppercase tracking-wider border border-slate-300">
+          UHS BSN Syllabus
+        </span>
+        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center font-black text-sm shadow-md shadow-brand-600/20">
+          MK
         </div>
       </div>
     </div>
-  </div>
+  </header>
 
-  <!-- MNEMONIC BOX -->
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for the 5 Primary Rights of Medication Administration: "T-DRAM"</h4>
-    <p><strong>T</strong>ime | <strong>D</strong>ose | <strong>R</strong>oute | <strong>A</strong>mount/Patient | <strong>M</strong>edication. Always perform 3 safety checks against the Medication Administration Record (MAR) before giving any dose!</p>
-  </div>
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
 
-  <!-- KEY NURSING TAKEAWAYS -->
-  <h2>Key Nursing Takeaways &amp; Exam Practice Points</h2>
-  <ul>
-    <li><strong>Master Routes &amp; Bioavailability:</strong> Intravenous (IV) administration provides instant onset and 100% bioavailability (F = 1.0), while oral medications undergo first-pass hepatic metabolism.</li>
-    <li><strong>Check Apical Pulse &amp; Lab Values:</strong> Always assess specific physiological parameters before giving high-alert drugs (e.g., check apical pulse for 1 full minute before Digoxin; check serum potassium before Furosemide).</li>
-    <li><strong>Prioritize Patient Safety:</strong> Unit-dose distribution and double-checking controlled substance counts prevent catastrophic errors and drug diversion.</li>
-  </ul>
+    <!-- HERO HEADER -->
+    <div class="bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white rounded-3xl p-6 sm:p-10 shadow-xl border border-brand-700/50 mb-8 relative overflow-hidden">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/15 text-white text-xs font-extrabold uppercase tracking-wide border border-white/20">
+          <i data-lucide="book-open" class="w-4 h-4 text-medical-200"></i> Unit I: UHS Pharmacology Curriculum
+        </span>
+        <span class="text-xs sm:text-sm text-brand-100 font-bold flex items-center gap-1">
+          <i data-lucide="check-circle-2" class="w-4 h-4 text-medical-400"></i> Core Nursing Module
+        </span>
+      </div>
 
-</div>
+      <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white mb-3 leading-tight">
+        UNIT I: INTRODUCTION TO PHARMACOLOGY
+      </h1>
+      <p class="text-brand-100 text-base sm:text-xl font-medium max-w-3xl leading-relaxed">
+        Master essential terminologies, drug origins, supply systems, legal safety standards, and clinical drug card preparation.
+      </p>
 
-<!-- DRUG CARD JAVASCRIPT -->
-<script>
-  const drugData = {
-    digoxin: {
-      title: "Digoxin (Lanoxin)",
-      class: "Cardiac Glycoside / Positive Inotrope",
-      moa: "Inhibits Na+/K+ ATPase membrane pump, increasing intracellular calcium. This increases myocardial contractility (+ inotropic) and decreases AV node conduction (- chronotropic).",
-      ind: "Heart Failure, Atrial Fibrillation, Atrial Flutter.",
-      side: "Bradycardia, anorexia, nausea/vomiting, visual disturbances (yellow-green halos, blurred vision), fatal ventricular arrhythmias.",
-      nurse: "Check apical pulse for 1 full minute before giving (hold if HR < 60 bpm). Monitor serum potassium (hypokalemia increases digoxin toxicity risk!). Therapeutic blood range: 0.5–2.0 ng/mL. Antidote: Digoxin Immune Fab (Digibind)."
-    },
-    furosemide: {
-      title: "Furosemide (Lasix)",
-      class: "Loop Diuretic",
-      moa: "Inhibits Na+/K+/2Cl- cotransporter in the thick ascending Loop of Henle, blocking water and sodium reabsorption to promote intense diuresis.",
-      ind: "Acute Pulmonary Edema, Heart Failure Edema, Hepatic Cirrhosis, Renal Disease, Hypertension.",
-      side: "Hypokalemia, severe dehydration, orthostatic hypotension, ototoxicity (tinnitus/hearing loss if pushed too fast IV), hyponatremia.",
-      nurse: "Assess blood pressure, serum potassium levels, daily body weight, and strict Intake & Output (I&O). Give IV push slowly over 1-2 minutes to prevent ototoxicity."
-    },
-    morphine: {
-      title: "Morphine Sulfate",
-      class: "Opioid Analgesic (Schedule II Controlled Substance)",
-      moa: "Binds to mu-opioid receptors in the CNS, inhibiting ascending pain pathways and altering emotional response to pain.",
-      ind: "Severe acute pain, Myocardial Infarction chest pain, Acute Pulmonary Edema dyspnea.",
-      side: "Respiratory depression, severe constipation, sedation, hypotension, urinary retention, addiction/tolerance.",
-      nurse: "Assess respiratory rate & depth prior to administration (hold if RR < 12 breaths/min). Have antidote Naloxone (Narcan) immediately available. Initiate prophylactic bowel regimen."
+      <div class="mt-6 pt-4 border-t border-white/20 flex items-center gap-3">
+        <div class="flex-1 bg-black/20 h-2.5 rounded-full overflow-hidden p-0.5">
+          <div class="bg-medical-500 h-full rounded-full w-full"></div>
+        </div>
+        <span class="text-xs sm:text-sm font-black text-medical-200 tracking-wider">ALL 9 UHS LEARNING OUTCOMES</span>
+      </div>
+    </div>
+
+    <!-- QUICK CHIP NAVIGATION FOR PC & MOBILE -->
+    <div class="sticky top-18 z-40 bg-slate-900/95 backdrop-blur-md p-3 rounded-2xl border border-slate-800 shadow-xl mb-10">
+      <div class="text-xs font-black text-brand-400 uppercase tracking-wider px-2 mb-2 flex items-center justify-between">
+        <span class="flex items-center gap-1">⚡ Unit Objectives Navigation</span>
+        <div class="flex items-center gap-1.5">
+          <button onclick="scrollNav(-200)" class="p-1 rounded-lg bg-slate-800 hover:bg-brand-600 text-slate-300 hover:text-white transition active:scale-95" title="Scroll Left">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </button>
+          <button onclick="scrollNav(200)" class="p-1 rounded-lg bg-slate-800 hover:bg-brand-600 text-slate-300 hover:text-white transition active:scale-95" title="Scroll Right">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+      <div id="navChipContainer" class="flex items-center gap-2 overflow-x-auto custom-scroll pb-2 px-1 select-none">
+        <a href="#terminologies" class="px-3.5 py-2 rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-bold whitespace-nowrap hover:bg-brand-500 transition shrink-0">1. Terminologies</a>
+        <a href="#history" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">2. History Timeline</a>
+        <a href="#purposes" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">3. Purposes of Medication</a>
+        <a href="#sources" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">4. Sources of Drugs</a>
+        <a href="#classification" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">5. Drug Classification</a>
+        <a href="#supply-systems" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">6. 3 Supply Systems</a>
+        <a href="#standards-legislation" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">7. Standards & Legislation</a>
+        <a href="#drug-resources" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">8. Drug Information Resources</a>
+        <a href="#drug-card-guide" class="px-3.5 py-2 rounded-xl bg-medical-700 text-white text-xs sm:text-sm font-extrabold whitespace-nowrap shrink-0 flex items-center gap-1">
+          <i data-lucide="file-text" class="w-4 h-4"></i> 9. Clinical Drug Cards
+        </a>
+      </div>
+    </div>
+
+    <!-- OBJECTIVE 1: TERMINOLOGIES -->
+    <section id="terminologies" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
+          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">1</span>
+          Essential Pharmacology Terminologies
+        </h2>
+        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+          UHS SLO #1
+        </span>
+      </div>
+
+      <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
+        Building a professional nursing foundation requires absolute precision in medical terminology.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-1">
+          <span class="font-extrabold text-brand-700 text-base">Pharmacology (Pharmacon + Logos)</span>
+          <p class="text-xs sm:text-sm text-slate-800">The study of drugs, their properties, biochemical effects, mechanisms of action, and therapeutic uses in living organisms.</p>
+        </div>
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-1">
+          <span class="font-extrabold text-brand-700 text-base">Drug / Medication</span>
+          <p class="text-xs sm:text-sm text-slate-800">Any chemical substance that alters biological function to diagnose, cure, treat, mitigate, or prevent disease.</p>
+        </div>
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-1">
+          <span class="font-extrabold text-brand-700 text-base">Pharmacokinetics (PK)</span>
+          <p class="text-xs sm:text-sm text-slate-800"><em>What the body does to the drug</em> (Absorption, Distribution, Metabolism, and Excretion - ADME).</p>
+        </div>
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-1">
+          <span class="font-extrabold text-brand-700 text-base">Pharmacodynamics (PD)</span>
+          <p class="text-xs sm:text-sm text-slate-800"><em>What the drug does to the body</em> (Receptor binding, mechanism of action, therapeutic & toxic effects).</p>
+        </div>
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-1">
+          <span class="font-extrabold text-brand-700 text-base">Pharmacotherapeutics</span>
+          <p class="text-xs sm:text-sm text-slate-800">The clinical application of drugs to treat, prevent, or diagnose diseases in human patients.</p>
+        </div>
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-1">
+          <span class="font-extrabold text-brand-700 text-base">Toxicology</span>
+          <p class="text-xs sm:text-sm text-slate-800">The study of adverse, harmful, or lethal effects of chemical agents and drug overdoses on biological systems.</p>
+        </div>
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-1">
+          <span class="font-extrabold text-brand-700 text-base">Pharmacy</span>
+          <p class="text-xs sm:text-sm text-slate-800">The health science discipline concerned with preparing, compounding, dispensing, and ensuring safe drug usage.</p>
+        </div>
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-1">
+          <span class="font-extrabold text-brand-700 text-base">Posology</span>
+          <p class="text-xs sm:text-sm text-slate-800">The branch of pharmacology devoted to calculating appropriate drug doses based on age, body mass, and health condition.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- OBJECTIVE 2: HISTORY OF PHARMACOLOGY -->
+    <section id="history" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
+          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">2</span>
+          Brief History &amp; Milestones of Pharmacology
+        </h2>
+        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+          UHS SLO #2
+        </span>
+      </div>
+
+      <!-- VISUAL TIMELINE -->
+      <div class="relative border-l-4 border-brand-500 ml-4 sm:ml-8 pl-6 space-y-8 py-2">
+        <div class="relative">
+          <div class="absolute -left-[35px] top-1 w-6 h-6 rounded-full bg-brand-600 border-4 border-white shadow-md pulse-node"></div>
+          <span class="text-xs font-black text-brand-700 uppercase tracking-widest bg-brand-50 px-2.5 py-1 rounded-md border border-brand-200">Ancient Era (3000 BCE)</span>
+          <h3 class="text-lg font-black text-slate-900 mt-1">Ebers Papyrus &amp; Natural Herbal Remedies</h3>
+          <p class="text-sm text-slate-700 leading-relaxed">Ancient civilizations recorded herbal treatments on papyrus scripts. Remedies were empirical, based on plant extracts, minerals, and animal tissues without knowing molecular mechanisms.</p>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -left-[35px] top-1 w-6 h-6 rounded-full bg-brand-600 border-4 border-white shadow-md"></div>
+          <span class="text-xs font-black text-brand-700 uppercase tracking-widest bg-brand-50 px-2.5 py-1 rounded-md border border-brand-200">Middle Ages (800–1200 CE)</span>
+          <h3 class="text-lg font-black text-slate-900 mt-1">Islamic Golden Age &amp; Ibn Sina (Avicenna)</h3>
+          <p class="text-sm text-slate-700 leading-relaxed">Ibn Sina wrote <em>The Canon of Medicine</em>, establishing standardized clinical drug testing, dosage guidelines, and systematic apothecary practices across the civilized world.</p>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -left-[35px] top-1 w-6 h-6 rounded-full bg-brand-600 border-4 border-white shadow-md"></div>
+          <span class="text-xs font-black text-brand-700 uppercase tracking-widest bg-brand-50 px-2.5 py-1 rounded-md border border-brand-200">16th Century</span>
+          <h3 class="text-lg font-black text-slate-900 mt-1">Paracelsus — Father of Toxicology</h3>
+          <p class="text-sm text-slate-700 leading-relaxed">Pioneered dose-response principles: <em>"All substances are poisons; there is none which is not a poison. The right dose differentiates a poison from a remedy."</em></p>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -left-[35px] top-1 w-6 h-6 rounded-full bg-brand-600 border-4 border-white shadow-md"></div>
+          <span class="text-xs font-black text-brand-700 uppercase tracking-widest bg-brand-50 px-2.5 py-1 rounded-md border border-brand-200">19th Century (1805)</span>
+          <h3 class="text-lg font-black text-slate-900 mt-1">Morphine Isolation &amp; Modern Experimental Pharmacology</h3>
+          <p class="text-sm text-slate-700 leading-relaxed">Friedrich Sertürner isolated pure morphine crystals from opium poppy, launching modern pure chemical therapeutics and laboratory pharmacology.</p>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -left-[35px] top-1 w-6 h-6 rounded-full bg-medical-600 border-4 border-white shadow-md"></div>
+          <span class="text-xs font-black text-medical-800 uppercase tracking-widest bg-medical-50 px-2.5 py-1 rounded-md border border-medical-200">20th Century to Present</span>
+          <h3 class="text-lg font-black text-slate-900 mt-1">Antibiotics, Recombinant DNA &amp; Targeted Therapies</h3>
+          <p class="text-sm text-slate-700 leading-relaxed">Alexander Fleming discovered Penicillin (1928). Genetic engineering produced human insulin, monoclonal antibodies, and personalized genomic medicine.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- OBJECTIVE 3: PURPOSES OF MEDICATION -->
+    <section id="purposes" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
+          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">3</span>
+          Purposes of Medication Administration
+        </h2>
+        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+          UHS SLO #3
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-black">🔍</div>
+          <h3 class="font-extrabold text-slate-900 text-base">1. Diagnostic Purpose</h3>
+          <p class="text-xs sm:text-sm text-slate-700">Used to confirm or identify pathological conditions (e.g., Radio-opaque contrast media for X-rays/CT scans, Tuberculin PPD skin test).</p>
+        </div>
+
+        <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+          <div class="w-10 h-10 rounded-xl bg-medical-100 text-medical-800 flex items-center justify-center font-black">🦠</div>
+          <h3 class="font-extrabold text-slate-900 text-base">2. Curative Purpose</h3>
+          <p class="text-xs sm:text-sm text-slate-700">Eliminates pathogen or disease completely from the body (e.g., Antibiotics clearing bacterial infections like Penicillin for Strep throat).</p>
+        </div>
+
+        <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+          <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-900 flex items-center justify-center font-black">🩺</div>
+          <h3 class="font-extrabold text-slate-900 text-base">3. Symptomatic / Palliative</h3>
+          <p class="text-xs sm:text-sm text-slate-700">Relieves pain and distressing symptoms without curing underlying cause (e.g., Paracetamol for fever, Morphine in end-stage cancer).</p>
+        </div>
+
+        <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+          <div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-900 flex items-center justify-center font-black">🛡️</div>
+          <h3 class="font-extrabold text-slate-900 text-base">4. Prophylactic / Preventive</h3>
+          <p class="text-xs sm:text-sm text-slate-700">Prevents onset of disease or surgical complications (e.g., Vaccines, Pre-operative prophylactic IV antibiotics).</p>
+        </div>
+
+        <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+          <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-900 flex items-center justify-center font-black">🧪</div>
+          <h3 class="font-extrabold text-slate-900 text-base">5. Replacement / Substitutive</h3>
+          <p class="text-xs sm:text-sm text-slate-700">Replaces essential endogenous molecules deficient in the body (e.g., Insulin in Type 1 Diabetes, Levothyroxine in hypothyroidism).</p>
+        </div>
+
+        <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+          <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-900 flex items-center justify-center font-black">⚙️</div>
+          <h3 class="font-extrabold text-slate-900 text-base">6. Health Maintenance / Supportive</h3>
+          <p class="text-xs sm:text-sm text-slate-700">Maintains normal physiological functions until body recovers (e.g., Antihypertensives, Multivitamins, Electrolyte fluids).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- OBJECTIVE 4: SOURCES OF MEDICATION -->
+    <section id="sources" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
+          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">4</span>
+          Sources of Medications
+        </h2>
+        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+          UHS SLO #4
+        </span>
+      </div>
+
+      <div class="overflow-x-auto custom-scroll">
+        <table class="w-full text-left text-xs sm:text-sm text-slate-800 border-collapse">
+          <thead>
+            <tr class="bg-slate-900 text-white font-extrabold">
+              <th class="p-3 sm:p-4 rounded-tl-xl">Source Origin</th>
+              <th class="p-3 sm:p-4">Key Active Compounds Extracted</th>
+              <th class="p-3 sm:p-4 rounded-tr-xl">Clinical Examples</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 bg-slate-50">
+            <tr>
+              <td class="p-3 sm:p-4 font-bold text-brand-700">🌿 Plant Source</td>
+              <td class="p-3 sm:p-4">Alkaloids, Glycosides, Resins, Gums, Tannins</td>
+              <td class="p-3 sm:p-4"><strong>Morphine</strong> (Opium poppy), <strong>Digoxin</strong> (Foxglove plant), <strong>Atropine</strong> (Belladonna)</td>
+            </tr>
+            <tr>
+              <td class="p-3 sm:p-4 font-bold text-brand-700">🐄 Animal Source</td>
+              <td class="p-3 sm:p-4">Hormones, Enzymes, Sera, Fluids</td>
+              <td class="p-3 sm:p-4"><strong>Porcine/Bovine Insulin</strong>, <strong>Heparin</strong> (Intestinal mucosa), <strong>Thyroid extract</strong></td>
+            </tr>
+            <tr>
+              <td class="p-3 sm:p-4 font-bold text-brand-700">🪨 Mineral Source</td>
+              <td class="p-3 sm:p-4">Metallic/Non-metallic salts and elements</td>
+              <td class="p-3 sm:p-4"><strong>Iron Sulfate</strong> (Anemia), <strong>Magnesium Sulfate</strong>, <strong>Calcium Carbonate</strong>, <strong>Iodine</strong></td>
+            </tr>
+            <tr>
+              <td class="p-3 sm:p-4 font-bold text-brand-700">🧫 Microbiological Source</td>
+              <td class="p-3 sm:p-4">Fungi, Actinomycetes, Bacterial fermentations</td>
+              <td class="p-3 sm:p-4"><strong>Penicillin</strong> (Penicillium fungus), <strong>Streptomycin</strong>, <strong>Statins</strong></td>
+            </tr>
+            <tr>
+              <td class="p-3 sm:p-4 font-bold text-brand-700">🧪 Synthetic / Chemical</td>
+              <td class="p-3 sm:p-4">Pure laboratory chemical synthesis</td>
+              <td class="p-3 sm:p-4"><strong>Aspirin</strong>, <strong>Paracetamol</strong>, <strong>Ciprofloxacin</strong>, <strong>Sulfonamides</strong></td>
+            </tr>
+            <tr>
+              <td class="p-3 sm:p-4 font-bold text-brand-700">🧬 Recombinant DNA (Biotech)</td>
+              <td class="p-3 sm:p-4">Genetic engineering using E. coli / Yeast DNA</td>
+              <td class="p-3 sm:p-4"><strong>Human Recombinant Insulin</strong>, <strong>Erythropoietin</strong>, <strong>Hepatitis B Vaccines</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- OBJECTIVE 5: CLASSIFICATION OF DRUGS -->
+    <section id="classification" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
+          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">5</span>
+          Classification Systems of Drugs
+        </h2>
+        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+          UHS SLO #5
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+          <span class="font-black text-brand-700 text-base sm:text-lg block">1. By Body System Target</span>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">Groups drugs based on the principal anatomical system affected.</p>
+          <ul class="text-xs text-slate-800 list-disc pl-4 space-y-1 pt-1">
+            <li>Cardiovascular Drugs (Antihypertensives)</li>
+            <li>Central Nervous System Drugs (Sedatives)</li>
+            <li>Gastrointestinal Drugs (Antacids)</li>
+          </ul>
+        </div>
+
+        <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+          <span class="font-black text-brand-700 text-base sm:text-lg block">2. Therapeutic Classification</span>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">Groups drugs based on the clinical intent or usefulness in treating disease.</p>
+          <ul class="text-xs text-slate-800 list-disc pl-4 space-y-1 pt-1">
+            <li>Antihypertensives (Lowers BP)</li>
+            <li>Analgesics (Relieves Pain)</li>
+            <li>Antipyretics (Reduces Fever)</li>
+          </ul>
+        </div>
+
+        <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+          <span class="font-black text-brand-700 text-base sm:text-lg block">3. Pharmacological Classification</span>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">Groups drugs based on precise biochemical mechanisms of action at tissue level.</p>
+          <ul class="text-xs text-slate-800 list-disc pl-4 space-y-1 pt-1">
+            <li>Beta-Blockers (Propranolol)</li>
+            <li>ACE Inhibitors (Captopril)</li>
+            <li>Calcium Channel Blockers (Amlodipine)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- THREE TYPES OF DRUG NAMES CARD -->
+      <div class="p-5 bg-brand-50 border border-brand-200 rounded-2xl space-y-3">
+        <h3 class="font-extrabold text-brand-900 text-base sm:text-lg">Understanding the 3 Types of Drug Names</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm">
+          <div class="p-3 bg-white rounded-xl border border-brand-200">
+            <strong>1. Chemical Name:</strong> Atomic/molecular structure layout (e.g., <em>N-(4-hydroxyphenyl)acetamide</em>).
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-brand-200">
+            <strong>2. Generic (Non-Proprietary) Name:</strong> Official official name given by USAN/WHO (e.g., <strong>Paracetamol</strong> or <strong>Acetaminophen</strong>).
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-brand-200">
+            <strong>3. Brand (Trade/Proprietary) Name:</strong> Trademark name assigned by manufacturer (e.g., <strong>Panadol®, Calpol®</strong>).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OBJECTIVE 6: THREE TYPES OF DRUG SUPPLY SYSTEMS -->
+    <section id="supply-systems" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
+          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">6</span>
+          The 3 Types of Hospital Drug Supply Systems
+        </h2>
+        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+          UHS SLO #6
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- SYSTEM 1 -->
+        <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 flex flex-col justify-between">
+          <div class="space-y-2">
+            <span class="px-3 py-1 bg-brand-100 text-brand-800 rounded-full text-xs font-black uppercase tracking-wider inline-block">System 1</span>
+            <h3 class="font-extrabold text-slate-900 text-lg">Stock Supply System (Floor Stock)</h3>
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              Medications are stocked in bulk on nursing units/wards. Nurses retrieve doses directly from ward stock cabinets for assigned patients.
+            </p>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-slate-200 text-xs space-y-1">
+            <p class="text-emerald-700 font-bold">✔ Advantage: Immediate availability for emergency needs.</p>
+            <p class="text-rose-700 font-bold">✖ Disadvantage: High risk of medication errors, drug waste, and inventory loss.</p>
+          </div>
+        </div>
+
+        <!-- SYSTEM 2 -->
+        <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 flex flex-col justify-between">
+          <div class="space-y-2">
+            <span class="px-3 py-1 bg-amber-100 text-amber-900 rounded-full text-xs font-black uppercase tracking-wider inline-block">System 2</span>
+            <h3 class="font-extrabold text-slate-900 text-lg">Individual Prescription Supply</h3>
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              Hospital pharmacy dispenses a 3 to 7-day drug supply for each specific patient upon receiving physician's prescription order.
+            </p>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-slate-200 text-xs space-y-1">
+            <p class="text-emerald-700 font-bold">✔ Advantage: Pharmacist reviews prescription before dispensing.</p>
+            <p class="text-rose-700 font-bold">✖ Disadvantage: Delays in initial dose administration; returned unused drugs.</p>
+          </div>
+        </div>
+
+        <!-- SYSTEM 3 -->
+        <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 flex flex-col justify-between">
+          <div class="space-y-2">
+            <span class="px-3 py-1 bg-medical-100 text-medical-800 rounded-full text-xs font-black uppercase tracking-wider inline-block">System 3</span>
+            <h3 class="font-extrabold text-slate-900 text-lg">Unit-Dose Supply System (Gold Standard)</h3>
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              Pharmacy dispenses individually packaged, pre-labeled single doses for a 24-hour period, placed in patient-specific drawer carts.
+            </p>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-slate-200 text-xs space-y-1">
+            <p class="text-emerald-700 font-bold">✔ Advantage: Lowest medication error rate (&lt;1%), maximum safety!</p>
+            <p class="text-rose-700 font-bold">✖ Disadvantage: Requires high pharmacy staffing & specialized equipment.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OBJECTIVE 7: DRUG STANDARDS AND LEGISLATION -->
+    <section id="standards-legislation" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
+          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">7</span>
+          Drug Standards &amp; Legislation Safety
+        </h2>
+        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+          UHS SLO #7
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3">
+          <h3 class="font-extrabold text-slate-900 text-base sm:text-lg flex items-center gap-2 text-brand-700">
+            <i data-lucide="shield-check" class="w-5 h-5"></i>
+            1. Official Pharmacopeia Standards
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            Official legal books containing national standards for drug purity, potency, strength, identity, and quality control:
+          </p>
+          <ul class="text-xs sm:text-sm text-slate-800 space-y-1 list-disc pl-5">
+            <li><strong>USP (United States Pharmacopeia):</strong> Official US quality benchmark.</li>
+            <li><strong>BP (British Pharmacopoeia):</strong> Official UK quality standard.</li>
+            <li><strong>IP (International Pharmacopoeia):</strong> Published by WHO.</li>
+          </ul>
+        </div>
+
+        <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3">
+          <h3 class="font-extrabold text-slate-900 text-base sm:text-lg flex items-center gap-2 text-rose-700">
+            <i data-lucide="lock" class="w-5 h-5"></i>
+            2. Drug Legislation &amp; Controlled Substances
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            Laws regulate drug manufacturing, sales, prescribing authority, and abuse prevention:
+          </p>
+          <ul class="text-xs sm:text-sm text-slate-800 space-y-1 list-disc pl-5">
+            <li><strong>Controlled Substances Act:</strong> Categorizes narcotics/addictives into Schedules (Schedule I to V) based on abuse potential.</li>
+            <li><strong>DRAP (Drug Regulatory Authority of Pakistan):</strong> Regulates drug registration, quality, pricing, and safety laws in Pakistan under the Drugs Act 1976.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- OBJECTIVE 8: DRUG INFORMATION RESOURCES -->
+    <section id="drug-resources" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
+          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">8</span>
+          Drug Information Resources for Nurses
+        </h2>
+        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+          UHS SLO #8
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-xs sm:text-sm">
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+          <span class="font-extrabold text-brand-700 block text-base">📘 Print References</span>
+          <p class="text-slate-700">Nursing Drug Handbooks (Lippincott, Davis's Drug Guide), Physician's Desk Reference (PDR), British National Formulary (BNF).</p>
+        </div>
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+          <span class="font-extrabold text-brand-700 block text-base">💻 Electronic Portals</span>
+          <p class="text-slate-700">Micromedex, Lexicomp, Medscape, PubMed, WHO Essential Medicines database.</p>
+        </div>
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+          <span class="font-extrabold text-brand-700 block text-base">📦 Package Inserts</span>
+          <p class="text-slate-700">FDA-approved official leaflets inside drug packaging containing pharmacokinetics, warnings, and dosage limits.</p>
+        </div>
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+          <span class="font-extrabold text-brand-700 block text-base">👨‍⚕️ Clinical Experts</span>
+          <p class="text-slate-700">Clinical Pharmacists, Hospital Drug Information Centers (DIC), Attending Physicians.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- OBJECTIVE 9: HOW TO PREPARE A CLINICAL DRUG CARD -->
+    <section id="drug-card-guide" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
+          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-medical-600 text-white text-sm font-black flex items-center justify-center">9</span>
+          Preparing Clinical Nursing Drug Cards
+        </h2>
+        <span class="px-3 py-1 rounded-full bg-medical-100 text-medical-800 text-xs font-black uppercase tracking-wide border border-medical-200">
+          UHS SLO #9 &amp; Clinical Skill
+        </span>
+      </div>
+
+      <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
+        Drug cards are concise study and bedside reference tools mandatory for nursing clinical ward rotations. Here is the standardized format required by nursing faculty:
+      </p>
+
+      <!-- INTERACTIVE DEMO CLINICAL DRUG CARD TEMPLATE -->
+      <div class="bg-slate-900 text-white rounded-2xl p-5 sm:p-7 border border-slate-800 shadow-xl space-y-4 font-mono-code text-xs sm:text-sm">
+        <div class="flex flex-wrap items-center justify-between border-b border-slate-700 pb-3 gap-2">
+          <div>
+            <span class="text-medical-400 font-black text-base sm:text-lg">DRUG CARD: METOPROLOL TARTRATE</span>
+            <span class="block text-slate-400 text-xs font-normal">Classification: Therapeutic: Antihypertensive | Pharmacological: Beta-1 Blocker</span>
+          </div>
+          <span class="px-3 py-1 bg-brand-600 text-white text-xs font-extrabold rounded-lg">Trade: Lopressor®</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-slate-200 font-sans">
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1">
+            <span class="text-brand-400 font-bold block text-xs uppercase">1. Route & Dose Range</span>
+            <p>50–100 mg PO daily in 1 or 2 divided doses. Emergency IV: 5 mg every 2 mins (Max 15 mg).</p>
+          </div>
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1">
+            <span class="text-brand-400 font-bold block text-xs uppercase">2. Action / Mechanism</span>
+            <p>Selectively blocks Beta-1 adrenergic receptors in heart muscle, reducing heart rate & cardiac output.</p>
+          </div>
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1">
+            <span class="text-brand-400 font-bold block text-xs uppercase">3. Indications</span>
+            <p>Hypertension, Angina Pectoris, Post-Myocardial Infarction cardioprotection.</p>
+          </div>
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1">
+            <span class="text-rose-400 font-bold block text-xs uppercase">4. Contraindications</span>
+            <p>Sinus Bradycardia (&lt;50 bpm), Cardiogenic shock, 2nd/3rd-degree AV block, Severe asthma.</p>
+          </div>
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1 sm:col-span-2">
+            <span class="text-amber-400 font-bold block text-xs uppercase">5. Key Adverse Effects</span>
+            <p>Bradycardia, Hypotension, Fatigue, Dizziness, Erectile dysfunction, Masked hypoglycemia symptoms.</p>
+          </div>
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1 sm:col-span-2">
+            <span class="text-medical-400 font-bold block text-xs uppercase">6. High-Yield Nursing Responsibilities</span>
+            <ul class="list-disc pl-5 space-y-1">
+              <li><strong>Pre-Assessment:</strong> Check apical pulse & BP before giving. Hold dose if HR &lt; 60 bpm or Systolic BP &lt; 90 mmHg.</li>
+              <li><strong>Patient Teaching:</strong> Warn patient never to stop drug abruptly (prevents rebound hypertension/angina). Teach orthostatic blood pressure change precautions.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVIGATION BUTTONS -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-300">
+      <a href="index.html" class="w-full sm:w-auto px-6 py-3.5 rounded-xl font-bold text-slate-800 bg-white border border-slate-300 hover:bg-slate-100 flex items-center justify-center gap-2 transition active:scale-95 text-sm sm:text-base shadow-sm">
+        <i data-lucide="arrow-left" class="w-5 h-5"></i> Back to Portal Home
+      </a>
+      <a href="pharmacokinetics.html" class="w-full sm:w-auto px-6 py-3.5 rounded-xl font-extrabold text-white bg-brand-600 hover:bg-brand-500 flex items-center justify-center gap-2 transition active:scale-95 text-sm sm:text-base shadow-lg shadow-brand-600/20">
+        Next Module: Pharmacokinetics <i data-lucide="arrow-right" class="w-5 h-5"></i>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- CLEAN PORTAL FOOTER -->
+  <footer class="mt-16 bg-white border-t border-slate-300 py-8 text-center text-xs sm:text-sm text-slate-600">
+    <div class="max-w-5xl mx-auto px-4 space-y-2">
+      <p class="font-extrabold text-slate-900 text-base">✨ Curated with excellence by Mudassir Khan</p>
+      <p>© 2026 MK Study Hub. BSN Pharmacology-I Learning Portal.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT ENGINE -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // NAV BAR HORIZONTAL SCROLL FUNCTION FOR PC & MOBILE
+    function scrollNav(offset) {
+      const container = document.getElementById('navChipContainer');
+      container.scrollBy({ left: offset, behavior: 'smooth' });
     }
-  };
 
-  function loadDrugCard(drugKey) {
-    const drug = drugData[drugKey];
-    if (!drug) return;
-    document.getElementById("dcTitle").textContent = drug.title;
-    document.getElementById("dcClass").textContent = drug.class;
-    document.getElementById("dcMoa").textContent = drug.moa;
-    document.getElementById("dcInd").textContent = drug.ind;
-    document.getElementById("dcSide").textContent = drug.side;
-    document.getElementById("dcNurse").textContent = drug.nurse;
-  }
-
-  // Load default first drug on page load
-  window.onload = function() {
-    loadDrugCard('digoxin');
-  };
-</script>
-
+    // ENABLE MOUSE WHEEL SCROLLING & DRAG FOR PC NAV CHIPS
+    const navContainer = document.getElementById('navChipContainer');
+    navContainer.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      navContainer.scrollLeft += e.deltaY;
+    }, { passive: false });
+  </script>
 </body>
 </html>
