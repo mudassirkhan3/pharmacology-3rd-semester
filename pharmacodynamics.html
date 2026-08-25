@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Pharmacodynamics: Signal Transduction, Receptors & Dose-Response | MK Study Hub</title>
-  <meta name="description" content="Clear, student-friendly 3rd Semester BSN Pharmacodynamics module on MK Study Hub.">
+  <meta name="description" content="Exam-focused 3rd Semester BSN Pharmacodynamics module on MK Study Hub.">
 
   <!-- TAILWIND CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -56,27 +56,28 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
-    /* Isolated Signal Transduction Animation Track */
-    @keyframes drugDockMotion {
-      0% { top: 8px; opacity: 0.2; transform: translateX(-50%) scale(0.9); }
-      30% { top: 40px; opacity: 1; transform: translateX(-50%) scale(1.1); filter: drop-shadow(0 0 8px #f59e0b); }
-      70% { top: 40px; opacity: 1; transform: translateX(-50%) scale(1.1); filter: drop-shadow(0 0 14px #10b981); }
-      100% { top: 8px; opacity: 0.2; transform: translateX(-50%) scale(0.9); }
+    /* Keyframe Animation for Dynamic Docking */
+    @keyframes smoothDockSequence {
+      0% { top: 12px; transform: translateX(-50%) scale(0.85); opacity: 0.3; }
+      25% { top: 48px; transform: translateX(-50%) scale(1); opacity: 1; filter: drop-shadow(0 0 6px #f59e0b); }
+      50% { top: 48px; transform: translateX(-50%) scale(1.15); filter: drop-shadow(0 0 16px #10b981); }
+      75% { top: 48px; transform: translateX(-50%) scale(1.1); filter: drop-shadow(0 0 12px #38bdf8); opacity: 1; }
+      100% { top: 12px; transform: translateX(-50%) scale(0.85); opacity: 0.3; }
     }
 
-    .drug-motion-animated {
-      animation: drugDockMotion 6s infinite ease-in-out;
+    .drug-dock-animated {
+      animation: smoothDockSequence 7s infinite ease-in-out;
     }
 
-    @keyframes signalPulse {
-      0%, 30% { width: 10px; height: 10px; opacity: 0; }
-      55% { width: 85%; height: 35px; opacity: 0.9; background: #10b981; }
-      80% { width: 98%; height: 55px; opacity: 0.2; background: #3b82f6; }
+    @keyframes cascadeWave {
+      0%, 30% { width: 12px; height: 12px; opacity: 0; }
+      50% { width: 85%; height: 40px; opacity: 0.9; background: #10b981; }
+      75% { width: 98%; height: 60px; opacity: 0.3; background: #3b82f6; }
       100% { opacity: 0; }
     }
 
-    .signal-pulse-animated {
-      animation: signalPulse 6s infinite ease-in-out;
+    .cascade-wave-animated {
+      animation: cascadeWave 7s infinite ease-in-out;
     }
 
     .animation-paused {
@@ -133,7 +134,7 @@
         PHARMACODYNAMICS
       </h1>
       <p class="text-brand-100 text-base sm:text-xl font-medium max-w-3xl leading-relaxed">
-        What the Drug Does to the Body — Receptors, Signal Transduction Cascades &amp; Dose-Response Relationships.
+        What the Drug Does to the Body — Receptors, Signal Transduction &amp; Dose-Response Dynamics.
       </p>
 
       <div class="mt-6 pt-4 border-t border-white/20 flex items-center gap-3">
@@ -151,17 +152,18 @@
         <span class="text-slate-400 font-normal">Scroll &rarr;</span>
       </div>
       <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 px-1">
-        <a href="#visual-journey" class="px-3.5 py-2 rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-bold whitespace-nowrap hover:bg-brand-500 transition shrink-0 flex items-center gap-1.5">
-          <i data-lucide="play" class="w-4 h-4"></i> Action Flow
+        <a href="#docking-engine" class="px-3.5 py-2 rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-bold whitespace-nowrap hover:bg-brand-500 transition shrink-0 flex items-center gap-1.5">
+          <i data-lucide="play" class="w-4 h-4"></i> Docking Animation
         </a>
-        <a href="#signal-transduction" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">1. Signal Transduction</a>
+        <a href="#signal-transduction" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">1. Transduction Dynamics</a>
         <a href="#receptor-families" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">2. 4 Receptor Types</a>
-        <a href="#agonist-types" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">3. Agonist Types</a>
-        <a href="#antagonists" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">4. Antagonists</a>
-        <a href="#simulator" class="px-3.5 py-2 rounded-xl bg-amber-600 text-white text-xs sm:text-sm font-extrabold whitespace-nowrap shrink-0">⚡ Simulator</a>
-        <a href="#graded-curve" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">5. Graded Curve</a>
-        <a href="#quantal-curve" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">6. Quantal Curve</a>
-        <a href="#therapeutic-index" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">7. Therapeutic Index</a>
+        <a href="#potency-efficacy" class="px-3.5 py-2 rounded-xl bg-amber-600 text-white text-xs sm:text-sm font-extrabold whitespace-nowrap shrink-0">3. Potency vs Efficacy</a>
+        <a href="#agonist-types" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">4. Agonist Types</a>
+        <a href="#antagonists" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">5. Antagonists</a>
+        <a href="#simulator" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">⚡ Simulator</a>
+        <a href="#graded-curves" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">6. Graded Curves</a>
+        <a href="#quantal-curve" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">7. Quantal Safety Curve</a>
+        <a href="#therapeutic-index" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">8. Therapeutic Index</a>
         <a href="#quick-revision" class="px-3.5 py-2 rounded-xl bg-medical-700 text-white text-xs sm:text-sm font-extrabold whitespace-nowrap shrink-0 flex items-center gap-1">
           <i data-lucide="zap" class="w-4 h-4"></i> 60s Revision
         </a>
@@ -176,89 +178,82 @@
           What is Pharmacodynamics?
         </h2>
         <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
-          Core Concept
+          Core Definition
         </span>
       </div>
 
       <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
-        <mark>Pharmacodynamics (PD)</mark> studies <strong>what the drug does to the body</strong>—including its biological mechanism of action, receptor binding, intracellular signaling, and overall physiological therapeutic effects.
+        <mark>Pharmacodynamics (PD)</mark> studies <strong>what the drug does to the body</strong>. It examines how drug molecules interact with cellular targets (receptors, enzymes, ion channels), trigger biochemical signal transduction cascades, and produce physiological changes.
       </p>
 
       <div class="p-5 bg-brand-50 border border-brand-200 rounded-2xl space-y-2">
         <h3 class="font-black text-brand-900 text-base sm:text-lg flex items-center gap-2">
           <i data-lucide="key" class="w-5 h-5 text-brand-600"></i>
-          The Lock and Key Model
+          The Key-and-Lock Principle
         </h3>
         <p class="text-sm sm:text-base text-brand-950 leading-relaxed">
-          Think of a cellular <strong>Receptor</strong> as a microscopic lock on the cell membrane, and the <strong>Drug Molecule</strong> as a specially shaped key. When the key fits into the lock, it either turns the lock on (Agonist) or blocks other keys from entering (Antagonist).
+          Think of a cell receptor as a specialized electronic lock on the cell membrane. A drug acts as a precise key. When inserted, it can either activate the lock to trigger cellular work (Agonist) or sit inside the keyhole to prevent natural keys from turning (Antagonist).
         </p>
       </div>
     </section>
 
-    <!-- CORE FLOW PATHWAY -->
-    <section id="visual-journey" class="bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-brand-700/50 mb-10 text-center">
-      <div class="text-xs font-black uppercase tracking-wider text-brand-200 mb-3">Pharmacodynamics Step-By-Step Cascade</div>
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-sm font-black">
-        <div class="w-full sm:w-auto px-4 py-3 bg-white/10 rounded-xl border border-white/20 backdrop-blur-sm">💊 DRUG ADMINISTERED</div>
-        <div class="text-brand-300 font-bold sm:rotate-0 rotate-90">&rarr;</div>
-        <div class="w-full sm:w-auto px-4 py-3 bg-white/10 rounded-xl border border-white/20 backdrop-blur-sm">🎯 RECEPTOR BINDING</div>
-        <div class="text-brand-300 font-bold sm:rotate-0 rotate-90">&rarr;</div>
-        <div class="w-full sm:w-auto px-4 py-3 bg-white/10 rounded-xl border border-white/20 backdrop-blur-sm">⚡ SIGNAL TRANSDUCTION</div>
-        <div class="text-brand-300 font-bold sm:rotate-0 rotate-90">&rarr;</div>
-        <div class="w-full sm:w-auto px-4 py-3 bg-white/10 rounded-xl border border-white/20 backdrop-blur-sm">🫀 CLINICAL RESPONSE</div>
-      </div>
-    </section>
-
-    <!-- IMPROVED ANIMATION: SIGNAL TRANSDUCTION CASCADE -->
-    <section id="animation-engine" class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 mb-10 space-y-4">
+    <!-- INNOVATIVE 4-STEP DRUG DOCKING ANIMATION ENGINE -->
+    <section id="docking-engine" class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 mb-10 space-y-5">
       <div class="text-center max-w-xl mx-auto">
         <span class="inline-block px-3 py-1 bg-brand-900 text-brand-300 rounded-full text-xs font-black uppercase tracking-wider mb-1 border border-brand-700">
-          Visual Animation
+          Visual Animation Engine
         </span>
-        <h3 class="text-xl sm:text-2xl font-black text-white">Signal Transduction Cascade in Motion</h3>
-        <p class="text-xs sm:text-sm text-slate-400 mt-1">Watch how drug binding at the cell surface triggers second messengers inside the cytoplasm.</p>
+        <h3 class="text-xl sm:text-2xl font-black text-white">4-Phase Dynamic Drug-Receptor Docking Sequence</h3>
+        <p class="text-xs sm:text-sm text-slate-400 mt-1">Watch how a drug molecule docks, shifts receptor shape, and unleashes cellular signals.</p>
       </div>
 
-      <!-- ANIMATED VISUAL CANVAS -->
-      <div class="relative h-48 bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden flex items-center justify-center">
+      <!-- VISUAL CANVAS STAGE -->
+      <div class="relative h-56 bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden flex items-center justify-center">
         <!-- Floating Drug Molecule -->
-        <div id="animDrug" class="absolute drug-motion-animated left-1/2 -translate-x-1/2 text-3xl z-30">
+        <div id="dockDrugMolecule" class="absolute drug-dock-animated left-1/2 -translate-x-1/2 text-4xl z-30 transition-all duration-300">
           💊
         </div>
         
-        <!-- Cell Membrane Receptor Slot -->
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-20 h-16 bg-brand-600 border-2 border-brand-300 rounded-t-2xl flex items-center justify-center text-xl z-20 shadow-lg">
-          🧬
+        <!-- Cell Receptor Pocket -->
+        <div id="dockReceptorPocket" class="absolute bottom-10 left-1/2 -translate-x-1/2 w-24 h-20 bg-brand-600 border-2 border-brand-300 rounded-t-3xl flex flex-col items-center justify-center text-2xl z-20 shadow-xl transition-all duration-300">
+          <span>🧬</span>
+          <span class="text-[9px] font-black uppercase tracking-widest text-brand-100 mt-1">Active Site</span>
         </div>
 
-        <!-- Expanding Second Messenger Wave -->
-        <div id="animWave" class="absolute bottom-2 left-1/2 -translate-x-1/2 signal-pulse-animated rounded-full opacity-0 z-10"></div>
+        <!-- Cytoplasmic Signal Cascade Wave -->
+        <div id="dockSignalWave" class="absolute bottom-2 left-1/2 -translate-x-1/2 cascade-wave-animated rounded-full opacity-0 z-10"></div>
 
-        <!-- Membrane Floor Divider -->
-        <div class="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-r from-brand-800 via-medical-700 to-brand-800 border-t-2 border-brand-400 flex items-center justify-center text-[11px] font-black uppercase tracking-widest text-white z-20">
-          Extracellular Space &nbsp;|&nbsp; Cell Membrane &nbsp;|&nbsp; Cytoplasm
+        <!-- Cell Membrane Floor Layer -->
+        <div class="absolute bottom-0 left-0 right-0 h-9 bg-gradient-to-r from-brand-900 via-medical-800 to-brand-900 border-t-2 border-brand-400 flex items-center justify-between px-6 text-[10px] font-black uppercase tracking-widest text-slate-300 z-20">
+          <span>Extracellular Fluid</span>
+          <span>Phospholipid Bilayer Membrane</span>
+          <span>Intracellular Cytoplasm</span>
         </div>
       </div>
 
-      <!-- STEP BY STEP EXPLANATION CARDS -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm pt-2">
-        <div class="p-4 bg-slate-800/90 rounded-xl border border-slate-700 space-y-1">
-          <div class="font-extrabold text-brand-300 uppercase tracking-wide">Phase 1: Reception</div>
-          <p class="text-slate-300 text-xs">The drug molecule approaches and binds specifically to the outer receptor pocket on the target cell membrane.</p>
+      <!-- STEP STATUS CARDS -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs sm:text-sm pt-2">
+        <div id="stepCard1" class="p-3 bg-slate-800 rounded-xl border border-slate-700 text-brand-300 space-y-1">
+          <div class="font-extrabold uppercase">1. Recognition</div>
+          <p class="text-[11px] text-slate-400 leading-snug">Drug approaches binding pocket guided by chemical affinity.</p>
         </div>
-        <div class="p-4 bg-slate-800/90 rounded-xl border border-slate-700 space-y-1">
-          <div class="font-extrabold text-amber-300 uppercase tracking-wide">Phase 2: Transduction</div>
-          <p class="text-slate-300 text-xs">Receptor changes shape, activating G-proteins or enzymes to unleash second messenger molecules (like cAMP).</p>
+        <div id="stepCard2" class="p-3 bg-slate-800 rounded-xl border border-slate-700 text-amber-300 space-y-1">
+          <div class="font-extrabold uppercase">2. Docking</div>
+          <p class="text-[11px] text-slate-400 leading-snug">Drug seats into active site forming non-covalent bonds.</p>
         </div>
-        <div class="p-4 bg-slate-800/90 rounded-xl border border-slate-700 space-y-1">
-          <div class="font-extrabold text-medical-300 uppercase tracking-wide">Phase 3: Response</div>
-          <p class="text-slate-300 text-xs">Amplified second messengers alter cell function—such as opening ion channels or starting enzyme activity.</p>
+        <div id="stepCard3" class="p-3 bg-slate-800 rounded-xl border border-slate-700 text-emerald-300 space-y-1">
+          <div class="font-extrabold uppercase">3. Conformational Shift</div>
+          <p class="text-[11px] text-slate-400 leading-snug">Receptor changes shape, activating internal G-protein enzymes.</p>
+        </div>
+        <div id="stepCard4" class="p-3 bg-slate-800 rounded-xl border border-slate-700 text-sky-300 space-y-1">
+          <div class="font-extrabold uppercase">4. Cascade Wave</div>
+          <p class="text-[11px] text-slate-400 leading-snug">Thousands of cAMP second messengers flood cytoplasm.</p>
         </div>
       </div>
 
-      <!-- CONTROLS -->
+      <!-- ANIMATION CONTROLS -->
       <div class="flex items-center justify-center gap-3 pt-2">
-        <button onclick="toggleSignalAnimation()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-bold border border-slate-700 flex items-center gap-2 transition active:scale-95">
+        <button onclick="toggleDockingAnim()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-bold border border-slate-700 flex items-center gap-2 transition active:scale-95">
           <i data-lucide="pause" class="w-4 h-4 text-medical-400"></i> Pause / Play Animation
         </button>
       </div>
@@ -272,36 +267,34 @@
           Characteristics of Signal Transduction
         </h2>
         <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
-          Core Dynamics
+          Transduction Properties
         </span>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- AMPLIFICATION -->
         <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
           <h3 class="font-black text-slate-900 text-base sm:text-lg flex items-center gap-2 text-brand-700">
             <i data-lucide="sparkles" class="w-5 h-5"></i>
-            1. Signal Amplification
+            Signal Amplification
           </h3>
           <p class="text-sm sm:text-base text-slate-800 leading-relaxed">
-            A tiny drug concentration can produce a huge biological response. Binding just one drug molecule to a G-protein receptor activates multiple enzymes, creating thousands of <strong>cyclic AMP (cAMP)</strong> second messengers inside the cell.
+            Binding a tiny amount of drug can unleash a giant cellular response. A single drug molecule binding to a GPCR activates multiple enzymes, producing thousands of <strong>cyclic AMP (cAMP)</strong> second messenger molecules inside the cytoplasm.
           </p>
           <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs sm:text-sm text-amber-950 font-medium">
-            💡 <strong>Everyday Example:</strong> Pressing one small starter button unleashes a massive industrial factory engine!
+            💡 <strong>Analogy:</strong> Pushing a single button consumes tiny energy, but turns on an entire city stadium lighting network!
           </div>
         </div>
 
-        <!-- DESENSITIZATION -->
         <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
           <h3 class="font-black text-slate-900 text-base sm:text-lg flex items-center gap-2 text-medical-700">
             <i data-lucide="shield-alert" class="w-5 h-5"></i>
-            2. Desensitization &amp; Down-Regulation
+            Desensitization &amp; Down-Regulation
           </h3>
           <p class="text-sm sm:text-base text-slate-800 leading-relaxed">
-            When receptors are continuously stimulated over time, cells protect themselves from exhaustion. Cells decrease receptor responsiveness (<mark>Desensitization</mark>) or pull receptors indoors to destroy them (<strong>Down-Regulation</strong>), building drug tolerance.
+            When receptors are continuously overstimulated, cells protect themselves from damage. Cells decrease receptor responsiveness (<mark>Desensitization / Tachyphylaxis</mark>) or pull receptors indoors to destroy them (<strong>Down-Regulation</strong>), resulting in drug tolerance.
           </p>
           <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs sm:text-sm text-amber-950 font-medium">
-            💡 <strong>Clinical Example:</strong> Using nasal decongestant sprays for over 3 days causes <em>rebound congestion</em> as nasal receptors desensitize.
+            💡 <strong>Clinical Example:</strong> Patients using nasal decongestant sprays over 3 days develop <em>rebound congestion</em> as nasal receptors desensitize.
           </div>
         </div>
       </div>
@@ -315,15 +308,11 @@
           The 4 Major Receptor Families
         </h2>
         <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
-          Receptor Classes
+          Superfamily Classes
         </span>
       </div>
 
-      <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
-        Receptors are organized into four major superfamily classes based on their molecular design and signaling speed:
-      </p>
-
-      <!-- INLINE VECTOR SVG DIAGRAM 1: 4 RECEPTOR TYPES -->
+      <!-- INLINE SVG: 4 RECEPTOR FAMILIES -->
       <div class="bg-slate-50 border border-slate-300 rounded-2xl p-4 sm:p-6 my-4 shadow-inner">
         <svg viewBox="0 0 800 240" class="w-full h-auto max-w-4xl mx-auto" xmlns="http://www.w3.org/2000/svg">
           <!-- Box 1 -->
@@ -332,8 +321,8 @@
             <text x="85" y="40" fill="#1d4ed8" font-size="24" text-anchor="middle">⚡</text>
             <text x="85" y="70" fill="#1e3a8a" font-size="14" font-weight="bold" text-anchor="middle">1. Ion Channels</text>
             <text x="85" y="95" fill="#2563eb" font-size="11" font-weight="bold" text-anchor="middle">Speed: Milliseconds</text>
-            <text x="85" y="120" fill="#475569" font-size="10" text-anchor="middle">Fastest response</text>
-            <text x="85" y="138" fill="#475569" font-size="10" text-anchor="middle">(Na+, Cl- channels)</text>
+            <text x="85" y="120" fill="#475569" font-size="10" text-anchor="middle">Direct ion flux</text>
+            <text x="85" y="138" fill="#475569" font-size="10" text-anchor="middle">(Nicotinic ACh, GABA-A)</text>
           </g>
 
           <!-- Box 2 -->
@@ -342,7 +331,7 @@
             <text x="85" y="40" fill="#047857" font-size="24" text-anchor="middle">🧬</text>
             <text x="85" y="70" fill="#065f46" font-size="14" font-weight="bold" text-anchor="middle">2. GPCRs</text>
             <text x="85" y="95" fill="#059669" font-size="11" font-weight="bold" text-anchor="middle">Speed: Seconds</text>
-            <text x="85" y="120" fill="#475569" font-size="10" text-anchor="middle">G-Protein messenger</text>
+            <text x="85" y="120" fill="#475569" font-size="10" text-anchor="middle">G-Protein middleman</text>
             <text x="85" y="138" fill="#475569" font-size="10" text-anchor="middle">(Beta-1, Alpha-1)</text>
           </g>
 
@@ -352,7 +341,7 @@
             <text x="85" y="40" fill="#b45309" font-size="24" text-anchor="middle">🧪</text>
             <text x="85" y="70" fill="#78350f" font-size="14" font-weight="bold" text-anchor="middle">3. Enzyme-Linked</text>
             <text x="85" y="95" fill="#d97706" font-size="11" font-weight="bold" text-anchor="middle">Speed: Minutes-Hours</text>
-            <text x="85" y="120" fill="#475569" font-size="10" text-anchor="middle">Kinase enzyme trigger</text>
+            <text x="85" y="120" fill="#475569" font-size="10" text-anchor="middle">Tyrosine Kinase</text>
             <text x="85" y="138" fill="#475569" font-size="10" text-anchor="middle">(Insulin Receptor)</text>
           </g>
 
@@ -362,7 +351,7 @@
             <text x="85" y="40" fill="#b91c1c" font-size="24" text-anchor="middle">🎯</text>
             <text x="85" y="70" fill="#7f1d1d" font-size="14" font-weight="bold" text-anchor="middle">4. Intracellular</text>
             <text x="85" y="95" fill="#dc2626" font-size="11" font-weight="bold" text-anchor="middle">Speed: Hours-Days</text>
-            <text x="85" y="120" fill="#475569" font-size="10" text-anchor="middle">Direct DNA regulation</text>
+            <text x="85" y="120" fill="#475569" font-size="10" text-anchor="middle">DNA gene alteration</text>
             <text x="85" y="138" fill="#475569" font-size="10" text-anchor="middle">(Steroid Receptors)</text>
           </g>
         </svg>
@@ -370,112 +359,167 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base pt-2">
         <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
-          <strong>1. Ligand-Gated Ion Channels:</strong> Millisecond response. Drug binding directly opens channels so ions (Na+, Cl-) flow into the cell (e.g., Nicotinic ACh receptors).
+          <strong>1. Ligand-Gated Ion Channels:</strong> Millisecond speed. Drug binding opens membrane channels directly so ions (Na+, Cl-) rush in (e.g., Nicotinic ACh receptors).
         </div>
         <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
-          <strong>2. G Protein-Coupled Receptors (GPCRs):</strong> Second-scale response. Drug binds a 7-pass membrane receptor that alerts middleman G-proteins (Gs, Gi, Gq) (e.g., Beta-1 receptors).
+          <strong>2. G Protein-Coupled Receptors (GPCRs):</strong> Second-scale speed. Drug binds a 7-pass membrane receptor that alerts G-proteins (Gs, Gi, Gq) (e.g., Beta-1 receptors).
         </div>
         <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
-          <strong>3. Enzyme-Linked Receptors:</strong> Minute-to-hour response. Drug binding activates internal tyrosine kinase enzymes inside the cell (e.g., Insulin receptors).
+          <strong>3. Enzyme-Linked Receptors:</strong> Minute-to-hour speed. Drug binding activates internal kinase domains to phosphorylate target proteins (e.g., Insulin receptors).
         </div>
         <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
-          <strong>4. Intracellular / Nuclear Receptors:</strong> Hours-to-days response (Slowest). Fat-soluble drugs cross cell membranes directly into the nucleus to alter DNA gene expression (e.g., Steroid hormones).
+          <strong>4. Intracellular / Nuclear Receptors:</strong> Hours-to-days speed (Slowest). Lipid-soluble drugs enter the nucleus directly to modify gene transcription (e.g., Steroids).
         </div>
       </div>
     </section>
 
-    <!-- 4. INTRINSIC ACTIVITY & AGONIST TYPES -->
-    <section id="agonist-types" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
+    <!-- 4. POTENCY VS EFFICACY (DEDICATED CONCEPT SECTION) -->
+    <section id="potency-efficacy" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
       <div class="flex items-center justify-between border-b border-slate-200 pb-4">
         <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
           <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">4</span>
-          Intrinsic Activity &amp; Agonist Types
+          Potency vs. Efficacy Explained
         </h2>
-        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
-          Receptor Activation
+        <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-black uppercase tracking-wide border border-amber-300">
+          Exam Focus
         </span>
       </div>
 
       <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
-        <strong>Intrinsic Activity (Alpha):</strong> A numerical value from 0 to 1 measuring how effectively a drug activates a receptor once bound to it.
+        Students often confuse potency and efficacy. Here is the easiest way to remember the difference for exams:
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- POTENCY -->
+        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+          <h3 class="font-black text-slate-900 text-lg flex items-center gap-2 text-brand-700">
+            <i data-lucide="gauge" class="w-5 h-5"></i>
+            Potency (EC50) — "How Much Dose Needed?"
+          </h3>
+          <p class="text-sm sm:text-base text-slate-800 leading-relaxed">
+            <strong>Potency</strong> refers to the dose or concentration of a drug required to produce 50% of its maximum possible response (EC50).
+          </p>
+          <ul class="text-sm text-slate-800 space-y-1 list-disc pl-5">
+            <li>Lower EC50 = <strong>Higher Potency</strong> (less dose required).</li>
+            <li>On a graph, Potency is represented by horizontal position (Left = More Potent).</li>
+          </ul>
+          <div class="p-3 bg-white rounded-xl border border-slate-200 text-xs sm:text-sm">
+            <strong>Analogy:</strong> Fentanyl is far more potent than Morphine because only 0.1 mg of Fentanyl matches 10 mg of Morphine!
+          </div>
+        </div>
+
+        <!-- EFFICACY -->
+        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+          <h3 class="font-black text-slate-900 text-lg flex items-center gap-2 text-medical-700">
+            <i data-lucide="trending-up" class="w-5 h-5"></i>
+            Efficacy (Emax) — "How Strong Is Maximum Effect?"
+          </h3>
+          <p class="text-sm sm:text-base text-slate-800 leading-relaxed">
+            <strong>Efficacy</strong> refers to the maximum therapeutic effect (Emax) a drug can produce when all receptors are occupied.
+          </p>
+          <ul class="text-sm text-slate-800 space-y-1 list-disc pl-5">
+            <li>Higher Emax ceiling = <strong>Higher Efficacy</strong>.</li>
+            <li>On a graph, Efficacy is represented by vertical height (Taller = More Efficacious).</li>
+          </ul>
+          <div class="p-3 bg-white rounded-xl border border-slate-200 text-xs sm:text-sm">
+            <strong>Analogy:</strong> Morphine has higher efficacy than Aspirin because Morphine can relieve severe surgical pain, whereas Aspirin hits a low pain-relief ceiling regardless of dose.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. INTRINSIC ACTIVITY & AGONIST TYPES -->
+    <section id="agonist-types" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
+          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">5</span>
+          Intrinsic Activity &amp; Agonist Spectrum
+        </h2>
+        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+          Activation Scale
+        </span>
+      </div>
+
+      <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
+        <strong>Intrinsic Activity (Alpha):</strong> A score from 0 to 1 measuring how effectively a drug turns on a receptor once bound.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
         <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
           <span class="font-extrabold text-medical-700 block text-base sm:text-lg">Full Agonist (Alpha = 1)</span>
           <p class="text-sm sm:text-base text-slate-800">
-            Binds to the receptor and turns it on completely, producing the <strong>100% maximum physiological response (Emax)</strong>.
+            Binds and fully activates the receptor, reaching <strong>100% maximum response (Emax)</strong>.
           </p>
           <div class="p-3 bg-white rounded-xl border border-slate-200 text-xs sm:text-sm">
-            <strong>Example:</strong> <em>Morphine</em> fully activates mu-opioid receptors for complete pain relief.
+            <strong>Example:</strong> <em>Morphine</em> fully activates mu-opioid receptors.
           </div>
         </div>
 
         <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
           <span class="font-extrabold text-brand-700 block text-base sm:text-lg">Partial Agonist (Alpha between 0 &amp; 1)</span>
           <p class="text-sm sm:text-base text-slate-800">
-            Binds to the receptor but produces a submaximal response even at high doses. When given with a full agonist, it acts like a competitive blocker!
+            Binds to the receptor but produces submaximal response. When combined with a full agonist, it acts as a competitive blocker!
           </p>
           <div class="p-3 bg-white rounded-xl border border-slate-200 text-xs sm:text-sm">
-            <strong>Example:</strong> <em>Buprenorphine</em> partially activates opioid receptors with lower sedation risk.
+            <strong>Example:</strong> <em>Buprenorphine</em> partially activates opioid receptors.
           </div>
         </div>
 
         <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
           <span class="font-extrabold text-rose-700 block text-base sm:text-lg">Inverse Agonist (Alpha less than 0)</span>
           <p class="text-sm sm:text-base text-slate-800">
-            Binds to naturally active resting receptors and shuts down baseline activity, causing an effect <strong>opposite</strong> to a standard agonist.
+            Binds to baseline-active resting receptors and turns off baseline tone, producing an effect opposite to agonists.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- 5. ANTAGONISTS & BLOCKING MECHANISMS -->
+    <!-- 6. ANTAGONISTS & BLOCKING MECHANISMS -->
     <section id="antagonists" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
       <div class="flex items-center justify-between border-b border-slate-200 pb-4">
         <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
-          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">5</span>
+          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">6</span>
           Antagonists &amp; Blocking Mechanisms
         </h2>
         <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
-          Receptor Blockade
+          Blockade Types
         </span>
       </div>
 
       <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
-        <strong>Antagonists</strong> bind to receptors with high affinity but possess <strong>zero intrinsic activity (Alpha = 0)</strong>. They act like keys that enter a lock but refuse to turn, blocking other molecules.
+        <strong>Antagonists</strong> bind to receptors with high affinity but possess <strong>zero intrinsic activity (Alpha = 0)</strong>, preventing agonists from binding.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
         <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
           <h3 class="font-black text-slate-900 text-base sm:text-lg text-brand-700">Reversible Competitive Antagonist</h3>
           <p class="text-sm sm:text-base text-slate-800">
-            Competes reversibly with the agonist for the exact same active binding slot. Giving higher agonist doses pushes the antagonist away!
+            Competes reversibly with agonist for the active site. Increasing agonist dose pushes the antagonist out of the way!
           </p>
           <p class="text-sm sm:text-base text-slate-800">
-            • <strong>Effect:</strong> <mark>Shifts the dose-response curve to the right</mark> (Increases EC50, but Emax stays at 100%).
+            • <strong>Effect:</strong> <mark>Shifts curve to the right</mark> (Increases EC50, but Emax remains 100%).
           </p>
           <div class="p-3 bg-white rounded-xl border border-slate-200 text-xs sm:text-sm">
-            <strong>Example:</strong> <em>Naloxone (Narcan)</em> competes with morphine to reverse overdoses.
+            <strong>Example:</strong> <em>Naloxone (Narcan)</em> competes with morphine to reverse opioid overdoses.
           </div>
         </div>
 
         <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
           <h3 class="font-black text-slate-900 text-base sm:text-lg text-rose-700">Irreversible Non-Competitive Antagonist</h3>
           <p class="text-sm sm:text-base text-slate-800">
-            Binds permanently (covalently) to the active binding slot or an allosteric side-door slot, knocking out the receptor. Adding more agonist cannot fix this.
+            Binds permanently (covalently) to active site or allosteric site, knocking out receptors permanently.
           </p>
           <p class="text-sm sm:text-base text-slate-800">
-            • <strong>Effect:</strong> <mark>Lowers maximum efficacy (Emax) downward</mark> because available active receptors are destroyed.
+            • <strong>Effect:</strong> <mark>Flattens Emax downward</mark> because active receptors are destroyed.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- 6. INTERACTIVE MULTI-STATE RECEPTOR SIMULATOR -->
+    <!-- INTERACTIVE MULTI-STATE RECEPTOR SIMULATOR -->
     <section id="simulator" class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 mb-10 space-y-4">
       <div class="text-center max-w-xl mx-auto">
-        <h2 class="text-xl sm:text-2xl font-black text-brand-300">⚡ Interactive Receptor Simulator</h2>
+        <h2 class="text-xl sm:text-2xl font-black text-brand-300">⚡ Multi-State Receptor Simulator</h2>
         <p class="text-xs sm:text-sm text-slate-400 mt-1">Tap any drug binding mode to test receptor response live:</p>
       </div>
 
@@ -491,11 +535,11 @@
       <div class="p-5 bg-slate-950 rounded-2xl border border-slate-800 text-center space-y-2 mt-4">
         <div id="simIcon" class="text-4xl">🔒</div>
         <div id="simTitle" class="text-base sm:text-lg font-black text-brand-400">Receptor Resting State</div>
-        <div id="simDesc" class="text-xs sm:text-sm text-slate-400">Tap any drug binding button above to simulate action.</div>
+        <div id="simDesc" class="text-xs sm:text-sm text-slate-400">Tap any button above to simulate binding.</div>
 
         <div class="pt-3 max-w-md mx-auto">
           <div class="flex justify-between text-xs font-bold text-slate-400 mb-1">
-            <span>Cell Response Level (Emax)</span>
+            <span>Response Level (Emax)</span>
             <span id="simVal">0%</span>
           </div>
           <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden p-0.5 border border-slate-700">
@@ -505,57 +549,71 @@
       </div>
     </section>
 
-    <!-- 7. SEPARATE GRAPH 1: GRADED DOSE-RESPONSE CURVE -->
-    <section id="graded-curve" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
+    <!-- 7. GRADED DOSE-RESPONSE CURVES (IMPROVED SPLIT GRAPH A & B) -->
+    <section id="graded-curves" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-6">
       <div class="flex items-center justify-between border-b border-slate-200 pb-4">
         <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
           <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">7</span>
-          Graded Dose-Response Curve (Single System)
+          Graded Dose-Response Curves (Single System)
         </h2>
         <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
-          Individual Patient Response
+          Individual System
         </span>
       </div>
 
-      <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
-        The <strong>Graded Dose-Response Curve</strong> measures how increasing a drug dose in a single biological system gradually increases response intensity until reaching <strong>Maximum Efficacy (Emax)</strong>.
-      </p>
-
-      <!-- GRAPH 1 INLINE SVG -->
-      <div class="bg-slate-50 border border-slate-300 rounded-2xl p-4 sm:p-6 my-4 shadow-inner text-center">
-        <h3 class="font-black text-slate-900 text-sm sm:text-base mb-2">Graded Dose-Response: Agonist vs. Antagonists</h3>
-        <svg viewBox="0 0 700 300" class="w-full h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
+      <!-- GRAPH A: POTENCY VS EFFICACY COMPARISON -->
+      <div class="bg-slate-50 border border-slate-300 rounded-2xl p-4 sm:p-6 shadow-inner text-center space-y-2">
+        <h3 class="font-black text-slate-900 text-base">Graph A: Visualizing Potency (Horizontal) vs. Efficacy (Vertical)</h3>
+        <p class="text-xs text-slate-600">Drug A is more potent than Drug B (Curve A is to the left). Drug C has lower efficacy (Ceiling is lower).</p>
+        
+        <svg viewBox="0 0 700 280" class="w-full h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
           <!-- Axes -->
-          <line x1="60" y1="250" x2="650" y2="250" stroke="#475569" stroke-width="3"/>
-          <line x1="60" y1="30" x2="60" y2="250" stroke="#475569" stroke-width="3"/>
-          <text x="355" y="285" fill="#0f172a" font-size="12" font-weight="bold" text-anchor="middle">Log Drug Dose &rarr;</text>
-          <text x="25" y="140" fill="#0f172a" font-size="12" font-weight="bold" transform="rotate(-90 25 140)" text-anchor="middle">Response (% Emax)</text>
+          <line x1="60" y1="230" x2="650" y2="230" stroke="#475569" stroke-width="3"/>
+          <line x1="60" y1="30" x2="60" y2="230" stroke="#475569" stroke-width="3"/>
+          <text x="355" y="265" fill="#0f172a" font-size="12" font-weight="bold" text-anchor="middle">Log Drug Concentration &rarr;</text>
+          <text x="25" y="130" fill="#0f172a" font-size="12" font-weight="bold" transform="rotate(-90 25 130)" text-anchor="middle">Response (% Emax)</text>
 
-          <!-- 1. Agonist Alone (Blue Curve) -->
-          <path d="M 60 245 Q 180 240 280 140 T 640 40" fill="none" stroke="#2563eb" stroke-width="4"/>
-          <text x="430" y="55" fill="#2563eb" font-size="12" font-weight="bold">1. Agonist Alone (100% Emax)</text>
+          <!-- Drug A (Blue - High Potency, Full Efficacy) -->
+          <path d="M 60 225 Q 140 220 220 130 T 420 40" fill="none" stroke="#2563eb" stroke-width="4"/>
+          <text x="280" y="55" fill="#2563eb" font-size="12" font-weight="bold">Drug A (High Potency, 100% Emax)</text>
 
-          <!-- 2. Competitive Antagonist (Green Curve - Rightward Shift) -->
-          <path d="M 60 245 Q 300 240 400 140 T 640 40" fill="none" stroke="#059669" stroke-width="3" stroke-dasharray="6,6"/>
-          <text x="430" y="80" fill="#059669" font-size="12" font-weight="bold">2. + Competitive Antagonist (Shifts Right)</text>
+          <!-- Drug B (Green - Lower Potency, Full Efficacy) -->
+          <path d="M 60 225 Q 300 220 380 130 T 580 40" fill="none" stroke="#059669" stroke-width="4"/>
+          <text x="440" y="90" fill="#059669" font-size="12" font-weight="bold">Drug B (Lower Potency, 100% Emax)</text>
 
-          <!-- 3. Irreversible Antagonist (Red Curve - Downward Shift) -->
-          <path d="M 60 245 Q 180 240 280 180 T 640 160" fill="none" stroke="#dc2626" stroke-width="4"/>
-          <text x="430" y="150" fill="#dc2626" font-size="12" font-weight="bold">3. + Irreversible Antagonist (Reduces Emax)</text>
+          <!-- Drug C (Red - Equal Potency to B, Lower Efficacy) -->
+          <path d="M 60 225 Q 300 220 380 170 T 580 130" fill="none" stroke="#dc2626" stroke-width="4"/>
+          <text x="440" y="150" fill="#dc2626" font-size="12" font-weight="bold">Drug C (Partial Agonist - Lower Emax)</text>
         </svg>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base pt-1">
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
-          <strong>Potency (EC50):</strong> The dose required to produce 50% of maximum possible effect. Lower EC50 means higher potency (less drug needed!).
-        </div>
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
-          <strong>Efficacy (Emax):</strong> The maximum response a drug can produce regardless of dose. Full agonists reach 100% Emax.
-        </div>
+      <!-- GRAPH B: ANTAGONIST EFFECTS ON GRADED CURVE -->
+      <div class="bg-slate-50 border border-slate-300 rounded-2xl p-4 sm:p-6 shadow-inner text-center space-y-2">
+        <h3 class="font-black text-slate-900 text-base">Graph B: Competitive vs. Irreversible Antagonist Shifts</h3>
+        <p class="text-xs text-slate-600">Competitive shifts curve RIGHT. Irreversible shifts curve DOWN.</p>
+
+        <svg viewBox="0 0 700 280" class="w-full h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="230" x2="650" y2="230" stroke="#475569" stroke-width="3"/>
+          <line x1="60" y1="30" x2="60" y2="230" stroke="#475569" stroke-width="3"/>
+          <text x="355" y="265" fill="#0f172a" font-size="12" font-weight="bold" text-anchor="middle">Log Drug Concentration &rarr;</text>
+          <text x="25" y="130" fill="#0f172a" font-size="12" font-weight="bold" transform="rotate(-90 25 130)" text-anchor="middle">Response (% Emax)</text>
+
+          <!-- Agonist Alone -->
+          <path d="M 60 225 Q 160 220 260 130 T 600 40" fill="none" stroke="#2563eb" stroke-width="4"/>
+          <text x="380" y="50" fill="#2563eb" font-size="12" font-weight="bold">Control Agonist Alone</text>
+
+          <!-- + Competitive Antagonist -->
+          <path d="M 60 225 Q 320 220 420 130 T 640 40" fill="none" stroke="#059669" stroke-width="3" stroke-dasharray="6,6"/>
+          <text x="430" y="80" fill="#059669" font-size="12" font-weight="bold">+ Competitive Antagonist (Right Shift)</text>
+
+          <!-- + Irreversible Antagonist -->
+          <path d="M 60 225 Q 160 220 260 170 T 600 150" fill="none" stroke="#dc2626" stroke-width="4"/>
+          <text x="430" y="160" fill="#dc2626" font-size="12" font-weight="bold">+ Irreversible Antagonist (Downward Shift)</text>
+        </svg>
       </div>
     </section>
 
-    <!-- 8. SEPARATE GRAPH 2: QUANTAL DOSE-RESPONSE CURVE -->
+    <!-- 8. QUANTAL DOSE-RESPONSE CURVE & POPULATION SAFETY -->
     <section id="quantal-curve" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
       <div class="flex items-center justify-between border-b border-slate-200 pb-4">
         <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
@@ -563,28 +621,28 @@
           Quantal Dose-Response Curve (Population Safety)
         </h2>
         <span class="px-3 py-1 rounded-full bg-medical-100 text-medical-800 text-xs font-black uppercase tracking-wide border border-medical-200">
-          Population Distribution
+          Population Safety
         </span>
       </div>
 
       <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
-        The <strong>Quantal Dose-Response Curve</strong> examines an entire population to see what percentage of patients achieves an all-or-none biological effect (e.g., pain relief vs. toxicity) at a given dose.
+        The <strong>Quantal Dose-Response Curve</strong> tracks an entire population to determine what percentage of people achieves a specified effect (e.g., pain relief vs toxicity) at given doses.
       </p>
 
-      <!-- GRAPH 2 INLINE SVG -->
+      <!-- SVG GRAPH: QUANTAL CURVE -->
       <div class="bg-slate-50 border border-slate-300 rounded-2xl p-4 sm:p-6 my-4 shadow-inner text-center">
-        <h3 class="font-black text-slate-900 text-sm sm:text-base mb-2">Quantal Curve: Effective Dose (ED50) vs. Toxic Dose (TD50)</h3>
-        <svg viewBox="0 0 700 250" class="w-full h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
+        <h3 class="font-black text-slate-900 text-sm sm:text-base mb-2">Quantal Curve: ED50 vs TD50 Safety Window</h3>
+        <svg viewBox="0 0 700 240" class="w-full h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
           <line x1="60" y1="200" x2="650" y2="200" stroke="#475569" stroke-width="3"/>
           <line x1="60" y1="30" x2="60" y2="200" stroke="#475569" stroke-width="3"/>
           <text x="355" y="235" fill="#0f172a" font-size="12" font-weight="bold" text-anchor="middle">Log Dose &rarr;</text>
           <text x="25" y="115" fill="#0f172a" font-size="12" font-weight="bold" transform="rotate(-90 25 115)" text-anchor="middle">Population %</text>
 
-          <!-- ED50 Bell Curve -->
+          <!-- ED50 Curve -->
           <path d="M 80 200 Q 200 30 320 200" fill="rgba(5, 150, 105, 0.2)" stroke="#059669" stroke-width="3"/>
           <text x="200" y="100" fill="#047857" font-size="13" font-weight="bold" text-anchor="middle">ED50 (Therapeutic)</text>
 
-          <!-- TD50 Bell Curve -->
+          <!-- TD50 Curve -->
           <path d="M 360 200 Q 480 30 600 200" fill="rgba(217, 119, 6, 0.2)" stroke="#d97706" stroke-width="3"/>
           <text x="480" y="100" fill="#b45309" font-size="13" font-weight="bold" text-anchor="middle">TD50 (Toxic)</text>
 
@@ -596,47 +654,43 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base pt-1">
         <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
-          <strong>ED50 (Median Effective Dose):</strong> The dose that produces a therapeutic effect in 50% of the population.
+          <strong>ED50 (Median Effective Dose):</strong> Dose producing therapeutic benefit in 50% of the population.
         </div>
         <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
-          <strong>TD50 (Median Toxic Dose):</strong> The dose that produces toxic side effects in 50% of the population.
+          <strong>TD50 (Median Toxic Dose):</strong> Dose producing toxic side effects in 50% of the population.
         </div>
       </div>
     </section>
 
-    <!-- 9. THERAPEUTIC INDEX & SAFETY MARGIN -->
+    <!-- 9. THERAPEUTIC INDEX (TI) -->
     <section id="therapeutic-index" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
       <div class="flex items-center justify-between border-b border-slate-200 pb-4">
         <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
           <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">9</span>
-          Therapeutic Index (TI) &amp; Clinical Safety
+          Therapeutic Index (TI) &amp; Safety Margin
         </h2>
         <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
           Safety Ratio
         </span>
       </div>
 
-      <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
-        The <strong>Therapeutic Index (TI)</strong> measures a medication's safety margin by taking the ratio of its toxic dose to its effective dose:
-      </p>
-
       <div class="bg-slate-900 text-white p-5 rounded-2xl border border-slate-800 text-center font-mono-code text-sm sm:text-base">
         Therapeutic Index (TI) = TD50 / ED50
       </div>
 
-      <!-- GRAPH 3 INLINE SVG: WIDE VS NARROW TI -->
+      <!-- WIDE VS NARROW TI SVG GRAPH -->
       <div class="bg-slate-50 border border-slate-300 rounded-2xl p-4 sm:p-6 my-4 shadow-inner text-center">
         <h3 class="font-black text-slate-900 text-sm sm:text-base mb-2">Wide vs. Narrow Therapeutic Index Comparison</h3>
         <svg viewBox="0 0 700 200" class="w-full h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
           <!-- Line 1: Wide TI -->
-          <text x="40" y="40" fill="#047857" font-size="12" font-weight="bold">Wide TI (Penicillin): Huge Safety Gap</text>
+          <text x="40" y="40" fill="#047857" font-size="12" font-weight="bold">Wide TI (Penicillin): Large Safety Gap</text>
           <line x1="40" y1="60" x2="650" y2="60" stroke="#e2e8f0" stroke-width="8" stroke-linecap="round"/>
           <circle cx="100" cy="60" r="10" fill="#059669"/>
           <text x="100" y="90" fill="#047857" font-size="11" font-weight="bold" text-anchor="middle">ED50</text>
           <circle cx="580" cy="60" r="10" fill="#dc2626"/>
           <text x="580" y="90" fill="#b91c1c" font-size="11" font-weight="bold" text-anchor="middle">TD50</text>
           <line x1="100" y1="60" x2="580" y2="60" stroke="#059669" stroke-width="4"/>
-          <text x="340" y="52" fill="#047857" font-size="11" font-weight="bold" text-anchor="middle">WIDE SAFE WINDOW</text>
+          <text x="340" y="52" fill="#047857" font-size="11" font-weight="bold" text-anchor="middle">WIDE SAFE GAP</text>
 
           <!-- Line 2: Narrow TI -->
           <text x="40" y="130" fill="#b45309" font-size="12" font-weight="bold">Narrow TI (Digoxin, Warfarin): Small Safety Gap</text>
@@ -652,12 +706,12 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base pt-1">
         <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
-          <span class="font-black text-medical-700 block mb-1">High / Wide Therapeutic Index</span>
-          A large difference between effective dose and toxic dose. Drugs like <strong>Penicillin</strong> are safe even if slightly over-dosed.
+          <span class="font-black text-medical-700 block mb-1">Wide Therapeutic Index (Safe)</span>
+          Large gap between effective and toxic doses (e.g., <strong>Penicillin</strong>). High safety margin.
         </div>
         <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
-          <span class="font-black text-rose-700 block mb-1">Low / Narrow Therapeutic Index</span>
-          A very small difference between therapeutic benefit and dangerous toxicity. Drugs like <strong>Warfarin, Digoxin, and Lithium</strong> require strict blood level monitoring!
+          <span class="font-black text-rose-700 block mb-1">Narrow Therapeutic Index (High Risk)</span>
+          Small gap between effective and toxic doses (e.g., <strong>Digoxin, Warfarin, Lithium</strong>). Requires routine blood level monitoring.
         </div>
       </div>
     </section>
@@ -671,16 +725,16 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base text-slate-200">
         <div class="p-4 bg-slate-800/90 rounded-xl border border-slate-700">
-          <strong>Full Agonist:</strong> Intrinsic activity Alpha = 1; produces 100% maximum response (Emax).
+          <strong>Potency (EC50):</strong> Lower EC50 = Higher Potency (Horizontal position on curve).
         </div>
         <div class="p-4 bg-slate-800/90 rounded-xl border border-slate-700">
-          <strong>Competitive Antagonist:</strong> Shifts graded curve rightward; overcome by adding more agonist.
+          <strong>Efficacy (Emax):</strong> Maximum achievable effect (Vertical height ceiling).
         </div>
         <div class="p-4 bg-slate-800/90 rounded-xl border border-slate-700">
-          <strong>Irreversible Antagonist:</strong> Reduces Emax downward; cannot be overcome by adding agonist.
+          <strong>Competitive Antagonist:</strong> Shifts graded curve rightward (Overcome by more agonist).
         </div>
         <div class="p-4 bg-slate-800/90 rounded-xl border border-slate-700">
-          <strong>Narrow TI Medications:</strong> Digoxin, Warfarin, and Lithium require routine blood monitoring due to small safety windows.
+          <strong>Narrow TI Medications:</strong> Digoxin, Warfarin, and Lithium require therapeutic drug monitoring.
         </div>
       </div>
     </section>
@@ -710,10 +764,10 @@
     // Initialize Lucide Icons
     lucide.createIcons();
 
-    // Signal Transduction Animation Control
-    function toggleSignalAnimation() {
-      const drug = document.getElementById('animDrug');
-      const wave = document.getElementById('animWave');
+    // 4-Step Docking Animation Control
+    function toggleDockingAnim() {
+      const drug = document.getElementById('dockDrugMolecule');
+      const wave = document.getElementById('dockSignalWave');
       drug.classList.toggle('animation-paused');
       wave.classList.toggle('animation-paused');
     }
@@ -730,7 +784,7 @@
         icon.innerText = "🟢🔑";
         title.innerText = "Full Agonist Bound";
         title.className = "text-base sm:text-lg font-black text-emerald-400";
-        desc.innerText = "100% Intrinsic Activity (Alpha = 1). Complete biological response triggered!";
+        desc.innerText = "100% Intrinsic Activity (Alpha = 1). Full biological response triggered!";
         val.innerText = "100%";
         bar.style.width = "100%";
         bar.className = "bg-emerald-500 h-full rounded-full transition-all duration-500";
