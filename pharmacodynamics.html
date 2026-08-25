@@ -17,6 +17,8 @@
               50: '#eff6ff',
               100: '#dbeafe',
               200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
               500: '#3b82f6',
               600: '#2563eb',
               700: '#1d4ed8',
@@ -27,6 +29,8 @@
               50: '#f0fdf4',
               100: '#dcfce7',
               200: '#a7f3d0',
+              300: '#6ee7b7',
+              400: '#34d399',
               500: '#10b981',
               600: '#059669',
               700: '#047857',
@@ -690,42 +694,181 @@
         </span>
       </div>
 
-      <div class="bg-slate-900 text-white p-5 rounded-2xl border border-slate-800 text-center font-mono-code text-sm sm:text-base">
-        Therapeutic Index (TI) = TD50 / ED50
+      <div class="bg-slate-900 text-white p-5 rounded-2xl border border-slate-800 text-center font-mono-code text-sm sm:text-base shadow-md">
+        <span class="text-brand-300 font-bold">Therapeutic Index (TI)</span> = <span class="text-amber-300 font-bold">TD<sub>50</sub></span> / <span class="text-emerald-300 font-bold">ED<sub>50</sub></span>
       </div>
 
-      <!-- WIDE VS NARROW TI SVG GRAPH -->
-      <div class="bg-slate-50 border border-slate-300 rounded-2xl p-2 sm:p-6 my-4 shadow-inner text-center overflow-x-auto">
-        <h3 class="font-black text-slate-900 text-sm sm:text-base mb-2">Wide vs. Narrow Therapeutic Index Comparison</h3>
-        <svg viewBox="0 0 700 200" class="w-full min-w-[500px] sm:min-w-0 h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
-          <text x="40" y="40" fill="#047857" font-size="12" font-weight="bold">Wide TI (Penicillin): Large Safety Gap</text>
-          <line x1="40" y1="60" x2="650" y2="60" stroke="#e2e8f0" stroke-width="8" stroke-linecap="round"/>
-          <circle cx="100" cy="60" r="10" fill="#059669"/>
-          <text x="100" y="90" fill="#047857" font-size="11" font-weight="bold" text-anchor="middle">ED50</text>
-          <circle cx="580" cy="60" r="10" fill="#dc2626"/>
-          <text x="580" y="90" fill="#b91c1c" font-size="11" font-weight="bold" text-anchor="middle">TD50</text>
-          <line x1="100" y1="60" x2="580" y2="60" stroke="#059669" stroke-width="4"/>
-          <text x="340" y="52" fill="#047857" font-size="11" font-weight="bold" text-anchor="middle">WIDE SAFE GAP</text>
-
-          <text x="40" y="130" fill="#b45309" font-size="12" font-weight="bold">Narrow TI (Digoxin, Warfarin): Small Safety Gap</text>
-          <line x1="40" y1="150" x2="650" y2="150" stroke="#e2e8f0" stroke-width="8" stroke-linecap="round"/>
-          <circle cx="140" cy="150" r="10" fill="#059669"/>
-          <text x="140" y="180" fill="#047857" font-size="11" font-weight="bold" text-anchor="middle">ED50</text>
-          <circle cx="260" cy="150" r="10" fill="#dc2626"/>
-          <text x="260" y="180" fill="#b91c1c" font-size="11" font-weight="bold" text-anchor="middle">TD50</text>
-          <line x1="140" y1="150" x2="260" y2="150" stroke="#d97706" stroke-width="4"/>
-          <text x="200" y="142" fill="#b45309" font-size="10" font-weight="bold" text-anchor="middle">NARROW GAP</text>
-        </svg>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base pt-1">
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
-          <span class="font-black text-medical-700 block mb-1">Wide Therapeutic Index (Safe)</span>
-          Large gap between effective and toxic doses (e.g., <strong>Penicillin</strong>). High safety margin.
+      <!-- DETAILED ENHANCED THERAPEUTIC INDEX GRAPH (SIGMOIDAL POPULATION CURVES & DOSE-RESPONSE WINDOW) -->
+      <div class="bg-slate-50 border border-slate-300 rounded-2xl p-4 sm:p-6 my-4 shadow-inner text-center space-y-4 overflow-x-auto">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
+          <h3 class="font-black text-slate-900 text-base sm:text-lg flex items-center justify-center sm:justify-start gap-2">
+            <i data-lucide="line-chart" class="w-5 h-5 text-brand-600"></i>
+            Graph C: Quantal Sigmoidal Curves for Therapeutic Index (TI)
+          </h3>
+          <span class="text-xs font-bold px-3 py-1 bg-brand-100 text-brand-800 rounded-full border border-brand-200">
+            Population Response Curves
+          </span>
         </div>
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
-          <span class="font-black text-rose-700 block mb-1">Narrow Therapeutic Index (High Risk)</span>
-          Small gap between effective and toxic doses (e.g., <strong>Digoxin, Warfarin, Lithium</strong>). Requires routine blood level monitoring.
+        
+        <p class="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto">
+          This curve maps the population percentage responding therapeutically (<span class="text-emerald-700 font-bold">ED<sub>50</sub></span>) vs. experiencing toxic effects (<span class="text-rose-700 font-bold">TD<sub>50</sub></span>). The distance between ED<sub>50</sub> and TD<sub>50</sub> determines the width of the <strong>Therapeutic Window</strong>.
+        </p>
+
+        <!-- SVG SIGMOIDAL DOSE-RESPONSE GRAPH -->
+        <svg viewBox="0 0 760 320" class="w-full min-w-[560px] sm:min-w-0 h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background Grid Lines -->
+          <line x1="80" y1="230" x2="700" y2="230" stroke="#e2e8f0" stroke-width="1"/>
+          <line x1="80" y1="140" x2="700" y2="140" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,4"/> <!-- 50% line -->
+          <line x1="80" y1="50" x2="700" y2="50" stroke="#e2e8f0" stroke-width="1"/> <!-- 100% line -->
+
+          <!-- Main Axes -->
+          <line x1="80" y1="260" x2="710" y2="260" stroke="#334155" stroke-width="3.5"/>
+          <line x1="80" y1="40" x2="80" y2="260" stroke="#334155" stroke-width="3.5"/>
+
+          <!-- Axis Labels -->
+          <text x="395" y="298" fill="#0f172a" font-size="13" font-weight="800" text-anchor="middle">Log Dose (mg/kg) &rarr;</text>
+          <text x="30" y="150" fill="#0f172a" font-size="13" font-weight="800" transform="rotate(-90 30 150)" text-anchor="middle">% Population Responding</text>
+
+          <!-- Y-Axis Scale Ticks -->
+          <text x="70" y="264" fill="#64748b" font-size="10" font-weight="bold" text-anchor="end">0%</text>
+          <text x="70" y="144" fill="#2563eb" font-size="11" font-weight="black" text-anchor="end">50%</text>
+          <text x="70" y="54" fill="#64748b" font-size="10" font-weight="bold" text-anchor="end">100%</text>
+
+          <!-- HIGHLIGHTED THERAPEUTIC WINDOW AREA -->
+          <rect x="230" y="50" width="220" height="210" fill="rgba(37, 99, 235, 0.08)" rx="8" stroke="#bfdbfe" stroke-width="1.5" stroke-dasharray="5,5"/>
+          <text x="340" y="75" fill="#1d4ed8" font-size="12" font-weight="900" text-anchor="middle">THERAPEUTIC WINDOW</text>
+
+          <!-- SIGMOIDAL CURVE 1: THERAPEUTIC / EFFECTIVE DOSE (ED) -->
+          <path d="M 80 258 C 130 258, 170 240, 230 140 C 290 40, 320 50, 420 50" fill="none" stroke="#059669" stroke-width="4.5"/>
+          <text x="185" y="105" fill="#047857" font-size="13" font-weight="900">Therapeutic Curve (ED)</text>
+
+          <!-- SIGMOIDAL CURVE 2: TOXIC DOSE (TD) -->
+          <path d="M 300 258 C 350 258, 390 240, 450 140 C 510 40, 540 50, 680 50" fill="none" stroke="#dc2626" stroke-width="4.5"/>
+          <text x="525" y="105" fill="#b91c1c" font-size="13" font-weight="900">Toxic Curve (TD)</text>
+
+          <!-- ED50 REFERENCE LINES AND POINT -->
+          <line x1="80" y1="140" x2="230" y2="140" stroke="#059669" stroke-width="2" stroke-dasharray="3,3"/>
+          <line x1="230" y1="140" x2="230" y2="260" stroke="#059669" stroke-width="2.5" stroke-dasharray="5,5"/>
+          <circle cx="230" cy="140" r="7" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+          <text x="230" y="278" fill="#047857" font-size="12" font-weight="900" text-anchor="middle">ED₅₀</text>
+
+          <!-- TD50 REFERENCE LINES AND POINT -->
+          <line x1="230" y1="140" x2="450" y2="140" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,3"/>
+          <line x1="450" y1="140" x2="450" y2="260" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="5,5"/>
+          <circle cx="450" cy="140" r="7" fill="#dc2626" stroke="#ffffff" stroke-width="2"/>
+          <text x="450" y="278" fill="#b91c1c" font-size="12" font-weight="900" text-anchor="middle">TD₅₀</text>
+
+          <!-- DOUBLE HEADED ARROW FOR THERAPEUTIC INDEX (TI GAP) -->
+          <line x1="238" y1="180" x2="442" y2="180" stroke="#1d4ed8" stroke-width="3.5" marker-end="url(#arrow)" marker-start="url(#arrow-start)"/>
+          <text x="340" y="172" fill="#1e3a8a" font-size="12" font-weight="900" text-anchor="middle">Therapeutic Index (TI Margin)</text>
+
+          <!-- SVG ARROW HEAD DEFINITIONS -->
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#1d4ed8"/>
+            </marker>
+            <marker id="arrow-start" viewBox="0 0 10 10" refX="4" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 10 0 L 0 5 L 10 10 z" fill="#1d4ed8"/>
+            </marker>
+          </defs>
+        </svg>
+
+        <!-- WIDE VS NARROW TI COMPARISON BAR INLINE SVG -->
+        <div class="pt-2 border-t border-slate-200">
+          <h4 class="font-extrabold text-slate-800 text-xs sm:text-sm uppercase tracking-wider mb-2">Direct Visual Comparison: Wide vs. Narrow TI</h4>
+          <svg viewBox="0 0 700 150" class="w-full min-w-[500px] sm:min-w-0 h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
+            <!-- Wide TI Bar -->
+            <text x="40" y="30" fill="#047857" font-size="12" font-weight="bold">Wide TI (e.g., Penicillin, Acetaminophen): Large Safety Gap</text>
+            <line x1="40" y1="48" x2="650" y2="48" stroke="#e2e8f0" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="100" cy="48" r="9" fill="#059669"/>
+            <text x="100" y="74" fill="#047857" font-size="11" font-weight="bold" text-anchor="middle">ED₅₀</text>
+            <circle cx="580" cy="48" r="9" fill="#dc2626"/>
+            <text x="580" y="74" fill="#b91c1c" font-size="11" font-weight="bold" text-anchor="middle">TD₅₀</text>
+            <line x1="100" y1="48" x2="580" y2="48" stroke="#059669" stroke-width="4"/>
+            <text x="340" y="40" fill="#047857" font-size="11" font-weight="black" text-anchor="middle">WIDE SAFE GAP (High Safety Margin)</text>
+
+            <!-- Narrow TI Bar -->
+            <text x="40" y="102" fill="#b45309" font-size="12" font-weight="bold">Narrow TI (e.g., Digoxin, Warfarin, Lithium): High Toxicity Risk</text>
+            <line x1="40" y1="120" x2="650" y2="120" stroke="#e2e8f0" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="140" cy="120" r="9" fill="#059669"/>
+            <text x="140" y="146" fill="#047857" font-size="11" font-weight="bold" text-anchor="middle">ED₅₀</text>
+            <circle cx="260" cy="120" r="9" fill="#dc2626"/>
+            <text x="260" y="146" fill="#b91c1c" font-size="11" font-weight="bold" text-anchor="middle">TD₅₀</text>
+            <line x1="140" y1="120" x2="260" y2="120" stroke="#d97706" stroke-width="4"/>
+            <text x="200" y="112" fill="#b45309" font-size="10" font-weight="black" text-anchor="middle">NARROW GAP (Requires TDM)</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- DETAILED TEXT EXPLANATION OF THERAPEUTIC INDEX -->
+      <div class="space-y-4 text-slate-800 leading-relaxed text-sm sm:text-base">
+        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+          <h3 class="font-black text-slate-900 text-base sm:text-lg flex items-center gap-2 text-brand-700">
+            <i data-lucide="book-open" class="w-5 h-5"></i>
+            Detailed Graph &amp; Concept Breakdown
+          </h3>
+          <p>
+            The <strong>Therapeutic Index (TI)</strong> quantifies the relative safety of a drug by taking the ratio between its median toxic dose (<span class="font-bold text-rose-700">TD<sub>50</sub></span>) and its median effective dose (<span class="font-bold text-emerald-700">ED<sub>50</sub></span>).
+          </p>
+          
+          <ul class="space-y-2.5 list-none pl-0">
+            <li class="flex items-start gap-2.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-600 mt-2 shrink-0"></span>
+              <div>
+                <strong>Effective Dose (ED<sub>50</sub>):</strong> The dosage at which 50% of the target population demonstrates the desired therapeutic effect.
+              </div>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="w-2 h-2 rounded-full bg-rose-600 mt-2 shrink-0"></span>
+              <div>
+                <strong>Toxic Dose (TD<sub>50</sub>):</strong> The dosage at which 50% of the population experiences adverse toxic side effects.
+              </div>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="w-2 h-2 rounded-full bg-brand-600 mt-2 shrink-0"></span>
+              <div>
+                <strong>Therapeutic Window / Margin of Safety:</strong> The safety range between the minimum effective concentration (MEC) and the minimum toxic concentration (MTC). On the graph, this is represented by the horizontal space between the green therapeutic curve and the red toxic curve.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base pt-1">
+          <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-200 space-y-1">
+            <span class="font-black text-emerald-800 block text-base flex items-center gap-1.5">
+              <i data-lucide="shield-check" class="w-5 h-5 text-emerald-600"></i>
+              Wide Therapeutic Index (High Safety)
+            </span>
+            <p class="text-emerald-950 text-xs sm:text-sm">
+              Occurs when there is a massive separation between ED<sub>50</sub> and TD<sub>50</sub> (TI score is high, e.g., > 10). Doses can be doubled or tripled without causing lethal toxicities.
+            </p>
+            <div class="text-xs font-bold text-emerald-900 pt-1">
+              • Examples: Penicillin, Amoxicillin, Paracetamol (Acetaminophen).
+            </div>
+          </div>
+
+          <div class="p-4 bg-rose-50 rounded-xl border border-rose-200 space-y-1">
+            <span class="font-black text-rose-800 block text-base flex items-center gap-1.5">
+              <i data-lucide="alert-triangle" class="w-5 h-5 text-rose-600"></i>
+              Narrow Therapeutic Index (High Risk)
+            </span>
+            <p class="text-rose-950 text-xs sm:text-sm">
+              Occurs when the effective and toxic curves overlap closely (TI score is small, near 1). A tiny increase in dose leads directly to life-threatening toxicity.
+            </p>
+            <div class="text-xs font-bold text-rose-900 pt-1">
+              • Examples: Digoxin, Warfarin, Lithium, Theophylline, Gentamicin.
+            </div>
+          </div>
+        </div>
+
+        <!-- CLINICAL NURSING IMPLICATION BOX -->
+        <div class="p-4 bg-amber-50 border border-amber-300 rounded-xl text-xs sm:text-sm text-amber-950 space-y-1">
+          <span class="font-extrabold text-amber-900 flex items-center gap-1.5 text-sm">
+            🩺 Critical Clinical Nursing Priority (Therapeutic Drug Monitoring - TDM):
+          </span>
+          <p>
+            For drugs with a <strong>Narrow Therapeutic Index</strong>, nurses must routinely draw trough levels before administering doses and peak levels shortly after administration to keep plasma concentrations strictly inside the safe Therapeutic Window!
+          </p>
         </div>
       </div>
     </section>
@@ -924,7 +1067,4 @@
     }
   </script>
 </body>
-</html>"""
-
-with open("Pharmacodynamics.html", "w", encoding="utf-8") as f:
-    f.write(html_content)
+</html>
