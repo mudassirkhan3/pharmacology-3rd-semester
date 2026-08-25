@@ -954,7 +954,7 @@
       </div>
     </section>
 
-    <!-- 17. PRACTICE QUESTIONS & MCQS -->
+    <!-- 17. PRACTICE QUESTIONS & MCQS (ENHANCED FEEDBACK WITH WHY) -->
     <section id="mcqs" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-8 sm:mb-12 space-y-4 sm:space-y-5">
       <div class="flex items-center justify-between border-b border-slate-200 pb-3 sm:pb-4">
         <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
@@ -966,34 +966,54 @@
         </span>
       </div>
 
-      <div class="space-y-4 sm:space-y-6">
+      <div class="space-y-6 sm:space-y-8">
+        
         <!-- QUESTION 1 -->
-        <div class="p-4 sm:p-5 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200 space-y-3">
+        <div class="p-4 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4" data-mcq-id="1">
           <p class="font-bold text-slate-900 text-sm sm:text-lg">Q1: Which route of drug administration provides 100% immediate bioavailability?</p>
+          
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 text-xs sm:text-base">
-            <button onclick="checkMcq(this, false)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95">A) Oral (PO)</button>
-            <button onclick="checkMcq(this, true)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95">B) Intravenous (IV)</button>
-            <button onclick="checkMcq(this, false)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95">C) Subcutaneous (SC)</button>
-            <button onclick="checkMcq(this, false)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95">D) Transdermal</button>
+            <button onclick="answerMcq(this, 1, false)" class="mcq-btn p-3.5 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95 flex items-center justify-between">
+              <span>A) Oral (PO)</span>
+            </button>
+            <button onclick="answerMcq(this, 1, true)" class="mcq-btn p-3.5 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95 flex items-center justify-between">
+              <span>B) Intravenous (IV)</span>
+            </button>
+            <button onclick="answerMcq(this, 1, false)" class="mcq-btn p-3.5 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95 flex items-center justify-between">
+              <span>C) Subcutaneous (SC)</span>
+            </button>
+            <button onclick="answerMcq(this, 1, false)" class="mcq-btn p-3.5 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95 flex items-center justify-between">
+              <span>D) Transdermal</span>
+            </button>
           </div>
-          <div class="mcq-feedback hidden p-3 bg-emerald-100 text-emerald-950 text-xs sm:text-sm font-semibold rounded-xl border border-emerald-300 mt-2">
-            ✓ <strong>Correct!</strong> Intravenous administration delivers the drug directly into systemic blood vessels, completely bypassing gut absorption barriers and first-pass hepatic metabolism.
-          </div>
+
+          <!-- Dynamic Why Explanation Box -->
+          <div class="mcq-explanation hidden p-4 rounded-xl border text-xs sm:text-sm font-medium mt-3"></div>
         </div>
 
         <!-- QUESTION 2 -->
-        <div class="p-4 sm:p-5 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200 space-y-3">
+        <div class="p-4 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4" data-mcq-id="2">
           <p class="font-bold text-slate-900 text-sm sm:text-lg">Q2: How many half-lives (t½) are required for a drug to reach Steady State (Css) during repeated dosing?</p>
+          
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 text-xs sm:text-base">
-            <button onclick="checkMcq(this, false)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95">A) 1 to 2 half-lives</button>
-            <button onclick="checkMcq(this, true)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95">B) 4 to 5 half-lives</button>
-            <button onclick="checkMcq(this, false)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95">C) 7 to 8 half-lives</button>
-            <button onclick="checkMcq(this, false)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95">D) 10 half-lives</button>
+            <button onclick="answerMcq(this, 2, false)" class="mcq-btn p-3.5 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95 flex items-center justify-between">
+              <span>A) 1 to 2 half-lives</span>
+            </button>
+            <button onclick="answerMcq(this, 2, true)" class="mcq-btn p-3.5 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95 flex items-center justify-between">
+              <span>B) 4 to 5 half-lives</span>
+            </button>
+            <button onclick="answerMcq(this, 2, false)" class="mcq-btn p-3.5 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95 flex items-center justify-between">
+              <span>C) 7 to 8 half-lives</span>
+            </button>
+            <button onclick="answerMcq(this, 2, false)" class="mcq-btn p-3.5 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95 flex items-center justify-between">
+              <span>D) 10 half-lives</span>
+            </button>
           </div>
-          <div class="mcq-feedback hidden p-3 bg-emerald-100 text-emerald-950 text-xs sm:text-sm font-semibold rounded-xl border border-emerald-300 mt-2">
-            ✓ <strong>Correct!</strong> It takes 4 to 5 half-lives to reach steady state equilibrium or to be &gt;96% completely eliminated from the body.
-          </div>
+
+          <!-- Dynamic Why Explanation Box -->
+          <div class="mcq-explanation hidden p-4 rounded-xl border text-xs sm:text-sm font-medium mt-3"></div>
         </div>
+
       </div>
     </section>
 
@@ -1036,23 +1056,54 @@
       pill.style.animation = 'admePillMove 8s ease-in-out infinite';
     }
 
-    // MCQ Interactive Feedback Engine
-    function checkMcq(btn, isCorrect) {
-      const container = btn.closest('.space-y-3');
-      const feedback = container.querySelector('.mcq-feedback');
-      
-      const allButtons = container.querySelectorAll('button');
-      allButtons.forEach(b => {
-        b.classList.remove('bg-emerald-100', 'bg-rose-100', 'border-emerald-500', 'border-rose-500');
+    // Enhanced MCQ Interactive Feedback with "Why" Engine
+    function answerMcq(btn, questionId, isCorrect) {
+      const container = btn.closest(`[data-mcq-id="${questionId}"]`);
+      const buttons = container.querySelectorAll('.mcq-btn');
+      const explanationBox = container.querySelector('.mcq-explanation');
+
+      // Reset all buttons in this question card
+      buttons.forEach(b => {
+        b.classList.remove('bg-emerald-100', 'bg-rose-100', 'border-emerald-500', 'border-rose-500', 'text-emerald-950', 'text-rose-950');
+        const badge = b.querySelector('.ans-badge');
+        if (badge) badge.remove();
       });
 
-      if (isCorrect) {
-        btn.classList.add('bg-emerald-100', 'border-emerald-500');
-      } else {
-        btn.classList.add('bg-rose-100', 'border-rose-500');
-      }
+      // Highlight clicked button
+      const badge = document.createElement('span');
+      badge.className = 'ans-badge ml-2 px-2 py-0.5 rounded text-[10px] font-black uppercase';
 
-      feedback.classList.remove('hidden');
+      if (isCorrect) {
+        btn.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-950');
+        badge.classList.add('bg-emerald-600', 'text-white');
+        badge.textContent = '✓ Correct';
+      } else {
+        btn.classList.add('bg-rose-100', 'border-rose-500', 'text-rose-950');
+        badge.classList.add('bg-rose-600', 'text-white');
+        badge.textContent = '✕ Incorrect';
+      }
+      btn.appendChild(badge);
+
+      // Populate Explanation Box with "Why"
+      explanationBox.classList.remove('hidden');
+      
+      if (questionId === 1) {
+        if (isCorrect) {
+          explanationBox.className = 'mcq-explanation p-4 rounded-xl border bg-emerald-50 border-emerald-300 text-emerald-950 text-xs sm:text-sm font-medium mt-3';
+          explanationBox.innerHTML = `<strong>✓ Correct! Why:</strong> Intravenous (IV) administration delivers drugs directly into systemic veins, completely bypassing gut absorption barriers and first-pass hepatic metabolism for 100% immediate bioavailability.`;
+        } else {
+          explanationBox.className = 'mcq-explanation p-4 rounded-xl border bg-rose-50 border-rose-300 text-rose-950 text-xs sm:text-sm font-medium mt-3';
+          explanationBox.innerHTML = `<strong>✕ Incorrect. Why:</strong> Oral, subcutaneous, and transderma/other routes involve absorption barriers or partial first-pass metabolism, meaning they do not yield 100% immediate systemic bioavailability like IV.`;
+        }
+      } else if (questionId === 2) {
+        if (isCorrect) {
+          explanationBox.className = 'mcq-explanation p-4 rounded-xl border bg-emerald-50 border-emerald-300 text-emerald-950 text-xs sm:text-sm font-medium mt-3';
+          explanationBox.innerHTML = `<strong>✓ Correct! Why:</strong> It consistently takes 4 to 5 half-lives (t½) of repeated regular dosing for a drug to accumulate to a stable plateau (Steady State - Css), and similarly 4-5 half-lives to wash out completely.`;
+        } else {
+          explanationBox.className = 'mcq-explanation p-4 rounded-xl border bg-rose-50 border-rose-300 text-rose-950 text-xs sm:text-sm font-medium mt-3';
+          explanationBox.innerHTML = `<strong>✕ Incorrect. Why:</strong> Pharmacokinetic principles dictate that steady-state equilibrium is not attained until 4 to 5 half-lives have elapsed.`;
+        }
+      }
     }
 
     // Canvas Kinetics Graph Drawing Logic
