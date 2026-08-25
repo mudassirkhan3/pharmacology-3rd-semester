@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>Pharmacokinetics: Complete ADME Study Module | MK Study Hub</title>
   <meta name="description" content="Clear, student-friendly 3rd Semester BSN Pharmacokinetics module on MK Study Hub.">
 
@@ -17,6 +17,8 @@
               50: '#eff6ff',
               100: '#dbeafe',
               200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
               500: '#3b82f6',
               600: '#2563eb',
               700: '#1d4ed8',
@@ -27,6 +29,8 @@
               50: '#f0fdf4',
               100: '#dcfce7',
               200: '#a7f3d0',
+              300: '#6ee7b7',
+              400: '#34d399',
               500: '#10b981',
               600: '#059669',
               700: '#047857',
@@ -50,10 +54,31 @@
       color: #0f172a;
       font-size: 16px;
       line-height: 1.7;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .font-mono-code {
       font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* MOBILE-OPTIMIZED SMOOTH HORIZONTAL SCROLLING */
+    .custom-scroll {
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      height: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #0f172a;
+      border-radius: 8px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 8px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #2563eb;
     }
 
     /* ADME Journey Track Animation - Isolated Top Line */
@@ -73,9 +98,6 @@
       animation-play-state: paused !important;
     }
 
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
     mark {
       background-color: #fef08a;
       color: #713f12;
@@ -85,109 +107,111 @@
     }
   </style>
 </head>
-<body class="antialiased text-slate-900 pb-24 md:pb-12">
+<body class="antialiased text-slate-900 pb-20 md:pb-12">
 
   <!-- TOP STICKY BAR -->
   <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-300 shadow-sm">
-    <div class="max-w-5xl mx-auto px-4 h-16 sm:h-18 flex items-center justify-between gap-3">
-      <a href="chapter1.html" class="inline-flex items-center gap-2 text-sm sm:text-base font-extrabold text-brand-700 bg-brand-50 hover:bg-brand-100 px-3.5 py-2 rounded-xl border border-brand-200 transition active:scale-95">
-        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+    <div class="max-w-5xl mx-auto px-3 sm:px-4 h-14 sm:h-18 flex items-center justify-between gap-2">
+      <a href="chapter1.html" class="inline-flex items-center gap-1.5 text-xs sm:text-base font-extrabold text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-2 rounded-xl border border-brand-200 transition active:scale-95">
+        <i data-lucide="arrow-left" class="w-4 h-4 sm:w-5 sm:h-5"></i>
         <span>Chapter 1 Hub</span>
       </a>
 
-      <div class="flex items-center gap-2">
-        <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs sm:text-sm font-black uppercase tracking-wider border border-slate-300">
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-800 text-[10px] sm:text-sm font-black uppercase tracking-wider border border-slate-300">
           3rd Sem BSN
         </span>
-        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center font-black text-sm shadow-md shadow-brand-600/20">
+        <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center font-black text-xs sm:text-sm shadow-md shadow-brand-600/20">
           MK
         </div>
       </div>
     </div>
   </header>
 
-  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+  <main class="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 pt-4 sm:pt-6">
 
-    <!-- HERO HEADER -->
-    <div class="bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white rounded-3xl p-6 sm:p-10 shadow-xl border border-brand-700/50 mb-8 relative overflow-hidden">
-      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-        <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/15 text-white text-xs font-extrabold uppercase tracking-wide border border-white/20">
-          <i data-lucide="book-open" class="w-4 h-4 text-medical-200"></i> Pharmacology Fundamentals
+    <!-- HERO HEADER WITH MOBILE-OPTIMIZED RESPONSIVE TITLE -->
+    <div class="bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white rounded-2xl sm:rounded-3xl p-5 sm:p-10 shadow-xl border border-brand-700/50 mb-6 sm:mb-8 relative overflow-hidden">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-2 sm:mb-3">
+        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/15 text-white text-[10px] sm:text-xs font-extrabold uppercase tracking-wide border border-white/20">
+          <i data-lucide="book-open" class="w-3.5 h-3.5 text-medical-200"></i> Pharmacology Fundamentals
         </span>
-        <span class="text-xs sm:text-sm text-brand-100 font-bold flex items-center gap-1">
-          <i data-lucide="clock" class="w-4 h-4"></i> Complete Chapter
+        <span class="text-[10px] sm:text-sm text-brand-100 font-bold flex items-center gap-1">
+          <i data-lucide="clock" class="w-3.5 h-3.5"></i> Complete Chapter
         </span>
       </div>
 
-      <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white mb-3 leading-tight">
+      <!-- PROPERLY SIZED MOBILE TITLE -->
+      <h1 class="text-2xl sm:text-5xl font-black tracking-tight text-white mb-2 sm:mb-3 leading-tight break-words">
         PHARMACOKINETICS
       </h1>
-      <p class="text-brand-100 text-base sm:text-xl font-medium max-w-3xl leading-relaxed">
+      <p class="text-brand-100 text-sm sm:text-xl font-medium max-w-3xl leading-relaxed">
         What the Body Does to the Drug — Absorption, Distribution, Metabolism, and Excretion (ADME).
       </p>
 
       <!-- PROGRESS TRACK -->
-      <div class="mt-6 pt-4 border-t border-white/20 flex items-center gap-3">
-        <div class="flex-1 bg-black/20 h-2.5 rounded-full overflow-hidden p-0.5">
+      <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-white/20 flex items-center gap-2 sm:gap-3">
+        <div class="flex-1 bg-black/20 h-2 sm:h-2.5 rounded-full overflow-hidden p-0.5">
           <div class="bg-medical-500 h-full rounded-full w-full"></div>
         </div>
-        <span class="text-xs sm:text-sm font-black text-medical-200 tracking-wider">COMPLETE CURRICULUM</span>
+        <span class="text-[10px] sm:text-sm font-black text-medical-200 tracking-wider">COMPLETE CURRICULUM</span>
       </div>
     </div>
 
-    <!-- QUICK CHIP NAVIGATION -->
-    <div class="sticky top-18 z-40 bg-slate-900/95 backdrop-blur-md p-3 rounded-2xl border border-slate-800 shadow-xl mb-10">
-      <div class="text-xs font-black text-brand-400 uppercase tracking-wider px-2 mb-2 flex items-center justify-between">
-        <span>⚡ Quick Jump Navigation</span>
-        <span class="text-slate-400 font-normal">Scroll &rarr;</span>
+    <!-- QUICK CHIP NAVIGATION (MOBILE SWIPEABLE) -->
+    <div class="sticky top-14 sm:top-18 z-40 bg-slate-900/95 backdrop-blur-md p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-slate-800 shadow-xl mb-6 sm:mb-10">
+      <div class="text-[10px] sm:text-xs font-black text-brand-400 uppercase tracking-wider px-1 mb-1.5 flex items-center justify-between">
+        <span class="flex items-center gap-1"><i data-lucide="compass" class="w-3.5 h-3.5"></i> Quick Jump Navigation</span>
+        <span class="text-[9px] text-slate-400 font-normal sm:hidden">Swipe &rarr;</span>
       </div>
-      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 px-1">
-        <a href="#adme-visual" class="px-3.5 py-2 rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-bold whitespace-nowrap hover:bg-brand-500 transition shrink-0 flex items-center gap-1.5">
-          <i data-lucide="play" class="w-4 h-4"></i> ADME Engine
+      <div id="navChipContainer" class="flex items-center gap-2 overflow-x-auto custom-scroll pb-1.5 px-0.5 select-none">
+        <a href="#adme-visual" class="px-3 py-2 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap hover:bg-brand-500 transition shrink-0 flex items-center gap-1.5 active:scale-95">
+          <i data-lucide="play" class="w-3.5 h-3.5"></i> ADME Engine
         </a>
-        <a href="#absorption" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">1. Absorption</a>
-        <a href="#distribution" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">2. Distribution</a>
-        <a href="#metabolism" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">3. Metabolism</a>
-        <a href="#elimination" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">4. Excretion</a>
-        <a href="#bioavailability" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">5. Bioavailability</a>
-        <a href="#half-life" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">6. Half-Life</a>
-        <a href="#clearance" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">7. Clearance</a>
-        <a href="#vd" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">8. Vd</a>
-        <a href="#first-pass" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">9. First-Pass Effect</a>
-        <a href="#pk-factors" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">10. Factors</a>
-        <a href="#routes" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">11. Routes</a>
-        <a href="#graphs" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">12. Graphs</a>
-        <a href="#mnemonics" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">13. Mnemonics</a>
-        <a href="#quick-revision" class="px-3.5 py-2 rounded-xl bg-medical-700 text-white text-xs sm:text-sm font-extrabold whitespace-nowrap shrink-0 flex items-center gap-1">
-          <i data-lucide="zap" class="w-4 h-4"></i> 60s Revision
+        <a href="#absorption" class="px-3 py-2 rounded-lg sm:rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs font-bold whitespace-nowrap shrink-0 active:scale-95">1. Absorption</a>
+        <a href="#distribution" class="px-3 py-2 rounded-lg sm:rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs font-bold whitespace-nowrap shrink-0 active:scale-95">2. Distribution</a>
+        <a href="#metabolism" class="px-3 py-2 rounded-lg sm:rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs font-bold whitespace-nowrap shrink-0 active:scale-95">3. Metabolism</a>
+        <a href="#elimination" class="px-3 py-2 rounded-lg sm:rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs font-bold whitespace-nowrap shrink-0 active:scale-95">4. Excretion</a>
+        <a href="#zero-vs-first" class="px-3 py-2 rounded-lg sm:rounded-xl bg-amber-600 text-white text-xs font-extrabold whitespace-nowrap shrink-0 active:scale-95">⚡ Zero vs. First Order</a>
+        <a href="#bioavailability" class="px-3 py-2 rounded-lg sm:rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs font-bold whitespace-nowrap shrink-0 active:scale-95">5. Bioavailability</a>
+        <a href="#half-life" class="px-3 py-2 rounded-lg sm:rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs font-bold whitespace-nowrap shrink-0 active:scale-95">6. Half-Life</a>
+        <a href="#clearance" class="px-3 py-2 rounded-lg sm:rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs font-bold whitespace-nowrap shrink-0 active:scale-95">7. Clearance</a>
+        <a href="#vd" class="px-3 py-2 rounded-lg sm:rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs font-bold whitespace-nowrap shrink-0 active:scale-95">8. Vd</a>
+        <a href="#first-pass" class="px-3 py-2 rounded-lg sm:rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs font-bold whitespace-nowrap shrink-0 active:scale-95">9. First-Pass Effect</a>
+        <a href="#pk-factors" class="px-3 py-2 rounded-lg sm:rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs font-bold whitespace-nowrap shrink-0 active:scale-95">10. Factors</a>
+        <a href="#routes" class="px-3 py-2 rounded-lg sm:rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs font-bold whitespace-nowrap shrink-0 active:scale-95">11. Routes</a>
+        <a href="#graphs" class="px-3 py-2 rounded-lg sm:rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs font-bold whitespace-nowrap shrink-0 active:scale-95">12. Graphs</a>
+        <a href="#mnemonics" class="px-3 py-2 rounded-lg sm:rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs font-bold whitespace-nowrap shrink-0 active:scale-95">13. Mnemonics</a>
+        <a href="#quick-revision" class="px-3 py-2 rounded-lg sm:rounded-xl bg-medical-700 text-white text-xs font-extrabold whitespace-nowrap shrink-0 flex items-center gap-1 active:scale-95">
+          <i data-lucide="zap" class="w-3.5 h-3.5"></i> 60s Revision
         </a>
-        <a href="#mcqs" class="px-3.5 py-2 rounded-xl bg-amber-600 text-white text-xs sm:text-sm font-extrabold whitespace-nowrap shrink-0">15. Practice Questions</a>
+        <a href="#mcqs" class="px-3 py-2 rounded-lg sm:rounded-xl bg-amber-600 text-white text-xs font-extrabold whitespace-nowrap shrink-0 active:scale-95">15. MCQs</a>
       </div>
     </div>
 
     <!-- 1. WHAT IS PHARMACOKINETICS? -->
-    <section id="what-is-pk" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
-          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">1</span>
+    <section id="what-is-pk" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-6 sm:mb-10 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3 sm:pb-4">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">1</span>
           What is Pharmacokinetics?
         </h2>
-        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-brand-200 shrink-0">
           Core Concept
         </span>
       </div>
 
-      <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
+      <p class="text-slate-800 text-sm sm:text-lg leading-relaxed">
         <mark>Pharmacokinetics (PK)</mark> is the quantitative study of <strong>what the body does to a drug</strong> over time. From the moment a drug is administered, the body acts upon it through four continuous biological processes: <mark>Absorption</mark>, <mark>Distribution</mark>, <mark>Metabolism</mark>, and <mark>Excretion</mark> (<strong>ADME</strong>).
       </p>
 
       <!-- COMPARISON BOX -->
-      <div class="p-5 bg-brand-50/90 border border-brand-200 rounded-2xl space-y-2">
-        <h3 class="font-black text-brand-900 text-base sm:text-lg flex items-center gap-2">
-          <i data-lucide="arrow-right-left" class="w-5 h-5 text-brand-600"></i>
+      <div class="p-4 sm:p-5 bg-brand-50/90 border border-brand-200 rounded-xl sm:rounded-2xl space-y-2">
+        <h3 class="font-black text-brand-900 text-sm sm:text-lg flex items-center gap-2">
+          <i data-lucide="arrow-right-left" class="w-4 h-4 sm:w-5 sm:h-5 text-brand-600 shrink-0"></i>
           Pharmacokinetics vs. Pharmacodynamics
         </h3>
-        <p class="text-sm sm:text-base text-brand-950 leading-relaxed">
+        <p class="text-xs sm:text-base text-brand-950 leading-relaxed">
           • <strong>Pharmacokinetics (PK):</strong> What the <u>body</u> does to the drug (Movement, Concentrations, Lifespan).<br>
           • <strong>Pharmacodynamics (PD):</strong> What the <u>drug</u> does to the body (Receptors, Binding, Biological effects).
         </p>
@@ -195,112 +219,117 @@
     </section>
 
     <!-- 2. ADME OVERVIEW & INLINE SVG DIAGRAM -->
-    <section id="adme-visual" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-6">
+    <section id="adme-visual" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-6 sm:mb-10 space-y-4 sm:space-y-6">
       <div class="text-center max-w-2xl mx-auto">
-        <span class="inline-block px-3.5 py-1 rounded-full bg-brand-100 text-brand-800 text-xs font-black uppercase tracking-wider mb-2 border border-brand-300">
+        <span class="inline-block px-3 py-1 rounded-full bg-brand-100 text-brand-800 text-[10px] sm:text-xs font-black uppercase tracking-wider mb-1.5 border border-brand-300">
           Main Visual Diagram
         </span>
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900">2. ADME Overview &amp; Visual Journey</h2>
-        <p class="text-sm sm:text-base text-slate-600 mt-1">The four sequential pillars governing drug action inside human physiology</p>
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900">2. ADME Overview &amp; Visual Journey</h2>
+        <p class="text-xs sm:text-base text-slate-600 mt-0.5">The four sequential pillars governing drug action inside human physiology</p>
       </div>
 
-      <!-- INLINE VECTOR SVG DIAGRAM 1: ADME PATHWAY -->
-      <div class="bg-slate-50 border border-slate-300 rounded-2xl p-4 sm:p-6 my-4 shadow-inner">
-        <svg viewBox="0 0 800 220" class="w-full h-auto max-w-4xl mx-auto" xmlns="http://www.w3.org/2000/svg">
-          <!-- Flow Line -->
-          <path d="M 100 110 L 700 110" stroke="#94a3b8" stroke-width="4" stroke-dasharray="8 8" />
-          
-          <!-- Box 1: Absorption -->
-          <g transform="translate(40, 40)">
-            <rect width="140" height="140" rx="20" fill="#2563eb" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.1))"/>
-            <text x="70" y="55" fill="#ffffff" font-size="28" text-anchor="middle">🩸</text>
-            <text x="70" y="90" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">ABSORPTION</text>
-            <text x="70" y="112" fill="#dbeafe" font-size="11" text-anchor="middle">GI to Bloodstream</text>
-          </g>
+      <!-- INLINE VECTOR SVG DIAGRAM 1: ADME PATHWAY (MOBILE SCROLL CONTAINMENT) -->
+      <div class="bg-slate-50 border border-slate-300 rounded-xl sm:rounded-2xl p-2.5 sm:p-6 shadow-inner">
+        <div class="sm:hidden flex items-center justify-end gap-1 text-[10px] font-bold text-slate-500 mb-1">
+          <span>Scroll diagram horizontally</span> <i data-lucide="arrow-right" class="w-3 h-3"></i>
+        </div>
+        <div class="overflow-x-auto custom-scroll pb-2">
+          <svg viewBox="0 0 800 220" class="min-w-[650px] w-full h-auto max-w-4xl mx-auto" xmlns="http://www.w3.org/2000/svg">
+            <!-- Flow Line -->
+            <path d="M 100 110 L 700 110" stroke="#94a3b8" stroke-width="4" stroke-dasharray="8 8" />
+            
+            <!-- Box 1: Absorption -->
+            <g transform="translate(40, 40)">
+              <rect width="140" height="140" rx="20" fill="#2563eb" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.1))"/>
+              <text x="70" y="55" fill="#ffffff" font-size="28" text-anchor="middle">🩸</text>
+              <text x="70" y="90" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">ABSORPTION</text>
+              <text x="70" y="112" fill="#dbeafe" font-size="11" text-anchor="middle">GI to Bloodstream</text>
+            </g>
 
-          <!-- Arrow 1 -->
-          <path d="M 190 110 L 230 110" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow)"/>
+            <!-- Arrow 1 -->
+            <path d="M 190 110 L 230 110" stroke="#2563eb" stroke-width="4"/>
 
-          <!-- Box 2: Distribution -->
-          <g transform="translate(240, 40)">
-            <rect width="140" height="140" rx="20" fill="#059669" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.1))"/>
-            <text x="70" y="55" fill="#ffffff" font-size="28" text-anchor="middle">🫀</text>
-            <text x="70" y="90" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">DISTRIBUTION</text>
-            <text x="70" y="112" fill="#d1fae5" font-size="11" text-anchor="middle">Blood to Tissues</text>
-          </g>
+            <!-- Box 2: Distribution -->
+            <g transform="translate(240, 40)">
+              <rect width="140" height="140" rx="20" fill="#059669" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.1))"/>
+              <text x="70" y="55" fill="#ffffff" font-size="28" text-anchor="middle">🫀</text>
+              <text x="70" y="90" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">DISTRIBUTION</text>
+              <text x="70" y="112" fill="#d1fae5" font-size="11" text-anchor="middle">Blood to Tissues</text>
+            </g>
 
-          <!-- Arrow 2 -->
-          <path d="M 390 110 L 430 110" stroke="#059669" stroke-width="4"/>
+            <!-- Arrow 2 -->
+            <path d="M 390 110 L 430 110" stroke="#059669" stroke-width="4"/>
 
-          <!-- Box 3: Metabolism -->
-          <g transform="translate(440, 40)">
-            <rect width="140" height="140" rx="20" fill="#d97706" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.1))"/>
-            <text x="70" y="55" fill="#ffffff" font-size="28" text-anchor="middle">🧪</text>
-            <text x="70" y="90" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">METABOLISM</text>
-            <text x="70" y="112" fill="#fef3c7" font-size="11" text-anchor="middle">Hepatic Enzymes</text>
-          </g>
+            <!-- Box 3: Metabolism -->
+            <g transform="translate(440, 40)">
+              <rect width="140" height="140" rx="20" fill="#d97706" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.1))"/>
+              <text x="70" y="55" fill="#ffffff" font-size="28" text-anchor="middle">🧪</text>
+              <text x="70" y="90" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">METABOLISM</text>
+              <text x="70" y="112" fill="#fef3c7" font-size="11" text-anchor="middle">Hepatic Enzymes</text>
+            </g>
 
-          <!-- Arrow 3 -->
-          <path d="M 590 110 L 630 110" stroke="#d97706" stroke-width="4"/>
+            <!-- Arrow 3 -->
+            <path d="M 590 110 L 630 110" stroke="#d97706" stroke-width="4"/>
 
-          <!-- Box 4: Excretion -->
-          <g transform="translate(640, 40)">
-            <rect width="140" height="140" rx="20" fill="#dc2626" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.1))"/>
-            <text x="70" y="55" fill="#ffffff" font-size="28" text-anchor="middle">💧</text>
-            <text x="70" y="90" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">EXCRETION</text>
-            <text x="70" y="112" fill="#fee2e2" font-size="11" text-anchor="middle">Renal Removal</text>
-          </g>
-        </svg>
+            <!-- Box 4: Excretion -->
+            <g transform="translate(640, 40)">
+              <rect width="140" height="140" rx="20" fill="#dc2626" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.1))"/>
+              <text x="70" y="55" fill="#ffffff" font-size="28" text-anchor="middle">💧</text>
+              <text x="70" y="90" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">EXCRETION</text>
+              <text x="70" y="112" fill="#fee2e2" font-size="11" text-anchor="middle">Renal Removal</text>
+            </g>
+          </svg>
+        </div>
       </div>
 
       <!-- ANIMATED PIPELINE TRACK WITH CLEAN ISOLATED PATH -->
-      <div class="bg-slate-900 text-white rounded-2xl p-5 shadow-xl space-y-4">
-        <h3 class="text-sm font-bold text-center text-brand-300 uppercase tracking-wider">Live Molecule Trajectory Simulator</h3>
+      <div class="bg-slate-900 text-white rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-xl space-y-3">
+        <h3 class="text-xs sm:text-sm font-bold text-center text-brand-300 uppercase tracking-wider">Live Molecule Trajectory Simulator</h3>
         
         <!-- DEDICATED ANIMATION TRACK BAR -->
-        <div class="relative h-12 bg-slate-800 rounded-xl border border-slate-700 overflow-hidden flex items-center">
+        <div class="relative h-10 sm:h-12 bg-slate-800 rounded-xl border border-slate-700 overflow-hidden flex items-center">
           <div class="absolute left-[2%] right-[2%] h-1.5 bg-gradient-to-r from-brand-500 via-medical-500 to-amber-500 rounded-full"></div>
-          <div id="admePill" class="absolute pill-animated text-2xl z-10 drop-shadow-[0_0_8px_rgba(56,189,248,0.9)]">
+          <div id="admePill" class="absolute pill-animated text-xl sm:text-2xl z-10 drop-shadow-[0_0_8px_rgba(56,189,248,0.9)]">
             💊
           </div>
         </div>
 
         <!-- CONTROLS -->
-        <div class="flex items-center justify-center gap-3 pt-2">
-          <button onclick="togglePillAnimation()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-bold border border-slate-700 flex items-center gap-2 transition active:scale-95">
-            <i data-lucide="pause" class="w-4 h-4 text-medical-400"></i> Play / Pause
+        <div class="flex items-center justify-center gap-2 sm:gap-3 pt-1">
+          <button onclick="togglePillAnimation()" class="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-bold border border-slate-700 flex items-center gap-1.5 transition active:scale-95">
+            <i data-lucide="pause" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-medical-400"></i> Play / Pause
           </button>
-          <button onclick="restartPillAnimation()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-bold border border-slate-700 flex items-center gap-2 transition active:scale-95">
-            <i data-lucide="rotate-ccw" class="w-4 h-4 text-brand-400"></i> Replay Journey
+          <button onclick="restartPillAnimation()" class="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-bold border border-slate-700 flex items-center gap-1.5 transition active:scale-95">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-400"></i> Replay Journey
           </button>
         </div>
       </div>
     </section>
 
     <!-- 3. ABSORPTION -->
-    <section id="absorption" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
-          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">3</span>
+    <section id="absorption" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-6 sm:mb-10 space-y-4 sm:space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3 sm:pb-4">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">3</span>
           Absorption
         </h2>
-        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-brand-200 shrink-0">
           ADME Stage 1
         </span>
       </div>
 
-      <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
+      <p class="text-slate-800 text-sm sm:text-lg leading-relaxed">
         <strong>Absorption</strong> is the movement of a drug from its administration site into systemic blood circulation. When given <mark>Intravenously (IV)</mark>, absorption is completely bypassed because the dose enters veins directly with <strong>100% bioavailability</strong>.
       </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pt-1">
         <!-- MECHANISMS -->
-        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
-          <h3 class="font-black text-slate-900 text-base sm:text-lg flex items-center gap-2 text-brand-700">
-            <i data-lucide="layers" class="w-5 h-5"></i>
+        <div class="p-4 sm:p-5 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200 space-y-2.5">
+          <h3 class="font-black text-slate-900 text-sm sm:text-lg flex items-center gap-2 text-brand-700">
+            <i data-lucide="layers" class="w-4 h-4 sm:w-5 sm:h-5 shrink-0"></i>
             4 Mechanisms of Transport
           </h3>
-          <ul class="space-y-2 text-sm sm:text-base text-slate-800">
+          <ul class="space-y-1.5 text-xs sm:text-base text-slate-800">
             <li>• <strong>Passive Diffusion:</strong> Uncharged, fat-soluble (lipophilic) drugs glide directly through cell lipid membranes down a concentration gradient without consuming ATP energy.</li>
             <li>• <strong>Paracellular Transport:</strong> Small, water-soluble drugs pass through microscopic gaps between adjacent mucosal cells.</li>
             <li>• <strong>Active Transport:</strong> Transporter proteins actively pump drug molecules across cell membranes against gradients.</li>
@@ -309,12 +338,12 @@
         </div>
 
         <!-- FACTORS AFFECTING ABSORPTION -->
-        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
-          <h3 class="font-black text-slate-900 text-base sm:text-lg flex items-center gap-2 text-medical-700">
-            <i data-lucide="sliders" class="w-5 h-5"></i>
+        <div class="p-4 sm:p-5 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200 space-y-2.5">
+          <h3 class="font-black text-slate-900 text-sm sm:text-lg flex items-center gap-2 text-medical-700">
+            <i data-lucide="sliders" class="w-4 h-4 sm:w-5 sm:h-5 shrink-0"></i>
             Factors Affecting Absorption
           </h3>
-          <ul class="space-y-2 text-sm sm:text-base text-slate-800">
+          <ul class="space-y-1.5 text-xs sm:text-base text-slate-800">
             <li>• <strong>Blood Flow:</strong> Rich intestinal blood flow rapidly sweeps absorbed drug away, maintaining a steep concentration gradient.</li>
             <li>• <strong>Surface Area:</strong> The small intestine microvilli provide a massive surface area, making it the primary site of oral drug absorption.</li>
             <li>• <strong>Lipid Solubility &amp; pH:</strong> Non-ionized (un-charged) drugs stay lipid-soluble and absorb easily. Weak acids (e.g., Aspirin) remain un-ionized in acidic stomach fluid.</li>
@@ -325,52 +354,52 @@
     </section>
 
     <!-- 4. DISTRIBUTION -->
-    <section id="distribution" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
-          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">4</span>
+    <section id="distribution" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-6 sm:mb-10 space-y-4 sm:space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3 sm:pb-4">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">4</span>
           Distribution
         </h2>
-        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-brand-200 shrink-0">
           ADME Stage 2
         </span>
       </div>
 
-      <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
+      <p class="text-slate-800 text-sm sm:text-lg leading-relaxed">
         <strong>Distribution</strong> is the reversible process by which a drug leaves systemic blood plasma and moves into interstitial fluids, tissues, and organ cells.
       </p>
 
       <!-- FREE VS BOUND DRUG -->
-      <div class="bg-slate-50 border border-slate-300 rounded-2xl p-5">
-        <h3 class="font-black text-slate-900 text-base sm:text-lg mb-3 flex items-center gap-2 text-brand-700">
-          <i data-lucide="shield" class="w-5 h-5"></i>
+      <div class="bg-slate-50 border border-slate-300 rounded-xl sm:rounded-2xl p-4 sm:p-5">
+        <h3 class="font-black text-slate-900 text-sm sm:text-lg mb-2.5 flex items-center gap-2 text-brand-700">
+          <i data-lucide="shield" class="w-4 h-4 sm:w-5 sm:h-5 shrink-0"></i>
           Plasma Protein Binding: Free vs. Bound Drug
         </h3>
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base">
-          <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-base">
+          <div class="p-3.5 sm:p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
             <span class="font-extrabold text-rose-700 block mb-1">Bound Drug (Inactive Reservoir)</span>
-            Drug molecules attached to <strong>Albumin</strong> cannot cross capiliary walls, exit blood vessels, or bind to receptors. They act as an inactive storage reservoir.
+            Drug molecules attached to <strong>Albumin</strong> cannot cross capillary walls, exit blood vessels, or bind to receptors. They act as an inactive storage reservoir.
           </div>
-          <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+          <div class="p-3.5 sm:p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
             <span class="font-extrabold text-medical-700 block mb-1">Free Unbound Drug (Active Fraction)</span>
             Only <strong>free unbound drug</strong> can diffuse across capillary membranes into target tissues, interact with cell receptors, and produce therapeutic effects!
           </div>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
-          <h3 class="font-black text-slate-900 text-base sm:text-lg">Special Biological Barriers</h3>
-          <ul class="space-y-2 text-sm sm:text-base text-slate-800">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pt-1">
+        <div class="p-4 sm:p-5 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200 space-y-2">
+          <h3 class="font-black text-slate-900 text-sm sm:text-lg">Special Biological Barriers</h3>
+          <ul class="space-y-1.5 text-xs sm:text-base text-slate-800">
             <li>• <strong>Blood-Brain Barrier (BBB):</strong> Endothelial cells in brain capillaries have tight junctions. Only highly lipid-soluble drugs cross into brain tissue.</li>
             <li>• <strong>Placental Barrier:</strong> Lipophilic drugs cross fetal capillaries easily; careful drug selection is necessary during pregnancy.</li>
           </ul>
         </div>
 
-        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
-          <h3 class="font-black text-slate-900 text-base sm:text-lg">Key Influencing Factors</h3>
-          <ul class="space-y-2 text-sm sm:text-base text-slate-800">
+        <div class="p-4 sm:p-5 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200 space-y-2">
+          <h3 class="font-black text-slate-900 text-sm sm:text-lg">Key Influencing Factors</h3>
+          <ul class="space-y-1.5 text-xs sm:text-base text-slate-800">
             <li>• <strong>Organ Perfusion:</strong> High-flow organs (heart, liver, kidneys, brain) receive drugs in seconds. Fat, bone, and skin equilibrate slowly.</li>
             <li>• <strong>Tissue Binding:</strong> Certain drugs bind heavily in specific tissues (e.g., Tetracycline binds bone and teeth).</li>
           </ul>
@@ -379,47 +408,47 @@
     </section>
 
     <!-- 5. METABOLISM (EXPANDED DETAILS) -->
-    <section id="metabolism" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
-          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">5</span>
+    <section id="metabolism" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-6 sm:mb-10 space-y-4 sm:space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3 sm:pb-4">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">5</span>
           Metabolism (Biotransformation)
         </h2>
-        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-brand-200 shrink-0">
           ADME Stage 3
         </span>
       </div>
 
-      <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
+      <p class="text-slate-800 text-sm sm:text-lg leading-relaxed">
         <strong>Metabolism (Biotransformation)</strong> is the enzymatic alteration of a drug's chemical structure. Its primary goal is to convert fat-soluble (lipophilic) drugs into water-soluble (hydrophilic) metabolites that the kidneys can easily filter out in urine. The <strong>liver</strong> is the primary metabolic organ.
       </p>
 
       <!-- PHASE 1 VS PHASE 2 METABOLISM DETAILS -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
-          <h3 class="font-black text-brand-700 text-base sm:text-lg flex items-center gap-2">
-            <i data-lucide="flask-conical" class="w-5 h-5"></i>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pt-1">
+        <div class="p-4 sm:p-5 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200 space-y-2.5">
+          <h3 class="font-black text-brand-700 text-sm sm:text-lg flex items-center gap-2">
+            <i data-lucide="flask-conical" class="w-4 h-4 sm:w-5 sm:h-5 shrink-0"></i>
             Phase I: Functionalization
           </h3>
-          <p class="text-sm sm:text-base text-slate-800 leading-relaxed">
-            Phase I reactions attach or unmask a polar functional group (<code class="bg-slate-200 px-1.5 py-0.5 rounded font-mono-code text-xs text-slate-900">-OH</code>, <code class="bg-slate-200 px-1.5 py-0.5 rounded font-mono-code text-xs text-slate-900">-NH2</code>, <code class="bg-slate-200 px-1.5 py-0.5 rounded font-mono-code text-xs text-slate-900">-SH</code>) on the drug molecule.
+          <p class="text-xs sm:text-base text-slate-800 leading-relaxed">
+            Phase I reactions attach or unmask a polar functional group (<code class="bg-slate-200 px-1 py-0.5 rounded font-mono-code text-[11px] text-slate-900">-OH</code>, <code class="bg-slate-200 px-1 py-0.5 rounded font-mono-code text-[11px] text-slate-900">-NH2</code>, <code class="bg-slate-200 px-1 py-0.5 rounded font-mono-code text-[11px] text-slate-900">-SH</code>) on the drug molecule.
           </p>
-          <ul class="space-y-2 text-sm sm:text-base text-slate-800 pt-1">
+          <ul class="space-y-1.5 text-xs sm:text-base text-slate-800 pt-1">
             <li>• <strong>Oxidation:</strong> Catalyzed primarily by <strong>Cytochrome P450 (CYP450)</strong> enzymes in liver microsomes.</li>
             <li>• <strong>Reduction:</strong> Addition of hydrogen atoms or loss of oxygen.</li>
             <li>• <strong>Hydrolysis:</strong> Cleavage of chemical bonds using water (e.g., Aspirin breakdown).</li>
           </ul>
         </div>
 
-        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
-          <h3 class="font-black text-medical-700 text-base sm:text-lg flex items-center gap-2">
-            <i data-lucide="link" class="w-5 h-5"></i>
+        <div class="p-4 sm:p-5 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200 space-y-2.5">
+          <h3 class="font-black text-medical-700 text-sm sm:text-lg flex items-center gap-2">
+            <i data-lucide="link" class="w-4 h-4 sm:w-5 sm:h-5 shrink-0"></i>
             Phase II: Conjugation
           </h3>
-          <p class="text-sm sm:text-base text-slate-800 leading-relaxed">
+          <p class="text-xs sm:text-base text-slate-800 leading-relaxed">
             Phase II enzymes attach an endogenous polar substrate to form a highly water-soluble, inactive compound for urine or bile excretion.
           </p>
-          <ul class="space-y-2 text-sm sm:text-base text-slate-800 pt-1">
+          <ul class="space-y-1.5 text-xs sm:text-base text-slate-800 pt-1">
             <li>• <strong>Glucuronidation:</strong> The most common Phase II reaction (glues glucuronic acid onto drugs).</li>
             <li>• <strong>Sulfation &amp; Acetylation:</strong> Converts molecules into excretable conjugates.</li>
             <li>• <strong>Glutathione Conjugation:</strong> Essential for neutralizing toxic reactive drug metabolites.</li>
@@ -428,14 +457,14 @@
       </div>
 
       <!-- CYP ENZYME INDUCTION VS INHIBITION -->
-      <div class="p-5 bg-slate-900 text-white rounded-2xl border border-slate-800 space-y-3">
-        <h3 class="font-black text-base sm:text-lg text-brand-300">CYP450 Induction vs. Inhibition Dynamics</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base">
-          <div class="p-4 bg-slate-800 rounded-xl border border-slate-700">
+      <div class="p-4 sm:p-5 bg-slate-900 text-white rounded-xl sm:rounded-2xl border border-slate-800 space-y-2.5">
+        <h3 class="font-black text-sm sm:text-lg text-brand-300">CYP450 Induction vs. Inhibition Dynamics</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-base">
+          <div class="p-3.5 sm:p-4 bg-slate-800 rounded-xl border border-slate-700">
             <span class="font-extrabold text-amber-400 block mb-1">CYP450 Enzyme Inducers</span>
             Agents like <strong>Rifampin, Phenytoin, Carbamazepine, and St. John's Wort</strong> increase enzyme production. This speeds up drug metabolism, lowering plasma levels and causing <em>treatment failure</em>.
           </div>
-          <div class="p-4 bg-slate-800 rounded-xl border border-slate-700">
+          <div class="p-3.5 sm:p-4 bg-slate-800 rounded-xl border border-slate-700">
             <span class="font-extrabold text-rose-400 block mb-1">CYP450 Enzyme Inhibitors</span>
             Agents like <strong>Ketoconazole, Erythromycin, Cimetidine, and Grapefruit Juice</strong> block CYP enzymes. This slows drug clearance, causing drug accumulation and <em>increased toxicity risk</em>.
           </div>
@@ -444,86 +473,183 @@
     </section>
 
     <!-- 6. ELIMINATION / EXCRETION -->
-    <section id="elimination" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
-          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">6</span>
+    <section id="elimination" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-6 sm:mb-10 space-y-4 sm:space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3 sm:pb-4">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">6</span>
           Excretion (Elimination)
         </h2>
-        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-brand-200 shrink-0">
           ADME Stage 4
         </span>
       </div>
 
-      <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
+      <p class="text-slate-800 text-sm sm:text-lg leading-relaxed">
         <strong>Excretion</strong> is the final, permanent removal of unchanged drug molecules or metabolites from the body. The <strong>kidneys</strong> represent the primary excretion organ.
       </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
-          <h3 class="font-black text-slate-900 text-base sm:text-lg flex items-center gap-2 text-brand-700">
-            <i data-lucide="droplet" class="w-5 h-5"></i>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pt-1">
+        <div class="p-4 sm:p-5 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200 space-y-2.5">
+          <h3 class="font-black text-slate-900 text-sm sm:text-lg flex items-center gap-2 text-brand-700">
+            <i data-lucide="droplet" class="w-4 h-4 sm:w-5 sm:h-5 shrink-0"></i>
             3 Renal Excretion Processes
           </h3>
-          <ul class="space-y-2 text-sm sm:text-base text-slate-800">
+          <ul class="space-y-1.5 text-xs sm:text-base text-slate-800">
             <li>• <strong>Glomerular Filtration:</strong> Unbound free drug molecules filter across nephron glomeruli into renal tubular fluid.</li>
             <li>• <strong>Active Tubular Secretion:</strong> Transporters in PCT tubules actively pump organic acids/bases from blood into urine.</li>
             <li>• <strong>Passive Tubular Reabsorption:</strong> Lipophilic un-ionized drugs diffuse back into blood vessels.</li>
           </ul>
         </div>
 
-        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
-          <h3 class="font-black text-slate-900 text-base sm:text-lg flex items-center gap-2 text-medical-700">
-            <i data-lucide="shield-alert" class="w-5 h-5"></i>
+        <div class="p-4 sm:p-5 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200 space-y-2.5">
+          <h3 class="font-black text-slate-900 text-sm sm:text-lg flex items-center gap-2 text-medical-700">
+            <i data-lucide="shield-alert" class="w-4 h-4 sm:w-5 sm:h-5 shrink-0"></i>
             Ion Trapping Concept
           </h3>
-          <p class="text-sm sm:text-base text-slate-800 leading-relaxed">
+          <p class="text-xs sm:text-base text-slate-800 leading-relaxed">
             Adjusting urine pH with IV Sodium Bicarbonate alkalinizes urine, keeping weak acid drugs (like <strong>Aspirin</strong>) ionized. Ionized drugs cannot cross back into blood membranes, trapping them in urine for rapid elimination during toxic overdoses!
           </p>
         </div>
       </div>
     </section>
 
+    <!-- ⚡ NEW DETAILED TOPIC: ZERO-ORDER VS FIRST-ORDER KINETICS -->
+    <section id="zero-vs-first" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-6 sm:mb-10 space-y-4 sm:space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3 sm:pb-4">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-amber-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">⚡</span>
+          Zero-Order vs. First-Order Elimination Kinetics
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-amber-300 shrink-0">
+          Core Exam Topic
+        </span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-lg leading-relaxed">
+        Elimination kinetics describes the speed and rate pattern at which the body clears drugs from systemic plasma. Most clinical drugs follow <strong>First-Order Kinetics</strong>, but saturated enzyme systems trigger high-risk <strong>Zero-Order Kinetics</strong>.
+      </p>
+
+      <!-- DEFINITION CARDS -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <!-- FIRST ORDER DEFINITION -->
+        <div class="p-4 sm:p-5 bg-brand-50 border border-brand-200 rounded-xl sm:rounded-2xl space-y-2.5">
+          <h3 class="font-black text-brand-900 text-sm sm:text-lg flex items-center gap-2">
+            <i data-lucide="trending-down" class="w-4 h-4 sm:w-5 sm:h-5 text-brand-600 shrink-0"></i>
+            1. First-Order Kinetics (Constant Percentage)
+          </h3>
+          <p class="text-xs sm:text-base text-slate-800 leading-relaxed">
+            <strong>Definition:</strong> A constant <em>fraction or percentage</em> of drug is eliminated per unit time. The rate of elimination is directly proportional to plasma concentration.
+          </p>
+          <ul class="text-xs sm:text-sm text-slate-800 space-y-1 list-disc pl-4">
+            <li><strong>Elimination Rate:</strong> Changes continuously as drug levels fall.</li>
+            <li><strong>Half-Life (t½):</strong> <mark>Constant</mark> regardless of dose.</li>
+            <li><strong>Graph Shape:</strong> Exponential curved decay on linear graph paper.</li>
+            <li><strong>Clinical Reality:</strong> Over 95% of clinical drugs follow first-order kinetics.</li>
+          </ul>
+        </div>
+
+        <!-- ZERO ORDER DEFINITION -->
+        <div class="p-4 sm:p-5 bg-rose-50 border border-rose-200 rounded-xl sm:rounded-2xl space-y-2.5">
+          <h3 class="font-black text-rose-900 text-sm sm:text-lg flex items-center gap-2">
+            <i data-lucide="minus-circle" class="w-4 h-4 sm:w-5 sm:h-5 text-rose-600 shrink-0"></i>
+            2. Zero-Order Kinetics (Constant Amount)
+          </h3>
+          <p class="text-xs sm:text-base text-slate-800 leading-relaxed">
+            <strong>Definition:</strong> A constant <em>mg amount</em> of drug is eliminated per unit time, regardless of plasma concentration, because metabolic enzymes or clearance pathways are completely <strong>saturated</strong>.
+          </p>
+          <ul class="text-xs sm:text-sm text-slate-800 space-y-1 list-disc pl-4">
+            <li><strong>Elimination Rate:</strong> Fixed speed (e.g., 10 mg/hour).</li>
+            <li><strong>Half-Life (t½):</strong> <mark>Not constant</mark> (increases with higher dose).</li>
+            <li><strong>Graph Shape:</strong> Straight linear downward line.</li>
+            <li><strong>Examples (PEA):</strong> <strong>P</strong>henytoin, <strong>E</strong>thanol (Alcohol), <strong>A</strong>spirin (high dose).</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- DIRECT COMPARISON TABLE (MOBILE RESPONSIVE SCROLL) -->
+      <div class="space-y-2">
+        <h3 class="font-black text-slate-900 text-xs sm:text-base">Head-to-Head Comparison Table</h3>
+        <div class="overflow-x-auto custom-scroll border border-slate-300 rounded-xl">
+          <table class="w-full text-left text-xs sm:text-sm min-w-[500px]">
+            <thead class="bg-slate-900 text-white uppercase text-[10px] sm:text-xs">
+              <tr>
+                <th class="p-3">Feature</th>
+                <th class="p-3 bg-brand-800">First-Order Kinetics</th>
+                <th class="p-3 bg-rose-900">Zero-Order Kinetics</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 bg-white">
+              <tr>
+                <td class="p-3 font-bold text-slate-900">Elimination Rate</td>
+                <td class="p-3 text-brand-950 font-medium">Proportional to concentration</td>
+                <td class="p-3 text-rose-950 font-medium">Constant fixed amount/hour</td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3 font-bold text-slate-900">Percentage Cleared</td>
+                <td class="p-3 text-brand-950 font-medium">Constant % (e.g., 50% per t½)</td>
+                <td class="p-3 text-rose-950 font-medium">Variable % as dose changes</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-slate-900">Half-Life (t½)</td>
+                <td class="p-3 text-emerald-700 font-bold">Constant (Predictable)</td>
+                <td class="p-3 text-rose-700 font-bold">Variable (Increases with dose)</td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3 font-bold text-slate-900">Enzyme Status</td>
+                <td class="p-3 text-brand-950">Enzymes NOT saturated</td>
+                <td class="p-3 text-rose-950 font-bold">Enzymes SATURATED</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-slate-900">Toxicity Risk</td>
+                <td class="p-3 text-slate-700">Lower risk</td>
+                <td class="p-3 text-rose-700 font-black">High risk of drug buildup</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
     <!-- 7. BIOAVAILABILITY -->
-    <section id="bioavailability" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
-          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-xs font-black flex items-center justify-center">7</span>
+    <section id="bioavailability" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-6 sm:mb-10 space-y-4 sm:space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3 sm:pb-4">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">7</span>
           Bioavailability (F)
         </h2>
-        <span class="px-3 py-1 rounded-full bg-medical-100 text-medical-800 text-xs font-black uppercase tracking-wide border border-medical-200">
+        <span class="px-2.5 py-1 rounded-full bg-medical-100 text-medical-800 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-medical-200 shrink-0">
           Core Metric
         </span>
       </div>
 
-      <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
+      <p class="text-slate-800 text-sm sm:text-lg leading-relaxed">
         <strong>Bioavailability (F)</strong> is the percentage or fraction of an administered drug dose that reaches systemic blood circulation in an active, unchanged form.
       </p>
 
-      <div class="bg-slate-900 text-white p-5 rounded-2xl border border-slate-800 text-center font-mono-code text-sm sm:text-base">
+      <div class="bg-slate-900 text-white p-4 sm:p-5 rounded-xl sm:rounded-2xl border border-slate-800 text-center font-mono-code text-xs sm:text-base shadow-md leading-relaxed">
         Bioavailability (F) = [ Area Under Curve (Oral) / Area Under Curve (IV) ] × 100
       </div>
 
       <!-- DETAILED FACTORS AFFECTING BIOAVAILABILITY -->
-      <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
-        <h3 class="font-black text-slate-900 text-base sm:text-lg uppercase tracking-wide text-brand-700">6 Key Factors Affecting Bioavailability</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-sm sm:text-base pt-1">
-          <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+      <div class="p-4 sm:p-5 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200 space-y-2.5">
+        <h3 class="font-black text-slate-900 text-xs sm:text-base uppercase tracking-wide text-brand-700">6 Key Factors Affecting Bioavailability</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 text-xs sm:text-base pt-1">
+          <div class="p-3.5 sm:p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
             <strong>1. First-Pass Hepatic Metabolism:</strong> Extensive liver breakdown drastically decreases oral bioavailability.
           </div>
-          <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+          <div class="p-3.5 sm:p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
             <strong>2. Drug Solubility &amp; Permeability:</strong> Hydrophilic drugs cross lipid membranes poorly; hydrophobic drugs dissolve poorly in GI fluids.
           </div>
-          <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+          <div class="p-3.5 sm:p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
             <strong>3. Drug Formulation:</strong> Particle size, binder excipients, and tablet disintegration time dictate dissolution rate.
           </div>
-          <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+          <div class="p-3.5 sm:p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
             <strong>4. Gastric Motility &amp; Food Effects:</strong> High-fat meals delay gastric emptying, altering peak plasma concentrations.
           </div>
-          <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+          <div class="p-3.5 sm:p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
             <strong>5. P-Glycoprotein Transporters:</strong> Efflux pumps in intestinal mucosa pump absorbed drug back into the GI lumen.
           </div>
-          <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+          <div class="p-3.5 sm:p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
             <strong>6. GI Health:</strong> Malabsorption syndromes or surgical intestinal resection impair absorption.
           </div>
         </div>
@@ -531,22 +657,22 @@
     </section>
 
     <!-- 8. HALF-LIFE -->
-    <section id="half-life" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
-          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-xs font-black flex items-center justify-center">8</span>
+    <section id="half-life" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-6 sm:mb-10 space-y-4 sm:space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3 sm:pb-4">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">8</span>
           Elimination Half-Life (t½)
         </h2>
-        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-brand-200 shrink-0">
           Dosing Interval
         </span>
       </div>
 
-      <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
+      <p class="text-slate-800 text-sm sm:text-lg leading-relaxed">
         <strong>Elimination Half-Life (t½)</strong> is the time required for the plasma concentration of a drug to decrease by 50% (one-half) of its initial level.
       </p>
 
-      <div class="p-5 bg-medical-50 border border-medical-200 rounded-2xl text-sm sm:text-base text-medical-950 leading-relaxed font-medium">
+      <div class="p-4 sm:p-5 bg-medical-50 border border-medical-200 rounded-xl sm:rounded-2xl text-xs sm:text-base text-medical-950 leading-relaxed font-medium">
         <strong>The 4–5 Half-Lives Rule:</strong><br>
         • It takes <strong>4 to 5 half-lives</strong> of repeated dosing for a drug to reach stable therapeutic blood levels (<strong>Steady State - Css</strong>).<br>
         • It takes <strong>4 to 5 half-lives</strong> for a drug to be &gt;96% completely cleared from the body once dosing stops.
@@ -554,52 +680,52 @@
     </section>
 
     <!-- 9. CLEARANCE -->
-    <section id="clearance" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
-          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-xs font-black flex items-center justify-center">9</span>
+    <section id="clearance" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-6 sm:mb-10 space-y-4 sm:space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3 sm:pb-4">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">9</span>
           Drug Clearance (CL)
         </h2>
-        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-brand-200 shrink-0">
           Elimination Rate
         </span>
       </div>
 
-      <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
+      <p class="text-slate-800 text-sm sm:text-lg leading-relaxed">
         <strong>Clearance (CL)</strong> is the volume of blood plasma completely cleared of drug per unit of time (measured in mL/min or L/hr).
       </p>
 
-      <div class="bg-slate-900 text-white p-5 rounded-2xl border border-slate-800 text-center font-mono-code text-sm sm:text-base">
+      <div class="bg-slate-900 text-white p-4 sm:p-5 rounded-xl sm:rounded-2xl border border-slate-800 text-center font-mono-code text-xs sm:text-base shadow-md">
         Clearance (CL) = Elimination Rate / Plasma Concentration
       </div>
     </section>
 
     <!-- 10. VOLUME OF DISTRIBUTION (Vd) -->
-    <section id="vd" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
-          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-xs font-black flex items-center justify-center">10</span>
+    <section id="vd" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-6 sm:mb-10 space-y-4 sm:space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3 sm:pb-4">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">10</span>
           Volume of Distribution (Vd)
         </h2>
-        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-brand-200 shrink-0">
           Tissue Partitioning
         </span>
       </div>
 
-      <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
+      <p class="text-slate-800 text-sm sm:text-lg leading-relaxed">
         <strong>Volume of Distribution (Vd)</strong> is a calculated theoretical volume that relates the total amount of drug in the body to its concentration in blood plasma.
       </p>
 
-      <div class="bg-slate-900 text-white p-5 rounded-2xl border border-slate-800 text-center font-mono-code text-sm sm:text-base">
+      <div class="bg-slate-900 text-white p-4 sm:p-5 rounded-xl sm:rounded-2xl border border-slate-800 text-center font-mono-code text-xs sm:text-base shadow-md">
         Vd = Total Amount of Drug in Body (Dose) / Plasma Concentration
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base pt-1">
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-base pt-1">
+        <div class="p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200">
           <span class="font-black text-brand-700 block mb-1">Low Vd (~3–5 L, e.g., Heparin)</span>
           The drug is confined inside blood plasma vessels due to high plasma protein binding or large molecular size.
         </div>
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+        <div class="p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200">
           <span class="font-black text-medical-700 block mb-1">High Vd (&gt;50 L, e.g., Digoxin)</span>
           The drug leaves blood plasma and distributes extensively into deep body tissues, skeletal muscle, or fat.
         </div>
@@ -607,92 +733,97 @@
     </section>
 
     <!-- 11. FIRST-PASS EFFECT & INLINE SVG DIAGRAM 2 -->
-    <section id="first-pass" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
-          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-xs font-black flex items-center justify-center">11</span>
+    <section id="first-pass" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-6 sm:mb-10 space-y-4 sm:space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3 sm:pb-4">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">11</span>
           First-Pass Effect
         </h2>
-        <span class="px-3 py-1 rounded-full bg-rose-100 text-rose-800 text-xs font-black uppercase tracking-wide border border-rose-200">
+        <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-rose-200 shrink-0">
           High-Yield Topic
         </span>
       </div>
 
-      <p class="text-slate-800 text-base sm:text-lg leading-relaxed">
+      <p class="text-slate-800 text-sm sm:text-lg leading-relaxed">
         The <strong>First-Pass Effect</strong> occurs when an orally ingested drug is absorbed through the intestinal mucosa into the portal vein and delivered directly to the liver, where hepatic enzymes metabolize a significant fraction before it reaches systemic blood circulation.
       </p>
 
-      <!-- INLINE VECTOR SVG DIAGRAM 2: FIRST-PASS EFFECT -->
-      <div class="bg-slate-50 border border-slate-300 rounded-2xl p-4 sm:p-6 my-4 shadow-inner">
-        <svg viewBox="0 0 800 240" class="w-full h-auto max-w-4xl mx-auto" xmlns="http://www.w3.org/2000/svg">
-          <!-- Oral Route Box -->
-          <g transform="translate(30, 50)">
-            <rect width="180" height="140" rx="16" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-            <text x="90" y="45" fill="#1e3a8a" font-size="28" text-anchor="middle">💊</text>
-            <text x="90" y="80" fill="#1d4ed8" font-size="16" font-weight="bold" text-anchor="middle">Oral Tablet Dose</text>
-            <text x="90" y="105" fill="#3b82f6" font-size="12" text-anchor="middle">Swallowed into Stomach</text>
-          </g>
+      <!-- INLINE VECTOR SVG DIAGRAM 2: FIRST-PASS EFFECT (MOBILE SCROLL CONTAINMENT) -->
+      <div class="bg-slate-50 border border-slate-300 rounded-xl sm:rounded-2xl p-2.5 sm:p-6 shadow-inner">
+        <div class="sm:hidden flex items-center justify-end gap-1 text-[10px] font-bold text-slate-500 mb-1">
+          <span>Scroll diagram horizontally</span> <i data-lucide="arrow-right" class="w-3 h-3"></i>
+        </div>
+        <div class="overflow-x-auto custom-scroll pb-2">
+          <svg viewBox="0 0 800 240" class="min-w-[650px] w-full h-auto max-w-4xl mx-auto" xmlns="http://www.w3.org/2000/svg">
+            <!-- Oral Route Box -->
+            <g transform="translate(30, 50)">
+              <rect width="180" height="140" rx="16" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+              <text x="90" y="45" fill="#1e3a8a" font-size="28" text-anchor="middle">💊</text>
+              <text x="90" y="80" fill="#1d4ed8" font-size="16" font-weight="bold" text-anchor="middle">Oral Tablet Dose</text>
+              <text x="90" y="105" fill="#3b82f6" font-size="12" text-anchor="middle">Swallowed into Stomach</text>
+            </g>
 
-          <!-- Arrow 1 -->
-          <path d="M 210 120 L 270 120" stroke="#2563eb" stroke-width="4"/>
+            <!-- Arrow 1 -->
+            <path d="M 210 120 L 270 120" stroke="#2563eb" stroke-width="4"/>
 
-          <!-- Portal Vein Box -->
-          <g transform="translate(270, 50)">
-            <rect width="180" height="140" rx="16" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
-            <text x="90" y="45" fill="#78350f" font-size="28" text-anchor="middle">🩸</text>
-            <text x="90" y="80" fill="#b45309" font-size="16" font-weight="bold" text-anchor="middle">Hepatic Portal Vein</text>
-            <text x="90" y="105" fill="#d97706" font-size="12" text-anchor="middle">Direct Transport to Liver</text>
-          </g>
+            <!-- Portal Vein Box -->
+            <g transform="translate(270, 50)">
+              <rect width="180" height="140" rx="16" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+              <text x="90" y="45" fill="#78350f" font-size="28" text-anchor="middle">🩸</text>
+              <text x="90" y="80" fill="#b45309" font-size="16" font-weight="bold" text-anchor="middle">Hepatic Portal Vein</text>
+              <text x="90" y="105" fill="#d97706" font-size="12" text-anchor="middle">Direct Transport to Liver</text>
+            </g>
 
-          <!-- Arrow 2 -->
-          <path d="M 450 120 L 510 120" stroke="#d97706" stroke-width="4"/>
+            <!-- Arrow 2 -->
+            <path d="M 450 120 L 510 120" stroke="#d97706" stroke-width="4"/>
 
-          <!-- Liver Clearance Box -->
-          <g transform="translate(510, 50)">
-            <rect width="240" height="140" rx="16" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
-            <text x="120" y="45" fill="#7f1d1d" font-size="28" text-anchor="middle">🧪</text>
-            <text x="120" y="75" fill="#b91c1c" font-size="16" font-weight="bold" text-anchor="middle">Liver Metabolism</text>
-            <text x="120" y="98" fill="#dc2626" font-size="12" text-anchor="middle">Partial Drug Destruction</text>
-            <text x="120" y="118" fill="#991b1b" font-size="11" font-weight="bold" text-anchor="middle">&darr; Reduced Systemic Dose</text>
-          </g>
-        </svg>
+            <!-- Liver Clearance Box -->
+            <g transform="translate(510, 50)">
+              <rect width="240" height="140" rx="16" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+              <text x="120" y="45" fill="#7f1d1d" font-size="28" text-anchor="middle">🧪</text>
+              <text x="120" y="75" fill="#b91c1c" font-size="16" font-weight="bold" text-anchor="middle">Liver Metabolism</text>
+              <text x="120" y="98" fill="#dc2626" font-size="12" text-anchor="middle">Partial Drug Destruction</text>
+              <text x="120" y="118" fill="#991b1b" font-size="11" font-weight="bold" text-anchor="middle">&darr; Reduced Systemic Dose</text>
+            </g>
+          </svg>
+        </div>
       </div>
     </section>
 
     <!-- 12. FACTORS AFFECTING PHARMACOKINETICS -->
-    <section id="pk-factors" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
-          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-sm font-black flex items-center justify-center">12</span>
+    <section id="pk-factors" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-6 sm:mb-10 space-y-4 sm:space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3 sm:pb-4">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">12</span>
           Factors Affecting Pharmacokinetics
         </h2>
-        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-brand-200 shrink-0">
           Clinical Variables
         </span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-1">
-        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200">
-          <h3 class="font-extrabold text-sm uppercase text-brand-700 mb-2">Patient Factors</h3>
-          <ul class="space-y-2 text-sm sm:text-base text-slate-800">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 pt-1">
+        <div class="p-4 sm:p-5 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200">
+          <h3 class="font-extrabold text-xs sm:text-sm uppercase text-brand-700 mb-2">Patient Factors</h3>
+          <ul class="space-y-1.5 text-xs sm:text-base text-slate-800">
             <li>• <strong>Age:</strong> Neonates and elderly have reduced liver/renal clearance.</li>
             <li>• <strong>Genetics:</strong> Fast vs. slow acetylators.</li>
             <li>• <strong>Pregnancy:</strong> Increased blood volume &amp; GFR.</li>
           </ul>
         </div>
 
-        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200">
-          <h3 class="font-extrabold text-sm uppercase text-medical-700 mb-2">Drug Factors</h3>
-          <ul class="space-y-2 text-sm sm:text-base text-slate-800">
+        <div class="p-4 sm:p-5 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200">
+          <h3 class="font-extrabold text-xs sm:text-sm uppercase text-medical-700 mb-2">Drug Factors</h3>
+          <ul class="space-y-1.5 text-xs sm:text-base text-slate-800">
             <li>• <strong>Lipid Solubility:</strong> High lipophilicity aids membrane crossing.</li>
             <li>• <strong>Molecular Size:</strong> Large drugs remain in blood plasma.</li>
             <li>• <strong>Protein Binding:</strong> Bound drug fraction is inactive.</li>
           </ul>
         </div>
 
-        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200">
-          <h3 class="font-extrabold text-sm uppercase text-rose-700 mb-2">Disease Factors</h3>
-          <ul class="space-y-2 text-sm sm:text-base text-slate-800">
+        <div class="p-4 sm:p-5 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200">
+          <h3 class="font-extrabold text-xs sm:text-sm uppercase text-rose-700 mb-2">Disease Factors</h3>
+          <ul class="space-y-1.5 text-xs sm:text-base text-slate-800">
             <li>• <strong>Liver Failure:</strong> Slows hepatic metabolism.</li>
             <li>• <strong>Kidney Failure:</strong> Causes drug accumulation and toxicity.</li>
             <li>• <strong>Heart Failure:</strong> Reduces organ perfusion.</li>
@@ -702,31 +833,31 @@
     </section>
 
     <!-- 13. ROUTES OF ADMINISTRATION -->
-    <section id="routes" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
-          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-xs font-black flex items-center justify-center">13</span>
+    <section id="routes" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-6 sm:mb-10 space-y-4 sm:space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3 sm:pb-4">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">13</span>
           Routes of Administration Comparison
         </h2>
-        <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-black uppercase tracking-wide border border-brand-200">
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-brand-200 shrink-0">
           Route vs. Bioavailability
         </span>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-sm sm:text-base">
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 shadow-sm">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-xs sm:text-base">
+        <div class="p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200 shadow-sm">
           <span class="font-black text-brand-700 block mb-1">Intravenous (IV)</span>
           100% immediate bioavailability. Emergency route. Bypasses absorption &amp; first-pass.
         </div>
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 shadow-sm">
+        <div class="p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200 shadow-sm">
           <span class="font-black text-slate-900 block mb-1">Oral (PO)</span>
           Convenient, safe. Variable bioavailability due to GI breakdown and first-pass loss.
         </div>
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 shadow-sm">
+        <div class="p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200 shadow-sm">
           <span class="font-black text-medical-700 block mb-1">Sublingual (SL)</span>
           Rapid absorption directly into venous blood under the tongue; bypasses first-pass loss.
         </div>
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 shadow-sm">
+        <div class="p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200 shadow-sm">
           <span class="font-black text-amber-700 block mb-1">Intramuscular (IM)</span>
           Rapid absorption from muscle blood supply; suitable for depot formulations.
         </div>
@@ -734,29 +865,29 @@
     </section>
 
     <!-- 14. IMPORTANT GRAPHS -->
-    <section id="graphs" class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl mb-10">
+    <section id="graphs" class="bg-slate-900 text-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 shadow-xl border border-slate-800 mb-6 sm:mb-10">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
         <div>
-          <h2 class="text-xl sm:text-2xl font-black text-white">14. Important Pharmacokinetic Graphs</h2>
-          <p class="text-xs sm:text-sm text-slate-400">Interactive decay and elimination kinetics visualizer</p>
+          <h2 class="text-lg sm:text-2xl font-black text-white">14. Important Pharmacokinetic Graphs</h2>
+          <p class="text-[11px] sm:text-sm text-slate-400">Interactive decay and elimination kinetics visualizer</p>
         </div>
         <div class="flex items-center gap-2">
-          <button onclick="drawGraph('first')" id="btnFirstOrder" class="px-3.5 py-2 rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-bold transition">
+          <button onclick="drawGraph('first')" id="btnFirstOrder" class="px-3 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold transition active:scale-95">
             First-Order (Curved)
           </button>
-          <button onclick="drawGraph('zero')" id="btnZeroOrder" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs sm:text-sm font-bold transition">
+          <button onclick="drawGraph('zero')" id="btnZeroOrder" class="px-3 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs font-bold transition active:scale-95">
             Zero-Order (Linear)
           </button>
         </div>
       </div>
 
       <!-- CANVAS GRAPH DISPLAY -->
-      <div class="w-full h-52 sm:h-64 bg-slate-950 rounded-2xl border border-slate-800 flex items-center justify-center p-2 relative">
+      <div class="w-full h-48 sm:h-64 bg-slate-950 rounded-xl sm:rounded-2xl border border-slate-800 flex items-center justify-center p-2 relative">
         <canvas id="kineticsCanvas" class="w-full h-full"></canvas>
       </div>
 
       <!-- GRAPH TAKEAWAY -->
-      <div class="mt-4 p-4 bg-slate-800/80 rounded-xl border border-slate-700 text-xs sm:text-sm text-slate-200 leading-relaxed">
+      <div class="mt-4 p-3.5 sm:p-4 bg-slate-800/80 rounded-xl border border-slate-700 text-xs sm:text-sm text-slate-200 leading-relaxed">
         <strong class="text-brand-400 font-bold block mb-1 uppercase tracking-wider">What to understand from this graph:</strong>
         <span id="graphDescription">
           First-Order kinetics yields a smooth exponential curve decay because the elimination rate slows down proportionally as plasma concentration drops, keeping the half-life constant.
@@ -765,23 +896,23 @@
     </section>
 
     <!-- 15. EASY MNEMONICS -->
-    <section id="mnemonics" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-5">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
-          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-xs font-black flex items-center justify-center">15</span>
+    <section id="mnemonics" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-6 sm:mb-10 space-y-4 sm:space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3 sm:pb-4">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">15</span>
           Easy Mnemonics
         </h2>
-        <span class="px-3 py-1 rounded-full bg-medical-100 text-medical-800 text-xs font-black uppercase tracking-wide border border-medical-200">
+        <span class="px-2.5 py-1 rounded-full bg-medical-100 text-medical-800 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-medical-200 shrink-0">
           Memory Aids
         </span>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         <!-- MNEMONIC 1 -->
-        <div class="p-5 bg-medical-50/80 border border-medical-200 rounded-2xl space-y-2">
-          <span class="text-xs font-bold text-medical-800 uppercase tracking-wider block">MEMORY TRICK 1</span>
-          <h3 class="font-black text-slate-900 text-base sm:text-lg">"ADME" Sequence</h3>
-          <p class="text-sm sm:text-base text-slate-800">
+        <div class="p-4 sm:p-5 bg-medical-50/80 border border-medical-200 rounded-xl sm:rounded-2xl space-y-2">
+          <span class="text-[10px] sm:text-xs font-bold text-medical-800 uppercase tracking-wider block">MEMORY TRICK 1</span>
+          <h3 class="font-black text-slate-900 text-sm sm:text-lg">"ADME" Sequence</h3>
+          <p class="text-xs sm:text-base text-slate-800">
             <strong>A</strong> &rarr; Absorption (Bloodstream Entry)<br>
             <strong>D</strong> &rarr; Distribution (Tissue Perfusion)<br>
             <strong>M</strong> &rarr; Metabolism (Hepatic Enzymes)<br>
@@ -790,10 +921,10 @@
         </div>
 
         <!-- MNEMONIC 2 -->
-        <div class="p-5 bg-amber-50/80 border border-amber-200 rounded-2xl space-y-2">
-          <span class="text-xs font-bold text-amber-800 uppercase tracking-wider block">MEMORY TRICK 2</span>
-          <h3 class="font-black text-slate-900 text-base sm:text-lg">Zero-Order Drugs = "PEA"</h3>
-          <p class="text-sm sm:text-base text-slate-800">
+        <div class="p-4 sm:p-5 bg-amber-50/80 border border-amber-200 rounded-xl sm:rounded-2xl space-y-2">
+          <span class="text-[10px] sm:text-xs font-bold text-amber-800 uppercase tracking-wider block">MEMORY TRICK 2</span>
+          <h3 class="font-black text-slate-900 text-sm sm:text-lg">Zero-Order Drugs = "PEA"</h3>
+          <p class="text-xs sm:text-base text-slate-800">
             Drugs eliminated at a <strong>constant amount per hour</strong> due to saturated enzymes:<br>
             <strong>P</strong> &rarr; Phenytoin<br>
             <strong>E</strong> &rarr; Ethanol (Alcohol)<br>
@@ -804,65 +935,65 @@
     </section>
 
     <!-- 16. QUICK REVISION (PHARMACOKINETICS IN 60 SECONDS) -->
-    <section id="quick-revision" class="bg-gradient-to-br from-slate-900 via-slate-800 to-brand-950 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 mb-10">
-      <div class="flex items-center gap-2 text-medical-400 font-black text-sm sm:text-base uppercase tracking-wider mb-4">
-        <i data-lucide="zap" class="w-5 h-5 text-medical-400"></i>
+    <section id="quick-revision" class="bg-gradient-to-br from-slate-900 via-slate-800 to-brand-950 text-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 shadow-xl border border-slate-800 mb-6 sm:mb-10">
+      <div class="flex items-center gap-1.5 text-medical-400 font-black text-xs sm:text-base uppercase tracking-wider mb-3 sm:mb-4">
+        <i data-lucide="zap" class="w-4 h-4 sm:w-5 sm:h-5 text-medical-400 shrink-0"></i>
         PHARMACOKINETICS IN 60 SECONDS
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base text-slate-200">
-        <div class="p-4 bg-slate-800/90 rounded-xl border border-slate-700">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-base text-slate-200">
+        <div class="p-3.5 sm:p-4 bg-slate-800/90 rounded-xl border border-slate-700">
           <strong>Bioavailability (F):</strong> 100% for IV drugs; reduced for oral drugs by first-pass liver metabolism.
         </div>
-        <div class="p-4 bg-slate-800/90 rounded-xl border border-slate-700">
+        <div class="p-3.5 sm:p-4 bg-slate-800/90 rounded-xl border border-slate-700">
           <strong>Half-Life (t½):</strong> Takes 4 to 5 half-lives to reach Steady State (Css) or full elimination.
         </div>
-        <div class="p-4 bg-slate-800/90 rounded-xl border border-slate-700">
+        <div class="p-3.5 sm:p-4 bg-slate-800/90 rounded-xl border border-slate-700">
           <strong>Clearance (CL):</strong> Volume of blood plasma completely cleared of drug per unit of time.
         </div>
-        <div class="p-4 bg-slate-800/90 rounded-xl border border-slate-700">
+        <div class="p-3.5 sm:p-4 bg-slate-800/90 rounded-xl border border-slate-700">
           <strong>Volume of Distribution (Vd):</strong> High Vd = drug in tissues; Low Vd = drug in blood plasma.
         </div>
       </div>
     </section>
 
     <!-- 17. PRACTICE QUESTIONS & MCQS -->
-    <section id="mcqs" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-12 space-y-5">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
-          <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white text-xs font-black flex items-center justify-center">17</span>
+    <section id="mcqs" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-300 shadow-sm mb-6 sm:mb-12 space-y-4 sm:space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3 sm:pb-4">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 flex items-center gap-2 sm:gap-3">
+          <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-black flex items-center justify-center shrink-0">17</span>
           Practice Questions &amp; MCQs
         </h2>
-        <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-black uppercase tracking-wide border border-amber-200">
+        <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 text-[10px] sm:text-xs font-black uppercase tracking-wide border border-amber-200 shrink-0">
           Self-Test
         </span>
       </div>
 
-      <div class="space-y-6">
+      <div class="space-y-5 sm:space-y-6">
         <!-- QUESTION 1 -->
-        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
-          <p class="font-bold text-slate-900 text-base sm:text-lg">Q1: Which route of drug administration provides 100% immediate bioavailability?</p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm sm:text-base">
-            <button onclick="checkMcq(this, false)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium">A) Oral (PO)</button>
-            <button onclick="checkMcq(this, true)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium">B) Intravenous (IV)</button>
-            <button onclick="checkMcq(this, false)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium">C) Subcutaneous (SC)</button>
-            <button onclick="checkMcq(this, false)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium">D) Transdermal</button>
+        <div class="p-4 sm:p-5 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200 space-y-3">
+          <p class="font-bold text-slate-900 text-sm sm:text-lg">Q1: Which route of drug administration provides 100% immediate bioavailability?</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-base">
+            <button onclick="checkMcq(this, false)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95">A) Oral (PO)</button>
+            <button onclick="checkMcq(this, true)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95">B) Intravenous (IV)</button>
+            <button onclick="checkMcq(this, false)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95">C) Subcutaneous (SC)</button>
+            <button onclick="checkMcq(this, false)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95">D) Transdermal</button>
           </div>
-          <div class="mcq-feedback hidden p-3 bg-emerald-100 text-emerald-950 text-sm font-semibold rounded-xl border border-emerald-300 mt-2">
+          <div class="mcq-feedback hidden p-3 bg-emerald-100 text-emerald-950 text-xs sm:text-sm font-semibold rounded-xl border border-emerald-300 mt-2">
             ✓ <strong>Correct!</strong> Intravenous administration delivers the drug directly into systemic blood vessels, completely bypassing gut absorption barriers and first-pass hepatic metabolism.
           </div>
         </div>
 
         <!-- QUESTION 2 -->
-        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
-          <p class="font-bold text-slate-900 text-base sm:text-lg">Q2: How many half-lives (t½) are required for a drug to reach Steady State (Css) during repeated dosing?</p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm sm:text-base">
-            <button onclick="checkMcq(this, false)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium">A) 1 to 2 half-lives</button>
-            <button onclick="checkMcq(this, true)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium">B) 4 to 5 half-lives</button>
-            <button onclick="checkMcq(this, false)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium">C) 7 to 8 half-lives</button>
-            <button onclick="checkMcq(this, false)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium">D) 10 half-lives</button>
+        <div class="p-4 sm:p-5 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200 space-y-3">
+          <p class="font-bold text-slate-900 text-sm sm:text-lg">Q2: How many half-lives (t½) are required for a drug to reach Steady State (Css) during repeated dosing?</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-base">
+            <button onclick="checkMcq(this, false)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95">A) 1 to 2 half-lives</button>
+            <button onclick="checkMcq(this, true)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95">B) 4 to 5 half-lives</button>
+            <button onclick="checkMcq(this, false)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95">C) 7 to 8 half-lives</button>
+            <button onclick="checkMcq(this, false)" class="p-3 bg-white rounded-xl border border-slate-300 text-left hover:border-brand-400 transition font-medium active:scale-95">D) 10 half-lives</button>
           </div>
-          <div class="mcq-feedback hidden p-3 bg-emerald-100 text-emerald-950 text-sm font-semibold rounded-xl border border-emerald-300 mt-2">
+          <div class="mcq-feedback hidden p-3 bg-emerald-100 text-emerald-950 text-xs sm:text-sm font-semibold rounded-xl border border-emerald-300 mt-2">
             ✓ <strong>Correct!</strong> It takes 4 to 5 half-lives to reach steady state equilibrium or to be &gt;96% completely eliminated from the body.
           </div>
         </div>
@@ -870,21 +1001,21 @@
     </section>
 
     <!-- NAVIGATION BUTTONS -->
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-300">
-      <a href="chapter1.html" class="w-full sm:w-auto px-6 py-3.5 rounded-xl font-bold text-slate-800 bg-white border border-slate-300 hover:bg-slate-100 flex items-center justify-center gap-2 transition active:scale-95 text-sm sm:text-base shadow-sm">
-        <i data-lucide="arrow-left" class="w-5 h-5"></i> Chapter 1 Hub
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 sm:pt-6 border-t border-slate-300">
+      <a href="chapter1.html" class="w-full sm:w-auto px-5 py-3.5 rounded-xl font-bold text-slate-800 bg-white border border-slate-300 hover:bg-slate-100 flex items-center justify-center gap-2 transition active:scale-95 text-xs sm:text-base shadow-sm">
+        <i data-lucide="arrow-left" class="w-4 h-4 sm:w-5 sm:h-5"></i> Chapter 1 Hub
       </a>
-      <a href="pharmacodynamics.html" class="w-full sm:w-auto px-6 py-3.5 rounded-xl font-extrabold text-white bg-brand-600 hover:bg-brand-500 flex items-center justify-center gap-2 transition active:scale-95 text-sm sm:text-base shadow-lg shadow-brand-600/20">
-        Next: Pharmacodynamics <i data-lucide="arrow-right" class="w-5 h-5"></i>
+      <a href="pharmacodynamics.html" class="w-full sm:w-auto px-5 py-3.5 rounded-xl font-extrabold text-white bg-brand-600 hover:bg-brand-500 flex items-center justify-center gap-2 transition active:scale-95 text-xs sm:text-base shadow-lg shadow-brand-600/20">
+        Next: Pharmacodynamics <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5"></i>
       </a>
     </div>
 
   </main>
 
   <!-- FOOTER -->
-  <footer class="mt-16 bg-white border-t border-slate-300 py-8 text-center text-xs sm:text-sm text-slate-600">
-    <div class="max-w-5xl mx-auto px-4 space-y-2">
-      <p class="font-extrabold text-slate-900 text-base">✨ Curated with excellence by Mudassir Khan</p>
+  <footer class="mt-12 sm:mt-16 bg-white border-t border-slate-300 py-6 sm:py-8 text-center text-xs sm:text-sm text-slate-600">
+    <div class="max-w-5xl mx-auto px-4 space-y-1">
+      <p class="font-extrabold text-slate-900 text-sm sm:text-base">✨ Curated with excellence by Mudassir Khan</p>
       <p>© 2026 MK Study Hub. BSN Pharmacology-I Learning Portal.</p>
     </div>
   </footer>
@@ -893,6 +1024,13 @@
   <script>
     // Initialize Lucide Icons
     lucide.createIcons();
+
+    // ENABLE MOUSE WHEEL SCROLLING & DRAG FOR PC NAV CHIPS
+    const navContainer = document.getElementById('navChipContainer');
+    navContainer.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      navContainer.scrollLeft += e.deltaY;
+    }, { passive: false });
 
     // ADME Pill Animation Toggle
     function togglePillAnimation() {
@@ -957,8 +1095,8 @@
       const desc = document.getElementById('graphDescription');
 
       if (type === 'first') {
-        btnFirst.className = "px-3.5 py-2 rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-bold transition";
-        btnZero.className = "px-3.5 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs sm:text-sm font-bold transition";
+        btnFirst.className = "px-3 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold transition active:scale-95";
+        btnZero.className = "px-3 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs font-bold transition active:scale-95";
         desc.innerHTML = "First-Order kinetics yields a smooth exponential curve decay because the elimination rate slows down proportionally as plasma concentration drops, keeping the half-life constant.";
 
         // Draw Exponential Curve
@@ -970,8 +1108,8 @@
         ctx.stroke();
 
       } else {
-        btnZero.className = "px-3.5 py-2 rounded-xl bg-rose-600 text-white text-xs sm:text-sm font-bold transition";
-        btnFirst.className = "px-3.5 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs sm:text-sm font-bold transition";
+        btnZero.className = "px-3 py-2 rounded-xl bg-rose-600 text-white text-xs font-bold transition active:scale-95";
+        btnFirst.className = "px-3 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs font-bold transition active:scale-95";
         desc.innerHTML = "Zero-Order kinetics yields a straight line because a constant mg amount of drug is cleared per hour due to enzyme saturation.";
 
         // Draw Straight Line
