@@ -1,166 +1,600 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anticancer Antibiotics | Oncology Pharmacology</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Anticancer Antibiotics | Oncology Pharmacology | MK Study Hub</title>
+  <meta name="description" content="Ultimate student-friendly BSN Pharmacology module on Anticancer Antibiotics. Simple, interactive, and mobile optimized.">
+
+  <!-- TAILWIND CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              500: '#f43f5e',
+              600: '#e11d48',
+              700: '#be123c',
+              800: '#9f1239',
+              900: '#881337',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- LUCIDE ICONS CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <style>
-    :root {
-      --bg-gradient: radial-gradient(circle at 10% 20%, rgba(225, 29, 72, 0.08) 0%, rgba(244, 63, 94, 0.05) 40%, #f8fafc 90%);
-      --primary: #e11d48;
-      --primary-dark: #be123c;
-      --accent: #f43f5e;
-      --card-bg: rgba(255, 255, 255, 0.9);
-      --card-border: rgba(251, 113, 133, 0.8);
-      --text-main: #881337;
-      --text-muted: #475569;
-      --shadow-glow: 0 20px 40px -15px rgba(225, 29, 72, 0.25);
-      --radius: 20px;
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.8; padding: 40px 16px; min-height: 100vh; }
-    
-    .container { max-width: 950px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(16px); padding: 50px 40px; border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: var(--shadow-glow); }
-    
-    .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; margin-bottom: 30px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 12px rgba(225, 29, 72, 0.2); }
-    .back-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-    .badge { display: inline-block; padding: 6px 14px; background: #fff1f2; color: var(--primary); font-weight: 800; font-size: 0.8rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; border: 1px solid #fecdd3; }
+    .custom-scroll {
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+    .custom-scroll::-webkit-scrollbar { height: 4px; }
+    .custom-scroll::-webkit-scrollbar-track { background: #881337; border-radius: 8px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #e11d48; border-radius: 8px; }
 
-    h1 { font-size: 2.5rem; font-weight: 900; background: linear-gradient(135deg, #881337 0%, var(--primary) 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
-    
-    h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #fecdd3; padding-bottom: 10px; }
-    h2::before { content: ''; display: inline-block; width: 6px; height: 24px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; }
-
-    p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 20px; }
-
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 25px 0; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin: 25px 0; }
-    
-    .card-box { background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); transition: 0.3s; }
-    .card-box:hover { transform: translateY(-5px); border-color: var(--primary); }
-    .card-box h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
-
-    .mnemonic-box { background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); border-left: 6px solid var(--primary); padding: 22px; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 15px rgba(225, 29, 72, 0.08); }
-    .mnemonic-box h4 { color: var(--primary); font-size: 1.1rem; margin-bottom: 8px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
-    .mnemonic-box p { color: #881337; margin-bottom: 0; font-weight: 500; }
-
-    ul { list-style-type: none; padding-left: 0; margin-bottom: 20px; }
-    ul li { position: relative; padding-left: 28px; margin-bottom: 12px; color: var(--text-muted); font-size: 1.05rem; }
-    ul li::before { content: '▪'; position: absolute; left: 8px; color: var(--primary); font-weight: bold; font-size: 1.2rem; }
+    mark {
+      background-color: #fef08a;
+      color: #713f12;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
   </style>
 </head>
-<body>
+<body class="antialiased text-slate-900 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 pt-4 sm:pt-6">
 
-<div class="container">
-  <a href="chapter5.html" class="back-btn">&larr; Back to Chapter 5 Hub</a>
-  
-  <div class="badge">Pharmacology Class Deep-Dive</div>
-  <h1>Anticancer Antibiotics</h1>
-  <p>Cytotoxic agents originally derived from soil microorganisms (<i>Streptomyces</i> species) that exert potent anti-tumor effects through DNA intercalation, topoisomerase inhibition, and reactive oxygen species generation.</p>
+  <!-- TOP STICKY BAR -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-300 shadow-sm max-w-4xl mx-auto rounded-2xl mb-6">
+    <div class="px-4 h-16 flex items-center justify-between gap-2">
+      <a href="chapter5.html" class="inline-flex items-center gap-1.5 text-xs sm:text-base font-extrabold text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-2 rounded-xl border border-brand-200 transition active:scale-95">
+        <i data-lucide="arrow-left" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+        <span>Chapter 5 Hub</span>
+      </a>
 
-  <!-- INTRODUCTION -->
-  <h2>1. Introduction</h2>
-  <p>Unlike antibacterial antibiotics used to treat infections, anticancer antibiotics are highly potent cytotoxic agents designed to halt malignant cell replication. They are largely <strong>cell-cycle phase non-specific</strong>, meaning they can damage cancer cells across multiple phases of the cell cycle, though their primary DNA damage occurs actively during replication.</p>
+      <div class="flex items-center gap-2">
+        <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-800 text-[10px] sm:text-sm font-black uppercase tracking-wider border border-slate-300">
+          3rd Sem BSN
+        </span>
+        <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center font-black text-xs sm:text-sm shadow-md shadow-brand-600/20">
+          MK
+        </div>
+      </div>
+    </div>
+  </header>
 
-  <!-- CLASSIFICATION -->
-  <h2>2. Classification & Prototype Drugs</h2>
-  <p>Anticancer antibiotics are categorized based on their structural subclasses and primary pharmacological actions:</p>
-  
-  <ul>
-    <li><strong>Anthracyclines:</strong> Doxorubicin, Daunorubicin, Epirubicin, Idarubicin. <em>(DNA intercalation, topoisomerase II inhibition, and free radical generation; broad spectrum in solid tumors and leukemias.)</em></li>
-    <li><strong>Chromomycin / Actinomycins:</strong> Actinomycin D (Dactinomycin). <em>(Binds tightly to DNA double helix and blocks RNA transcription; used in pediatric solid tumors like Wilms tumor.)</em></li>
-    <li><strong>Glycopeptides / Radiomimetic Peptides:</strong> Bleomycin. <em>(Causes oxidative cleavage and strand breaks in DNA by generating free radicals; notable for prominent pulmonary toxicity without severe myelosuppression.)</em></li>
-    <li><strong>Mitotic / Alkylating Antibiotics:</strong> Mitomycin C. <em>(Acts as a bifunctional DNA cross-linking agent; highly effective against hypoxic tumor cells.)</em></li>
-  </ul>
+  <main class="max-w-4xl mx-auto space-y-6 sm:space-y-10">
 
-  <!-- MECHANISM OF ACTION -->
-  <h2>3. Mechanism of Action (Detailed & Simple Explanations)</h2>
-  <p>Anticancer antibiotics disrupt cancer cell DNA integrity through distinct chemical pathways:</p>
+    <!-- 1. CHAPTER INTRODUCTION -->
+    <section class="bg-gradient-to-br from-slate-900 via-brand-900 to-brand-800 text-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 shadow-xl border border-brand-700/50 relative overflow-hidden space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/15 text-white text-[10px] sm:text-xs font-extrabold uppercase tracking-wide border border-white/20">
+          <i data-lucide="book-open" class="w-3.5 h-3.5 text-brand-300"></i> Oncology Pharmacology
+        </span>
+        <span class="text-[10px] sm:text-sm text-brand-200 font-bold">Chapter Deep-Dive</span>
+      </div>
 
-  <div class="grid-3">
-    <div class="card-box">
-      <h3>🧬 Anthracyclines (Doxorubicin)</h3>
-      <p><strong>The DNA Wedge & Enzyme Trap:</strong> Anthracyclines slip (intercalate) directly between DNA base pairs, unwinding the double helix and trapping the enzyme <strong>Topoisomerase II</strong>. This causes lethal DNA double-strand breaks.</p>
-      <p style="margin-top: 10px;">Simultaneously, they generate destructive iron-mediated free radicals (reactive oxygen species) that stress cell structures.</p>
+      <h1 class="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight break-words">
+        Anticancer Antibiotics
+      </h1>
+
+      <p class="text-slate-200 text-xs sm:text-lg font-medium max-w-2xl leading-relaxed">
+        Cytotoxic agents derived from soil microorganisms that exert potent anti-tumor effects through DNA intercalation, topoisomerase inhibition, and free radical generation.
+      </p>
+
+      <!-- What You Will Learn Card -->
+      <div class="pt-3 border-t border-white/20">
+        <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-brand-300 block mb-2">🎯 What you will learn in this module:</span>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-medium text-slate-100">
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Classification</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Mechanism of Action</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Uses &amp; Mnemonics</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Adverse Effects (ADRs)</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Cardioprotection</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Specific Drug Profiles</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. CLASSIFICATION -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">2</span>
+          Classification &amp; Prototype Drugs
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Interactive</span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        Click any structural subclass below to review its prototype drugs and clinical properties:
+      </p>
+
+      <div class="space-y-3">
+        <!-- Subclass 1 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="layers" class="w-4 h-4 text-brand-600"></i> Anthracyclines</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drugs (Bullet Form):</strong></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Doxorubicin</li>
+              <li>Daunorubicin</li>
+              <li>Epirubicin</li>
+              <li>Idarubicin</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> DNA intercalation, topoisomerase II inhibition, and free radical generation; broad spectrum in solid tumors and leukemias.</p>
+          </div>
+        </div>
+
+        <!-- Subclass 2 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="dna" class="w-4 h-4 text-brand-600"></i> Chromomycin / Actinomycins</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drugs (Bullet Form):</strong></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Actinomycin D (Dactinomycin)</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Binds tightly to DNA double helix and blocks RNA transcription; used in pediatric solid tumors like Wilms tumor.</p>
+          </div>
+        </div>
+
+        <!-- Subclass 3 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-brand-600"></i> Glycopeptides / Radiomimetic Peptides</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drugs (Bullet Form):</strong></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Bleomycin</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Causes oxidative cleavage and strand breaks in DNA by generating free radicals; notable for prominent pulmonary toxicity without severe myelosuppression.</p>
+          </div>
+        </div>
+
+        <!-- Subclass 4 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="activity" class="w-4 h-4 text-brand-600"></i> Mitotic / Alkylating Antibiotics</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drugs (Bullet Form):</strong></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Mitomycin C</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Acts as a bifunctional DNA cross-linking agent; highly effective against hypoxic tumor cells.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. MECHANISM OF ACTION (INTERACTIVE TABS) -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">3</span>
+          Mechanism of Action (MOA)
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Interactive Pathways</span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        Anticancer antibiotics are largely <mark>cell-cycle phase non-specific</mark> agents that disrupt DNA integrity through distinct chemical pathways. Select a class below to view its specific mechanism:
+      </p>
+
+      <!-- MOA Interactive Tabs Control -->
+      <div class="flex items-center gap-2 overflow-x-auto custom-scroll pb-2">
+        <button onclick="switchMoaTab('anthracyclines')" id="btnAnthracyclines" class="px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm">
+          1. Anthracyclines (Doxorubicin)
+        </button>
+        <button onclick="switchMoaTab('bleomycin')" id="btnBleomycin" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold whitespace-nowrap transition">
+          2. Bleomycin
+        </button>
+        <button onclick="switchMoaTab('actinomycin')" id="btnActinomycin" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold whitespace-nowrap transition">
+          3. Actinomycin D
+        </button>
+      </div>
+
+      <!-- Tab Content Display Box -->
+      <div id="moaContentBox" class="p-5 bg-slate-900 text-white rounded-2xl border border-slate-800 space-y-4 shadow-xl">
+        <!-- Default: Anthracyclines -->
+        <div id="tabAnthracyclines" class="moa-tab-pane space-y-3">
+          <span class="text-xs font-black text-brand-400 uppercase tracking-wider block">Pathway: Anthracyclines (DNA Wedge &amp; Enzyme Trap)</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-brand-300 block mb-1">Step 1: Intercalation</strong>
+              <span class="text-slate-300">Slips directly between DNA base pairs, unwinding the double helix structure.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-amber-300 block mb-1">Step 2: Topoisomerase II Trap</strong>
+              <span class="text-slate-300">Traps Topoisomerase II enzyme, causing lethal DNA double-strand breaks.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-rose-300 block mb-1">Step 3: Free Radicals</strong>
+              <span class="text-slate-300">Generates destructive iron-mediated reactive oxygen species that stress cell structures.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bleomycin Tab -->
+        <div id="tabBleomycin" class="moa-tab-pane hidden space-y-3">
+          <span class="text-xs font-black text-brand-400 uppercase tracking-wider block">Pathway: Bleomycin (Oxidative Slicer)</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-brand-300 block mb-1">Step 1: Complex Formation</strong>
+              <span class="text-slate-300">Binds directly to DNA and intracellular iron molecules.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-amber-300 block mb-1">Step 2: Strand Slicing</strong>
+              <span class="text-slate-300">Generates superoxide and hydroxide free radicals that slice open DNA strands.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-rose-300 block mb-1">Step 3: G2 Phase Arrest</strong>
+              <span class="text-slate-300">Cell stalls and is trapped in the G2 phase, unable to complete mitosis.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Actinomycin D Tab -->
+        <div id="tabActinomycin" class="moa-tab-pane hidden space-y-3">
+          <span class="text-xs font-black text-brand-400 uppercase tracking-wider block">Pathway: Actinomycin D (Transcription Block)</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-brand-300 block mb-1">Step 1: GC Binding</strong>
+              <span class="text-slate-300">Intercalates tightly between adjacent guanine-cytosine base pairs.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-amber-300 block mb-1">Step 2: Polymerase Barrier</strong>
+              <span class="text-slate-300">Acts as a physical barrier blocking RNA polymerase movement.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-rose-300 block mb-1">Step 3: Protein Halt</strong>
+              <span class="text-slate-300">Completely halts messenger RNA synthesis and vital protein production.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. USES -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">4</span>
+          Clinical Uses
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Indications</span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        Anticancer antibiotics are foundational elements in curative combination regimens for various cancers:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm font-medium">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">01</span>
+          <span class="text-slate-800">Solid Tumors: Breast cancer, sarcomas, and lung cancer (Doxorubicin)</span>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">02</span>
+          <span class="text-slate-800">Hematological Malignancies: Acute leukemias, Hodgkin and Non-Hodgkin lymphomas</span>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">03</span>
+          <span class="text-slate-800">Testicular Cancer &amp; Squamous Cell Carcinomas (Bleomycin)</span>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">04</span>
+          <span class="text-slate-800">Pediatric Malignancies: Wilms tumor, Rhabdomyosarcoma, and Ewing sarcoma (Actinomycin D)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. USES MEMORY TRICK -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">5</span>
+          Uses Memory Trick
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Mnemonic</span>
+      </div>
+
+      <div class="p-5 bg-gradient-to-br from-brand-50 to-rose-50 border border-brand-200 rounded-2xl space-y-3 shadow-sm">
+        <div class="text-base font-black text-brand-900 flex items-center gap-2">
+          <i data-lucide="lightbulb" class="w-5 h-5 text-brand-600"></i> Mnemonic: "B-S-L-W"
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700 pt-1">
+          <div>• <strong>B</strong>reast &amp; Bowel Cancers</div>
+          <div>• <strong>S</strong>arcomas &amp; Testicular Cancers</div>
+          <div>• <strong>L</strong>ymphomas (Hodgkin's)</div>
+          <div>• <strong>W</strong>ilms Tumor &amp; Pediatric Cancers</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. ADVERSE DRUG REACTIONS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">6</span>
+          Adverse Drug Reactions (ADRs)
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 text-[10px] font-black uppercase tracking-wide border border-rose-200">Side Effects</span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        These agents produce significant organ-specific toxicities that require careful clinical monitoring:
+      </p>
+
+      <div class="space-y-3 text-xs sm:text-sm">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-rose-700 block font-bold">1. Cardiotoxicity — <span class="text-slate-600 font-normal">Important / Serious</span></strong>
+          <p class="text-slate-700">Acute ECG changes and cumulative, irreversible congestive heart failure (Anthracyclines).</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-rose-700 block font-bold">2. Pulmonary Toxicity — <span class="text-slate-600 font-normal">Important / Serious</span></strong>
+          <p class="text-slate-700">Progressive interstitial pneumonitis and pulmonary fibrosis (Bleomycin).</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">3. Bone Marrow Suppression — <span class="text-slate-600 font-normal">Common</span></strong>
+          <p class="text-slate-700">Severe myelosuppression, neutropenia, and thrombocytopenia (except Bleomycin, which spares bone marrow).</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">4. Dermatological &amp; Local Toxicity — <span class="text-slate-600 font-normal">Common</span></strong>
+          <p class="text-slate-700">Severe vesicant tissue necrosis upon extravasation, complete alopecia, and radiation recall reactions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. ADR MEMORY TRICK -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">7</span>
+          ADR Memory Trick
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Mnemonic</span>
+      </div>
+
+      <div class="p-5 bg-gradient-to-br from-rose-50 to-amber-50 border border-rose-200 rounded-2xl space-y-3 shadow-sm">
+        <div class="text-base font-black text-rose-900 flex items-center gap-2">
+          <i data-lucide="lightbulb" class="w-5 h-5 text-rose-600"></i> ADR Mnemonic: "C-P-B-V"
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700 pt-1">
+          <div>• <strong>C</strong>ardiotoxicity (Heart failure)</div>
+          <div>• <strong>P</strong>ulmonary Fibrosis</div>
+          <div>• <strong>B</strong>one marrow depression</div>
+          <div>• <strong>V</strong>esicant tissue necrosis</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. COMPLICATIONS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">8</span>
+          Important Complications &amp; Rescues
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 text-[10px] font-black uppercase tracking-wide border border-rose-200">Serious Alerts</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 shadow-sm">
+          <strong class="text-rose-700 block text-base">🛡️ Dexrazoxane Cardioprotection</strong>
+          <p class="text-slate-700">To prevent cumulative, irreversible Doxorubicin-induced cardiomyopathy in patients requiring high lifetime doses, the iron-chelating agent <strong>Dexrazoxane</strong> is administered as a cardioprotectant.</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 shadow-sm">
+          <strong class="text-amber-700 block text-base">⚠️ Severe Extravasation Risk</strong>
+          <p class="text-slate-700">Anthracyclines and Mitomycin C are potent vesicants. Infiltration into subcutaneous tissue causes severe local tissue destruction, necrosis, and ulceration requiring immediate management.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. SPECIFIC DRUGS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">9</span>
+          Specific Drug Profiles
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Prototypes</span>
+      </div>
+
+      <!-- Drug Card 1 -->
+      <div class="p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+          <h3 class="text-lg font-black text-brand-900">Doxorubicin</h3>
+          <span class="px-2.5 py-1 rounded-md bg-brand-100 text-brand-800 text-xs font-bold">Anthracycline Subclass</span>
+        </div>
+
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+          <div><strong>Key Info:</strong> Highly potent broad-spectrum antineoplastic antibiotic with a cumulative lifetime dose limit.</div>
+          <div><strong>MOA:</strong> DNA intercalation, topoisomerase II inhibition, and reactive oxygen species generation.</div>
+          <div><strong>Uses:</strong> Breast cancer, sarcomas, lymphomas, and acute leukemias.</div>
+          <div><strong>ADRs &amp; Complications:</strong> Irreversible congestive heart failure, severe myelosuppression, complete alopecia, red-orange urine discoloration, and vesicant necrosis.</div>
+        </div>
+      </div>
+
+      <!-- Drug Card 2 -->
+      <div class="p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+          <h3 class="text-lg font-black text-brand-900">Bleomycin</h3>
+          <span class="px-2.5 py-1 rounded-md bg-brand-100 text-brand-800 text-xs font-bold">Glycopeptide Subclass</span>
+        </div>
+
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+          <div><strong>Key Info:</strong> Radiomimetic peptide that uniquely spares the bone marrow.</div>
+          <div><strong>MOA:</strong> Generates oxygen free radicals that slice open DNA strands, arresting cells in the G2 phase.</div>
+          <div><strong>Uses:</strong> Testicular cancer, squamous cell carcinomas, and Hodgkin lymphoma.</div>
+          <div><strong>ADRs &amp; Complications:</strong> Progressive pulmonary fibrosis, interstitial pneumonitis, mucocutaneous reactions, and minimal myelosuppression.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. SPECIFIC DRUG ADRs -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">10</span>
+          Specific Drug ADRs Summary
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Targeted ADRs</span>
+      </div>
+
+      <div class="overflow-x-auto custom-scroll border border-slate-200 rounded-xl shadow-sm">
+        <table class="w-full text-left text-xs sm:text-sm bg-white border-collapse">
+          <thead>
+            <tr class="bg-brand-50 text-brand-900 border-b border-slate-200 font-bold">
+              <th class="p-3">Drug Name</th>
+              <th class="p-3">Important Specific ADRs</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-700">
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Doxorubicin / Anthracyclines</td>
+              <td class="p-3">Cumulative irreversible cardiomyopathy (CHF), severe vesicant necrosis, red-orange urine.</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Bleomycin</td>
+              <td class="p-3">Pulmonary fibrosis, interstitial pneumonitis, skin hyperpigmentation (spares bone marrow).</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Actinomycin D</td>
+              <td class="p-3">Severe local vesicant reactions, radiation recall phenomenon, myelosuppression.</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Mitomycin C</td>
+              <td class="p-3">Delayed cumulative bone marrow suppression, hemolytic uremic syndrome (HUS).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 11. QUICK REVISION -->
+    <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-brand-950 text-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 space-y-4">
+      <div class="flex items-center gap-2 text-brand-400 font-black text-xs sm:text-sm uppercase tracking-wider">
+        <i data-lucide="zap" class="w-4 h-4 text-brand-400"></i>
+        30-SECOND EXAM REVISION
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-slate-200">
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>Class Nature:</strong> Cell-cycle phase non-specific cytotoxic antibiotics from soil microbes.
+        </div>
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>MOA:</strong> DNA intercalation, topoisomerase II trapping, or free radical strand breakage.
+        </div>
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>Key Uses:</strong> Breast cancer, lymphomas, sarcomas, testicular and Wilms tumors.
+        </div>
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>Major ADRs / Mnemonic:</strong> "C-P-B-V" (Cardiotoxicity, Pulmonary fibrosis, Bone marrow depression, Vesicant necrosis).
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVIGATION FOOTER -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-slate-300">
+      <a href="chapter5.html" class="w-full sm:w-auto px-5 py-3 rounded-xl font-bold text-slate-800 bg-white border border-slate-300 hover:bg-slate-100 flex items-center justify-center gap-2 transition active:scale-95 text-xs sm:text-sm shadow-sm">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Chapter 5 Hub
+      </a>
+      <a href="topoisomerase-inhibitors.html" class="w-full sm:w-auto px-5 py-3 rounded-xl font-extrabold text-white bg-brand-600 hover:bg-brand-500 flex items-center justify-center gap-2 transition active:scale-95 text-xs sm:text-sm shadow-lg shadow-brand-600/20">
+        Next: Topoisomerase Inhibitors <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
     </div>
 
-    <div class="card-box">
-      <h3>✂️ Bleomycin (Radiomimetic Peptide)</h3>
-      <p><strong>The Oxidative Slicer:</strong> Bleomycin binds to DNA and iron molecules. This complex generates superoxide and hydroxide free radicals that slice open DNA strands.</p>
-      <p style="margin-top: 10px;">The cell stalls and is trapped in the G2 phase of the cell cycle, unable to complete mitosis.</p>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-12 bg-white border-t border-slate-300 py-6 text-center text-xs text-slate-600 max-w-4xl mx-auto rounded-2xl">
+    <div class="px-4 space-y-1">
+      <p class="font-extrabold text-slate-900 text-sm">✨ Curated with excellence by Mudassir Khan</p>
+      <p>© 2026 MK Study Hub. BSN Oncology Pharmacology Learning Portal.</p>
     </div>
+  </footer>
 
-    <div class="card-box">
-      <h3>🎼 Actinomycin D (Transcription Block)</h3>
-      <p><strong>The RNA Polymerase Blockade:</strong> Actinomycin D intercalates between adjacent guanine-cytosine base pairs.</p>
-      <p style="margin-top: 10px;">This physical barrier blocks RNA polymerase from moving along the DNA strand, completely halting messenger RNA synthesis and protein production.</p>
-    </div>
-  </div>
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
 
-  <!-- USES & MNEMONIC -->
-  <h2>4. Clinical Uses & Therapeutic Indications</h2>
-  <p>Anticancer antibiotics are foundational elements in curative combination regimens for various cancers.</p>
-  <ul>
-    <li>Solid Tumors: Breast cancer, sarcomas, and lung cancer (via Doxorubicin)</li>
-    <li>Hematological Malignancies: Acute leukemias, Hodgkin and Non-Hodgkin lymphomas</li>
-    <li>Testicular Cancer & Squamous Cell Carcinomas (via Bleomycin)</li>
-    <li>Pediatric Malignancies: Wilms tumor, Rhabdomyosarcoma, and Ewing sarcoma (via Actinomycin D)</li>
-  </ul>
+    // Toggle Classification Cards
+    function toggleCard(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('[data-lucide="chevron-down"]');
+      
+      content.classList.toggle('hidden');
+      if (icon) {
+        icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+      }
+    }
 
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for Clinical Uses: "B-S-L-W"</h4>
-    <p><strong>B</strong>reast & Bowel Cancers | <strong>S</strong>arcomas & Testicular Cancers | <strong>L</strong>ymphomas (Hodgkin's) | <strong>W</strong>ilms Tumor & Pediatric Cancers</p>
-  </div>
+    // Interactive MOA Tab Switcher
+    function switchMoaTab(tabName) {
+      const btnAnthracyclines = document.getElementById('btnAnthracyclines');
+      const btnBleomycin = document.getElementById('btnBleomycin');
+      const btnActinomycin = document.getElementById('btnActinomycin');
 
-  <!-- ADRS & MNEMONIC -->
-  <h2>5. Adverse Drug Reactions (ADRs)</h2>
-  <p>These agents produce significant organ-specific toxicities that require careful clinical monitoring.</p>
-  <ul>
-    <li><strong>Cardiotoxicity:</strong> Acute ECG changes and cumulative, irreversible congestive heart failure (Anthracyclines).</li>
-    <li><strong>Pulmonary Toxicity:</strong> Progressive interstitial pneumonitis and pulmonary fibrosis (Bleomycin).</li>
-    <li><strong>Bone Marrow Suppression:</strong> Severe myelosuppression, neutropenia, and thrombocytopenia (except Bleomycin, which spares bone marrow).</li>
-    <li><strong>Dermatological & Local Toxicity:</strong> Severe vesicant tissue necrosis upon extravasation, complete alopecia, and radiation recall reactions.</li>
-  </ul>
+      const tabAnthracyclines = document.getElementById('tabAnthracyclines');
+      const tabBleomycin = document.getElementById('tabBleomycin');
+      const tabActinomycin = document.getElementById('tabActinomycin');
 
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for ADRs: "C-P-B-V"</h4>
-    <p><strong>C</strong>ardiotoxicity (Heart failure) | <strong>P</strong>ulmonary Fibrosis | <strong>B</strong>one marrow depression | <strong>V</strong>esicant tissue necrosis</p>
-  </div>
+      // Reset all buttons
+      [btnAnthracyclines, btnBleomycin, btnActinomycin].forEach(b => {
+        b.className = "px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold whitespace-nowrap transition";
+      });
 
-  <!-- PHARMACOKINETICS -->
-  <h2>6. Pharmacokinetics</h2>
-  <ul>
-    <li><strong>Administration:</strong> Administered exclusively via intravenous (IV) injection or infusion. Because they are potent vesicants, secure vascular access (central lines preferred) is critical.</li>
-    <li><strong>Distribution:</strong> Rapidly and extensively distributed into body tissues, though they do not cross the blood-brain barrier effectively.</li>
-    <li><strong>Excretion:</strong> Primarily metabolized by the liver and excreted through biliary and fecal pathways, requiring careful dosage reductions in patients with hepatic impairment.</li>
-  </ul>
+      // Hide all panes
+      [tabAnthracyclines, tabBleomycin, tabActinomycin].forEach(p => {
+        p.classList.add('hidden');
+      });
 
-  <!-- COMPLICATIONS -->
-  <h2>7. Agent-Specific Complications & Rescues</h2>
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>🛡️ Dexrazoxane Cardioprotection</h3>
-      <p>To prevent cumulative, irreversible Doxorubicin-induced cardiomyopathy in patients requiring high lifetime doses, the iron-chelating agent <strong>Dexrazoxane</strong> is administered as a cardioprotectant.</p>
-    </div>
-    <div class="card-box">
-      <h3>⚠️ Severe Extravasation Risk</h3>
-      <p>Anthracyclines and Mitomycin C are potent vesicants. Infiltration into surrounding subcutaneous tissue causes severe local tissue destruction, necrosis, and ulceration requiring immediate management protocols.</p>
-    </div>
-  </div>
-
-  <!-- KEY NURSING TAKEAWAYS -->
-  <h2>8. Key Nursing Takeaways & Patient Safety</h2>
-  <ul>
-    <li><strong>Track Lifetime Cumulative Doses:</strong> Monitor cumulative dosage limits for Doxorubicin strictly (typically restricted to 450–550 mg/m²) to prevent permanent heart failure.</li>
-    <li><strong>Cardiac Baseline Testing:</strong> Ensure baseline and serial echocardiograms or MUGA scans are performed to evaluate left ventricular ejection fraction (LVEF) before therapy.</li>
-    <li><strong>Pulmonary Surveillance:</strong> Monitor baseline pulmonary function tests (PFTs) and screen patients for dry cough, shortness of breath, or crackles when administering Bleomycin.</li>
-    <li><strong>Strict Extravasation Protocol:</strong> Inspect IV infusion sites continuously. Stop the infusion immediately and notify the oncology team if burning, pain, or swelling occurs.</li>
-    <li><strong>Urine Discoloration Education:</strong> Inform patients receiving Doxorubicin that their urine will turn a harmless red-orange color for 1–2 days post-administration.</li>
-  </ul>
-
-</div>
-
+      // Activate selected
+      if (tabName === 'anthracyclines') {
+        btnAnthracyclines.className = "px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm";
+        tabAnthracyclines.classList.remove('hidden');
+      } else if (tabName === 'bleomycin') {
+        btnBleomycin.className = "px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm";
+        tabBleomycin.classList.remove('hidden');
+      } else if (tabName === 'actinomycin') {
+        btnActinomycin.className = "px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm";
+        tabActinomycin.classList.remove('hidden');
+      }
+    }
+  </script>
 </body>
 </html>
