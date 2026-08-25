@@ -1,4 +1,4 @@
-html_content = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
@@ -67,9 +67,36 @@ html_content = """<!DOCTYPE html>
       font-weight: 700;
     }
 
-    /* Step Animation Transition Smoothness */
-    .step-element {
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    /* AUTOMATIC 4-PHASE DRUG BINDING KEYFRAME ANIMATION */
+    @keyframes autoDrugDocking {
+      0%, 15% { top: 16px; transform: translateX(-50%) scale(1); opacity: 1; }
+      25%, 40% { top: 104px; transform: translateX(-50%) scale(1); opacity: 1; }
+      50%, 65% { top: 104px; transform: translateX(-50%) scale(1.1); opacity: 1; }
+      75%, 90% { top: 104px; transform: translateX(-50%) scale(1.15); opacity: 1; }
+      100% { top: 16px; transform: translateX(-50%) scale(1); opacity: 0; }
+    }
+
+    .auto-drug-motion {
+      animation: autoDrugDocking 8s infinite ease-in-out;
+    }
+
+    @keyframes autoSignalWave {
+      0%, 65% { width: 16px; height: 16px; opacity: 0; }
+      75% { width: 45%; height: 28px; opacity: 0.6; background: #10b981; }
+      90%, 95% { width: 92%; height: 42px; opacity: 0.95; background: #38bdf8; }
+      100% { opacity: 0; width: 16px; height: 16px; }
+    }
+
+    .auto-signal-motion {
+      animation: autoSignalWave 8s infinite ease-in-out;
+    }
+
+    .anim-paused {
+      animation-play-state: paused !important;
+    }
+
+    .step-transition {
+      transition: all 0.4s ease-in-out;
     }
   </style>
 </head>
@@ -130,7 +157,7 @@ html_content = """<!DOCTYPE html>
       </div>
       <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 px-1">
         <a href="#docking-engine" class="px-3.5 py-2 rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-bold whitespace-nowrap hover:bg-brand-500 transition shrink-0 flex items-center gap-1.5">
-          <i data-lucide="play" class="w-4 h-4"></i> Step-By-Step Docking
+          <i data-lucide="play" class="w-4 h-4"></i> Auto Binding Flow
         </a>
         <a href="#signal-transduction" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">1. Transduction Dynamics</a>
         <a href="#receptor-families" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">2. 4 Receptor Types</a>
@@ -174,33 +201,33 @@ html_content = """<!DOCTYPE html>
       </div>
     </section>
 
-    <!-- STEP-BY-STEP CONTROLLED ANIMATION ENGINE -->
+    <!-- AUTOMATIC BINDING ANIMATION STAGE -->
     <section id="docking-engine" class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 mb-10 space-y-5">
       <div class="text-center max-w-xl mx-auto">
         <span class="inline-block px-3 py-1 bg-brand-900 text-brand-300 rounded-full text-xs font-black uppercase tracking-wider mb-1 border border-brand-700">
-          Interactive Visual Stage
+          Automatic Visual Sequence
         </span>
-        <h3 class="text-xl sm:text-2xl font-black text-white">Controlled Drug-Receptor Binding Sequence</h3>
-        <p class="text-xs sm:text-sm text-slate-400 mt-1">Click each step button below to observe every phase of drug action step-by-step!</p>
+        <h3 class="text-xl sm:text-2xl font-black text-white">4-Phase Dynamic Binding &amp; Signal Cascade</h3>
+        <p class="text-xs sm:text-sm text-slate-400 mt-1">Watch the continuous automated cycle: Recognition &rarr; Docking &rarr; Shape Activation &rarr; Signal Wave.</p>
       </div>
 
-      <!-- VISUAL CANVAS STAGE -->
+      <!-- VISUAL ANIMATION CANVAS -->
       <div class="relative h-64 bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden flex items-center justify-center">
-        <!-- Floating Drug Molecule -->
-        <div id="stepDrug" class="step-element absolute left-1/2 -translate-x-1/2 text-4xl z-30 top-4 opacity-100">
+        <!-- Drug Molecule -->
+        <div id="autoDrug" class="auto-drug-motion absolute left-1/2 -translate-x-1/2 text-4xl z-30">
           💊
         </div>
         
         <!-- Cell Receptor Pocket -->
-        <div id="stepReceptor" class="step-element absolute bottom-12 left-1/2 -translate-x-1/2 w-28 h-20 bg-slate-800 border-2 border-slate-600 rounded-t-3xl flex flex-col items-center justify-center text-2xl z-20 shadow-xl">
-          <span id="stepRecIcon">🧬</span>
-          <span id="stepRecLabel" class="text-[9px] font-black uppercase tracking-widest text-slate-400 mt-1">Inactive Receptor</span>
+        <div id="autoReceptor" class="absolute bottom-12 left-1/2 -translate-x-1/2 w-28 h-20 bg-slate-800 border-2 border-slate-600 rounded-t-3xl flex flex-col items-center justify-center text-2xl z-20 shadow-xl step-transition">
+          <span id="autoRecIcon">🧬</span>
+          <span id="autoRecLabel" class="text-[9px] font-black uppercase tracking-widest text-slate-300 mt-1">Receptor Site</span>
         </div>
 
-        <!-- Cytoplasmic Signal Cascade Waves -->
-        <div id="stepSignal" class="step-element absolute bottom-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-medical-500 opacity-0 z-10 transition-all duration-700"></div>
+        <!-- Cytoplasmic Signal Wave -->
+        <div id="autoSignal" class="auto-signal-motion absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full opacity-0 z-10"></div>
 
-        <!-- Cell Membrane Floor Layer -->
+        <!-- Membrane Floor -->
         <div class="absolute bottom-0 left-0 right-0 h-9 bg-gradient-to-r from-brand-900 via-medical-800 to-brand-900 border-t-2 border-brand-400 flex items-center justify-between px-6 text-[10px] font-black uppercase tracking-widest text-slate-300 z-20">
           <span>Extracellular Space</span>
           <span>Cell Membrane Layer</span>
@@ -208,26 +235,33 @@ html_content = """<!DOCTYPE html>
         </div>
       </div>
 
-      <!-- STEP BUTTON CONTROLS -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
-        <button id="btnStep1" onclick="goToStep(1)" class="p-3 bg-brand-600 text-white rounded-xl border border-brand-400 font-bold text-xs sm:text-sm text-center transition active:scale-95 shadow-md">
+      <!-- STEP INDICATOR TRACK -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-center font-bold text-xs">
+        <div id="trackStep1" class="p-3 rounded-xl border border-brand-500 bg-brand-600 text-white step-transition">
           1. Recognition
-        </button>
-        <button id="btnStep2" onclick="goToStep(2)" class="p-3 bg-slate-800 text-slate-300 hover:bg-slate-700 rounded-xl border border-slate-700 font-bold text-xs sm:text-sm text-center transition active:scale-95">
+        </div>
+        <div id="trackStep2" class="p-3 rounded-xl border border-slate-700 bg-slate-800 text-slate-400 step-transition">
           2. Binding (Docked)
-        </button>
-        <button id="btnStep3" onclick="goToStep(3)" class="p-3 bg-slate-800 text-slate-300 hover:bg-slate-700 rounded-xl border border-slate-700 font-bold text-xs sm:text-sm text-center transition active:scale-95">
+        </div>
+        <div id="trackStep3" class="p-3 rounded-xl border border-slate-700 bg-slate-800 text-slate-400 step-transition">
           3. Activation
-        </button>
-        <button id="btnStep4" onclick="goToStep(4)" class="p-3 bg-slate-800 text-slate-300 hover:bg-slate-700 rounded-xl border border-slate-700 font-bold text-xs sm:text-sm text-center transition active:scale-95">
+        </div>
+        <div id="trackStep4" class="p-3 rounded-xl border border-slate-700 bg-slate-800 text-slate-400 step-transition">
           4. Cellular Response
-        </button>
+        </div>
       </div>
 
-      <!-- LIVE STEP TEXT EXPLANATION CARD -->
+      <!-- DYNAMIC AUTO-SYNCED TEXT CARD -->
       <div class="p-5 bg-slate-950 rounded-2xl border border-slate-800 space-y-1">
-        <div id="stepCardTitle" class="text-brand-400 font-extrabold text-sm sm:text-base uppercase tracking-wider">Step 1: Recognition</div>
-        <p id="stepCardDesc" class="text-xs sm:text-sm text-slate-300 leading-relaxed">The drug molecule approaches the cell membrane, guided by chemical affinity toward its matching receptor active site.</p>
+        <div id="autoCardTitle" class="text-brand-400 font-extrabold text-sm sm:text-base uppercase tracking-wider">Step 1: Recognition Phase</div>
+        <p id="autoCardDesc" class="text-xs sm:text-sm text-slate-300 leading-relaxed">The drug molecule enters extracellular fluid and approaches the active binding pocket on the target receptor.</p>
+      </div>
+
+      <!-- CONTROLS -->
+      <div class="flex items-center justify-center gap-3 pt-1">
+        <button onclick="toggleAutoAnim()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-bold border border-slate-700 flex items-center gap-2 transition active:scale-95">
+          <i data-lucide="pause" class="w-4 h-4 text-medical-400"></i> Pause / Play Cycle
+        </button>
       </div>
     </section>
 
@@ -711,7 +745,7 @@ html_content = """<!DOCTYPE html>
 
   </main>
 
-  <!-- FOOTER -->
+  <!-- CLEAN PORTAL FOOTER -->
   <footer class="mt-16 bg-white border-t border-slate-300 py-8 text-center text-xs sm:text-sm text-slate-600">
     <div class="max-w-5xl mx-auto px-4 space-y-2">
       <p class="font-extrabold text-slate-900 text-base">✨ Curated with excellence by Mudassir Khan</p>
@@ -724,88 +758,78 @@ html_content = """<!DOCTYPE html>
     // Initialize Lucide Icons
     lucide.createIcons();
 
-    // STEP-BY-STEP ANIMATION ENGINE CONTROLLER
-    function goToStep(step) {
-      const drug = document.getElementById('stepDrug');
-      const receptor = document.getElementById('stepReceptor');
-      const recIcon = document.getElementById('stepRecIcon');
-      const recLabel = document.getElementById('stepRecLabel');
-      const signal = document.getElementById('stepSignal');
+    // AUTOMATIC BINDING SYNC LOGIC
+    let autoInterval = null;
+    let animPaused = false;
+    let stepCount = 1;
 
-      const title = document.getElementById('stepCardTitle');
-      const desc = document.getElementById('stepCardDesc');
+    function syncStepText(step) {
+      const rec = document.getElementById('autoReceptor');
+      const recIcon = document.getElementById('autoRecIcon');
+      const recLabel = document.getElementById('autoRecLabel');
 
-      // Reset Button Styles
-      for(let i = 1; i <= 4; i++) {
-        const btn = document.getElementById('btnStep' + i);
+      const title = document.getElementById('autoCardTitle');
+      const desc = document.getElementById('autoCardDesc');
+
+      for (let i = 1; i <= 4; i++) {
+        const trk = document.getElementById('trackStep' + i);
         if (i === step) {
-          btn.className = "p-3 bg-brand-600 text-white rounded-xl border border-brand-400 font-bold text-xs sm:text-sm text-center transition active:scale-95 shadow-md";
+          trk.className = "p-3 rounded-xl border border-brand-500 bg-brand-600 text-white step-transition shadow-md";
         } else {
-          btn.className = "p-3 bg-slate-800 text-slate-300 hover:bg-slate-700 rounded-xl border border-slate-700 font-bold text-xs sm:text-sm text-center transition active:scale-95";
+          trk.className = "p-3 rounded-xl border border-slate-700 bg-slate-800 text-slate-400 step-transition";
         }
       }
 
       if (step === 1) {
-        // Step 1: Recognition
-        drug.style.top = "16px";
-        drug.style.transform = "translateX(-50%) scale(1)";
-        receptor.className = "step-element absolute bottom-12 left-1/2 -translate-x-1/2 w-28 h-20 bg-slate-800 border-2 border-slate-600 rounded-t-3xl flex flex-col items-center justify-center text-2xl z-20 shadow-xl";
+        rec.className = "absolute bottom-12 left-1/2 -translate-x-1/2 w-28 h-20 bg-slate-800 border-2 border-slate-600 rounded-t-3xl flex flex-col items-center justify-center text-2xl z-20 shadow-xl step-transition";
         recIcon.innerText = "🧬";
         recLabel.innerText = "Inactive Receptor";
-        signal.style.width = "16px";
-        signal.style.height = "16px";
-        signal.style.opacity = "0";
-
         title.innerText = "Step 1: Recognition Phase";
         title.className = "text-brand-400 font-extrabold text-sm sm:text-base uppercase tracking-wider";
-        desc.innerText = "The drug molecule enters extracellular fluid and approaches the specific active pocket on the target receptor.";
-      } 
-      else if (step === 2) {
-        // Step 2: Binding (Docked)
-        drug.style.top = "104px";
-        drug.style.transform = "translateX(-50%) scale(1)";
-        receptor.className = "step-element absolute bottom-12 left-1/2 -translate-x-1/2 w-28 h-20 bg-amber-600 border-2 border-amber-300 rounded-t-3xl flex flex-col items-center justify-center text-2xl z-20 shadow-xl";
+        desc.innerText = "The drug molecule enters extracellular fluid and approaches the active binding pocket on the target receptor.";
+      } else if (step === 2) {
+        rec.className = "absolute bottom-12 left-1/2 -translate-x-1/2 w-28 h-20 bg-amber-600 border-2 border-amber-300 rounded-t-3xl flex flex-col items-center justify-center text-2xl z-20 shadow-xl step-transition";
         recIcon.innerText = "🔒";
         recLabel.innerText = "Drug Docked";
-        signal.style.width = "16px";
-        signal.style.height = "16px";
-        signal.style.opacity = "0";
-
         title.innerText = "Step 2: Receptor Binding (Docked)";
         title.className = "text-amber-400 font-extrabold text-sm sm:text-base uppercase tracking-wider";
-        desc.innerText = "The drug molecule locks perfectly into the binding site, forming hydrogen and ionic chemical bonds.";
-      } 
-      else if (step === 3) {
-        // Step 3: Activation
-        drug.style.top = "104px";
-        drug.style.transform = "translateX(-50%) scale(1.1)";
-        receptor.className = "step-element absolute bottom-12 left-1/2 -translate-x-1/2 w-32 h-22 bg-emerald-600 border-2 border-emerald-300 rounded-t-3xl flex flex-col items-center justify-center text-3xl z-20 shadow-2xl";
+        desc.innerText = "The drug molecule locks perfectly into the active slot, forming stable non-covalent chemical bonds.";
+      } else if (step === 3) {
+        rec.className = "absolute bottom-12 left-1/2 -translate-x-1/2 w-32 h-22 bg-emerald-600 border-2 border-emerald-300 rounded-t-3xl flex flex-col items-center justify-center text-3xl z-20 shadow-2xl step-transition";
         recIcon.innerText = "⚡";
         recLabel.innerText = "Activated Shape";
-        signal.style.width = "30%";
-        signal.style.height = "24px";
-        signal.style.opacity = "0.4";
-
         title.innerText = "Step 3: Conformational Activation Shift";
         title.className = "text-emerald-400 font-extrabold text-sm sm:text-base uppercase tracking-wider";
-        desc.innerText = "The receptor changes physical shape (conformational shift), turning on internal G-proteins and intracellular enzymes.";
-      } 
-      else if (step === 4) {
-        // Step 4: Cellular Response
-        drug.style.top = "104px";
-        drug.style.transform = "translateX(-50%) scale(1.15)";
-        receptor.className = "step-element absolute bottom-12 left-1/2 -translate-x-1/2 w-32 h-22 bg-medical-600 border-2 border-medical-300 rounded-t-3xl flex flex-col items-center justify-center text-3xl z-20 shadow-2xl";
+        desc.innerText = "The receptor changes physical shape (conformational shift), turning on internal G-protein enzymes inside the cell.";
+      } else if (step === 4) {
+        rec.className = "absolute bottom-12 left-1/2 -translate-x-1/2 w-32 h-22 bg-medical-600 border-2 border-medical-300 rounded-t-3xl flex flex-col items-center justify-center text-3xl z-20 shadow-2xl step-transition";
         recIcon.innerText = "🫀";
         recLabel.innerText = "Signal Triggered";
-        signal.style.width = "92%";
-        signal.style.height = "40px";
-        signal.style.opacity = "0.9";
-
         title.innerText = "Step 4: Cellular Signal & Response Wave";
         title.className = "text-sky-400 font-extrabold text-sm sm:text-base uppercase tracking-wider";
-        desc.innerText = "Thousands of cAMP second messenger molecules flood the cytoplasm, producing the final therapeutic response (e.g., lower BP or pain relief)!";
+        desc.innerText = "Thousands of cAMP second messenger molecules flood the cytoplasm, producing the final clinical response!";
       }
     }
+
+    function startAutoLoop() {
+      autoInterval = setInterval(() => {
+        if (!animPaused) {
+          stepCount = (stepCount % 4) + 1;
+          syncStepText(stepCount);
+        }
+      }, 2000);
+    }
+
+    function toggleAutoAnim() {
+      const drug = document.getElementById('autoDrug');
+      const signal = document.getElementById('autoSignal');
+      animPaused = !animPaused;
+      drug.classList.toggle('anim-paused');
+      signal.classList.toggle('anim-paused');
+    }
+
+    // Start auto sync on page load
+    startAutoLoop();
 
     // Interactive Receptor Simulator Logic
     function runSim(mode) {
@@ -867,8 +891,4 @@ html_content = """<!DOCTYPE html>
     }
   </script>
 </body>
-</html>"""
-
-with open("Pharmacodynamics.html", "w", encoding="utf-8") as f:
-    f.write(html_content)
-print("Pharmacodynamics.html generated successfully!")
+</html>
