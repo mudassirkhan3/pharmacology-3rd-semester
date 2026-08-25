@@ -57,7 +57,7 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
-    /* MOBILE-FRIENDLY ADME JOURNEY TRACK ANIMATION */
+    /* 100% NON-OVERLAPPING MOBILE PILL ANIMATION */
     @keyframes admePillMove {
       0% { left: 3%; transform: rotate(0deg) scale(1); }
       25% { left: 25%; transform: rotate(90deg) scale(1.1); }
@@ -273,35 +273,17 @@
         </div>
       </div>
 
-      <!-- MOBILE-OPTIMIZED ANIMATED PIPELINE TRACK -->
+      <!-- ZERO-OVERLAP MOBILE PIPELINE TRACK -->
       <div class="bg-slate-900 text-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-xl space-y-4 border border-slate-800">
         <div class="text-center">
           <span class="text-xs font-bold text-brand-400 uppercase tracking-wider">Live Molecule Trajectory Simulator</span>
           <p class="text-[11px] text-slate-400">Tracking drug progression through active ADME biological checkpoints</p>
         </div>
         
-        <div class="relative h-20 sm:h-24 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex items-center px-3 sm:px-6">
-          <!-- Track Rail Background -->
+        <!-- Clean Track Rail -->
+        <div class="relative h-14 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex items-center px-4">
           <div class="absolute left-4 right-4 h-2 bg-slate-800 rounded-full"></div>
           <div class="absolute left-4 right-4 h-2 bg-gradient-to-r from-brand-500 via-emerald-500 via-amber-500 to-rose-500 rounded-full opacity-70"></div>
-          
-          <!-- Stage Checkpoints Safely Spaced for Mobile -->
-          <div class="absolute left-[22%] flex flex-col items-center z-0 text-center">
-            <div class="w-3.5 h-3.5 rounded-full bg-brand-500 border-2 border-slate-950"></div>
-            <span class="text-[8px] sm:text-[10px] font-bold text-brand-300 mt-1 uppercase whitespace-nowrap">1. Absorption</span>
-          </div>
-          <div class="absolute left-[47%] flex flex-col items-center z-0 text-center">
-            <div class="w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-slate-950"></div>
-            <span class="text-[8px] sm:text-[10px] font-bold text-emerald-300 mt-1 uppercase whitespace-nowrap">2. Distribution</span>
-          </div>
-          <div class="absolute left-[72%] flex flex-col items-center z-0 text-center">
-            <div class="w-3.5 h-3.5 rounded-full bg-amber-500 border-2 border-slate-950"></div>
-            <span class="text-[8px] sm:text-[10px] font-bold text-amber-300 mt-1 uppercase whitespace-nowrap">3. Metabolism</span>
-          </div>
-          <div class="absolute left-[91%] flex flex-col items-center z-0 text-center">
-            <div class="w-3.5 h-3.5 rounded-full bg-rose-500 border-2 border-slate-950"></div>
-            <span class="text-[8px] sm:text-[10px] font-bold text-rose-300 mt-1 uppercase whitespace-nowrap">4. Excretion</span>
-          </div>
 
           <!-- Animated Drug Pill -->
           <div id="admePill" class="absolute pill-animated text-2xl sm:text-3xl z-20 drop-shadow-[0_0_10px_rgba(56,189,248,0.9)]">
@@ -309,7 +291,27 @@
           </div>
         </div>
 
-        <div class="flex items-center justify-center gap-2 sm:gap-3 pt-1">
+        <!-- Safely Separated Grid Checkpoints (Zero Text Overlap) -->
+        <div class="grid grid-cols-4 gap-1 pt-1 text-center">
+          <div class="p-2 bg-slate-950 rounded-lg border border-slate-800">
+            <span class="block text-[10px] sm:text-xs font-extrabold text-brand-400 uppercase">1. Absorption</span>
+            <span class="text-[9px] text-slate-400">GI Track</span>
+          </div>
+          <div class="p-2 bg-slate-950 rounded-lg border border-slate-800">
+            <span class="block text-[10px] sm:text-xs font-extrabold text-emerald-400 uppercase">2. Distribution</span>
+            <span class="text-[9px] text-slate-400">Tissues</span>
+          </div>
+          <div class="p-2 bg-slate-950 rounded-lg border border-slate-800">
+            <span class="block text-[10px] sm:text-xs font-extrabold text-amber-400 uppercase">3. Metabolism</span>
+            <span class="text-[9px] text-slate-400">Liver</span>
+          </div>
+          <div class="p-2 bg-slate-950 rounded-lg border border-slate-800">
+            <span class="block text-[10px] sm:text-xs font-extrabold text-rose-400 uppercase">4. Excretion</span>
+            <span class="text-[9px] text-slate-400">Kidneys</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-center gap-2 sm:gap-3 pt-2">
           <button onclick="togglePillAnimation()" class="w-1/2 sm:w-auto px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-bold border border-slate-700 flex items-center justify-center gap-2 transition active:scale-95">
             <i data-lucide="pause" class="w-4 h-4 text-medical-400"></i> Play / Pause
           </button>
@@ -772,61 +774,55 @@
       </div>
     </section>
 
-    <!-- 14. IMPORTANT PHARMACOKINETIC GRAPHS & ELIMINATION KINETICS (IMPROVED, SEPARATED & CLEAN) -->
+    <!-- 14. IMPORTANT PHARMACOKINETIC GRAPHS & ELIMINATION KINETICS (COMPLETELY RE-STRUCTURED & SEPARATED) -->
     <section id="graphs" class="bg-slate-900 text-white rounded-2xl sm:rounded-3xl p-5 sm:p-10 shadow-xl mb-6 sm:mb-10 space-y-8">
       
-      <!-- CLEAR HEADING -->
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">
-        <div>
-          <h2 class="text-xl sm:text-3xl font-black text-white">14. Important Pharmacokinetic Graphs &amp; Elimination Kinetics</h2>
-          <p class="text-xs sm:text-sm text-slate-400 mt-1">Detailed separation of First-Order vs. Zero-Order Kinetics and Interactive Graph Analysis</p>
+      <!-- MAIN SECTION HEADING -->
+      <div class="border-b border-slate-800 pb-5">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+          <span class="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-400 text-[10px] sm:text-xs font-black uppercase tracking-wider border border-amber-500/30">
+            Module Section 14
+          </span>
+          <span class="text-xs text-slate-400 font-medium">Kinetic Models &amp; Curves</span>
         </div>
-        <div class="flex items-center gap-2 w-full sm:w-auto shrink-0">
-          <button onclick="drawGraph('first')" id="btnFirstOrder" class="w-1/2 sm:w-auto px-4 py-2.5 rounded-xl bg-brand-600 text-white text-xs font-bold transition">
-            First-Order View
-          </button>
-          <button onclick="drawGraph('zero')" id="btnZeroOrder" class="w-1/2 sm:w-auto px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs font-bold transition">
-            Zero-Order View
-          </button>
-        </div>
+        <h2 class="text-xl sm:text-3xl font-black text-white">Important Pharmacokinetic Graphs &amp; Elimination Kinetics</h2>
       </div>
 
-      <!-- KINETICS CONCEPTS & DEFINITIONS (SEPARATED CARDS) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- FIRST-ORDER CARD -->
-        <div class="p-6 bg-slate-950 rounded-2xl border border-slate-800 space-y-3 shadow-lg">
-          <h3 class="font-black text-brand-400 text-base sm:text-lg flex items-center gap-2">
-            <i data-lucide="trending-down" class="w-5 h-5 text-brand-400"></i> First-Order Kinetics (Constant Fraction)
-          </h3>
-          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
-            <strong>Definition:</strong> A <strong>constant percentage or fraction</strong> of drug is eliminated per unit of time. The rate of elimination rises and falls in direct proportion to plasma drug concentration.
-          </p>
-          <ul class="text-slate-300 text-xs sm:text-sm space-y-2 list-disc pl-4 pt-1">
-            <li><strong>Half-life (t½):</strong> Remains constant regardless of dose size.</li>
-            <li><strong>Enzymes:</strong> Metabolic enzymes are well below saturation capacity.</li>
-            <li><strong>Examples:</strong> Most standard prescription drugs (e.g., Penicillin, Morphine).</li>
-          </ul>
-        </div>
-
-        <!-- ZERO-ORDER CARD -->
-        <div class="p-6 bg-slate-950 rounded-2xl border border-slate-800 space-y-3 shadow-lg">
-          <h3 class="font-black text-rose-400 text-base sm:text-lg flex items-center gap-2">
-            <i data-lucide="minus-circle" class="w-5 h-5 text-rose-400"></i> Zero-Order Kinetics (Constant Amount)
-          </h3>
-          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
-            <strong>Definition:</strong> A <strong>constant amount (mg)</strong> of drug is eliminated per unit of time, regardless of how high plasma drug concentrations go.
-          </p>
-          <ul class="text-slate-300 text-xs sm:text-sm space-y-2 list-disc pl-4 pt-1">
-            <li><strong>Half-life (t½):</strong> Not constant (increases as the dose increases).</li>
-            <li><strong>Enzymes:</strong> Clearance pathways and enzymes become fully saturated.</li>
-            <li><strong>Examples:</strong> Phenytoin, Ethanol (Alcohol), High-dose Aspirin (Mnemonic: PEA).</li>
-          </ul>
-        </div>
+      <!-- SUB-SECTION A: FIRST-ORDER KINETICS -->
+      <div class="p-6 bg-slate-950 rounded-2xl border border-slate-800 space-y-3 shadow-lg">
+        <h3 class="font-black text-brand-400 text-base sm:text-lg flex items-center gap-2">
+          <i data-lucide="trending-down" class="w-5 h-5 text-brand-400"></i> A. First-Order Kinetics (Constant Fraction)
+        </h3>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+          <strong>Definition:</strong> In First-Order Kinetics, a <strong>constant percentage or fraction</strong> of drug is eliminated per unit of time. The rate of elimination rises and falls in direct proportion to plasma drug concentration.
+        </p>
+        <ul class="text-slate-300 text-xs sm:text-sm space-y-2 list-disc pl-4 pt-1">
+          <li><strong>Half-life (t½):</strong> Remains constant regardless of dose size.</li>
+          <li><strong>Enzymes:</strong> Metabolic enzymes operate well below saturation capacity.</li>
+          <li><strong>Examples:</strong> Most standard prescription drugs (e.g., Penicillin, Morphine).</li>
+        </ul>
       </div>
 
-      <!-- SUMMARY DIFFERENCE TABLE CARD -->
+      <!-- SUB-SECTION B: ZERO-ORDER KINETICS -->
+      <div class="p-6 bg-slate-950 rounded-2xl border border-slate-800 space-y-3 shadow-lg">
+        <h3 class="font-black text-rose-400 text-base sm:text-lg flex items-center gap-2">
+          <i data-lucide="minus-circle" class="w-5 h-5 text-rose-400"></i> B. Zero-Order Kinetics (Constant Amount)
+        </h3>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+          <strong>Definition:</strong> In Zero-Order Kinetics, a <strong>constant amount (mg)</strong> of drug is eliminated per unit of time, regardless of how high plasma drug concentrations go.
+        </p>
+        <ul class="text-slate-300 text-xs sm:text-sm space-y-2 list-disc pl-4 pt-1">
+          <li><strong>Half-life (t½):</strong> Not constant (increases as the dose increases).</li>
+          <li><strong>Enzymes:</strong> Clearance pathways and enzymes become fully saturated.</li>
+          <li><strong>Examples:</strong> Phenytoin, Ethanol (Alcohol), High-dose Aspirin (Mnemonic: PEA).</li>
+        </ul>
+      </div>
+
+      <!-- SUB-SECTION C: QUICK COMPARISON TABLE -->
       <div class="p-6 bg-slate-950 rounded-2xl border border-slate-800 space-y-4 shadow-lg">
-        <h4 class="font-extrabold text-amber-400 text-xs sm:text-sm uppercase tracking-wider">Quick Comparison Table</h4>
+        <h3 class="font-extrabold text-amber-400 text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2">
+          <i data-lucide="table" class="w-4 h-4"></i> C. Summary Comparison Table
+        </h3>
         <div class="overflow-x-auto custom-scroll">
           <table class="w-full text-left text-xs sm:text-sm text-slate-300 border-collapse">
             <thead>
@@ -862,12 +858,27 @@
         </div>
       </div>
 
-      <!-- SEPARATED INTERACTIVE CANVAS GRAPH CARD -->
+      <!-- SUB-SECTION D: INTERACTIVE CANVAS GRAPH & CONTROLS -->
       <div class="p-6 bg-slate-950 rounded-2xl border border-slate-800 space-y-4 shadow-lg">
-        <div class="flex items-center justify-between text-xs font-bold text-slate-400 px-1">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <h3 class="font-extrabold text-white text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2">
+            <i data-lucide="line-chart" class="w-4 h-4 text-brand-400"></i> D. Interactive Graph Visualizer
+          </h3>
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <button onclick="drawGraph('first')" id="btnFirstOrder" class="w-1/2 sm:w-auto px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold transition">
+              First-Order View
+            </button>
+            <button onclick="drawGraph('zero')" id="btnZeroOrder" class="w-1/2 sm:w-auto px-4 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs font-bold transition">
+              Zero-Order View
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-xs font-bold text-slate-400 px-1 pt-2">
           <span>Plasma Concentration (Y-axis)</span>
           <span>Time Elapsed (X-axis)</span>
         </div>
+
         <div class="w-full h-56 sm:h-72 bg-slate-900 rounded-xl border border-slate-800 flex items-center justify-center p-4 relative shadow-inner">
           <canvas id="kineticsCanvas" class="w-full h-full"></canvas>
         </div>
@@ -1074,8 +1085,8 @@
       const desc = document.getElementById('graphDescription');
 
       if (type === 'first') {
-        btnFirst.className = "w-1/2 sm:w-auto px-4 py-2.5 rounded-xl bg-brand-600 text-white text-xs font-bold transition";
-        btnZero.className = "w-1/2 sm:w-auto px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs font-bold transition";
+        btnFirst.className = "w-1/2 sm:w-auto px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold transition";
+        btnZero.className = "w-1/2 sm:w-auto px-4 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs font-bold transition";
         desc.innerHTML = "<strong>First-Order Kinetics:</strong> Yields a smooth exponential decay curve because the elimination rate slows down proportionally as plasma concentration drops, keeping the half-life constant.";
 
         // Draw Exponential Curve
@@ -1087,8 +1098,8 @@
         ctx.stroke();
 
       } else {
-        btnZero.className = "w-1/2 sm:w-auto px-4 py-2.5 rounded-xl bg-rose-600 text-white text-xs font-bold transition";
-        btnFirst.className = "w-1/2 sm:w-auto px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs font-bold transition";
+        btnZero.className = "w-1/2 sm:w-auto px-4 py-2 rounded-xl bg-rose-600 text-white text-xs font-bold transition";
+        btnFirst.className = "w-1/2 sm:w-auto px-4 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs font-bold transition";
         desc.innerHTML = "<strong>Zero-Order Kinetics:</strong> Yields a straight, downward-sloping linear line because a constant mg amount of drug is cleared per hour due to enzyme saturation.";
 
         // Draw Straight Line
