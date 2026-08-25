@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+html_content = """<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
@@ -56,34 +56,6 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
-    /* Keyframe Animation for Dynamic Docking */
-    @keyframes smoothDockSequence {
-      0% { top: 12px; transform: translateX(-50%) scale(0.85); opacity: 0.3; }
-      25% { top: 48px; transform: translateX(-50%) scale(1); opacity: 1; filter: drop-shadow(0 0 6px #f59e0b); }
-      50% { top: 48px; transform: translateX(-50%) scale(1.15); filter: drop-shadow(0 0 16px #10b981); }
-      75% { top: 48px; transform: translateX(-50%) scale(1.1); filter: drop-shadow(0 0 12px #38bdf8); opacity: 1; }
-      100% { top: 12px; transform: translateX(-50%) scale(0.85); opacity: 0.3; }
-    }
-
-    .drug-dock-animated {
-      animation: smoothDockSequence 7s infinite ease-in-out;
-    }
-
-    @keyframes cascadeWave {
-      0%, 30% { width: 12px; height: 12px; opacity: 0; }
-      50% { width: 85%; height: 40px; opacity: 0.9; background: #10b981; }
-      75% { width: 98%; height: 60px; opacity: 0.3; background: #3b82f6; }
-      100% { opacity: 0; }
-    }
-
-    .cascade-wave-animated {
-      animation: cascadeWave 7s infinite ease-in-out;
-    }
-
-    .animation-paused {
-      animation-play-state: paused !important;
-    }
-
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -93,6 +65,11 @@
       padding: 2px 6px;
       border-radius: 4px;
       font-weight: 700;
+    }
+
+    /* Step Animation Transition Smoothness */
+    .step-element {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
   </style>
 </head>
@@ -153,7 +130,7 @@
       </div>
       <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 px-1">
         <a href="#docking-engine" class="px-3.5 py-2 rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-bold whitespace-nowrap hover:bg-brand-500 transition shrink-0 flex items-center gap-1.5">
-          <i data-lucide="play" class="w-4 h-4"></i> Docking Animation
+          <i data-lucide="play" class="w-4 h-4"></i> Step-By-Step Docking
         </a>
         <a href="#signal-transduction" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">1. Transduction Dynamics</a>
         <a href="#receptor-families" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white text-xs sm:text-sm font-bold whitespace-nowrap shrink-0">2. 4 Receptor Types</a>
@@ -197,65 +174,60 @@
       </div>
     </section>
 
-    <!-- INNOVATIVE 4-STEP DRUG DOCKING ANIMATION ENGINE -->
+    <!-- STEP-BY-STEP CONTROLLED ANIMATION ENGINE -->
     <section id="docking-engine" class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 mb-10 space-y-5">
       <div class="text-center max-w-xl mx-auto">
         <span class="inline-block px-3 py-1 bg-brand-900 text-brand-300 rounded-full text-xs font-black uppercase tracking-wider mb-1 border border-brand-700">
-          Visual Animation Engine
+          Interactive Visual Stage
         </span>
-        <h3 class="text-xl sm:text-2xl font-black text-white">4-Phase Dynamic Drug-Receptor Docking Sequence</h3>
-        <p class="text-xs sm:text-sm text-slate-400 mt-1">Watch how a drug molecule docks, shifts receptor shape, and unleashes cellular signals.</p>
+        <h3 class="text-xl sm:text-2xl font-black text-white">Controlled Drug-Receptor Binding Sequence</h3>
+        <p class="text-xs sm:text-sm text-slate-400 mt-1">Click each step button below to observe every phase of drug action step-by-step!</p>
       </div>
 
       <!-- VISUAL CANVAS STAGE -->
-      <div class="relative h-56 bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden flex items-center justify-center">
+      <div class="relative h-64 bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden flex items-center justify-center">
         <!-- Floating Drug Molecule -->
-        <div id="dockDrugMolecule" class="absolute drug-dock-animated left-1/2 -translate-x-1/2 text-4xl z-30 transition-all duration-300">
+        <div id="stepDrug" class="step-element absolute left-1/2 -translate-x-1/2 text-4xl z-30 top-4 opacity-100">
           💊
         </div>
         
         <!-- Cell Receptor Pocket -->
-        <div id="dockReceptorPocket" class="absolute bottom-10 left-1/2 -translate-x-1/2 w-24 h-20 bg-brand-600 border-2 border-brand-300 rounded-t-3xl flex flex-col items-center justify-center text-2xl z-20 shadow-xl transition-all duration-300">
-          <span>🧬</span>
-          <span class="text-[9px] font-black uppercase tracking-widest text-brand-100 mt-1">Active Site</span>
+        <div id="stepReceptor" class="step-element absolute bottom-12 left-1/2 -translate-x-1/2 w-28 h-20 bg-slate-800 border-2 border-slate-600 rounded-t-3xl flex flex-col items-center justify-center text-2xl z-20 shadow-xl">
+          <span id="stepRecIcon">🧬</span>
+          <span id="stepRecLabel" class="text-[9px] font-black uppercase tracking-widest text-slate-400 mt-1">Inactive Receptor</span>
         </div>
 
-        <!-- Cytoplasmic Signal Cascade Wave -->
-        <div id="dockSignalWave" class="absolute bottom-2 left-1/2 -translate-x-1/2 cascade-wave-animated rounded-full opacity-0 z-10"></div>
+        <!-- Cytoplasmic Signal Cascade Waves -->
+        <div id="stepSignal" class="step-element absolute bottom-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-medical-500 opacity-0 z-10 transition-all duration-700"></div>
 
         <!-- Cell Membrane Floor Layer -->
         <div class="absolute bottom-0 left-0 right-0 h-9 bg-gradient-to-r from-brand-900 via-medical-800 to-brand-900 border-t-2 border-brand-400 flex items-center justify-between px-6 text-[10px] font-black uppercase tracking-widest text-slate-300 z-20">
-          <span>Extracellular Fluid</span>
-          <span>Phospholipid Bilayer Membrane</span>
+          <span>Extracellular Space</span>
+          <span>Cell Membrane Layer</span>
           <span>Intracellular Cytoplasm</span>
         </div>
       </div>
 
-      <!-- STEP STATUS CARDS -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs sm:text-sm pt-2">
-        <div id="stepCard1" class="p-3 bg-slate-800 rounded-xl border border-slate-700 text-brand-300 space-y-1">
-          <div class="font-extrabold uppercase">1. Recognition</div>
-          <p class="text-[11px] text-slate-400 leading-snug">Drug approaches binding pocket guided by chemical affinity.</p>
-        </div>
-        <div id="stepCard2" class="p-3 bg-slate-800 rounded-xl border border-slate-700 text-amber-300 space-y-1">
-          <div class="font-extrabold uppercase">2. Docking</div>
-          <p class="text-[11px] text-slate-400 leading-snug">Drug seats into active site forming non-covalent bonds.</p>
-        </div>
-        <div id="stepCard3" class="p-3 bg-slate-800 rounded-xl border border-slate-700 text-emerald-300 space-y-1">
-          <div class="font-extrabold uppercase">3. Conformational Shift</div>
-          <p class="text-[11px] text-slate-400 leading-snug">Receptor changes shape, activating internal G-protein enzymes.</p>
-        </div>
-        <div id="stepCard4" class="p-3 bg-slate-800 rounded-xl border border-slate-700 text-sky-300 space-y-1">
-          <div class="font-extrabold uppercase">4. Cascade Wave</div>
-          <p class="text-[11px] text-slate-400 leading-snug">Thousands of cAMP second messengers flood cytoplasm.</p>
-        </div>
+      <!-- STEP BUTTON CONTROLS -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+        <button id="btnStep1" onclick="goToStep(1)" class="p-3 bg-brand-600 text-white rounded-xl border border-brand-400 font-bold text-xs sm:text-sm text-center transition active:scale-95 shadow-md">
+          1. Recognition
+        </button>
+        <button id="btnStep2" onclick="goToStep(2)" class="p-3 bg-slate-800 text-slate-300 hover:bg-slate-700 rounded-xl border border-slate-700 font-bold text-xs sm:text-sm text-center transition active:scale-95">
+          2. Binding (Docked)
+        </button>
+        <button id="btnStep3" onclick="goToStep(3)" class="p-3 bg-slate-800 text-slate-300 hover:bg-slate-700 rounded-xl border border-slate-700 font-bold text-xs sm:text-sm text-center transition active:scale-95">
+          3. Activation
+        </button>
+        <button id="btnStep4" onclick="goToStep(4)" class="p-3 bg-slate-800 text-slate-300 hover:bg-slate-700 rounded-xl border border-slate-700 font-bold text-xs sm:text-sm text-center transition active:scale-95">
+          4. Cellular Response
+        </button>
       </div>
 
-      <!-- ANIMATION CONTROLS -->
-      <div class="flex items-center justify-center gap-3 pt-2">
-        <button onclick="toggleDockingAnim()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-bold border border-slate-700 flex items-center gap-2 transition active:scale-95">
-          <i data-lucide="pause" class="w-4 h-4 text-medical-400"></i> Pause / Play Animation
-        </button>
+      <!-- LIVE STEP TEXT EXPLANATION CARD -->
+      <div class="p-5 bg-slate-950 rounded-2xl border border-slate-800 space-y-1">
+        <div id="stepCardTitle" class="text-brand-400 font-extrabold text-sm sm:text-base uppercase tracking-wider">Step 1: Recognition</div>
+        <p id="stepCardDesc" class="text-xs sm:text-sm text-slate-300 leading-relaxed">The drug molecule approaches the cell membrane, guided by chemical affinity toward its matching receptor active site.</p>
       </div>
     </section>
 
@@ -549,7 +521,7 @@
       </div>
     </section>
 
-    <!-- 7. GRADED DOSE-RESPONSE CURVES (IMPROVED SPLIT GRAPH A & B) -->
+    <!-- 7. GRADED DOSE-RESPONSE CURVES -->
     <section id="graded-curves" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-sm mb-10 space-y-6">
       <div class="flex items-center justify-between border-b border-slate-200 pb-4">
         <h2 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
@@ -567,21 +539,17 @@
         <p class="text-xs text-slate-600">Drug A is more potent than Drug B (Curve A is to the left). Drug C has lower efficacy (Ceiling is lower).</p>
         
         <svg viewBox="0 0 700 280" class="w-full h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
-          <!-- Axes -->
           <line x1="60" y1="230" x2="650" y2="230" stroke="#475569" stroke-width="3"/>
           <line x1="60" y1="30" x2="60" y2="230" stroke="#475569" stroke-width="3"/>
           <text x="355" y="265" fill="#0f172a" font-size="12" font-weight="bold" text-anchor="middle">Log Drug Concentration &rarr;</text>
           <text x="25" y="130" fill="#0f172a" font-size="12" font-weight="bold" transform="rotate(-90 25 130)" text-anchor="middle">Response (% Emax)</text>
 
-          <!-- Drug A (Blue - High Potency, Full Efficacy) -->
           <path d="M 60 225 Q 140 220 220 130 T 420 40" fill="none" stroke="#2563eb" stroke-width="4"/>
           <text x="280" y="55" fill="#2563eb" font-size="12" font-weight="bold">Drug A (High Potency, 100% Emax)</text>
 
-          <!-- Drug B (Green - Lower Potency, Full Efficacy) -->
           <path d="M 60 225 Q 300 220 380 130 T 580 40" fill="none" stroke="#059669" stroke-width="4"/>
           <text x="440" y="90" fill="#059669" font-size="12" font-weight="bold">Drug B (Lower Potency, 100% Emax)</text>
 
-          <!-- Drug C (Red - Equal Potency to B, Lower Efficacy) -->
           <path d="M 60 225 Q 300 220 380 170 T 580 130" fill="none" stroke="#dc2626" stroke-width="4"/>
           <text x="440" y="150" fill="#dc2626" font-size="12" font-weight="bold">Drug C (Partial Agonist - Lower Emax)</text>
         </svg>
@@ -598,15 +566,12 @@
           <text x="355" y="265" fill="#0f172a" font-size="12" font-weight="bold" text-anchor="middle">Log Drug Concentration &rarr;</text>
           <text x="25" y="130" fill="#0f172a" font-size="12" font-weight="bold" transform="rotate(-90 25 130)" text-anchor="middle">Response (% Emax)</text>
 
-          <!-- Agonist Alone -->
           <path d="M 60 225 Q 160 220 260 130 T 600 40" fill="none" stroke="#2563eb" stroke-width="4"/>
           <text x="380" y="50" fill="#2563eb" font-size="12" font-weight="bold">Control Agonist Alone</text>
 
-          <!-- + Competitive Antagonist -->
           <path d="M 60 225 Q 320 220 420 130 T 640 40" fill="none" stroke="#059669" stroke-width="3" stroke-dasharray="6,6"/>
           <text x="430" y="80" fill="#059669" font-size="12" font-weight="bold">+ Competitive Antagonist (Right Shift)</text>
 
-          <!-- + Irreversible Antagonist -->
           <path d="M 60 225 Q 160 220 260 170 T 600 150" fill="none" stroke="#dc2626" stroke-width="4"/>
           <text x="430" y="160" fill="#dc2626" font-size="12" font-weight="bold">+ Irreversible Antagonist (Downward Shift)</text>
         </svg>
@@ -638,15 +603,12 @@
           <text x="355" y="235" fill="#0f172a" font-size="12" font-weight="bold" text-anchor="middle">Log Dose &rarr;</text>
           <text x="25" y="115" fill="#0f172a" font-size="12" font-weight="bold" transform="rotate(-90 25 115)" text-anchor="middle">Population %</text>
 
-          <!-- ED50 Curve -->
           <path d="M 80 200 Q 200 30 320 200" fill="rgba(5, 150, 105, 0.2)" stroke="#059669" stroke-width="3"/>
           <text x="200" y="100" fill="#047857" font-size="13" font-weight="bold" text-anchor="middle">ED50 (Therapeutic)</text>
 
-          <!-- TD50 Curve -->
           <path d="M 360 200 Q 480 30 600 200" fill="rgba(217, 119, 6, 0.2)" stroke="#d97706" stroke-width="3"/>
           <text x="480" y="100" fill="#b45309" font-size="13" font-weight="bold" text-anchor="middle">TD50 (Toxic)</text>
 
-          <!-- Safety Margin Gap -->
           <line x1="200" y1="165" x2="480" y2="165" stroke="#2563eb" stroke-width="3" stroke-dasharray="4,4"/>
           <text x="340" y="155" fill="#1d4ed8" font-size="12" font-weight="bold" text-anchor="middle">&larr; Therapeutic Window &rarr;</text>
         </svg>
@@ -682,7 +644,6 @@
       <div class="bg-slate-50 border border-slate-300 rounded-2xl p-4 sm:p-6 my-4 shadow-inner text-center">
         <h3 class="font-black text-slate-900 text-sm sm:text-base mb-2">Wide vs. Narrow Therapeutic Index Comparison</h3>
         <svg viewBox="0 0 700 200" class="w-full h-auto max-w-3xl mx-auto" xmlns="http://www.w3.org/2000/svg">
-          <!-- Line 1: Wide TI -->
           <text x="40" y="40" fill="#047857" font-size="12" font-weight="bold">Wide TI (Penicillin): Large Safety Gap</text>
           <line x1="40" y1="60" x2="650" y2="60" stroke="#e2e8f0" stroke-width="8" stroke-linecap="round"/>
           <circle cx="100" cy="60" r="10" fill="#059669"/>
@@ -692,7 +653,6 @@
           <line x1="100" y1="60" x2="580" y2="60" stroke="#059669" stroke-width="4"/>
           <text x="340" y="52" fill="#047857" font-size="11" font-weight="bold" text-anchor="middle">WIDE SAFE GAP</text>
 
-          <!-- Line 2: Narrow TI -->
           <text x="40" y="130" fill="#b45309" font-size="12" font-weight="bold">Narrow TI (Digoxin, Warfarin): Small Safety Gap</text>
           <line x1="40" y1="150" x2="650" y2="150" stroke="#e2e8f0" stroke-width="8" stroke-linecap="round"/>
           <circle cx="140" cy="150" r="10" fill="#059669"/>
@@ -764,12 +724,87 @@
     // Initialize Lucide Icons
     lucide.createIcons();
 
-    // 4-Step Docking Animation Control
-    function toggleDockingAnim() {
-      const drug = document.getElementById('dockDrugMolecule');
-      const wave = document.getElementById('dockSignalWave');
-      drug.classList.toggle('animation-paused');
-      wave.classList.toggle('animation-paused');
+    // STEP-BY-STEP ANIMATION ENGINE CONTROLLER
+    function goToStep(step) {
+      const drug = document.getElementById('stepDrug');
+      const receptor = document.getElementById('stepReceptor');
+      const recIcon = document.getElementById('stepRecIcon');
+      const recLabel = document.getElementById('stepRecLabel');
+      const signal = document.getElementById('stepSignal');
+
+      const title = document.getElementById('stepCardTitle');
+      const desc = document.getElementById('stepCardDesc');
+
+      // Reset Button Styles
+      for(let i = 1; i <= 4; i++) {
+        const btn = document.getElementById('btnStep' + i);
+        if (i === step) {
+          btn.className = "p-3 bg-brand-600 text-white rounded-xl border border-brand-400 font-bold text-xs sm:text-sm text-center transition active:scale-95 shadow-md";
+        } else {
+          btn.className = "p-3 bg-slate-800 text-slate-300 hover:bg-slate-700 rounded-xl border border-slate-700 font-bold text-xs sm:text-sm text-center transition active:scale-95";
+        }
+      }
+
+      if (step === 1) {
+        // Step 1: Recognition
+        drug.style.top = "16px";
+        drug.style.transform = "translateX(-50%) scale(1)";
+        receptor.className = "step-element absolute bottom-12 left-1/2 -translate-x-1/2 w-28 h-20 bg-slate-800 border-2 border-slate-600 rounded-t-3xl flex flex-col items-center justify-center text-2xl z-20 shadow-xl";
+        recIcon.innerText = "🧬";
+        recLabel.innerText = "Inactive Receptor";
+        signal.style.width = "16px";
+        signal.style.height = "16px";
+        signal.style.opacity = "0";
+
+        title.innerText = "Step 1: Recognition Phase";
+        title.className = "text-brand-400 font-extrabold text-sm sm:text-base uppercase tracking-wider";
+        desc.innerText = "The drug molecule enters extracellular fluid and approaches the specific active pocket on the target receptor.";
+      } 
+      else if (step === 2) {
+        // Step 2: Binding (Docked)
+        drug.style.top = "104px";
+        drug.style.transform = "translateX(-50%) scale(1)";
+        receptor.className = "step-element absolute bottom-12 left-1/2 -translate-x-1/2 w-28 h-20 bg-amber-600 border-2 border-amber-300 rounded-t-3xl flex flex-col items-center justify-center text-2xl z-20 shadow-xl";
+        recIcon.innerText = "🔒";
+        recLabel.innerText = "Drug Docked";
+        signal.style.width = "16px";
+        signal.style.height = "16px";
+        signal.style.opacity = "0";
+
+        title.innerText = "Step 2: Receptor Binding (Docked)";
+        title.className = "text-amber-400 font-extrabold text-sm sm:text-base uppercase tracking-wider";
+        desc.innerText = "The drug molecule locks perfectly into the binding site, forming hydrogen and ionic chemical bonds.";
+      } 
+      else if (step === 3) {
+        // Step 3: Activation
+        drug.style.top = "104px";
+        drug.style.transform = "translateX(-50%) scale(1.1)";
+        receptor.className = "step-element absolute bottom-12 left-1/2 -translate-x-1/2 w-32 h-22 bg-emerald-600 border-2 border-emerald-300 rounded-t-3xl flex flex-col items-center justify-center text-3xl z-20 shadow-2xl";
+        recIcon.innerText = "⚡";
+        recLabel.innerText = "Activated Shape";
+        signal.style.width = "30%";
+        signal.style.height = "24px";
+        signal.style.opacity = "0.4";
+
+        title.innerText = "Step 3: Conformational Activation Shift";
+        title.className = "text-emerald-400 font-extrabold text-sm sm:text-base uppercase tracking-wider";
+        desc.innerText = "The receptor changes physical shape (conformational shift), turning on internal G-proteins and intracellular enzymes.";
+      } 
+      else if (step === 4) {
+        // Step 4: Cellular Response
+        drug.style.top = "104px";
+        drug.style.transform = "translateX(-50%) scale(1.15)";
+        receptor.className = "step-element absolute bottom-12 left-1/2 -translate-x-1/2 w-32 h-22 bg-medical-600 border-2 border-medical-300 rounded-t-3xl flex flex-col items-center justify-center text-3xl z-20 shadow-2xl";
+        recIcon.innerText = "🫀";
+        recLabel.innerText = "Signal Triggered";
+        signal.style.width = "92%";
+        signal.style.height = "40px";
+        signal.style.opacity = "0.9";
+
+        title.innerText = "Step 4: Cellular Signal & Response Wave";
+        title.className = "text-sky-400 font-extrabold text-sm sm:text-base uppercase tracking-wider";
+        desc.innerText = "Thousands of cAMP second messenger molecules flood the cytoplasm, producing the final therapeutic response (e.g., lower BP or pain relief)!";
+      }
     }
 
     // Interactive Receptor Simulator Logic
@@ -832,4 +867,8 @@
     }
   </script>
 </body>
-</html>
+</html>"""
+
+with open("Pharmacodynamics.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+print("Pharmacodynamics.html generated successfully!")
