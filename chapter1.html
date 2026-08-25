@@ -28,46 +28,46 @@
       --text-dark: #0f172a;
       --text-muted: #475569;
       --card-bg: rgba(255, 255, 255, 0.95);
-      --card-border: #e2e8f0;
+      --card-border: #cbd5e1;
       --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
       --shadow-lg: 0 20px 25px -5px rgba(37, 99, 235, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
       --radius: 20px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #f8fafc; color: var(--text-dark); line-height: 1.6; padding: 0 0 16px 0; min-height: 100vh; display: flex; flex-direction: column; justify-space: space-between; overflow-x: hidden; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #f1f5f9; color: var(--text-dark); line-height: 1.6; padding: 0 0 16px 0; min-height: 100vh; display: flex; flex-direction: column; justify-space: space-between; overflow-x: hidden; }
     
     /* DEMO BANNER */
     .demo-banner { background: linear-gradient(90deg, #1e3a8a, #2563eb, #0d9488); color: #ffffff; text-align: center; padding: 8px 12px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
     .demo-banner span { background: #f59e0b; color: #0f172a; padding: 2px 8px; border-radius: 50px; font-size: 0.75rem; margin-right: 6px; }
 
-    .container { max-width: 1000px; width: 100%; margin: 16px auto 0; background: var(--card-bg); padding: 30px 20px; border-radius: var(--radius); border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); backdrop-filter: blur(10px); animation: fadeIn 0.6s ease-out; }
+    .container { max-width: 1000px; width: 100%; margin: 16px auto 0; background: var(--card-bg); padding: 30px 24px; border-radius: var(--radius); border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); backdrop-filter: blur(10px); animation: fadeIn 0.6s ease-out; }
     
-    header { display: flex; flex-direction: column; margin-bottom: 25px; }
+    header { display: flex; flex-direction: column; margin-bottom: 20px; }
 
-    .header-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
+    .header-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 10px; }
 
-    .header-actions { display: flex; gap: 8px; flex-wrap: wrap; width: 100%; margin-top: 10px; }
+    .header-actions { display: flex; gap: 8px; flex-wrap: wrap; width: 100%; margin-top: 8px; }
 
     .btn-header {
       flex: 1 1 auto;
       background: var(--primary-gradient);
       color: #ffffff;
       border: none;
-      padding: 12px 18px;
+      padding: 14px 22px;
       border-radius: 50px;
-      font-size: 0.88rem;
-      font-weight: 700;
+      font-size: 0.95rem;
+      font-weight: 800;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       touch-action: manipulation;
       text-decoration: none;
-      min-height: 44px;
+      min-height: 48px;
     }
 
     .btn-header:active { transform: scale(0.97); }
@@ -92,11 +92,11 @@
     .feature-tag.gold { background: #f59e0b; color: #0f172a; }
 
     h1 { font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 800; background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; line-height: 1.25; }
-    .subtitle { font-size: clamp(0.88rem, 3vw, 1.02rem); color: var(--text-muted); margin-bottom: 24px; }
-    h2 { font-size: clamp(1.15rem, 4vw, 1.38rem); color: #1e293b; margin: 26px 0 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .subtitle { font-size: clamp(0.88rem, 3vw, 1.02rem); color: var(--text-muted); margin-bottom: 20px; }
+    h2 { font-size: clamp(1.15rem, 4vw, 1.38rem); color: #1e293b; margin: 20px 0 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     h2::before { content: ''; display: inline-block; width: 5px; height: 20px; background: var(--primary); border-radius: 4px; flex-shrink: 0; }
 
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 10px; }
     .card { position: relative; background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 18px; text-decoration: none; color: inherit; overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; justify-space: space-between; -webkit-tap-highlight-color: transparent; }
     
     .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--primary-gradient); opacity: 0; transition: opacity 0.3s ease; }
@@ -115,11 +115,7 @@
     .card-link { font-size: 0.82rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 6px; }
     .buy-card .card-link { color: #15803d; }
 
-    .nursing-list { list-style: none; display: grid; gap: 12px; margin-top: 12px; }
-    .nursing-item { background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--primary); border-radius: 10px; padding: 14px; display: flex; align-items: flex-start; gap: 12px; box-shadow: var(--shadow-sm); }
-    .nursing-number { background: #dbeafe; color: #1e40af; font-weight: 800; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; margin-top: 2px; }
-
-    .site-footer { max-width: 1000px; width: 100%; margin: 25px auto 10px; padding: 20px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #e2e8f0; border-radius: 16px; text-align: center; font-size: 0.85rem; border: 1px solid rgba(255, 255, 255, 0.08); }
+    .site-footer { max-width: 1000px; width: 100%; margin: 20px auto 10px; padding: 20px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #e2e8f0; border-radius: 16px; text-align: center; font-size: 0.85rem; border: 1px solid rgba(255, 255, 255, 0.08); }
     .footer-brand { font-weight: 700; color: #ffffff; margin-bottom: 4px; }
     .footer-brand span { color: #38bdf8; font-weight: 800; }
 
@@ -140,27 +136,27 @@
       opacity: 0;
       visibility: hidden;
       transition: all 0.25s ease;
-      padding: 8px;
+      padding: 12px;
     }
 
     .modal-overlay.active { opacity: 1; visibility: visible; }
 
     .modal-card {
       background: #ffffff;
-      border-radius: 18px;
-      max-width: 980px;
+      border-radius: 20px;
+      max-width: 1000px;
       width: 100%;
       max-height: 92vh;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
       border: 1px solid #cbd5e1;
       overflow: hidden;
     }
 
     .modal-header {
-      padding: 16px 18px;
-      background: #0f172a;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
       color: #ffffff;
       display: flex;
       justify-content: space-between;
@@ -172,14 +168,17 @@
     }
 
     .modal-header h3 {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 800;
       color: #ffffff !important;
       margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .close-btn {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.15);
       border: none;
       color: #ffffff;
       width: 36px;
@@ -191,59 +190,58 @@
       align-items: center;
       justify-content: center;
       touch-action: manipulation;
+      transition: background 0.2s;
     }
+    .close-btn:hover { background: rgba(255, 255, 255, 0.3); }
 
-    .modal-body { padding: 16px; overflow-y: auto; flex: 1; -webkit-overflow-scrolling: touch; }
+    .modal-body { padding: 18px; overflow-y: auto; flex: 1; -webkit-overflow-scrolling: touch; }
 
     .table-container {
       overflow-x: auto;
-      border-radius: 10px;
-      border: 1px solid #bfdbfe;
-      margin-top: 8px;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
+      margin-top: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
       -webkit-overflow-scrolling: touch;
     }
 
     .summary-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.83rem;
+      font-size: 0.84rem;
       text-align: left;
-      min-width: 820px;
+      min-width: 860px;
     }
 
     .summary-table th {
-      background: #0f172a;
-      color: #ffffff;
-      padding: 11px 12px;
-      font-weight: 700;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      color: #38bdf8;
+      padding: 13px 14px;
+      font-weight: 800;
+      font-size: 0.88rem;
+      letter-spacing: 0.3px;
       position: sticky;
       top: 0;
       white-space: nowrap;
+      border-bottom: 2px solid #2563eb;
     }
 
     .summary-table td {
-      padding: 10px 12px;
+      padding: 12px 14px;
       border-bottom: 1px solid #e2e8f0;
       color: var(--text-dark);
       vertical-align: top;
-      line-height: 1.45;
+      line-height: 1.5;
     }
 
-    .summary-table tr:nth-child(even) { background: #f0f9ff; }
+    .summary-table tbody tr:nth-child(odd) { background: #ffffff; }
+    .summary-table tbody tr:nth-child(even) { background: #f8fafc; }
+    .summary-table tbody tr:hover { background: #f0f9ff; }
 
-    /* INTERACTIVE DRUG CARD GENERATOR WIDGET */
-    .sim-stage { background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 16px; padding: 14px; margin: 20px 0; }
-    .sim-controls { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
-    .sim-btn { padding: 10px 14px; border-radius: 10px; border: none; font-weight: 800; cursor: pointer; font-size: 0.85rem; background: var(--primary); color: white; flex: 1 1 110px; text-align: center; touch-action: manipulation; min-height: 42px; }
-    .sim-btn:active { background: var(--primary-dark); }
-    
-    .drug-card-display { background: white; border: 2px solid #3b82f6; border-radius: 12px; padding: 14px; margin-top: 8px; }
-    .drug-card-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 6px; margin-bottom: 10px; flex-wrap: wrap; gap: 6px; }
-    .drug-card-title { font-size: 1.05rem; font-weight: 800; color: var(--primary-dark); }
-    .drug-card-class { background: #dbeafe; color: #1e40af; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; }
-    .drug-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; }
-    .drug-section-box { background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0; }
-    .drug-section-box strong { color: var(--primary-dark); display: block; margin-bottom: 3px; font-size: 0.78rem; text-transform: uppercase; }
+    .table-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; margin-bottom: 4px; }
+    .tag-pk { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+    .tag-pd { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .tag-uhs { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
 
     /* SIMPLE MOBILE POPUP MODAL */
     .mobile-popup-overlay {
@@ -285,14 +283,12 @@
     /* MOBILE INTERFACE ENHANCEMENTS */
     @media (max-width: 640px) {
       body { padding: 0 0 12px 0; }
-      .container { padding: 16px 12px; border-radius: 14px; margin-top: 10px; }
+      .container { padding: 18px 14px; border-radius: 14px; margin-top: 10px; }
       .card-grid { grid-template-columns: 1fr; gap: 12px; }
       .card { padding: 16px 14px; }
-      .nursing-item { padding: 12px; }
       .header-actions { flex-direction: column; width: 100%; }
       .btn-header { width: 100%; text-align: center; }
       .modal-card { max-height: 96vh; }
-      .drug-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -309,10 +305,10 @@
         <span class="badge">Pharmacology Portal — Unit I</span>
       </div>
       <h1>Basic Principles of Pharmacology</h1>
-      <p class="subtitle">Interactive student demo: Explore core concepts, interactive drug cards, animated simulations, and self-assessment tools.</p>
+      <p class="subtitle">Interactive student demo: Explore core concepts, UHS targets, practice quizzes, and high-yield master tables.</p>
 
       <div class="header-actions">
-        <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
+        <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Exam Summary Table</button>
       </div>
     </header>
 
@@ -368,58 +364,6 @@
         </a>
 
       </div>
-
-      <!-- PREPARING DRUG CARDS (INTERACTIVE WIDGET) -->
-      <h2>Interactive Drug Cards <span class="feature-tag gold">STUDENT FAVORITE</span></h2>
-      <p style="font-size:0.88rem; color:var(--text-muted);">Interactive drug cards help students master essential drug mechanisms, side effects, and nursing interventions efficiently:</p>
-
-      <div class="sim-stage">
-        <h3 style="color: var(--primary-dark); text-align: center; margin-bottom: 6px;">Interactive Drug Card Viewer</h3>
-        <p style="text-align: center; font-size: 0.82rem; margin-bottom: 12px;">Click a drug below to preview its formatted study profile:</p>
-
-        <div class="sim-controls">
-          <button class="sim-btn" onclick="loadDrugCard('digoxin')">Digoxin (Lanoxin)</button>
-          <button class="sim-btn" onclick="loadDrugCard('furosemide')">Furosemide (Lasix)</button>
-          <button class="sim-btn" onclick="loadDrugCard('morphine')">Morphine Sulfate</button>
-        </div>
-
-        <div class="drug-card-display" id="drugCardDisplay">
-          <div class="drug-card-header">
-            <span class="drug-card-title" id="dcTitle">Select a drug above</span>
-            <span class="drug-card-class" id="dcClass">Classification</span>
-          </div>
-          <div class="drug-grid">
-            <div class="drug-section-box">
-              <strong>Mechanism of Action</strong>
-              <span id="dcMoa" style="color: var(--text-muted); font-size: 0.82rem;">Click any drug button above to load details.</span>
-            </div>
-            <div class="drug-section-box">
-              <strong>Indications</strong>
-              <span id="dcInd" style="color: var(--text-muted); font-size: 0.82rem;">-</span>
-            </div>
-            <div class="drug-section-box">
-              <strong>Key Side Effects &amp; Toxicity</strong>
-              <span id="dcSide" style="color: var(--text-muted); font-size: 0.82rem;">-</span>
-            </div>
-            <div class="drug-section-box">
-              <strong>Priority Nursing Interventions</strong>
-              <span id="dcNurse" style="color: var(--text-muted); font-size: 0.82rem;">-</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <h2>General Nursing Considerations</h2>
-      <ul class="nursing-list">
-        <li class="nursing-item">
-          <div class="nursing-number">1</div>
-          <div><strong>Patient Assessment:</strong> Always review patient history for renal or hepatic impairment prior to drug administration, as organ function significantly alters drug clearance.</div>
-        </li>
-        <li class="nursing-item">
-          <div class="nursing-number">2</div>
-          <div><strong>Dose Accuracy:</strong> Perform independent double-checks on high-alert medications and verify dosage calculations against patient parameters.</div>
-        </li>
-      </ul>
     </main>
   </div>
 
@@ -436,48 +380,48 @@
       <button class="close-btn" onclick="toggleModal('tableModal')">&times;</button>
     </div>
     <div class="modal-body">
-      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">Comprehensive comparative breakdown integrating Pharmacokinetics, Pharmacodynamics, and High-Yield UHS Unit I Curriculum Core.</p>
+      <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 12px;">Comprehensive, high-yield comparative breakdown combining Pharmacokinetics, Pharmacodynamics, and mandatory UHS Unit I examination targets.</p>
       
       <div class="table-container">
         <table class="summary-table">
           <thead>
             <tr>
-              <th>Domain / Parameter</th>
-              <th>Pharmacokinetics (PK)</th>
-              <th>Pharmacodynamics (PD)</th>
-              <th>UHS Unit I Essential Content</th>
+              <th style="width: 22%;">Domain / Parameter</th>
+              <th style="width: 26%;">Pharmacokinetics (PK)</th>
+              <th style="width: 26%;">Pharmacodynamics (PD)</th>
+              <th style="width: 26%;">UHS Unit I Essential Content</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><strong>1. Core Definition &amp; Scope</strong></td>
-              <td><em>"What the body does to the drug"</em> — Drug movement through biological membranes over time.</td>
-              <td><em>"What the drug does to the body"</em> — Biochemical, physiological, and receptor interactions.</td>
-              <td>Foundational terminologies (Posology, Toxicology, Pharmacotherapeutics, Pharmacy) &amp; Historical Milestones (Avicenna, Paracelsus, Sertürner).</td>
+              <td><span class="table-tag tag-pk">PK Core</span><br><em>"What body does to drug"</em> — Movement of drug across biological membranes (ADME) over time.</td>
+              <td><span class="table-tag tag-pd">PD Core</span><br><em>"What drug does to body"</em> — Biochemical, cellular, and organ response mechanisms.</td>
+              <td><span class="table-tag tag-uhs">UHS Target</span><br>• Core Terms: Posology, Toxicology, Pharmacotherapeutics, Pharmacy.<br>• History: Avicenna, Paracelsus, Sertürner.</td>
             </tr>
             <tr>
               <td><strong>2. Core Processes &amp; Mechanisms</strong></td>
-              <td><strong>ADME Framework:</strong><br>• Absorption (Bioavailability 'F')<br>• Distribution (Protein binding, Vd)<br>• Metabolism (CYP450 Phase I/II)<br>• Excretion (Clearance, t1/2)</td>
-              <td><strong>Receptor Mechanism:</strong><br>• Agonist vs. Antagonist<br>• Enzyme inhibition / Ion Channels<br>• Dose-Response Relationship<br>• Potency (EC50) vs. Efficacy (Emax)</td>
-              <td><strong>Sources &amp; Classification:</strong><br>• Sources: Plant (Digoxin), Animal (Heparin), Mineral, Microbe (Penicillin), Synthetic, Biotech (rDNA Insulin).<br>• Types of Names: Chemical, Generic, Brand/Trade.</td>
+              <td><span class="table-tag tag-pk">ADME Pathway</span><br>• Absorption (Bioavailability 'F')<br>• Distribution (Vd, Albumin binding)<br>• Metabolism (CYP450 Phase I/II)<br>• Excretion (Clearance, t1/2)</td>
+              <td><span class="table-tag tag-pd">Receptor Action</span><br>• Agonist, Antagonist, Partial Agonist<br>• Dose-Response Relationship<br>• Potency (EC50) vs. Efficacy (Emax)</td>
+              <td><span class="table-tag tag-uhs">Sources &amp; Naming</span><br>• Sources: Plant (Digoxin), Animal (Heparin), Microbe (Penicillin), Synthetic, rDNA.<br>• Names: Chemical, Generic, Trade/Brand.</td>
             </tr>
             <tr>
               <td><strong>3. Key Formulas &amp; Parameters</strong></td>
-              <td>• Bioavailability F (%)<br>• Vd = Dose / C0<br>• t1/2 = (0.693 × Vd) / Clearance<br>• Steady State = 4 to 5 × t1/2</td>
-              <td>• Therapeutic Index: TI = TD50 / ED50<br>• Margin of Safety<br>• Receptor Occupancy Model</td>
-              <td>• Purposes: Diagnostic, Curative, Symptomatic/Palliative, Prophylactic, Replacement, Supportive.<br>• Standards: Pharmacopeias (USP, BP, IP).</td>
+              <td><span class="table-tag tag-pk">Formulas</span><br>• Bioavailability F (%)<br>• Vd = Dose / C0<br>• t1/2 = (0.693 × Vd) / Clearance<br>• Steady State = 4 to 5 × t1/2</td>
+              <td><span class="table-tag tag-pd">Safety Indices</span><br>• Therapeutic Index: TI = TD50 / ED50<br>• Margin of Safety<br>• Receptor Occupancy Model</td>
+              <td><span class="table-tag tag-uhs">Therapeutic Purposes</span><br>• Diagnostic, Curative, Symptomatic / Palliative, Prophylactic, Replacement, Supportive.<br>• Official Books: Pharmacopeias (USP, BP, IP).</td>
             </tr>
             <tr>
               <td><strong>4. Clinical Safety &amp; High-Alert Risks</strong></td>
-              <td>• First-Pass Effect (Liver extraction ratio)<br>• Hypoalbuminemia &rarr; Free drug toxicity<br>• Renal Failure &rarr; Drug accumulation &rarr; Dose reduction needed.</td>
-              <td>• Narrow Therapeutic Index (TDM required: Digoxin, Lithium, Warfarin, Gentamicin)<br>• Receptor Desensitization / Tolerance.</td>
-              <td>• Hospital Supply Systems: Floor Stock, Individual Prescription, <strong>Unit Dose System (Safest)</strong>.<br>• Controlled Schedules (I–V), DRAP 1976 Laws.<br>• Clinical Drug Cards Preparation.</td>
+              <td><span class="table-tag tag-pk">Risk Factors</span><br>• Hepatic First-Pass Extraction<br>• Hypoalbuminemia &rarr; Toxicity<br>• Renal Failure &rarr; Drug Accumulation</td>
+              <td><span class="table-tag tag-pd">TDM Warning</span><br>• Narrow Therapeutic Index (Digoxin, Lithium, Warfarin, Gentamicin)<br>• Desensitization / Tolerance</td>
+              <td><span class="table-tag tag-uhs">Hospital Systems</span><br>• Distribution: Floor Stock, Individual Orders, <strong>Unit Dose System (Safest)</strong>.<br>• Schedules I–V &amp; DRAP Act 1976.</td>
             </tr>
             <tr>
-              <td><strong>5. Nursing Responsibilities</strong></td>
-              <td>Monitor organ function (eGFR, BUN, LFTs) &amp; timing of peak/trough levels.</td>
-              <td>Assess therapeutic efficacy, onset/peak/duration, and monitor for side effects/toxicities.</td>
-              <td>Apply Rights of Medication Administration, double-check high-alert drugs, calculate posology doses, and teach patients.</td>
+              <td><strong>5. Priority Nursing Responsibilities</strong></td>
+              <td><span class="table-tag tag-pk">Nursing Care</span><br>• Monitor Renal/Liver function (eGFR, BUN, LFTs).<br>• Time Peak &amp; Trough Blood Levels.</td>
+              <td><span class="table-tag tag-pd">Nursing Care</span><br>• Assess therapeutic efficacy.<br>• Monitor onset, peak, duration, and side effects/toxicity.</td>
+              <td><span class="table-tag tag-uhs">Nursing Care</span><br>• 10 Rights of Drug Administration.<br>• Independent double-checks on high-alert drugs.<br>• Posology dosage calculations.</td>
             </tr>
           </tbody>
         </table>
@@ -511,47 +455,7 @@
     modal.classList.toggle('active');
   }
 
-  const drugData = {
-    digoxin: {
-      title: "Digoxin (Lanoxin)",
-      class: "Cardiac Glycoside / Positive Inotrope",
-      moa: "Inhibits Na+/K+ ATPase membrane pump, increasing intracellular calcium. This increases myocardial contractility (+ inotropic) and decreases AV node conduction (- chronotropic).",
-      ind: "Heart Failure, Atrial Fibrillation, Atrial Flutter.",
-      side: "Bradycardia, anorexia, nausea/vomiting, visual disturbances (yellow-green halos, blurred vision), fatal ventricular arrhythmias.",
-      nurse: "Check apical pulse for 1 full minute before giving (hold if HR < 60 bpm). Monitor serum potassium (hypokalemia increases digoxin toxicity risk!). Therapeutic blood range: 0.5–2.0 ng/mL. Antidote: Digoxin Immune Fab (Digibind)."
-    },
-    furosemide: {
-      title: "Furosemide (Lasix)",
-      class: "Loop Diuretic",
-      moa: "Inhibits Na+/K+/2Cl- cotransporter in the thick ascending Loop of Henle, blocking water and sodium reabsorption to promote intense diuresis.",
-      ind: "Acute Pulmonary Edema, Heart Failure Edema, Hepatic Cirrhosis, Renal Disease, Hypertension.",
-      side: "Hypokalemia, severe dehydration, orthostatic hypotension, ototoxicity (tinnitus/hearing loss if pushed too fast IV), hyponatremia.",
-      nurse: "Assess blood pressure, serum potassium levels, daily body weight, and strict Intake & Output (I&O). Give IV push slowly over 1-2 minutes to prevent ototoxicity."
-    },
-    morphine: {
-      title: "Morphine Sulfate",
-      class: "Opioid Analgesic (Schedule II Controlled Substance)",
-      moa: "Binds to mu-opioid receptors in the CNS, inhibiting ascending pain pathways and altering emotional response to pain.",
-      ind: "Severe acute pain, Myocardial Infarction chest pain, Acute Pulmonary Edema dyspnea.",
-      side: "Respiratory depression, severe constipation, sedation, hypotension, urinary retention, addiction/tolerance.",
-      nurse: "Assess respiratory rate & depth prior to administration (hold if RR < 12 breaths/min). Have antidote Naloxone (Narcan) immediately available. Initiate prophylactic bowel regimen."
-    }
-  };
-
-  function loadDrugCard(drugKey) {
-    const drug = drugData[drugKey];
-    if (!drug) return;
-    document.getElementById("dcTitle").textContent = drug.title;
-    document.getElementById("dcClass").textContent = drug.class;
-    document.getElementById("dcMoa").textContent = drug.moa;
-    document.getElementById("dcInd").textContent = drug.ind;
-    document.getElementById("dcSide").textContent = drug.side;
-    document.getElementById("dcNurse").textContent = drug.nurse;
-  }
-
   window.addEventListener("DOMContentLoaded", function () {
-    loadDrugCard('digoxin');
-
     const modal = document.getElementById("mobileDesktopModal");
     const closeBtn = document.getElementById("closeMobilePopupBtn");
 
