@@ -134,9 +134,9 @@
         </div>
 
         <div class="form-group">
-          <label>🔐 Security Recovery Question</label>
-          <input type="text" id="studentSecurityAnswer" class="form-input" placeholder="e.g. Your first pet's name or city">
-          <p style="font-size: 0.72rem; color: #64748b; margin-top: 4px;">Remember this answer! It is required if you ever forget your password.</p>
+          <label>🔐 Security Question: What is your favorite city name?</label>
+          <input type="text" id="studentSecurityAnswer" class="form-input" placeholder="e.g. Multan">
+          <p style="font-size: 0.72rem; color: #64748b; margin-top: 4px;">Remember this answer! It matches your cloud profile if you forget your password.</p>
         </div>
       </div>
 
@@ -173,7 +173,7 @@
   <div id="forgotModal" class="modal-backdrop">
     <div class="modal-box">
       <h3>Reset Password</h3>
-      <p>Enter your registered account email and your secret security answer to safely reset your password.</p>
+      <p>Enter your registered account email and answer the security question to securely reset your password.</p>
       
       <div class="form-group">
         <label>Registered Student Email</label>
@@ -181,8 +181,8 @@
       </div>
 
       <div class="form-group">
-        <label>Your Security Answer</label>
-        <input type="text" id="recoveryAnswer" class="form-input" placeholder="Secret answer provided at registration">
+        <label>Security Question: What is your favorite city name?</label>
+        <input type="text" id="recoveryAnswer" class="form-input" placeholder="Enter your favorite city name">
       </div>
 
       <div class="form-group">
@@ -349,7 +349,7 @@
           document.getElementById('studentEmail').value = email;
           document.getElementById('studentPassword').value = '';
         } else {
-          alert('❌ ' + (result.message || 'Password reset failed. Check your security answer.'));
+          alert('❌ ' + (result.message || 'Password reset failed. Check your email or security answer.'));
         }
       } catch (err) {
         console.error('Reset Error:', err);
