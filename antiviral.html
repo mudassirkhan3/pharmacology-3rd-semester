@@ -99,12 +99,10 @@
       margin: 0 auto;
     }
 
-    /* SMALL BUTTON BAR */
+    /* SINGLE SMALL BUTTON CONTAINER */
     .nav-button-bar {
       display: flex;
       justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
       margin-bottom: 30px;
     }
 
@@ -112,21 +110,21 @@
       background: var(--primary-gradient);
       color: #ffffff;
       border: none;
-      padding: 6px 14px;
+      padding: 8px 18px;
       border-radius: 20px;
-      font-size: 0.78rem;
+      font-size: 0.82rem;
       font-weight: 700;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      box-shadow: 0 2px 6px rgba(13, 148, 136, 0.2);
+      gap: 6px;
+      box-shadow: 0 3px 8px rgba(13, 148, 136, 0.25);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .btn-small-mnemonic:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 10px rgba(13, 148, 136, 0.3);
+      box-shadow: 0 5px 12px rgba(13, 148, 136, 0.35);
     }
 
     /* CARDS STRUCTURE */
@@ -455,21 +453,21 @@
       flex: 1;
     }
 
-    .modal-content-text p {
-      font-size: 0.9rem;
+    .modal-section-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #0f766e;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .modal-body p {
+      font-size: 0.86rem;
       color: var(--text-muted);
-      margin-bottom: 12px;
-    }
-
-    .modal-content-text ul {
-      margin-left: 20px;
-      margin-bottom: 12px;
-      font-size: 0.88rem;
-      color: var(--text-dark);
-    }
-
-    .modal-content-text li {
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     /* SUMMARY TABLE SECTION */
@@ -510,7 +508,7 @@
       color: var(--text-muted);
     }
 
-    tr:nth-child(in-range) {
+    tr:nth-child(even) {
       background: #f8fafc;
     }
 
@@ -537,13 +535,9 @@
       <p class="subtitle">An exceptionally structured breakdown of antiviral drug classifications with clear abbreviations, fully separated HIV, Hepatitis B, and Hepatitis C sections, custom prodrug mnemonics, and high-yield exam points.</p>
     </header>
 
-    <!-- SMALL BUTTON BAR FOR EACH CLASSIFICATION -->
+    <!-- SINGLE SMALL BUTTON -->
     <div class="nav-button-bar">
-      <button class="btn-small-mnemonic" onclick="openModal('respModal')">🫁 Respiratory Mnemonic</button>
-      <button class="btn-small-mnemonic" onclick="openModal('hivModal')">🎗️ HIV Mnemonic</button>
-      <button class="btn-small-mnemonic" onclick="openModal('hepbModal')">🩺 Hep B Mnemonic</button>
-      <button class="btn-small-mnemonic" onclick="openModal('hepcModal')">🧬 Hep C Mnemonic</button>
-      <button class="btn-small-mnemonic" onclick="openModal('herpesModal')">🔬 Herpes / CMV Mnemonic</button>
+      <button class="btn-small-mnemonic" onclick="openModal('allMnemonicsModal')">💡 All Classification Mnemonics</button>
     </div>
 
     <main>
@@ -970,100 +964,33 @@
 
   </div>
 
-  <!-- ================= MODALS FOR EACH CLASSIFICATION ================= -->
-  
-  <!-- 1. Respiratory Modal -->
-  <div class="modal-overlay" id="respModal">
+  <!-- ================= SINGLE MODAL CONTAINING ALL MNEMONICS ================= -->
+  <div class="modal-overlay" id="allMnemonicsModal">
     <div class="modal-card">
       <div class="modal-header">
-        <h3>🫁 Respiratory Virus Mnemonic</h3>
-        <button class="close-btn" onclick="closeModal('respModal')">&times;</button>
+        <h3>💡 All Antiviral Classification Mnemonics</h3>
+        <button class="close-btn" onclick="closeModal('allMnemonicsModal')">&times;</button>
       </div>
-      <div class="modal-body modal-content-text">
-        <p><strong>Mnemonic: "Flu Gets Out Fast"</strong></p>
-        <ul>
-          <li><strong>F</strong>lu (Influenza A &amp; B)</li>
-          <li><strong>G</strong>ets (Baloxavir Marboxil)</li>
-          <li><strong>O</strong>ut (Oseltamivir)</li>
-          <li><strong>F</strong>ast (Remdesivir for COVID-19)</li>
-        </ul>
-        <p><em>Prodrug Note:</em> Baloxavir marboxil is an ester prodrug cleaved in vivo.</p>
-      </div>
-    </div>
-  </div>
+      <div class="modal-body">
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Review all easy-to-remember class mnemonics in one clean place:</p>
+        
+        <div class="modal-section-title">🫁 1. Respiratory Viruses</div>
+        <p><strong>"Flu Gets Out Fast"</strong> &rarr; <strong>F</strong>lu (Influenza) | <strong>G</strong>ets (Baloxavir) | <strong>O</strong>ut (Oseltamivir) | <strong>F</strong>ast (Remdesivir for COVID)</p>
 
-  <!-- 2. HIV Modal -->
-  <div class="modal-overlay" id="hivModal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3>🎗️ HIV Antiviral Mnemonic</h3>
-        <button class="close-btn" onclick="closeModal('hivModal')">&times;</button>
-      </div>
-      <div class="modal-body modal-content-text">
-        <p><strong>Mnemonic: "Always Try Doing Daily Care"</strong></p>
-        <ul>
-          <li><strong>A</strong>bacavir (NRTI — check HLA-B*5701)</li>
-          <li><strong>T</strong>enofovir (NtRTI / TAF prodrug)</li>
-          <li><strong>D</strong>olutegravir (INSTI anchor)</li>
-          <li><strong>D</strong>arunavir (Protease Inhibitor)</li>
-        </ul>
-        <p><em>Prodrug Note:</em> Tenofovir alafenamide (TAF) is a smart targeted prodrug.</p>
-      </div>
-    </div>
-  </div>
+        <div class="modal-section-title">🎗️ 2. HIV Antivirals</div>
+        <p><strong>"Always Try Doing Daily Care"</strong> &rarr; <strong>A</strong>bacavir | <strong>T</strong>enofovir | <strong>D</strong>olutegravir | <strong>D</strong>arunavir (Core active drugs in HIV treatment schemas)</p>
 
-  <!-- 3. Hep B Modal -->
-  <div class="modal-overlay" id="hepbModal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3>🩺 Hepatitis B (HBV) Mnemonic</h3>
-        <button class="close-btn" onclick="closeModal('hepbModal')">&times;</button>
-      </div>
-      <div class="modal-body modal-content-text">
-        <p><strong>Mnemonic: "Every Patient Heals"</strong></p>
-        <ul>
-          <li><strong>E</strong>ntecavir (Polymerase Blocker)</li>
-          <li><strong>P</strong>eginterferon (Immune Booster)</li>
-          <li><strong>H</strong>ep B controlled!</li>
-        </ul>
-        <p><em>Prodrug Note:</em> Adefovir dipivoxil is an oral ester prodrug.</p>
-      </div>
-    </div>
-  </div>
+        <div class="modal-section-title">🩺 3. Hepatitis B (HBV)</div>
+        <p><strong>"Every Patient Heals"</strong> &rarr; <strong>E</strong>ntecavir | <strong>P</strong>eginterferon | <strong>H</strong>ep B controlled!</p>
 
-  <!-- 4. Hep C Modal -->
-  <div class="modal-overlay" id="hepcModal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3>🧬 Hepatitis C (HCV) Mnemonic</h3>
-        <button class="close-btn" onclick="closeModal('hepcModal')">&times;</button>
-      </div>
-      <div class="modal-body modal-content-text">
-        <p><strong>Mnemonic: "Super Cure for Hep C"</strong></p>
-        <ul>
-          <li><strong>S</strong>ofosbuvir (NS5B Polymerase Inhibitor)</li>
-          <li><strong>C</strong>uring</li>
-          <li><strong>H</strong>ep C effectively!</li>
-        </ul>
-        <p><em>Prodrug Note:</em> Sofosbuvir is a nucleotide prodrug activated inside liver cells.</p>
-      </div>
-    </div>
-  </div>
+        <div class="modal-section-title">🧬 4. Hepatitis C (HCV)</div>
+        <p><strong>"Super Cure for Hep C"</strong> &rarr; <strong>S</strong>ofosbuvir | <strong>C</strong>uring | <strong>H</strong>ep C effectively!</p>
 
-  <!-- 5. Herpes / CMV Modal -->
-  <div class="modal-overlay" id="herpesModal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3>🔬 Herpes / CMV Mnemonic</h3>
-        <button class="close-btn" onclick="closeModal('herpesModal')">&times;</button>
-      </div>
-      <div class="modal-body modal-content-text">
-        <p><strong>Mnemonic: "Always Guard Cold Sores"</strong></p>
-        <ul>
-          <li><strong>A</strong>cyclovir (HSV / VZV treatment)</li>
-          <li><strong>G</strong>anciclovir (CMV Retinitis)</li>
-        </ul>
-        <p><em>Prodrug Note:</em> Valacyclovir and Valganciclovir are L-valyl ester prodrugs for enhanced oral absorption.</p>
+        <div class="modal-section-title">🔬 5. Herpes &amp; CMV</div>
+        <p><strong>"Always Guard Cold Sores"</strong> &rarr; <strong>A</strong>cyclovir | <strong>G</strong>anciclovir | Combat cold sores, shingles, and cytomegalovirus!</p>
+
+        <div class="modal-section-title">💊 Prodrugs Quick Key</div>
+        <p><strong>Baloxavir marboxil</strong>, <strong>Tenofovir alafenamide (TAF)</strong>, and <strong>Valacyclovir / Valganciclovir</strong> are chemically modified ester "pro" forms built for optimal oral bioavailability or cell-targeted release!</p>
       </div>
     </div>
   </div>
