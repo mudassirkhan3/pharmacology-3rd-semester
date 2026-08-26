@@ -1,485 +1,950 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>GI Antimicrobial Agents & H. pylori Regimens | Pharmacology | MK Study Hub</title>
-  <meta name="description" content="Ultimate student-friendly BSN Pharmacology module on GI Antimicrobial Agents and H. pylori Regimens. Simple, interactive, and mobile optimized.">
-
-  <!-- TAILWIND CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50: '#f0fdfa',
-              100: '#ccfbf1',
-              500: '#14b8a6',
-              600: '#0d9488',
-              700: '#0f766e',
-              800: '#115e59',
-              900: '#134e4a',
-            }
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- LUCIDE ICONS CDN -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
+  <title>GI Antimicrobial Agents & H. pylori Regimens | GI Pharmacology</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap');
-    
+    :root {
+      --bg-gradient: radial-gradient(circle at 10% 20%, rgba(13, 148, 136, 0.08) 0%, rgba(20, 184, 166, 0.05) 40%, #f8fafc 90%);
+      --primary: #0d9488;
+      --primary-dark: #0f766e;
+      --primary-gradient: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+      --accent: #14b8a6;
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --card-border: rgba(153, 246, 228, 0.8);
+      --text-main: #134e4a;
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --shadow-glow: 0 20px 40px -15px rgba(13, 148, 136, 0.25);
+      --mnemonics-bg: #f0fdfa;
+      --mnemonics-border: #ccfbf1;
+      --warning-bg: #fff1f2;
+      --warning-border: #fecdd3;
+      --exam-badge-bg: #ef4444;
+      --exam-badge-text: #ffffff;
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: #f1f5f9;
-      color: #0f172a;
-      font-size: 16px;
-      line-height: 1.7;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 12px 6px 70px;
+      min-height: 100vh;
+      overflow-x: hidden;
       -webkit-tap-highlight-color: transparent;
     }
 
-    .font-mono-code {
-      font-family: 'JetBrains Mono', monospace;
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      padding: 24px 16px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: var(--shadow-glow);
     }
 
-    .custom-scroll {
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
+    header {
+      margin-bottom: 20px;
     }
-    .custom-scroll::-webkit-scrollbar { height: 4px; }
-    .custom-scroll::-webkit-scrollbar-track { background: #134e4a; border-radius: 8px; }
-    .custom-scroll::-webkit-scrollbar-thumb { background: #0d9488; border-radius: 8px; }
 
-    mark {
-      background-color: #fef08a;
-      color: #713f12;
-      padding: 2px 6px;
-      border-radius: 4px;
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .btn-header {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 0.9rem;
       font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex: 1;
+      box-shadow: 0 4px 10px rgba(13, 148, 136, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      min-height: 48px;
+    }
+
+    .btn-header:active {
+      transform: scale(0.97);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+      min-height: 44px;
+    }
+
+    .badge-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #f0fdfa;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.8rem;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      border: 1px solid #ccfbf1;
+    }
+
+    /* EXAM HIGH-YIELD BADGE */
+    .exam-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--exam-badge-bg);
+      color: var(--exam-badge-text);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.25);
+      margin-left: 6px;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    h1 {
+      font-size: 1.85rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #134e4a 0%, var(--primary) 50%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      color: var(--text-main);
+      margin: 28px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid #ccfbf1;
+      padding-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 22px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 14px;
+      color: var(--text-muted);
+      font-size: 0.94rem;
+    }
+
+    /* Section & Grid Styling */
+    .drug-class-card {
+      background: #ffffff;
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px 14px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      position: relative;
+    }
+
+    .drug-class-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-gradient);
+      border-radius: 16px 16px 0 0;
+    }
+
+    .grid-2, .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    .card-box {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      transition: border-color 0.2s ease;
+    }
+
+    .card-box h3 {
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-size: 1.02rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* MOA ENHANCED STEP-BY-STEP BOX */
+    .moa-enhanced-box {
+      background: #f0fdfa;
+      border: 2px solid #ccfbf1;
+      border-radius: 14px;
+      padding: 16px 12px;
+      margin: 16px 0;
+    }
+
+    .moa-enhanced-box h4 {
+      color: var(--text-main);
+      font-weight: 800;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .moa-concept-summary {
+      font-size: 0.88rem;
+      color: #134e4a;
+      background: #ccfbf1;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .moa-steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .moa-step-item {
+      background: #ffffff;
+      border: 1px solid #ccfbf1;
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .moa-step-number {
+      background: var(--primary);
+      color: white;
+      font-weight: 900;
+      font-size: 0.78rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .moa-step-content strong {
+      display: block;
+      color: var(--text-main);
+      font-size: 0.88rem;
+    }
+
+    .moa-step-content span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* ALIGNED MNEMONIC LIST LAYOUT */
+    .mnemonic-box {
+      background: var(--mnemonics-bg);
+      border: 1px solid var(--mnemonics-border);
+      border-left: 5px solid var(--primary);
+      border-radius: 12px;
+      padding: 16px 12px;
+      margin: 16px 0;
+    }
+
+    .mnemonic-box h4 {
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .aligned-mnemonic-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .aligned-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #ffffff;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #ccfbf1;
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    .letter-badge {
+      background: var(--primary);
+      color: white;
+      font-weight: 900;
+      font-size: 0.78rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Warning / Contraindication Styling */
+    .warning-box {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-left: 5px solid #e11d48;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 14px 0;
+    }
+
+    .warning-box h4 {
+      color: #9f1239;
+      font-size: 0.98rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    ul.bullet-list {
+      list-style-type: none;
+      padding-left: 0;
+      margin-bottom: 16px;
+    }
+
+    ul.bullet-list li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 10px;
+      color: var(--text-muted);
+      font-size: 0.93rem;
+    }
+
+    ul.bullet-list li::before {
+      content: '▪';
+      position: absolute;
+      left: 6px;
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    /* MODAL POPUP STYLES - Mobile First optimized */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 24px 24px 0 0;
+      max-width: 100%;
+      width: 100%;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      padding: 16px 20px;
+      background: var(--primary-gradient);
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .modal-header h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .close-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .close-btn:active {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .modal-body {
+      padding: 16px;
+      overflow-y: auto;
+      flex: 1;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* TABLE STYLING FOR MODAL */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid #ccfbf1;
+      margin-top: 10px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      text-align: left;
+      min-width: 600px;
+    }
+
+    .summary-table th {
+      background: #134e4a;
+      color: #ffffff;
+      padding: 10px 12px;
+      font-weight: 700;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    .summary-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e2e8f0;
+      color: var(--text-dark);
+    }
+
+    .summary-table tr:nth-child(even) {
+      background: #f0fdfa;
+    }
+
+    /* TREE DIAGRAM STYLES */
+    .tree-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 4px;
+    }
+
+    .tree-node {
+      background: #f0fdfa;
+      border: 1px solid #ccfbf1;
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .tree-title {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 0.94rem;
+      margin-bottom: 8px;
+    }
+
+    .tree-sublist {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tree-tag {
+      background: #ccfbf1;
+      color: var(--text-main);
+      border: 1px solid #99f6e4;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    /* Desktop Adjustments (Tablet & Laptop) */
+    @media (min-width: 768px) {
+      body { padding: 20px 12px 60px; }
+      .container { padding: 32px 24px; }
+      h1 { font-size: 2.2rem; }
+      .grid-2 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .header-actions { width: auto; }
+      .btn-header { flex: initial; padding: 8px 16px; border-radius: 50px; min-height: auto; }
+      .modal-overlay { align-items: center; }
+      .modal-card { border-radius: 18px; max-width: 950px; max-height: 90vh; }
+      .moa-enhanced-box { padding: 20px; }
+      .mnemonic-box { padding: 18px; }
     }
   </style>
 </head>
-<body class="antialiased text-slate-900 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 pt-4 sm:pt-6">
+<body>
 
-  <!-- TOP STICKY BAR -->
-  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-300 shadow-sm max-w-4xl mx-auto rounded-2xl mb-6">
-    <div class="px-4 h-16 flex items-center justify-between gap-2">
-      <a href="chapter3.html" class="inline-flex items-center gap-1.5 text-xs sm:text-base font-extrabold text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-2 rounded-xl border border-brand-200 transition active:scale-95">
-        <i data-lucide="arrow-left" class="w-4 h-4 sm:w-5 sm:h-5"></i>
-        <span>Chapter 3 Hub</span>
-      </a>
-
-      <div class="flex items-center gap-2">
-        <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-800 text-[10px] sm:text-sm font-black uppercase tracking-wider border border-slate-300">
-          3rd Sem BSN
-        </span>
-        <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center font-black text-xs sm:text-sm shadow-md shadow-brand-600/20">
-          MK
-        </div>
+<div class="container">
+  <a href="chapter3.html" class="back-btn">&larr; Back to Chapter 3 Hub</a>
+  
+  <header>
+    <div class="header-top">
+      <div class="badge-container">
+        <span class="badge">Pharmacology Class Deep-Dive</span>
+      </div>
+      <div class="header-actions">
+        <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
+        <button class="btn-header" onclick="toggleModal('treeModal')">🌳 Classification Tree</button>
       </div>
     </div>
+    
+    <h1>Gastrointestinal Antimicrobial Agents &amp; H. pylori Regimens</h1>
+    <p class="subtitle">Targeted anti-infective medications, pharmacological agent classes, and multi-drug eradication protocols designed to eliminate gastrointestinal pathogens, treat peptic ulcer disease, and manage enteric infections.</p>
   </header>
 
-  <main class="max-w-4xl mx-auto space-y-6 sm:space-y-10">
+  <main>
 
-    <!-- 1. CHAPTER INTRODUCTION -->
-    <section class="bg-gradient-to-br from-slate-900 via-brand-900 to-brand-800 text-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 shadow-xl border border-brand-700/50 relative overflow-hidden space-y-4">
-      <div class="flex flex-wrap items-center justify-between gap-2">
-        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/15 text-white text-[10px] sm:text-xs font-extrabold uppercase tracking-wide border border-white/20">
-          <i data-lucide="book-open" class="w-3.5 h-3.5 text-brand-300"></i> Gastrointestinal Pharmacology
-        </span>
-        <span class="text-[10px] sm:text-sm text-brand-200 font-bold">Chapter Deep-Dive</span>
-      </div>
-
-      <h1 class="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight break-words">
-        Gastrointestinal Antimicrobial Agents & H. pylori Regimens
-      </h1>
-
-      <p class="text-slate-200 text-xs sm:text-lg font-medium max-w-2xl leading-relaxed">
-        Specialized anti-infective medications and multi-drug eradication protocols designed to eliminate gastrointestinal pathogens, treat peptic ulcer disease, and manage enteric infections.
-      </p>
-
-      <!-- SINGLE SMALL BUTTON FOR MNEMONIC HUB -->
-      <div class="pt-2">
-        <button onclick="openModal('allMnemonicsModal')" class="inline-flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white text-xs sm:text-sm font-extrabold rounded-xl shadow-md transition active:scale-95 border border-brand-400">
-          <i data-lucide="lightbulb" class="w-4 h-4 text-brand-200"></i>
-          <span>✨ Open Class & Prototype Mnemonic Hub</span>
-        </button>
-      </div>
-
-      <!-- What You Will Learn Card -->
-      <div class="pt-3 border-t border-white/20">
-        <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-brand-300 block mb-2">🎯 What you will learn in this module:</span>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-medium text-slate-100">
-          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Classification & Prototypes</div>
-          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> H. pylori Regimens</div>
-          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Uses & Mnemonics</div>
-          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Adverse Effects (ADRs)</div>
-          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Pharmacokinetics</div>
-          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Nursing Takeaways</div>
-        </div>
-      </div>
+    <!-- ================= 1. INTRODUCTION ================= -->
+    <section class="drug-class-card">
+      <h2>1. Introduction</h2>
+      <p>Gastrointestinal antimicrobial pharmacology encompasses specialized medications that either act locally within the gut lumen or combine synergistically to eradicate persistent pathogens like <i>Helicobacter pylori</i>. Eliminating these infections is vital for healing peptic ulcers, preventing gastric malignancies, and resolving acute enteric infections.</p>
     </section>
 
-    <!-- 2. CLASSIFICATION & PROTOTYPES -->
-    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
-          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">2</span>
-          Classification &amp; Prototype Drugs
-        </h2>
-        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Interactive</span>
-      </div>
+    <!-- ================= 2. CLASSIFICATION OF ANTIMICROBIAL AGENTS ================= -->
+    <section class="drug-class-card">
+      <h2>2. Classification of Gastrointestinal Antimicrobial Agents</h2>
+      <p>GI antimicrobial agents are categorized based on their pharmacological drug class, chemical structure, and clinical target within the digestive system:</p>
+      
+      <ul class="bullet-list">
+        <li><strong>Macrolides:</strong> Clarithromycin. <span class="exam-badge">IMP FOR EXAM</span></li>
+        <li><strong>Penicillins (Beta-lactams):</strong> Amoxicillin.</li>
+        <li><strong>Nitroimidazoles:</strong> Metronidazole, Tinidazole. <span class="exam-badge">IMP FOR EXAM</span></li>
+        <li><strong>Tetracyclines:</strong> Tetracycline hydrochloride.</li>
+        <li><strong>Glycopeptides (Oral):</strong> Vancomycin (Oral formulation). <span class="exam-badge">IMP FOR EXAM</span></li>
+        <li><strong>Ansamycins (Gut-Restricted):</strong> Rifaximin.</li>
+        <li><strong>Heavy Metal Salts / Protectants:</strong> Bismuth Subsalicylate.</li>
+      </ul>
 
-      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
-        Click any antimicrobial class below to review its prototype drugs and clinical properties:
-      </p>
-
-      <div class="space-y-3">
-        <!-- Subclass 1 -->
-        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
-          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
-            <span class="flex items-center gap-2"><i data-lucide="pill" class="w-4 h-4 text-brand-600"></i> Macrolides</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
-          </button>
-          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
-            <p><strong>Prototype Drug &amp; Classification Mnemonic:</strong> <mark>C</mark>larithromycin — <em>"<strong>C</strong>lear bacteria fast"</em></p>
-            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
-              <li>Clarithromycin</li>
-            </ul>
-            <p><strong>Clinical Notes:</strong> Inhibits bacterial protein synthesis by binding to the 50S ribosomal subunit; core component of upper GI anti-infective protocols.</p>
+      <!-- PROTOTYPE DRUGS MNEMONIC -->
+      <div class="mnemonic-box">
+        <h4>💡 Mnemonic for Prototype Drugs: "C.A.M.T."</h4>
+        <div class="aligned-mnemonic-list">
+          <div class="aligned-item">
+            <span class="letter-badge">C</span>
+            <span><strong>C</strong>larithromycin <span style="color: var(--text-muted); font-size: 0.85rem;">(Macrolide Prototype)</span> <span class="exam-badge">IMP FOR EXAM</span></span>
           </div>
-        </div>
-
-        <!-- Subclass 2 -->
-        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
-          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
-            <span class="flex items-center gap-2"><i data-lucide="shield" class="w-4 h-4 text-brand-600"></i> Penicillins (Beta-lactams)</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
-          </button>
-          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
-            <p><strong>Prototype Drug &amp; Classification Mnemonic:</strong> <mark>Am</mark>oxicillin — <em>"<strong>Am</strong>ericillin builds walls"</em></p>
-            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
-              <li>Amoxicillin</li>
-            </ul>
-            <p><strong>Clinical Notes:</strong> Inhibits bacterial cell wall synthesis; provides essential bactericidal activity in *H. pylori* regimens.</p>
+          <div class="aligned-item">
+            <span class="letter-badge">A</span>
+            <span><strong>A</strong>moxicillin <span style="color: var(--text-muted); font-size: 0.85rem;">(Penicillin Beta-lactam)</span></span>
           </div>
-        </div>
-
-        <!-- Subclass 3 -->
-        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
-          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
-            <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-brand-600"></i> Nitroimidazoles</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
-          </button>
-          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
-            <p><strong>Prototype Drug &amp; Classification Mnemonic:</strong> <mark>M</mark>etronidazole — <em>"<strong>M</strong>etron destroys DNA"</em></p>
-            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
-              <li>Metronidazole</li>
-              <li>Tinidazole</li>
-            </ul>
-            <p><strong>Clinical Notes:</strong> Disrupts microbial DNA synthesis; highly active against anaerobic bacteria and protozoal parasites.</p>
+          <div class="aligned-item">
+            <span class="letter-badge">M</span>
+            <span><strong>M</strong>etronidazole <span style="color: var(--text-muted); font-size: 0.85rem;">(Nitroimidazole Prototype)</span> <span class="exam-badge">IMP FOR EXAM</span></span>
           </div>
-        </div>
-
-        <!-- Subclass 4 -->
-        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
-          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
-            <span class="flex items-center gap-2"><i data-lucide="dna" class="w-4 h-4 text-brand-600"></i> Tetracyclines &amp; Oral Glycopeptides</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
-          </button>
-          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
-            <p><strong>Prototype Drugs &amp; Classification Mnemonic:</strong> <mark>T</mark>etracycline &amp; <mark>V</mark>ancomycin — <em>"<strong>T</strong>etra tags 30S, <strong>V</strong>anco targets C. diff"</em></p>
-            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
-              <li>Tetracycline hydrochloride</li>
-              <li>Vancomycin (Oral formulation)</li>
-            </ul>
-            <p><strong>Clinical Notes:</strong> Tetracycline targets 30S ribosomal subunit in quadruple therapy; oral Vancomycin acts locally in the gut for *C. difficile* colitis.</p>
-          </div>
-        </div>
-
-        <!-- Subclass 5 -->
-        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
-          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
-            <span class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600"></i> Ansamycins &amp; Heavy Metal Salts</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
-          </button>
-          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
-            <p><strong>Prototype Drugs &amp; Classification Mnemonic:</strong> <mark>R</mark>ifaximin &amp; <mark>B</mark>ismuth — <em>"<strong>R</strong>ifax restricts gut, <strong>B</strong>ismuth binds beds"</em></p>
-            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
-              <li>Rifaximin</li>
-              <li>Bismuth Subsalicylate</li>
-            </ul>
-            <p><strong>Clinical Notes:</strong> Rifaximin is a gut-restricted RNA synthesis inhibitor for travelers' diarrhea; Bismuth exhibits local antimicrobial action and coats ulcer beds.</p>
+          <div class="aligned-item">
+            <span class="letter-badge">T</span>
+            <span><strong>T</strong>etracycline / Vancomycin <span style="color: var(--text-muted); font-size: 0.85rem;">(Protein synthesis / Glycopeptide)</span></span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 3. H. PYLORI REGIMENS -->
-    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
-          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">3</span>
-          H. pylori Eradication Therapies
-        </h2>
-        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Protocols</span>
-      </div>
+    <!-- ================= 3. H. pylori ERADICATION THERAPIES ================= -->
+    <section class="drug-class-card">
+      <h2>3. H. pylori Eradication Therapies (Triple &amp; Quadruple Protocols)</h2>
+      <p>Because single antibiotics fail to cure <i>H. pylori</i> due to rapid bacterial resistance and stomach acidity, structured multi-drug combination regimens are mandatory:</p>
 
-      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
-        Because single antibiotics fail to cure <i>H. pylori</i> due to resistance and acidity, multi-drug combinations are mandatory:
-      </p>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
-        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
-          <strong class="text-brand-900 block text-base font-black">💊 Standard Triple Therapy (14 Days)</strong>
-          <p class="text-slate-700"><strong>Combination:</strong> PPI (e.g., Omeprazole) + Amoxicillin + Clarithromycin.</p>
-          <p class="text-slate-700"><strong>Role:</strong> PPI raises gastric pH to stabilize antibiotics. Amoxicillin weakens cell walls; Clarithromycin halts protein synthesis.</p>
+      <div class="grid-2">
+        <div class="card-box">
+          <h3>💊 Standard Triple Therapy (14 Days)</h3>
+          <p><strong>The Combination:</strong> PPI (e.g., Omeprazole) + Amoxicillin + Clarithromycin.</p>
+          <p style="margin-top: 10px;"><strong>Role &amp; Mechanism:</strong> The PPI raises gastric pH, making acid-labile antibiotics stable and effective. Amoxicillin weakens the bacterial cell wall, while Clarithromycin halts bacterial protein synthesis.</p>
+          <p style="margin-top: 10px;"><em>Note: Metronidazole substitutes Amoxicillin if the patient has a penicillin allergy.</em></p>
         </div>
-        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
-          <strong class="text-brand-900 block text-base font-black">🛡️ Bismuth Quadruple Therapy (14 Days)</strong>
-          <p class="text-slate-700"><strong>Combination:</strong> PPI + Bismuth Subsalicylate + Metronidazole + Tetracycline.</p>
-          <p class="text-slate-700"><strong>Role:</strong> First-line option when clarithromycin resistance is high. Bismuth coats ulcer beds with dual antibacterial coverage.</p>
+
+        <div class="card-box">
+          <h3>🛡️ Bismuth Quadruple Therapy (14 Days)</h3>
+          <p><strong>The Combination:</strong> PPI + Bismuth Subsalicylate + Metronidazole + Tetracycline.</p>
+          <p style="margin-top: 10px;"><strong>Role &amp; Mechanism:</strong> Recommended as first-line therapy in regions with high clarithromycin resistance. Bismuth exhibits direct antimicrobial action and coats ulcer beds, while Metronidazole and Tetracycline provide dual antibacterial coverage.</p>
         </div>
       </div>
     </section>
 
-    <!-- 4. USES -->
-    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
-          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">4</span>
-          Clinical Uses &amp; Indications
-        </h2>
-        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Indications</span>
+    <!-- ================= 4. DETAILED MECHANISM OF ACTION ================= -->
+    <section class="drug-class-card">
+      <h2>4. Detailed Mechanisms of Action</h2>
+      <p>Here is how each class targets microbial synthesis or gastrointestinal chemical environments:</p>
+
+      <!-- 4.1 PPIs in Eradication -->
+      <div class="moa-enhanced-box">
+        <h4>🧬 1. Proton Pump Inhibitors (PPIs) in Eradication <span class="exam-badge">IMP FOR EXAM</span></h4>
+        <div class="moa-concept-summary">💡 Simple Concept: Neutralizes stomach acid so antibiotics don't get destroyed and can work at peak efficiency.</div>
+        <div class="moa-steps-list">
+          <div class="moa-step-item">
+            <div class="moa-step-number">1</div>
+            <div class="moa-step-content">
+              <strong>Gastric Acid Suppression:</strong>
+              <span>Irreversibly inhibits the H+/K+ ATPase pump in gastric parietal cells, raising gastric pH above 6.</span>
+            </div>
+          </div>
+          <div class="moa-step-item">
+            <div class="moa-step-number">2</div>
+            <div class="moa-step-content">
+              <strong>Antibiotic Stabilization:</strong>
+              <span>Protects acid-labile components like clarithromycin and amoxicillin from degradation, enhancing tissue penetration.</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm font-medium">
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
-          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">01</span>
-          <span class="text-slate-800">Peptic Ulcer Disease and Chronic Gastritis associated with <i>Helicobacter pylori</i></span>
-        </div>
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
-          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">02</span>
-          <span class="text-slate-800"><i>Clostridioides difficile</i>-associated pseudomembranous colitis (Oral Vancomycin)</span>
-        </div>
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
-          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">03</span>
-          <span class="text-slate-800">Travelers' Diarrhea and Bacterial Gastroenteritis (Rifaximin)</span>
-        </div>
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
-          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">04</span>
-          <span class="text-slate-800">Hepatic Encephalopathy (reducing gut ammonia via Rifaximin)</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. USES MEMORY TRICK -->
-    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
-          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">5</span>
-          Uses Memory Trick
-        </h2>
-        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Mnemonic</span>
-      </div>
-
-      <div class="p-5 bg-gradient-to-br from-brand-50 to-teal-50 border border-brand-200 rounded-2xl space-y-3 shadow-sm">
-        <div class="text-base font-black text-brand-900 flex items-center gap-2">
-          <i data-lucide="lightbulb" class="w-5 h-5 text-brand-600"></i> Mnemonic: "H-C-T-H"
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700 pt-1">
-          <div>• <strong>H</strong>. pylori ulcers</div>
-          <div>• <strong>C</strong>. diff colitis</div>
-          <div>• <strong>T</strong>ravelers' diarrhea</div>
-          <div>• <strong>H</strong>epatic encephalopathy</div>
+      <!-- 4.2 Luminal Agents -->
+      <div class="moa-enhanced-box">
+        <h4>⚡ 2. Oral Vancomycin &amp; Fidaxomicin (Luminal Action) <span class="exam-badge">IMP FOR EXAM</span></h4>
+        <div class="moa-concept-summary">💡 Simple Concept: Acts exclusively inside the gut lumen without entering the bloodstream to kill *C. diff*.</div>
+        <div class="moa-steps-list">
+          <div class="moa-step-item">
+            <div class="moa-step-number">1</div>
+            <div class="moa-step-content">
+              <strong>Non-Absorbable Lumen Confinement:</strong>
+              <span>Orally administered glycopeptides remain entirely within the GI tract due to minimal systemic absorption.</span>
+            </div>
+          </div>
+          <div class="moa-step-item">
+            <div class="moa-step-number">2</div>
+            <div class="moa-step-content">
+              <strong>Bacterial Cell Wall Disruption:</strong>
+              <span>Binds to bacterial cell wall precursors, halting peptidoglycan synthesis and eliminating *C. difficile* spores locally.</span>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
 
-    <!-- 6. ADVERSE DRUG REACTIONS -->
-    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
-          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">6</span>
-          Adverse Drug Reactions (ADRs)
-        </h2>
-        <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 text-[10px] font-black uppercase tracking-wide border border-rose-200">Side Effects</span>
-      </div>
-
-      <div class="space-y-3 text-xs sm:text-sm">
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
-          <strong class="text-slate-900 block font-bold">1. Gastrointestinal Distress</strong>
-          <p class="text-slate-700">Nausea, abdominal cramping, metallic taste, and antibiotic-associated diarrhea.</p>
-        </div>
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
-          <strong class="text-slate-900 block font-bold">2. Bismuth Subsalicylate Effect</strong>
-          <p class="text-slate-700">Harmless darkening of the stool and black tongue due to bismuth sulfide formation.</p>
-        </div>
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
-          <strong class="text-rose-700 block font-bold">3. Metronidazole &amp; Alcohol Interaction</strong>
-          <p class="text-slate-700">Severe flushing, vomiting, and headache if alcohol is consumed during therapy (disulfiram-like reaction).</p>
+      <!-- 4.3 Gut-Restricted Ansamycins -->
+      <div class="moa-enhanced-box">
+        <h4>🌊 3. Rifaximin (Gut-Restricted Ansamycin)</h4>
+        <div class="moa-concept-summary">💡 Simple Concept: Stops bacterial transcription locally in the gut to clear enteric pathogens and reduce ammonia.</div>
+        <div class="moa-steps-list">
+          <div class="moa-step-item">
+            <div class="moa-step-number">1</div>
+            <div class="moa-step-content">
+              <strong>RNA Polymerase Inhibition:</strong>
+              <span>Binds irreversibly to bacterial DNA-dependent RNA polymerase, blocking RNA synthesis transcription.</span>
+            </div>
+          </div>
+          <div class="moa-step-item">
+            <div class="moa-step-number">2</div>
+            <div class="moa-step-content">
+              <strong>Ammonia Reduction &amp; E. coli Suppression:</strong>
+              <span>Clears ammonia-producing colonic bacteria to treat hepatic encephalopathy while avoiding systemic toxicity.</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 7. ADR MEMORY TRICK -->
-    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
-          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">7</span>
-          ADR Memory Trick
-        </h2>
-        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Mnemonic</span>
-      </div>
+    <!-- ================= 5. CLINICAL USES & MNEMONIC ================= -->
+    <section class="drug-class-card">
+      <h2>5. Clinical Uses &amp; Therapeutic Indications</h2>
+      <ul class="bullet-list">
+        <li>Peptic Ulcer Disease and Chronic Gastritis associated with <i>Helicobacter pylori</i></li>
+        <li><i>Clostridioides difficile</i>-associated pseudomembranous colitis (via Oral Vancomycin or Fidaxomicin)</li>
+        <li>Travelers' Diarrhea and Bacterial Gastroenteritis (via Rifaximin)</li>
+        <li>Hepatic Encephalopathy (reducing gut ammonia production via Rifaximin)</li>
+      </ul>
 
-      <div class="p-5 bg-gradient-to-br from-teal-50 to-brand-50 border border-brand-200 rounded-2xl space-y-3 shadow-sm">
-        <div class="text-base font-black text-brand-900 flex items-center gap-2">
-          <i data-lucide="lightbulb" class="w-5 h-5 text-brand-600"></i> ADR Mnemonic: "B-M-G"
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs sm:text-sm text-slate-700 pt-1">
-          <div>• <strong>B</strong>lack stools / tongue</div>
-          <div>• <strong>M</strong>etallic taste &amp; alcohol reaction</div>
-          <div>• <strong>G</strong>I upset &amp; diarrhea</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 8. PHARMACOKINETICS -->
-    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
-          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">8</span>
-          Pharmacokinetics
-        </h2>
-        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">PK Profiles</span>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 shadow-sm">
-          <strong class="text-slate-900 block text-base">💊 Oral Administration</strong>
-          <p class="text-slate-700">Regimens are administered orally. Luminal drugs (like Rifaximin and oral Vancomycin) remain unabsorbed with minimal systemic bioavailability (&lt;1%).</p>
-        </div>
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 shadow-sm">
-          <strong class="text-slate-900 block text-base">⚙️ Hepatic Metabolism</strong>
-          <p class="text-slate-700">Systemic components like Clarithromycin and Metronidazole undergo hepatic metabolism via CYP3A4 enzymes.</p>
+      <div class="mnemonic-box">
+        <h4>💡 Mnemonic for Clinical Uses: "H.C.T.H."</h4>
+        <div class="aligned-mnemonic-list">
+          <div class="aligned-item">
+            <span class="letter-badge">H</span>
+            <span><strong>H</strong>. pylori ulcers (Triple/Quadruple therapy regimens)</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">C</span>
+            <span><strong>C</strong>. difficile colitis (Oral Vancomycin) <span class="exam-badge">IMP FOR EXAM</span></span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">T</span>
+            <span><strong>T</strong>ravelers' diarrhea &amp; bacterial gastroenteritis</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">H</span>
+            <span><strong>H</strong>epatic encephalopathy ammonia reduction (Rifaximin)</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 9. KEY NURSING TAKEAWAYS -->
-    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
-          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">9</span>
-          Key Nursing Takeaways &amp; Patient Safety
-        </h2>
-        <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 text-[10px] font-black uppercase tracking-wide border border-rose-200">Patient Safety</span>
-      </div>
+    <!-- ================= 6. ADVERSE DRUG REACTIONS & MNEMONIC ================= -->
+    <section class="drug-class-card">
+      <h2>6. Adverse Drug Reactions (ADRs)</h2>
+      <ul class="bullet-list">
+        <li><strong>Gastrointestinal Distress:</strong> Nausea, abdominal cramping, metallic taste, and diarrhea.</li>
+        <li><strong>Bismuth Side Effect:</strong> Harmless darkening of the stool and black tongue (due to bismuth sulfide formation). <span class="exam-badge">IMP FOR EXAM</span></li>
+        <li><strong>Metronidazole Reaction:</strong> Severe flushing, vomiting, and headache if alcohol is consumed during therapy. <span class="exam-badge">IMP FOR EXAM</span></li>
+        <li><strong>Superinfections:</strong> Risk of vaginal candidiasis or oral thrush from normal flora disruption.</li>
+      </ul>
 
-      <div class="space-y-3 text-xs sm:text-sm">
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
-          <strong class="text-slate-900 block font-bold">1. Enforce Complete Regimen Adherence</strong>
-          <p class="text-slate-700">Emphasize that patients must complete the full 14-day course of triple or quadruple therapy even if symptoms improve, to prevent treatment failure.</p>
-        </div>
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
-          <strong class="text-slate-900 block font-bold">2. Explain Harmless Bismuth Effects</strong>
-          <p class="text-slate-700">Reassure patients that black stools and dark tongues are normal, harmless side effects of bismuth subsalicylate.</p>
-        </div>
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
-          <strong class="text-slate-900 block font-bold">3. Verify Oral Route for C. diff</strong>
-          <p class="text-slate-700">Confirm that Vancomycin is ordered <mark>orally</mark> (never IV) for treating *C. diff* colitis.</p>
-        </div>
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
-          <strong class="text-slate-900 block font-bold">4. Prohibit Alcohol with Metronidazole</strong>
-          <p class="text-slate-700">Warn patients to avoid all alcohol during and for 48 hours post-Metronidazole therapy to avoid severe disulfiram reactions.</p>
+      <div class="mnemonic-box">
+        <h4>💡 Mnemonic for ADRs: "B.M.G."</h4>
+        <div class="aligned-mnemonic-list">
+          <div class="aligned-item">
+            <span class="letter-badge">B</span>
+            <span><strong>B</strong>lack stools &amp; dark tongue (Bismuth subsalicylate)</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">M</span>
+            <span><strong>M</strong>etallic taste &amp; severe alcohol reaction (Metronidazole) <span class="exam-badge">IMP FOR EXAM</span></span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">G</span>
+            <span><strong>G</strong>I upset, nausea, &amp; superinfections (diarrhea/thrush)</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- NAVIGATION FOOTER -->
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-slate-300">
-      <a href="chapter3.html" class="w-full sm:w-auto px-5 py-3 rounded-xl font-bold text-slate-800 bg-white border border-slate-300 hover:bg-slate-100 flex items-center justify-center gap-2 transition active:scale-95 text-xs sm:text-sm shadow-sm">
-        <i data-lucide="arrow-left" class="w-4 h-4"></i> Chapter 3 Hub
-      </a>
-      <a href="dashboard.html" class="w-full sm:w-auto px-5 py-3 rounded-xl font-extrabold text-white bg-brand-600 hover:bg-brand-500 flex items-center justify-center gap-2 transition active:scale-95 text-xs sm:text-sm shadow-lg shadow-brand-600/20">
-        Dashboard <i data-lucide="arrow-right" class="w-4 h-4"></i>
-      </a>
-    </div>
+    <!-- ================= 7. PHARMACOKINETICS ================= -->
+    <section class="drug-class-card">
+      <h2>7. Pharmacokinetics</h2>
+      <ul class="bullet-list">
+        <li><strong>Administration:</strong> Regimens are administered orally. *H. pylori* components require strict twice-daily or four-times-daily scheduling. Luminal drugs remain unabsorbed (&lt;1% systemic bioavailability).</li>
+        <li><strong>Metabolism:</strong> Systemic components (Clarithromycin, Metronidazole) undergo hepatic metabolism via CYP3A4, while gut-restricted agents are excreted unchanged in feces.</li>
+      </ul>
+    </section>
+
+    <!-- ================= 8. KEY NURSING TAKEAWAYS ================= -->
+    <section class="drug-class-card">
+      <h2>8. Key Nursing Takeaways &amp; Patient Safety</h2>
+      <ul class="bullet-list">
+        <li><strong>Enforce Complete Regimen Adherence:</strong> Emphasize that patients must complete the full 14-day course of triple or quadruple therapy even if symptoms improve, to prevent treatment failure and resistant bacterial strains. <span class="exam-badge">IMP FOR EXAM</span></li>
+        <li><strong>Explain Harmless Bismuth Effects:</strong> Reassure patients taking quadruple therapy that black stools and dark tongues are normal, harmless side effects of bismuth subsalicylate.</li>
+        <li><strong>Verify Oral Route for C. diff:</strong> Confirm that Vancomycin is ordered *orally* (never IV) for treating *C. diff* colitis. <span class="exam-badge">IMP FOR EXAM</span></li>
+        <li><strong>Prohibit Alcohol with Metronidazole:</strong> Warn patients to avoid all alcohol (including cough syrups and mouthwashes) during and 48 hours post-Metronidazole therapy to avoid disulfiram-like reactions. <span class="exam-badge">IMP FOR EXAM</span></li>
+        <li><strong>Monitor Eradication Confirmation:</strong> Remind patients that a stool antigen test or breath test is typically scheduled at least 4 weeks post-treatment to verify successful <i>H. pylori</i> clearance.</li>
+      </ul>
+    </section>
 
   </main>
+</div>
 
-  <!-- FOOTER -->
-  <footer class="mt-12 bg-white border-t border-slate-300 py-6 text-center text-xs text-slate-600 max-w-4xl mx-auto rounded-2xl">
-    <div class="px-4 space-y-1">
-      <p class="font-extrabold text-slate-900 text-sm">✨ Curated with excellence by Mudassir Khan</p>
-      <p>© 2026 MK Study Hub. BSN Pharmacology Learning Portal.</p>
+<!-- ================= MASTER SUMMARY TABLE MODAL ================= -->
+<div class="modal-overlay" id="tableModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>📊 Master GI Antimicrobials Summary Table</h3>
+      <button class="close-btn" onclick="toggleModal('tableModal')">&times;</button>
     </div>
-  </footer>
-
-  <!-- ================= MODAL CONTAINING PROTOTYPE & CLASS MNEMONICS ================= -->
-  <div class="modal-overlay fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-3 opacity-0 pointer-events-none transition-all duration-300" id="allMnemonicsModal">
-    <div class="modal-card bg-white rounded-2xl max-w-lg w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden transform scale-95 transition-all duration-300">
-      <div class="modal-header px-5 py-4 bg-brand-600 text-white flex items-center justify-between">
-        <h3 class="font-extrabold text-base sm:text-lg flex items-center gap-2">
-          <i data-lucide="sparkles" class="w-5 h-5 text-brand-200"></i> GI Antimicrobial Mnemonic Hub
-        </h3>
-        <button onclick="closeModal('allMnemonicsModal')" class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center transition font-bold text-lg">&times;</button>
+    <div class="modal-body">
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;">High-yield comparative summary of GI anti-infectives, regimens, mechanisms, and safety alerts.</p>
+      <div class="table-container">
+        <table class="summary-table">
+          <thead>
+            <tr>
+              <th>Drug Class / Regimen</th>
+              <th>Prototype Drugs</th>
+              <th>Mechanism of Action</th>
+              <th>Primary Clinical Uses</th>
+              <th>Key ADRs / Nursing Alerts</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Standard Triple Therapy</strong></td>
+              <td>PPI + Amoxicillin + Clarithromycin</td>
+              <td>PPI raises pH for antibiotic stability; dual antibiotics halt cell wall/protein synthesis</td>
+              <td>H. pylori peptic ulcer disease</td>
+              <td>Complete 14-day course; use Metronidazole if penicillin allergic</td>
+            </tr>
+            <tr>
+              <td><strong>Bismuth Quadruple Therapy</strong></td>
+              <td>PPI + Bismuth + Metronidazole + Tetracycline</td>
+              <td>Direct antimicrobial action, mucosal coating, and multi-pathway microbial inhibition</td>
+              <td>H. pylori (high resistance zones)</td>
+              <td>Harmless black stool/tongue; strict adherence required</td>
+            </tr>
+            <tr>
+              <td><strong>Glycopeptides (Oral)</strong></td>
+              <td>Oral Vancomycin</td>
+              <td>Inhibits cell wall synthesis locally within the gut lumen</td>
+              <td>C. difficile colitis</td>
+              <td>Must be administered ORALLY (never IV for C. diff)</td>
+            </tr>
+            <tr>
+              <td><strong>Gut-Restricted Ansamycins</strong></td>
+              <td>Rifaximin</td>
+              <td>Inhibits bacterial RNA polymerase locally without systemic absorption</td>
+              <td>Travelers' diarrhea, hepatic encephalopathy</td>
+              <td>Reduces gut ammonia production; minimal systemic side effects</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="modal-body p-5 overflow-y-auto space-y-4 text-xs sm:text-sm text-slate-700">
-        <div>
-          <strong class="text-brand-900 block font-black text-sm mb-1">💊 1. Prototype Drug Memory Key ("CAM-T V-R B")</strong>
-          <p class="text-slate-600"><strong>C</strong>larithromycin (Macrolide) | <strong>Am</strong>oxicillin (Penicillin) | <strong>M</strong>etronidazole (Nitroimidazole) | <strong>T</strong>etracycline (Tetracycline) | <strong>V</strong>ancomycin (Oral Glycopeptide) | <strong>R</strong>ifaximin (Ansamycin) | <strong>B</strong>ismuth (Protectant)</p>
-        </div>
+    </div>
+  </div>
+</div>
 
-        <div class="pt-2 border-t border-slate-100">
-          <strong class="text-brand-900 block font-black text-sm mb-1">💊 2. H. pylori Regimens ("Triple PAC, Quad B-PMT")</strong>
-          <p class="text-slate-600"><strong>Triple</strong> = PPI + Amoxicillin + Clarithromycin | <strong>Quad</strong> = Bismuth + PPI + Metronidazole + Tetracycline</p>
+<!-- ================= CLASSIFICATION TREE MODAL ================= -->
+<div class="modal-overlay" id="treeModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>🌳 GI Antimicrobial Classification Tree</h3>
+      <button class="close-btn" onclick="toggleModal('treeModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Visual breakdown of gastrointestinal anti-infective classes and eradication regimens.</p>
+      <div class="tree-container">
+        <div class="tree-node">
+          <div class="tree-title">💊 1. H. pylori Eradication Regimens</div>
+          <div class="tree-sublist">
+            <span class="tree-tag">Triple Therapy: PPI + Amoxicillin + Clarithromycin</span>
+            <span class="tree-tag">Quadruple Therapy: PPI + Bismuth + Metronidazole + Tetracycline</span>
+          </div>
         </div>
-
-        <div class="pt-2 border-t border-slate-100">
-          <strong class="text-brand-900 block font-black text-sm mb-1">🛡️ 3. Safe Administration Reminders</strong>
-          <p class="text-slate-600"><strong>Oral Vanco, No Alcohol</strong> &rarr; Always give Vancomycin <mark>orally</mark> for C. diff, and ban alcohol completely with Metronidazole!</p>
+        <div class="tree-node">
+          <div class="tree-title">⚡ 2. Systemic &amp; Luminal Antibiotics</div>
+          <div class="tree-sublist">
+            <span class="tree-tag">Macrolides: Clarithromycin</span>
+            <span class="tree-tag">Penicillins: Amoxicillin</span>
+            <span class="tree-tag">Nitroimidazoles: Metronidazole</span>
+          </div>
+        </div>
+        <div class="tree-node">
+          <div class="tree-title">🌊 3. Gut-Restricted &amp; Protectant Agents</div>
+          <div class="tree-sublist">
+            <span class="tree-tag">Oral Glycopeptides: Vancomycin</span>
+            <span class="tree-tag">Ansamycins: Rifaximin</span>
+            <span class="tree-tag">Heavy Metal Salts: Bismuth Subsalicylate</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <script>
-    // Initialize Lucide Icons
-    lucide.createIcons();
+<script>
+  function toggleModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.toggle('active');
+  }
 
-    // Toggle Classification Cards
-    function toggleCard(button) {
-      const content = button.nextElementSibling;
-      const icon = button.querySelector('[data-lucide="chevron-down"]');
-      
-      content.classList.toggle('hidden');
-      if (icon) {
-        icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+  // Close modal when tapping outside the modal-card on mobile/desktop
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove('active');
       }
-    }
-
-    // Modal Controls
-    function openModal(modalId) {
-      const modal = document.getElementById(modalId);
-      modal.classList.remove('opacity-0', 'pointer-events-none');
-      modal.querySelector('.modal-card').classList.remove('scale-95');
-      modal.querySelector('.modal-card').classList.add('scale-100');
-    }
-
-    function closeModal(modalId) {
-      const modal = document.getElementById(modalId);
-      modal.classList.add('opacity-0', 'pointer-events-none');
-      modal.querySelector('.modal-card').classList.remove('scale-100');
-      modal.querySelector('.modal-card').classList.add('scale-95');
-    }
-  </script>
+    });
+  });
+</script>
 
 </body>
 </html>
