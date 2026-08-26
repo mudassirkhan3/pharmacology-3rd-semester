@@ -192,10 +192,17 @@
     .table-box h4 { color: #4f46e5 !important; }
     .papers-box { border-top: 3px solid #d97706; background: linear-gradient(135deg, #f8fafc 0%, #fffbeb 100%); }
     .papers-box h4 { color: #b45309 !important; }
-    .mcqs-box { border-top: 3px solid #059669; background: linear-gradient(135deg, #f8fafc 0%, #ecfdf5 100%); }
-    .mcqs-box h4 { color: #047857 !important; }
-    .practice-mcqs-box { border-top: 3px solid #8b5cf6; background: linear-gradient(135deg, #f8fafc 0%, #f3e8ff 100%); }
-    .practice-mcqs-box h4 { color: #7c3aed !important; }
+
+    /* PRACTICE MCQS HUB CARD */
+    .quiz-hub-box { border-top: 3px solid #8b5cf6; background: linear-gradient(135deg, #f8fafc 0%, #f3e8ff 100%); }
+    .quiz-hub-box h4 { color: #7c3aed !important; }
+    
+    .quiz-list-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+    .quiz-item-card { background: white; border: 1px solid #d8b4fe; border-radius: 12px; padding: 12px 14px; text-decoration: none; color: inherit; transition: all 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
+    .quiz-item-card:hover { border-color: #7c3aed; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(124, 58, 237, 0.12); }
+    .quiz-item-card h5 { color: #7c3aed; font-size: 0.82rem; font-weight: 800; margin-bottom: 2px; }
+    .quiz-item-card p { font-size: 0.72rem; color: #64748b; margin-bottom: 8px; }
+    .quiz-item-link { font-size: 0.74rem; font-weight: 800; color: #6d28d9; display: flex; align-items: center; gap: 4px; margin-top: auto; }
 
     /* High-Yield Enhanced Daily Mnemonic Widget */
     .mnemonic-card-box { 
@@ -419,19 +426,60 @@
             </div>
             <span class="chapter-link-text">View Papers →</span>
           </a>
+        </div>
+      </div>
 
-          <a href="practice-mcqs.html" class="chapter-box practice-mcqs-box" onclick="return checkChapterAccess(event, 8)">
+      <!-- SECTION 2: PRACTICE MCQS HUB (ALL CHAPTER QUIZ LINKS IN ONE BLOCK) -->
+      <div class="card">
+        <div class="card-header-main">
+          <h2>Practice MCQs Hub</h2>
+          <p>Access chapter-wise timed practice quizzes to test your mastery across all pharmacological units:</p>
+        </div>
+
+        <div class="quiz-list-grid">
+          <a href="quiz.chapter1.html" class="quiz-item-card" onclick="return checkChapterAccess(event, 8)">
             <div>
-              <span id="lockBadge8" class="chapter-badge-lock">🔒 Locked</span>
-              <h4>PRACTICE MCQS</h4>
-              <p>Chapter-wise comprehensive timed quiz bank.</p>
+              <h5>Unit I Quiz: Basics</h5>
+              <p>Pharmacokinetics &amp; drug classifications.</p>
             </div>
-            <span class="chapter-link-text">Start Quiz →</span>
+            <span class="quiz-item-link">Start Quiz →</span>
+          </a>
+
+          <a href="quiz.chapter2.html" class="quiz-item-card" onclick="return checkChapterAccess(event, 8)">
+            <div>
+              <h5>Unit II Quiz: Infections</h5>
+              <p>Antibiotics &amp; antimicrobial testing.</p>
+            </div>
+            <span class="quiz-item-link">Start Quiz →</span>
+          </a>
+
+          <a href="quiz.chapter3.html" class="quiz-item-card" onclick="return checkChapterAccess(event, 8)">
+            <div>
+              <h5>Unit III Quiz: GI</h5>
+              <p>Antacids, PPIs &amp; mucosal agents.</p>
+            </div>
+            <span class="quiz-item-link">Start Quiz →</span>
+          </a>
+
+          <a href="quiz.chapter4.html" class="quiz-item-card" onclick="return checkChapterAccess(event, 8)">
+            <div>
+              <h5>Unit IV Quiz: Hematology</h5>
+              <p>Anticoagulants &amp; antiplatelets.</p>
+            </div>
+            <span class="quiz-item-link">Start Quiz →</span>
+          </a>
+
+          <a href="quiz.chapter5.html" class="quiz-item-card" onclick="return checkChapterAccess(event, 8)">
+            <div>
+              <h5>Unit V Quiz: Oncology</h5>
+              <p>Antineoplastics &amp; targeted therapy.</p>
+            </div>
+            <span class="quiz-item-link">Start Quiz →</span>
           </a>
         </div>
       </div>
 
-      <!-- SECTION 2: DAILY QUICK-FLIP MNEMONIC -->
+      <!-- SECTION 3: DAILY QUICK-FLIP MNEMONIC -->
       <div class="card">
         <div class="card-header-main">
           <h2>Daily Quick-Flip Mnemonic</h2>
@@ -465,7 +513,7 @@
         </div>
       </div>
 
-      <!-- SECTION 3: DAILY 5 MCQS & SPACED REPETITION -->
+      <!-- SECTION 4: DAILY 5 MCQS & SPACED REPETITION -->
       <div class="card">
         <div class="card-header-main">
           <h2>Daily 5 MCQs &amp; Spaced Repetition</h2>
@@ -489,7 +537,7 @@
         </div>
       </div>
 
-      <!-- SECTION 4: REAL-TIME PROGRESS TRACKER & STUDY PLAN -->
+      <!-- SECTION 5: REAL-TIME PROGRESS TRACKER & STUDY PLAN -->
       <div class="card">
         <div class="card-header-main">
           <h2>Real-Time Progress Tracker</h2>
@@ -510,7 +558,7 @@
               <div class="stat-label">Tasks Done</div>
             </div>
             <div class="stat-box">
-              <div class="stat-num" id="unitsReadNum">0 / 8</div>
+              <div class="stat-num" id="unitsReadNum">0 / 7</div>
               <div class="stat-label">Units Read</div>
             </div>
             <div class="stat-box">
@@ -521,7 +569,7 @@
         </div>
       </div>
 
-      <!-- SECTION 5: AUTOMATED DAILY STUDY PLAN -->
+      <!-- SECTION 6: AUTOMATED DAILY STUDY PLAN -->
       <div class="card">
         <div class="card-header-main">
           <h2>Today's Automated Study Plan</h2>
@@ -862,11 +910,11 @@
 
     function saveAndUpdateProgress() {
       var unitsReadSet = JSON.parse(localStorage.getItem('pharmacologyUnitsReadSet')) || [];
-      var percent = Math.round((unitsReadSet.length / 8) * 100);
+      var percent = Math.round((unitsReadSet.length / 7) * 100);
       document.getElementById('progressText').innerText = "Units Completed: " + percent + " percent";
       document.getElementById('progressPercentNum').innerText = percent + "%";
       document.getElementById('progressBarFill').style.width = percent + "%";
-      document.getElementById('unitsReadNum').innerText = unitsReadSet.length + " / 8";
+      document.getElementById('unitsReadNum').innerText = unitsReadSet.length + " / 7";
       document.getElementById('quizScoreNum').innerText = dailyQuizScore + " / 5";
       document.getElementById('completedCountNum').innerText = dailyQuizScore + " / 5";
     }
