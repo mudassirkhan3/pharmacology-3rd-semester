@@ -271,6 +271,31 @@
       font-weight: 700;
     }
 
+    /* ABBREVIATIONS BOX */
+    .abbr-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-left: 5px solid #3b82f6;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-top: 20px;
+    }
+
+    .abbr-box h4 {
+      color: #1e40af;
+      font-size: 0.98rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .abbr-box p {
+      font-size: 0.88rem;
+      color: #1e3a8a;
+    }
+
     /* MNEMONIC BOX */
     .mnemonic-card {
       background: var(--mnemonics-bg);
@@ -380,7 +405,7 @@
     <header>
       <span class="badge-creator">Simplified Nursing Pharmacology — Mudassir Khan</span>
       <h1>Antiviral Pharmacology Ultimate Master Guide</h1>
-      <p class="subtitle">An exceptionally structured, crystal-clear breakdown of antiviral drug classifications, simplified step-by-step mechanisms of action, specific high-yield drug profiles, memory mnemonics, and essential exam warnings.</p>
+      <p class="subtitle">An exceptionally structured breakdown of antiviral drug classifications with clear abbreviations, fully separated HIV, Hepatitis B, and Hepatitis C sections, custom prodrug mnemonics, and high-yield exam points.</p>
     </header>
 
     <main>
@@ -396,7 +421,7 @@
 
           <!-- FLOWCHART -->
           <div class="flow-box">
-            <div class="flow-title">⚡ Simplified MOA Flowchart: Neuraminidase Inhibitors (Oseltamivir)</div>
+            <div class="flow-title">⚡ Simplified MOA Flowchart: Neuraminidase Inhibitors</div>
             <div class="flow-steps">
               <div class="step">
                 <span class="step-num">1</span>
@@ -420,66 +445,62 @@
           <div class="drugs-grid">
             <div class="drug-item">
               <span class="class-badge">Neuraminidase Inhibitor</span>
-              <div class="drug-name">Oseltamivir (Tamiflu) <span class="exam-pill">High Yield</span></div>
-              <div class="drug-row"><strong>Mechanism of Action:</strong> Competitively inhibits viral neuraminidase, preventing viral release from host cells.</div>
-              <div class="drug-row"><strong>Primary Uses:</strong> Treatment &amp; prophylaxis of Influenza A &amp; B (<mark style="background:#fef08a; padding:1px 4px; border-radius:3px;">must start within 48h</mark> of symptoms).</div>
-              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Nausea, vomiting, neuropsychiatric events (delirium).</div>
-              <div class="drug-row"><strong>Nursing Pearl:</strong> Administer with food to minimize GI distress.</div>
+              <div class="drug-name">Oseltamivir <span class="exam-pill">High Yield</span></div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Competitively inhibits viral neuraminidase, preventing viral release.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Influenza A &amp; B treatment (<mark style="background:#fef08a; padding:1px 4px; border-radius:3px;">must start within 48h</mark>).</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Nausea, vomiting, delirium.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> Administer with food to minimize GI upset.</div>
             </div>
 
             <div class="drug-item">
               <span class="class-badge">Endonuclease Inhibitor</span>
               <div class="drug-name">Baloxavir Marboxil</div>
-              <div class="drug-row"><strong>Mechanism of Action:</strong> Inhibits cap-dependent endonuclease within the viral polymerase complex.</div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Inhibits cap-dependent endonuclease in the viral polymerase complex.</div>
               <div class="drug-row"><strong>Primary Uses:</strong> Single-dose oral treatment for acute uncomplicated influenza.</div>
-              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Diarrhea, bronchitis, nausea, headache.</div>
-              <div class="drug-row"><strong>Nursing Pearl:</strong> Taken as a single oral dose; avoid co-administration with dairy/polyvalent cations.</div>
-            </div>
-
-            <div class="drug-item">
-              <span class="class-badge">RNA Polymerase Inhibitor</span>
-              <div class="drug-name">Remdesivir</div>
-              <div class="drug-row"><strong>Mechanism of Action:</strong> Adenosine analog that prematurely terminates viral RNA replication (RdRp).</div>
-              <div class="drug-row"><strong>Primary Uses:</strong> Hospitalized COVID-19 patients requiring supplemental oxygen.</div>
-              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Elevated liver enzymes (ALT/AST), nausea, hypersensitivity.</div>
-              <div class="drug-row"><strong>Nursing Pearl:</strong> Monitor renal function (eGFR) and liver function panels closely.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Diarrhea, bronchitis, headache.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> It is a prodrug converted in vivo to active baloxavir.</div>
             </div>
           </div>
 
+          <div class="abbr-box">
+            <h4>📖 Clear Drug Abbreviations</h4>
+            <p>&bull; <strong>RSV:</strong> Respiratory Syncytial Virus | <strong>RdRp:</strong> RNA-Dependent RNA Polymerase | <strong>COVID-19:</strong> Coronavirus Disease 2019</p>
+          </div>
+
           <div class="mnemonic-card">
-            <h4>💡 Mnemonic for Respiratory Agents: "O.B.R."</h4>
-            <p><strong>O</strong>seltamivir (give in 48h) | <strong>B</strong>aloxavir (single dose) | <strong>R</strong>emdesivir (COVID RdRp blocker)</p>
+            <h4>💡 Easy Mnemonic for Respiratory Prodrugs: "B = Brought as Pro"</h4>
+            <p><strong>B</strong>aloxavir <strong>M</strong>arboxil is a <strong>pro</strong>drug (requires enzymatic cleavage in vivo to release active baloxavir).</p>
           </div>
         </div>
       </section>
 
-      <!-- ================= SECTION 2: HIV NRTIs VS NtRTIs ================= -->
+      <!-- ================= SECTION 2: HUMAN IMMUNODEFICIENCY VIRUS (HIV) ================= -->
       <section class="master-card">
         <div class="card-header">
-          <h2>🎗️ 2. HIV Reverse Transcriptase Inhibitors (NRTIs vs. NtRTIs)</h2>
-          <span style="font-size: 0.8rem; font-weight: 700; color: #0d9488; background: #ccfbf1; padding: 4px 12px; border-radius: 20px;">HIV Core</span>
+          <h2>🎗️ 2. Human Immunodeficiency Virus (HIV) Antivirals</h2>
+          <span style="font-size: 0.8rem; font-weight: 700; color: #0d9488; background: #ccfbf1; padding: 4px 12px; border-radius: 20px;">HIV Therapeutics</span>
         </div>
         <div class="card-body">
-          <p class="section-intro">Fake building blocks incorporated into growing viral DNA strands to trigger immediate DNA chain termination.</p>
+          <p class="section-intro">Comprehensive combination antiretroviral therapy (cART) targeting reverse transcription, viral integration, and protein cleavage.</p>
 
           <!-- FLOWCHART -->
           <div class="flow-box">
-            <div class="flow-title">⚡ Simplified MOA Flowchart: NRTI Chain Termination</div>
+            <div class="flow-title">⚡ Simplified MOA Flowchart: NRTI &amp; INSTI Blockade</div>
             <div class="flow-steps">
               <div class="step">
                 <span class="step-num">1</span>
                 <div class="step-title">Intracellular Activation</div>
-                <div class="step-desc">NRTIs require 3 phosphorylation steps; NtRTIs need only 2.</div>
+                <div class="step-desc">NRTIs/NtRTIs are phosphorylated inside host cells.</div>
               </div>
               <div class="step target">
                 <span class="step-num">2</span>
-                <div class="step-title">Fake Incorporation (Target)</div>
-                <div class="step-desc">Reverse transcriptase inserts drug into viral DNA chain.</div>
+                <div class="step-title">Fake Block / Chelation (Target)</div>
+                <div class="step-desc">Inserts fake bases into DNA or chelates Mg²⁺ at integrase core.</div>
               </div>
               <div class="step">
                 <span class="step-num">3</span>
-                <div class="step-title">Chain Terminated</div>
-                <div class="step-desc">Lacking the 3'-OH tail, further DNA extension stops completely.</div>
+                <div class="step-title">Replication Halted</div>
+                <div class="step-desc">Stops viral DNA chain extension and nuclear integration.</div>
               </div>
             </div>
           </div>
@@ -489,50 +510,128 @@
             <div class="drug-item">
               <span class="class-badge">Nucleoside RTI (NRTI)</span>
               <div class="drug-name">Abacavir (ABC) <span class="exam-pill">Critical Test Alert</span></div>
-              <div class="drug-row"><strong>Mechanism of Action:</strong> Competitively inhibits HIV reverse transcriptase after tri-phosphorylation.</div>
-              <div class="drug-row"><strong>Primary Uses:</strong> Cornerstone backbone agent in cART combination regimens.</div>
-              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Severe hypersensitivity reaction, lactic acidosis, GI upset.</div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Tri-phosphorylated fake nucleoside causing DNA chain termination.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Backbone agent in combination antiretroviral therapy (cART).</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Severe hypersensitivity reaction, lactic acidosis.</div>
               <div class="drug-row"><strong>Nursing Pearl:</strong> <mark style="background:#fef08a; padding:1px 4px; border-radius:3px;">Mandatory HLA-B*5701 genetic testing</mark> prior to prescribing!</div>
             </div>
 
             <div class="drug-item">
               <span class="class-badge">Nucleotide RTI (NtRTI)</span>
-              <div class="drug-name">Tenofovir (TDF / TAF)</div>
+              <div class="drug-name">Tenofovir Alafenamide (TAF) / TDF</div>
               <div class="drug-row"><strong>Mechanism of Action:</strong> Pre-phosphorylated nucleotide analog causing viral DNA chain termination.</div>
-              <div class="drug-row"><strong>Primary Uses:</strong> Frontline HIV cART, PrEP, and chronic Hepatitis B suppression.</div>
-              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Renal proximal tubule failure (Fanconi syndrome) &amp; bone mineral loss (TDF).</div>
-              <div class="drug-row"><strong>Nursing Pearl:</strong> Monitor serum creatinine, BUN, and urine glucose/protein regularly.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Frontline HIV cART, PrEP, and chronic Hepatitis B.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Fanconi syndrome and bone mineral loss (higher with TDF than TAF).</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> TAF is a targeted prodrug achieving higher intracellular levels with less systemic kidney load.</div>
             </div>
 
             <div class="drug-item">
-              <span class="class-badge">Nucleoside RTI (NRTI)</span>
-              <div class="drug-name">Zidovudine (AZT)</div>
-              <div class="drug-row"><strong>Mechanism of Action:</strong> Thymidine analog stopping reverse transcriptase.</div>
-              <div class="drug-row"><strong>Primary Uses:</strong> Prevention of perinatal maternal-fetal HIV transmission during labor.</div>
-              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Severe macrocytic anemia, bone marrow suppression, myopathy.</div>
-              <div class="drug-row"><strong>Nursing Pearl:</strong> Monitor complete blood count (CBC) weekly for hemoglobin drops.</div>
+              <span class="class-badge">Integrase Inhibitor (INSTI)</span>
+              <div class="drug-name">Dolutegravir (DTG)</div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Chelates magnesium ions at the catalytic core of HIV integrase.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Preferred frontline anchor agent in modern cART regimens.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Insomnia, headache, mild weight gain.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> High genetic barrier to viral drug resistance.</div>
+            </div>
+
+            <div class="drug-item">
+              <span class="class-badge">Protease Inhibitor (PI)</span>
+              <div class="drug-name">Darunavir (DRV)</div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Inhibits viral protease from cleaving Gag-Pol polyproteins into mature units.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Treatment-experienced HIV infection and salvage regimens.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Hyperglycemia, lipodystrophy ("buffalo hump"), dyslipidemia.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> Always co-administered with a pharmacokinetic booster (Ritonavir or Cobicistat).</div>
             </div>
           </div>
 
+          <div class="abbr-box">
+            <h4>📖 Clear Drug Abbreviations</h4>
+            <p>&bull; <strong>HIV:</strong> Human Immunodeficiency Virus | <strong>cART:</strong> Combination Antiretroviral Therapy | <strong>PrEP:</strong> Pre-Exposure Prophylaxis | <strong>NRTI:</strong> Nucleoside Reverse Transcriptase Inhibitor | <strong>NtRTI:</strong> Nucleotide Reverse Transcriptase Inhibitor | <strong>INSTI:</strong> Integrase Strand Transfer Inhibitor | <strong>PI:</strong> Protease Inhibitor | <strong>AZT:</strong> Zidovudine | <strong>FTC:</strong> Emtricitabine | <strong>3TC:</strong> Lamivudine</p>
+          </div>
+
           <div class="mnemonic-card">
-            <h4>💡 Mnemonic for NRTIs / NtRTIs: "BACKBONE"</h4>
-            <p><strong>B</strong>uilds cART foundation | <strong>A</strong>bacavir (check HLA-B*5701) | <strong>C</strong>hain termination | <strong>K</strong>ills viral replication</p>
+            <h4>💡 Easy Mnemonic for HIV Prodrugs: "TAF = Targeted Active Formula"</h4>
+            <p><strong>TAF</strong> (Tenofovir Alafenamide) is a smart <strong>prodrug</strong> designed to deliver active tenofovir directly into lymphoid cells, sparing the kidneys!</p>
           </div>
         </div>
       </section>
 
-      <!-- ================= SECTION 3: HEPATITIS B & C DAAS ================= -->
+      <!-- ================= SECTION 3: HEPATITIS B VIRUS (HBV) ================= -->
       <section class="master-card">
         <div class="card-header">
-          <h2>🧬 3. Hepatitis B &amp; C Direct-Acting Antivirals (DAAs)</h2>
-          <span style="font-size: 0.8rem; font-weight: 700; color: #0d9488; background: #ccfbf1; padding: 4px 12px; border-radius: 20px;">Hepatitis</span>
+          <h2>🩺 3. Hepatitis B Virus (HBV) Antivirals</h2>
+          <span style="font-size: 0.8rem; font-weight: 700; color: #0d9488; background: #ccfbf1; padding: 4px 12px; border-radius: 20px;">Hepatitis B</span>
         </div>
         <div class="card-body">
-          <p class="section-intro">Target viral polymerases, replication complexes, and protease enzymes to achieve permanent virologic cure (SVR).</p>
+          <p class="section-intro">Target chronic HBV polymerase replication and modulate host immune response to suppress viral load and prevent cirrhosis.</p>
 
           <!-- FLOWCHART -->
           <div class="flow-box">
-            <div class="flow-title">⚡ Simplified MOA Flowchart: HCV DAA Targets (-previr, -asvir, -buvir)</div>
+            <div class="flow-title">⚡ Simplified MOA Flowchart: HBV Polymerase Inhibition</div>
+            <div class="flow-steps">
+              <div class="step">
+                <span class="step-num">1</span>
+                <div class="step-title">Viral Entry &amp; CccDNA</div>
+                <div class="step-desc">HBV infects hepatocytes and forms stable cccDNA templates.</div>
+              </div>
+              <div class="step target">
+                <span class="step-num">2</span>
+                <div class="step-title">Polymerase Blockade (Target)</div>
+                <div class="step-desc">Oral nucleosides/nucleotides inhibit HBV reverse transcriptase.</div>
+              </div>
+              <div class="step">
+                <span class="step-num">3</span>
+                <div class="step-title">Suppression Achieved</div>
+                <div class="step-desc">Halts DNA synthesis and reduces hepatic inflammation.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SPECIFIC DRUG CARDS -->
+          <div class="drugs-grid">
+            <div class="drug-item">
+              <span class="class-badge">Polymerase Inhibitor</span>
+              <div class="drug-name">Entecavir (ETV)</div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Selectively inhibits HBV polymerase base priming and DNA elongation.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> First-line oral maintenance therapy for chronic Hepatitis B.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Headache, fatigue, elevated liver transaminases.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> Take on an empty stomach for maximum drug absorption.</div>
+            </div>
+
+            <div class="drug-item">
+              <span class="class-badge">Immunomodulator</span>
+              <div class="drug-name">Peginterferon Alfa-2a (PEG-IFN)</div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Activates host JAK-STAT pathway to boost T-cell immunity against infected hepatocytes.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Finite-duration treatment course for HBeAg-positive/negative chronic HBV.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Flu-like symptoms, severe depression/suicidal ideation, neutropenia.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> Screen patients for psychiatric history before initiating therapy.</div>
+            </div>
+          </div>
+
+          <div class="abbr-box">
+            <h4>📖 Clear Drug Abbreviations</h4>
+            <p>&bull; <strong>HBV:</strong> Hepatitis B Virus | <strong>cccDNA:</strong> Covalently Closed Circular DNA | <strong>ETV:</strong> Entecavir | <strong>PEG-IFN:</strong> Peginterferon Alfa-2a | <strong>HBeAg:</strong> Hepatitis B e-Antigen</p>
+          </div>
+
+          <div class="mnemonic-card">
+            <h4>💡 Easy Mnemonic for HBV Prodrugs: "Adefovir Dipivoxil = Absorbed Deeply"</h4>
+            <p><strong>Adefovir dipivoxil</strong> is a oral ester <strong>prodrug</strong> that enhances GI absorption before being cleaved into active adefovir in plasma.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 4: HEPATITIS C VIRUS (HCV) ================= -->
+      <section class="master-card">
+        <div class="card-header">
+          <h2>🧬 4. Hepatitis C Virus (HCV) Direct-Acting Antivirals (DAAs)</h2>
+          <span style="font-size: 0.8rem; font-weight: 700; color: #0d9488; background: #ccfbf1; padding: 4px 12px; border-radius: 20px;">Hepatitis C</span>
+        </div>
+        <div class="card-body">
+          <p class="section-intro">Target non-structural (NS) viral proteins to achieve permanent virologic cure (SVR &gt; 95%) without interferon.</p>
+
+          <!-- FLOWCHART -->
+          <div class="flow-box">
+            <div class="flow-title">⚡ Simplified MOA Flowchart: HCV DAA Targets</div>
             <div class="flow-steps">
               <div class="step target">
                 <span class="step-num">1</span>
@@ -556,43 +655,39 @@
           <div class="drugs-grid">
             <div class="drug-item">
               <span class="class-badge">NS5B Polymerase Inhibitor</span>
-              <div class="drug-name">Sofosbuvir <span class="exam-pill">Black Box Warning</span></div>
+              <div class="drug-name">Sofosbuvir (SOF) <span class="exam-pill">Black Box Warning</span></div>
               <div class="drug-row"><strong>Mechanism of Action:</strong> Nucleotide analog inhibiting HCV NS5B RNA-dependent RNA polymerase.</div>
-              <div class="drug-row"><strong>Primary Uses:</strong> Pan-genotypic backbone for curative Hepatitis C treatment regimens.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Pan-genotypic backbone for curative Hepatitis C regimens.</div>
               <div class="drug-row"><strong>Side Effects (ADRs):</strong> Fatigue, headache, severe symptomatic bradycardia.</div>
               <div class="drug-row"><strong>Nursing Pearl:</strong> <mark style="background:#fef08a; padding:1px 4px; border-radius:3px;">NEVER combine with Amiodarone</mark> (causes fatal heart block!).</div>
             </div>
 
             <div class="drug-item">
               <span class="class-badge">Guanosine Analog Adjunct</span>
-              <div class="drug-name">Ribavirin</div>
-              <div class="drug-row"><strong>Mechanism of Action:</strong> Depletes GTP pools, causing lethal mutations in viral RNA.</div>
-              <div class="drug-row"><strong>Primary Uses:</strong> Combination therapy for HCV and severe viral infections.</div>
+              <div class="drug-name">Ribavirin (RBV)</div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Depletes GTP pools, inducing lethal mutations in viral RNA.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Combination therapy for refractory HCV cases.</div>
               <div class="drug-row"><strong>Side Effects (ADRs):</strong> Dose-dependent hemolytic anemia, severe teratogenicity.</div>
-              <div class="drug-row"><strong>Nursing Pearl:</strong> Pregnancy Category X; requires 2 forms of birth control during &amp; 6 months post-treatment.</div>
-            </div>
-
-            <div class="drug-item">
-              <span class="class-badge">HBV Polymerase Blocker</span>
-              <div class="drug-name">Entecavir</div>
-              <div class="drug-row"><strong>Mechanism of Action:</strong> Inhibits HBV polymerase priming, reverse transcription, and DNA strand elongation.</div>
-              <div class="drug-row"><strong>Primary Uses:</strong> First-line oral therapy for chronic Hepatitis B suppression.</div>
-              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Headaches, fatigue, elevated liver transaminases, lactic acidosis.</div>
-              <div class="drug-row"><strong>Nursing Pearl:</strong> Take on an empty stomach for optimal systemic absorption.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> Pregnancy Category X; requires strict double contraception.</div>
             </div>
           </div>
 
+          <div class="abbr-box">
+            <h4>📖 Clear Drug Abbreviations</h4>
+            <p>&bull; <strong>HCV:</strong> Hepatitis C Virus | <strong>DAA:</strong> Direct-Acting Antiviral | <strong>SVR:</strong> Sustained Virologic Response | <strong>SOF:</strong> Sofosbuvir | <strong>RBV:</strong> Ribavirin | <strong>NS:</strong> Non-Structural Protein</p>
+          </div>
+
           <div class="mnemonic-card">
-            <h4>💡 Mnemonic for HCV Suffixes: "P.A.B."</h4>
-            <p><strong>P</strong>revir = Protease | <strong>A</strong>svir = Assembly (NS5A) | <strong>B</strong>uvir = Building block (NS5B Polymerase)</p>
+            <h4>💡 Easy Mnemonic for HCV Prodrugs: "Sofosbuvir = Safe Oral Formula"</h4>
+            <p><strong>Sofosbuvir</strong> is a nucleotide <strong>prodrug</strong> that undergoes intracellular liver metabolism to form its active uridine triphosphate metabolite.</p>
           </div>
         </div>
       </section>
 
-      <!-- ================= SECTION 4: HERPESVIRUS & CMV ================= -->
+      <!-- ================= SECTION 5: HERPESVIRUS & CMV ================= -->
       <section class="master-card">
         <div class="card-header">
-          <h2>🔬 4. Herpesvirus (HSV/VZV) &amp; Cytomegalovirus (CMV) Agents</h2>
+          <h2>🔬 5. Herpesvirus (HSV/VZV) &amp; Cytomegalovirus (CMV) Agents</h2>
           <span style="font-size: 0.8rem; font-weight: 700; color: #0d9488; background: #ccfbf1; padding: 4px 12px; border-radius: 20px;">Herpes / CMV</span>
         </div>
         <div class="card-body">
@@ -624,98 +719,31 @@
           <div class="drugs-grid">
             <div class="drug-item">
               <span class="class-badge">Thymidine Kinase-Dependent</span>
-              <div class="drug-name">Acyclovir <span class="exam-pill">Renal Hazard</span></div>
+              <div class="drug-name">Valacyclovir / Acyclovir <span class="exam-pill">Renal Hazard</span></div>
               <div class="drug-row"><strong>Mechanism of Action:</strong> Viral thymidine kinase activation followed by selective viral DNA polymerase inhibition.</div>
               <div class="drug-row"><strong>Primary Uses:</strong> Genital herpes outbreaks, chickenpox, shingles (VZV), HSV encephalitis.</div>
-              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Crystalline nephropathy (IV administration), neurotoxicity, nausea.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Crystalline nephropathy (IV administration), neurotoxicity.</div>
               <div class="drug-row"><strong>Nursing Pearl:</strong> <mark style="background:#fef08a; padding:1px 4px; border-radius:3px;">Run IV normal saline hydration</mark> alongside infusion to prevent kidney crystal damage!</div>
             </div>
 
             <div class="drug-item">
               <span class="class-badge">UL97 Kinase-Dependent</span>
-              <div class="drug-name">Ganciclovir</div>
+              <div class="drug-name">Valganciclovir / Ganciclovir</div>
               <div class="drug-row"><strong>Mechanism of Action:</strong> Activated by viral UL97 kinase in CMV to inhibit viral DNA polymerase.</div>
               <div class="drug-row"><strong>Primary Uses:</strong> Treatment and prophylaxis of severe CMV retinitis in immunocompromised hosts.</div>
               <div class="drug-row"><strong>Side Effects (ADRs):</strong> Severe bone marrow suppression (neutropenia, thrombocytopenia).</div>
-              <div class="drug-row"><strong>Nursing Pearl:</strong> Monitor complete blood counts (CBC) with differential weekly during therapy.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> Valganciclovir is the oral prodrug of ganciclovir with 10x greater bioavailability.</div>
             </div>
+          </div>
 
-            <div class="drug-item">
-              <span class="class-badge">Non-Kinase Dependent</span>
-              <div class="drug-name">Foscarnet</div>
-              <div class="drug-row"><strong>Mechanism of Action:</strong> Direct viral DNA polymerase inhibitor requiring zero kinase activation.</div>
-              <div class="drug-row"><strong>Primary Uses:</strong> Ganciclovir-resistant CMV retinitis and acyclovir-resistant HSV infections.</div>
-              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Severe nephrotoxicity, profound electrolyte wasting (hypocalcemia, hypomagnesemia).</div>
-              <div class="drug-row"><strong>Nursing Pearl:</strong> Monitor serum electrolytes continuously and administer aggressive IV pre-hydration.</div>
-            </div>
+          <div class="abbr-box">
+            <h4>📖 Clear Drug Abbreviations</h4>
+            <p>&bull; <strong>HSV:</strong> Herpes Simplex Virus | <strong>VZV:</strong> Varicella-Zoster Virus | <strong>CMV:</strong> Cytomegalovirus | <strong>TK:</strong> Thymidine Kinase</p>
           </div>
 
           <div class="mnemonic-card">
-            <h4>💡 Mnemonic for Herpes/CMV: "CRYSTALS" (Acyclovir ADR)</h4>
-            <p><strong>C</strong>rystals in renal tubules | <strong>R</strong>educed blood counts (Ganciclovir) | <strong>Y</strong>ields electrolyte waste (Foscarnet)</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= SECTION 5: ADVANCED HIV CLASSES ================= -->
-      <section class="master-card">
-        <div class="card-header">
-          <h2>🎯 5. Advanced HIV Classes (INSTIs, PIs &amp; NNRTIs)</h2>
-          <span style="font-size: 0.8rem; font-weight: 700; color: #0d9488; background: #ccfbf1; padding: 4px 12px; border-radius: 20px;">Advanced HIV</span>
-        </div>
-        <div class="card-body">
-          <p class="section-intro">Inhibit viral integration into human chromosomes, block protein cleavage, or bind allosterically to reverse transcriptase.</p>
-
-          <!-- FLOWCHART -->
-          <div class="flow-box">
-            <div class="flow-title">⚡ Simplified MOA Flowchart: Integrase Strand Transfer Inhibitors (INSTIs)</div>
-            <div class="flow-steps">
-              <div class="step">
-                <span class="step-num">1</span>
-                <div class="step-title">Viral cDNA Formed</div>
-                <div class="step-desc">Reverse transcriptase creates double-stranded viral DNA.</div>
-              </div>
-              <div class="step target">
-                <span class="step-num">2</span>
-                <div class="step-title">Magnesium Chelated (Target)</div>
-                <div class="step-desc">INSTIs bind Mg²⁺ ions at the active site of integrase.</div>
-              </div>
-              <div class="step">
-                <span class="step-num">3</span>
-                <div class="step-title">Integration Blocked</div>
-                <div class="step-desc">Viral DNA cannot splice into human host chromosomes.</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- SPECIFIC DRUG CARDS -->
-          <div class="drugs-grid">
-            <div class="drug-item">
-              <span class="class-badge">Integrase Inhibitor (INSTI)</span>
-              <div class="drug-name">Dolutegravir <span class="exam-pill">First-Line Anchor</span></div>
-              <div class="drug-row"><strong>Mechanism of Action:</strong> Chelates magnesium ions at the catalytic core of HIV integrase enzyme.</div>
-              <div class="drug-row"><strong>Primary Uses:</strong> Preferred frontline anchor agent in modern combination cART regimens.</div>
-              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Insomnia, headache, weight gain, elevated serum creatinine.</div>
-              <div class="drug-row"><strong>Nursing Pearl:</strong> High genetic barrier to viral drug resistance; safe in pregnancy.</div>
-            </div>
-
-            <div class="drug-item">
-              <span class="class-badge">Protease Inhibitor (PI)</span>
-              <div class="drug-name">Darunavir</div>
-              <div class="drug-row"><strong>Mechanism of Action:</strong> Inhibits HIV protease from cleaving Gag-Pol polyproteins into mature units.</div>
-              <div class="drug-row"><strong>Primary Uses:</strong> Treatment-experienced HIV infection and salvage regimens.</div>
-              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Hyperglycemia/diabetes, lipodystrophy ("buffalo hump"), dyslipidemia.</div>
-              <div class="drug-row"><strong>Nursing Pearl:</strong> Always co-administered with a pharmacokinetic booster (Ritonavir or Cobicistat).</div>
-            </div>
-
-            <div class="drug-item">
-              <span class="class-badge">Non-Nucleoside RTI (NNRTI)</span>
-              <div class="drug-name">Efavirenz</div>
-              <div class="drug-row"><strong>Mechanism of Action:</strong> Binds allosterically to reverse transcriptase pocket, locking enzyme shape.</div>
-              <div class="drug-row"><strong>Primary Uses:</strong> Second-line or resource-limited HIV cART regimens.</div>
-              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Vivid nightmares, insomnia, depression, Stevens-Johnson rash.</div>
-              <div class="drug-row"><strong>Nursing Pearl:</strong> Administer at bedtime on an empty stomach to minimize CNS psychiatric side effects.</div>
-            </div>
+            <h4>💡 Easy Mnemonic for Herpes Prodrugs: "VAL = Viable Absorption Layer"</h4>
+            <p><strong>Val</strong>acyclovir &amp; <strong>Val</strong>ganciclovir are L-valyl ester <strong>prodrugs</strong> engineered for exceptional oral GI tract absorption.</p>
           </div>
 
           <div class="warning-card">
@@ -740,7 +768,7 @@
               <tr>
                 <th>Category</th>
                 <th>Drug Class</th>
-                <th>Representative Drugs</th>
+                <th>Representative Drugs &amp; Abbreviations</th>
                 <th>Primary Mechanism of Action</th>
                 <th>Primary Clinical Uses</th>
                 <th>Key ADRs &amp; Nursing Alerts</th>
@@ -756,17 +784,25 @@
                 <td>Nausea, delirium; start early</td>
               </tr>
               <tr>
-                <td><strong>HIV Core</strong></td>
+                <td><strong>HIV</strong></td>
                 <td>NRTIs / NtRTIs</td>
-                <td>Abacavir, Tenofovir, Zidovudine</td>
+                <td>Abacavir (ABC), Tenofovir (TDF/TAF), Zidovudine (AZT)</td>
                 <td>Fake nucleoside/tide causes DNA chain termination</td>
                 <td>cART Backbone &amp; PrEP</td>
                 <td>Lactic acidosis, HLA-B*5701 test for Abacavir</td>
               </tr>
               <tr>
-                <td><strong>Hepatitis</strong></td>
+                <td><strong>Hepatitis B</strong></td>
+                <td>HBV Polymerase Blockers</td>
+                <td>Entecavir (ETV), Peginterferon (PEG-IFN)</td>
+                <td>Inhibits viral reverse transcriptase &amp; boosts immunity</td>
+                <td>Chronic Hepatitis B maintenance</td>
+                <td>Elevated CK, psychiatric screening for IFN</td>
+              </tr>
+              <tr>
+                <td><strong>Hepatitis C</strong></td>
                 <td>HCV DAAs</td>
-                <td>Sofosbuvir, Ledipasvir, Glecaprevir</td>
+                <td>Sofosbuvir (SOF), Ribavirin (RBV)</td>
                 <td>Inhibits NS5B polymerase, NS5A, and protease</td>
                 <td>Curative treatment for chronic HCV</td>
                 <td>Fatigue; <mark style="background:#fef08a;">NO Amiodarone with Sofosbuvir</mark></td>
@@ -774,7 +810,7 @@
               <tr>
                 <td><strong>Herpes / CMV</strong></td>
                 <td>Kinase-Dependent Analogs</td>
-                <td>Acyclovir, Ganciclovir</td>
+                <td>Acyclovir (ACV), Ganciclovir (GCV)</td>
                 <td>Inhibits viral DNA polymerase after kinase activation</td>
                 <td>Genital HSV, Shingles, CMV Retinitis</td>
                 <td>Crystalline nephropathy (hydrate IV), bone marrow suppression</td>
@@ -782,7 +818,7 @@
               <tr>
                 <td><strong>Advanced HIV</strong></td>
                 <td>INSTIs &amp; PIs</td>
-                <td>Dolutegravir, Darunavir</td>
+                <td>Dolutegravir (DTG), Darunavir (DRV)</td>
                 <td>Chelates Mg²⁺ (INSTI) or blocks protein cleavage (PI)</td>
                 <td>Frontline &amp; Salvage HIV cART</td>
                 <td>Insomnia, hyperglycemia, lipodystrophy</td>
