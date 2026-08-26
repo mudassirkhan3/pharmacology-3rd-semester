@@ -1,899 +1,477 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>Histamine H2-Receptor Blockers (H2RAs) | GI Pharmacology</title>
+  <title>Histamine H2-Receptor Blockers (H2RAs) | Pharmacology | MK Study Hub</title>
+  <meta name="description" content="Ultimate student-friendly BSN Pharmacology module on Histamine H2-Receptor Blockers (H2RAs). Simple, interactive, and mobile optimized.">
+
+  <!-- TAILWIND CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+              800: '#115e59',
+              900: '#134e4a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- LUCIDE ICONS CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <style>
-    :root {
-      --bg-gradient: radial-gradient(circle at 10% 20%, rgba(225, 29, 72, 0.08) 0%, rgba(244, 63, 94, 0.05) 40%, #f8fafc 90%);
-      --primary: #e11d48;
-      --primary-dark: #be123c;
-      --primary-gradient: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
-      --accent: #f43f5e;
-      --card-bg: rgba(255, 255, 255, 0.98);
-      --card-border: #fecdd3;
-      --text-main: #881337;
-      --text-dark: #0f172a;
-      --text-muted: #475569;
-      --shadow-glow: 0 20px 40px -15px rgba(225, 29, 72, 0.25);
-      --mnemonics-bg: #fff1f2;
-      --mnemonics-border: #fecdd3;
-      --warning-bg: #fff1f2;
-      --warning-border: #fecdd3;
-      --exam-badge-bg: #ef4444;
-      --exam-badge-text: #ffffff;
-      --radius: 20px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap');
+    
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg-gradient);
-      background-attachment: fixed;
-      color: var(--text-dark);
-      line-height: 1.6;
-      padding: 16px 8px 60px;
-      min-height: 100vh;
-      overflow-x: hidden;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .container {
-      max-width: 1050px;
-      margin: 0 auto;
-      background: var(--card-bg);
-      backdrop-filter: blur(16px);
-      padding: 32px 20px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      box-shadow: var(--shadow-glow);
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
     }
 
-    header {
-      margin-bottom: 25px;
+    .custom-scroll {
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
     }
+    .custom-scroll::-webkit-scrollbar { height: 4px; }
+    .custom-scroll::-webkit-scrollbar-track { background: #134e4a; border-radius: 8px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #0d9488; border-radius: 8px; }
 
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .header-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .btn-header {
-      background: var(--primary-gradient);
-      color: #ffffff;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 4px 10px rgba(225, 29, 72, 0.25);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .btn-header:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(225, 29, 72, 0.35);
-    }
-
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      background: var(--primary);
-      color: white;
-      text-decoration: none;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      font-weight: 700;
-      font-size: 0.88rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.2);
-    }
-    .back-btn:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-    }
-
-    .badge-container {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 6px 14px;
-      background: #fff1f2;
-      color: var(--primary);
-      font-weight: 800;
-      font-size: 0.8rem;
-      border-radius: 50px;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      border: 1px solid #fecdd3;
-    }
-
-    /* EXAM HIGH-YIELD BADGE */
-    .exam-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: var(--exam-badge-bg);
-      color: var(--exam-badge-text);
-      font-size: 0.72rem;
-      font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.25);
-      margin-left: 6px;
-      vertical-align: middle;
-    }
-
-    h1 {
-      font-size: 2.2rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, #881337 0%, var(--primary) 50%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
-      line-height: 1.25;
-    }
-
-    .subtitle {
-      font-size: 1.02rem;
-      color: var(--text-muted);
-      margin-bottom: 30px;
-    }
-
-    h2 {
-      font-size: 1.45rem;
-      color: var(--text-main);
-      margin: 36px 0 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-bottom: 2px solid #fecdd3;
-      padding-bottom: 10px;
-      flex-wrap: wrap;
-    }
-
-    h2::before {
-      content: '';
-      display: inline-block;
-      width: 5px;
-      height: 24px;
-      background: linear-gradient(to bottom, var(--primary), var(--accent));
+    mark {
+      background-color: #fef08a;
+      color: #713f12;
+      padding: 2px 6px;
       border-radius: 4px;
-      flex-shrink: 0;
-    }
-
-    h3 {
-      font-size: 1.15rem;
-      color: var(--primary);
-      margin-bottom: 8px;
-    }
-
-    p {
-      margin-bottom: 15px;
-      color: var(--text-muted);
-      font-size: 0.96rem;
-    }
-
-    /* Section & Grid Styling */
-    .drug-class-card {
-      background: #ffffff;
-      border: 2px solid var(--card-border);
-      border-radius: 16px;
-      padding: 24px 20px;
-      margin-bottom: 35px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-      position: relative;
-    }
-
-    .drug-class-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: var(--primary-gradient);
-      border-radius: 16px 16px 0 0;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-      margin: 20px 0;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin: 20px 0;
-    }
-
-    .card-box {
-      background: #ffffff;
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 18px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .card-box:hover {
-      transform: translateY(-3px);
-      border-color: var(--primary);
-    }
-
-    .card-box h3 {
-      color: var(--primary);
-      margin-bottom: 8px;
-      font-size: 1.05rem;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .sub-block {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 16px 18px;
-      margin: 18px 0;
-    }
-
-    /* MOA ENHANCED STEP-BY-STEP BOX */
-    .moa-enhanced-box {
-      background: #fff1f2;
-      border: 2px solid #fecdd3;
-      border-radius: 14px;
-      padding: 20px;
-      margin: 18px 0;
-    }
-
-    .moa-enhanced-box h4 {
-      color: var(--text-main);
-      font-weight: 800;
-      font-size: 1.02rem;
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .moa-concept-summary {
-      font-size: 0.9rem;
-      color: #881337;
-      background: #ffe4e6;
-      padding: 8px 12px;
-      border-radius: 8px;
-      margin-bottom: 14px;
-      font-weight: 600;
-    }
-
-    .moa-steps-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .moa-step-item {
-      background: #ffffff;
-      border: 1px solid #fecdd3;
-      border-radius: 8px;
-      padding: 10px 14px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .moa-step-number {
-      background: var(--primary);
-      color: white;
-      font-weight: 900;
-      font-size: 0.78rem;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .moa-step-content strong {
-      display: block;
-      color: var(--text-main);
-      font-size: 0.9rem;
-    }
-
-    .moa-step-content span {
-      font-size: 0.84rem;
-      color: var(--text-muted);
-    }
-
-    /* ALIGNED MNEMONIC LIST LAYOUT */
-    .mnemonic-box {
-      background: var(--mnemonics-bg);
-      border: 1px solid var(--mnemonics-border);
-      border-left: 5px solid var(--primary);
-      border-radius: 12px;
-      padding: 18px;
-      margin: 18px 0;
-    }
-
-    .mnemonic-box h4 {
-      color: var(--primary);
-      font-weight: 800;
-      font-size: 1.02rem;
-      margin-bottom: 12px;
-    }
-
-    .aligned-mnemonic-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 8px;
-    }
-
-    .aligned-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      background: #ffffff;
-      padding: 10px 14px;
-      border-radius: 8px;
-      border: 1px solid #fecdd3;
-      font-size: 0.92rem;
-      color: var(--text-main);
-    }
-
-    .letter-badge {
-      background: var(--primary);
-      color: white;
-      font-weight: 900;
-      font-size: 0.8rem;
-      width: 26px;
-      height: 26px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    /* Warning / Contraindication Styling */
-    .warning-box {
-      background: var(--warning-bg);
-      border: 1px solid var(--warning-border);
-      border-left: 5px solid #e11d48;
-      border-radius: 10px;
-      padding: 16px 20px;
-      margin: 15px 0;
-    }
-
-    .warning-box h4 {
-      color: #9f1239;
-      font-size: 1rem;
-      margin-bottom: 6px;
-    }
-
-    ul.bullet-list {
-      list-style-type: none;
-      padding-left: 0;
-      margin-bottom: 20px;
-    }
-
-    ul.bullet-list li {
-      position: relative;
-      padding-left: 26px;
-      margin-bottom: 10px;
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    ul.bullet-list li::before {
-      content: '▪';
-      position: absolute;
-      left: 8px;
-      color: var(--primary);
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-
-    /* MODAL POPUP STYLES */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(8px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      padding: 12px;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .modal-card {
-      background: #ffffff;
-      border-radius: 18px;
-      max-width: 950px;
-      width: 100%;
-      max-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      border: 1px solid #e2e8f0;
-      overflow: hidden;
-      transform: translateY(20px);
-      transition: transform 0.3s ease;
-    }
-
-    .modal-overlay.active .modal-card {
-      transform: translateY(0);
-    }
-
-    .modal-header {
-      padding: 16px 20px;
-      background: var(--primary-gradient);
-      color: #ffffff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .modal-header h3 {
-      font-size: 1.15rem;
-      font-weight: 800;
-    }
-
-    .close-btn {
-      background: rgba(255, 255, 255, 0.2);
-      border: none;
-      color: white;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      font-size: 1.2rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-    }
-
-    .close-btn:hover {
-      background: rgba(255, 255, 255, 0.4);
-    }
-
-    .modal-body {
-      padding: 20px;
-      overflow-y: auto;
-      flex: 1;
-    }
-
-    /* TABLE STYLING FOR MODAL */
-    .table-container {
-      overflow-x: auto;
-      border-radius: 10px;
-      border: 1px solid #fecdd3;
-      margin-top: 10px;
-    }
-
-    .summary-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-      text-align: left;
-      min-width: 650px;
-    }
-
-    .summary-table th {
-      background: #881337;
-      color: #ffffff;
-      padding: 12px 14px;
       font-weight: 700;
-      position: sticky;
-      top: 0;
-    }
-
-    .summary-table td {
-      padding: 10px 14px;
-      border-bottom: 1px solid #e2e8f0;
-    }
-
-    .summary-table tr:nth-child(even) {
-      background: #fff1f2;
-    }
-
-    /* TREE DIAGRAM STYLES */
-    .tree-container {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      padding: 10px;
-    }
-
-    .tree-node {
-      background: #fff1f2;
-      border: 1px solid #fecdd3;
-      border-radius: 10px;
-      padding: 14px;
-    }
-
-    .tree-title {
-      font-weight: 800;
-      color: var(--primary);
-      font-size: 0.98rem;
-      margin-bottom: 8px;
-    }
-
-    .tree-sublist {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .tree-tag {
-      background: #ffe4e6;
-      color: var(--text-main);
-      border: 1px solid #fecdd3;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      font-weight: 700;
-    }
-
-    /* MOBILE SPECIFIC IMPROVEMENTS */
-    @media (max-width: 640px) {
-      body { padding: 8px 4px 50px; }
-      .container { padding: 18px 12px; border-radius: 14px; }
-      h1 { font-size: 1.65rem; }
-      .subtitle { font-size: 0.9rem; }
-      h2 { font-size: 1.2rem; }
-      .drug-class-card { padding: 16px 12px; }
-      .grid-2, .grid-3 { grid-template-columns: 1fr; }
-      .aligned-item { padding: 8px 10px; font-size: 0.88rem; }
-      .header-top { flex-direction: column; align-items: flex-start; }
-      .modal-card { max-height: 95vh; margin: 4px; }
     }
   </style>
 </head>
-<body>
+<body class="antialiased text-slate-900 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 pt-4 sm:pt-6">
 
-<div class="container">
-  <a href="chapter3.html" class="back-btn">&larr; Back to Chapter 3 Hub</a>
-  
-  <header>
-    <div class="header-top">
-      <div class="badge-container">
-        <span class="badge">Pharmacology Class Deep-Dive</span>
-      </div>
-      <div class="header-actions">
-        <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
-        <button class="btn-header" onclick="toggleModal('treeModal')">🌳 Classification Tree</button>
-        <button class="btn-header" onclick="toggleModal('allMnemonicsModal')">💡 Class & Prototype Mnemonic Hub</button>
+  <!-- TOP STICKY BAR -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-300 shadow-sm max-w-4xl mx-auto rounded-2xl mb-6">
+    <div class="px-4 h-16 flex items-center justify-between gap-2">
+      <a href="chapter3.html" class="inline-flex items-center gap-1.5 text-xs sm:text-base font-extrabold text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-2 rounded-xl border border-brand-200 transition active:scale-95">
+        <i data-lucide="arrow-left" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+        <span>Chapter 3 Hub</span>
+      </a>
+
+      <div class="flex items-center gap-2">
+        <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-800 text-[10px] sm:text-sm font-black uppercase tracking-wider border border-slate-300">
+          3rd Sem BSN
+        </span>
+        <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center font-black text-xs sm:text-sm shadow-md shadow-brand-600/20">
+          MK
+        </div>
       </div>
     </div>
-    
-    <h1>Histamine H2-Receptor Blockers (H2RAs)</h1>
-    <p class="subtitle">Competitive antagonists of histamine H2 receptors designed to suppress basal and meal-stimulated gastric acid secretion for the management of peptic ulcers, GERD, and stress ulcer prophylaxis.</p>
   </header>
 
-  <main>
+  <main class="max-w-4xl mx-auto space-y-6 sm:space-y-10">
 
-    <!-- ================= 1. INTRODUCTION ================= -->
-    <section class="drug-class-card">
-      <h2>1. Introduction</h2>
-      <p>Histamine H2-receptor blockers (H2RAs) reduce gastric acid production by competitively blocking histamine receptors on parietal cells. While largely superseded by Proton Pump Inhibitors (PPIs) for severe acid disorders due to superior potency, H2RAs remain essential agents for rapid symptom relief, nocturnal acid suppression, and stress ulcer prophylaxis in hospitalized patients.</p>
+    <!-- 1. CHAPTER INTRODUCTION -->
+    <section class="bg-gradient-to-br from-slate-900 via-brand-900 to-brand-800 text-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 shadow-xl border border-brand-700/50 relative overflow-hidden space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/15 text-white text-[10px] sm:text-xs font-extrabold uppercase tracking-wide border border-white/20">
+          <i data-lucide="book-open" class="w-3.5 h-3.5 text-brand-300"></i> Gastrointestinal Pharmacology
+        </span>
+        <span class="text-[10px] sm:text-sm text-brand-200 font-bold">Chapter Deep-Dive</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight break-words">
+        Histamine H2-Receptor Blockers (H2RAs)
+      </h1>
+
+      <p class="text-slate-200 text-xs sm:text-lg font-medium max-w-2xl leading-relaxed">
+        Competitive antagonists of histamine H2 receptors designed to suppress basal and meal-stimulated gastric acid secretion for the management of peptic ulcers, GERD, and stress ulcer prophylaxis.
+      </p>
+
+      <!-- SINGLE SMALL BUTTON FOR MNEMONIC HUB -->
+      <div class="pt-2">
+        <button onclick="openModal('allMnemonicsModal')" class="inline-flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white text-xs sm:text-sm font-extrabold rounded-xl shadow-md transition active:scale-95 border border-brand-400">
+          <i data-lucide="lightbulb" class="w-4 h-4 text-brand-200"></i>
+          <span>✨ Open Class & Prototype Mnemonic Hub</span>
+        </button>
+      </div>
+
+      <!-- What You Will Learn Card -->
+      <div class="pt-3 border-t border-white/20">
+        <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-brand-300 block mb-2">🎯 What you will learn in this module:</span>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-medium text-slate-100">
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Classification & Prototypes</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Mechanism of Action</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Uses & Mnemonics</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Adverse Effects (ADRs)</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Pharmacokinetics</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Nursing Takeaways</div>
+        </div>
+      </div>
     </section>
 
-    <!-- ================= 2. CLASSIFICATION & PROTOTYPES ================= -->
-    <section class="drug-class-card">
-      <h2>2. Classification &amp; Prototype Drugs</h2>
-      <p>H2RAs are classified by their specific chemical structures and pharmacokinetic profiles:</p>
-      
-      <ul class="bullet-list">
-        <li><strong>Famotidine:</strong> <em>(The current clinical standard; highly potent with minimal drug-drug interactions.)</em> <span class="exam-badge">IMP FOR EXAM</span></li>
-        <li><strong>Cimetidine:</strong> <em>(The historical prototype; rarely used today due to strong cytochrome P450 inhibition and antiandrogenic side effects.)</em> <span class="exam-badge">IMP FOR EXAM</span></li>
-        <li><strong>Nizatidine:</strong> <em>(Oral-only agent with rapid absorption and high bioavailability.)</em></li>
-        <li><strong>Ranitidine:</strong> <em>(Historically widely used, largely withdrawn or restricted globally due to NDMA impurity concerns.)</em></li>
-      </ul>
-    </section>
+    <!-- 2. CLASSIFICATION & PROTOTYPES -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">2</span>
+          Classification &amp; Prototype Drugs
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Interactive</span>
+      </div>
 
-    <!-- ================= 3. MECHANISM OF ACTION ================= -->
-    <section class="drug-class-card">
-      <h2>3. Mechanism of Action (Detailed &amp; Simple Explanations)</h2>
-      <p>H2RAs suppress gastric acidity through selective competitive receptor antagonism at the parietal cell level:</p>
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        Click any agent class below to review its prototype drugs and clinical properties:
+      </p>
 
-      <div class="moa-enhanced-box">
-        <h4>⚡ H2 Receptor Blockade Cascade <span class="exam-badge">IMP FOR EXAM</span></h4>
-        <div class="moa-concept-summary">💡 Simple Concept: Blocks histamine from ringing the parietal cell's "acid alarm bell", turning down internal power (cAMP) and stopping the acid pump.</div>
-        <div class="moa-steps-list">
-          <div class="moa-step-item">
-            <div class="moa-step-number">1</div>
-            <div class="moa-step-content">
-              <strong>Selective H2 Receptor Blockade:</strong>
-              <span>H2RAs reversibly and competitively bind to histamine H2 receptors located on the basolateral membrane of gastric parietal cells.</span>
-            </div>
+      <div class="space-y-3">
+        <!-- Subclass 1 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="pill" class="w-4 h-4 text-brand-600"></i> Second-Generation H2RA (Standard Clinical Agent)</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drug &amp; Classification Mnemonic:</strong> <mark>F</mark>amotidine — <em>"<strong>F</strong>amously strong standard"</em></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Famotidine</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Current clinical standard; highly potent with minimal drug-drug interactions.</p>
           </div>
-          <div class="moa-step-item">
-            <div class="moa-step-number">2</div>
-            <div class="moa-step-content">
-              <strong>Intracellular cAMP Suppression:</strong>
-              <span>By blocking histamine stimulation, intracellular adenylate cyclase activity drops, lowering cyclic AMP (cAMP) signal levels.</span>
-            </div>
+        </div>
+
+        <!-- Subclass 2 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="shield" class="w-4 h-4 text-brand-600"></i> First-Generation H2RA (Imidazole Derivative)</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drug &amp; Classification Mnemonic:</strong> <mark>C</mark>imetidine — <em>"<strong>C</strong>imetidine causes CYP &amp; antiandrogen issues"</em></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Cimetidine</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> The historical prototype; rarely used today due to strong cytochrome P450 inhibition and antiandrogenic side effects.</p>
           </div>
-          <div class="moa-step-item">
-            <div class="moa-step-number">3</div>
-            <div class="moa-step-content">
-              <strong>Proton Pump Inactivation:</strong>
-              <span>Decreased cAMP inhibits activation of the <math><msup><mi>H</mi><mo>+</mo></msup><mo>/</mo><msup><mi>K</mi><mo>+</mo></msup><mo>-</mo><mi>ATP</mi><mi>ase</mi></math> proton pump, significantly reducing gastric acid volume and concentration (especially nocturnal acid output).</span>
-            </div>
+        </div>
+
+        <!-- Subclass 3 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-brand-600"></i> Oral-High Bioavailability H2RA</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drug &amp; Classification Mnemonic:</strong> <mark>N</mark>izatidine — <em>"<strong>N</strong>iza-oral-neat"</em></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Nizatidine</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Oral-only agent with rapid absorption and high bioavailability.</p>
+          </div>
+        </div>
+
+        <!-- Subclass 4 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="dna" class="w-4 h-4 text-brand-600"></i> Furan Derivative H2RA</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drug &amp; Classification Mnemonic:</strong> <mark>R</mark>anitidine — <em>"<strong>R</strong>emoved/Restricted"</em></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Ranitidine</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Historically widely used, largely withdrawn or restricted globally due to NDMA impurity concerns.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= 4. CLINICAL USES & ALIGNED MNEMONIC ================= -->
-    <section class="drug-class-card">
-      <h2>4. Clinical Uses &amp; Therapeutic Indications</h2>
-      <p>H2RAs are indicated for conditions driven by excessive gastric acid production:</p>
-      <ul class="bullet-list">
-        <li>Peptic Ulcer Disease (Gastric and Duodenal Ulcers).</li>
-        <li>Mild to Moderate Gastroesophageal Reflux Disease (GERD).</li>
-        <li>Stress Ulcer Prophylaxis in critically ill hospitalized patients.</li>
-        <li>Aspiration Pneumonitis Prophylaxis (pre-anesthesia adjunct).</li>
-        <li>Non-specific Dyspepsia and Heartburn relief.</li>
-      </ul>
+    <!-- 3. MECHANISM OF ACTION -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">3</span>
+          Mechanism of Action (Detailed &amp; Simple Explanations)
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">MOA</span>
+      </div>
 
-      <!-- ALIGNED USES MNEMONIC -->
-      <div class="mnemonic-box">
-        <h4>💡 Mnemonic for Clinical Uses: "P.G.S.A."</h4>
-        <div class="aligned-mnemonic-list">
-          <div class="aligned-item">
-            <span class="letter-badge">P</span>
-            <span><strong>P</strong>eptic ulcer disease (duodenal and gastric ulcer healing)</span>
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        H2RAs suppress gastric acidity through selective competitive receptor antagonism at the parietal cell level:
+      </p>
+
+      <div class="p-5 bg-gradient-to-br from-brand-50 to-teal-50 border border-brand-200 rounded-2xl space-y-3 shadow-sm">
+        <div class="text-base font-black text-brand-900 flex items-center gap-2">
+          <i data-lucide="zap" class="w-5 h-5 text-brand-600"></i> H2 Receptor Blockade Cascade
+        </div>
+        <p class="text-xs sm:text-sm text-slate-700 bg-white/70 p-3 rounded-xl border border-brand-100 font-medium">
+          💡 <strong>Simple Concept:</strong> Blocks histamine from ringing the parietal cell's "acid alarm bell", turning down internal power (cAMP) and stopping the acid pump.
+        </p>
+        <div class="space-y-2 text-xs sm:text-sm text-slate-700">
+          <div class="flex items-start gap-2 bg-white p-2.5 rounded-xl border border-slate-200">
+            <span class="w-5 h-5 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center text-[10px] shrink-0">1</span>
+            <div><strong>Selective H2 Receptor Blockade:</strong> H2RAs reversibly and competitively bind to histamine H2 receptors located on the basolateral membrane of gastric parietal cells.</div>
           </div>
-          <div class="aligned-item">
-            <span class="letter-badge">G</span>
-            <span><strong>G</strong>ERD (mild to moderate symptomatic relief)</span>
+          <div class="flex items-start gap-2 bg-white p-2.5 rounded-xl border border-slate-200">
+            <span class="w-5 h-5 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center text-[10px] shrink-0">2</span>
+            <div><strong>Intracellular cAMP Suppression:</strong> By blocking histamine stimulation, intracellular adenylate cyclase activity drops, lowering cyclic AMP (cAMP) signal levels.</div>
           </div>
-          <div class="aligned-item">
-            <span class="letter-badge">S</span>
-            <span><strong>S</strong>tress ulcer prophylaxis in critically ill ICU patients <span class="exam-badge">IMP FOR EXAM</span></span>
-          </div>
-          <div class="aligned-item">
-            <span class="letter-badge">A</span>
-            <span><strong>A</strong>spiration pneumonitis prevention prior to surgical anesthesia</span>
+          <div class="flex items-start gap-2 bg-white p-2.5 rounded-xl border border-slate-200">
+            <span class="w-5 h-5 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center text-[10px] shrink-0">3</span>
+            <div><strong>Proton Pump Inactivation:</strong> Decreased cAMP inhibits activation of the <math><msup><mi>H</mi><mo>+</mo></msup><mo>/</mo><msup><mi>K</mi><mo>+</mo></msup><mo>-</mo><mi>ATP</mi><mi>ase</mi></math> proton pump, significantly reducing gastric acid volume and concentration (especially nocturnal acid output).</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= 5. ADVERSE DRUG REACTIONS & ALIGNED MNEMONIC ================= -->
-    <section class="drug-class-card">
-      <h2>5. Adverse Drug Reactions (ADRs)</h2>
-      <p>H2RAs are generally well-tolerated, but specific toxicities can occur, particularly with older agents like cimetidine:</p>
-      
-      <ul class="bullet-list">
-        <li><strong>Central Nervous System Effects:</strong> Headache, dizziness, fatigue, and confusion or hallucinations (more common in elderly patients or those with renal impairment). <span class="exam-badge">IMP FOR EXAM</span></li>
-        <li><strong>Antiandrogenic Effects (Cimetidine Specific):</strong> Gynecomastia, reduced libido, and impotence due to blockade of androgen receptors. <span class="exam-badge">IMP FOR EXAM</span></li>
-        <li><strong>Gastrointestinal Disturbance:</strong> Diarrhea or constipation.</li>
-        <li><strong>Hematologic Effects:</strong> Rare instances of thrombocytopenia, neutropenia, or aplastic anemia.</li>
-      </ul>
+    <!-- 4. CLINICAL USES -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">4</span>
+          Clinical Uses &amp; Therapeutic Indications
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Indications</span>
+      </div>
 
-      <!-- ALIGNED ADRs MNEMONIC -->
-      <div class="mnemonic-box">
-        <h4>💡 Mnemonic for ADRs: "C.A.D."</h4>
-        <div class="aligned-mnemonic-list">
-          <div class="aligned-item">
-            <span class="letter-badge">C</span>
-            <span><strong>C</strong>NS toxicity in elderly / renal patients (confusion, agitation, hallucinations) <span class="exam-badge">IMP FOR EXAM</span></span>
-          </div>
-          <div class="aligned-item">
-            <span class="letter-badge">A</span>
-            <span><strong>A</strong>ntiandrogenic side effects with Cimetidine (gynecomastia, impotence) <span class="exam-badge">IMP FOR EXAM</span></span>
-          </div>
-          <div class="aligned-item">
-            <span class="letter-badge">D</span>
-            <span><strong>D</strong>igestive changes (diarrhea, constipation) and persistent headache</span>
-          </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm font-medium">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">01</span>
+          <span class="text-slate-800">Peptic Ulcer Disease (Gastric and Duodenal Ulcers)</span>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">02</span>
+          <span class="text-slate-800">Mild to Moderate Gastroesophageal Reflux Disease (GERD)</span>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">03</span>
+          <span class="text-slate-800">Stress Ulcer Prophylaxis in critically ill hospitalized patients</span>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">04</span>
+          <span class="text-slate-800">Aspiration Pneumonitis Prophylaxis (pre-anesthesia adjunct)</span>
         </div>
       </div>
     </section>
 
-    <!-- ================= 6. PHARMACOKINETICS ================= -->
-    <section class="drug-class-card">
-      <h2>6. Pharmacokinetics</h2>
-      <ul class="bullet-list">
-        <li><strong>Administration:</strong> Available in oral tablets, oral solutions, and intravenous (IV) or intramuscular (IM) formulations for inpatient settings.</li>
-        <li><strong>Excretion:</strong> Primarily eliminated via renal excretion. Dosage adjustments are mandatory in patients with moderate to severe renal impairment to prevent drug accumulation and CNS toxicity. <span class="exam-badge">IMP FOR EXAM</span></li>
-        <li><strong>Metabolism:</strong> Famotidine undergoes minimal hepatic metabolism, whereas Cimetidine is extensively metabolized via hepatic cytochrome P450 enzymes.</li>
-      </ul>
-    </section>
+    <!-- 5. USES MEMORY TRICK -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">5</span>
+          Uses Memory Trick
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Mnemonic</span>
+      </div>
 
-    <!-- ================= 7. COMPLICATIONS & INTERACTIONS ================= -->
-    <section class="drug-class-card">
-      <h2>7. Agent-Specific Complications &amp; Drug Interactions</h2>
-      <div class="grid-2">
-        <div class="card-box">
-          <h3>⚠️ Cimetidine CYP450 Inhibition</h3>
-          <p>Cimetidine is a potent inhibitor of multiple hepatic CYP450 enzymes (including CYP1A2, CYP2C9, and CYP3A4). It significantly increases serum levels of narrow-therapeutic-index drugs like warfarin, phenytoin, and theophylline, increasing toxicity risk. <span class="exam-badge">IMP FOR EXAM</span></p>
+      <div class="p-5 bg-gradient-to-br from-brand-50 to-teal-50 border border-brand-200 rounded-2xl space-y-3 shadow-sm">
+        <div class="text-base font-black text-brand-900 flex items-center gap-2">
+          <i data-lucide="lightbulb" class="w-5 h-5 text-brand-600"></i> Mnemonic: "P.G.S.A."
         </div>
-        <div class="card-box">
-          <h3>🛡️ Renal Dose Adjustments</h3>
-          <p>Because H2RAs are cleared primarily by the kidneys, failure to reduce doses in elderly patients or those with renal failure can precipitate acute toxic CNS symptoms, including lethargy, slurred speech, and confusion. <span class="exam-badge">IMP FOR EXAM</span></p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700 pt-1">
+          <div>• <strong>P</strong>eptic ulcer disease</div>
+          <div>• <strong>G</strong>ERD (mild-moderate)</div>
+          <div>• <strong>S</strong>tress ulcer prophylaxis</div>
+          <div>• <strong>A</strong>spiration pneumonitis prevention</div>
         </div>
       </div>
     </section>
 
-    <!-- ================= 8. KEY NURSING TAKEAWAYS ================= -->
-    <section class="drug-class-card">
-      <h2>8. Key Nursing Takeaways &amp; Patient Safety</h2>
-      <ul class="bullet-list">
-        <li><strong>Monitor Renal Function:</strong> Check baseline BUN and serum creatinine, and ensure appropriate dosage reductions are ordered for patients with renal impairment. <span class="exam-badge">IMP FOR EXAM</span></li>
-        <li><strong>Assess for CNS Toxicity in Older Adults:</strong> Be vigilant for signs of confusion, agitation, or disorientation, especially in elderly hospitalized patients receiving IV H2RAs.</li>
-        <li><strong>Review Medication Reconciliation:</strong> If administering Cimetidine, closely monitor for interactions with narrow-index drugs like warfarin or phenytoin due to CYP450 inhibition.</li>
-        <li><strong>Administer Before Meals or at Bedtime:</strong> Instruct outpatients on proper timing (often 30–60 minutes before meals or at bedtime) to control nocturnal acid breakthrough effectively.</li>
-        <li><strong>Separate Antacid Administration:</strong> Advise patients to separate H2RAs and antacids by at least 1 hour, as simultaneous administration can impair H2RA absorption. <span class="exam-badge">IMP FOR EXAM</span></li>
-      </ul>
+    <!-- 6. ADVERSE DRUG REACTIONS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">6</span>
+          Adverse Drug Reactions (ADRs)
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 text-[10px] font-black uppercase tracking-wide border border-rose-200">Side Effects</span>
+      </div>
+
+      <div class="space-y-3 text-xs sm:text-sm">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">1. Central Nervous System Effects</strong>
+          <p class="text-slate-700">Headache, dizziness, fatigue, and confusion or hallucinations (more common in elderly patients or those with renal impairment).</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">2. Antiandrogenic Effects (Cimetidine Specific)</strong>
+          <p class="text-slate-700">Gynecomastia, reduced libido, and impotence due to blockade of androgen receptors.</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">3. Gastrointestinal &amp; Hematologic</strong>
+          <p class="text-slate-700">Diarrhea or constipation, alongside rare instances of thrombocytopenia or neutropenia.</p>
+        </div>
+      </div>
     </section>
+
+    <!-- 7. ADR MEMORY TRICK -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">7</span>
+          ADR Memory Trick
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Mnemonic</span>
+      </div>
+
+      <div class="p-5 bg-gradient-to-br from-teal-50 to-brand-50 border border-brand-200 rounded-2xl space-y-3 shadow-sm">
+        <div class="text-base font-black text-brand-900 flex items-center gap-2">
+          <i data-lucide="lightbulb" class="w-5 h-5 text-brand-600"></i> ADR Mnemonic: "C.A.D."
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs sm:text-sm text-slate-700 pt-1">
+          <div>• <strong>C</strong>NS toxicity in elderly/renal</div>
+          <div>• <strong>A</strong>ntiandrogenic side effects (Cimetidine)</div>
+          <div>• <strong>D</strong>igestive changes &amp; headache</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. PHARMACOKINETICS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">8</span>
+          Pharmacokinetics
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">PK Profiles</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 shadow-sm">
+          <strong class="text-slate-900 block text-base">💊 Administration &amp; Renal Excretion</strong>
+          <p class="text-slate-700">Available in oral, oral liquid, and IV/IM formats. Primarily eliminated via renal clearance; dose adjustments are mandatory in renal impairment.</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 shadow-sm">
+          <strong class="text-slate-900 block text-base">⚙️ Hepatic Metabolism</strong>
+          <p class="text-slate-700">Famotidine undergoes minimal liver metabolism, whereas Cimetidine heavily inhibits hepatic CYP450 enzyme pathways.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. KEY NURSING TAKEAWAYS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">9</span>
+          Key Nursing Takeaways &amp; Patient Safety
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 text-[10px] font-black uppercase tracking-wide border border-rose-200">Patient Safety</span>
+      </div>
+
+      <div class="space-y-3 text-xs sm:text-sm">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">1. Monitor Renal Function</strong>
+          <p class="text-slate-700">Check baseline BUN and serum creatinine, and ensure appropriate dosage reductions are ordered for patients with renal impairment.</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">2. Assess for CNS Toxicity in Older Adults</strong>
+          <p class="text-slate-700">Be vigilant for signs of confusion, agitation, or disorientation, especially in elderly hospitalized patients receiving IV H2RAs.</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">3. Review Medication Reconciliation</strong>
+          <p class="text-slate-700">If administering Cimetidine, closely monitor for interactions with narrow-index drugs like warfarin or phenytoin due to CYP450 inhibition.</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">4. Timing &amp; Antacid Separation</strong>
+          <p class="text-slate-700">Administer before meals or at bedtime, and separate antacid administration by at least 1 hour to prevent impaired H2RA absorption.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVIGATION FOOTER -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-slate-300">
+      <a href="chapter3.html" class="w-full sm:w-auto px-5 py-3 rounded-xl font-bold text-slate-800 bg-white border border-slate-300 hover:bg-slate-100 flex items-center justify-center gap-2 transition active:scale-95 text-xs sm:text-sm shadow-sm">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Chapter 3 Hub
+      </a>
+      <a href="dashboard.html" class="w-full sm:w-auto px-5 py-3 rounded-xl font-extrabold text-white bg-brand-600 hover:bg-brand-500 flex items-center justify-center gap-2 transition active:scale-95 text-xs sm:text-sm shadow-lg shadow-brand-600/20">
+        Dashboard <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
 
   </main>
-</div>
 
-<!-- ================= MASTER SUMMARY TABLE MODAL ================= -->
-<div class="modal-overlay" id="tableModal">
-  <div class="modal-card">
-    <div class="modal-header">
-      <h3>📊 Master H2RA Summary Table</h3>
-      <button class="close-btn" onclick="toggleModal('tableModal')">&times;</button>
+  <!-- FOOTER -->
+  <footer class="mt-12 bg-white border-t border-slate-300 py-6 text-center text-xs text-slate-600 max-w-4xl mx-auto rounded-2xl">
+    <div class="px-4 space-y-1">
+      <p class="font-extrabold text-slate-900 text-sm">✨ Curated with excellence by Mudassir Khan</p>
+      <p>© 2026 MK Study Hub. BSN Pharmacology Learning Portal.</p>
     </div>
-    <div class="modal-body">
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;">High-yield comparison table of Histamine H2-Receptor Antagonists, mechanisms, clinical uses, and safety alerts.</p>
-      <div class="table-container">
-        <table class="summary-table">
-          <thead>
-            <tr>
-              <th>Drug Name</th>
-              <th>Potency / Status</th>
-              <th>Mechanism of Action</th>
-              <th>Primary Clinical Uses</th>
-              <th>Key ADRs &amp; Nursing Warnings</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Famotidine</strong></td>
-              <td>Current Standard (Most Potent)</td>
-              <td>Competitive basolateral H2 receptor antagonist on parietal cells</td>
-              <td>GERD, PUD, stress ulcer prophylaxis in ICU</td>
-              <td>Minimal CYP interactions; require renal dose adjustment in CKD</td>
-            </tr>
-            <tr>
-              <td><strong>Cimetidine</strong></td>
-              <td>Historical Prototype (Low Potency)</td>
-              <td>Competitive basolateral H2 receptor antagonist</td>
-              <td>Peptic ulcers, heartburn (rarely used now)</td>
-              <td>Strong CYP450 inhibitor (Warfarin/Phenytoin interactions); Antiandrogenic effects (gynecomastia)</td>
-            </tr>
-            <tr>
-              <td><strong>Nizatidine</strong></td>
-              <td>High Bioavailability (Oral)</td>
-              <td>Competitive basolateral H2 receptor antagonist</td>
-              <td>Heartburn, GERD, active duodenal ulcers</td>
-              <td>Renally excreted; minimal CYP inhibition</td>
-            </tr>
-            <tr>
-              <td><strong>Ranitidine</strong></td>
-              <td>Withdrawn / Restricted</td>
-              <td>Competitive basolateral H2 receptor antagonist</td>
-              <td>Historically for GERD/PUD</td>
-              <td>Withdrawn due to NDMA nitrosamine impurity concerns</td>
-            </tr>
-          </tbody>
-        </table>
+  </footer>
+
+  <!-- ================= MODAL CONTAINING PROTOTYPE & CLASS MNEMONICS ================= -->
+  <div class="modal-overlay fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-3 opacity-0 pointer-events-none transition-all duration-300" id="allMnemonicsModal">
+    <div class="modal-card bg-white rounded-2xl max-w-lg w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden transform scale-95 transition-all duration-300">
+      <div class="modal-header px-5 py-4 bg-brand-600 text-white flex items-center justify-between">
+        <h3 class="font-extrabold text-base sm:text-lg flex items-center gap-2">
+          <i data-lucide="sparkles" class="w-5 h-5 text-brand-200"></i> H2RA Mnemonic Hub
+        </h3>
+        <button onclick="closeModal('allMnemonicsModal')" class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center transition font-bold text-lg">&times;</button>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- ================= CLASSIFICATION TREE MODAL ================= -->
-<div class="modal-overlay" id="treeModal">
-  <div class="modal-card">
-    <div class="modal-header">
-      <h3>🌳 H2-Receptor Blockers Classification Tree</h3>
-      <button class="close-btn" onclick="toggleModal('treeModal')">&times;</button>
-    </div>
-    <div class="modal-body">
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Visual hierarchy based on clinical generation and interaction profiles.</p>
-      <div class="tree-container">
-        <div class="tree-node">
-          <div class="tree-title">⚡ 1. First-Generation H2RA (High CYP450 Interaction Risk)</div>
-          <div class="tree-sublist">
-            <span class="tree-tag">Imidazole Derivative: Cimetidine</span>
-          </div>
+      <div class="modal-body p-5 overflow-y-auto space-y-4 text-xs sm:text-sm text-slate-700">
+        <div>
+          <strong class="text-brand-900 block font-black text-sm mb-1">💊 1. Prototype Drug Memory Key ("F-C-N-R")</strong>
+          <p class="text-slate-600"><strong>F</strong>amotidine (Famously strong standard) | <strong>C</strong>imetidine (Cimetidine causes CYP &amp; antiandrogen issues) | <strong>N</strong>izatidine (Niza-oral-neat) | <strong>R</strong>anitidine (Removed/Restricted)</p>
         </div>
-        <div class="tree-node">
-          <div class="tree-title">🛡️ 2. Second-Generation H2RAs (High Potency / Minimal CYP Risk)</div>
-          <div class="tree-sublist">
-            <span class="tree-tag">Thiazole Derivative: Famotidine (Current Standard)</span>
-            <span class="tree-tag">Thiazole Derivative: Nizatidine</span>
-            <span class="tree-tag">Furan Derivative: Ranitidine (Withdrawn)</span>
-          </div>
+
+        <div class="pt-2 border-t border-slate-100">
+          <strong class="text-brand-900 block font-black text-sm mb-1">⚡ 2. H2RA Suffix Reminder</strong>
+          <p class="text-slate-600">All generic H2-receptor blockers end in <strong>"-tidine"</strong> (e.g., famotidine, cimetidine, nizatidine, ranitidine)!</p>
+        </div>
+
+        <div class="pt-2 border-t border-slate-100">
+          <strong class="text-brand-900 block font-black text-sm mb-1">💡 3. Clinical Uses &amp; ADRs ("P.G.S.A." &amp; "C.A.D.")</strong>
+          <p class="text-slate-600"><strong>Uses:</strong> Peptic ulcers, GERD, Stress ulcer prophylaxis, Aspiration prevention | <strong>ADRs:</strong> CNS confusion, Antiandrogenic effects, Digestive changes.</p>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ================= CLASS & PROTOTYPE MNEMONIC HUB MODAL ================= -->
-<div class="modal-overlay" id="allMnemonicsModal">
-  <div class="modal-card">
-    <div class="modal-header">
-      <h3>💡 Class &amp; Prototype Mnemonic Hub</h3>
-      <button class="close-btn" onclick="toggleModal('allMnemonicsModal')">&times;</button>
-    </div>
-    <div class="modal-body space-y-4 text-xs sm:text-sm text-slate-700">
-      <div>
-        <strong class="text-primary block font-black text-sm mb-1">💊 1. Prototype Drug Memory Key ("F-C-N-R")</strong>
-        <p class="text-slate-600"><strong>F</strong>amotidine (Famously strong standard) | <strong>C</strong>imetidine (Cimetidine causes CYP &amp; antiandrogen issues) | <strong>N</strong>izatidine (Niza-oral-neat) | <strong>R</strong>anitidine (Removed/Restricted)</p>
-      </div>
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
 
-      <div class="pt-2 border-t border-slate-100">
-        <strong class="text-primary block font-black text-sm mb-1">⚡ 2. H2RA Suffix Reminder</strong>
-        <p class="text-slate-600">All generic H2-receptor blockers end in <strong>"-tidine"</strong> (e.g., famotidine, cimetidine, nizatidine, ranitidine)!</p>
-      </div>
-    </div>
-  </div>
-</div>
+    // Toggle Classification Cards
+    function toggleCard(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('[data-lucide="chevron-down"]');
+      
+      content.classList.toggle('hidden');
+      if (icon) {
+        icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+      }
+    }
 
-<script>
-  function toggleModal(modalId) {
-    const modal = document.getElementById(modalId);
-    modal.classList.toggle('active');
-  }
-</script>
+    // Modal Controls
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.querySelector('.modal-card').classList.remove('scale-95');
+      modal.querySelector('.modal-card').classList.add('scale-100');
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      modal.querySelector('.modal-card').classList.remove('scale-100');
+      modal.querySelector('.modal-card').classList.add('scale-95');
+    }
+  </script>
 
 </body>
 </html>
