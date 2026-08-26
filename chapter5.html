@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Chapter 5:  Anti-Neoplastic Pharmacology</title>
+  <title>Chapter 5: Anti-Neoplastic Pharmacology</title>
 
   <!-- URL ACCESS PROTECTION SCRIPT -->
   <script>
@@ -122,7 +122,7 @@
     .nursing-item { background: #ffffff; border: 1px solid var(--card-border); border-radius: 14px; padding: 20px 24px; display: flex; align-items: flex-start; gap: 18px; }
     .nursing-number { background: var(--primary); color: white; font-weight: 800; width: 34px; height: 34px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
 
-    /* MODAL POPUP STYLES - FIXED HIGH CONTRAST HEADERS */
+    /* MODAL POPUP STYLES */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -167,7 +167,7 @@
 
     .modal-header {
       padding: 18px 22px;
-      background: #3b0764; /* High-contrast solid dark purple background */
+      background: #3b0764;
       color: #ffffff;
       display: flex;
       justify-content: space-between;
@@ -178,7 +178,7 @@
     .modal-header h3 {
       font-size: 1.2rem;
       font-weight: 800;
-      color: #ffffff !important; /* Force high visibility white text */
+      color: #ffffff !important;
       text-shadow: 0 1px 2px rgba(0,0,0,0.4);
       margin: 0;
     }
@@ -243,7 +243,7 @@
       background: #f5f3ff;
     }
 
-    /* TREE DIAGRAM STYLES */
+    /* TREE / MNEMONIC HIERARCHY STYLES */
     .tree-container {
       display: flex;
       flex-direction: column;
@@ -254,21 +254,41 @@
     .tree-node {
       background: #f5f3ff;
       border: 1px solid #ddd6fe;
-      border-radius: 10px;
-      padding: 14px;
+      border-radius: 12px;
+      padding: 16px;
     }
 
     .tree-title {
       font-weight: 800;
       color: var(--primary-dark);
-      font-size: 0.98rem;
+      font-size: 1.05rem;
       margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mnemonic-sub-box {
+      background: #ffffff;
+      border: 1px solid #c4b5fd;
+      border-left: 4px solid var(--primary);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-top: 10px;
+    }
+
+    .mnemonic-sub-box h5 {
+      color: #581c87;
+      font-size: 0.92rem;
+      font-weight: 700;
+      margin-bottom: 6px;
     }
 
     .tree-sublist {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
+      margin-top: 8px;
     }
 
     .tree-tag {
@@ -297,7 +317,7 @@
     <h1>Chapter 5: Anti-Neoplastic Pharmacology</h1>
     <div class="header-actions">
       <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
-      <button class="btn-header" onclick="toggleModal('treeModal')">🌳 Classification Tree</button>
+      <button class="btn-header" onclick="toggleModal('treeModal')">🌳 Oncology Mnemonic Breakdown Tree</button>
     </div>
   </div>
 
@@ -366,7 +386,7 @@
         <span class="card-link">Explore Details &rarr;</span>
       </a>
 
-      <!-- 8. PRACTICE MASTER QUIZ CARD -->
+      <!-- PRACTICE MASTER QUIZ CARD -->
       <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/quiz.chapter5.html" class="card card-quiz" target="_blank">
         <div>
           <div class="card-icon">🎯</div>
@@ -405,124 +425,207 @@
     <div class="modal-body">
       <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;">High-yield comparison across all 7 major antineoplastic &amp; targeted oncology drug categories.</p>
       <div class="table-container">
-        <table class="summary-table">
-          <thead>
-            <tr>
-              <th>Class</th>
-              <th>Prototype Drugs</th>
-              <th>Mechanism of Action</th>
-              <th>Cell Cycle Specificity</th>
-              <th>Primary Clinical Uses</th>
-              <th>Key Toxicity / Nursing Alerts</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>1. Alkylating Agents</strong></td>
-              <td>Cyclophosphamide, Cisplatin, Carboplatin</td>
-              <td>Covalently cross-links DNA strands, causing breakage and replication arrest</td>
-              <td>Cell-Cycle Non-Specific (CCNS)</td>
-              <td>Lymphomas, leukemias, ovarian, lung, testicular cancers</td>
-              <td>Hemorrhagic cystitis (Cyclophosphamide - give Mesna); Nephrotoxicity &amp; Ototoxicity (Cisplatin)</td>
-            </tr>
-            <tr>
-              <td><strong>2. Antimetabolites</strong></td>
-              <td>Methotrexate, 5-Fluorouracil (5-FU), Cytarabine</td>
-              <td>Inhibits DNA/RNA synthesis by mimicking natural purines/pyrimidines</td>
-              <td>S-Phase Specific</td>
-              <td>ALL, breast cancer, colorectal cancer, head &amp; neck tumors</td>
-              <td>Severe bone marrow suppression, mucositis; Leucovorin rescue required with high-dose Methotrexate</td>
-            </tr>
-            <tr>
-              <td><strong>3. Antitumor Antibiotics</strong></td>
-              <td>Doxorubicin, Bleomycin</td>
-              <td>Intercalates into DNA strands &amp; inhibits Topoisomerase II; generates free radicals</td>
-              <td>Cell-Cycle Non-Specific (CCNS)</td>
-              <td>Hodgkin lymphoma, breast, ovarian, sarcoma, thyroid cancers</td>
-              <td>Cardiotoxicity / CHF (Doxorubicin - monitor LVEF &amp; lifetime dose limit); Pulmonary fibrosis (Bleomycin)</td>
-            </tr>
-            <tr>
-              <td><strong>4. Microtubule Inhibitors</strong></td>
-              <td>Vincristine, Vinblastine, Paclitaxel</td>
-              <td>Binds tubulin to disrupt mitotic spindle formation and arrest mitosis</td>
-              <td>M-Phase Specific</td>
-              <td>Leukemias, Kaposi sarcoma, breast, lung, ovarian cancers</td>
-              <td>Peripheral neuropathy &amp; paralytic ileus (Vincristine - NEVER IV intrathecal); Hypersensitivity (Paclitaxel)</td>
-            </tr>
-            <tr>
-              <td><strong>5. Hormones &amp; Antagonists</strong></td>
-              <td>Tamoxifen, Anastrozole, Leuprolide</td>
-              <td>Blocks or modulates hormone receptors (estrogen/androgen) driving tumor growth</td>
-              <td>Cell-Cycle Non-Specific (CCNS)</td>
-              <td>Hormone receptor-positive breast cancer, prostate cancer</td>
-              <td>Thromboembolism &amp; endometrial cancer risk (Tamoxifen); Hot flashes &amp; osteoporosis</td>
-            </tr>
-            <tr>
-              <td><strong>6. Monoclonal Antibodies</strong></td>
-              <td>Rituximab, Trastuzumab (Herceptin)</td>
-              <td>Binds specific tumor surface antigens (CD20, HER2), marking cells for immune lysis</td>
-              <td>Targeted Therapy</td>
-              <td>Non-Hodgkin lymphoma (Rituximab), HER2+ breast cancer (Trastuzumab)</td>
-              <td>Infusion-related anaphylaxis (pre-medicate with diphenhydramine/acetaminophen); Cardiotoxicity (Trastuzumab)</td>
-            </tr>
-            <tr>
-              <td><strong>7. Tyrosine Kinase Inhibitors (TKIs)</strong></td>
-              <td>Imatinib (Gleevec), Erlotinib</td>
-              <td>Competitively blocks ATP binding site on intracellular BCR-ABL / EGFR kinases</td>
-              <td>Targeted Therapy</td>
-              <td>Chronic Myelogenous Leukemia (CML - Imatinib), Non-small cell lung cancer</td>
-              <td>Fluid retention / periorbital edema, diarrhea, acneiform rash, hepatic enzyme elevations</td>
-            </tr>
-          </tbody>
-        </table>
+        <summary-table>
+          <table class="summary-table">
+            <thead>
+              <tr>
+                <th>Class</th>
+                <th>Prototype Drugs</th>
+                <th>Mechanism of Action</th>
+                <th>Cell Cycle Specificity</th>
+                <th>Primary Clinical Uses</th>
+                <th>Key Toxicity / Nursing Alerts</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Alkylating Agents</strong></td>
+                <td>Cyclophosphamide, Cisplatin, Carboplatin</td>
+                <td>Covalently cross-links DNA strands, causing breakage and replication arrest</td>
+                <td>Cell-Cycle Non-Specific (CCNS)</td>
+                <td>Lymphomas, leukemias, ovarian, lung, testicular cancers</td>
+                <td>Hemorrhagic cystitis (Cyclophosphamide - give Mesna); Nephrotoxicity &amp; Ototoxicity (Cisplatin)</td>
+              </tr>
+              <tr>
+                <td><strong>2. Antimetabolites</strong></td>
+                <td>Methotrexate, 5-Fluorouracil (5-FU), Cytarabine</td>
+                <td>Inhibits DNA/RNA synthesis by mimicking natural purines/pyrimidines</td>
+                <td>S-Phase Specific</td>
+                <td>ALL, breast cancer, colorectal cancer, head &amp; neck tumors</td>
+                <td>Severe bone marrow suppression, mucositis; Leucovorin rescue required with high-dose Methotrexate</td>
+              </tr>
+              <tr>
+                <td><strong>3. Antitumor Antibiotics</strong></td>
+                <td>Doxorubicin, Bleomycin</td>
+                <td>Intercalates into DNA strands &amp; inhibits Topoisomerase II; generates free radicals</td>
+                <td>Cell-Cycle Non-Specific (CCNS)</td>
+                <td>Hodgkin lymphoma, breast, ovarian, sarcoma, thyroid cancers</td>
+                <td>Cardiotoxicity / CHF (Doxorubicin - monitor LVEF &amp; lifetime dose limit); Pulmonary fibrosis (Bleomycin)</td>
+              </tr>
+              <tr>
+                <td><strong>4. Microtubule Inhibitors</strong></td>
+                <td>Vincristine, Vinblastine, Paclitaxel</td>
+                <td>Binds tubulin to disrupt mitotic spindle formation and arrest mitosis</td>
+                <td>M-Phase Specific</td>
+                <td>Leukemias, Kaposi sarcoma, breast, lung, ovarian cancers</td>
+                <td>Peripheral neuropathy &amp; paralytic ileus (Vincristine - NEVER IV intrathecal); Hypersensitivity (Paclitaxel)</td>
+              </tr>
+              <tr>
+                <td><strong>5. Hormones &amp; Antagonists</strong></td>
+                <td>Tamoxifen, Anastrozole, Leuprolide</td>
+                <td>Blocks or modulates hormone receptors (estrogen/androgen) driving tumor growth</td>
+                <td>Cell-Cycle Non-Specific (CCNS)</td>
+                <td>Hormone receptor-positive breast cancer, prostate cancer</td>
+                <td>Thromboembolism &amp; endometrial cancer risk (Tamoxifen); Hot flashes &amp; osteoporosis</td>
+              </tr>
+              <tr>
+                <td><strong>6. Monoclonal Antibodies</strong></td>
+                <td>Rituximab, Trastuzumab (Herceptin)</td>
+                <td>Binds specific tumor surface antigens (CD20, HER2), marking cells for immune lysis</td>
+                <td>Targeted Therapy</td>
+                <td>Non-Hodgkin lymphoma (Rituximab), HER2+ breast cancer (Trastuzumab)</td>
+                <td>Infusion-related anaphylaxis (pre-medicate with diphenhydramine/acetaminophen); Cardiotoxicity (Trastuzumab)</td>
+              </tr>
+              <tr>
+                <td><strong>7. Tyrosine Kinase Inhibitors (TKIs)</strong></td>
+                <td>Imatinib (Gleevec), Erlotinib</td>
+                <td>Competitively blocks ATP binding site on intracellular BCR-ABL / EGFR kinases</td>
+                <td>Targeted Therapy</td>
+                <td>Chronic Myelogenous Leukemia (CML - Imatinib), Non-small cell lung cancer</td>
+                <td>Fluid retention / periorbital edema, diarrhea, acneiform rash, hepatic enzyme elevations</td>
+              </tr>
+            </tbody>
+          </table>
+        </summary-table>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ================= CLASSIFICATION TREE MODAL (HIGH CONTRAST) ================= -->
+<!-- ================= ONCOLOGY MNEMONIC BREAKDOWN TREE MODAL ================= -->
 <div class="modal-overlay" id="treeModal">
   <div class="modal-card">
     <div class="modal-header">
-      <h3>🌳 Chapter 5 Oncology Classification Tree</h3>
+      <h3>🌳 Chapter 5 Oncology Mnemonic Breakdown Tree</h3>
       <button class="close-btn" onclick="toggleModal('treeModal')">&times;</button>
     </div>
     <div class="modal-body">
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Visual hierarchy based on cell-cycle specificity and targeted mechanism pathways.</p>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Breakdown of all 7 antineoplastic classifications with tailored sub-mnemonics for prototype agents.</p>
       <div class="tree-container">
+
+        <!-- 1. ALKYLATING AGENTS -->
         <div class="tree-node">
-          <div class="tree-title">🧬 1. Cell-Cycle Specific (CCS) Cytotoxic Agents</div>
-          <div class="tree-sublist">
-            <span class="tree-tag">S-Phase (DNA Synthesis): Antimetabolites (Methotrexate, 5-FU, Cytarabine)</span>
-            <span class="tree-tag">M-Phase (Mitosis / Spindle): Microtubule Inhibitors (Vincristine, Paclitaxel)</span>
-            <span class="tree-tag">G2-Phase: Bleomycin</span>
+          <div class="tree-title">⛓️ 1. Alkylating Agents (CCNS)</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 4px;">Covalently cross-links DNA strands to arrest replication.</p>
+          <div class="mnemonic-sub-box">
+            <h5>💡 Sub-Mnemonic: "C.C.C." (Alkylating Prototypes)</h5>
+            <div class="tree-sublist">
+              <span class="tree-tag"><strong>C</strong> — Cyclophosphamide <span class="exam-badge" style="margin-left:4px;">Mesna</span></span>
+              <span class="tree-tag"><strong>C</strong> — Cisplatin <span class="exam-badge" style="margin-left:4px;">Nephrotoxic</span></span>
+              <span class="tree-tag"><strong>C</strong> — Carboplatin</span>
+            </div>
           </div>
         </div>
+
+        <!-- 2. ANTIMETABOLITES -->
         <div class="tree-node">
-          <div class="tree-title">⛓️ 2. Cell-Cycle Non-Specific (CCNS) Cytotoxic Agents</div>
-          <div class="tree-sublist">
-            <span class="tree-tag">DNA Cross-Linkers: Alkylating Agents (Cyclophosphamide, Cisplatin)</span>
-            <span class="tree-tag">DNA Intercalators: Antitumor Antibiotics (Doxorubicin)</span>
+          <div class="tree-title">🧩 2. Antimetabolites (S-Phase Specific)</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 4px;">Mimics natural bases to halt DNA/RNA synthesis.</p>
+          <div class="mnemonic-sub-box">
+            <h5>💡 Sub-Mnemonic: "M.5.C." (Antimetabolite Prototypes)</h5>
+            <div class="tree-sublist">
+              <span class="tree-tag"><strong>M</strong> — Methotrexate <span class="exam-badge" style="margin-left:4px;">Leucovorin</span></span>
+              <span class="tree-tag"><strong>5</strong> — 5-Fluorouracil (5-FU)</span>
+              <span class="tree-tag"><strong>C</strong> — Cytarabine</span>
+            </div>
           </div>
         </div>
+
+        <!-- 3. ANTITUMOR ANTIBIOTICS -->
         <div class="tree-node">
-          <div class="tree-title">🎯 3. Targeted &amp; Biological Therapies</div>
-          <div class="tree-sublist">
-            <span class="tree-tag">Surface Antigen Antibodies: Monoclonal Antibodies (Rituximab - CD20, Trastuzumab - HER2)</span>
-            <span class="tree-tag">Intracellular Enzyme Blockers: Tyrosine Kinase Inhibitors (Imatinib - BCR-ABL)</span>
-            <span class="tree-tag">Hormone Signal Modulators: Hormones &amp; Antagonists (Tamoxifen - ER Antagonist)</span>
+          <div class="tree-title">🧬 3. Antitumor Antibiotics (CCNS)</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 4px;">DNA intercalation and free radical generation.</p>
+          <div class="mnemonic-sub-box">
+            <h5>💡 Sub-Mnemonic: "D.B." (Antibiotic Prototypes)</h5>
+            <div class="tree-sublist">
+              <span class="tree-tag"><strong>D</strong> — Doxorubicin <span class="exam-badge" style="margin-left:4px;">Cardiotoxic</span></span>
+              <span class="tree-tag"><strong>B</strong> — Bleomycin <span class="exam-badge" style="margin-left:4px;">Pulmonary Fibrosis</span></span>
+            </div>
           </div>
         </div>
+
+        <!-- 4. MICROTUBULE INHIBITORS -->
+        <div class="tree-node">
+          <div class="tree-title">🧶 4. Microtubule Inhibitors (M-Phase Specific)</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 4px;">Disrupts mitotic spindle formation.</p>
+          <div class="mnemonic-sub-box">
+            <h5>💡 Sub-Mnemonic: "V.V.P." (Microtubule Prototypes)</h5>
+            <div class="tree-sublist">
+              <span class="tree-tag"><strong>V</strong> — Vincristine <span class="exam-badge" style="margin-left:4px;">Neuropathy</span></span>
+              <span class="tree-tag"><strong>V</strong> — Vinblastine</span>
+              <span class="tree-tag"><strong>P</strong> — Paclitaxel</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. HORMONES & ANTAGONISTS -->
+        <div class="tree-node">
+          <div class="tree-title">🔑 5. Hormones &amp; Antagonists (CCNS)</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 4px;">Modulates hormone receptors driving tumor growth.</p>
+          <div class="mnemonic-sub-box">
+            <h5>💡 Sub-Mnemonic: "T.A.L." (Hormone Prototypes)</h5>
+            <div class="tree-sublist">
+              <span class="tree-tag"><strong>T</strong> — Tamoxifen <span class="exam-badge" style="margin-left:4px;">ER+ Breast</span></span>
+              <span class="tree-tag"><strong>A</strong> — Anastrozole</span>
+              <span class="tree-tag"><strong>L</strong> — Leuprolide</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. MONOCLONAL ANTIBODIES -->
+        <div class="tree-node">
+          <div class="tree-title">🛡️ 6. Monoclonal Antibodies (Targeted Therapy)</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 4px;">Binds surface antigens for immune lysis.</p>
+          <div class="mnemonic-sub-box">
+            <h5>💡 Sub-Mnemonic: "R.T." (Mab Prototypes)</h5>
+            <div class="tree-sublist">
+              <span class="tree-tag"><strong>R</strong> — Rituximab <span class="exam-badge" style="margin-left:4px;">CD20</span></span>
+              <span class="tree-tag"><strong>T</strong> — Trastuzumab <span class="exam-badge" style="margin-left:4px;">HER2</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. TYROSINE KINASE INHIBITORS -->
+        <div class="tree-node">
+          <div class="tree-title">📡 7. Tyrosine Kinase Inhibitors / TKIs (Targeted Therapy)</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 4px;">Blocks intracellular growth kinases.</p>
+          <div class="mnemonic-sub-box">
+            <h5>💡 Sub-Mnemonic: "I.E." (TKI Prototypes)</h5>
+            <div class="tree-sublist">
+              <span class="tree-tag"><strong>I</strong> — Imatinib <span class="exam-badge" style="margin-left:4px;">BCR-ABL / CML</span></span>
+              <span class="tree-tag"><strong>E</strong> — Erlotinib <span class="exam-badge" style="margin-left:4px;">EGFR</span></span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
-</div>
 
 <script>
   function toggleModal(modalId) {
     const modal = document.getElementById(modalId);
     modal.classList.toggle('active');
   }
+
+  // Close modal when tapping outside the modal-card
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove('active');
+      }
+    });
+  });
 </script>
 
 </body>
