@@ -20,6 +20,8 @@
       --shadow-lg: 0 20px 25px -5px rgba(37, 99, 235, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
       --exam-badge-bg: #ef4444;
       --exam-badge-text: #ffffff;
+      --mnemonics-bg: #eff6ff;
+      --mnemonics-border: #dbeafe;
       --radius: 20px;
     }
 
@@ -98,7 +100,6 @@
     .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
     .card { position: relative; background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 22px; text-decoration: none; color: inherit; overflow: hidden; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; justify-content: space-between; opacity: 0; animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     
-    /* Animation Delays for 5 Cards */
     .card:nth-child(1) { animation-delay: 0.15s; } 
     .card:nth-child(2) { animation-delay: 0.30s; } 
     .card:nth-child(3) { animation-delay: 0.45s; } 
@@ -109,7 +110,6 @@
     .card:hover { transform: translateY(-8px); border-color: #3b82f6; box-shadow: var(--shadow-lg); }
     .card:hover::before { opacity: 1; }
 
-    /* Custom Styling for Quiz Card */
     .card-quiz::before { background: var(--quiz-gradient) !important; }
     .card-quiz:hover { border-color: #8b5cf6 !important; }
     .card-quiz .card-icon { background: #f3e8ff !important; color: #7c3aed; }
@@ -123,11 +123,63 @@
     .card-link { font-size: 0.85rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 6px; transition: gap 0.2s ease; }
     .card:hover .card-link { gap: 10px; }
 
+    /* MNEMONIC STYLING */
+    .mnemonic-box {
+      background: var(--mnemonics-bg);
+      border: 1px solid var(--mnemonics-border);
+      border-left: 5px solid var(--primary);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin: 20px 0 30px;
+    }
+
+    .mnemonic-box h4 {
+      color: #1e40af;
+      font-weight: 800;
+      font-size: 1.02rem;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .aligned-mnemonic-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .aligned-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #ffffff;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #dbeafe;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+    }
+
+    .letter-badge {
+      background: var(--primary);
+      color: white;
+      font-weight: 900;
+      font-size: 0.78rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
     .nursing-list { list-style: none; display: grid; gap: 14px; margin-top: 15px; }
     .nursing-item { background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--primary); border-radius: 10px; padding: 16px; display: flex; align-items: flex-start; gap: 12px; box-shadow: var(--shadow-sm); }
     .nursing-number { background: #dbeafe; color: #1e40af; font-weight: 800; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; margin-top: 2px; }
 
-    /* MODAL POPUP STYLES - FIXED HIGH CONTRAST HEADERS */
+    /* MODAL POPUP STYLES */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -172,7 +224,7 @@
 
     .modal-header {
       padding: 18px 22px;
-      background: #0f172a; /* High-contrast solid dark navy background */
+      background: #0f172a;
       color: #ffffff;
       display: flex;
       justify-content: space-between;
@@ -183,7 +235,7 @@
     .modal-header h3 {
       font-size: 1.2rem;
       font-weight: 800;
-      color: #ffffff !important; /* Force high visibility white text */
+      color: #ffffff !important;
       text-shadow: 0 1px 2px rgba(0,0,0,0.4);
       margin: 0;
     }
@@ -307,7 +359,7 @@
         <span class="badge">Pharmacology — Unit IV</span>
         <div class="header-actions">
           <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
-          <button class="btn-header" onclick="toggleModal('treeModal')">🌳 Classification Tree</button>
+          <button class="btn-header" onclick="toggleModal('treeModal')">🌳 Hematology Hierarchy Tree</button>
         </div>
       </div>
       <h1>Drugs Affecting the Hematology System</h1>
@@ -354,7 +406,7 @@
           <span class="card-link">Explore Details &rarr;</span>
         </a>
 
-        <!-- 5. Practice Master Quiz Block -->
+        <!-- Practice Master Quiz Block -->
         <a href="https://mudassirkhan3.github.io/pharmacology-3rd-semester/quiz.chapter4.html" class="card card-quiz" target="_blank">
           <div>
             <div class="card-icon">🎯</div>
@@ -364,6 +416,29 @@
           <span class="card-link">Take Quiz Now &rarr;</span>
         </a>
 
+      </div>
+
+      <!-- CHAPTER 4 CLASSIFICATION MNEMONIC BLOCK -->
+      <div class="mnemonic-box" style="margin-top: 35px;">
+        <h4>💡 High-Yield Chapter 4 Classification Mnemonic: "P.A.T.H."</h4>
+        <div class="aligned-mnemonic-list">
+          <div class="aligned-item">
+            <span class="letter-badge">P</span>
+            <span><strong>P</strong>latelet Inhibitors <span style="color: var(--text-muted); font-size: 0.85rem;">(Aspirin, Clopidogrel, Abciximab)</span> <span class="exam-badge">IMP FOR EXAM</span></span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">A</span>
+            <span><strong>A</strong>nticoagulants <span style="color: var(--text-muted); font-size: 0.85rem;">(Heparin, Warfarin, Rivaroxaban)</span> <span class="exam-badge">IMP FOR EXAM</span></span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">T</span>
+            <span><strong>T</strong>hrombolytics <span style="color: var(--text-muted); font-size: 0.85rem;">(Alteplase, Reteplase)</span></span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">H</span>
+            <span><strong>H</strong>emostatics / Bleeding Treatments <span style="color: var(--text-muted); font-size: 0.85rem;">(Tranexamic Acid, Vitamin K)</span></span>
+          </div>
+        </div>
       </div>
 
       <h2>General Nursing Measures</h2>
@@ -498,6 +573,15 @@
     const modal = document.getElementById(modalId);
     modal.classList.toggle('active');
   }
+
+  // Close modal when tapping outside the modal-card
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove('active');
+      }
+    });
+  });
 </script>
 
 </body>
