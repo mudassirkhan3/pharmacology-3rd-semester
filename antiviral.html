@@ -51,7 +51,7 @@
       background: var(--card-bg);
       border-radius: var(--radius);
       padding: 30px 24px;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       border: 1px solid var(--card-border);
       box-shadow: var(--shadow-sm);
       text-align: center;
@@ -97,6 +97,36 @@
       color: var(--text-muted);
       max-width: 750px;
       margin: 0 auto;
+    }
+
+    /* QUICK NAVIGATION / MNEMONIC HUB BUTTON BAR */
+    .nav-button-bar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 35px;
+    }
+
+    .btn-mnemonic-hub {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 50px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-mnemonic-hub:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(13, 148, 136, 0.35);
     }
 
     /* CARDS STRUCTURE */
@@ -343,6 +373,113 @@
       color: #881337;
     }
 
+    /* MODAL POPUP STYLES FOR MNEMONICS */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      padding: 12px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 18px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      padding: 16px 20px;
+      background: var(--primary-gradient);
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .close-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .close-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .mnemonic-grid-modal {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .mnemonic-item-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    .mnemonic-item-box h5 {
+      color: #0f766e;
+      font-size: 0.95rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .mnemonic-item-box p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
     /* SUMMARY TABLE SECTION */
     .table-card {
       background: var(--card-bg);
@@ -405,13 +542,18 @@
     <header>
       <span class="badge-creator">Simplified Nursing Pharmacology — Mudassir Khan</span>
       <h1>Antiviral Pharmacology Ultimate Master Guide</h1>
-      <p class="subtitle">An exceptionally structured breakdown of antiviral drug classifications with clear abbreviations, fully separated HIV, Hepatitis B, and Hepatitis C sections, custom prodrug mnemonics, and high-yield exam points.</p>
+      <p class="subtitle">An exceptionally structured breakdown of antiviral classifications with clear abbreviations, fully separated HIV, Hepatitis B, and Hepatitis C sections, custom prodrug mnemonics, and high-yield exam points.</p>
     </header>
+
+    <!-- QUICK INTERACTIVE MNEMONIC HUB BUTTON BAR -->
+    <div class="nav-button-bar">
+      <button class="btn-mnemonic-hub" onclick="toggleModal('mnemonicModal')">✨ Open Easy Mnemonic &amp; Classification Hub</button>
+    </div>
 
     <main>
 
       <!-- ================= SECTION 1: RESPIRATORY VIRUSES ================= -->
-      <section class="master-card">
+      <section class="master-card" id="respiratory">
         <div class="card-header">
           <h2>🫁 1. Respiratory Virus Antivirals (Influenza, RSV, COVID-19)</h2>
           <span style="font-size: 0.8rem; font-weight: 700; color: #0d9488; background: #ccfbf1; padding: 4px 12px; border-radius: 20px;">Respiratory System</span>
@@ -468,14 +610,14 @@
           </div>
 
           <div class="mnemonic-card">
-            <h4>💡 Easy Mnemonic for Respiratory Prodrugs: "B = Brought as Pro"</h4>
-            <p><strong>B</strong>aloxavir <strong>M</strong>arboxil is a <strong>pro</strong>drug (requires enzymatic cleavage in vivo to release active baloxavir).</p>
+            <h4>💡 Easy Mnemonic for Respiratory Class: "Flu Gets Out Fast"</h4>
+            <p><strong>F</strong>lu (Influenza) | <strong>G</strong>ets (Baloxavir) | <strong>O</strong>ut (Oseltamivir) | <strong>F</strong>ast (Remdesivir for COVID)</p>
           </div>
         </div>
       </section>
 
       <!-- ================= SECTION 2: HUMAN IMMUNODEFICIENCY VIRUS (HIV) ================= -->
-      <section class="master-card">
+      <section class="master-card" id="hiv">
         <div class="card-header">
           <h2>🎗️ 2. Human Immunodeficiency Virus (HIV) Antivirals</h2>
           <span style="font-size: 0.8rem; font-weight: 700; color: #0d9488; background: #ccfbf1; padding: 4px 12px; border-radius: 20px;">HIV Therapeutics</span>
@@ -550,14 +692,14 @@
           </div>
 
           <div class="mnemonic-card">
-            <h4>💡 Easy Mnemonic for HIV Prodrugs: "TAF = Targeted Active Formula"</h4>
-            <p><strong>TAF</strong> (Tenofovir Alafenamide) is a smart <strong>prodrug</strong> designed to deliver active tenofovir directly into lymphoid cells, sparing the kidneys!</p>
+            <h4>💡 Easy Mnemonic for HIV Class: "Always Try Doing Daily Care"</h4>
+            <p><strong>A</strong>bacavir | <strong>T</strong>enofovir | <strong>D</strong>olutegravir | <strong>D</strong>arunavir (Core active drugs in HIV treatment schemas)</p>
           </div>
         </div>
       </section>
 
       <!-- ================= SECTION 3: HEPATITIS B VIRUS (HBV) ================= -->
-      <section class="master-card">
+      <section class="master-card" id="hepb">
         <div class="card-header">
           <h2>🩺 3. Hepatitis B Virus (HBV) Antivirals</h2>
           <span style="font-size: 0.8rem; font-weight: 700; color: #0d9488; background: #ccfbf1; padding: 4px 12px; border-radius: 20px;">Hepatitis B</span>
@@ -614,14 +756,14 @@
           </div>
 
           <div class="mnemonic-card">
-            <h4>💡 Easy Mnemonic for HBV Prodrugs: "Adefovir Dipivoxil = Absorbed Deeply"</h4>
-            <p><strong>Adefovir dipivoxil</strong> is a oral ester <strong>prodrug</strong> that enhances GI absorption before being cleaved into active adefovir in plasma.</p>
+            <h4>💡 Easy Mnemonic for HBV Class: "Every Patient Heals"</h4>
+            <p><strong>E</strong>ntecavir | <strong>P</strong>eginterferon | <strong>H</strong>ep B controlled!</p>
           </div>
         </div>
       </section>
 
       <!-- ================= SECTION 4: HEPATITIS C VIRUS (HCV) ================= -->
-      <section class="master-card">
+      <section class="master-card" id="hepc">
         <div class="card-header">
           <h2>🧬 4. Hepatitis C Virus (HCV) Direct-Acting Antivirals (DAAs)</h2>
           <span style="font-size: 0.8rem; font-weight: 700; color: #0d9488; background: #ccfbf1; padding: 4px 12px; border-radius: 20px;">Hepatitis C</span>
@@ -678,14 +820,14 @@
           </div>
 
           <div class="mnemonic-card">
-            <h4>💡 Easy Mnemonic for HCV Prodrugs: "Sofosbuvir = Safe Oral Formula"</h4>
-            <p><strong>Sofosbuvir</strong> is a nucleotide <strong>prodrug</strong> that undergoes intracellular liver metabolism to form its active uridine triphosphate metabolite.</p>
+            <h4>💡 Easy Mnemonic for HCV Class: "Super Cure for Hep C"</h4>
+            <p><strong>S</strong>ofosbuvir | <strong>C</strong>uring | <strong>H</strong>ep C effectively!</p>
           </div>
         </div>
       </section>
 
       <!-- ================= SECTION 5: HERPESVIRUS & CMV ================= -->
-      <section class="master-card">
+      <section class="master-card" id="herpes">
         <div class="card-header">
           <h2>🔬 5. Herpesvirus (HSV/VZV) &amp; Cytomegalovirus (CMV) Agents</h2>
           <span style="font-size: 0.8rem; font-weight: 700; color: #0d9488; background: #ccfbf1; padding: 4px 12px; border-radius: 20px;">Herpes / CMV</span>
@@ -742,8 +884,8 @@
           </div>
 
           <div class="mnemonic-card">
-            <h4>💡 Easy Mnemonic for Herpes Prodrugs: "VAL = Viable Absorption Layer"</h4>
-            <p><strong>Val</strong>acyclovir &amp; <strong>Val</strong>ganciclovir are L-valyl ester <strong>prodrugs</strong> engineered for exceptional oral GI tract absorption.</p>
+            <h4>💡 Easy Mnemonic for Herpes Class: "Always Guard Cold Sores"</h4>
+            <p><strong>A</strong>cyclovir | <strong>G</strong>anciclovir | Combat cold sores, shingles, and cytomegalovirus!</p>
           </div>
 
           <div class="warning-card">
@@ -831,6 +973,58 @@
     </main>
 
   </div>
+
+  <!-- ================= MODAL: EASY MNEMONIC & CLASSIFICATION HUB ================= -->
+  <div class="modal-overlay" id="mnemonicModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>✨ Easy Mnemonic &amp; Classification Hub</h3>
+        <button class="close-btn" onclick="toggleModal('mnemonicModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px;">Quick-reference simple mnemonics for every major antiviral classification system to ace your exams effortlessly!</p>
+        
+        <div class="mnemonic-grid-modal">
+          <div class="mnemonic-item-box">
+            <h5>🫁 1. Respiratory Class Mnemonic</h5>
+            <p><strong>"Flu Gets Out Fast"</strong> &rarr; <strong>F</strong>lu (Influenza) | <strong>G</strong>ets (Baloxavir) | <strong>O</strong>ut (Oseltamivir) | <strong>F</strong>ast (Remdesivir for COVID)</p>
+          </div>
+
+          <div class="mnemonic-item-box">
+            <h5>🎗️ 2. HIV Class Mnemonic</h5>
+            <p><strong>"Always Try Doing Daily Care"</strong> &rarr; <strong>A</strong>bacavir | <strong>T</strong>enofovir | <strong>D</strong>olutegravir | <strong>D</strong>arunavir (Core active drugs in HIV treatment schemas)</p>
+          </div>
+
+          <div class="mnemonic-item-box">
+            <h5>🩺 3. Hepatitis B Class Mnemonic</h5>
+            <p><strong>"Every Patient Heals"</strong> &rarr; <strong>E</strong>ntecavir | <strong>P</strong>eginterferon | <strong>H</strong>ep B controlled!</p>
+          </div>
+
+          <div class="mnemonic-item-box">
+            <h5>🧬 4. Hepatitis C Class Mnemonic</h5>
+            <p><strong>"Super Cure for Hep C"</strong> &rarr; <strong>S</strong>ofosbuvir | <strong>C</strong>uring | <strong>H</strong>ep C effectively!</p>
+          </div>
+
+          <div class="mnemonic-item-box">
+            <h5>🔬 5. Herpes &amp; CMV Class Mnemonic</h5>
+            <p><strong>"Always Guard Cold Sores"</strong> &rarr; <strong>A</strong>cyclovir | <strong>G</strong>anciclovir | Combat cold sores, shingles, and cytomegalovirus!</p>
+          </div>
+
+          <div class="mnemonic-item-box" style="background: #f0fdf4; border-color: #bbf7d0;">
+            <h5>💊 Special Prodrugs Simple Key</h5>
+            <p>&bull; <strong>Baloxavir marboxil</strong> &bull; <strong>Tenofovir alafenamide (TAF)</strong> &bull; <strong>Valacyclovir / Valganciclovir</strong> &rarr; These are chemically altered "pro" forms designed for superior oral absorption or targeted cell delivery!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleModal(modalId) {
+      const modal = document.getElementById(modalId);
+      modal.classList.toggle('active');
+    }
+  </script>
 
 </body>
 </html>
