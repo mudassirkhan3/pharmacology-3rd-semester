@@ -265,7 +265,7 @@
     
     .form-group { margin-bottom: 12px; text-align: left; }
     .form-group label { display: block; font-size: 0.76rem; font-weight: 700; color: #334155; margin-bottom: 4px; }
-    .form-input { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.84rem; outline: none; min-height: 42px; }
+    .form-input { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.84rem; outline: none; min-height: 42px; background: #fff; color: #0f172a; font-weight: 600; }
     .modal-actions { display: flex; gap: 8px; margin-top: 16px; }
     .btn-primary { flex: 1; background: #0284c7; color: white; border: none; padding: 10px; border-radius: 10px; font-weight: 700; font-size: 0.82rem; cursor: pointer; min-height: 44px; }
     .btn-secondary { flex: 1; background: #e2e8f0; color: #334155; border: none; padding: 10px; border-radius: 10px; font-weight: 700; font-size: 0.82rem; cursor: pointer; min-height: 44px; }
@@ -613,7 +613,7 @@
     </div>
   </div>
 
-  <!-- Edit Profile Modal -->
+  <!-- Edit Profile Modal (Pre-populated with submitted student info) -->
   <div id="editProfileModal" class="modal-backdrop">
     <div class="modal-box">
       <h3>Edit Student Profile</h3>
@@ -646,7 +646,7 @@
   </footer>
 
   <script>
-    /* Expanded 50+ Comprehensive Drug Database (Antibiotics, Antivirals, Antifungals, GI, Hematology, Antineoplastics, Emetics/Antiemetics) */
+    /* Expanded 50+ Comprehensive Drug Database */
     var drugDatabase = [
       /* ANTIBIOTICS & ANTIMICROBIALS */
       { name: "Amoxicillin", classTag: "Antibiotic (Penicillin)", chapter: "Unit II: Infections", moa: "Inhibits bacterial cell wall synthesis by binding to penicillin-binding proteins (PBPs).", uses: "Respiratory tract infections, otitis media, sinusitis, UTI.", sideEffects: "Nausea, diarrhea, skin rash, hypersensitivity." },
@@ -965,8 +965,20 @@
       }
     }
 
-    function openEditProfileModal() { document.getElementById('editProfileModal').style.display = 'flex'; }
+    /* Improved Edit Profile: pre-populates inputs with current student information */
+    function openEditProfileModal() {
+      var user = JSON.parse(localStorage.getItem('pharmacologyUser'));
+      if (user) {
+        document.getElementById('editNameInput').value = user.name || '';
+        document.getElementById('editInstituteInput').value = user.institute || '';
+        document.getElementById('editEmailInput').value = user.email || '';
+        document.getElementById('editSemesterInput').value = user.semester || '';
+      }
+      document.getElementById('editProfileModal').style.display = 'flex';
+    }
+
     function closeEditProfileModal() { document.getElementById('editProfileModal').style.display = 'none'; }
+    
     function saveProfileChanges() {
       var updatedUser = {
         name: document.getElementById('editNameInput').value.trim(),
@@ -977,6 +989,7 @@
       localStorage.setItem('pharmacologyUser', JSON.stringify(updatedUser));
       loadUserDataToUI();
       closeEditProfileModal();
+      alert('✓ Profile updated successfully!');
     }
 
     function openForgotPasswordModal() { document.getElementById('forgotPasswordModal').style.display = 'flex'; }
