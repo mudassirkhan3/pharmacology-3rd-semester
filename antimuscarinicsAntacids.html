@@ -2,53 +2,592 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Antimuscarinics, Antacids & Mucosal Protective Agents | GI Pharmacology</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Antimuscarinics, Antacids &amp; Mucosal Protective Agents | GI Pharmacology</title>
   <style>
     :root {
       --bg-gradient: radial-gradient(circle at 10% 20%, rgba(13, 148, 136, 0.08) 0%, rgba(20, 184, 166, 0.05) 40%, #f8fafc 90%);
       --primary: #0d9488;
       --primary-dark: #0f766e;
+      --primary-gradient: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
       --accent: #14b8a6;
-      --card-bg: rgba(255, 255, 255, 0.9);
+      --card-bg: rgba(255, 255, 255, 0.98);
       --card-border: rgba(153, 246, 228, 0.8);
       --text-main: #134e4a;
+      --text-dark: #0f172a;
       --text-muted: #475569;
       --shadow-glow: 0 20px 40px -15px rgba(13, 148, 136, 0.25);
+      --mnemonics-bg: #f0fdfa;
+      --mnemonics-border: #ccfbf1;
+      --warning-bg: #fff1f2;
+      --warning-border: #fecdd3;
+      --exam-badge-bg: #ef4444;
+      --exam-badge-text: #ffffff;
       --radius: 20px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.8; padding: 40px 16px; min-height: 100vh; }
-    
-    .container { max-width: 950px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(16px); padding: 50px 40px; border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: var(--shadow-glow); }
-    
-    .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; margin-bottom: 30px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2); }
-    .back-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    .badge { display: inline-block; padding: 6px 14px; background: #ccfbf1; color: var(--primary); font-weight: 800; font-size: 0.8rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; border: 1px solid #99f6e4; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 12px 6px 70px;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-    h1 { font-size: 2.5rem; font-weight: 900; background: linear-gradient(135deg, #134e4a 0%, var(--primary) 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
-    
-    h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #99f6e4; padding-bottom: 10px; }
-    h2::before { content: ''; display: inline-block; width: 6px; height: 24px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; }
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      padding: 24px 16px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: var(--shadow-glow);
+    }
 
-    p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 20px; }
+    header {
+      margin-bottom: 20px;
+    }
 
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 25px 0; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin: 25px 0; }
-    
-    .card-box { background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); transition: 0.3s; }
-    .card-box:hover { transform: translateY(-5px); border-color: var(--primary); }
-    .card-box h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
 
-    .mnemonic-box { background: linear-gradient(135deg, #ccfbf1 0%, #e6fffa 100%); border-left: 6px solid var(--primary); padding: 22px; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 15px rgba(13, 148, 136, 0.08); }
-    .mnemonic-box h4 { color: var(--primary); font-size: 1.1rem; margin-bottom: 8px; font-weight: 800; display: flex; align-items: center; gap: 12px; }
-    .mnemonic-box p { color: #134e4a; margin-bottom: 0; font-weight: 500; }
+    .header-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      width: 100%;
+    }
 
-    ul { list-style-type: none; padding-left: 0; margin-bottom: 20px; }
-    ul li { position: relative; padding-left: 28px; margin-bottom: 12px; color: var(--text-muted); font-size: 1.05rem; }
-    ul li::before { content: '▪'; position: absolute; left: 8px; color: var(--primary); font-weight: bold; font-size: 1.2rem; }
+    .btn-header {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex: 1;
+      box-shadow: 0 4px 10px rgba(13, 148, 136, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      min-height: 48px;
+    }
+
+    .btn-header:active {
+      transform: scale(0.97);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+      min-height: 44px;
+    }
+
+    .badge-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #ccfbf1;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.8rem;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      border: 1px solid #99f6e4;
+    }
+
+    /* EXAM HIGH-YIELD BADGE */
+    .exam-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--exam-badge-bg);
+      color: var(--exam-badge-text);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.25);
+      margin-left: 6px;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    h1 {
+      font-size: 1.85rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #134e4a 0%, var(--primary) 50%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      color: var(--text-main);
+      margin: 28px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid #99f6e4;
+      padding-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 22px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 14px;
+      color: var(--text-muted);
+      font-size: 0.94rem;
+    }
+
+    /* Section & Grid Styling */
+    .drug-class-card {
+      background: #ffffff;
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px 14px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      position: relative;
+    }
+
+    .drug-class-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-gradient);
+      border-radius: 16px 16px 0 0;
+    }
+
+    .grid-2, .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    .card-box {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      transition: border-color 0.2s ease;
+    }
+
+    .card-box h3 {
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-size: 1.02rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* MOA ENHANCED STEP-BY-STEP BOX */
+    .moa-enhanced-box {
+      background: #f0fdfa;
+      border: 2px solid #ccfbf1;
+      border-radius: 14px;
+      padding: 16px 12px;
+      margin: 16px 0;
+    }
+
+    .moa-enhanced-box h4 {
+      color: var(--text-main);
+      font-weight: 800;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .moa-concept-summary {
+      font-size: 0.88rem;
+      color: #134e4a;
+      background: #ccfbf1;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .moa-steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .moa-step-item {
+      background: #ffffff;
+      border: 1px solid #ccfbf1;
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .moa-step-number {
+      background: var(--primary);
+      color: white;
+      font-weight: 900;
+      font-size: 0.78rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .moa-step-content strong {
+      display: block;
+      color: var(--text-main);
+      font-size: 0.88rem;
+    }
+
+    .moa-step-content span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* ALIGNED MNEMONIC LIST LAYOUT */
+    .mnemonic-box {
+      background: var(--mnemonics-bg);
+      border: 1px solid var(--mnemonics-border);
+      border-left: 5px solid var(--primary);
+      border-radius: 12px;
+      padding: 16px 12px;
+      margin: 16px 0;
+    }
+
+    .mnemonic-box h4 {
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .aligned-mnemonic-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .aligned-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #ffffff;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #ccfbf1;
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    .letter-badge {
+      background: var(--primary);
+      color: white;
+      font-weight: 900;
+      font-size: 0.78rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Warning / Contraindication Styling */
+    .warning-box {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-left: 5px solid #e11d48;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 14px 0;
+    }
+
+    .warning-box h4 {
+      color: #9f1239;
+      font-size: 0.98rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    ul.bullet-list {
+      list-style-type: none;
+      padding-left: 0;
+      margin-bottom: 16px;
+    }
+
+    ul.bullet-list li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 10px;
+      color: var(--text-muted);
+      font-size: 0.93rem;
+    }
+
+    ul.bullet-list li::before {
+      content: '▪';
+      position: absolute;
+      left: 6px;
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    /* MODAL POPUP STYLES - Mobile First optimized */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 24px 24px 0 0;
+      max-width: 100%;
+      width: 100%;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      padding: 16px 20px;
+      background: var(--primary-gradient);
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .modal-header h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .close-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .close-btn:active {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .modal-body {
+      padding: 16px;
+      overflow-y: auto;
+      flex: 1;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* TABLE STYLING FOR MODAL */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid #ccfbf1;
+      margin-top: 10px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      text-align: left;
+      min-width: 600px;
+    }
+
+    .summary-table th {
+      background: #134e4a;
+      color: #ffffff;
+      padding: 10px 12px;
+      font-weight: 700;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    .summary-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e2e8f0;
+      color: var(--text-dark);
+    }
+
+    .summary-table tr:nth-child(even) {
+      background: #f0fdfa;
+    }
+
+    /* TREE DIAGRAM STYLES */
+    .tree-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 4px;
+    }
+
+    .tree-node {
+      background: #f0fdfa;
+      border: 1px solid #ccfbf1;
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .tree-title {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 0.94rem;
+      margin-bottom: 8px;
+    }
+
+    .tree-sublist {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tree-tag {
+      background: #ccfbf1;
+      color: var(--text-main);
+      border: 1px solid #99f6e4;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    /* Desktop Adjustments (Tablet & Laptop) */
+    @media (min-width: 768px) {
+      body { padding: 20px 12px 60px; }
+      .container { padding: 32px 24px; }
+      h1 { font-size: 2.2rem; }
+      .grid-2 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .header-actions { width: auto; }
+      .btn-header { flex: initial; padding: 8px 16px; border-radius: 50px; min-height: auto; }
+      .modal-overlay { align-items: center; }
+      .modal-card { border-radius: 18px; max-width: 950px; max-height: 90vh; }
+      .moa-enhanced-box { padding: 20px; }
+      .mnemonic-box { padding: 18px; }
+    }
   </style>
 </head>
 <body>
@@ -56,105 +595,338 @@
 <div class="container">
   <a href="chapter3.html" class="back-btn">&larr; Back to Chapter 3 Hub</a>
   
-  <div class="badge">Pharmacology Class Deep-Dive</div>
-  <h1>Antimuscarinics, Antacids & Mucosal Protective Agents</h1>
-  <p>Essential adjuncts and immediate-action agents used for neutralizing gastric acidity, blocking vagal neural stimuli, and reinforcing mucosal barrier defenses in acid-peptic disorders.</p>
-
-  <!-- INTRODUCTION -->
-  <h2>1. Introduction to Adjunct & Protective GI Agents</h2>
-  <p>While antisecretory drugs like PPIs and H2RAs target cellular enzyme pumps and histamine receptors, Antimuscarinics block neural acetylcholine inputs, Antacids provide immediate chemical neutralization of existing acid, and Mucosal Protective Agents physically shield ulcer craters from corrosive gastric secretions.</p>
-
-  <!-- CLASSIFICATION -->
-  <h2>2. Classification & Prototype Drugs</h2>
-  <div class="grid-3">
-    <div class="card-box">
-      <h3>🌿 Antimuscarinics</h3>
-      <p><strong>Prototypes:</strong> Dicyclomine, Pirenzepine, Glycopyrrolate.</p>
-      <p style="margin-top: 10px;"><strong>Characteristics:</strong> Selective or non-selective M3 muscarinic receptor antagonists reducing vagal-mediated acid secretion and GI motility.</p>
+  <header>
+    <div class="header-top">
+      <div class="badge-container">
+        <span class="badge">Pharmacology Class Deep-Dive</span>
+      </div>
+      <div class="header-actions">
+        <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
+        <button class="btn-header" onclick="toggleModal('treeModal')">🌳 Classification Tree</button>
+      </div>
     </div>
-    <div class="card-box">
-      <h3>🧪 Antacids</h3>
-      <p><strong>Prototypes:</strong> Aluminum hydroxide, Magnesium hydroxide, Calcium carbonate, Sodium bicarbonate.</p>
-      <p style="margin-top: 10px;"><strong>Characteristics:</strong> Weak alkaline compounds that neutralize existing gastric hydrochloric acid instantly.</p>
-    </div>
-    <div class="card-box">
-      <h3>🛡️ Mucosal Protective Agents</h3>
-      <p><strong>Prototypes:</strong> Sucralfate, Bismuth subsalicylate.</p>
-      <p style="margin-top: 10px;"><strong>Characteristics:</strong> Cytoprotective agents forming physical barriers or coating agents over erosive lesions.</p>
-    </div>
-  </div>
+    
+    <h1>Antimuscarinics, Antacids &amp; Mucosal Protective Agents</h1>
+    <p class="subtitle">Essential adjuncts and immediate-action agents used for neutralizing gastric acidity, blocking vagal neural stimuli, and reinforcing mucosal barrier defenses in acid-peptic disorders.</p>
+  </header>
 
-  <!-- MECHANISM OF ACTION -->
-  <h2>3. Mechanisms of Action</h2>
-  <div class="grid-3">
-    <div class="card-box">
-      <h3>⚡ Antimuscarinics: M3 Receptor Blockade</h3>
-      <p>Competitively block acetylcholine at M3 muscarinic receptors on parietal cells and enteric neurons, dampening vagal stimulation and decreasing both gastric acid output and smooth muscle spasm.</p>
-    </div>
-    <div class="card-box">
-      <h3>⚗️ Antacids: Direct Acid Neutralization</h3>
-      <p>React directly with gastric hydrochloric acid ($HCl$) to produce salt and water ($HCl + Base \rightarrow Salt + H_2O$), rapidly elevating gastric pH and temporarily reducing pepsin activity.</p>
-    </div>
-    <div class="card-box">
-      <h3>🧱 Mucosal Protectors: Barrier Formation</h3>
-      <p><strong>Sucralfate</strong> cross-links in acidic environments to form a viscous, adhesive paste binding to proteinaceous exudates at ulcer sites. <strong>Bismuth</strong> coats ulcers, stimulates bicarbonate/mucus, and exhibits antimicrobial action against *H. pylori*.</p>
-    </div>
-  </div>
+  <main>
 
-  <!-- CLINICAL USES -->
-  <h2>4. Clinical Uses & Therapeutic Indications</h2>
-  <ul>
-    <li>Immediate relief of acute dyspepsia, heartburn, and acid indigestion (Antacids)</li>
-    <li>Treatment and maintenance healing of duodenal and gastric ulcers (Sucralfate, Antimuscarinics)</li>
-    <li>Adjunctive treatment for irritable bowel syndrome (IBS) and GI cramping (Dicyclomine)</li>
-    <li>Component of multi-drug eradication regimens for *Helicobacter pylori* (Bismuth subsalicylate)</li>
-    <li>Prevention of stress-related mucosal bleeding in critical care settings</li>
-  </ul>
+    <!-- ================= 1. INTRODUCTION ================= -->
+    <section class="drug-class-card">
+      <h2>1. Introduction to Adjunct &amp; Protective GI Agents</h2>
+      <p>While antisecretory drugs like PPIs and H2RAs target cellular enzyme pumps and histamine receptors, Antimuscarinics block neural acetylcholine inputs, Antacids provide immediate chemical neutralization of existing acid, and Mucosal Protective Agents physically shield ulcer craters from corrosive gastric secretions.</p>
+    </section>
 
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for Clinical Applications: "A-B-C-D"</h4>
-    <p><strong>A</strong>ntacids for acute relief | <strong>B</strong>ismuth for *H. pylori* & diarrhea | <strong>C</strong>ytoprotective sucralfate for ulcers | <strong>D</strong>icyclomine for GI cramps (IBS)</p>
-  </div>
+    <!-- ================= 2. CLASSIFICATION & PROTOTYPES ================= -->
+    <section class="drug-class-card">
+      <h2>2. Classification &amp; Prototype Drugs</h2>
+      <div class="grid-3">
+        <div class="card-box">
+          <h3>🌿 Antimuscarinics</h3>
+          <p><strong>Prototypes:</strong> Dicyclomine, Pirenzepine, Glycopyrrolate. <span class="exam-badge">IMP FOR EXAM</span></p>
+          <p style="margin-top: 10px;"><strong>Characteristics:</strong> Selective or non-selective M3 muscarinic receptor antagonists reducing vagal-mediated acid secretion and GI motility.</p>
+        </div>
+        <div class="card-box">
+          <h3>🧪 Antacids</h3>
+          <p><strong>Prototypes:</strong> Aluminum hydroxide, Magnesium hydroxide, Calcium carbonate, Sodium bicarbonate. <span class="exam-badge">IMP FOR EXAM</span></p>
+          <p style="margin-top: 10px;"><strong>Characteristics:</strong> Weak alkaline compounds that neutralize existing gastric hydrochloric acid instantly.</p>
+        </div>
+        <div class="card-box">
+          <h3>🛡️ Mucosal Protective Agents</h3>
+          <p><strong>Prototypes:</strong> Sucralfate, Bismuth subsalicylate.</p>
+          <p style="margin-top: 10px;"><strong>Characteristics:</strong> Cytoprotective agents forming physical barriers or coating agents over erosive lesions.</p>
+        </div>
+      </div>
 
-  <!-- ADVERSE DRUG REACTIONS -->
-  <h2>5. Adverse Drug Reactions (ADRs)</h2>
-  <div class="grid-3">
-    <div class="card-box">
-      <h3>⚠️ Antimuscarinic Side Effects</h3>
-      <p>Typical anticholinergic effects: dry mouth, blurred vision, urinary retention, constipation, tachycardia, and drowsiness.</p>
-    </div>
-    <div class="card-box">
-      <h3>⚠️ Antacid Side Effects</h3>
-      <p><strong>Magnesium salts:</strong> Osmotic diarrhea. <strong>Aluminum/Calcium salts:</strong> Constipation. Calcium carbonate can also cause acid rebound and hypercalcemia (Milk-alkali syndrome).</p>
-    </div>
-    <div class="card-box">
-      <h3>⚠️ Mucosal Protector Effects</h3>
-      <p><strong>Sucralfate:</strong> Constipation (contains aluminum). <strong>Bismuth:</strong> Harmless black discoloration of stool and tongue, and potential salicylate toxicity if combined with aspirin.</p>
-    </div>
-  </div>
+      <!-- PROTOTYPE DRUGS MNEMONIC -->
+      <div class="mnemonic-box" style="margin-top: 20px;">
+        <h4>💡 Mnemonic for Prototype Drugs: "D.A.S.H."</h4>
+        <div class="aligned-mnemonic-list">
+          <div class="aligned-item">
+            <span class="letter-badge">D</span>
+            <span><strong>D</strong>icyclomine <span style="color: var(--text-muted); font-size: 0.85rem;">(Antimuscarinic Prototype)</span> <span class="exam-badge">IMP FOR EXAM</span></span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">A</span>
+            <span>Aluminum / Magnesium hydroxide <span style="color: var(--text-muted); font-size: 0.85rem;">(Antacid Prototypes)</span></span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">S</span>
+            <span><strong>S</strong>ucralfate <span style="color: var(--text-muted); font-size: 0.85rem;">(Mucosal Protector Prototype)</span></span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">H</span>
+            <span>Hydroxide / Bismuth <span style="color: var(--text-muted); font-size: 0.85rem;">(Antacid &amp; Protectant Salts)</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for Antacid Bowel Effects: "MAG = Mud, ALU = Aluminum-glue"</h4>
-    <p><strong>Mag</strong>nesium causes diarrhea (muddy stool), while <strong>Alu</strong>minum and calcium cause hard, binding constipation.</p>
-  </div>
+    <!-- ================= 3. MECHANISMS OF ACTION ================= -->
+    <section class="drug-class-card">
+      <h2>3. Mechanisms of Action</h2>
+      <p>Here is how each class operates to protect the digestive lining and neutralize acid:</p>
 
-  <!-- PHARMACOKINETICS -->
-  <h2>6. Pharmacokinetics & Drug Interactions</h2>
-  <ul>
-    <li><strong>Antacid Interactions:</strong> Antacids can significantly impair the systemic absorption of numerous concurrent oral medications (e.g., tetracyclines, fluoroquinolones, iron) by chelation or altering gastric pH. Separate administration by at least 2 hours.</li>
-    <li><strong>Sucralfate Timing:</strong> Requires an acidic gastric environment ($\text{pH} < 4$) to polymerize; do not co-administer with PPIs, H2RAs, or antacids simultaneously. Take on an empty stomach.</li>
-  </ul>
+      <!-- 3.1 ANTIMUSCARINICS -->
+      <div class="moa-enhanced-box">
+        <h4>⚡ 1. Antimuscarinics: M3 Receptor Blockade <span class="exam-badge">IMP FOR EXAM</span></h4>
+        <div class="moa-concept-summary">💡 Simple Concept: Blocks nerve signals that tell the stomach to produce acid and cramp up.</div>
+        <div class="moa-steps-list">
+          <div class="moa-step-item">
+            <div class="moa-step-number">1</div>
+            <div class="moa-step-content">
+              <strong>Vagal Nerve Interruption:</strong>
+              <span>Competitively blocks acetylcholine at M3 muscarinic receptors on parietal cells and enteric neurons.</span>
+            </div>
+          </div>
+          <div class="moa-step-item">
+            <div class="moa-step-number">2</div>
+            <div class="moa-step-content">
+              <strong>Secretion &amp; Motility Reduction:</strong>
+              <span>Dampens vagal stimulation, decreasing both gastric acid output and smooth muscle spasms.</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!-- KEY NURSING TAKEAWAYS -->
-  <h2>7. Key Nursing Takeaways & Patient Safety</h2>
-  <ul>
-    <li><strong>Manage Drug Timing Gaps:</strong> Educate patients to separate antacids and sucralfate from other oral medications by 2 hours to prevent absorption failures.</li>
-    <li><strong>Monitor Bowel Patterns:</strong> Anticipate and counsel patients regarding bowel changes (magnesium diarrhea vs. aluminum/sucralfate constipation).</li>
-    <li><strong>Warn About Bismuth Discoloration:</strong> Reassure patients that harmless black stools and dark tongue caused by bismuth subsalicylate are temporary and non-threatening.</li>
-    <li><strong>Screen for Contraindications:</strong> Use caution with antimuscarinics in patients with glaucoma, prostatic hyperplasia, or paralytic ileus due to urinary retention and anticholinergic risks.</li>
-  </ul>
+      <!-- 3.2 ANTACIDS -->
+      <div class="moa-enhanced-box">
+        <h4>⚗️ 2. Antacids: Direct Chemical Neutralization <span class="exam-badge">IMP FOR EXAM</span></h4>
+        <div class="moa-concept-summary">💡 Simple Concept: Acts like an immediate chemical sponge to soak up and neutralize existing stomach acid.</div>
+        <div class="moa-steps-list">
+          <div class="moa-step-item">
+            <div class="moa-step-number">1</div>
+            <div class="moa-step-content">
+              <strong>Direct Reaction with HCl:</strong>
+              <span>Weak alkaline bases react directly with gastric hydrochloric acid in the stomach lumen.</span>
+            </div>
+          </div>
+          <div class="moa-step-item">
+            <div class="moa-step-number">2</div>
+            <div class="moa-step-content">
+              <strong>Salt &amp; Water Formation:</strong>
+              <span>Neutralizes acid into harmless salt and water, rapidly elevating gastric pH and lowering pepsin activity.</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <!-- 3.3 MUCOSAL PROTECTIVE AGENTS -->
+      <div class="moa-enhanced-box">
+        <h4>🧱 3. Mucosal Protective Agents: Physical Barrier Formation</h4>
+        <div class="moa-concept-summary">💡 Simple Concept: Creates a sticky, protective bandage over raw ulcer sores to shield them from acid.</div>
+        <div class="moa-steps-list">
+          <div class="moa-step-item">
+            <div class="moa-step-number">1</div>
+            <div class="moa-step-content">
+              <strong>Acid Polymerization (Sucralfate):</strong>
+              <span>Cross-links in acidic environments to form a viscous, adhesive paste that binds directly to proteins at ulcer sites.</span>
+            </div>
+          </div>
+          <div class="moa-step-item">
+            <div class="moa-step-number">2</div>
+            <div class="moa-step-content">
+              <strong>Coating &amp; Secretion (Bismuth):</strong>
+              <span>Coats erosive lesions while stimulating local bicarbonate/mucus production and fighting pathogens.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4. CLINICAL USES ================= -->
+    <section class="drug-class-card">
+      <h2>4. Clinical Uses &amp; Therapeutic Indications</h2>
+      <ul class="bullet-list">
+        <li>Immediate relief of acute dyspepsia, heartburn, and acid indigestion (Antacids).</li>
+        <li>Treatment and maintenance healing of duodenal and gastric ulcers (Sucralfate, Antimuscarinics).</li>
+        <li>Adjunctive treatment for irritable bowel syndrome (IBS) and GI cramping (Dicyclomine).</li>
+        <li>Component of multi-drug eradication regimens for <em>Helicobacter pylori</em> (Bismuth subsalicylate).</li>
+        <li>Prevention of stress-related mucosal bleeding in critical care settings.</li>
+      </ul>
+
+      <div class="mnemonic-box">
+        <h4>💡 Mnemonic for Clinical Applications: "A.B.C.D."</h4>
+        <div class="aligned-mnemonic-list">
+          <div class="aligned-item">
+            <span class="letter-badge">A</span>
+            <span><strong>A</strong>ntacids for acute indigestion relief</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">B</span>
+            <span><strong>B</strong>ismuth for <em>H. pylori</em> &amp; traveler's diarrhea</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">C</span>
+            <span><strong>C</strong>ytoprotective sucralfate for ulcer healing</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">D</span>
+            <span><strong>D</strong>icyclomine for GI cramping &amp; IBS <span class="exam-badge">IMP FOR EXAM</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5. ADVERSE DRUG REACTIONS ================= -->
+    <section class="drug-class-card">
+      <h2>5. Adverse Drug Reactions (ADRs)</h2>
+      <div class="grid-3">
+        <div class="card-box">
+          <h3>⚠️ Antimuscarinic Side Effects</h3>
+          <p>Typical anticholinergic effects: dry mouth, blurred vision, urinary retention, constipation, tachycardia, and drowsiness.</p>
+        </div>
+        <div class="card-box">
+          <h3>⚠️ Antacid Side Effects</h3>
+          <p><strong>Magnesium salts:</strong> Osmotic diarrhea.<br>
+          <strong>Aluminum/Calcium salts:</strong> Constipation. Calcium carbonate can cause acid rebound and hypercalcemia.</p>
+        </div>
+        <div class="card-box">
+          <h3>⚠️ Mucosal Protector Effects</h3>
+          <p><strong>Sucralfate:</strong> Constipation.<br>
+          <strong>Bismuth:</strong> Harmless black discoloration of stool and tongue, and potential salicylate toxicity.</p>
+        </div>
+      </div>
+
+      <div class="mnemonic-box">
+        <h4>💡 Mnemonic for Antacid Bowel Effects: "MAG = Mud, ALU = Aluminum-glue"</h4>
+        <div class="aligned-mnemonic-list">
+          <div class="aligned-item">
+            <span class="letter-badge">M</span>
+            <span><strong>Mag</strong>nesium causes diarrhea (muddy stool)</span>
+          </div>
+          <div class="aligned-item">
+            <span class="letter-badge">A</span>
+            <span><strong>Alu</strong>minum and calcium cause hard, binding constipation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 6. PHARMACOKINETICS ================= -->
+    <section class="drug-class-card">
+      <h2>6. Pharmacokinetics &amp; Drug Interactions</h2>
+      <ul class="bullet-list">
+        <li><strong>Antacid Interactions:</strong> Antacids can significantly impair the systemic absorption of numerous concurrent oral medications (e.g., tetracyclines, fluoroquinolones, iron) by chelation or altering gastric pH. Separate administration by at least 2 hours. <span class="exam-badge">IMP FOR EXAM</span></li>
+        <li><strong>Sucralfate Timing:</strong> Requires an acidic gastric environment (pH &lt; 4) to polymerize; do not co-administer with PPIs, H2RAs, or antacids simultaneously. Take on an empty stomach.</li>
+      </ul>
+    </section>
+
+    <!-- ================= 7. KEY NURSING TAKEAWAYS ================= -->
+    <section class="drug-class-card">
+      <h2>7. Key Nursing Takeaways &amp; Patient Safety</h2>
+      <ul class="bullet-list">
+        <li><strong>Manage Drug Timing Gaps:</strong> Educate patients to separate antacids and sucralfate from other oral medications by 2 hours to prevent absorption failures. <span class="exam-badge">IMP FOR EXAM</span></li>
+        <li><strong>Monitor Bowel Patterns:</strong> Anticipate and counsel patients regarding bowel changes (magnesium diarrhea vs. aluminum/sucralfate constipation).</li>
+        <li><strong>Warn About Bismuth Discoloration:</strong> Reassure patients that harmless black stools and dark tongue caused by bismuth subsalicylate are temporary and non-threatening.</li>
+        <li><strong>Screen for Contraindications:</strong> Use caution with antimuscarinics in patients with glaucoma, prostatic hyperplasia, or paralytic ileus due to urinary retention and anticholinergic risks. <span class="exam-badge">IMP FOR EXAM</span></li>
+      </ul>
+    </section>
+
+  </main>
 </div>
+
+<!-- ================= MASTER SUMMARY TABLE MODAL ================= -->
+<div class="modal-overlay" id="tableModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>📊 Master Adjunct &amp; Protectants Summary Table</h3>
+      <button class="close-btn" onclick="toggleModal('tableModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;">High-yield comparative summary of antimuscarinics, antacids, and mucosal protectants.</p>
+      <div class="table-container">
+        <table class="summary-table">
+          <thead>
+            <tr>
+              <th>Drug Class</th>
+              <th>Prototype Drugs</th>
+              <th>Mechanism of Action</th>
+              <th>Primary Clinical Uses</th>
+              <th>Key ADRs / Nursing Alerts</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Antimuscarinics</strong></td>
+              <td>Dicyclomine, Pirenzepine</td>
+              <td>Blocks M3 muscarinic receptors to reduce vagal acid output and motility</td>
+              <td>IBS cramping, adjunctive ulcer therapy</td>
+              <td>Anticholinergic effects (dry mouth, urinary retention); avoid in glaucoma</td>
+            </tr>
+            <tr>
+              <td><strong>Antacids</strong></td>
+              <td>Aluminum/Magnesium Hydroxide</td>
+              <td>Direct chemical neutralization of existing gastric HCl</td>
+              <td>Acute heartburn and dyspepsia relief</td>
+              <td>Magnesium causes diarrhea; Aluminum causes constipation; separate from other drugs by 2 hrs</td>
+            </tr>
+            <tr>
+              <td><strong>Mucosal Protectors</strong></td>
+              <td>Sucralfate, Bismuth Subsalicylate</td>
+              <td>Polymerizes in acid to coat ulcers; bismuth fights pathogens</td>
+              <td>Peptic ulcer healing, H. pylori eradication</td>
+              <td>Constipation (sucralfate); harmless black stool/tongue (bismuth)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CLASSIFICATION TREE MODAL ================= -->
+<div class="modal-overlay" id="treeModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>🌳 Adjunct &amp; Protective Agents Classification Tree</h3>
+      <button class="close-btn" onclick="toggleModal('treeModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Visual hierarchical breakdown of antimuscarinics, antacids, and protectants.</p>
+      <div class="tree-container">
+        <div class="tree-node">
+          <div class="tree-title">🌿 1. Anticholinergic Adjuncts</div>
+          <div class="tree-sublist">
+            <span class="tree-tag">M3 Receptor Antagonists: Dicyclomine, Pirenzepine, Glycopyrrolate</span>
+          </div>
+        </div>
+        <div class="tree-node">
+          <div class="tree-title">🧪 2. Alkaline Neutralizers (Antacids)</div>
+          <div class="tree-sublist">
+            <span class="tree-tag">Magnesium Hydroxide</span>
+            <span class="tree-tag">Aluminum Hydroxide</span>
+            <span class="tree-tag">Calcium Carbonate</span>
+          </div>
+        </div>
+        <div class="tree-node">
+          <div class="tree-title">🛡️ 3. Cytoprotective Barriers</div>
+          <div class="tree-sublist">
+            <span class="tree-tag">Sucralfate Polymer</span>
+            <span class="tree-tag">Bismuth Subsalicylate</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.toggle('active');
+  }
+
+  // Close modal when tapping outside the modal-card on mobile/desktop
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove('active');
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
