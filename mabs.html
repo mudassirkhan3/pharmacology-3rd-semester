@@ -1,1070 +1,633 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>Monoclonal Antibodies | Oncology Pharmacology</title>
+  <title>Monoclonal Antibodies | Oncology Pharmacology | MK Study Hub</title>
+  <meta name="description" content="Ultimate student-friendly BSN Pharmacology module on Monoclonal Antibodies. Simple, interactive, and mobile optimized.">
+
+  <!-- TAILWIND CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- LUCIDE ICONS CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <style>
-    :root {
-      --bg-gradient: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.08) 0%, rgba(59, 130, 246, 0.05) 40%, #f8fafc 90%);
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --primary-light: #eff6ff;
-      --accent: #3b82f6;
-      --scrub-green: #059669;
-      --scrub-green-light: #d1fae5;
-      --card-bg: rgba(255, 255, 255, 0.98);
-      --card-border: #cbd5e1;
-      --text-main: #0f172a;
-      --text-muted: #334155;
-      --shadow-glow: 0 10px 30px -10px rgba(37, 99, 235, 0.15);
-      --radius: 20px;
-      --warning-bg: #fffbebf5;
-      --warning-border: #fde68a;
-      --warning-text: #78350f;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.75; padding: 12px 8px 80px; min-height: 100vh; overflow-x: hidden; }
-
-    .container { max-width: 980px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(16px); padding: 32px 20px; border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: var(--shadow-glow); position: relative; }
-    .container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--primary), var(--scrub-green), var(--accent)); border-radius: var(--radius) var(--radius) 0 0; }
-
-    /* TEXT HIGHLIGHTING & BADGES */
-    mark.hl { background: #fef08a; color: #713f12; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
-    .badge-label { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: #eff6ff; color: var(--primary-dark); font-weight: 800; font-size: 0.75rem; border-radius: 6px; text-transform: uppercase; border: 1px solid #bfdbfe; margin-bottom: 8px; }
-    .badge-important { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
-    .badge-green { background: var(--scrub-green-light); color: #065f46; border-color: #a7f3d0; }
-
-    /* 1. HERO HEADER STYLING */
-    .hero-header {
-      background: linear-gradient(135deg, #0f172a 0%, #1e40af 50%, #2563eb 100%);
-      color: white;
-      padding: 24px 18px;
-      border-radius: 18px;
-      margin-bottom: 20px;
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
-    }
-
-    .header-top-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .back-btn { 
-      display: inline-flex; 
-      align-items: center; 
-      gap: 6px; 
-      padding: 8px 16px; 
-      background: rgba(255, 255, 255, 0.2); 
-      color: white; 
-      text-decoration: none; 
-      border-radius: 10px; 
-      font-weight: 700; 
-      font-size: 0.85rem;
-      transition: all 0.2s ease; 
-      backdrop-filter: blur(4px);
-      min-height: 40px;
-    }
-    .back-btn:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-1px); }
-
-    .header-badge {
-      display: inline-block;
-      padding: 4px 12px;
-      background: rgba(255, 255, 255, 0.25);
-      color: #ffffff;
-      font-weight: 800;
-      font-size: 0.75rem;
-      border-radius: 50px;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-    }
-
-    .hero-header h1 { 
-      font-size: 1.8rem; 
-      font-weight: 900; 
-      color: #ffffff;
-      margin-bottom: 6px; 
-      line-height: 1.25; 
-    }
-
-    .hero-header .subtitle {
-      font-size: 0.95rem;
-      opacity: 0.95;
-      font-weight: 500;
-      color: #e0f2fe;
-      margin-bottom: 14px;
-    }
-
-    /* 2. QUICK ORIENTATION CHIPS */
-    .quick-nav-wrapper {
-      position: sticky;
-      top: 8px;
-      z-index: 100;
-      margin-bottom: 24px;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid #cbd5e1;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-    }
-
-    .quick-nav-title {
-      font-size: 0.75rem;
-      font-weight: 800;
-      color: var(--primary-dark);
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      margin-bottom: 6px;
-    }
-
-    .quick-nav-chips {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 4px;
-    }
-    .quick-nav-chips::-webkit-scrollbar { display: none; }
-
-    .nav-chip {
-      background: #eff6ff;
-      color: var(--primary-dark);
-      border: 1px solid #93c5fd;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      min-height: 38px;
-    }
-    .nav-chip:hover, .nav-chip:active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-
-    /* TYPOGRAPHY & SECTIONS */
-    h2 { font-size: 1.3rem; margin: 36px 0 16px; color: var(--primary-dark); display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #bfdbfe; padding-bottom: 8px; flex-wrap: wrap; }
-    h2::before { content: ''; display: inline-block; width: 6px; height: 22px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; flex-shrink: 0; }
-
-    h3 { font-size: 1.05rem; color: #1e293b; margin: 16px 0 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
-
-    p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 14px; font-weight: 450; }
-
-    /* DRUG CONTAINER CARDS */
-    .drug-card {
-      background: #ffffff;
-      border: 2px solid #cbd5e1;
-      border-radius: 18px;
-      padding: 24px 20px;
-      margin: 24px 0 32px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
-      transition: border-color 0.3s ease;
-    }
-    .drug-card:hover { border-color: var(--primary); }
-
-    .drug-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      border-bottom: 1.5px dashed #cbd5e1;
-      padding-bottom: 14px;
-      margin-bottom: 18px;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .drug-name-title { font-size: 1.45rem; font-weight: 900; color: #1e3a8a; }
-
-    /* LAYOUT GRIDS */
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 16px 0; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 16px 0; }
-
-    .card-box { background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 14px; padding: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-
-    /* MNEMONIC CARDS STYLING */
-    .mnemonic-card { 
-      background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 100%); 
-      border-left: 5px solid var(--scrub-green); 
-      border-top: 1px solid #a7f3d0;
-      border-right: 1px solid #a7f3d0;
-      border-bottom: 1px solid #a7f3d0;
-      padding: 16px 18px; 
-      border-radius: 14px; 
-      margin: 16px 0; 
-    }
-    .mnemonic-card h4 { color: #065f46; font-size: 0.95rem; margin-bottom: 6px; font-weight: 800; display: flex; align-items: center; gap: 6px; }
-    .mnemonic-card p { color: #064e3b; margin-bottom: 0; font-weight: 600; font-size: 0.9rem; line-height: 1.6; }
-
-    /* CALLOUT BOXES */
-    .example-box {
-      background: var(--warning-bg);
-      border: 1px solid var(--warning-border);
-      border-left: 4px solid #d97706;
-      border-radius: 10px;
-      padding: 12px 14px;
-      margin: 12px 0;
-      font-size: 0.88rem;
-      color: var(--warning-text);
-    }
-    .example-box strong { font-weight: 800; color: #92400e; }
-
-    /* LISTS & NUMBERED CARDS */
-    ul { list-style-type: none; padding-left: 0; margin-bottom: 14px; }
-    ul li { position: relative; padding-left: 20px; margin-bottom: 8px; color: var(--text-muted); font-size: 0.92rem; font-weight: 450; }
-    ul li::before { content: '▪'; position: absolute; left: 4px; color: var(--primary); font-weight: bold; font-size: 1.1rem; }
-
-    .uses-list-container { display: flex; flex-direction: column; gap: 8px; margin: 12px 0; }
-    .use-item-card {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      padding: 10px 14px;
-      border-radius: 10px;
-      font-size: 0.92rem;
-      color: var(--text-main);
-      font-weight: 500;
-    }
-    .use-number-badge {
-      width: 26px; height: 26px;
-      background: var(--primary);
-      color: white;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.75rem; font-weight: 800;
-      flex-shrink: 0;
-    }
-
-    /* MOA ANIMATED PATHWAY WIDGET */
-    .moa-pathway-widget {
-      background: #0f172a;
-      border-radius: 14px;
-      padding: 18px 14px;
-      margin: 16px 0;
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-    }
-    .moa-widget-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .moa-widget-title { font-size: 0.82rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.8px; }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap');
     
-    .moa-controls { display: flex; gap: 6px; }
-    .ctrl-btn {
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: white;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s ease;
-      min-height: 32px;
-      display: inline-flex; align-items: center; justify-content: center;
-    }
-    .ctrl-btn:hover { background: rgba(255, 255, 255, 0.3); }
-
-    .moa-flow-track {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 8px;
-      position: relative;
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .moa-step-node {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 10px;
-      padding: 10px 8px;
-      text-align: center;
-      font-size: 0.78rem;
-      transition: all 0.4s ease;
-    }
-    .moa-step-node strong { display: block; color: #60a5fa; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 4px; }
-    
-    /* ANIMATION RUNNING STATE */
-    .moa-flow-track.running .moa-step-node:nth-child(1) { animation: nodePulse 6s infinite 0s; }
-    .moa-flow-track.running .moa-step-node:nth-child(2) { animation: nodePulse 6s infinite 1.2s; }
-    .moa-flow-track.running .moa-step-node:nth-child(3) { animation: nodePulse 6s infinite 2.4s; }
-    .moa-flow-track.running .moa-step-node:nth-child(4) { animation: nodePulse 6s infinite 3.6s; }
-    .moa-flow-track.running .moa-step-node:nth-child(5) { animation: nodePulse 6s infinite 4.8s; }
-
-    @keyframes nodePulse {
-      0%, 100% { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.2); transform: scale(1); }
-      20% { background: rgba(37, 99, 235, 0.4); border-color: #38bdf8; transform: scale(1.03); box-shadow: 0 0 12px rgba(56, 189, 248, 0.5); }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
     }
 
-    /* COMPLETE SINGLE 30-SECOND REVISION CONTAINER */
-    .revision-box {
-      background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
-      border: 2px solid #93c5fd;
-      border-left: 6px solid var(--primary-dark);
-      padding: 22px 18px;
-      border-radius: 16px;
-      margin: 28px 0;
-      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08);
-    }
-    .revision-box h3 {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--primary-dark);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .revision-item {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      padding: 12px 14px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      font-size: 0.88rem;
-      color: var(--text-main);
-      line-height: 1.6;
-    }
-    .revision-item:last-child { margin-bottom: 0; }
-    .revision-item strong { color: var(--primary-dark); font-weight: 800; }
-
-    /* TABLES */
-    .table-container {
-      width: 100%;
-      overflow-x: auto;
-      margin: 18px 0;
-      border-radius: 12px;
-      border: 1px solid var(--card-border);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    .custom-scroll {
       -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.88rem;
-      text-align: left;
-      min-width: 580px;
-    }
-    th {
-      background: #f1f5f9;
-      color: var(--text-main);
-      font-weight: 800;
-      padding: 12px 14px;
-      border-bottom: 2px solid var(--card-border);
-    }
-    td {
-      padding: 12px 14px;
-      border-bottom: 1px solid #e2e8f0;
-      color: var(--text-muted);
-    }
-    tr:nth-child(even) { background: #f8fafc; }
+    .custom-scroll::-webkit-scrollbar { height: 4px; }
+    .custom-scroll::-webkit-scrollbar-track { background: #1e3a8a; border-radius: 8px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 8px; }
 
-    /* FOOTER & BOTTOM NAV */
-    .chapter-nav-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-top: 36px;
-      padding-top: 20px;
-      border-top: 2px solid #bfdbfe;
-      flex-wrap: wrap;
-    }
-    .nav-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 20px;
-      background: var(--primary);
-      color: white;
-      text-decoration: none;
-      border-radius: 12px;
+    mark {
+      background-color: #fef08a;
+      color: #713f12;
+      padding: 2px 6px;
+      border-radius: 4px;
       font-weight: 700;
-      font-size: 0.88rem;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-      min-height: 44px;
-    }
-    .nav-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
-
-    footer { margin-top: 25px; text-align: center; padding-top: 18px; border-top: 1px solid var(--card-border); }
-    .author-credit { font-weight: 700; font-size: 0.92rem; letter-spacing: 0.5px; color: var(--text-main); display: flex; align-items: center; justify-content: center; gap: 6px; }
-
-    /* MOBILE BOTTOM BAR FOR TOUCH DEVICES */
-    .mobile-bottom-bar {
-      display: none;
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid #cbd5e1;
-      padding: 8px 12px;
-      z-index: 999;
-      justify-content: space-around;
-      align-items: center;
-      box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
-    }
-    .mobile-bottom-bar a {
-      color: var(--primary-dark);
-      text-decoration: none;
-      font-size: 0.75rem;
-      font-weight: 800;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-    }
-
-    /* RESPONSIVE MOBILE BREAKPOINTS */
-    @media (max-width: 640px) {
-      body { padding: 6px 4px 70px; }
-      .container { padding: 18px 10px; border-radius: 14px; }
-      .hero-header { padding: 16px 12px; }
-      .hero-header h1 { font-size: 1.45rem; }
-      .hero-header .subtitle { font-size: 0.85rem; }
-      h2 { font-size: 1.12rem; margin: 24px 0 12px; }
-      h3 { font-size: 0.92rem; }
-      p, ul li { font-size: 0.88rem; line-height: 1.6; }
-      
-      .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 12px; }
-      .drug-card { padding: 16px 12px; margin: 16px 0 24px; }
-      .card-box { padding: 14px 12px; }
-      .mnemonic-card { padding: 12px 10px; }
-      .chapter-nav-bar { flex-direction: column; align-items: stretch; }
-      .nav-btn { justify-content: center; width: 100%; }
-      .mobile-bottom-bar { display: flex; }
-      .moa-flow-track { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
-<body>
+<body class="antialiased text-slate-900 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 pt-4 sm:pt-6">
 
-<div class="container">
+  <!-- TOP STICKY BAR -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-300 shadow-sm max-w-4xl mx-auto rounded-2xl mb-6">
+    <div class="px-4 h-16 flex items-center justify-between gap-2">
+      <a href="chapter5.html" class="inline-flex items-center gap-1.5 text-xs sm:text-base font-extrabold text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-2 rounded-xl border border-brand-200 transition active:scale-95">
+        <i data-lucide="arrow-left" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+        <span>Chapter 5 Hub</span>
+      </a>
 
-  <!-- HERO HEADER -->
-  <header class="hero-header">
-    <div class="header-top-row">
-      <a href="chapter5.html" class="back-btn">&larr; Back to Chapter 5 Hub</a>
-      <span class="header-badge">BSN PHARMACOLOGY</span>
+      <div class="flex items-center gap-2">
+        <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-800 text-[10px] sm:text-sm font-black uppercase tracking-wider border border-slate-300">
+          3rd Sem BSN
+        </span>
+        <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center font-black text-xs sm:text-sm shadow-md shadow-brand-600/20">
+          MK
+        </div>
+      </div>
     </div>
-    <h1>Monoclonal Antibodies (mAbs)</h1>
-    <p class="subtitle">Oncology Targeted Therapy & Immunotherapy Deep-Dive</p>
   </header>
 
-  <!-- QUICK NAVIGATION CHIPS -->
-  <nav class="quick-nav-wrapper">
-    <div class="quick-nav-title">⚡ Quick Navigation</div>
-    <div class="quick-nav-chips">
-      <a href="#overview" class="nav-chip">1. Overview</a>
-      <a href="#class-summary" class="nav-chip">2. Classifications</a>
-      <a href="#rituximab" class="nav-chip">Rituximab</a>
-      <a href="#trastuzumab" class="nav-chip">Trastuzumab</a>
-      <a href="#cetuximab" class="nav-chip">Cetuximab</a>
-      <a href="#bevacizumab" class="nav-chip">Bevacizumab</a>
-      <a href="#pembrolizumab" class="nav-chip">Pembrolizumab / Nivolumab</a>
-      <a href="#adcs" class="nav-chip">ADCs</a>
-      <a href="#pharmacokinetics" class="nav-chip">Pharmacokinetics</a>
-      <a href="#complete-revision" class="nav-chip">⚡ 30-Sec Revision</a>
-      <a href="#nursing" class="nav-chip">Nursing Safety</a>
-    </div>
-  </nav>
+  <main class="max-w-4xl mx-auto space-y-6 sm:space-y-10">
 
-  <!-- 1. OVERVIEW & CLASS DEFINITION -->
-  <section id="overview">
-    <span class="badge-label">[CLASS DEFINITION]</span>
-    <h2>1. Introduction & Overview</h2>
-    <p>Engineered laboratory-produced proteins designed to bind specifically to antigens on cancer cell surfaces or immune checkpoint proteins, delivering precise targeted cytotoxicity, immune-mediated destruction, or receptor blockade.</p>
-    <p>Monoclonal antibodies represent a pinnacle of targeted oncologic therapy. Unlike traditional cytotoxic chemotherapy that affects all rapidly dividing cells, mAbs are programmed to recognize specific molecular targets on cancer cells or unleash the patient's own immune system to destroy tumors while sparing normal healthy tissue.</p>
-  </section>
-
-  <!-- 2. CLASSIFICATION & PROTOTYPE DRUGS -->
-  <section id="class-summary">
-    <span class="badge-label">[CLASS OVERVIEW]</span>
-    <h2>2. Classification & Prototype Drugs</h2>
-    <p>Monoclonal antibodies are categorized based on their structural targets and mechanism of action:</p>
-    
-    <div class="grid-2">
-      <div class="card-box">
-        <h3>🎯 Targeted Surface Antigen mAbs</h3>
-        <p><strong>Prototypes:</strong> <mark class="hl">Rituximab</mark> (CD20), <mark class="hl">Trastuzumab</mark> (HER2), <mark class="hl">Cetuximab</mark> (EGFR).</p>
-        <p><em>(Bind directly to growth receptors or tumor-specific proteins to block proliferation and trigger immune attack.)</em></p>
+    <!-- 1. CHAPTER INTRODUCTION -->
+    <section class="bg-gradient-to-br from-slate-900 via-brand-900 to-brand-800 text-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 shadow-xl border border-brand-700/50 relative overflow-hidden space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/15 text-white text-[10px] sm:text-xs font-extrabold uppercase tracking-wide border border-white/20">
+          <i data-lucide="book-open" class="w-3.5 h-3.5 text-brand-300"></i> Oncology Pharmacology
+        </span>
+        <span class="text-[10px] sm:text-sm text-brand-200 font-bold">Chapter Deep-Dive</span>
       </div>
 
-      <div class="card-box">
-        <h3>🩸 Angiogenesis Inhibitor mAbs</h3>
-        <p><strong>Prototype:</strong> <mark class="hl">Bevacizumab</mark>.</p>
-        <p><em>(Binds to Vascular Endothelial Growth Factor [VEGF], preventing blood vessel formation supplying the tumor.)</em></p>
-      </div>
+      <h1 class="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight break-words">
+        Monoclonal Antibodies (mAbs)
+      </h1>
 
-      <div class="card-box">
-        <h3>⚡ Immune Checkpoint Inhibitors</h3>
-        <p><strong>Prototypes:</strong> <mark class="hl">Pembrolizumab</mark>, <mark class="hl">Nivolumab</mark> (PD-1 inhibitors), <mark class="hl">Ipilimumab</mark> (CTLA-4 inhibitor).</p>
-        <p><em>(Block inhibitory pathways on T-cells, enabling the immune system to attack cancer cells.)</em></p>
-      </div>
+      <p class="text-slate-200 text-xs sm:text-lg font-medium max-w-2xl leading-relaxed">
+        Engineered laboratory proteins designed to bind specifically to antigens on cancer cell surfaces or immune checkpoints, delivering precise targeted cytotoxicity.
+      </p>
 
-      <div class="card-box">
-        <h3>🚀 Antibody-Drug Conjugates (ADCs)</h3>
-        <p><strong>Prototypes:</strong> <mark class="hl">Trastuzumab deruxtecan</mark> (T-DXd), <mark class="hl">Brentuximab vedotin</mark>.</p>
-        <p><em>(mAbs linked to potent cytotoxic payloads, acting as targeted "guided missiles".)</em></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- DRUG-BY-DRUG SECTION BREAKDOWN -->
-  <h2>3. Drug-by-Drug Deep Dive</h2>
-
-  <!-- DRUG 1: RITUXIMAB -->
-  <article id="rituximab" class="drug-card">
-    <div class="drug-card-header">
-      <div>
-        <span class="badge-label">[DRUG 01]</span>
-        <h3 class="drug-name-title">Rituximab</h3>
-      </div>
-      <span class="badge-label badge-green">CD20 TARGETED MAB</span>
-    </div>
-
-    <p><strong>CLASSIFICATION:</strong> Targeted Surface Antigen Monoclonal Antibody (Anti-CD20)</p>
-
-    <!-- MOA -->
-    <span class="badge-label">[MOA]</span>
-    <h3>Mechanism of Action</h3>
-    <p><strong>The Flag & Recruit:</strong> Rituximab binds to CD20 on B-cells, flagging them for destruction via Complement-Dependent Cytotoxicity (CDC) and Antibody-Dependent Cellular Cytotoxicity (ADCC).</p>
-
-    <!-- MOA ANIMATED PATHWAY WIDGET -->
-    <div class="moa-pathway-widget">
-      <div class="moa-widget-header">
-        <span class="moa-widget-title">⚡ Visual MOA Pathway: Rituximab</span>
-        <div class="moa-controls">
-          <button class="ctrl-btn" onclick="toggleAnimation('rituximab-flow', this)">Pause</button>
-          <button class="ctrl-btn" onclick="replayAnimation('rituximab-flow')">↻ Replay</button>
+      <!-- What You Will Learn Card -->
+      <div class="pt-3 border-t border-white/20">
+        <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-brand-300 block mb-2">🎯 What you will learn in this module:</span>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-medium text-slate-100">
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Classification</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Mechanism of Action</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Uses &amp; Mnemonics</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Adverse Effects (ADRs)</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Infusion &amp; irAE Protocols</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Specific Drug Profiles</div>
         </div>
       </div>
-      <div id="rituximab-flow" class="moa-flow-track running">
-        <div class="moa-step-node"><strong>DRUG</strong>Rituximab</div>
-        <div class="moa-step-node"><strong>TARGET</strong>CD20 Antigen on B-Cells</div>
-        <div class="moa-step-node"><strong>MECHANISM</strong>Binds & Flags B-Cells</div>
-        <div class="moa-step-node"><strong>EFFECT</strong>Activates CDC & ADCC</div>
-        <div class="moa-step-node"><strong>CLINICAL RESULT</strong>B-Cell Lysis & Tumor Destruction</div>
+    </section>
+
+    <!-- 2. CLASSIFICATION -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">2</span>
+          Classification &amp; Prototype Drugs
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Interactive</span>
       </div>
-    </div>
 
-    <!-- USES -->
-    <span class="badge-label">[USES]</span>
-    <h3>Clinical Uses</h3>
-    <div class="uses-list-container">
-      <div class="use-item-card">
-        <div class="use-number-badge">01</div>
-        <div>B-Cell Lymphomas and Leukemias</div>
-      </div>
-    </div>
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        Click any subclass below to review its prototype drugs and clinical properties:
+      </p>
 
-    <!-- USES MNEMONIC -->
-    <div class="mnemonic-card">
-      <h4>💡 USES MEMORY TRICK</h4>
-      <p><strong>"Rituximab Removes B-cells"</strong> &rarr; Primary choice for <strong>B-Cell Lymphomas & Leukemias</strong>.</p>
-    </div>
+      <div class="space-y-3">
+        <!-- Subclass 1 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="target" class="w-4 h-4 text-brand-600"></i> Targeted Surface Antigen mAbs</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drugs:</strong></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Rituximab (CD20)</li>
+              <li>Trastuzumab (HER2)</li>
+              <li>Cetuximab (EGFR)</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Bind directly to growth receptors or tumor-specific proteins to block proliferation and trigger immune attack.</p>
+          </div>
+        </div>
 
-    <!-- ADRS -->
-    <span class="badge-label">[ADRs]</span>
-    <h3>Adverse Drug Reactions & Complications</h3>
-    <ul>
-      <li><mark class="hl">Infusion-Related Reactions:</mark> Fever, chills, rigors, flushing, bronchospasm, and hypotension (most common during the first infusion).</li>
-    </ul>
+        <!-- Subclass 2 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="activity" class="w-4 h-4 text-brand-600"></i> Angiogenesis Inhibitor mAbs</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drugs:</strong></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Bevacizumab</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Binds to Vascular Endothelial Growth Factor (VEGF), preventing blood vessel formation supplying the tumor.</p>
+          </div>
+        </div>
 
-    <!-- ADR MNEMONIC -->
-    <div class="mnemonic-card">
-      <h4>💡 ADR MEMORY TRICK</h4>
-      <p><strong>"R-I-T"</strong> &rarr; <strong>R</strong>igors & chills | <strong>I</strong>nfusion-related hypotension | <strong>T</strong>emperature spikes (Fever).</p>
-    </div>
-  </article>
+        <!-- Subclass 3 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="shield" class="w-4 h-4 text-brand-600"></i> Immune Checkpoint Inhibitors</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drugs:</strong></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Pembrolizumab (PD-1 inhibitor)</li>
+              <li>Nivolumab (PD-1 inhibitor)</li>
+              <li>Ipilimumab (CTLA-4 inhibitor)</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Block inhibitory pathways on T-cells, enabling the immune system to attack cancer cells.</p>
+          </div>
+        </div>
 
-
-  <!-- DRUG 2: TRASTUZUMAB -->
-  <article id="trastuzumab" class="drug-card">
-    <div class="drug-card-header">
-      <div>
-        <span class="badge-label">[DRUG 02]</span>
-        <h3 class="drug-name-title">Trastuzumab</h3>
-      </div>
-      <span class="badge-label badge-important">HER2 TARGETED MAB</span>
-    </div>
-
-    <p><strong>CLASSIFICATION:</strong> Targeted Surface Receptor Monoclonal Antibody (Anti-HER2)</p>
-
-    <!-- MOA -->
-    <span class="badge-label">[MOA]</span>
-    <h3>Mechanism of Action</h3>
-    <p><strong>The Signal Jammer:</strong> Trastuzumab binds to surface HER2 receptors, blocking growth factor binding and halting intracellular survival signals. This arrests cell cycle progression and induces apoptosis.</p>
-
-    <!-- MOA ANIMATED PATHWAY WIDGET -->
-    <div class="moa-pathway-widget">
-      <div class="moa-widget-header">
-        <span class="moa-widget-title">⚡ Visual MOA Pathway: Trastuzumab</span>
-        <div class="moa-controls">
-          <button class="ctrl-btn" onclick="toggleAnimation('trastuzumab-flow', this)">Pause</button>
-          <button class="ctrl-btn" onclick="replayAnimation('trastuzumab-flow')">↻ Replay</button>
+        <!-- Subclass 4 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-brand-600"></i> Antibody-Drug Conjugates (ADCs)</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drugs:</strong></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Trastuzumab deruxtecan (T-DXd)</li>
+              <li>Brentuximab vedotin</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Monoclonal antibodies linked to potent cytotoxic payloads, acting as targeted "guided missiles".</p>
+          </div>
         </div>
       </div>
-      <div id="trastuzumab-flow" class="moa-flow-track running">
-        <div class="moa-step-node"><strong>DRUG</strong>Trastuzumab</div>
-        <div class="moa-step-node"><strong>TARGET</strong>HER2 Surface Receptor</div>
-        <div class="moa-step-node"><strong>MECHANISM</strong>Blocks Growth Factors</div>
-        <div class="moa-step-node"><strong>EFFECT</strong>Halts Intracellular Signals</div>
-        <div class="moa-step-node"><strong>CLINICAL RESULT</strong>Cell Cycle Arrest & Apoptosis</div>
+    </section>
+
+    <!-- 3. MECHANISM OF ACTION (INTERACTIVE TABS) -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">3</span>
+          Mechanism of Action (MOA)
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Interactive Pathways</span>
       </div>
-    </div>
 
-    <!-- USES -->
-    <span class="badge-label">[USES]</span>
-    <h3>Clinical Uses</h3>
-    <div class="uses-list-container">
-      <div class="use-item-card">
-        <div class="use-number-badge">01</div>
-        <div>HER2-Positive Breast Cancer</div>
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        Monoclonal antibodies target specific cell receptors, soluble growth factors, or immune checkpoints. Select a class below to view its specific mechanism:
+      </p>
+
+      <!-- MOA Interactive Tabs Control -->
+      <div class="flex items-center gap-2 overflow-x-auto custom-scroll pb-2">
+        <button onclick="switchMoaTab('rituximab')" id="btnRituximab" class="px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm">
+          1. Rituximab (CD20)
+        </button>
+        <button onclick="switchMoaTab('trastuzumab')" id="btnTrastuzumab" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold whitespace-nowrap transition">
+          2. Trastuzumab (HER2)
+        </button>
+        <button onclick="switchMoaTab('bevacizumab')" id="btnBevacizumab" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold whitespace-nowrap transition">
+          3. Bevacizumab (VEGF)
+        </button>
+        <button onclick="switchMoaTab('checkpoint')" id="btnCheckpoint" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold whitespace-nowrap transition">
+          4. Checkpoint (PD-1)
+        </button>
       </div>
-      <div class="use-item-card">
-        <div class="use-number-badge">02</div>
-        <div>HER2-Positive Gastric Cancer</div>
-      </div>
-    </div>
 
-    <!-- USES MNEMONIC -->
-    <div class="mnemonic-card">
-      <h4>💡 USES MEMORY TRICK</h4>
-      <p><strong>"TRAS-2 Breast & Gastric"</strong> &rarr; Targets <strong>HER2</strong> positive <strong>Breast</strong> and <strong>Gastric</strong> cancers.</p>
-    </div>
+      <!-- Tab Content Display Box -->
+      <div id="moaContentBox" class="p-5 bg-slate-900 text-white rounded-2xl border border-slate-800 space-y-4 shadow-xl">
+        <!-- Default: Rituximab -->
+        <div id="tabRituximab" class="moa-tab-pane space-y-3">
+          <span class="text-xs font-black text-brand-400 uppercase tracking-wider block">Pathway: Rituximab (The Flag &amp; Recruit)</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-brand-300 block mb-1">Step 1: CD20 Binding</strong>
+              <span class="text-slate-300">Binds directly to surface CD20 antigens on B-cells.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-amber-300 block mb-1">Step 2: Immune Flag</strong>
+              <span class="text-slate-300">Flags cells for destruction via Complement-Dependent Cytotoxicity (CDC).</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-rose-300 block mb-1">Step 3: Cellular Lysis</strong>
+              <span class="text-slate-300">Triggers ADCC, leading to rapid B-cell lysis and tumor destruction.</span>
+            </div>
+          </div>
+        </div>
 
-    <!-- ADRS -->
-    <span class="badge-label">[ADRs]</span>
-    <h3>Adverse Drug Reactions & Complications</h3>
-    <ul>
-      <li><mark class="hl">Cardiotoxicity:</mark> Decreased left ventricular ejection fraction (LVEF) and heart failure.</li>
-      <li><strong>Infusion-Related Reactions:</strong> Fever, chills, and flushing.</li>
-    </ul>
+        <!-- Trastuzumab Tab -->
+        <div id="tabTrastuzumab" class="moa-tab-pane hidden space-y-3">
+          <span class="text-xs font-black text-brand-400 uppercase tracking-wider block">Pathway: Trastuzumab (The Signal Jammer)</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-brand-300 block mb-1">Step 1: HER2 Attachment</strong>
+              <span class="text-slate-300">Attaches to surface HER2 receptors on breast and gastric cancer cells.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-amber-300 block mb-1">Step 2: Factor Block</strong>
+              <span class="text-slate-300">Blocks growth factor binding and halts intracellular survival signals.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-rose-300 block mb-1">Step 3: Cell Cycle Arrest</strong>
+              <span class="text-slate-300">Arrests cell cycle progression and induces targeted apoptosis.</span>
+            </div>
+          </div>
+        </div>
 
-    <!-- ADR MNEMONIC -->
-    <div class="mnemonic-card">
-      <h4>💡 ADR MEMORY TRICK</h4>
-      <p><strong>"TRAS breaks the Heart"</strong> &rarr; Classic risk of <strong>Cardiotoxicity</strong> (decreased LVEF / Heart Failure).</p>
-    </div>
-  </article>
+        <!-- Bevacizumab Tab -->
+        <div id="tabBevacizumab" class="moa-tab-pane hidden space-y-3">
+          <span class="text-xs font-black text-brand-400 uppercase tracking-wider block">Pathway: Bevacizumab (The Angiogenesis Inhibitor)</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-brand-300 block mb-1">Step 1: VEGF Neutralization</strong>
+              <span class="text-slate-300">Binds directly to circulating Vascular Endothelial Growth Factor (VEGF).</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-amber-300 block mb-1">Step 2: Receptor Block</strong>
+              <span class="text-slate-300">Prevents VEGF from interacting with endothelial cell receptors.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-rose-300 block mb-1">Step 3: Tumor Starvation</strong>
+              <span class="text-slate-300">Inhibits new blood vessel formation, starving the tumor of oxygen/nutrients.</span>
+            </div>
+          </div>
+        </div>
 
-
-  <!-- DRUG 3: CETUXIMAB -->
-  <article id="cetuximab" class="drug-card">
-    <div class="drug-card-header">
-      <div>
-        <span class="badge-label">[DRUG 03]</span>
-        <h3 class="drug-name-title">Cetuximab</h3>
-      </div>
-      <span class="badge-label">EGFR TARGETED MAB</span>
-    </div>
-
-    <p><strong>CLASSIFICATION:</strong> Targeted Surface Receptor Monoclonal Antibody (Anti-EGFR)</p>
-
-    <!-- MOA -->
-    <span class="badge-label">[MOA]</span>
-    <h3>Mechanism of Action</h3>
-    <p><strong>The Signal Jammer:</strong> Cetuximab binds specifically to Epidermal Growth Factor Receptors (EGFR), blocking ligand binding, inhibiting receptor phosphorylation, and halting downstream proliferation signaling.</p>
-
-    <!-- MOA STATIC VISUAL PATHWAY -->
-    <div class="moa-pathway-widget">
-      <div class="moa-widget-header">
-        <span class="moa-widget-title">📌 Visual MOA Pathway: Cetuximab</span>
-      </div>
-      <div class="moa-flow-track">
-        <div class="moa-step-node"><strong>DRUG</strong>Cetuximab</div>
-        <div class="moa-step-node"><strong>TARGET</strong>EGFR Receptor</div>
-        <div class="moa-step-node"><strong>MECHANISM</strong>Blocks Ligand Binding</div>
-        <div class="moa-step-node"><strong>EFFECT</strong>Inhibits Phosphorylation</div>
-        <div class="moa-step-node"><strong>CLINICAL RESULT</strong>Stops Tumor Proliferation</div>
-      </div>
-    </div>
-
-    <!-- USES -->
-    <span class="badge-label">[USES]</span>
-    <h3>Clinical Uses</h3>
-    <div class="uses-list-container">
-      <div class="use-item-card">
-        <div class="use-number-badge">01</div>
-        <div>Colorectal Cancer</div>
-      </div>
-      <div class="use-item-card">
-        <div class="use-number-badge">02</div>
-        <div>Head & Neck Squamous Cell Cancers</div>
-      </div>
-    </div>
-
-    <!-- ADRS -->
-    <span class="badge-label">[ADRs]</span>
-    <h3>Adverse Drug Reactions & Complications</h3>
-    <ul>
-      <li><strong>Infusion-Related Reactions:</strong> Hypersensitivity, chills, fever, and hypotension.</li>
-      <li><strong>Dermatologic Toxicities:</strong> Acneiform rash (indicates active EGFR inhibition).</li>
-    </ul>
-  </article>
-
-
-  <!-- DRUG 4: BEVACIZUMAB -->
-  <article id="bevacizumab" class="drug-card">
-    <div class="drug-card-header">
-      <div>
-        <span class="badge-label">[DRUG 04]</span>
-        <h3 class="drug-name-title">Bevacizumab</h3>
-      </div>
-      <span class="badge-label badge-important">VEGF ANGIOGENESIS INHIBITOR</span>
-    </div>
-
-    <p><strong>CLASSIFICATION:</strong> Angiogenesis Inhibitor Monoclonal Antibody (Anti-VEGF)</p>
-
-    <!-- MOA -->
-    <span class="badge-label">[MOA]</span>
-    <h3>Mechanism of Action</h3>
-    <p>Binds directly to Vascular Endothelial Growth Factor (VEGF), preventing VEGF from interacting with its endothelial receptors. This starves the tumor by inhibiting tumor blood vessel formation (angiogenesis).</p>
-
-    <!-- MOA ANIMATED PATHWAY WIDGET -->
-    <div class="moa-pathway-widget">
-      <div class="moa-widget-header">
-        <span class="moa-widget-title">⚡ Visual MOA Pathway: Bevacizumab</span>
-        <div class="moa-controls">
-          <button class="ctrl-btn" onclick="toggleAnimation('beva-flow', this)">Pause</button>
-          <button class="ctrl-btn" onclick="replayAnimation('beva-flow')">↻ Replay</button>
+        <!-- Checkpoint Tab -->
+        <div id="tabCheckpoint" class="moa-tab-pane hidden space-y-3">
+          <span class="text-xs font-black text-brand-400 uppercase tracking-wider block">Pathway: Checkpoint Inhibitors (The Brake Release)</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-brand-300 block mb-1">Step 1: Target Checkpoint</strong>
+              <span class="text-slate-300">Pembrolizumab/Nivolumab block PD-1 checkpoints on T-cells.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-amber-300 block mb-1">Step 2: Brake Release</strong>
+              <span class="text-slate-300">Releases inhibitory immune "brakes" preventing T-cell inactivation.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-rose-300 block mb-1">Step 3: Immune Attack</strong>
+              <span class="text-slate-300">Unleashes cytotoxic T-cells to recognize and destroy cancer cells.</span>
+            </div>
+          </div>
         </div>
       </div>
-      <div id="beva-flow" class="moa-flow-track running">
-        <div class="moa-step-node"><strong>DRUG</strong>Bevacizumab</div>
-        <div class="moa-step-node"><strong>TARGET</strong>Circulating VEGF</div>
-        <div class="moa-step-node"><strong>MECHANISM</strong>Neutralizes VEGF Factor</div>
-        <div class="moa-step-node"><strong>EFFECT</strong>Blocks New Blood Vessels</div>
-        <div class="moa-step-node"><strong>CLINICAL RESULT</strong>Tumor Starvation & Regression</div>
+    </section>
+
+    <!-- 4. USES -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">4</span>
+          Clinical Uses
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Indications</span>
       </div>
-    </div>
 
-    <!-- USES -->
-    <span class="badge-label">[USES]</span>
-    <h3>Clinical Uses</h3>
-    <div class="uses-list-container">
-      <div class="use-item-card">
-        <div class="use-number-badge">01</div>
-        <div>Colorectal Cancer</div>
-      </div>
-      <div class="use-item-card">
-        <div class="use-number-badge">02</div>
-        <div>Renal Cell Carcinoma</div>
-      </div>
-      <div class="use-item-card">
-        <div class="use-number-badge">03</div>
-        <div>Non-Small Cell Lung Cancer</div>
-      </div>
-    </div>
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        Monoclonal antibodies are utilized across diverse oncological protocols:
+      </p>
 
-    <!-- ADRS -->
-    <span class="badge-label">[ADRs]</span>
-    <h3>Adverse Drug Reactions & Complications</h3>
-    <ul>
-      <li><mark class="hl">Vascular Complications:</mark> Severe Hypertension and Arterial Thromboembolism.</li>
-      <li><mark class="hl">Renal & Surgical Toxicities:</mark> Proteinuria and Delayed Surgical Wound Healing / Wound Dehiscence.</li>
-    </ul>
-
-    <!-- ADR MNEMONIC -->
-    <div class="mnemonic-card">
-      <h4>💡 ADR MEMORY TRICK</h4>
-      <p><strong>"B-E-V"</strong> &rarr; <strong>B</strong>lood pressure elevation (Hypertension) | <strong>E</strong>xcretion of protein (Proteinuria) | <strong>V</strong>essel/Wound healing impairment.</p>
-    </div>
-  </article>
-
-
-  <!-- DRUG 5: CHECKPOINT INHIBITORS -->
-  <article id="pembrolizumab" class="drug-card">
-    <div class="drug-card-header">
-      <div>
-        <span class="badge-label">[DRUG GROUP 05]</span>
-        <h3 class="drug-name-title">Pembrolizumab, Nivolumab & Ipilimumab</h3>
-      </div>
-      <span class="badge-label badge-green">IMMUNE CHECKPOINT INHIBITORS</span>
-    </div>
-
-    <p><strong>CLASSIFICATION:</strong> Immune Checkpoint Inhibitor Monoclonal Antibodies (Anti-PD-1 / Anti-CTLA-4)</p>
-
-    <!-- MOA -->
-    <span class="badge-label">[MOA]</span>
-    <h3>Mechanism of Action</h3>
-    <p><strong>The Brake Release:</strong> Pembrolizumab and Nivolumab block PD-1 checkpoints (while Ipilimumab blocks CTLA-4), releasing the "brakes" on T-cells so they can recognize and destroy cancer cells.</p>
-
-    <!-- MOA ANIMATED PATHWAY WIDGET -->
-    <div class="moa-pathway-widget">
-      <div class="moa-widget-header">
-        <span class="moa-widget-title">⚡ Visual MOA Pathway: Checkpoint Inhibitors</span>
-        <div class="moa-controls">
-          <button class="ctrl-btn" onclick="toggleAnimation('checkpoint-flow', this)">Pause</button>
-          <button class="ctrl-btn" onclick="replayAnimation('checkpoint-flow')">↻ Replay</button>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm font-medium">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">01</span>
+          <span class="text-slate-800">Breast &amp; Gastric Cancers (HER2 positive via Trastuzumab)</span>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">02</span>
+          <span class="text-slate-800">Lymphomas &amp; Leukemias (B-cell malignancies via Rituximab)</span>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">03</span>
+          <span class="text-slate-800">Colorectal, Renal, &amp; Lung Cancers (Bevacizumab, Cetuximab)</span>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">04</span>
+          <span class="text-slate-800">Advanced Melanoma &amp; NSCLC (Checkpoint Inhibitors like Pembrolizumab)</span>
         </div>
       </div>
-      <div id="checkpoint-flow" class="moa-flow-track running">
-        <div class="moa-step-node"><strong>DRUG</strong>Pembrolizumab / Nivolumab</div>
-        <div class="moa-step-node"><strong>TARGET</strong>PD-1 / CTLA-4 Checkpoint</div>
-        <div class="moa-step-node"><strong>MECHANISM</strong>Blocks Inhibitory Signals</div>
-        <div class="moa-step-node"><strong>EFFECT</strong>Unleashes Cytotoxic T-Cells</div>
-        <div class="moa-step-node"><strong>CLINICAL RESULT</strong>Immune-Mediated Tumor Destruction</div>
+    </section>
+
+    <!-- 5. USES MEMORY TRICK -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">5</span>
+          Uses Memory Trick
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Mnemonic</span>
       </div>
+
+      <div class="p-5 bg-gradient-to-br from-brand-50 to-emerald-50 border border-brand-200 rounded-2xl space-y-3 shadow-sm">
+        <div class="text-base font-black text-brand-900 flex items-center gap-2">
+          <i data-lucide="lightbulb" class="w-5 h-5 text-brand-600"></i> Mnemonic: "B-L-C-M"
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700 pt-1">
+          <div>• <strong>B</strong>reast &amp; Gastric Cancers</div>
+          <div>• <strong>L</strong>ymphomas (B-cell) &amp; Lung Cancer</div>
+          <div>• <strong>C</strong>olorectal Cancer</div>
+          <div>• <strong>M</strong>elanoma</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. ADVERSE DRUG REACTIONS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">6</span>
+          Adverse Drug Reactions (ADRs)
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 text-[10px] font-black uppercase tracking-wide border border-rose-200">Side Effects</span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        Monoclonal antibodies carry targeted toxicities including immune reactions and organ-specific strains:
+      </p>
+
+      <div class="space-y-3 text-xs sm:text-sm">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">1. Infusion-Related Reactions — <span class="text-slate-600 font-normal">Common</span></strong>
+          <p class="text-slate-700">Fever, chills, rigors, flushing, bronchospasm, and hypotension (most common with Rituximab and Cetuximab during first infusions).</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-rose-700 block font-bold">2. Immune-Related Adverse Events (irAEs) — <span class="text-slate-600 font-normal">Important / Serious</span></strong>
+          <p class="text-slate-700">Autoimmune inflammatory conditions affecting the lungs (pneumonitis), colon (colitis), skin, and endocrine glands (Checkpoint inhibitors).</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-rose-700 block font-bold">3. Cardiotoxicity — <span class="text-slate-600 font-normal">Important / Serious</span></strong>
+          <p class="text-slate-700">Decreased left ventricular ejection fraction (LVEF) and heart failure (Trastuzumab).</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">4. Vascular &amp; Dermatologic Toxicities — <span class="text-slate-600 font-normal">Common</span></strong>
+          <p class="text-slate-700">Severe hypertension, proteinuria, delayed wound healing (Bevacizumab); acneiform rash (Cetuximab).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. ADR MEMORY TRICK -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">7</span>
+          ADR Memory Trick
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Mnemonic</span>
+      </div>
+
+      <div class="p-5 bg-gradient-to-br from-rose-50 to-amber-50 border border-rose-200 rounded-2xl space-y-3 shadow-sm">
+        <div class="text-base font-black text-rose-900 flex items-center gap-2">
+          <i data-lucide="lightbulb" class="w-5 h-5 text-rose-600"></i> ADR Mnemonic: "I-I-C-H"
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700 pt-1">
+          <div>• <strong>I</strong>nfusion reactions</div>
+          <div>• <strong>I</strong>mmune-related toxicities (irAEs)</div>
+          <div>• <strong>C</strong>ardiotoxicity</div>
+          <div>• <strong>H</strong>ypertension &amp; healing issues</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. COMPLICATIONS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">8</span>
+          Important Complications &amp; Management Protocols
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 text-[10px] font-black uppercase tracking-wide border border-rose-200">Serious Alerts</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 shadow-sm">
+          <strong class="text-rose-700 block text-base">⚠️ Infusion Reaction Protocol</strong>
+          <p class="text-slate-700">Severe reactions require immediate infusion interruption, antihistamines, corticosteroids, and antipyretics before restarting at a slower rate once symptoms resolve.</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 shadow-sm">
+          <strong class="text-amber-700 block text-base">🛡️ Managing Checkpoint Toxicity</strong>
+          <p class="text-slate-700">Immune-related adverse events (irAEs) caused by checkpoint inhibitors are managed by holding immunotherapy doses and administering systemic high-dose corticosteroids based on severity grade.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. SPECIFIC DRUGS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">9</span>
+          Specific Drug Profiles
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Prototypes</span>
+      </div>
+
+      <!-- Drug Card 1 -->
+      <div class="p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+          <h3 class="text-lg font-black text-brand-900">Rituximab</h3>
+          <span class="px-2.5 py-1 rounded-md bg-brand-100 text-brand-800 text-xs font-bold">CD20 Targeted mAb</span>
+        </div>
+
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+          <div><strong>Key Info:</strong> Anti-CD20 targeted monoclonal antibody used primarily in B-cell malignancies.</div>
+          <div><strong>MOA:</strong> Binds CD20 on B-cells, triggering Complement-Dependent Cytotoxicity (CDC) and ADCC.</div>
+          <div><strong>Uses:</strong> B-cell lymphomas and leukemias.</div>
+          <div><strong>ADRs &amp; Complications:</strong> Infusion-related reactions (rigors, hypotension, fever), tumor lysis syndrome risk.</div>
+        </div>
+      </div>
+
+      <!-- Drug Card 2 -->
+      <div class="p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+          <h3 class="text-lg font-black text-brand-900">Trastuzumab</h3>
+          <span class="px-2.5 py-1 rounded-md bg-brand-100 text-brand-800 text-xs font-bold">HER2 Targeted mAb</span>
+        </div>
+
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+          <div><strong>Key Info:</strong> Targeted surface receptor antibody for HER2-overexpressing tumors.</div>
+          <div><strong>MOA:</strong> Binds HER2 receptors, blocking growth factor signaling and inducing apoptosis.</div>
+          <div><strong>Uses:</strong> HER2-positive breast and gastric cancers.</div>
+          <div><strong>ADRs &amp; Complications:</strong> Cardiotoxicity (decreased LVEF / heart failure), infusion reactions.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. SPECIFIC DRUG ADRs -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">10</span>
+          Specific Drug ADRs Summary
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Targeted ADRs</span>
+      </div>
+
+      <div class="overflow-x-auto custom-scroll border border-slate-200 rounded-xl shadow-sm">
+        <table class="w-full text-left text-xs sm:text-sm bg-white border-collapse">
+          <thead>
+            <tr class="bg-brand-50 text-brand-900 border-b border-slate-200 font-bold">
+              <th class="p-3">Drug Name</th>
+              <th class="p-3">Important Specific ADRs</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-700">
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Rituximab</td>
+              <td class="p-3">First-infusion reactions (fever, chills, rigors, hypotension).</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Trastuzumab</td>
+              <td class="p-3">Cardiotoxicity (decreased LVEF / congestive heart failure).</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Cetuximab</td>
+              <td class="p-3">Acneiform rash, hypersensitivity infusion reactions.</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Bevacizumab</td>
+              <td class="p-3">Severe hypertension, proteinuria, delayed surgical wound healing.</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Pembrolizumab</td>
+              <td class="p-3">Immune-related adverse events (irAEs: colitis, pneumonitis).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 11. QUICK REVISION -->
+    <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-brand-950 text-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 space-y-4">
+      <div class="flex items-center gap-2 text-brand-400 font-black text-xs sm:text-sm uppercase tracking-wider">
+        <i data-lucide="zap" class="w-4 h-4 text-brand-400"></i>
+        30-SECOND EXAM REVISION
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-slate-200">
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>Class Nature:</strong> Engineered targeted protein antibodies &amp; immunotherapies.
+        </div>
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>MOA:</strong> Antigen binding, CDC/ADCC lysis, receptor blockade, or T-cell brake release.
+        </div>
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>Key Uses:</strong> Breast, gastric, colorectal, and lung cancers, lymphomas, and melanoma.
+        </div>
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>Major ADRs / Mnemonic:</strong> "I-I-C-H" (Infusion reactions, Immune irAEs, Cardiotoxicity, Hypertension).
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVIGATION FOOTER -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-slate-300">
+      <a href="chapter5.html" class="w-full sm:w-auto px-5 py-3 rounded-xl font-bold text-slate-800 bg-white border border-slate-300 hover:bg-slate-100 flex items-center justify-center gap-2 transition active:scale-95 text-xs sm:text-sm shadow-sm">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Chapter 5 Hub
+      </a>
+      <a href="dashboard.html" class="w-full sm:w-auto px-5 py-3 rounded-xl font-extrabold text-white bg-brand-600 hover:bg-brand-500 flex items-center justify-center gap-2 transition active:scale-95 text-xs sm:text-sm shadow-lg shadow-brand-600/20">
+        Dashboard <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
     </div>
 
-    <!-- USES -->
-    <span class="badge-label">[USES]</span>
-    <h3>Clinical Uses</h3>
-    <div class="uses-list-container">
-      <div class="use-item-card">
-        <div class="use-number-badge">01</div>
-        <div>Advanced Melanoma</div>
-      </div>
-      <div class="use-item-card">
-        <div class="use-number-badge">02</div>
-        <div>Non-Small Cell Lung Cancer (NSCLC)</div>
-      </div>
-      <div class="use-item-card">
-        <div class="use-number-badge">03</div>
-        <div>Renal Cell Carcinoma</div>
-      </div>
-    </div>
-
-    <!-- ADRS & COMPLICATIONS -->
-    <span class="badge-label">[ADRs & COMPLICATIONS]</span>
-    <h3>Adverse Drug Reactions & Management</h3>
-    <ul>
-      <li><mark class="hl">Immune-Related Adverse Events (irAEs):</mark> Autoimmune inflammatory conditions affecting the lungs (pneumonitis), colon (colitis), skin, and endocrine glands.</li>
-    </ul>
-
-    <div class="example-box">
-      <strong>⚠️ Managing Checkpoint Toxicity:</strong> Immune-related adverse events (irAEs) caused by checkpoint inhibitors are managed by holding immunotherapy doses and administering systemic high-dose corticosteroids depending on organ severity grade.
-    </div>
-  </article>
-
-
-  <!-- DRUG 6: ADCs -->
-  <article id="adcs" class="drug-card">
-    <div class="drug-card-header">
-      <div>
-        <span class="badge-label">[DRUG GROUP 06]</span>
-        <h3 class="drug-name-title">Trastuzumab Deruxtecan & Brentuximab Vedotin</h3>
-      </div>
-      <span class="badge-label">ANTIBODY-DRUG CONJUGATES (ADCS)</span>
-    </div>
-
-    <p><strong>CLASSIFICATION:</strong> Antibody-Drug Conjugates (ADCs)</p>
-
-    <!-- MOA -->
-    <span class="badge-label">[MOA]</span>
-    <h3>Mechanism of Action</h3>
-    <p>Monoclonal antibodies linked to potent cytotoxic payloads, acting as targeted "guided missiles" that deliver high concentrations of chemotherapy directly into antigen-expressing tumor cells while avoiding healthy tissues.</p>
-  </article>
-
-  <!-- DRUG COMPARISON TABLE -->
-  <section>
-    <span class="badge-label">[CLASS COMPARISON]</span>
-    Replace "<h2>4. Prototype Drug Comparison Matrix</h2>"
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Drug Name</th>
-            <th>Primary Target</th>
-            <th>Core Mechanism</th>
-            <th>Key Indications</th>
-            <th>Signature Toxicity / ADR</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Rituximab</strong></td>
-            <td>CD20 Antigen</td>
-            <td>Complement/Cellular Destruction (CDC/ADCC)</td>
-            <td>B-Cell Lymphomas & Leukemias</td>
-            <td>First-Infusion Reactions (fever, chills, hypotension)</td>
-          </tr>
-          <tr>
-            <td><strong>Trastuzumab</strong></td>
-            <td>HER2 Receptor</td>
-            <td>Growth Signal Blockade & Apoptosis</td>
-            <td>HER2+ Breast & Gastric Cancers</td>
-            <td>Cardiotoxicity (Decreased LVEF / Heart Failure)</td>
-          </tr>
-          <tr>
-            <td><strong>Cetuximab</strong></td>
-            <td>EGFR Receptor</td>
-            <td>Blocks EGF Growth Binding</td>
-            <td>Colorectal, Head & Neck Cancers</td>
-            <td>Acneiform Rash & Infusion Reactions</td>
-          </tr>
-          <tr>
-            <td><strong>Bevacizumab</strong></td>
-            <td>VEGF Factor</td>
-            <td>Inhibits Tumor Angiogenesis</td>
-            <td>Colorectal, Renal & Lung Cancers</td>
-            <td>Hypertension, Proteinuria, Delayed Wound Healing</td>
-          </tr>
-          <tr>
-            <td><strong>Pembrolizumab</strong></td>
-            <td>PD-1 Checkpoint</td>
-            <td>Releases T-Cell Inhibitory Brakes</td>
-            <td>Melanoma, NSCLC, Renal Carcinoma</td>
-            <td>Immune-Related Adverse Events (irAEs: Colitis, Pneumonitis)</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- CLASS-WIDE MNEMONIC SUMMARY -->
-  <section>
-    <span class="badge-label">[CLASS SUMMARY MNEMONICS]</span>
-    <h2>5. Class-Wide Summary Mnemonics</h2>
-    
-    <div class="mnemonic-card">
-      <h4>💡 Mnemonic for Clinical Uses: "B-L-C-M"</h4>
-      <p><strong>B</strong>reast & Gastric Cancers | <strong>L</strong>ymphomas (B-cell) & Lung Cancer | <strong>C</strong>olorectal Cancer | <strong>M</strong>elanoma</p>
-    </div>
-
-    <div class="mnemonic-card">
-      <h4>💡 Mnemonic for Class ADRs: "I-I-C-H"</h4>
-      <p><strong>I</strong>nfusion reactions | <strong>I</strong>mmune-related toxicities (irAEs) | <strong>C</strong>ardiotoxicity | <strong>H</strong>ypertension & healing issues</p>
-    </div>
-  </section>
-
-  <!-- 6. PHARMACOKINETICS -->
-  <section id="pharmacokinetics">
-    <span class="badge-label">[PHARMACOKINETICS]</span>
-    <h2>6. Pharmacokinetics</h2>
-    <ul>
-      <li><strong>Administration:</strong> Administered via intravenous (IV) infusion or subcutaneous (SC) injection. Large protein structures prevent oral absorption.</li>
-      <li><strong>Distribution:</strong> Confined primarily to vascular and interstitial spaces with slow clearance mediated by target binding and the reticuloendothelial system.</li>
-      <li><strong>Elimination:</strong> Degraded into peptides and amino acids via catabolic pathways rather than hepatic CYP450 metabolism, resulting in long half-lives (often weeks).</li>
-    </ul>
-  </section>
-
-  <!-- 7. AGENT-SPECIFIC COMPLICATIONS -->
-  <section>
-    <span class="badge-label">[MANAGEMENT PROTOCOLS]</span>
-    <h2>7. Agent-Specific Complications & Management</h2>
-    <div class="grid-2">
-      <div class="card-box">
-        <h3>⚠️ Infusion Reaction Protocols</h3>
-        <p>Severe infusion reactions require immediate interruption of the infusion, administration of antihistamines, corticosteroids, and antipyretics, and supportive care before restarting at a slower rate once symptoms resolve.</p>
-      </div>
-      <div class="card-box">
-        <h3>🛡️ Managing Checkpoint Toxicity</h3>
-        <p>Immune-related adverse events (irAEs) caused by checkpoint inhibitors are managed by holding immunotherapy doses and administering systemic high-dose corticosteroids depending on organ severity grade.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SINGLE COMPLETE 30-SECOND RAPID CLASS REVISION -->
-  <section id="complete-revision">
-    <div class="revision-box">
-      <h3>⚡ 30-Second Rapid Class Revision (All Monoclonal Antibodies)</h3>
-      
-      <div class="revision-item">
-        <strong>1. Rituximab:</strong> Anti-CD20 mAb &rarr; Flags B-cells for CDC/ADCC destruction &rarr; B-cell Lymphomas/Leukemias &rarr; Watch for First-Infusion Reactions (fever, chills, hypotension).
-      </div>
-
-      <div class="revision-item">
-        <strong>2. Trastuzumab:</strong> Anti-HER2 mAb &rarr; Blocks HER2 growth signaling &rarr; HER2+ Breast & Gastric Cancers &rarr; Key Toxicity: Cardiotoxicity (Monitor LVEF/ECHO).
-      </div>
-
-      <div class="revision-item">
-        <strong>3. Cetuximab:</strong> Anti-EGFR mAb &rarr; Blocks EGF ligand binding &rarr; Colorectal & Head/Neck Cancers &rarr; Key Toxicity: Acneiform Rash & Infusion Reactions.
-      </div>
-
-      <div class="revision-item">
-        <strong>4. Bevacizumab:</strong> Anti-VEGF mAb &rarr; Inhibits tumor angiogenesis (starves blood supply) &rarr; Colorectal, Renal, & Lung Cancers &rarr; Key Risks: Severe Hypertension, Proteinuria, Delayed Wound Healing.
-      </div>
-
-      <div class="revision-item">
-        <strong>5. Pembrolizumab / Nivolumab:</strong> Anti-PD-1 Checkpoint Inhibitors &rarr; Removes T-cell inhibitory brakes &rarr; Melanoma, NSCLC, Renal Cancers &rarr; Key Risk: Autoimmune irAEs (Colitis, Pneumonitis) managed with Corticosteroids.
-      </div>
-
-      <div class="revision-item">
-        <strong>6. ADCs (e.g. T-DXd):</strong> mAb + Cytotoxic Payload &rarr; Targeted "guided missile" chemo delivery directly inside antigen-positive tumor cells.
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. KEY NURSING TAKEAWAYS -->
-  <section id="nursing">
-    <span class="badge-label badge-important">[PATIENT SAFETY]</span>
-    <h2>8. Key Nursing Takeaways & Patient Safety</h2>
-    <ul>
-      <li><strong>Monitor Infusion Sites Closely:</strong> Stay vigilant during initial administrations, checking vital signs frequently and pre-medicating as ordered (e.g., diphenhydramine, acetaminophen).</li>
-      <li><strong>Assess Baseline Cardiac Function:</strong> Perform baseline and serial echocardiograms or MUGA scans to monitor LVEF in patients receiving Trastuzumab.</li>
-      <li><strong>Screen for Immune-Mediated Red Flags:</strong> Educate checkpoint inhibitor patients to report new or worsening shortness of breath, severe diarrhea, or rash immediately.</li>
-      <li><strong>Monitor Blood Pressure & Urine Protein:</strong> Check blood pressure regularly and screen for proteinuria before administering Bevacizumab infusions.</li>
-      <li><strong>Verify Pre-Medication Protocols:</strong> Ensure all mandated anti-allergic pre-medications are given prior to starting antibody infusions.</li>
-    </ul>
-  </section>
-
-  <!-- NAVIGATION BAR -->
-  <nav class="chapter-nav-bar">
-    <a href="chapter5.html" class="nav-btn">&larr; Previous: Chapter 5 Hub</a>
-    <a href="dashboard.html" class="nav-btn">Dashboard &rarr;</a>
-  </nav>
+  </main>
 
   <!-- FOOTER -->
-  <footer>
-    <div class="author-credit">
-      <span>✨</span> Crafted with excellence for BSN Pharmacology Students
+  <footer class="mt-12 bg-white border-t border-slate-300 py-6 text-center text-xs text-slate-600 max-w-4xl mx-auto rounded-2xl">
+    <div class="px-4 space-y-1">
+      <p class="font-extrabold text-slate-900 text-sm">✨ Curated with excellence by Mudassir Khan</p>
+      <p>© 2026 MK Study Hub. BSN Oncology Pharmacology Learning Portal.</p>
     </div>
-    <p style="margin-top: 6px; font-size: 0.78rem; opacity: 0.7;">&copy; 2026 Oncology Pharmacology Portal. All rights reserved.</p>
   </footer>
 
-</div>
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
 
-<!-- MOBILE BOTTOM BAR -->
-<div class="mobile-bottom-bar">
-  <a href="#overview"><span>📖</span>Intro</a>
-  <a href="#class-summary"><span>🎯</span>Drugs</a>
-  <a href="#complete-revision"><span>⚡</span>Revision</a>
-  <a href="#nursing"><span>🛡️</span>Nursing</a>
-</div>
-
-<!-- LIGHTWEIGHT ANIMATION CONTROLLER SCRIPT -->
-<script>
-  function toggleAnimation(elementId, btn) {
-    const track = document.getElementById(elementId);
-    if (track.classList.contains('running')) {
-      track.classList.remove('running');
-      btn.innerText = 'Play';
-    } else {
-      track.classList.add('running');
-      btn.innerText = 'Pause';
+    // Toggle Classification Cards
+    function toggleCard(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('[data-lucide="chevron-down"]');
+      
+      content.classList.toggle('hidden');
+      if (icon) {
+        icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+      }
     }
-  }
 
-  function replayAnimation(elementId) {
-    const track = document.getElementById(elementId);
-    track.classList.remove('running');
-    void track.offsetWidth; // Trigger reflow
-    track.classList.add('running');
-  }
-</script>
+    // Interactive MOA Tab Switcher
+    function switchMoaTab(tabName) {
+      const btnRituximab = document.getElementById('btnRituximab');
+      const btnTrastuzumab = document.getElementById('btnTrastuzumab');
+      const btnBevacizumab = document.getElementById('btnBevacizumab');
+      const btnCheckpoint = document.getElementById('btnCheckpoint');
 
+      const tabRituximab = document.getElementById('tabRituximab');
+      const tabTrastuzumab = document.getElementById('tabTrastuzumab');
+      const tabBevacizumab = document.getElementById('tabBevacizumab');
+      const tabCheckpoint = document.getElementById('tabCheckpoint');
+
+      // Reset all buttons
+      [btnRituximab, btnTrastuzumab, btnBevacizumab, btnCheckpoint].forEach(b => {
+        b.className = "px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold whitespace-nowrap transition";
+      });
+
+      // Hide all panes
+      [tabRituximab, tabTrastuzumab, tabBevacizumab, tabCheckpoint].forEach(p => {
+        p.classList.add('hidden');
+      });
+
+      // Activate selected
+      if (tabName === 'rituximab') {
+        btnRituximab.className = "px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm";
+        tabRituximab.classList.remove('hidden');
+      } else if (tabName === 'trastuzumab') {
+        btnTrastuzumab.className = "px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm";
+        tabTrastuzumab.classList.remove('hidden');
+      } else if (tabName === 'bevacizumab') {
+        btnBevacizumab.className = "px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm";
+        tabBevacizumab.classList.remove('hidden');
+      } else if (tabName === 'checkpoint') {
+        btnCheckpoint.className = "px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm";
+        tabCheckpoint.classList.remove('hidden');
+      }
+    }
+  </script>
 </body>
 </html>
