@@ -646,6 +646,15 @@
   </footer>
 
   <script>
+    /* Security: Disable F12, Right-Click, and Inspection Shortcuts */
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'U')) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
     /* Expanded 50+ Comprehensive Drug Database */
     var drugDatabase = [
       /* ANTIBIOTICS & ANTIMICROBIALS */
@@ -760,15 +769,15 @@
     var currentMCQStep = 0;
     var dailyQuizScore = 0;
 
+    /* Expanded Valid Access Codes List up to 200 */
     var validAccessCodesList = [
-      "BSN-CLASS-2026", "NEWLIFE-PHARMA-02", "MULTAN-BATCH-03",
-      "MK-IND-01", "MK-IND-02", "MK-IND-03", "MK-IND-04", "MK-IND-05",
-      "MK-IND-06", "MK-IND-07", "MK-IND-08", "MK-IND-09", "MK-IND-10",
-      "MK-IND-11", "MK-IND-12", "MK-IND-13", "MK-IND-14", "MK-IND-15",
-      "MK-IND-16", "MK-IND-17", "MK-IND-18", "MK-IND-19", "MK-IND-20",
-      "MK-IND-21", "MK-IND-22", "MK-IND-23", "MK-IND-24", "MK-IND-25",
-      "MK-IND-26", "MK-IND-27", "MK-IND-28", "MK-IND-29", "MK-IND-30"
+      "BSN-CLASS-2026", "NEWLIFE-PHARMA-02", "MULTAN-BATCH-03"
     ];
+    // Programmatically generate codes MK-IND-01 to MK-IND-200
+    for (var c = 1; c <= 200; c++) {
+      var formattedNum = c < 10 ? "0" + c : "" + c;
+      validAccessCodesList.push("MK-IND-" + formattedNum);
+    }
 
     window.onload = function() {
       if (localStorage.getItem('pharmacologyLoggedIn') !== 'true') {
