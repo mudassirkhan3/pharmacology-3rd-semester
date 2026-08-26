@@ -1,159 +1,559 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Microtubule Inhibitors | Oncology Pharmacology</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Microtubule Inhibitors | Oncology Pharmacology | MK Study Hub</title>
+  <meta name="description" content="Ultimate student-friendly BSN Pharmacology module on Microtubule Inhibitors. Simple, interactive, and mobile optimized.">
+
+  <!-- TAILWIND CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+              800: '#115e59',
+              900: '#134e4a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- LUCIDE ICONS CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <style>
-    :root {
-      --bg-gradient: radial-gradient(circle at 10% 20%, rgba(13, 148, 136, 0.08) 0%, rgba(20, 184, 166, 0.05) 40%, #f8fafc 90%);
-      --primary: #0d9488;
-      --primary-dark: #0f766e;
-      --accent: #14b8a6;
-      --card-bg: rgba(255, 255, 255, 0.9);
-      --card-border: rgba(153, 246, 228, 0.8);
-      --text-main: #134e4a;
-      --text-muted: #475569;
-      --shadow-glow: 0 20px 40px -15px rgba(13, 148, 136, 0.25);
-      --radius: 20px;
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.8; padding: 40px 16px; min-height: 100vh; }
-    
-    .container { max-width: 950px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(16px); padding: 50px 40px; border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: var(--shadow-glow); }
-    
-    .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; margin-bottom: 30px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2); }
-    .back-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-    .badge { display: inline-block; padding: 6px 14px; background: #f0fdfa; color: var(--primary); font-weight: 800; font-size: 0.8rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; border: 1px solid #99f6e4; }
+    .custom-scroll {
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+    .custom-scroll::-webkit-scrollbar { height: 4px; }
+    .custom-scroll::-webkit-scrollbar-track { background: #134e4a; border-radius: 8px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #0d9488; border-radius: 8px; }
 
-    h1 { font-size: 2.5rem; font-weight: 900; background: linear-gradient(135deg, #134e4a 0%, var(--primary) 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
-    
-    h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #99f6e4; padding-bottom: 10px; }
-    h2::before { content: ''; display: inline-block; width: 6px; height: 24px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; }
-
-    p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 20px; }
-
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 25px 0; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin: 25px 0; }
-    
-    .card-box { background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); transition: 0.3s; }
-    .card-box:hover { transform: translateY(-5px); border-color: var(--primary); }
-    .card-box h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
-
-    .mnemonic-box { background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%); border-left: 6px solid var(--primary); padding: 22px; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 15px rgba(13, 148, 136, 0.08); }
-    .mnemonic-box h4 { color: var(--primary); font-size: 1.1rem; margin-bottom: 8px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
-    .mnemonic-box p { color: #134e4a; margin-bottom: 0; font-weight: 500; }
-
-    ul { list-style-type: none; padding-left: 0; margin-bottom: 20px; }
-    ul li { position: relative; padding-left: 28px; margin-bottom: 12px; color: var(--text-muted); font-size: 1.05rem; }
-    ul li::before { content: '▪'; position: absolute; left: 8px; color: var(--primary); font-weight: bold; font-size: 1.2rem; }
+    mark {
+      background-color: #fef08a;
+      color: #713f12;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
   </style>
 </head>
-<body>
+<body class="antialiased text-slate-900 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 pt-4 sm:pt-6">
 
-<div class="container">
-  <a href="chapter5.html" class="back-btn">&larr; Back to Chapter 5 Hub</a>
-  
-  <div class="badge">Pharmacology Class Deep-Dive</div>
-  <h1>Microtubule Inhibitors (Antimitotic Agents)</h1>
-  <p>Cytotoxic agents that target cellular tubulin dynamics, disrupting the mitotic spindle apparatus and halting cell division primarily during the <strong>M-phase</strong> of the cell cycle.</p>
+  <!-- TOP STICKY BAR -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-300 shadow-sm max-w-4xl mx-auto rounded-2xl mb-6">
+    <div class="px-4 h-16 flex items-center justify-between gap-2">
+      <a href="chapter5.html" class="inline-flex items-center gap-1.5 text-xs sm:text-base font-extrabold text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-2 rounded-xl border border-brand-200 transition active:scale-95">
+        <i data-lucide="arrow-left" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+        <span>Chapter 5 Hub</span>
+      </a>
 
-  <!-- INTRODUCTION -->
-  <h2>1. Introduction</h2>
-  <p>Microtubules are dynamic structural filaments essential for maintaining cellular scaffolding and correctly segregating chromosomes during mitosis. Microtubule inhibitors bind to tubulin, freezing or destroying the mitotic spindle so daughter cells cannot successfully separate, triggering cell death (apoptosis).</p>
+      <div class="flex items-center gap-2">
+        <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-800 text-[10px] sm:text-sm font-black uppercase tracking-wider border border-slate-300">
+          3rd Sem BSN
+        </span>
+        <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center font-black text-xs sm:text-sm shadow-md shadow-brand-600/20">
+          MK
+        </div>
+      </div>
+    </div>
+  </header>
 
-  <!-- CLASSIFICATION -->
-  <h2>2. Classification & Prototype Drugs</h2>
-  <p>Microtubule inhibitors are divided into major chemical classes based on how they impact tubulin polymerization:</p>
-  
-  <ul>
-    <li><strong>Vinca Alkaloids:</strong> Vincristine, Vinblastine, Vinorelbine. <em>(Derived from the periwinkle plant; bind to tubulin monomers and inhibit polymerization/assembly, preventing mitotic spindle formation.)</em></li>
-    <li><strong>Taxanes:</strong> Paclitaxel, Docetaxel, Cabazitaxel. <em>(Derived from Pacific yew trees or semi-synthetic analogs; bind to assembled microtubules and hyper-stabilize them, preventing depolymerization/disassembly.)</em></li>
-    <li><strong>Synthetic Microtubule Dynamics Inhibitors:</strong> Eribulin. <em>(Halcon-derived halichondrin B analog that sequesters tubulin and blocks microtubule elongation.)</em></li>
-  </ul>
+  <main class="max-w-4xl mx-auto space-y-6 sm:space-y-10">
 
-  <!-- MECHANISM OF ACTION -->
-  <h2>3. Mechanism of Action (Detailed & Simple Explanations)</h2>
-  <p>Antimitotic agents disrupt structural microtubules through contrasting mechanical actions:</p>
+    <!-- 1. CHAPTER INTRODUCTION -->
+    <section class="bg-gradient-to-br from-slate-900 via-brand-900 to-brand-800 text-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 shadow-xl border border-brand-700/50 relative overflow-hidden space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/15 text-white text-[10px] sm:text-xs font-extrabold uppercase tracking-wide border border-white/20">
+          <i data-lucide="book-open" class="w-3.5 h-3.5 text-brand-300"></i> Oncology Pharmacology
+        </span>
+        <span class="text-[10px] sm:text-sm text-brand-200 font-bold">Chapter Deep-Dive</span>
+      </div>
 
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>🌱 Vinca Alkaloids (Vincristine / Vinblastine)</h3>
-      <p><strong>The Assembly Blockers:</strong> Vinca alkaloids bind directly to tubulin heterodimers, preventing them from joining together to form microtubules.</p>
-      <p style="margin-top: 10px;">Without functional microfilaments, the mitotic spindle cannot form, trapping cells in metaphase and causing mitotic arrest.</p>
+      <h1 class="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight break-words">
+        Microtubule Inhibitors (Antimitotic Agents)
+      </h1>
+
+      <p class="text-slate-200 text-xs sm:text-lg font-medium max-w-2xl leading-relaxed">
+        Cytotoxic agents that target cellular tubulin dynamics, disrupting the mitotic spindle apparatus and halting cell division primarily during the M-phase of the cell cycle.
+      </p>
+
+      <!-- What You Will Learn Card -->
+      <div class="pt-3 border-t border-white/20">
+        <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-brand-300 block mb-2">🎯 What you will learn in this module:</span>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-medium text-slate-100">
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Classification</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Mechanism of Action</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Uses &amp; Mnemonics</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Adverse Effects (ADRs)</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Safety Warnings</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Specific Drug Profiles</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. CLASSIFICATION -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">2</span>
+          Classification &amp; Prototype Drugs
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Interactive</span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        Click any structural subclass below to review its prototype drugs and clinical properties:
+      </p>
+
+      <div class="space-y-3">
+        <!-- Subclass 1 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="layers" class="w-4 h-4 text-brand-600"></i> Vinca Alkaloids</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drugs:</strong></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Vincristine</li>
+              <li>Vinblastine</li>
+              <li>Vinorelbine</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Derived from the periwinkle plant; bind to tubulin monomers and inhibit polymerization/assembly, preventing mitotic spindle formation.</p>
+          </div>
+        </div>
+
+        <!-- Subclass 2 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="dna" class="w-4 h-4 text-brand-600"></i> Taxanes</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drugs:</strong></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Paclitaxel</li>
+              <li>Docetaxel</li>
+              <li>Cabazitaxel</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Derived from Pacific yew trees or semi-synthetic analogs; bind to assembled microtubules and hyper-stabilize them, preventing depolymerization/disassembly.</p>
+          </div>
+        </div>
+
+        <!-- Subclass 3 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-brand-600"></i> Synthetic Microtubule Dynamics Inhibitors</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drugs:</strong></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Eribulin</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Halichondrin B analog derived from marine sponges that sequesters tubulin and blocks microtubule elongation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. MECHANISM OF ACTION (INTERACTIVE TABS) -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">3</span>
+          Mechanism of Action (MOA)
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Interactive Pathways</span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        Antimitotic agents disrupt structural microtubules through contrasting mechanical actions, halting cell division primarily during the <mark>M-phase</mark>. Select a class below to view its specific mechanism:
+      </p>
+
+      <!-- MOA Interactive Tabs Control -->
+      <div class="flex items-center gap-2 overflow-x-auto custom-scroll pb-2">
+        <button onclick="switchMoaTab('vinca')" id="btnVinca" class="px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm">
+          1. Vinca Alkaloids
+        </button>
+        <button onclick="switchMoaTab('taxanes')" id="btnTaxanes" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold whitespace-nowrap transition">
+          2. Taxanes
+        </button>
+      </div>
+
+      <!-- Tab Content Display Box -->
+      <div id="moaContentBox" class="p-5 bg-slate-900 text-white rounded-2xl border border-slate-800 space-y-4 shadow-xl">
+        <!-- Default: Vinca Alkaloids -->
+        <div id="tabVinca" class="moa-tab-pane space-y-3">
+          <span class="text-xs font-black text-brand-400 uppercase tracking-wider block">Pathway: Vinca Alkaloids (Assembly Blockers)</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-brand-300 block mb-1">Step 1: Dimer Binding</strong>
+              <span class="text-slate-300">Bind directly to tubulin heterodimers, preventing assembly.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-amber-300 block mb-1">Step 2: Spindle Failure</strong>
+              <span class="text-slate-300">Mitotic spindle cannot form without functional microfilaments.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-rose-300 block mb-1">Step 3: Mitotic Arrest</strong>
+              <span class="text-slate-300">Traps cells in metaphase, causing mitotic arrest and cell death.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Taxanes Tab -->
+        <div id="tabTaxanes" class="moa-tab-pane hidden space-y-3">
+          <span class="text-xs font-black text-brand-400 uppercase tracking-wider block">Pathway: Taxanes (Hyper-Stabilizers / "Freezers")</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-brand-300 block mb-1">Step 1: Interior Binding</strong>
+              <span class="text-slate-300">Bind to the interior of assembled microtubules.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-amber-300 block mb-1">Step 2: Rigid Stabilization</strong>
+              <span class="text-slate-300">Makes microtubules excessively rigid and incapable of disassembling.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-rose-300 block mb-1">Step 3: Cycle Freeze</strong>
+              <span class="text-slate-300">Chromosomes cannot be pulled apart during anaphase, freezing the cell cycle.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. USES -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">4</span>
+          Clinical Uses
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Indications</span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        Microtubule inhibitors are indispensable components of standard combination protocols across diverse oncology settings:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm font-medium">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">01</span>
+          <span class="text-slate-800">Solid Tumors: Ovarian, breast, and non-small cell lung cancer (Paclitaxel and Docetaxel)</span>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">02</span>
+          <span class="text-slate-800">Hematological Malignancies: Acute lymphoblastic leukemia (ALL) and lymphomas (Vincristine)</span>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">03</span>
+          <span class="text-slate-800">Testicular Cancer and Germ Cell Tumors (Vinblastine)</span>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">04</span>
+          <span class="text-slate-800">Prostate Cancer (Cabazitaxel and Docetaxel)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. USES MEMORY TRICK -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">5</span>
+          Uses Memory Trick
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Mnemonic</span>
+      </div>
+
+      <div class="p-5 bg-gradient-to-br from-brand-50 to-teal-50 border border-brand-200 rounded-2xl space-y-3 shadow-sm">
+        <div class="text-base font-black text-brand-900 flex items-center gap-2">
+          <i data-lucide="lightbulb" class="w-5 h-5 text-brand-600"></i> Mnemonic: "O-B-L-P"
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700 pt-1">
+          <div>• <strong>O</strong>varian &amp; Breast Cancers</div>
+          <div>• <strong>B</strong>lood Cancers (Leukemias &amp; Lymphomas)</div>
+          <div>• <strong>L</strong>ung Cancer (NSCLC)</div>
+          <div>• <strong>P</strong>rostate Cancer</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. ADVERSE DRUG REACTIONS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">6</span>
+          Adverse Drug Reactions (ADRs)
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 text-[10px] font-black uppercase tracking-wide border border-rose-200">Side Effects</span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        Each subclass exhibits distinct, profile-specific toxicities that dictate clinical management:
+      </p>
+
+      <div class="space-y-3 text-xs sm:text-sm">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-rose-700 block font-bold">1. Peripheral Neuropathy — <span class="text-slate-600 font-normal">Important / Serious</span></strong>
+          <p class="text-slate-700">Particularly prominent with Vincristine (sensory loss, paresthesias, foot drop, loss of deep tendon reflexes).</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-rose-700 block font-bold">2. Hypersensitivity Reactions — <span class="text-slate-600 font-normal">Important / Serious</span></strong>
+          <p class="text-slate-700">Severe acute allergic reactions common with Paclitaxel due to vehicle formulations, requiring pre-medication.</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">3. Bone Marrow Suppression — <span class="text-slate-600 font-normal">Common</span></strong>
+          <p class="text-slate-700">Severe myelosuppression and neutropenia (dose-limiting for Docetaxel and Vinblastine; notably minimal with Vincristine).</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">4. Gastrointestinal &amp; Autonomic Toxicity — <span class="text-slate-600 font-normal">Common</span></strong>
+          <p class="text-slate-700">Severe constipation, paralytic ileus, and abdominal cramps (classic for Vincristine).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. ADR MEMORY TRICK -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">7</span>
+          ADR Memory Trick
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Mnemonic</span>
+      </div>
+
+      <div class="p-5 bg-gradient-to-br from-rose-50 to-amber-50 border border-rose-200 rounded-2xl space-y-3 shadow-sm">
+        <div class="text-base font-black text-rose-900 flex items-center gap-2">
+          <i data-lucide="lightbulb" class="w-5 h-5 text-rose-600"></i> ADR Mnemonic: "N-H-B-A"
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700 pt-1">
+          <div>• <strong>N</strong>europathy (Peripheral)</div>
+          <div>• <strong>H</strong>ypersensitivity reactions</div>
+          <div>• <strong>B</strong>one marrow suppression (Myelosuppression)</div>
+          <div>• <strong>A</strong>utonomic dysfunction (Constipation / Ileus)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. COMPLICATIONS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">8</span>
+          Important Complications &amp; Safety Warnings
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 text-[10px] font-black uppercase tracking-wide border border-rose-200">Serious Alerts</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+        <div class="p-4 bg-rose-50/70 rounded-xl border border-rose-200 space-y-1.5 shadow-sm">
+          <strong class="text-rose-800 block text-base">🚨 CRITICAL WARNING: Intrathecal Vincristine</strong>
+          <p class="text-slate-700">Vincristine is <strong>FATAL</strong> if administered intrathecally (causing progressive, ascending paralysis and death). Must be given <strong>IV only</strong> with safety labeling.</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 shadow-sm">
+          <strong class="text-amber-700 block text-base">🛡️ Taxane Pre-medication Protocol</strong>
+          <p class="text-slate-700">To prevent severe hypersensitivity reactions from solvents, patients receive mandatory pre-medications including corticosteroids, H1 blockers, and H2 blockers prior to Paclitaxel/Docetaxel.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. SPECIFIC DRUGS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">9</span>
+          Specific Drug Profiles
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Prototypes</span>
+      </div>
+
+      <!-- Drug Card 1 -->
+      <div class="p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+          <h3 class="text-lg font-black text-brand-900">Vincristine</h3>
+          <span class="px-2.5 py-1 rounded-md bg-brand-100 text-brand-800 text-xs font-bold">Vinca Alkaloid Subclass</span>
+        </div>
+
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+          <div><strong>Key Info:</strong> Noted for minimal bone marrow suppression, making it highly attractive for combination regimens.</div>
+          <div><strong>MOA:</strong> Binds tubulin heterodimers to block assembly of mitotic spindle fibers.</div>
+          <div><strong>Uses:</strong> Acute lymphoblastic leukemia (ALL) and lymphomas.</div>
+          <div><strong>ADRs &amp; Complications:</strong> Dose-limiting peripheral neuropathy, severe autonomic constipation/ileus, and fatal if given intrathecally.</div>
+        </div>
+      </div>
+
+      <!-- Drug Card 2 -->
+      <div class="p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+          <h3 class="text-lg font-black text-brand-900">Paclitaxel</h3>
+          <span class="px-2.5 py-1 rounded-md bg-brand-100 text-brand-800 text-xs font-bold">Taxane Subclass</span>
+        </div>
+
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+          <div><strong>Key Info:</strong> Plant alkaloid derivative requiring premedication to prevent vehicle-induced allergies.</div>
+          <div><strong>MOA:</strong> Hyper-stabilizes microtubules, preventing depolymerization during mitosis.</div>
+          <div><strong>Uses:</strong> Ovarian, breast, and non-small cell lung cancers.</div>
+          <div><strong>ADRs &amp; Complications:</strong> Severe hypersensitivity reactions, myelosuppression, and peripheral neuropathy.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. SPECIFIC DRUG ADRs -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">10</span>
+          Specific Drug ADRs Summary
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Targeted ADRs</span>
+      </div>
+
+      <div class="overflow-x-auto custom-scroll border border-slate-200 rounded-xl shadow-sm">
+        <table class="w-full text-left text-xs sm:text-sm bg-white border-collapse">
+          <thead>
+            <tr class="bg-brand-50 text-brand-900 border-b border-slate-200 font-bold">
+              <th class="p-3">Drug Name</th>
+              <th class="p-3">Important Specific ADRs</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-700">
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Vincristine</td>
+              <td class="p-3">Severe peripheral neuropathy, paralytic ileus, autonomic dysfunction (spares bone marrow).</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Vinblastine</td>
+              <td class="p-3">Dose-limiting myelosuppression/neutropenia (less neurotoxic than vincristine).</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Paclitaxel</td>
+              <td class="p-3">Acute hypersensitivity reactions, neutropenia, peripheral neuropathy, alopecia.</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Docetaxel</td>
+              <td class="p-3">Fluid retention syndrome, severe neutropenia, nail changes, hypersensitivity.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 11. QUICK REVISION -->
+    <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-brand-950 text-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 space-y-4">
+      <div class="flex items-center gap-2 text-brand-400 font-black text-xs sm:text-sm uppercase tracking-wider">
+        <i data-lucide="zap" class="w-4 h-4 text-brand-400"></i>
+        30-SECOND EXAM REVISION
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-slate-200">
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>Class Nature:</strong> Cell-cycle specific (M-phase) antimitotic agents targeting tubulin.
+        </div>
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>MOA:</strong> Vinca alkaloids block assembly; taxanes hyper-stabilize and freeze disassembly.
+        </div>
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>Key Uses:</strong> Breast, ovarian, and lung cancers, plus leukemias and lymphomas.
+        </div>
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>Major ADRs / Mnemonic:</strong> "N-H-B-A" (Neuropathy, Hypersensitivity, Bone marrow suppression, Autonomic dysfunction).
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVIGATION FOOTER -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-slate-300">
+      <a href="chapter5.html" class="w-full sm:w-auto px-5 py-3 rounded-xl font-bold text-slate-800 bg-white border border-slate-300 hover:bg-slate-100 flex items-center justify-center gap-2 transition active:scale-95 text-xs sm:text-sm shadow-sm">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Chapter 5 Hub
+      </a>
+      <a href="topoisomerase-inhibitors.html" class="w-full sm:w-auto px-5 py-3 rounded-xl font-extrabold text-white bg-brand-600 hover:bg-brand-500 flex items-center justify-center gap-2 transition active:scale-95 text-xs sm:text-sm shadow-lg shadow-brand-600/20">
+        Next: Topoisomerase Inhibitors <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
     </div>
 
-    <div class="card-box">
-      <h3>🌲 Taxanes (Paclitaxel / Docetaxel)</h3>
-      <p><strong>The Hyper-Stabilizers ("Freezer"):</strong> Taxanes bind to the interior of assembled microtubules, making them excessively stable and rigid.</p>
-      <p style="margin-top: 10px;">Because the microtubules cannot disassemble or shorten, chromosomes cannot be pulled apart during anaphase, permanently freezing the cell cycle.</p>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-12 bg-white border-t border-slate-300 py-6 text-center text-xs text-slate-600 max-w-4xl mx-auto rounded-2xl">
+    <div class="px-4 space-y-1">
+      <p class="font-extrabold text-slate-900 text-sm">✨ Curated with excellence by Mudassir Khan</p>
+      <p>© 2026 MK Study Hub. BSN Oncology Pharmacology Learning Portal.</p>
     </div>
-  </div>
+  </footer>
 
-  <!-- USES & MNEMONIC -->
-  <h2>4. Clinical Uses & Therapeutic Indications</h2>
-  <p>Microtubule inhibitors are indispensable components of standard combination protocols across diverse oncology settings.</p>
-  <ul>
-    <li>Solid Tumors: Ovarian, breast, and non-small cell lung cancer (via Paclitaxel and Docetaxel)</li>
-    <li>Hematological Malignancies: Acute lymphoblastic leukemia (ALL) and Hodgkin/Non-Hodgkin lymphomas (via Vincristine)</li>
-    <li>Testicular Cancer and Germ Cell Tumors (via Vinblastine)</li>
-    <li>Prostate Cancer (via Cabazitaxel and Docetaxel)</li>
-  </ul>
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
 
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for Clinical Uses: "O-B-L-P"</h4>
-    <p><strong>O</strong>varian & Breast Cancers | <strong>B</strong>lood Cancers (Leukemias & Lymphomas) | <strong>L</strong>ung Cancer (NSCLC) | <strong>P</strong>rostate Cancer</p>
-  </div>
+    // Toggle Classification Cards
+    function toggleCard(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('[data-lucide="chevron-down"]');
+      
+      content.classList.toggle('hidden');
+      if (icon) {
+        icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+      }
+    }
 
-  <!-- ADRS & MNEMONIC -->
-  <h2>5. Adverse Drug Reactions (ADRs)</h2>
-  <p>Each subclass exhibits distinct, profile-specific toxicities that dictate clinical management:</p>
-  <ul>
-    <li><strong>Peripheral Neuropathy:</strong> Particularly prominent with Vincristine (sensory loss, paresthesias, foot drop, loss of deep tendon reflexes).</li>
-    <li><strong>Hypersensitivity Reactions:</strong> Severe acute allergic reactions common with Paclitaxel due to vehicle formulations, requiring pre-medication.</li>
-    <li><strong>Bone Marrow Suppression:</strong> Severe myelosuppression and neutropenia (dose-limiting for Docetaxel and Vinblastine; notably *minimal* with Vincristine).</li>
-    <li><strong>Gastrointestinal & Autonomic Toxicity:</strong> Severe constipation, paralytic ileus, and abdominal cramps (classic for Vincristine).</li>
-  </ul>
+    // Interactive MOA Tab Switcher
+    function switchMoaTab(tabName) {
+      const btnVinca = document.getElementById('btnVinca');
+      const btnTaxanes = document.getElementById('btnTaxanes');
 
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for ADRs: "N-H-B-A"</h4>
-    <p><strong>N</strong>europathy (Peripheral) | <strong>H</strong>ypersensitivity reactions | <strong>B</strong>one marrow suppression (Myelosuppression) | <strong>A</strong>utonomic dysfunction (Constipation / Ileus)</p>
-  </div>
+      const tabVinca = document.getElementById('tabVinca');
+      const tabTaxanes = document.getElementById('tabTaxanes');
 
-  <!-- PHARMACOKINETICS -->
-  <h2>6. Pharmacokinetics</h2>
-  <ul>
-    <li><strong>Administration:</strong> Administered exclusively via intravenous (IV) infusion. They are severe vesicants that cause extensive local tissue necrosis if extravasated.</li>
-    <li><strong>Distribution:</strong> Rapidly distribute into peripheral tissues with high binding to plasma proteins. They generally cross the blood-brain barrier poorly.</li>
-    <li><strong>Elimination:</strong> Extensively metabolized by hepatic CYP450 enzymes (particularly CYP3A4 and CYP2C8) and excreted primarily through biliary and fecal routes, requiring adjustments in liver dysfunction.</li>
-  </ul>
+      // Reset all buttons
+      [btnVinca, btnTaxanes].forEach(b => {
+        b.className = "px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold whitespace-nowrap transition";
+      });
 
-  <!-- COMPLICATIONS -->
-  <h2>7. Agent-Specific Complications & Safety Warnings</h2>
-  <div class="grid-2">
-    <div class="card-box" style="border-color: var(--primary-dark);">
-      <h3 style="color: var(--primary-dark);">🚨 CRITICAL WARNING: Intrathecal Vincristine</h3>
-      <p>Vincristine is <strong>FATAL</strong> if administered via the intrathecal route (causing progressive, ascending paralysis and death). It must be given <strong>IV only</strong>, dispensed in a minibag labeled "FOR INTRAVENOUS USE ONLY — FATAL IF GIVEN INTRATHECALLY."</p>
-    </div>
-    <div class="card-box">
-      <h3>🛡️ Taxane Pre-medication Protocol</h3>
-      <p>To prevent severe hypersensitivity reactions caused by Cremophor EL or polysorbate solvents, patients receive mandatory pre-medication regimens including corticosteroids, H1 blockers, and H2 blockers prior to Paclitaxel/Docetaxel infusion.</p>
-    </div>
-  </div>
+      // Hide all panes
+      [tabVinca, tabTaxanes].forEach(p => {
+        p.classList.add('hidden');
+      });
 
-  <!-- KEY NURSING TAKEAWAYS -->
-  <h2>8. Key Nursing Takeaways & Patient Safety</h2>
-  <ul>
-    <li><strong>Perform Neurological Baselines:</strong> Assess baseline and ongoing sensory/motor function (e.g., checking fine motor skills, gait, and deep tendon reflexes) to catch early Vincristine neuropathy.</li>
-    <li><strong>Strict Intrathecal Route Verification:</strong> Never allow intrathecal administration of Vincristine. Always check drug delivery routes independently prior to administration.</li>
-    <li><strong>Manage Bowel Regimens Proactively:</strong> Prescribe stool softeners and laxatives prophylactically for patients receiving Vincristine to prevent paralytic ileus.</li>
-    <li><strong>Monitor Hypersensitivity Signs:</strong> Observe patients closely during the first 15–30 minutes of taxane infusions for dyspnea, flushing, chest tightness, or hypotension.</li>
-    <li><strong>Vesicant Vigilance:</strong> Inspect IV access lines continuously during administration; stop immediately and implement appropriate extravasation management if leakage occurs.</li>
-  </ul>
-
-</div>
-
+      // Activate selected
+      if (tabName === 'vinca') {
+        btnVinca.className = "px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm";
+        tabVinca.classList.remove('hidden');
+      } else if (tabName === 'taxanes') {
+        btnTaxanes.className = "px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm";
+        tabTaxanes.classList.remove('hidden');
+      }
+    }
+  </script>
 </body>
 </html>
