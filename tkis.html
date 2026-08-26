@@ -1,165 +1,604 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tyrosine Kinase Inhibitors (TKIs) | Oncology Pharmacology</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Tyrosine Kinase Inhibitors (TKIs) | Oncology Pharmacology | MK Study Hub</title>
+  <meta name="description" content="Ultimate student-friendly BSN Pharmacology module on Tyrosine Kinase Inhibitors (TKIs). Simple, interactive, and mobile optimized.">
+
+  <!-- TAILWIND CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+              800: '#92400e',
+              900: '#78350f',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- LUCIDE ICONS CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <style>
-    :root {
-      --bg-gradient: radial-gradient(circle at 10% 20%, rgba(217, 119, 6, 0.08) 0%, rgba(245, 158, 11, 0.05) 40%, #f8fafc 90%);
-      --primary: #d97706;
-      --primary-dark: #b45309;
-      --accent: #f59e0b;
-      --card-bg: rgba(255, 255, 255, 0.9);
-      --card-border: rgba(252, 211, 77, 0.8);
-      --text-main: #78350f;
-      --text-muted: #475569;
-      --shadow-glow: 0 20px 40px -15px rgba(217, 119, 6, 0.25);
-      --radius: 20px;
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.8; padding: 40px 16px; min-height: 100vh; }
-    
-    .container { max-width: 950px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(16px); padding: 50px 40px; border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: var(--shadow-glow); }
-    
-    .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; margin-bottom: 30px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2); }
-    .back-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-    .badge { display: inline-block; padding: 6px 14px; background: #fffbeb; color: var(--primary); font-weight: 800; font-size: 0.8rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; border: 1px solid #fde68a; }
+    .custom-scroll {
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+    .custom-scroll::-webkit-scrollbar { height: 4px; }
+    .custom-scroll::-webkit-scrollbar-track { background: #78350f; border-radius: 8px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #d97706; border-radius: 8px; }
 
-    h1 { font-size: 2.5rem; font-weight: 900; background: linear-gradient(135deg, #78350f 0%, var(--primary) 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
-    
-    h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #fde68a; padding-bottom: 10px; }
-    h2::before { content: ''; display: inline-block; width: 6px; height: 24px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; }
-
-    p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 20px; }
-
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 25px 0; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin: 25px 0; }
-    
-    .card-box { background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); transition: 0.3s; }
-    .card-box:hover { transform: translateY(-5px); border-color: var(--primary); }
-    .card-box h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
-
-    .mnemonic-box { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-left: 6px solid var(--primary); padding: 22px; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 15px rgba(217, 119, 6, 0.08); }
-    .mnemonic-box h4 { color: var(--primary); font-size: 1.1rem; margin-bottom: 8px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
-    .mnemonic-box p { color: #78350f; margin-bottom: 0; font-weight: 500; }
-
-    ul { list-style-type: none; padding-left: 0; margin-bottom: 20px; }
-    ul li { position: relative; padding-left: 28px; margin-bottom: 12px; color: var(--text-muted); font-size: 1.05rem; }
-    ul li::before { content: '▪'; position: absolute; left: 8px; color: var(--primary); font-weight: bold; font-size: 1.2rem; }
+    mark {
+      background-color: #fef08a;
+      color: #713f12;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
   </style>
 </head>
-<body>
+<body class="antialiased text-slate-900 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 pt-4 sm:pt-6">
 
-<div class="container">
-  <a href="chapter5.html" class="back-btn">&larr; Back to Chapter 5 Hub</a>
-  
-  <div class="badge">Pharmacology Class Deep-Dive</div>
-  <h1>Tyrosine Kinase Inhibitors (TKIs)</h1>
-  <p>Targeted small-molecule oral agents designed to inhibit specific intracellular tyrosine kinase enzymes, blocking cell signaling cascades responsible for tumor growth, division, and angiogenesis.</p>
+  <!-- TOP STICKY BAR -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-300 shadow-sm max-w-4xl mx-auto rounded-2xl mb-6">
+    <div class="px-4 h-16 flex items-center justify-between gap-2">
+      <a href="chapter5.html" class="inline-flex items-center gap-1.5 text-xs sm:text-base font-extrabold text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-2 rounded-xl border border-brand-200 transition active:scale-95">
+        <i data-lucide="arrow-left" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+        <span>Chapter 5 Hub</span>
+      </a>
 
-  <!-- INTRODUCTION -->
-  <h2>1. Introduction</h2>
-  <p>Unlike large monoclonal antibodies that act on extracellular cell surfaces, tyrosine kinase inhibitors (TKIs) are small chemical molecules that easily cross cell membranes. They competitively inhibit ATP binding at the catalytic domain of target kinases, shutting down aberrant signaling networks in cancer cells.</p>
+      <div class="flex items-center gap-2">
+        <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-800 text-[10px] sm:text-sm font-black uppercase tracking-wider border border-slate-300">
+          3rd Sem BSN
+        </span>
+        <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center font-black text-xs sm:text-sm shadow-md shadow-brand-600/20">
+          MK
+        </div>
+      </div>
+    </div>
+  </header>
 
-  <!-- CLASSIFICATION -->
-  <h2>2. Classification & Prototype Drugs</h2>
-  <p>TKIs are categorized based on the specific receptor or intracellular kinase pathways they inhibit:</p>
-  
-  <ul>
-    <li><strong>EGFR Inhibitors:</strong> Erlotinib, Gefitinib, Osimertinib. <em>(Target epidermal growth factor receptors in non-small cell lung cancer [NSCLC].)</em></li>
-    <li><strong>BCR-ABL / Multi-Kinase Inhibitors:</strong> Imatinib, Dasatinib, Nilotinib. <em>(Target the Philadelphia chromosome abnormality in chronic myeloid leukemia [CML] and GIST tumors.)</em></li>
-    <li><strong>Angiogenesis / Multi-Targeted Inhibitors:</strong> Sunitinib, Sorafenib, Pazopanib. <em>(Target VEGFR, PDGFR, and c-KIT receptors to starve tumors of blood supply.)</em></li>
-    <li><strong>BTK / JAK Inhibitors:</strong> Ibrutinib, Ruxolitinib. <em>(Target B-cell receptor and Janus kinase signaling pathways in leukemias and myeloproliferative disorders.)</em></li>
-  </ul>
+  <main class="max-w-4xl mx-auto space-y-6 sm:space-y-10">
 
-  <!-- MECHANISM OF ACTION -->
-  <h2>3. Mechanism of Action (Detailed & Simple Explanations)</h2>
-  <p>TKIs interrupt cellular signaling cascades through direct enzymatic competition:</p>
+    <!-- 1. CHAPTER INTRODUCTION -->
+    <section class="bg-gradient-to-br from-slate-900 via-brand-900 to-brand-800 text-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 shadow-xl border border-brand-700/50 relative overflow-hidden space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/15 text-white text-[10px] sm:text-xs font-extrabold uppercase tracking-wide border border-white/20">
+          <i data-lucide="book-open" class="w-3.5 h-3.5 text-brand-300"></i> Oncology Pharmacology
+        </span>
+        <span class="text-[10px] sm:text-sm text-brand-200 font-bold">Chapter Deep-Dive</span>
+      </div>
 
-  <div class="grid-3">
-    <div class="card-box">
-      <h3>🧬 ATP Site Competition</h3>
-      <p><strong>The Molecular Blockade:</strong> TKIs slip inside the cell and bind directly to the intracellular ATP-binding pocket of the target kinase domain.</p>
-      <p style="margin-top: 10px;">By preventing ATP binding, phosphorylation is blocked, stopping downstream growth signals.</p>
+      <h1 class="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight break-words">
+        Tyrosine Kinase Inhibitors (TKIs)
+      </h1>
+
+      <p class="text-slate-200 text-xs sm:text-lg font-medium max-w-2xl leading-relaxed">
+        Targeted small-molecule oral agents designed to inhibit specific intracellular tyrosine kinase enzymes, blocking cell signaling cascades responsible for tumor growth and division.
+      </p>
+
+      <!-- What You Will Learn Card -->
+      <div class="pt-3 border-t border-white/20">
+        <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-brand-300 block mb-2">🎯 What you will learn in this module:</span>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-medium text-slate-100">
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Classification</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Mechanism of Action</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Uses &amp; Mnemonics</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Adverse Effects (ADRs)</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> CYP3A4 Interactions</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Specific Drug Profiles</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. CLASSIFICATION -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">2</span>
+          Classification &amp; Prototype Drugs
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Interactive</span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        Click any TKI subclass below to review its prototype drugs and clinical properties:
+      </p>
+
+      <div class="space-y-3">
+        <!-- Subclass 1 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="target" class="w-4 h-4 text-brand-600"></i> EGFR Inhibitors</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drugs (Bullet Form):</strong></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Erlotinib</li>
+              <li>Gefitinib</li>
+              <li>Osimertinib</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Target epidermal growth factor receptors in non-small cell lung cancer (NSCLC).</p>
+          </div>
+        </div>
+
+        <!-- Subclass 2 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="activity" class="w-4 h-4 text-brand-600"></i> BCR-ABL / Multi-Kinase Inhibitors</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drugs (Bullet Form):</strong></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Imatinib</li>
+              <li>Dasatinib</li>
+              <li>Nilotinib</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Target the Philadelphia chromosome abnormality in chronic myeloid leukemia (CML) and GIST tumors.</p>
+          </div>
+        </div>
+
+        <!-- Subclass 3 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-brand-600"></i> Angiogenesis / Multi-Targeted Inhibitors</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drugs (Bullet Form):</strong></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Sunitinib</li>
+              <li>Sorafenib</li>
+              <li>Pazopanib</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Target VEGFR, PDGFR, and c-KIT receptors to starve tumors of blood supply.</p>
+          </div>
+        </div>
+
+        <!-- Subclass 4 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="shield" class="w-4 h-4 text-brand-600"></i> BTK / JAK Inhibitors</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drugs (Bullet Form):</strong></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Ibrutinib</li>
+              <li>Ruxolitinib</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Target B-cell receptor and Janus kinase signaling pathways in leukemias and myeloproliferative disorders.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. MECHANISM OF ACTION (INTERACTIVE TABS) -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">3</span>
+          Mechanism of Action (MOA)
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Interactive Pathways</span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        TKIs are small molecules that cross cell membranes to inhibit enzymatic activity inside malignant cells. Select a pathway below to view its specific mechanism:
+      </p>
+
+      <!-- MOA Interactive Tabs Control -->
+      <div class="flex items-center gap-2 overflow-x-auto custom-scroll pb-2">
+        <button onclick="switchMoaTab('atp')" id="btnAtp" class="px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm">
+          1. ATP Site Competition
+        </button>
+        <button onclick="switchMoaTab('bcr')" id="btnBcr" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold whitespace-nowrap transition">
+          2. BCR-ABL Inhibition
+        </button>
+        <button onclick="switchMoaTab('angiogenesis')" id="btnAngiogenesis" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold whitespace-nowrap transition">
+          3. Angiogenesis Blockade
+        </button>
+      </div>
+
+      <!-- Tab Content Display Box -->
+      <div id="moaContentBox" class="p-5 bg-slate-900 text-white rounded-2xl border border-slate-800 space-y-4 shadow-xl">
+        <!-- Default: ATP Site Competition -->
+        <div id="tabAtp" class="moa-tab-pane space-y-3">
+          <span class="text-xs font-black text-brand-400 uppercase tracking-wider block">Pathway: ATP Site Competition (Molecular Blockade)</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-brand-300 block mb-1">Step 1: Membrane Crossing</strong>
+              <span class="text-slate-300">Small molecules slip easily inside the target cancer cell membrane.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-amber-300 block mb-1">Step 2: Pocket Binding</strong>
+              <span class="text-slate-300">Binds directly to the intracellular ATP-binding pocket of target kinase domains.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-rose-300 block mb-1">Step 3: Signal Stop</strong>
+              <span class="text-slate-300">Prevents ATP binding, halting phosphorylation and downstream growth signals.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BCR-ABL Tab -->
+        <div id="tabBcr" class="moa-tab-pane hidden space-y-3">
+          <span class="text-xs font-black text-brand-400 uppercase tracking-wider block">Pathway: BCR-ABL Inhibition (Leukemia Switch-Off)</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-brand-300 block mb-1">Step 1: CML Mutation</strong>
+              <span class="text-slate-300">In CML, the BCR-ABL fusion protein drives uncontrolled white blood cell growth.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-amber-300 block mb-1">Step 2: Enzyme Lock</strong>
+              <span class="text-slate-300">Imatinib locks this abnormal fusion enzyme in an inactive state.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-rose-300 block mb-1">Step 3: Apoptosis Trigger</strong>
+              <span class="text-slate-300">Induces programmed cell death in the malignant leukemia clones.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Angiogenesis Tab -->
+        <div id="tabAngiogenesis" class="moa-tab-pane hidden space-y-3">
+          <span class="text-xs font-black text-brand-400 uppercase tracking-wider block">Pathway: Angiogenesis Blockade (Blood Supply Cutoff)</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-brand-300 block mb-1">Step 1: Multi-Kinase Target</strong>
+              <span class="text-slate-300">Inhibits multiple receptors including VEGFR and PDGFR simultaneously.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-amber-300 block mb-1">Step 2: Signaling Arrest</strong>
+              <span class="text-slate-300">Shuts down endothelial cell proliferation signaling networks.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-rose-300 block mb-1">Step 3: Tumor Starvation</strong>
+              <span class="text-slate-300">Prevents new blood vessel growth, starving the solid tumor core.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. USES -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">4</span>
+          Clinical Uses
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Indications</span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        TKIs have revolutionized targeted therapy for specific genetic mutations across various malignancies:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm font-medium">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">01</span>
+          <span class="text-slate-800">Chronic Myeloid Leukemia (CML) and Ph+ ALL (Imatinib, Dasatinib)</span>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">02</span>
+          <span class="text-slate-800">Non-Small Cell Lung Cancer (NSCLC) with EGFR mutations (Erlotinib, Osimertinib)</span>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">03</span>
+          <span class="text-slate-800">Gastrointestinal Stromal Tumors (GIST) (Imatinib, Sunitinib)</span>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">04</span>
+          <span class="text-slate-800">Advanced Renal Cell Carcinoma &amp; Hepatocellular Carcinoma (Sorafenib, Sunitinib)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. USES MEMORY TRICK -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">5</span>
+          Uses Memory Trick
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Mnemonic</span>
+      </div>
+
+      <div class="p-5 bg-gradient-to-br from-brand-50 to-amber-50 border border-brand-200 rounded-2xl space-y-3 shadow-sm">
+        <div class="text-base font-black text-brand-900 flex items-center gap-2">
+          <i data-lucide="lightbulb" class="w-5 h-5 text-brand-600"></i> Mnemonic: "C-N-R-G"
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700 pt-1">
+          <div>• <strong>C</strong>ML (Leukemia)</div>
+          <div>• <strong>N</strong>SCLC (Lung cancer)</div>
+          <div>• <strong>R</strong>enal cell carcinoma</div>
+          <div>• <strong>G</strong>IST (Gastrointestinal stromal tumors)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. ADVERSE DRUG REACTIONS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">6</span>
+          Adverse Drug Reactions (ADRs)
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 text-[10px] font-black uppercase tracking-wide border border-rose-200">Side Effects</span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        While generally better tolerated than cytotoxic chemotherapy, TKIs produce distinctive targeted toxicities:
+      </p>
+
+      <div class="space-y-3 text-xs sm:text-sm">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">1. Dermatological Toxicity — <span class="text-slate-600 font-normal">Common</span></strong>
+          <p class="text-slate-700">Acneiform papulopustular rash, dry skin, and nail changes (common with EGFR inhibitors).</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">2. Gastrointestinal Effects — <span class="text-slate-600 font-normal">Common</span></strong>
+          <p class="text-slate-700">Severe watery diarrhea, nausea, and stomatitis.</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-rose-700 block font-bold">3. Cardiovascular Effects — <span class="text-slate-600 font-normal">Important / Serious</span></strong>
+          <p class="text-slate-700">Hypertension, peripheral edema, and QTc prolongation / left ventricular dysfunction.</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-rose-700 block font-bold">4. Metabolic &amp; Hepatic Toxicity — <span class="text-slate-600 font-normal">Important / Serious</span></strong>
+          <p class="text-slate-700">Elevated liver enzymes (LFT abnormalities), hypothyroidism, and fatigue.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. ADR MEMORY TRICK -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">7</span>
+          ADR Memory Trick
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Mnemonic</span>
+      </div>
+
+      <div class="p-5 bg-gradient-to-br from-rose-50 to-amber-50 border border-rose-200 rounded-2xl space-y-3 shadow-sm">
+        <div class="text-base font-black text-rose-900 flex items-center gap-2">
+          <i data-lucide="lightbulb" class="w-5 h-5 text-rose-600"></i> ADR Mnemonic: "D-R-H-E"
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700 pt-1">
+          <div>• <strong>D</strong>iarrhea</div>
+          <div>• <strong>R</strong>ash (Acneiform)</div>
+          <div>• <strong>H</strong>ypertension &amp; Hepatic changes</div>
+          <div>• <strong>E</strong>dema &amp; ECG (QTc) changes</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. COMPLICATIONS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">8</span>
+          Important Complications &amp; Drug Interactions
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 text-[10px] font-black uppercase tracking-wide border border-rose-200">Serious Alerts</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 shadow-sm">
+          <strong class="text-rose-700 block text-base">⚠️ CYP3A4 Drug Interactions</strong>
+          <p class="text-slate-700">TKIs rely heavily on CYP3A4 metabolism. Co-administration with strong inhibitors (ketoconazole, grapefruit juice) increases toxicity risk, while inducers (rifampin, St. John's wort) decrease efficacy.</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 shadow-sm">
+          <strong class="text-amber-700 block text-base">🛡️ Companion Genetic Testing</strong>
+          <p class="text-slate-700">Most TKIs require mandatory predictive biomarker testing (EGFR mutations, ALK rearrangements, or BCR-ABL transcripts) before therapy initiation to ensure clinical effectiveness.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. SPECIFIC DRUGS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">9</span>
+          Specific Drug Profiles
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Prototypes</span>
+      </div>
+
+      <!-- Drug Card 1 -->
+      <div class="p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+          <h3 class="text-lg font-black text-brand-900">Imatinib</h3>
+          <span class="px-2.5 py-1 rounded-md bg-brand-100 text-brand-800 text-xs font-bold">BCR-ABL Inhibitor Subclass</span>
+        </div>
+
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+          <div><strong>Key Info:</strong> First-generation oral TKI that transformed chronic myeloid leukemia (CML) management.</div>
+          <div><strong>MOA:</strong> Competitively inhibits the BCR-ABL tyrosine kinase enzyme, arresting Philadelphia chromosome-positive clones.</div>
+          <div><strong>Uses:</strong> CML, Ph+ ALL, and Gastrointestinal Stromal Tumors (GIST).</div>
+          <div><strong>ADRs &amp; Complications:</strong> Periorbital edema, fluid retention, muscle cramps, nausea, and myelosuppression.</div>
+        </div>
+      </div>
+
+      <!-- Drug Card 2 -->
+      <div class="p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+          <h3 class="text-lg font-black text-brand-900">Erlotinib</h3>
+          <span class="px-2.5 py-1 rounded-md bg-brand-100 text-brand-800 text-xs font-bold">EGFR Inhibitor Subclass</span>
+        </div>
+
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+          <div><strong>Key Info:</strong> Oral small-molecule inhibitor targeting epidermal growth factor receptor mutations.</div>
+          <div><strong>MOA:</strong> Reversibly blocks the ATP-binding site of EGFR tyrosine kinase.</div>
+          <div><strong>Uses:</strong> Non-Small Cell Lung Cancer (NSCLC) and pancreatic cancer.</div>
+          <div><strong>ADRs &amp; Complications:</strong> Characteristic acneiform papulopustular rash (indicates response), diarrhea, and interstitial lung disease risk.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. SPECIFIC DRUG ADRs -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">10</span>
+          Specific Drug ADRs Summary
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Targeted ADRs</span>
+      </div>
+
+      <div class="overflow-x-auto custom-scroll border border-slate-200 rounded-xl shadow-sm">
+        <table class="w-full text-left text-xs sm:text-sm bg-white border-collapse">
+          <thead>
+            <tr class="bg-brand-50 text-brand-900 border-b border-slate-200 font-bold">
+              <th class="p-3">Drug Name</th>
+              <th class="p-3">Important Specific ADRs</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-700">
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Imatinib</td>
+              <td class="p-3">Periorbital edema, fluid retention, muscle cramps, mild myelosuppression.</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Erlotinib / Gefitinib</td>
+              <td class="p-3">Acneiform skin rash, diarrhea, dry eyes, interstitial lung disease.</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Sunitinib / Sorafenib</td>
+              <td class="p-3">Hand-foot skin reaction, hypertension, fatigue, QTc prolongation, bleeding.</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Ibrutinib</td>
+              <td class="p-3">Bleeding tendency, atrial fibrillation, bruising, diarrhea.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 11. QUICK REVISION -->
+    <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-brand-950 text-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 space-y-4">
+      <div class="flex items-center gap-2 text-brand-400 font-black text-xs sm:text-sm uppercase tracking-wider">
+        <i data-lucide="zap" class="w-4 h-4 text-brand-400"></i>
+        30-SECOND EXAM REVISION
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-slate-200">
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>Class Nature:</strong> Small-molecule oral targeted intracellular enzyme inhibitors.
+        </div>
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>MOA:</strong> Competitively blocks ATP binding pocket at kinase catalytic domain.
+        </div>
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>Key Uses:</strong> CML, NSCLC, GIST, and advanced renal cell carcinomas.
+        </div>
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>Major ADRs / Mnemonic:</strong> "D-R-H-E" (Diarrhea, Rash, Hypertension/Hepatic, Edema/ECG changes).
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVIGATION FOOTER -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-slate-300">
+      <a href="chapter5.html" class="w-full sm:w-auto px-5 py-3 rounded-xl font-bold text-slate-800 bg-white border border-slate-300 hover:bg-slate-100 flex items-center justify-center gap-2 transition active:scale-95 text-xs sm:text-sm shadow-sm">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Chapter 5 Hub
+      </a>
+      <a href="dashboard.html" class="w-full sm:w-auto px-5 py-3 rounded-xl font-extrabold text-white bg-brand-600 hover:bg-brand-500 flex items-center justify-center gap-2 transition active:scale-95 text-xs sm:text-sm shadow-lg shadow-brand-600/20">
+        Dashboard <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
     </div>
 
-    <div class="card-box">
-      <h3>⚙️ BCR-ABL Inhibition</h3>
-      <p><strong>The Leukemia Switch-Off:</strong> In CML, the BCR-ABL fusion protein drives unregulated white blood cell production.</p>
-      <p style="margin-top: 10px;">Imatinib locks this abnormal enzyme in an inactive state, inducing apoptosis in malignant clones.</p>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-12 bg-white border-t border-slate-300 py-6 text-center text-xs text-slate-600 max-w-4xl mx-auto rounded-2xl">
+    <div class="px-4 space-y-1">
+      <p class="font-extrabold text-slate-900 text-sm">✨ Curated with excellence by Mudassir Khan</p>
+      <p>© 2026 MK Study Hub. BSN Oncology Pharmacology Learning Portal.</p>
     </div>
+  </footer>
 
-    <div class="card-box">
-      <h3>🌊 Angiogenesis Blockade</h3>
-      <p><strong>The Blood Supply Cutoff:</strong> Multi-kinase inhibitors block receptors like VEGFR and PDGFR, preventing new blood vessel growth into solid tumors.</p>
-    </div>
-  </div>
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
 
-  <!-- USES & MNEMONIC -->
-  <h2>4. Clinical Uses & Therapeutic Indications</h2>
-  <p>TKIs have revolutionized targeted therapy for specific genetic mutations across various hematological and solid tumors.</p>
-  <ul>
-    <li>Chronic Myeloid Leukemia (CML) and Acute Lymphoblastic Leukemia (Ph+) (via Imatinib, Dasatinib)</li>
-    <li>Non-Small Cell Lung Cancer (NSCLC) with EGFR mutations (via Erlotinib, Osimertinib)</li>
-    <li>Gastrointestinal Stromal Tumors (GIST) (via Imatinib, Sunitinib)</li>
-    <li>Advanced Renal Cell Carcinoma and Hepatocellular Carcinoma (via Sorafenib, Sunitinib)</li>
-  </ul>
+    // Toggle Classification Cards
+    function toggleCard(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('[data-lucide="chevron-down"]');
+      
+      content.classList.toggle('hidden');
+      if (icon) {
+        icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+      }
+    }
 
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for Clinical Uses: "C-N-R-G"</h4>
-    <p><strong>C</strong>ML (Leukemia) | <strong>N</strong>SCLC (Lung cancer) | <strong>R</strong>enal cell carcinoma | <strong>G</strong>IST (Gastrointestinal stromal tumors)</p>
-  </div>
+    // Interactive MOA Tab Switcher
+    function switchMoaTab(tabName) {
+      const btnAtp = document.getElementById('btnAtp');
+      const btnBcr = document.getElementById('btnBcr');
+      const btnAngiogenesis = document.getElementById('btnAngiogenesis');
 
-  <!-- ADRS & MNEMONIC -->
-  <h2>5. Adverse Drug Reactions (ADRs)</h2>
-  <p>While generally better tolerated than traditional cytotoxic chemotherapy, TKIs produce distinctive targeted toxicities:</p>
-  <ul>
-    <li><strong>Dermatological Toxicity:</strong> Acneiform papulopustular rash, dry skin, and nail changes (common with EGFR inhibitors).</li>
-    <li><strong>Gastrointestinal Effects:</strong> Severe watery diarrhea, nausea, and stomatitis.</li>
-    <li><strong>Cardiovascular Effects:</strong> Hypertension, peripheral edema, and QTc prolongation / left ventricular dysfunction.</li>
-    <li><strong>Metabolic & Hepatic Toxicity:</strong> Elevated liver enzymes (LFT abnormalities), hypothyroidism, and fatigue.</li>
-  </ul>
+      const tabAtp = document.getElementById('tabAtp');
+      const tabBcr = document.getElementById('tabBcr');
+      const tabAngiogenesis = document.getElementById('tabAngiogenesis');
 
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for ADRs: "D-R-H-E"</h4>
-    <p><strong>D</strong>iarrhea | <strong>R</strong>ash (Acneiform) | <strong>H</strong>ypertension & Hepatic changes | <strong>E</strong>dema & ECG (QTc) changes</p>
-  </div>
+      // Reset all buttons
+      [btnAtp, btnBcr, btnAngiogenesis].forEach(b => {
+        b.className = "px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold whitespace-nowrap transition";
+      });
 
-  <!-- PHARMACOKINETICS -->
-  <h2>6. Pharmacokinetics</h2>
-  <ul>
-    <li><strong>Administration:</strong> Uniquely administered via <strong>oral tablets or capsules</strong>, offering patient convenience for chronic outpatient therapy.</li>
-    <li><strong>Metabolism:</strong> Extensively metabolized in the liver via hepatic cytochrome P450 enzyme systems (predominantly <strong>CYP3A4</strong>), making them vulnerable to drug interactions.</li>
-    <li><strong>Excretion:</strong> Primarily eliminated via biliary and fecal excretion, with minor renal clearance.</li>
-  </ul>
+      // Hide all panes
+      [tabAtp, tabBcr, tabAngiogenesis].forEach(p => {
+        p.classList.add('hidden');
+      });
 
-  <!-- COMPLICATIONS -->
-  <h2>7. Agent-Specific Complications & Drug Interactions</h2>
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>⚠️ CYP3A4 Drug Interactions</h3>
-      <p>Because TKIs rely heavily on CYP3A4 metabolism, co-administration with strong CYP3A4 inhibitors (e.g., ketoconazole, grapefruit juice) increases toxicity risk, while inducers (e.g., rifampin, St. John's wort) decrease therapeutic efficacy.</p>
-    </div>
-    <div class="card-box">
-      <h3>🛡️ Companion Genetic Testing</h3>
-      <p>Most TKIs require mandatory predictive biomarker testing (e.g., testing for EGFR mutations, ALK rearrangements, or BCR-ABL transcripts) before starting therapy to ensure clinical effectiveness.</p>
-    </div>
-  </div>
-
-  <!-- KEY NURSING TAKEAWAYS -->
-  <h2>8. Key Nursing Takeaways & Patient Safety</h2>
-  <ul>
-    <li><strong>Verify Administration Guidelines:</strong> Instruct patients on whether to take their TKI with or without food, as food drastically alters absorption profiles for agents like Erlotinib or Imatinib.</li>
-    <li><strong>Manage Rash Proactively:</strong> Educate patients on skin care for EGFR inhibitor rashes using alcohol-free moisturizers, sun protection, and prescribed topical antibiotics or steroids.</li>
-    <li><strong>Monitor Blood Pressure and Cardiac Status:</strong> Regularly check blood pressure and review serial electrocardiograms (ECGs) to monitor for QTc prolongation or heart failure.</li>
-    <li><strong>Screen for Diarrhea Management:</strong> Ensure patients have antidiarrheal medications (e.g., loperamide) on hand and know when to report severe dehydration.</li>
-    <li><strong>Check for Medication Interferences:</strong> Review all concurrent medications, herbal supplements, and dietary choices (avoiding grapefruit juice) to prevent CYP3A4 interactions.</li>
-  </ul>
-
-</div>
-
+      // Activate selected
+      if (tabName === 'atp') {
+        btnAtp.className = "px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm";
+        tabAtp.classList.remove('hidden');
+      } else if (tabName === 'bcr') {
+        btnBcr.className = "px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm";
+        tabBcr.classList.remove('hidden');
+      } else if (tabName === 'angiogenesis') {
+        btnAngiogenesis.className = "px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm";
+        tabAngiogenesis.classList.remove('hidden');
+      }
+    }
+  </script>
 </body>
 </html>
