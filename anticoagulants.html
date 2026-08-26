@@ -1,156 +1,607 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anticoagulants | Cardiovascular Pharmacology</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Anticoagulants | Cardiovascular Pharmacology | MK Study Hub</title>
+  <meta name="description" content="Ultimate student-friendly BSN Pharmacology module on Anticoagulants. Simple, interactive, and mobile optimized.">
+
+  <!-- TAILWIND CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ede9fe',
+              100: '#ddd6fe',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+              800: '#5b21b6',
+              900: '#4c1d95',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- LUCIDE ICONS CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <style>
-    :root {
-      --bg-gradient: radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.08) 0%, rgba(139, 92, 246, 0.05) 40%, #f8fafc 90%);
-      --primary: #7c3aed;
-      --primary-dark: #6d28d9;
-      --accent: #8b5cf6;
-      --card-bg: rgba(255, 255, 255, 0.9);
-      --card-border: rgba(221, 214, 254, 0.8);
-      --text-main: #5b21b6;
-      --text-muted: #475569;
-      --shadow-glow: 0 20px 40px -15px rgba(124, 58, 237, 0.25);
-      --radius: 20px;
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.8; padding: 40px 16px; min-height: 100vh; }
-    
-    .container { max-width: 950px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(16px); padding: 50px 40px; border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: var(--shadow-glow); }
-    
-    .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; margin-bottom: 30px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2); }
-    .back-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-    .badge { display: inline-block; padding: 6px 14px; background: #ede9fe; color: var(--primary); font-weight: 800; font-size: 0.8rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; border: 1px solid #ddd6fe; }
+    .custom-scroll {
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+    .custom-scroll::-webkit-scrollbar { height: 4px; }
+    .custom-scroll::-webkit-scrollbar-track { background: #5b21b6; border-radius: 8px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 8px; }
 
-    h1 { font-size: 2.5rem; font-weight: 900; background: linear-gradient(135deg, #5b21b6 0%, var(--primary) 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
-    
-    h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #ddd6fe; padding-bottom: 10px; }
-    h2::before { content: ''; display: inline-block; width: 6px; height: 24px; background: linear-gradient(to bottom, var(--primary), var(--accent)); border-radius: 4px; }
-
-    p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 20px; }
-
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 25px 0; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin: 25px 0; }
-    
-    .card-box { background: #ffffff; border: 2px solid var(--card-border); border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); transition: 0.3s; }
-    .card-box:hover { transform: translateY(-5px); border-color: var(--primary); }
-    .card-box h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
-
-    .mnemonic-box { background: linear-gradient(135deg, #ede9fe 0%, #f5f3ff 100%); border-left: 6px solid var(--primary); padding: 22px; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 15px rgba(124, 58, 237, 0.08); }
-    .mnemonic-box h4 { color: var(--primary); font-size: 1.1rem; margin-bottom: 8px; font-weight: 800; display: flex; align-items: center; gap: 12px; }
-    .mnemonic-box p { color: #5b21b6; margin-bottom: 0; font-weight: 500; }
-
-    ul { list-style-type: none; padding-left: 0; margin-bottom: 20px; }
-    ul li { position: relative; padding-left: 28px; margin-bottom: 12px; color: var(--text-muted); font-size: 1.05rem; }
-    ul li::before { content: '▪'; position: absolute; left: 8px; color: var(--primary); font-weight: bold; font-size: 1.2rem; }
+    mark {
+      background-color: #fef08a;
+      color: #713f12;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
   </style>
 </head>
-<body>
+<body class="antialiased text-slate-900 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 pt-4 sm:pt-6">
 
-<div class="container">
-  <a href="chapt4.html" class="back-btn">&larr; Back to Chapter 4 Hub</a>
-  
-  <div class="badge">Pharmacology Class Deep-Dive</div>
-  <h1>Anticoagulants (Parenteral & Oral Agents)</h1>
-  <p>Critical pharmacological agents designed to interrupt the coagulation cascade, preventing the formation and propagation of fibrin-rich venous and arterial thrombi in conditions like deep vein thrombosis, pulmonary embolism, and atrial fibrillation.</p>
+  <!-- TOP STICKY BAR -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-300 shadow-sm max-w-4xl mx-auto rounded-2xl mb-6">
+    <div class="px-4 h-16 flex items-center justify-between gap-2">
+      <a href="chapt4.html" class="inline-flex items-center gap-1.5 text-xs sm:text-base font-extrabold text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-2 rounded-xl border border-brand-200 transition active:scale-95">
+        <i data-lucide="arrow-left" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+        <span>Chapter 4 Hub</span>
+      </a>
 
-  <!-- INTRODUCTION -->
-  <h2>1. Introduction to the Coagulation Cascade & Anticoagulation</h2>
-  <p>Unlike antiplatelets which target primary hemostasis (platelet aggregation), anticoagulants target the secondary hemostatic clotting cascade, inhibiting specific coagulation factors (such as thrombin and Factor Xa) to prevent fibrin mesh formation.</p>
-
-  <!-- CLASSIFICATION -->
-  <h2>2. Classification & Prototype Drugs</h2>
-  <div class="grid-3">
-    <div class="card-box">
-      <h3>💉 Parenteral Anticoagulants</h3>
-      <p><strong>Prototypes:</strong> Unfractionated Heparin (UFH), Enoxaparin (LMWH), Fondaparinux.</p>
-      <p style="margin-top: 10px;"><strong>Characteristics:</strong> Injectable agents acting rapidly via antithrombin III potentiation for acute thrombosis management.</p>
+      <div class="flex items-center gap-2">
+        <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-800 text-[10px] sm:text-sm font-black uppercase tracking-wider border border-slate-300">
+          3rd Sem BSN
+        </span>
+        <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center font-black text-xs sm:text-sm shadow-md shadow-brand-600/20">
+          MK
+        </div>
+      </div>
     </div>
-    <div class="card-box">
-      <h3>💊 Vitamin K Antagonists</h3>
-      <p><strong>Prototype:</strong> Warfarin.</p>
-      <p style="margin-top: 10px;"><strong>Characteristics:</strong> Oral anticoagulant inhibiting hepatic synthesis of vitamin K dependent clotting factors.</p>
+  </header>
+
+  <main class="max-w-4xl mx-auto space-y-6 sm:space-y-10">
+
+    <!-- 1. CHAPTER INTRODUCTION -->
+    <section class="bg-gradient-to-br from-slate-900 via-brand-900 to-brand-800 text-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 shadow-xl border border-brand-700/50 relative overflow-hidden space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/15 text-white text-[10px] sm:text-xs font-extrabold uppercase tracking-wide border border-white/20">
+          <i data-lucide="book-open" class="w-3.5 h-3.5 text-brand-300"></i> Cardiovascular Pharmacology
+        </span>
+        <span class="text-[10px] sm:text-sm text-brand-200 font-bold">Chapter Deep-Dive</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight break-words">
+        Anticoagulants (Parenteral &amp; Oral Agents)
+      </h1>
+
+      <p class="text-slate-200 text-xs sm:text-lg font-medium max-w-2xl leading-relaxed">
+        Critical pharmacological agents designed to interrupt the coagulation cascade, preventing the formation and propagation of fibrin-rich venous and arterial thrombi.
+      </p>
+
+      <!-- What You Will Learn Card -->
+      <div class="pt-3 border-t border-white/20">
+        <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-brand-300 block mb-2">🎯 What you will learn in this module:</span>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-medium text-slate-100">
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Classification</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Mechanisms of Action</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Uses &amp; Mnemonics</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Adverse Effects (ADRs)</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Reversal Protocols</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i> Specific Drug Profiles</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. CLASSIFICATION -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">2</span>
+          Classification &amp; Prototype Drugs
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Interactive</span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        Click any anticoagulant class below to review its prototype drugs and clinical properties:
+      </p>
+
+      <div class="space-y-3">
+        <!-- Subclass 1 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="syringe" class="w-4 h-4 text-brand-600"></i> Parenteral Anticoagulants</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drugs (Bullet Form):</strong></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Unfractionated Heparin (UFH)</li>
+              <li>Enoxaparin (LMWH)</li>
+              <li>Fondaparinux</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Injectable agents acting rapidly via antithrombin III potentiation for acute thrombosis management.</p>
+          </div>
+        </div>
+
+        <!-- Subclass 2 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="pill" class="w-4 h-4 text-brand-600"></i> Vitamin K Antagonists</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drugs (Bullet Form):</strong></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Warfarin</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Oral anticoagulant inhibiting hepatic synthesis of vitamin K dependent clotting factors.</p>
+          </div>
+        </div>
+
+        <!-- Subclass 3 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
+            <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-brand-600"></i> Direct Oral Anticoagulants (DOACs)</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+          </button>
+          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>Prototype Drugs (Bullet Form):</strong></p>
+            <ul class="list-disc pl-5 space-y-1 font-mono-code text-xs text-brand-900">
+              <li>Apixaban</li>
+              <li>Rivaroxaban</li>
+              <li>Dabigatran</li>
+            </ul>
+            <p><strong>Clinical Notes:</strong> Targeted oral agents inhibiting either Factor Xa or direct thrombin without routine lab monitoring.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. MECHANISM OF ACTION (INTERACTIVE TABS) -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">3</span>
+          Mechanisms of Action (MOA)
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Interactive Pathways</span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        Anticoagulants target specific coagulation factors within the secondary hemostatic clotting cascade. Select a class below to view its specific mechanism:
+      </p>
+
+      <!-- MOA Interactive Tabs Control -->
+      <div class="flex items-center gap-2 overflow-x-auto custom-scroll pb-2">
+        <button onclick="switchMoaTab('heparin')" id="btnHeparin" class="px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm">
+          1. Heparin &amp; LMWH
+        </button>
+        <button onclick="switchMoaTab('warfarin')" id="btnWarfarin" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold whitespace-nowrap transition">
+          2. Warfarin (Vitamin K)
+        </button>
+        <button onclick="switchMoaTab('doacs')" id="btnDoacs" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold whitespace-nowrap transition">
+          3. DOACs (Direct Factor)
+        </button>
+      </div>
+
+      <!-- Tab Content Display Box -->
+      <div id="moaContentBox" class="p-5 bg-slate-900 text-white rounded-2xl border border-slate-800 space-y-4 shadow-xl">
+        <!-- Default: Heparin -->
+        <div id="tabHeparin" class="moa-tab-pane space-y-3">
+          <span class="text-xs font-black text-brand-400 uppercase tracking-wider block">Pathway: Heparin &amp; LMWH (Antithrombin III Activation)</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-brand-300 block mb-1">Step 1: Cofactor Binding</strong>
+              <span class="text-slate-300">Binds to endogenous antithrombin III, altering its molecular shape.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-amber-300 block mb-1">Step 2: Neutralization</strong>
+              <span class="text-slate-300">Drastically accelerates antithrombin ability to neutralize activated clotting factors.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-rose-300 block mb-1">Step 3: Factor IIa/Xa Stop</strong>
+              <span class="text-slate-300">Primary targets include Thrombin (Factor IIa) and Factor Xa.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Warfarin Tab -->
+        <div id="tabWarfarin" class="moa-tab-pane hidden space-y-3">
+          <span class="text-xs font-black text-brand-400 uppercase tracking-wider block">Pathway: Warfarin (Vitamin K Epoxide Reductase Blockade)</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-brand-300 block mb-1">Step 1: Enzyme Block</strong>
+              <span class="text-slate-300">Inhibits the vitamin K epoxide reductase enzyme complex in the liver.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-amber-300 block mb-1">Step 2: Recycling Halt</strong>
+              <span class="text-slate-300">Prevents the metabolic recycling of active reduced vitamin K.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-rose-300 block mb-1">Step 3: Factor Suppression</strong>
+              <span class="text-slate-300">Suppresses hepatic synthesis of clotting factors II, VII, IX, and X.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- DOACs Tab -->
+        <div id="tabDoacs" class="moa-tab-pane hidden space-y-3">
+          <span class="text-xs font-black text-brand-400 uppercase tracking-wider block">Pathway: DOACs (Direct Factor Inhibition)</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-brand-300 block mb-1">Step 1: Direct Target</strong>
+              <span class="text-slate-300">Selectively and directly inhibit target clotting factors without cofactors.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-amber-300 block mb-1">Step 2: Factor Xa Block</strong>
+              <span class="text-slate-300">Apixaban and rivaroxaban directly bind and inhibit free and clot-bound Factor Xa.</span>
+            </div>
+            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-800">
+              <strong class="text-rose-300 block mb-1">Step 3: Thrombin Inhibition</strong>
+              <span class="text-slate-300">Dabigatran binds directly to active thrombin, halting fibrinogen conversion.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. USES -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">4</span>
+          Clinical Uses &amp; Indications
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Indications</span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        Anticoagulants are vital for preventing venous and arterial thromboembolic complications across high-risk clinical conditions:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm font-medium">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">01</span>
+          <span class="text-slate-800">Treatment and secondary prevention of Deep Vein Thrombosis (DVT) and Pulmonary Embolism (PE)</span>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">02</span>
+          <span class="text-slate-800">Stroke prevention in non-valvular Atrial Fibrillation (AFib)</span>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">03</span>
+          <span class="text-slate-800">Prophylaxis of thromboembolism following orthopedic or major abdominal surgeries</span>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+          <span class="w-6 h-6 rounded-md bg-brand-100 text-brand-700 font-black flex items-center justify-center text-xs shrink-0">04</span>
+          <span class="text-slate-800">Prevention of clot formation in mechanical heart valves and extracorporeal circuits (hemodialysis)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. USES MEMORY TRICK -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">5</span>
+          Uses Memory Trick
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Mnemonic</span>
+      </div>
+
+      <div class="p-5 bg-gradient-to-br from-brand-50 to-purple-50 border border-brand-200 rounded-2xl space-y-3 shadow-sm">
+        <div class="text-base font-black text-brand-900 flex items-center gap-2">
+          <i data-lucide="lightbulb" class="w-5 h-5 text-brand-600"></i> Mnemonic: "D-P-A-M"
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700 pt-1">
+          <div>• <strong>D</strong>VT and PE treatment</div>
+          <div>• <strong>P</strong>revention of stroke in AFib</div>
+          <div>• <strong>A</strong>CS management</div>
+          <div>• <strong>M</strong>echanical heart valve protection</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. ADVERSE DRUG REACTIONS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">6</span>
+          Adverse Drug Reactions (ADRs)
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 text-[10px] font-black uppercase tracking-wide border border-rose-200">Side Effects</span>
+      </div>
+
+      <p class="text-slate-800 text-sm sm:text-base leading-relaxed">
+        Anticoagulants carry inherent bleeding risks and specific agent-induced toxicities:
+      </p>
+
+      <div class="space-y-3 text-xs sm:text-sm">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-rose-700 block font-bold">1. Hemorrhage &amp; Bleeding Complications — <span class="text-slate-600 font-normal">Important / Serious</span></strong>
+          <p class="text-slate-700">The universal adverse effect across all anticoagulant classes. Manifests as internal bleeding, GI hemorrhage, hematuria, ecchymosis, and intracranial bleeding.</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">2. Drug-Specific Adverse Effects — <span class="text-slate-600 font-normal">Common</span></strong>
+          <p class="text-slate-700"><strong>Heparin:</strong> Heparin-Induced Thrombocytopenia (HIT) and osteoporosis with long-term use.<br><strong>Warfarin:</strong> Skin necrosis (early hypercoagulability) and severe teratogenicity (Category X).<br><strong>Dabigatran:</strong> Dyspepsia and gastrointestinal distress.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. ADR MEMORY TRICK -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">7</span>
+          ADR Memory Trick
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Mnemonic</span>
+      </div>
+
+      <div class="p-5 bg-gradient-to-br from-rose-50 to-amber-50 border border-rose-200 rounded-2xl space-y-3 shadow-sm">
+        <div class="text-base font-black text-rose-900 flex items-center gap-2">
+          <i data-lucide="lightbulb" class="w-5 h-5 text-rose-600"></i> ADR Mnemonic: "H-I-T"
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs sm:text-sm text-slate-700 pt-1">
+          <div>• <strong>H</strong>emorrhage risk</div>
+          <div>• <strong>I</strong>nduced thrombocytopenia (HIT)</div>
+          <div>• <strong>T</strong>he need to monitor aPTT / platelet counts</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. PHARMACOKINETICS & REVERSAL -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">8</span>
+          Pharmacokinetics &amp; Reversal Agents
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">PK Profiles</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 shadow-sm">
+          <strong class="text-slate-900 block text-base">📊 Monitoring &amp; Lab Targets</strong>
+          <p class="text-slate-700">Unfractionated heparin requires aPTT monitoring. Warfarin requires PT and INR monitoring (therapeutic range typically <mark>2.0 to 3.0</mark>). DOACs generally do not require routine coagulation monitoring.</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 shadow-sm">
+          <strong class="text-rose-700 block text-base">🛡️ Specific Reversal Antidotes</strong>
+          <p class="text-slate-700">Protamine sulfate reverses heparin. Vitamin K and FFP / Prothrombin Complex Concentrate (PCC) reverse warfarin. Idarucizumab reverses dabigatran, and Andexanet alfa reverses Factor Xa inhibitors.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. SPECIFIC DRUG PROFILES -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">9</span>
+          Specific Drug Profiles
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Prototypes</span>
+      </div>
+
+      <!-- Drug Card 1 -->
+      <div class="p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+          <h3 class="text-lg font-black text-brand-900">Heparin (UFH)</h3>
+          <span class="px-2.5 py-1 rounded-md bg-brand-100 text-brand-800 text-xs font-bold">Parenteral Anticoagulant</span>
+        </div>
+
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+          <div><strong>Key Info:</strong> Rapid-acting injectable anticoagulant requiring strict laboratory monitoring.</div>
+          <div><strong>MOA:</strong> Potentiates antithrombin III to neutralize thrombin and factor Xa.</div>
+          <div><strong>Uses:</strong> Acute DVT/PE treatment, ACS, and cardiopulmonary bypass surgery.</div>
+          <div><strong>ADRs &amp; Complications:</strong> Bleeding, Heparin-Induced Thrombocytopenia (HIT), osteoporosis; reversed by Protamine sulfate.</div>
+        </div>
+      </div>
+
+      <!-- Drug Card 2 -->
+      <div class="p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+          <h3 class="text-lg font-black text-brand-900">Warfarin</h3>
+          <span class="px-2.5 py-1 rounded-md bg-brand-100 text-brand-800 text-xs font-bold">Vitamin K Antagonist</span>
+        </div>
+
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+          <div><strong>Key Info:</strong> Long-acting oral anticoagulant requiring regular PT/INR blood testing.</div>
+          <div><strong>MOA:</strong> Inhibits vitamin K epoxide reductase, suppressing clotting factors II, VII, IX, and X.</div>
+          <div><strong>Uses:</strong> Long-term stroke prevention in AFib and mechanical heart valve prophylaxis.</div>
+          <div><strong>ADRs &amp; Complications:</strong> Hemorrhage, skin necrosis, teratogenicity (Category X); reversed by Vitamin K &amp; PCC.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. SPECIFIC DRUG ADRs -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">10</span>
+          Specific Drug ADRs Summary
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wide border border-brand-200">Targeted ADRs</span>
+      </div>
+
+      <div class="overflow-x-auto custom-scroll border border-slate-200 rounded-xl shadow-sm">
+        <table class="w-full text-left text-xs sm:text-sm bg-white border-collapse">
+          <thead>
+            <tr class="bg-brand-50 text-brand-900 border-b border-slate-200 font-bold">
+              <th class="p-3">Drug Name</th>
+              <th class="p-3">Important Specific ADRs</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-700">
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Unfractionated Heparin</td>
+              <td class="p-3">Heparin-Induced Thrombocytopenia (HIT), major bleeding, osteoporosis.</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Warfarin</td>
+              <td class="p-3">Hemorrhage, skin necrosis, severe fetal teratogenicity, hair loss.</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Dabigatran</td>
+              <td class="p-3">Dyspepsia (heartburn/stomach upset), major bleeding events.</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-900">Rivaroxaban / Apixaban</td>
+              <td class="p-3">GI bleeding, epistaxis, hematuria, major hemorrhage.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 11. QUICK REVISION -->
+    <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-brand-950 text-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 space-y-4">
+      <div class="flex items-center gap-2 text-brand-400 font-black text-xs sm:text-sm uppercase tracking-wider">
+        <i data-lucide="zap" class="w-4 h-4 text-brand-400"></i>
+        30-SECOND EXAM REVISION
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-slate-200">
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>Class Nature:</strong> Coagulation cascade interruptors for venous/arterial thrombi prevention.
+        </div>
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>MOA:</strong> Antithrombin III activation (Heparin), Vitamin K inhibition (Warfarin), or direct factor block (DOACs).
+        </div>
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>Key Uses:</strong> DVT/PE treatment, stroke prevention in AFib, mechanical heart valves.
+        </div>
+        <div class="p-3.5 bg-slate-800/90 rounded-xl border border-slate-700">
+          <strong>Major ADRs / Mnemonic:</strong> "H-I-T" (Hemorrhage, Induced thrombocytopenia, Testing aPTT/platelets).
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. KEY NURSING TAKEAWAYS -->
+    <section class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h2 class="text-lg sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-600 text-white text-xs font-black flex items-center justify-center shrink-0">12</span>
+          Key Nursing Takeaways &amp; Patient Safety
+        </h2>
+        <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 text-[10px] font-black uppercase tracking-wide border border-rose-200">Patient Safety</span>
+      </div>
+
+      <div class="space-y-3 text-xs sm:text-sm">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">1. Monitor Laboratory Parameters</strong>
+          <p class="text-slate-700">Regularly check aPTT for heparin and INR for warfarin. For LMWH and DOACs, monitor renal function, hemoglobin, and hematocrit levels.</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">2. Manage Dietary Consistency for Warfarin</strong>
+          <p class="text-slate-700">Counsel patients to maintain a consistent daily intake of vitamin K rich foods (dark green leafy vegetables) rather than avoiding them entirely.</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">3. Implement Bleeding Precautions</strong>
+          <p class="text-slate-700">Instruct patients on using soft-bristled toothbrushes, electric razors, avoiding contact sports, and watching for signs of internal bleeding (black stools, blood in urine).</p>
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+          <strong class="text-slate-900 block font-bold">4. Coordinate Bridging Therapy</strong>
+          <p class="text-slate-700">When transitioning from heparin or LMWH to warfarin, administer both agents concurrently for at least 5 days until the INR reaches the therapeutic target range.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVIGATION FOOTER -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-slate-300">
+      <a href="chapt4.html" class="w-full sm:w-auto px-5 py-3 rounded-xl font-bold text-slate-800 bg-white border border-slate-300 hover:bg-slate-100 flex items-center justify-center gap-2 transition active:scale-95 text-xs sm:text-sm shadow-sm">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Chapter 4 Hub
+      </a>
+      <a href="dashboard.html" class="w-full sm:w-auto px-5 py-3 rounded-xl font-extrabold text-white bg-brand-600 hover:bg-brand-500 flex items-center justify-center gap-2 transition active:scale-95 text-xs sm:text-sm shadow-lg shadow-brand-600/20">
+        Dashboard <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
     </div>
-    <div class="card-box">
-      <h3>⚡ Direct Oral Anticoagulants (DOACs)</h3>
-      <p><strong>Prototypes:</strong> Apixaban, Rivaroxaban, Dabigatran.</p>
-      <p style="margin-top: 10px;"><strong>Characteristics:</strong> Targeted oral agents inhibiting either Factor Xa or direct thrombin without routine lab monitoring.</p>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-12 bg-white border-t border-slate-300 py-6 text-center text-xs text-slate-600 max-w-4xl mx-auto rounded-2xl">
+    <div class="px-4 space-y-1">
+      <p class="font-extrabold text-slate-900 text-sm">✨ Curated with excellence by Mudassir Khan</p>
+      <p>© 2026 MK Study Hub. BSN Cardiovascular Pharmacology Learning Portal.</p>
     </div>
-  </div>
+  </footer>
 
-  <!-- MECHANISM OF ACTION -->
-  <h2>3. Mechanisms of Action</h2>
-  <div class="grid-3">
-    <div class="card-box">
-      <h3>⚡ Heparin & LMWH: Antithrombin III Activation</h3>
-      <p>Bind to antithrombin III, drastically accelerating its ability to neutralize activated clotting factors, primarily Thrombin (Factor IIa) and Factor Xa.</p>
-    </div>
-    <div class="card-box">
-      <h3>🧪 Warfarin: Vitamin K Epoxide Reductase Blockade</h3>
-      <p>Inhibits the vitamin K epoxide reductase enzyme complex, preventing the recycling of active vitamin K and suppressing clotting factors II, VII, IX, and X.</p>
-    </div>
-    <div class="card-box">
-      <h3>🛡️ DOACs: Direct Factor Inhibition</h3>
-      <p>Selectively and directly inhibit free and clot-bound Factor Xa (rivaroxaban, apixaban) or directly inhibit active thrombin (dabigatran) without requiring antithrombin cofactors.</p>
-    </div>
-  </div>
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
 
-  <!-- CLINICAL USES -->
-  <h2>4. Clinical Uses & Therapeutic Indications</h2>
-  <ul>
-    <li>Treatment and secondary prevention of Deep Vein Thrombosis (DVT) and Pulmonary Embolism (PE)</li>
-    <li>Stroke prevention in non-valvular Atrial Fibrillation (AFib)</li>
-    <li>Prophylaxis of thromboembolism following orthopedic or major abdominal surgeries</li>
-    <li>Management of acute coronary syndromes (ACS) alongside antiplatelets</li>
-    <li>Prevention of clot formation in mechanical heart valves and extracorporeal circuits (hemodialysis)</li>
-  </ul>
+    // Toggle Classification Cards
+    function toggleCard(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('[data-lucide="chevron-down"]');
+      
+      content.classList.toggle('hidden');
+      if (icon) {
+        icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+      }
+    }
 
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for Clinical Uses: "D-P-A-M"</h4>
-    <p><strong>D</strong>VT and PE treatment | <strong>P</strong>revention of stroke in AFib | <strong>A</strong>CS management | <strong>M</strong>echanical heart valve protection</p>
-  </div>
+    // Interactive MOA Tab Switcher
+    function switchMoaTab(tabName) {
+      const btnHeparin = document.getElementById('btnHeparin');
+      const btnWarfarin = document.getElementById('btnWarfarin');
+      const btnDoacs = document.getElementById('btnDoacs');
 
-  <!-- ADVERSE DRUG REACTIONS -->
-  <h2>5. Adverse Drug Reactions (ADRs)</h2>
-  <div class="grid-2">
-    <div class="card-box">
-      <h3>⚠️ Hemorrhage & Bleeding Complications</h3>
-      <p>The universal adverse effect across all anticoagulant classes. Manifests as internal bleeding, GI hemorrhage, hematuria, ecchymosis, and intracranial bleeding.</p>
-    </div>
-    <div class="card-box">
-      <h3>⚠️ Drug-Specific Adverse Effects</h3>
-      <p><strong>Heparin:</strong> Heparin-Induced Thrombocytopenia (HIT) and osteoporosis with long-term use.<br><strong>Warfarin:</strong> Skin necrosis (early hypercoagulability) and severe teratogenicity (Category X).<br><strong>Dabigatran:</strong> Dyspepsia and gastrointestinal distress.</p>
-    </div>
-  </div>
+      const tabHeparin = document.getElementById('tabHeparin');
+      const tabWarfarin = document.getElementById('tabWarfarin');
+      const tabDoacs = document.getElementById('tabDoacs');
 
-  <div class="mnemonic-box">
-    <h4>💡 Mnemonic for Heparin Complications: "H-I-T"</h4>
-    <p><strong>H</strong>emorrhage risk | <strong>I</strong>nduced thrombocytopenia (HIT) | <strong>T</strong>he need to monitor aPTT / platelet counts.</p>
-  </div>
+      // Reset all buttons
+      [btnHeparin, btnWarfarin, btnDoacs].forEach(b => {
+        b.className = "px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold whitespace-nowrap transition";
+      });
 
-  <!-- PHARMACOKINETICS & REVERSAL -->
-  <h2>6. Pharmacokinetics & Reversal Agents</h2>
-  <ul>
-    <li><strong>Monitoring & Lab Targets:</strong> Unfractionated heparin requires aPTT monitoring. Warfarin requires PT and INR monitoring (therapeutic range typically 2.0 to 3.0). DOACs generally do not require routine coagulation monitoring.</li>
-    <li><strong>Reversal Agents:</strong> Protamine sulfate reverses heparin. Vitamin K and Fresh Frozen Plasma (FFP) / Prothrombin Complex Concentrate (PCC) reverse warfarin. Idarucizumab reverses dabigatran, and Andexanet alfa reverses Factor Xa inhibitors.</li>
-  </ul>
+      // Hide all panes
+      [tabHeparin, tabWarfarin, tabDoacs].forEach(p => {
+        p.classList.add('hidden');
+      });
 
-  <!-- KEY NURSING TAKEAWAYS -->
-  <h2>7. Key Nursing Takeaways & Patient Safety</h2>
-  <ul>
-    <li><strong>Monitor Laboratory Parameters:</strong> Regularly check aPTT for heparin and INR for warfarin. For LMWH and DOACs, monitor renal function, hemoglobin, and hematocrit levels.</li>
-    <li><strong>Manage Dietary Consistency for Warfarin:</strong> Counsel patients to maintain a consistent daily intake of vitamin K rich foods (dark green leafy vegetables) rather than avoiding them entirely.</li>
-    <li><strong>Implement Bleeding Precautions:</strong> Instruct patients on using soft-bristled toothbrushes, electric razors, avoiding contact sports, and watching for signs of internal bleeding (black stools, blood in urine).</li>
-    <li><strong>Coordinate Bridging Therapy:</strong> When transitioning from heparin or LMWH to warfarin, administer both agents concurrently for at least 5 days until the INR reaches the therapeutic target range.</li>
-  </ul>
-
-</div>
-
+      // Activate selected
+      if (tabName === 'heparin') {
+        btnHeparin.className = "px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm";
+        tabHeparin.classList.remove('hidden');
+      } else if (tabName === 'warfarin') {
+        btnWarfarin.className = "px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm";
+        tabWarfarin.classList.remove('hidden');
+      } else if (tabName === 'doacs') {
+        btnDoacs.className = "px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold whitespace-nowrap transition shadow-sm";
+        tabDoacs.classList.remove('hidden');
+      }
+    }
+  </script>
 </body>
 </html>
