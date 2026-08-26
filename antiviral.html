@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>Antiviral Pharmacology Master Guide — Student Edition</title>
+  <title>Antiviral Pharmacology Ultimate Master Guide | MK Study Hub</title>
   <style>
     :root {
       --primary: #0d9488;
@@ -13,25 +13,16 @@
       --bg-gradient: radial-gradient(circle at 10% 20%, rgba(13, 148, 136, 0.08) 0%, rgba(45, 212, 191, 0.05) 40%, #f8fafc 90%);
       --text-dark: #0f172a;
       --text-muted: #475569;
-      --card-bg: rgba(255, 255, 255, 0.98);
+      --card-bg: #ffffff;
       --card-border: #e2e8f0;
-      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
       --mnemonics-bg: #f0fdf4;
       --mnemonics-border: #bbf7d0;
       --warning-bg: #fff1f2;
       --warning-border: #fecdd3;
       --exam-badge-bg: #ef4444;
       --exam-badge-text: #ffffff;
-      --radius: 20px;
-
-      /* DISTINCT CLASS VS DRUG COLOR PALETTE */
-      --class-color: #4338ca;
-      --class-bg: #e0e7ff;
-      --class-border: #c7d2fe;
-
-      --drug-color: #0f766e;
-      --drug-bg: #ccfbf1;
-      --drug-border: #99f6e4;
+      --radius: 24px;
     }
 
     * {
@@ -45,278 +36,170 @@
       background: var(--bg-gradient);
       background-attachment: fixed;
       color: var(--text-dark);
-      line-height: 1.6;
-      padding: 16px 8px 60px;
+      line-height: 1.7;
+      padding: 20px 12px 80px;
       min-height: 100vh;
-      overflow-x: hidden;
     }
 
     .container {
-      max-width: 1050px;
+      max-width: 1100px;
       margin: 0 auto;
-      background: var(--card-bg);
-      backdrop-filter: blur(16px);
-      padding: 32px 20px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(226, 232, 240, 0.8);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
     }
 
+    /* HEADER STYLE */
     header {
-      margin-bottom: 25px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 30px 24px;
+      margin-bottom: 30px;
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    .header-top {
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: var(--primary-gradient);
+    }
+
+    .badge-creator {
+      display: inline-block;
+      background: #ccfbf1;
+      color: #0f766e;
+      font-weight: 800;
+      font-size: 0.8rem;
+      padding: 6px 16px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #0f172a 0%, #0d9488 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    /* CARDS STRUCTURE */
+    .master-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 35px;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .master-card:hover {
+      box-shadow: 0 20px 35px -10px rgba(13, 148, 136, 0.12);
+    }
+
+    .card-header {
+      background: #f8fafc;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--card-border);
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 12px;
-      margin-bottom: 12px;
     }
 
-    .header-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .btn-header {
-      background: var(--primary-gradient);
-      color: #ffffff;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 4px 10px rgba(13, 148, 136, 0.25);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .btn-header:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(13, 148, 136, 0.35);
-    }
-
-    .badge-container {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 6px 14px;
-      background: #ccfbf1;
-      color: #0f766e;
-      font-weight: 700;
-      font-size: 13px;
-      border-radius: 50px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    /* EXAM HIGH-YIELD BADGE */
-    .exam-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: var(--exam-badge-bg);
-      color: var(--exam-badge-text);
-      font-size: 0.72rem;
+    .card-header h2 {
+      font-size: 1.35rem;
       font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.25);
-      margin-left: 6px;
-      vertical-align: middle;
-    }
-
-    /* COLOR TAGS FOR CLASSIFICATIONS AND DRUGS */
-    .drug-class-tag {
-      display: inline-block;
-      background: var(--class-bg);
-      color: var(--class-color);
-      border: 1px solid var(--class-border);
-      padding: 3px 10px;
-      border-radius: 6px;
-      font-weight: 800;
-      font-size: 0.92rem;
-      margin-bottom: 6px;
-    }
-
-    .drug-name-tag {
-      display: inline-block;
-      background: var(--drug-bg);
-      color: var(--drug-color);
-      border: 1px solid var(--drug-border);
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-weight: 500;
-      font-size: 0.88rem;
-      margin: 2px 0;
-    }
-
-    h1 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #1e293b 0%, #0d9488 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
-      line-height: 1.25;
-    }
-
-    .subtitle {
-      font-size: 1.02rem;
-      color: var(--text-muted);
-      margin-bottom: 20px;
-    }
-
-    h2 {
-      font-size: 1.45rem;
       color: #1e293b;
-      margin: 36px 0 20px;
       display: flex;
       align-items: center;
       gap: 10px;
-      border-bottom: 2px solid #e2e8f0;
-      padding-bottom: 10px;
-      flex-wrap: wrap;
     }
 
-    h2::before {
-      content: '';
-      display: inline-block;
-      width: 5px;
-      height: 24px;
-      background: var(--primary);
-      border-radius: 4px;
-      flex-shrink: 0;
+    .card-body {
+      padding: 24px;
     }
 
     .section-intro {
       font-size: 0.98rem;
       color: var(--text-muted);
       margin-bottom: 20px;
-      font-weight: 500;
     }
 
-    h4 {
-      font-size: 1.05rem;
-      color: #0f766e;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    p {
-      margin-bottom: 15px;
-      color: var(--text-muted);
-      font-size: 0.96rem;
-    }
-
-    .drug-class-card {
-      background: #ffffff;
-      border: 2px solid var(--card-border);
-      border-radius: 16px;
-      padding: 24px 20px;
-      margin-bottom: 35px;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-    }
-
-    .drug-class-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: var(--primary-gradient);
-      border-radius: 16px 16px 0 0;
-    }
-
-    .sub-block {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 16px 18px;
-      margin: 18px 0;
-    }
-
-    /* SIMPLE FLOWCHART STYLES */
-    .moa-flowcard {
+    /* ANIMATED / SIMPLIFIED FLOWCHART */
+    .flow-box {
       background: #f0fdf4;
-      border: 2px solid #bbf7d0;
-      border-radius: 14px;
+      border: 2px dashed #86efac;
+      border-radius: 16px;
       padding: 18px;
-      margin: 20px 0;
+      margin-bottom: 24px;
     }
 
-    .moa-flowcard-title {
-      font-size: 0.95rem;
+    .flow-title {
+      font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.8px;
-      color: #0f766e;
-      margin-bottom: 14px;
+      color: #166534;
       font-weight: 800;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
-    .flow-steps-grid {
+    .flow-steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 12px;
     }
 
-    .flow-step-box {
+    .step {
       background: #ffffff;
-      border: 1px solid #86efac;
-      border-radius: 10px;
+      border: 1px solid #bbf7d0;
+      border-radius: 12px;
       padding: 12px 14px;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
     }
 
-    .flow-step-box.block-target {
-      border: 2px solid #0d9488;
+    .step.target {
+      border: 2px solid var(--primary);
       background: #ccfbf1;
-      animation: softPulse 2.5s infinite ease-in-out;
     }
 
-    @keyframes softPulse {
-      0% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.3); }
-      50% { box-shadow: 0 0 0 8px rgba(13, 148, 136, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
-    }
-
-    .step-number {
+    .step-num {
       display: inline-block;
-      width: 22px;
-      height: 22px;
-      background: #0d9488;
+      width: 20px;
+      height: 20px;
+      background: var(--primary);
       color: white;
       border-radius: 50%;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 800;
-      line-height: 22px;
-      margin-bottom: 6px;
+      text-align: center;
+      line-height: 20px;
+      margin-bottom: 4px;
     }
 
-    .step-text {
-      font-size: 0.86rem;
+    .step-title {
+      font-size: 0.88rem;
       font-weight: 700;
       color: #0f172a;
     }
@@ -324,774 +207,543 @@
     .step-desc {
       font-size: 0.78rem;
       color: var(--text-muted);
-      margin-top: 4px;
+      margin-top: 2px;
     }
 
-    .mnemonic-box {
-      background: var(--mnemonics-bg);
-      border: 1px solid var(--mnemonics-border);
-      border-left: 5px solid var(--primary);
-      border-radius: 12px;
-      padding: 18px;
-      margin: 18px 0;
-    }
-
-    .mnemonic-box h4 {
-      color: #0f766e;
-      font-weight: 800;
-      font-size: 1.02rem;
-      margin-bottom: 12px;
-    }
-
-    .warning-box {
-      background: var(--warning-bg);
-      border: 1px solid var(--warning-border);
-      border-left: 5px solid #e11d48;
-      border-radius: 10px;
-      padding: 16px 20px;
-      margin: 15px 0;
-    }
-
-    .warning-box h4 {
-      color: #9f1239;
-      font-size: 1rem;
-      margin-bottom: 6px;
-    }
-
-    .subdrug-grid {
+    /* SPECIFIC DRUG CARDS GRID */
+    .drugs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 14px;
-      margin-top: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+      margin-top: 16px;
     }
 
-    .subdrug-item {
-      background: #ffffff;
+    .drug-item {
+      background: #f8fafc;
       border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      padding: 16px;
+      border-radius: 16px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
+      position: relative;
     }
 
-    .drug-detail-row {
+    .class-badge {
+      display: inline-block;
+      background: #e0e7ff;
+      color: #3730a3;
+      font-weight: 800;
+      font-size: 0.78rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+      align-self: flex-start;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .drug-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .exam-pill {
+      background: var(--exam-badge-bg);
+      color: var(--exam-badge-text);
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 3px 7px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .drug-row {
       font-size: 0.88rem;
       color: var(--text-muted);
     }
 
-    .drug-detail-row span.label {
-      font-weight: 700;
+    .drug-row strong {
       color: #1e293b;
-    }
-
-    /* INTERACTIVE VISUALIZER WIDGET STYLES */
-    .interactive-visualizer {
-      background: #0f172a;
-      color: #ffffff;
-      border-radius: 16px;
-      padding: 20px;
-      margin: 25px 0;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    .visualizer-header {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--accent);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .stage-buttons {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-
-    .stage-btn {
-      background: #1e293b;
-      color: #94a3b8;
-      border: 1px solid #334155;
-      padding: 8px 14px;
-      border-radius: 8px;
-      font-size: 0.82rem;
       font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s ease;
     }
 
-    .stage-btn.active, .stage-btn:hover {
-      background: var(--primary);
-      color: #ffffff;
-      border-color: var(--accent);
-    }
-
-    .stage-display {
-      background: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 12px;
-      padding: 16px;
-    }
-
-    .stage-display h4 {
-      color: var(--accent);
-      margin-bottom: 6px;
-      font-size: 1rem;
-    }
-
-    .stage-display p {
-      color: #cbd5e1;
-      font-size: 0.9rem;
-      margin-bottom: 10px;
-    }
-
-    .drug-block-list {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    /* MODAL POPUP STYLES */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(8px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      padding: 12px;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .modal-card {
-      background: #ffffff;
-      border-radius: 18px;
-      max-width: 950px;
-      width: 100%;
-      max-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      border: 1px solid #e2e8f0;
-      overflow: hidden;
-      transform: translateY(20px);
-      transition: transform 0.3s ease;
-    }
-
-    .modal-overlay.active .modal-card {
-      transform: translateY(0);
-    }
-
-    .modal-header {
+    /* MNEMONIC BOX */
+    .mnemonic-card {
+      background: var(--mnemonics-bg);
+      border: 1px solid var(--mnemonics-border);
+      border-left: 5px solid var(--primary);
+      border-radius: 14px;
       padding: 16px 20px;
-      background: var(--primary-gradient);
-      color: #ffffff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      margin-top: 20px;
     }
 
-    .modal-header h3 {
-      font-size: 1.15rem;
+    .mnemonic-card h4 {
+      color: #166534;
+      font-size: 0.98rem;
       font-weight: 800;
-    }
-
-    .close-btn {
-      background: rgba(255, 255, 255, 0.2);
-      border: none;
-      color: white;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      font-size: 1.2rem;
-      cursor: pointer;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
+      gap: 6px;
     }
 
-    .close-btn:hover {
-      background: rgba(255, 255, 255, 0.4);
+    .mnemonic-card p {
+      font-size: 0.88rem;
+      color: #14532d;
     }
 
-    .modal-body {
-      padding: 20px;
-      overflow-y: auto;
-      flex: 1;
+    /* WARNING BOX */
+    .warning-card {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-left: 5px solid #e11d48;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-top: 20px;
     }
 
-    /* TABLE STYLING FOR MODAL */
-    .table-container {
+    .warning-card h4 {
+      color: #9f1239;
+      font-size: 0.98rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .warning-card p {
+      font-size: 0.88rem;
+      color: #881337;
+    }
+
+    /* SUMMARY TABLE SECTION */
+    .table-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--card-border);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 40px;
+    }
+
+    .table-responsive {
       overflow-x: auto;
-      border-radius: 10px;
+      margin-top: 16px;
+      border-radius: 12px;
       border: 1px solid #cbd5e1;
-      margin-top: 10px;
     }
 
-    .summary-table {
+    table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.85rem;
       text-align: left;
-      min-width: 650px;
+      min-width: 750px;
     }
 
-    .summary-table th {
+    th {
       background: #0f172a;
       color: #ffffff;
-      padding: 12px 14px;
+      padding: 14px 16px;
       font-weight: 700;
-      position: sticky;
-      top: 0;
     }
 
-    .summary-table td {
-      padding: 10px 14px;
+    td {
+      padding: 12px 16px;
       border-bottom: 1px solid #e2e8f0;
+      color: var(--text-muted);
     }
 
-    .summary-table tr:nth-child(even) {
+    tr:nth-child(even) {
       background: #f8fafc;
     }
 
-    /* TREE DIAGRAM STYLES */
-    .tree-container {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      padding: 10px;
-    }
-
-    .tree-node {
+    tr:hover {
       background: #f1f5f9;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      padding: 14px;
-    }
-
-    .tree-title {
-      font-weight: 800;
-      color: var(--primary-dark);
-      font-size: 0.98rem;
-      margin-bottom: 8px;
-    }
-
-    .tree-sublist {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
     }
 
     @media (max-width: 640px) {
-      body { padding: 8px 4px 50px; }
-      .container { padding: 18px 12px; border-radius: 14px; }
-      h1 { font-size: 1.65rem; }
-      .subtitle { font-size: 0.9rem; }
-      h2 { font-size: 1.2rem; }
-      .drug-class-card { padding: 16px 12px; }
-      .subdrug-grid { grid-template-columns: 1fr; }
-      .flow-steps-grid { grid-template-columns: 1fr; }
-      .header-top { flex-direction: column; align-items: flex-start; }
-      .modal-card { max-height: 95vh; margin: 4px; }
+      body { padding: 10px 6px 60px; }
+      h1 { font-size: 1.7rem; }
+      .card-body { padding: 16px; }
+      .drugs-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
   <div class="container">
+
+    <!-- HEADER -->
     <header>
-      <div class="header-top">
-        <div class="badge-container">
-          <span class="badge">Simplified Nursing Pharmacology — Mudassir Khan</span>
-        </div>
-        <div class="header-actions">
-          <button class="btn-header" onclick="toggleModal('tableModal')">📊 Master Summary Table</button>
-          <button class="btn-header" onclick="toggleModal('treeModal')">🌳 Classification Tree</button>
-        </div>
-      </div>
-      <h1>Antiviral Pharmacology Master Study Guide</h1>
-      <p class="subtitle">A clear breakdown of antiviral classifications, simplified Mechanisms of Action (MOA), flowchart visuals, nursing alerts, and high-yield exam points.</p>
+      <span class="badge-creator">Simplified Nursing Pharmacology — Mudassir Khan</span>
+      <h1>Antiviral Pharmacology Ultimate Master Guide</h1>
+      <p class="subtitle">An exceptionally structured, crystal-clear breakdown of antiviral drug classifications, simplified step-by-step mechanisms of action, specific high-yield drug profiles, memory mnemonics, and essential exam warnings.</p>
     </header>
 
     <main>
 
-      <!-- ================= INTERACTIVE VISUALIZER WIDGET ================= -->
-      <div class="interactive-visualizer">
-        <div class="visualizer-header">
-          ⚡ Interactive Antiviral Target Visualizer
+      <!-- ================= SECTION 1: RESPIRATORY VIRUSES ================= -->
+      <section class="master-card">
+        <div class="card-header">
+          <h2>🫁 1. Respiratory Virus Antivirals (Influenza, RSV, COVID-19)</h2>
+          <span style="font-size: 0.8rem; font-weight: 700; color: #0d9488; background: #ccfbf1; padding: 4px 12px; border-radius: 20px;">Respiratory System</span>
         </div>
-        <p style="color: #94a3b8; font-size: 0.88rem; margin-bottom: 14px;">Click on any replication step below to highlight which antiviral drug classes block the virus at that exact point:</p>
-        
-        <div class="stage-buttons">
-          <button class="stage-btn active" onclick="showStage('entry')">1. Attachment &amp; Entry</button>
-          <button class="stage-btn" onclick="showStage('uncoating')">2. Uncoating</button>
-          <button class="stage-btn" onclick="showStage('rt')">3. Reverse Transcription</button>
-          <button class="stage-btn" onclick="showStage('integration')">4. Integration</button>
-          <button class="stage-btn" onclick="showStage('assembly')">5. Protease / Assembly</button>
-          <button class="stage-btn" onclick="showStage('release')">6. Viral Release</button>
-        </div>
+        <div class="card-body">
+          <p class="section-intro">Target viral entry, uncoating, replication, or cellular release in upper and lower respiratory tract infections.</p>
 
-        <div class="stage-display" id="stageDisplay">
-          <h4 id="stageTitle">1. Attachment &amp; Entry Blockade</h4>
-          <p id="stageDesc">Prevents the virus from docking onto host cell receptors or fusing with the cell membrane.</p>
-          <div class="drug-block-list" id="stageDrugs">
-            <span class="drug-name-tag">Maraviroc (CCR5)</span>
-            <span class="drug-name-tag">Enfuvirtide (gp41)</span>
-            <span class="drug-name-tag">Palivizumab (RSV F-protein)</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- ================= 1. RESPIRATORY VIRUSES ================= -->
-      <section class="drug-class-card">
-        <h2>1. Respiratory Virus Antivirals (Influenza, RSV, COVID-19)</h2>
-        <p class="section-intro">Medications used to treat or prevent respiratory viral infections by stopping uncoating, gene copying, or viral release.</p>
-
-        <!-- FLOWCHART -->
-        <div class="moa-flowcard">
-          <div class="moa-flowcard-title">⚡ Flowchart MOA: Neuraminidase Inhibitor Action (Oseltamivir)</div>
-          <div class="flow-steps-grid">
-            <div class="flow-step-box">
-              <span class="step-number">1</span>
-              <div class="step-text">Viral Replication</div>
-              <div class="step-desc">New flu viruses copy themselves inside respiratory cells.</div>
-            </div>
-            <div class="flow-step-box block-target">
-              <span class="step-number">2</span>
-              <div class="step-text">Neuraminidase Blocked <span class="exam-badge">IMP FOR EXAM</span></div>
-              <div class="step-desc">Drug blocks the enzyme needed to snip viral attachment anchors.</div>
-            </div>
-            <div class="flow-step-box">
-              <span class="step-number">3</span>
-              <div class="step-text">Virions Trapped</div>
-              <div class="step-desc">Viruses remain glued to host cell wall and cannot spread.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="sub-block">
-          <h4>📂 Drug Classifications &amp; Specific Agents</h4>
-          <div class="subdrug-grid">
-            <div class="subdrug-item">
-              <div class="drug-class-tag">1. Neuraminidase Inhibitors</div>
-              <div>
-                <span class="drug-name-tag">Oseltamivir (Tamiflu)</span>
-                <span class="drug-name-tag">Zanamivir</span>
-                <span class="drug-name-tag">Peramivir</span>
+          <!-- FLOWCHART -->
+          <div class="flow-box">
+            <div class="flow-title">⚡ Simplified MOA Flowchart: Neuraminidase Inhibitors (Oseltamivir)</div>
+            <div class="flow-steps">
+              <div class="step">
+                <span class="step-num">1</span>
+                <div class="step-title">Viral Replication</div>
+                <div class="step-desc">Influenza multiplies inside respiratory cells.</div>
               </div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Prevents viral detachment from host cell membrane by inhibiting viral neuraminidase. Keeps new flu viruses trapped inside the infected cell.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> Treatment and prevention of acute Influenza A and B (must give within 48 hours of symptoms!). <span class="exam-badge">IMP FOR EXAM</span></div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Nausea, vomiting, delirium/hallucinations, and bronchospasm (avoid inhaled zanamivir in asthma/COPD!).</div>
-            </div>
-
-            <div class="subdrug-item">
-              <div class="drug-class-tag">2. Cap-Dependent Endonuclease Inhibitor</div>
-              <div><span class="drug-name-tag">Baloxavir Marboxil</span></div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Blocks viral gene transcription early by inhibiting cap-dependent endonuclease inside the viral polymerase complex.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> Single-dose oral treatment for acute uncomplicated flu (ages 12+).</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Diarrhea, bronchitis, headache, and nausea.</div>
-            </div>
-
-            <div class="subdrug-item">
-              <div class="drug-class-tag">3. M2 Ion Channel Blockers</div>
-              <div>
-                <span class="drug-name-tag">Amantadine</span>
-                <span class="drug-name-tag">Rimantadine</span>
+              <div class="step target">
+                <span class="step-num">2</span>
+                <div class="step-title">Enzyme Blockade (Target)</div>
+                <div class="step-desc">Drug blocks neuraminidase enzyme from snipping anchors.</div>
               </div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Blocks M2 proton channels on Influenza A to prevent viral uncoating in host cells.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> Historical treatment of Influenza A (rarely used now due to widespread resistance). <span class="exam-badge">IMP FOR EXAM</span></div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> CNS dizziness, insomnia, confusion, and peripheral anticholinergic symptoms (dry mouth).</div>
-            </div>
-
-            <div class="subdrug-item">
-              <div class="drug-class-tag">4. Monoclonal Antibody for RSV</div>
-              <div><span class="drug-name-tag">Palivizumab</span></div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Binds directly to the RSV Fusion (F) protein to block viral entry into child airway cells.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> Prophylaxis against severe RSV lower respiratory disease in high-risk premature infants.</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Injection site pain, fever, rash, and upper respiratory tract symptoms.</div>
-            </div>
-
-            <div class="subdrug-item">
-              <div class="drug-class-tag">5. RNA Polymerase (RdRp) Inhibitor</div>
-              <div><span class="drug-name-tag">Remdesivir</span></div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Adenosine analog that incorporates into viral RNA chain and stops SARS-CoV-2 RNA polymerase.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> Treatment of COVID-19 in hospitalized patients requiring oxygen therapy.</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Raised ALT/AST liver enzymes, nausea, and IV infusion hypersensitivity.</div>
+              <div class="step">
+                <span class="step-num">3</span>
+                <div class="step-title">Virions Trapped</div>
+                <div class="step-desc">New viruses stay glued to cells and cannot spread.</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="mnemonic-box">
-          <h4>💡 Mnemonic for Respiratory Antivirals: "O.B.A.P.R."</h4>
-          <p><span class="drug-name-tag">Oseltamivir</span> &bull; <span class="drug-name-tag">Baloxavir</span> &bull; <span class="drug-name-tag">Amantadine</span> &bull; <span class="drug-name-tag">Palivizumab</span> &bull; <span class="drug-name-tag">Remdesivir</span></p>
+          <!-- SPECIFIC DRUG CARDS -->
+          <div class="drugs-grid">
+            <div class="drug-item">
+              <span class="class-badge">Neuraminidase Inhibitor</span>
+              <div class="drug-name">Oseltamivir (Tamiflu) <span class="exam-pill">High Yield</span></div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Competitively inhibits viral neuraminidase, preventing viral release from host cells.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Treatment &amp; prophylaxis of Influenza A &amp; B (<mark style="background:#fef08a; padding:1px 4px; border-radius:3px;">must start within 48h</mark> of symptoms).</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Nausea, vomiting, neuropsychiatric events (delirium).</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> Administer with food to minimize GI distress.</div>
+            </div>
+
+            <div class="drug-item">
+              <span class="class-badge">Endonuclease Inhibitor</span>
+              <div class="drug-name">Baloxavir Marboxil</div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Inhibits cap-dependent endonuclease within the viral polymerase complex.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Single-dose oral treatment for acute uncomplicated influenza.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Diarrhea, bronchitis, nausea, headache.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> Taken as a single oral dose; avoid co-administration with dairy/polyvalent cations.</div>
+            </div>
+
+            <div class="drug-item">
+              <span class="class-badge">RNA Polymerase Inhibitor</span>
+              <div class="drug-name">Remdesivir</div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Adenosine analog that prematurely terminates viral RNA replication (RdRp).</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Hospitalized COVID-19 patients requiring supplemental oxygen.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Elevated liver enzymes (ALT/AST), nausea, hypersensitivity.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> Monitor renal function (eGFR) and liver function panels closely.</div>
+            </div>
+          </div>
+
+          <div class="mnemonic-card">
+            <h4>💡 Mnemonic for Respiratory Agents: "O.B.R."</h4>
+            <p><strong>O</strong>seltamivir (give in 48h) | <strong>B</strong>aloxavir (single dose) | <strong>R</strong>emdesivir (COVID RdRp blocker)</p>
+          </div>
         </div>
       </section>
 
-      <!-- ================= 2. HIV: NRTIs VS NtRTIs ================= -->
-      <section class="drug-class-card">
-        <h2>2. HIV Reverse Transcriptase Inhibitors (NRTIs vs. NtRTIs)</h2>
-        <p class="section-intro">These drugs act as fake DNA building blocks that incorporate into viral DNA and immediately break off DNA chain elongation.</p>
+      <!-- ================= SECTION 2: HIV NRTIs VS NtRTIs ================= -->
+      <section class="master-card">
+        <div class="card-header">
+          <h2>🎗️ 2. HIV Reverse Transcriptase Inhibitors (NRTIs vs. NtRTIs)</h2>
+          <span style="font-size: 0.8rem; font-weight: 700; color: #0d9488; background: #ccfbf1; padding: 4px 12px; border-radius: 20px;">HIV Core</span>
+        </div>
+        <div class="card-body">
+          <p class="section-intro">Fake building blocks incorporated into growing viral DNA strands to trigger immediate DNA chain termination.</p>
 
-        <!-- FLOWCHART -->
-        <div class="moa-flowcard">
-          <div class="moa-flowcard-title">⚡ Flowchart MOA: NRTI &amp; NtRTI Chain Termination</div>
-          <div class="flow-steps-grid">
-            <div class="flow-step-box">
-              <span class="step-number">1</span>
-              <div class="step-text">Phosphorylation</div>
-              <div class="step-desc">NRTIs need 3 host enzyme steps; NtRTIs (Tenofovir) already have 1 phosphate!</div>
-            </div>
-            <div class="flow-step-box block-target">
-              <span class="step-number">2</span>
-              <div class="step-text">Fake Block Added <span class="exam-badge">IMP FOR EXAM</span></div>
-              <div class="step-desc">Reverse transcriptase inserts drug into growing viral DNA strand.</div>
-            </div>
-            <div class="flow-step-box">
-              <span class="step-number">3</span>
-              <div class="step-text">Chain Termination</div>
-              <div class="step-desc">Lacks 3'-OH chemical tail; no more building blocks can link.</div>
+          <!-- FLOWCHART -->
+          <div class="flow-box">
+            <div class="flow-title">⚡ Simplified MOA Flowchart: NRTI Chain Termination</div>
+            <div class="flow-steps">
+              <div class="step">
+                <span class="step-num">1</span>
+                <div class="step-title">Intracellular Activation</div>
+                <div class="step-desc">NRTIs require 3 phosphorylation steps; NtRTIs need only 2.</div>
+              </div>
+              <div class="step target">
+                <span class="step-num">2</span>
+                <div class="step-title">Fake Incorporation (Target)</div>
+                <div class="step-desc">Reverse transcriptase inserts drug into viral DNA chain.</div>
+              </div>
+              <div class="step">
+                <span class="step-num">3</span>
+                <div class="step-title">Chain Terminated</div>
+                <div class="step-desc">Lacking the 3'-OH tail, further DNA extension stops completely.</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="sub-block">
-          <h4>📂 Drug Classifications &amp; Specific Agents</h4>
-          <div class="subdrug-grid">
-            <div class="subdrug-item">
-              <div class="drug-class-tag">1. Nucleoside RT Inhibitors (NRTIs)</div>
-              <div>
-                <span class="drug-name-tag">Zidovudine (AZT)</span>
-                <span class="drug-name-tag">Lamivudine (3TC)</span>
-                <span class="drug-name-tag">Emtricitabine (FTC)</span>
-                <span class="drug-name-tag">Abacavir (ABC)</span>
-              </div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Synthetic nucleosides requiring 3 intracellular phosphorylation steps to stop reverse transcriptase.</div>
-              <div class="drug-detail-row"><span class="label">Key Exam Points:</span> <br>
-              &bull; <strong>Abacavir:</strong> Mandatory genetic screening for <strong>HLA-B*5701</strong> before starting (risk of fatal hypersensitivity!). <span class="exam-badge">IMP FOR EXAM</span><br>
-              &bull; <strong>Zidovudine:</strong> Causes severe macrocytic anemia and bone marrow suppression.<br>
-              &bull; <strong>Emtricitabine:</strong> Can cause hyperpigmentation on palms and soles.</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Lactic acidosis, hepatic steatosis, headache, GI upset.</div>
+          <!-- SPECIFIC DRUG CARDS -->
+          <div class="drugs-grid">
+            <div class="drug-item">
+              <span class="class-badge">Nucleoside RTI (NRTI)</span>
+              <div class="drug-name">Abacavir (ABC) <span class="exam-pill">Critical Test Alert</span></div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Competitively inhibits HIV reverse transcriptase after tri-phosphorylation.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Cornerstone backbone agent in cART combination regimens.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Severe hypersensitivity reaction, lactic acidosis, GI upset.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> <mark style="background:#fef08a; padding:1px 4px; border-radius:3px;">Mandatory HLA-B*5701 genetic testing</mark> prior to prescribing!</div>
             </div>
 
-            <div class="subdrug-item">
-              <div class="drug-class-tag">2. Nucleotide RT Inhibitor (NtRTI)</div>
-              <div>
-                <span class="drug-name-tag">Tenofovir Disoproxil Fumarate (TDF)</span>
-                <span class="drug-name-tag">Tenofovir Alafenamide (TAF)</span>
-              </div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Possesses a pre-attached phosphonate group (nucleotide), so it needs only 2 phosphorylation steps to activate!</div>
-              <div class="drug-detail-row"><span class="label">Key Exam Points:</span> <br>
-              &bull; <strong>TDF:</strong> Higher risk of renal proximal tubule failure (Fanconi syndrome) and bone mineral density loss. <span class="exam-badge">IMP FOR EXAM</span><br>
-              &bull; <strong>TAF:</strong> Newer formulation with lower kidney/bone toxicity.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> Preferred backbone for HIV cART, PrEP, and chronic Hepatitis B.</div>
+            <div class="drug-item">
+              <span class="class-badge">Nucleotide RTI (NtRTI)</span>
+              <div class="drug-name">Tenofovir (TDF / TAF)</div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Pre-phosphorylated nucleotide analog causing viral DNA chain termination.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Frontline HIV cART, PrEP, and chronic Hepatitis B suppression.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Renal proximal tubule failure (Fanconi syndrome) &amp; bone mineral loss (TDF).</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> Monitor serum creatinine, BUN, and urine glucose/protein regularly.</div>
             </div>
 
-            <div class="subdrug-item">
-              <div class="drug-class-tag">3. Discontinued / Legacy NRTIs</div>
-              <div>
-                <span class="drug-name-tag">Stavudine (d4T)</span>
-                <span class="drug-name-tag">Didanosine (ddI)</span>
-              </div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Older thymidine/purine analogs that cause viral DNA chain termination.</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Severe peripheral neuropathy, acute pancreatitis, and severe lipoatrophy (fat wasting).</div>
+            <div class="drug-item">
+              <span class="class-badge">Nucleoside RTI (NRTI)</span>
+              <div class="drug-name">Zidovudine (AZT)</div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Thymidine analog stopping reverse transcriptase.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Prevention of perinatal maternal-fetal HIV transmission during labor.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Severe macrocytic anemia, bone marrow suppression, myopathy.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> Monitor complete blood count (CBC) weekly for hemoglobin drops.</div>
             </div>
           </div>
-        </div>
 
-        <div class="mnemonic-box">
-          <h4>💡 Mnemonic for NRTIs &amp; NtRTIs: "Z.L.E.A.T.S.D."</h4>
-          <p><span class="drug-name-tag">Zidovudine</span> &bull; <span class="drug-name-tag">Lamivudine</span> &bull; <span class="drug-name-tag">Emtricitabine</span> &bull; <span class="drug-name-tag">Abacavir</span> &bull; <span class="drug-name-tag">Tenofovir</span> &bull; <span class="drug-name-tag">Stavudine</span> &bull; <span class="drug-name-tag">Didanosine</span></p>
+          <div class="mnemonic-card">
+            <h4>💡 Mnemonic for NRTIs / NtRTIs: "BACKBONE"</h4>
+            <p><strong>B</strong>uilds cART foundation | <strong>A</strong>bacavir (check HLA-B*5701) | <strong>C</strong>hain termination | <strong>K</strong>ills viral replication</p>
+          </div>
         </div>
       </section>
 
-      <!-- ================= 3. HEPATITIS B VIRUS ================= -->
-      <section class="drug-class-card">
-        <h2>3. Hepatitis B Virus (HBV) Antivirals</h2>
-        <p class="section-intro">Agents that suppress chronic HBV by inhibiting its reverse transcriptase/polymerase enzyme or activating immune destruction.</p>
+      <!-- ================= SECTION 3: HEPATITIS B & C DAAS ================= -->
+      <section class="master-card">
+        <div class="card-header">
+          <h2>🧬 3. Hepatitis B &amp; C Direct-Acting Antivirals (DAAs)</h2>
+          <span style="font-size: 0.8rem; font-weight: 700; color: #0d9488; background: #ccfbf1; padding: 4px 12px; border-radius: 20px;">Hepatitis</span>
+        </div>
+        <div class="card-body">
+          <p class="section-intro">Target viral polymerases, replication complexes, and protease enzymes to achieve permanent virologic cure (SVR).</p>
 
-        <div class="sub-block">
-          <h4>📂 Drug Classifications &amp; Specific Agents</h4>
-          <div class="subdrug-grid">
-            <div class="subdrug-item">
-              <div class="drug-class-tag">1. HBV Polymerase Inhibitors (Nucleoside/Nucleotide)</div>
-              <div>
-                <span class="drug-name-tag">Entecavir</span>
-                <span class="drug-name-tag">Tenofovir (TDF / TAF)</span>
-                <span class="drug-name-tag">Telbivudine</span>
-                <span class="drug-name-tag">Adefovir Dipivoxil</span>
+          <!-- FLOWCHART -->
+          <div class="flow-box">
+            <div class="flow-title">⚡ Simplified MOA Flowchart: HCV DAA Targets (-previr, -asvir, -buvir)</div>
+            <div class="flow-steps">
+              <div class="step target">
+                <span class="step-num">1</span>
+                <div class="step-title">NS3/4A Protease (-previr)</div>
+                <div class="step-desc">Blocks viral polyprotein cleavage.</div>
               </div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Inhibits HBV DNA polymerase base priming, negative-strand DNA synthesis, and positive-strand elongation.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> First-line chronic Hepatitis B oral maintenance therapy.</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Elevated serum creatine kinase (telbivudine), nephrotoxicity (adefovir/TDF), and lactic acidosis.</div>
-            </div>
-
-            <div class="subdrug-item">
-              <div class="drug-class-tag">2. Immunomodulating Cytokines</div>
-              <div><span class="drug-name-tag">Peginterferon Alfa-2a</span></div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Activates host JAK-STAT pathway to boost T-cell immunity and degrade viral RNA.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> Finite-duration treatment for HBeAg-positive or negative chronic Hepatitis B.</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Flu-like symptoms (fever/chills), severe depression/suicidal ideation, and neutropenia.</div>
+              <div class="step target">
+                <span class="step-num">2</span>
+                <div class="step-title">NS5A Complex (-asvir)</div>
+                <div class="step-desc">Stops RNA replication assembly.</div>
+              </div>
+              <div class="step target">
+                <span class="step-num">3</span>
+                <div class="step-title">NS5B Polymerase (-buvir)</div>
+                <div class="step-desc">Stops RNA chain extension.</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="mnemonic-box">
-          <h4>💡 Mnemonic for Hepatitis B Agents: "E.T.A.P."</h4>
-          <p><span class="drug-name-tag">Entecavir</span> &bull; <span class="drug-name-tag">Tenofovir</span> &bull; <span class="drug-name-tag">Adefovir</span> &bull; <span class="drug-name-tag">Peginterferon</span></p>
+          <!-- SPECIFIC DRUG CARDS -->
+          <div class="drugs-grid">
+            <div class="drug-item">
+              <span class="class-badge">NS5B Polymerase Inhibitor</span>
+              <div class="drug-name">Sofosbuvir <span class="exam-pill">Black Box Warning</span></div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Nucleotide analog inhibiting HCV NS5B RNA-dependent RNA polymerase.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Pan-genotypic backbone for curative Hepatitis C treatment regimens.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Fatigue, headache, severe symptomatic bradycardia.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> <mark style="background:#fef08a; padding:1px 4px; border-radius:3px;">NEVER combine with Amiodarone</mark> (causes fatal heart block!).</div>
+            </div>
+
+            <div class="drug-item">
+              <span class="class-badge">Guanosine Analog Adjunct</span>
+              <div class="drug-name">Ribavirin</div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Depletes GTP pools, causing lethal mutations in viral RNA.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Combination therapy for HCV and severe viral infections.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Dose-dependent hemolytic anemia, severe teratogenicity.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> Pregnancy Category X; requires 2 forms of birth control during &amp; 6 months post-treatment.</div>
+            </div>
+
+            <div class="drug-item">
+              <span class="class-badge">HBV Polymerase Blocker</span>
+              <div class="drug-name">Entecavir</div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Inhibits HBV polymerase priming, reverse transcription, and DNA strand elongation.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> First-line oral therapy for chronic Hepatitis B suppression.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Headaches, fatigue, elevated liver transaminases, lactic acidosis.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> Take on an empty stomach for optimal systemic absorption.</div>
+            </div>
+          </div>
+
+          <div class="mnemonic-card">
+            <h4>💡 Mnemonic for HCV Suffixes: "P.A.B."</h4>
+            <p><strong>P</strong>revir = Protease | <strong>A</strong>svir = Assembly (NS5A) | <strong>B</strong>uvir = Building block (NS5B Polymerase)</p>
+          </div>
         </div>
       </section>
 
-      <!-- ================= 4. HEPATITIS C VIRUS ================= -->
-      <section class="drug-class-card">
-        <h2>4. Hepatitis C Virus (HCV) Direct-Acting Antivirals (DAAs)</h2>
-        <p class="section-intro">Target non-structural (NS) proteins of Hepatitis C to achieve over 95% complete cure rates (SVR) without interferon.</p>
+      <!-- ================= SECTION 4: HERPESVIRUS & CMV ================= -->
+      <section class="master-card">
+        <div class="card-header">
+          <h2>🔬 4. Herpesvirus (HSV/VZV) &amp; Cytomegalovirus (CMV) Agents</h2>
+          <span style="font-size: 0.8rem; font-weight: 700; color: #0d9488; background: #ccfbf1; padding: 4px 12px; border-radius: 20px;">Herpes / CMV</span>
+        </div>
+        <div class="card-body">
+          <p class="section-intro">Nucleoside analogues requiring viral or cellular kinase activation to inhibit viral DNA polymerase in HSV, VZV, and CMV.</p>
 
-        <!-- FLOWCHART -->
-        <div class="moa-flowcard">
-          <div class="moa-flowcard-title">⚡ Flowchart MOA: HCV Direct-Acting Antiviral Targets</div>
-          <div class="flow-steps-grid">
-            <div class="flow-step-box block-target">
-              <span class="step-number">1</span>
-              <div class="step-text">NS3/4A Protease (-previr)</div>
-              <div class="step-desc">Blocks polyprotein cleavage.</div>
-            </div>
-            <div class="flow-step-box block-target">
-              <span class="step-number">2</span>
-              <div class="step-text">NS5A Complex (-asvir)</div>
-              <div class="step-desc">Blocks RNA replication complex assembly.</div>
-            </div>
-            <div class="flow-step-box block-target">
-              <span class="step-number">3</span>
-              <div class="step-text">NS5B Polymerase (-buvir)</div>
-              <div class="step-desc">Blocks viral RNA polymerase chain.</div>
+          <!-- FLOWCHART -->
+          <div class="flow-box">
+            <div class="flow-title">⚡ Simplified MOA Flowchart: Acyclovir Kinase Activation</div>
+            <div class="flow-steps">
+              <div class="step">
+                <span class="step-num">1</span>
+                <div class="step-title">Viral Kinase Entry</div>
+                <div class="step-desc">Activated by viral Thymidine Kinase inside infected cells.</div>
+              </div>
+              <div class="step target">
+                <span class="step-num">2</span>
+                <div class="step-title">Triphosphate Conversion (Target)</div>
+                <div class="step-desc">Host enzymes convert drug into active triphosphate form.</div>
+              </div>
+              <div class="step">
+                <span class="step-num">3</span>
+                <div class="step-title">DNA Polymerase Blocked</div>
+                <div class="step-desc">Stops viral DNA chain extension and replication.</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="sub-block">
-          <h4>📂 Drug Classifications &amp; Specific Agents</h4>
-          <div class="subdrug-grid">
-            <div class="subdrug-item">
-              <div class="drug-class-tag">1. NS5B Polymerase Inhibitors (Ending in "-buvir")</div>
-              <div><span class="drug-name-tag">Sofosbuvir</span></div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Uridine nucleotide analog that blocks HCV NS5B RNA polymerase.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> Pan-genotypic oral curative regimen backbone for HCV.</div>
-              <div class="drug-detail-row"><span class="label">Nursing Warning:</span> <strong>Do NOT combine with Amiodarone!</strong> Causes fatal severe bradycardia! <span class="exam-badge">IMP FOR EXAM</span></div>
+          <!-- SPECIFIC DRUG CARDS -->
+          <div class="drugs-grid">
+            <div class="drug-item">
+              <span class="class-badge">Thymidine Kinase-Dependent</span>
+              <div class="drug-name">Acyclovir <span class="exam-pill">Renal Hazard</span></div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Viral thymidine kinase activation followed by selective viral DNA polymerase inhibition.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Genital herpes outbreaks, chickenpox, shingles (VZV), HSV encephalitis.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Crystalline nephropathy (IV administration), neurotoxicity, nausea.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> <mark style="background:#fef08a; padding:1px 4px; border-radius:3px;">Run IV normal saline hydration</mark> alongside infusion to prevent kidney crystal damage!</div>
             </div>
 
-            <div class="subdrug-item">
-              <div class="drug-class-tag">2. NS5A Replication Complex Inhibitors (Ending in "-asvir")</div>
-              <div>
-                <span class="drug-name-tag">Ledipasvir</span>
-                <span class="drug-name-tag">Velpatasvir</span>
-                <span class="drug-name-tag">Pibrentasvir</span>
-              </div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Inhibits NS5A phosphoprotein required for viral assembly and secretion.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> Combined with Sofosbuvir for all Hepatitis C genotypes.</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Mild headache, fatigue, nausea.</div>
+            <div class="drug-item">
+              <span class="class-badge">UL97 Kinase-Dependent</span>
+              <div class="drug-name">Ganciclovir</div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Activated by viral UL97 kinase in CMV to inhibit viral DNA polymerase.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Treatment and prophylaxis of severe CMV retinitis in immunocompromised hosts.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Severe bone marrow suppression (neutropenia, thrombocytopenia).</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> Monitor complete blood counts (CBC) with differential weekly during therapy.</div>
             </div>
 
-            <div class="subdrug-item">
-              <div class="drug-class-tag">3. NS3/4A Protease Inhibitors (Ending in "-previr")</div>
-              <div>
-                <span class="drug-name-tag">Glecaprevir</span>
-                <span class="drug-name-tag">Voxilaprevir</span>
-                <span class="drug-name-tag">Grazoprevir</span>
-              </div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Cleavage block of viral precursor proteins.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> Combination treatment for chronic HCV (especially prior DAA treatment failure).</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Bilirubin spikes, fatigue, nausea.</div>
-            </div>
-
-            <div class="subdrug-item">
-              <div class="drug-class-tag">4. Guanosine Analog Adjunct</div>
-              <div><span class="drug-name-tag">Ribavirin</span></div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Depletes intracellular GTP pools to induce lethal mutations in viral RNA.</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Dose-dependent hemolytic anemia and severe teratogenicity (Pregnancy Category X!). <span class="exam-badge">IMP FOR EXAM</span></div>
+            <div class="drug-item">
+              <span class="class-badge">Non-Kinase Dependent</span>
+              <div class="drug-name">Foscarnet</div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Direct viral DNA polymerase inhibitor requiring zero kinase activation.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Ganciclovir-resistant CMV retinitis and acyclovir-resistant HSV infections.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Severe nephrotoxicity, profound electrolyte wasting (hypocalcemia, hypomagnesemia).</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> Monitor serum electrolytes continuously and administer aggressive IV pre-hydration.</div>
             </div>
           </div>
-        </div>
 
-        <div class="mnemonic-box">
-          <h4>💡 Mnemonic for HCV Name Endings: "P.A.B."</h4>
-          <p>&bull; <strong>P</strong>rotease Inhibitors end in <strong>"-PREVIR"</strong> (NS3/4A)<br>
-          &bull; <strong>A</strong>ssembly Inhibitors end in <strong>"-ASVIR"</strong> (NS5A)<br>
-          &bull; <strong>B</strong>uilding/Polymerase Inhibitors end in <strong>"-BUVIR"</strong> (NS5B)</p>
+          <div class="mnemonic-card">
+            <h4>💡 Mnemonic for Herpes/CMV: "CRYSTALS" (Acyclovir ADR)</h4>
+            <p><strong>C</strong>rystals in renal tubules | <strong>R</strong>educed blood counts (Ganciclovir) | <strong>Y</strong>ields electrolyte waste (Foscarnet)</p>
+          </div>
         </div>
       </section>
 
-      <!-- ================= 5. HERPESVIRUS & CMV ================= -->
-      <section class="drug-class-card">
-        <h2>5. Herpesvirus (HSV/VZV) &amp; Cytomegalovirus (CMV) Drugs</h2>
-        <p class="section-intro">Agents that block viral DNA polymerase in Herpes Simplex, Shingles, and Cytomegalovirus infections.</p>
+      <!-- ================= SECTION 5: ADVANCED HIV CLASSES ================= -->
+      <section class="master-card">
+        <div class="card-header">
+          <h2>🎯 5. Advanced HIV Classes (INSTIs, PIs &amp; NNRTIs)</h2>
+          <span style="font-size: 0.8rem; font-weight: 700; color: #0d9488; background: #ccfbf1; padding: 4px 12px; border-radius: 20px;">Advanced HIV</span>
+        </div>
+        <div class="card-body">
+          <p class="section-intro">Inhibit viral integration into human chromosomes, block protein cleavage, or bind allosterically to reverse transcriptase.</p>
 
-        <div class="sub-block">
-          <h4>📂 Drug Classifications &amp; Specific Agents</h4>
-          <div class="subdrug-grid">
-            <div class="subdrug-item">
-              <div class="drug-class-tag">1. HSV/VZV Thymidine Kinase-Dependent Drugs</div>
-              <div>
-                <span class="drug-name-tag">Acyclovir</span>
-                <span class="drug-name-tag">Valacyclovir</span>
-                <span class="drug-name-tag">Famciclovir</span>
+          <!-- FLOWCHART -->
+          <div class="flow-box">
+            <div class="flow-title">⚡ Simplified MOA Flowchart: Integrase Strand Transfer Inhibitors (INSTIs)</div>
+            <div class="flow-steps">
+              <div class="step">
+                <span class="step-num">1</span>
+                <div class="step-title">Viral cDNA Formed</div>
+                <div class="step-desc">Reverse transcriptase creates double-stranded viral DNA.</div>
               </div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Requires viral Thymidine Kinase to activate initial monophosphate form, then cellular enzymes form triphosphate to stop viral DNA polymerase.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> Genital herpes, shingles (VZV), chickenpox, and HSV encephalitis.</div>
-              <div class="drug-detail-row"><span class="label">Nursing Warning:</span> <strong>IV Acyclovir causes Crystalline Nephropathy!</strong> Always infuse with aggressive IV saline hydration! <span class="exam-badge">IMP FOR EXAM</span></div>
-            </div>
-
-            <div class="subdrug-item">
-              <div class="drug-class-tag">2. CMV UL97 Kinase-Dependent Drugs</div>
-              <div>
-                <span class="drug-name-tag">Ganciclovir</span>
-                <span class="drug-name-tag">Valganciclovir</span>
+              <div class="step target">
+                <span class="step-num">2</span>
+                <div class="step-title">Magnesium Chelated (Target)</div>
+                <div class="step-desc">INSTIs bind Mg²⁺ ions at the active site of integrase.</div>
               </div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Activated by viral UL97 kinase in CMV to inhibit viral DNA polymerase.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> Treatment and secondary prevention of severe CMV retinitis in AIDS/transplant patients.</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Severe bone marrow suppression (leukopenia, neutropenia, thrombocytopenia). <span class="exam-badge">IMP FOR EXAM</span></div>
-            </div>
-
-            <div class="subdrug-item">
-              <div class="drug-class-tag">3. Non-Kinase Dependent DNA Polymerase Blockers</div>
-              <div>
-                <span class="drug-name-tag">Cidofovir</span>
-                <span class="drug-name-tag">Foscarnet</span>
+              <div class="step">
+                <span class="step-num">3</span>
+                <div class="step-title">Integration Blocked</div>
+                <div class="step-desc">Viral DNA cannot splice into human host chromosomes.</div>
               </div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Bypass viral kinase activation entirely to directly block resistant HSV/CMV DNA polymerase.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> Resistant HSV and Ganciclovir-resistant CMV retinitis.</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Severe nephrotoxicity and profound electrolyte wasting (hypocalcemia, hypokalemia). Give Cidofovir with Probenecid!</div>
-            </div>
-
-            <div class="subdrug-item">
-              <div class="drug-class-tag">4. CMV Terminase Complex Inhibitor</div>
-              <div><span class="drug-name-tag">Letermovir</span></div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Targets viral UL56 subunit of CMV terminase to block viral DNA packaging.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> CMV prophylaxis in stem cell transplant recipients.</div>
             </div>
           </div>
-        </div>
 
-        <div class="mnemonic-box">
-          <h4>💡 Mnemonic for Herpes/CMV: "A.G.C.F.L."</h4>
-          <p><span class="drug-name-tag">Acyclovir</span> &bull; <span class="drug-name-tag">Ganciclovir</span> &bull; <span class="drug-name-tag">Cidofovir</span> &bull; <span class="drug-name-tag">Foscarnet</span> &bull; <span class="drug-name-tag">Letermovir</span></p>
+          <!-- SPECIFIC DRUG CARDS -->
+          <div class="drugs-grid">
+            <div class="drug-item">
+              <span class="class-badge">Integrase Inhibitor (INSTI)</span>
+              <div class="drug-name">Dolutegravir <span class="exam-pill">First-Line Anchor</span></div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Chelates magnesium ions at the catalytic core of HIV integrase enzyme.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Preferred frontline anchor agent in modern combination cART regimens.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Insomnia, headache, weight gain, elevated serum creatinine.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> High genetic barrier to viral drug resistance; safe in pregnancy.</div>
+            </div>
+
+            <div class="drug-item">
+              <span class="class-badge">Protease Inhibitor (PI)</span>
+              <div class="drug-name">Darunavir</div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Inhibits HIV protease from cleaving Gag-Pol polyproteins into mature units.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Treatment-experienced HIV infection and salvage regimens.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Hyperglycemia/diabetes, lipodystrophy ("buffalo hump"), dyslipidemia.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> Always co-administered with a pharmacokinetic booster (Ritonavir or Cobicistat).</div>
+            </div>
+
+            <div class="drug-item">
+              <span class="class-badge">Non-Nucleoside RTI (NNRTI)</span>
+              <div class="drug-name">Efavirenz</div>
+              <div class="drug-row"><strong>Mechanism of Action:</strong> Binds allosterically to reverse transcriptase pocket, locking enzyme shape.</div>
+              <div class="drug-row"><strong>Primary Uses:</strong> Second-line or resource-limited HIV cART regimens.</div>
+              <div class="drug-row"><strong>Side Effects (ADRs):</strong> Vivid nightmares, insomnia, depression, Stevens-Johnson rash.</div>
+              <div class="drug-row"><strong>Nursing Pearl:</strong> Administer at bedtime on an empty stomach to minimize CNS psychiatric side effects.</div>
+            </div>
+          </div>
+
+          <div class="warning-card">
+            <h4>🚫 Critical Nursing Exam Safety Warnings</h4>
+            <p>
+              &bull; <strong>Hepatitis B Reactivation:</strong> Test for HBV before starting or stopping Tenofovir/Lamivudine regimens.<br>
+              &bull; <strong>Acyclovir Hydration:</strong> Prevent acute tubular kidney injury with high-volume IV normal saline.<br>
+              &bull; <strong>Sofosbuvir + Amiodarone:</strong> Absolute contraindication due to lethal cardiac arrest/bradycardia risk.
+            </p>
+          </div>
         </div>
       </section>
 
-      <!-- ================= 6. OTHER HIV CLASSES ================= -->
-      <section class="drug-class-card">
-        <h2>6. HIV NNRTIs, Protease Inhibitors &amp; INSTIs</h2>
-        <p class="section-intro">Target non-nucleoside binding sites, viral protein cleavage, or integration into human chromosomes.</p>
+      <!-- ================= SECTION 6: MASTER SUMMARY TABLE ================= -->
+      <section class="table-card">
+        <h2 style="font-size: 1.45rem; font-weight: 800; color: #1e293b; margin-bottom: 8px;">📊 Master Antiviral Summary &amp; Exam Recap Table</h2>
+        <p class="section-intro">High-yield quick review matching every drug class, representative agents, mechanisms, uses, and primary nursing alerts.</p>
 
-        <!-- FLOWCHART -->
-        <div class="moa-flowcard">
-          <div class="moa-flowcard-title">⚡ Flowchart MOA: Integrase Inhibitor Action (INSTIs)</div>
-          <div class="flow-steps-grid">
-            <div class="flow-step-box">
-              <span class="step-number">1</span>
-              <div class="step-text">Double-Stranded cDNA</div>
-              <div class="step-desc">Reverse transcriptase creates viral cDNA.</div>
-            </div>
-            <div class="flow-step-box block-target">
-              <span class="step-number">2</span>
-              <div class="step-text">Integrase Chelated <span class="exam-badge">IMP FOR EXAM</span></div>
-              <div class="step-desc">INSTI binds magnesium ions in integrase active core.</div>
-            </div>
-            <div class="flow-step-box">
-              <span class="step-number">3</span>
-              <div class="step-text">Integration Prevented</div>
-              <div class="step-desc">Viral DNA cannot splice into human chromosome.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="sub-block">
-          <h4>📂 Drug Classifications &amp; Specific Agents</h4>
-          <div class="subdrug-grid">
-            <div class="subdrug-item">
-              <div class="drug-class-tag">1. Non-Nucleoside RT Inhibitors (NNRTIs)</div>
-              <div>
-                <span class="drug-name-tag">Efavirenz</span>
-                <span class="drug-name-tag">Rilpivirine</span>
-                <span class="drug-name-tag">Nevirapine</span>
-              </div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Bind directly to an allosteric pocket on reverse transcriptase (no phosphorylation required!).</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Vivid dreams/nightmares &amp; insomnia (efavirenz), Stevens-Johnson syndrome rash, hepatotoxicity.</div>
-            </div>
-
-            <div class="subdrug-item">
-              <div class="drug-class-tag">2. Protease Inhibitors (PIs - Ending in "-navir")</div>
-              <div>
-                <span class="drug-name-tag">Darunavir</span>
-                <span class="drug-name-tag">Atazanavir</span>
-                <span class="drug-name-tag">Lopinavir</span>
-              </div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Inhibit HIV protease from chopping Gag-Pol polyproteins into functional units. Causes immature non-infectious virions.</div>
-              <div class="drug-detail-row"><span class="label">ADRs:</span> Hyperglycemia/diabetes, lipodystrophy (buffalo hump), dyslipidemia, hyperbilirubinemia (atazanavir).</div>
-            </div>
-
-            <div class="subdrug-item">
-              <div class="drug-class-tag">3. Integrase Inhibitors (INSTIs - Ending in "-tegravir")</div>
-              <div>
-                <span class="drug-name-tag">Dolutegravir</span>
-                <span class="drug-name-tag">Bictegravir</span>
-                <span class="drug-name-tag">Raltegravir</span>
-              </div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Chelate magnesium metal ions at the active site of HIV integrase, stopping proviral DNA strand transfer into human host chromosomes.</div>
-              <div class="drug-detail-row"><span class="label">Uses:</span> Preferred frontline anchor class for HIV treatment.</div>
-            </div>
-
-            <div class="subdrug-item">
-              <div class="drug-class-tag">4. Pharmacokinetic Boosters</div>
-              <div>
-                <span class="drug-name-tag">Ritonavir</span>
-                <span class="drug-name-tag">Cobicistat</span>
-              </div>
-              <div class="drug-detail-row"><span class="label">MOA:</span> Potent CYP3A4 inhibitors used at sub-therapeutic doses to boost serum levels of co-administered protease inhibitors or integrase inhibitors.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="warning-box">
-          <h4>🚫 Critical Nursing Exam Warnings <span class="exam-badge">IMP FOR EXAM</span></h4>
-          <p>&bull; <strong>Hepatitis B Reactivation:</strong> Always test patients for Hepatitis B before starting or stopping HIV regimens containing Tenofovir, Lamivudine, or Emtricitabine!<br>
-          &bull; <strong>HLA-B*5701 Screening:</strong> Mandatory before giving Abacavir.<br>
-          &bull; <strong>Acyclovir Hydration:</strong> Run IV saline to prevent renal crystal precipitation.<br>
-          &bull; <strong>Amiodarone + Sofosbuvir:</strong> Never co-administer (fatal bradycardia risk).</p>
-        </div>
-      </section>
-
-      <!-- ================= 7. MASTER EXAM SUMMARY TABLE SECTION ================= -->
-      <section class="drug-class-card" style="margin-top: 40px;">
-        <h2>7. Master Antiviral Summary Table</h2>
-        <p class="section-intro">Comprehensive high-yield summary table covering categories, drug classes, representative agents, mechanisms of action, clinical uses, and key adverse drug reactions/nursing alerts.</p>
-
-        <div class="table-container">
-          <table class="summary-table">
+        <div class="table-responsive">
+          <table>
             <thead>
               <tr>
                 <th>Category</th>
                 <th>Drug Class</th>
                 <th>Representative Drugs</th>
-                <th>Mechanism of Action</th>
+                <th>Primary Mechanism of Action</th>
                 <th>Primary Clinical Uses</th>
-                <th>Key ADRs / Nursing Alerts</th>
+                <th>Key ADRs &amp; Nursing Alerts</th>
               </tr>
             </thead>
             <tbody>
@@ -1099,105 +751,41 @@
                 <td><strong>Respiratory</strong></td>
                 <td>Neuraminidase Inhibitors</td>
                 <td>Oseltamivir, Zanamivir</td>
-                <td>Prevents viral release from sialic acid</td>
-                <td>Influenza A &amp; B (within 48 hrs)</td>
-                <td>Nausea, bronchospasm (Zanamivir)</td>
+                <td>Prevents viral release from sialic acid receptors</td>
+                <td>Influenza A &amp; B (within 48 hours)</td>
+                <td>Nausea, delirium; start early</td>
               </tr>
               <tr>
-                <td><strong>Respiratory</strong></td>
-                <td>M2 Channel Blockers</td>
-                <td>Amantadine, Rimantadine</td>
-                <td>Blocks viral uncoating inside host cell</td>
-                <td>Influenza A (Legacy)</td>
-                <td>CNS effects (dizziness, insomnia)</td>
+                <td><strong>HIV Core</strong></td>
+                <td>NRTIs / NtRTIs</td>
+                <td>Abacavir, Tenofovir, Zidovudine</td>
+                <td>Fake nucleoside/tide causes DNA chain termination</td>
+                <td>cART Backbone &amp; PrEP</td>
+                <td>Lactic acidosis, HLA-B*5701 test for Abacavir</td>
               </tr>
               <tr>
-                <td><strong>HIV</strong></td>
-                <td>NRTIs</td>
-                <td>Zidovudine, Abacavir, Emtricitabine</td>
-                <td>Fake nucleosides cause chain termination</td>
-                <td>cART Backbone for HIV-1</td>
-                <td>Lactic acidosis, HLA-B*5701 alert (Abacavir)</td>
-              </tr>
-              <tr>
-                <td><strong>HIV</strong></td>
-                <td>NtRTI</td>
-                <td>Tenofovir (TDF / TAF)</td>
-                <td>Fake nucleotide causes chain termination</td>
-                <td>HIV cART &amp; Hepatitis B</td>
-                <td>Fanconi syndrome / bone loss (TDF)</td>
-              </tr>
-              <tr>
-                <td><strong>HIV</strong></td>
-                <td>NNRTIs</td>
-                <td>Efavirenz, Rilpivirine</td>
-                <td>Allosteric non-competitive RT block</td>
-                <td>cART for HIV-1</td>
-                <td>Vivid dreams (Efavirenz), SJS rash</td>
-              </tr>
-              <tr>
-                <td><strong>HIV</strong></td>
-                <td>Integrase Inhibitors</td>
-                <td>Bictegravir, Dolutegravir</td>
-                <td>Chelates Mg²⁺ to stop strand transfer</td>
-                <td>Frontline HIV Treatment</td>
-                <td>Weight gain, insomnia, headache</td>
-              </tr>
-              <tr>
-                <td><strong>HIV</strong></td>
-                <td>Protease Inhibitors</td>
-                <td>Darunavir, Atazanavir</td>
-                <td>Blocks cleavage of Gag-Pol polyprotein</td>
-                <td>Treatment-experienced HIV</td>
-                <td>Hyperglycemia, lipodystrophy, jaundice</td>
-              </tr>
-              <tr>
-                <td><strong>Hepatitis B</strong></td>
-                <td>HBV Polymerase Blockers</td>
-                <td>Entecavir, Tenofovir</td>
-                <td>Blocks HBV priming &amp; DNA elongation</td>
-                <td>Chronic Hepatitis B</td>
-                <td>Creatine kinase rise, renal toxicity</td>
-              </tr>
-              <tr>
-                <td><strong>Hepatitis C</strong></td>
-                <td>NS5B Polymerase Inhibitor</td>
-                <td>Sofosbuvir (-buvir)</td>
-                <td>Blocks HCV RNA-dependent RNA polymerase</td>
-                <td>Pan-genotypic HCV Cure</td>
-                <td>Severe bradycardia with Amiodarone!</td>
-              </tr>
-              <tr>
-                <td><strong>Hepatitis C</strong></td>
-                <td>NS5A Complex Inhibitor</td>
-                <td>Ledipasvir, Velpatasvir (-asvir)</td>
-                <td>Blocks RNA replication complex</td>
-                <td>Chronic HCV Combination</td>
-                <td>Headache, fatigue, nausea</td>
-              </tr>
-              <tr>
-                <td><strong>Hepatitis C</strong></td>
-                <td>NS3/4A Protease Inhibitor</td>
-                <td>Glecaprevir (-previr)</td>
-                <td>Blocks polyprotein cleavage</td>
-                <td>Chronic HCV Combination</td>
-                <td>Bilirubin elevation, nausea</td>
+                <td><strong>Hepatitis</strong></td>
+                <td>HCV DAAs</td>
+                <td>Sofosbuvir, Ledipasvir, Glecaprevir</td>
+                <td>Inhibits NS5B polymerase, NS5A, and protease</td>
+                <td>Curative treatment for chronic HCV</td>
+                <td>Fatigue; <mark style="background:#fef08a;">NO Amiodarone with Sofosbuvir</mark></td>
               </tr>
               <tr>
                 <td><strong>Herpes / CMV</strong></td>
-                <td>Thymidine Kinase-Dependent</td>
-                <td>Acyclovir, Valacyclovir</td>
-                <td>Activated by TK; stops DNA polymerase</td>
-                <td>Genital HSV, VZV Shingles</td>
-                <td>Crystalline nephropathy (hydrate IV!)</td>
+                <td>Kinase-Dependent Analogs</td>
+                <td>Acyclovir, Ganciclovir</td>
+                <td>Inhibits viral DNA polymerase after kinase activation</td>
+                <td>Genital HSV, Shingles, CMV Retinitis</td>
+                <td>Crystalline nephropathy (hydrate IV), bone marrow suppression</td>
               </tr>
               <tr>
-                <td><strong>Herpes / CMV</strong></td>
-                <td>UL97 Kinase-Dependent</td>
-                <td>Ganciclovir, Valganciclovir</td>
-                <td>Activated by UL97; stops CMV DNA poly</td>
-                <td>Severe CMV Retinitis</td>
-                <td>Severe bone marrow suppression</td>
+                <td><strong>Advanced HIV</strong></td>
+                <td>INSTIs &amp; PIs</td>
+                <td>Dolutegravir, Darunavir</td>
+                <td>Chelates Mg²⁺ (INSTI) or blocks protein cleavage (PI)</td>
+                <td>Frontline &amp; Salvage HIV cART</td>
+                <td>Insomnia, hyperglycemia, lipodystrophy</td>
               </tr>
             </tbody>
           </table>
@@ -1205,240 +793,8 @@
       </section>
 
     </main>
+
   </div>
-
-  <!-- ================= MASTER SUMMARY TABLE MODAL ================= -->
-  <div class="modal-overlay" id="tableModal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3>📊 Master Antiviral Summary Table</h3>
-        <button class="close-btn" onclick="toggleModal('tableModal')">&times;</button>
-      </div>
-      <div class="modal-body">
-        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;">High-yield table matching all categories, drugs, MOAs, primary clinical uses, and key nursing ADR alerts.</p>
-        <div class="table-container">
-          <table class="summary-table">
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>Drug Class</th>
-                <th>Representative Drugs</th>
-                <th>Mechanism of Action</th>
-                <th>Primary Clinical Uses</th>
-                <th>Key ADRs / Nursing Alerts</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Respiratory</strong></td>
-                <td>Neuraminidase Inhibitors</td>
-                <td>Oseltamivir, Zanamivir</td>
-                <td>Prevents viral release from sialic acid</td>
-                <td>Influenza A &amp; B (within 48 hrs)</td>
-                <td>Nausea, bronchospasm (Zanamivir)</td>
-              </tr>
-              <tr>
-                <td><strong>Respiratory</strong></td>
-                <td>M2 Channel Blockers</td>
-                <td>Amantadine, Rimantadine</td>
-                <td>Blocks viral uncoating inside host cell</td>
-                <td>Influenza A (Legacy)</td>
-                <td>CNS effects (dizziness, insomnia)</td>
-              </tr>
-              <tr>
-                <td><strong>HIV</strong></td>
-                <td>NRTIs</td>
-                <td>Zidovudine, Abacavir, Emtricitabine</td>
-                <td>Fake nucleosides cause chain termination</td>
-                <td>cART Backbone for HIV-1</td>
-                <td>Lactic acidosis, HLA-B*5701 alert (Abacavir)</td>
-              </tr>
-              <tr>
-                <td><strong>HIV</strong></td>
-                <td>NtRTI</td>
-                <td>Tenofovir (TDF / TAF)</td>
-                <td>Fake nucleotide causes chain termination</td>
-                <td>HIV cART &amp; Hepatitis B</td>
-                <td>Fanconi syndrome / bone loss (TDF)</td>
-              </tr>
-              <tr>
-                <td><strong>HIV</strong></td>
-                <td>NNRTIs</td>
-                <td>Efavirenz, Rilpivirine</td>
-                <td>Allosteric non-competitive RT block</td>
-                <td>cART for HIV-1</td>
-                <td>Vivid dreams (Efavirenz), SJS rash</td>
-              </tr>
-              <tr>
-                <td><strong>HIV</strong></td>
-                <td>Integrase Inhibitors</td>
-                <td>Bictegravir, Dolutegravir</td>
-                <td>Chelates Mg²⁺ to stop strand transfer</td>
-                <td>Frontline HIV Treatment</td>
-                <td>Weight gain, insomnia, headache</td>
-              </tr>
-              <tr>
-                <td><strong>HIV</strong></td>
-                <td>Protease Inhibitors</td>
-                <td>Darunavir, Atazanavir</td>
-                <td>Blocks cleavage of Gag-Pol polyprotein</td>
-                <td>Treatment-experienced HIV</td>
-                <td>Hyperglycemia, lipodystrophy, jaundice</td>
-              </tr>
-              <tr>
-                <td><strong>Hepatitis B</strong></td>
-                <td>HBV Polymerase Blockers</td>
-                <td>Entecavir, Tenofovir</td>
-                <td>Blocks HBV priming &amp; DNA elongation</td>
-                <td>Chronic Hepatitis B</td>
-                <td>Creatine kinase rise, renal toxicity</td>
-              </tr>
-              <tr>
-                <td><strong>Hepatitis C</strong></td>
-                <td>NS5B Polymerase Inhibitor</td>
-                <td>Sofosbuvir (-buvir)</td>
-                <td>Blocks HCV RNA-dependent RNA polymerase</td>
-                <td>Pan-genotypic HCV Cure</td>
-                <td>Severe bradycardia with Amiodarone!</td>
-              </tr>
-              <tr>
-                <td><strong>Hepatitis C</strong></td>
-                <td>NS5A Complex Inhibitor</td>
-                <td>Ledipasvir, Velpatasvir (-asvir)</td>
-                <td>Blocks RNA replication complex</td>
-                <td>Chronic HCV Combination</td>
-                <td>Headache, fatigue, nausea</td>
-              </tr>
-              <tr>
-                <td><strong>Hepatitis C</strong></td>
-                <td>NS3/4A Protease Inhibitor</td>
-                <td>Glecaprevir (-previr)</td>
-                <td>Blocks polyprotein cleavage</td>
-                <td>Chronic HCV Combination</td>
-                <td>Bilirubin elevation, nausea</td>
-              </tr>
-              <tr>
-                <td><strong>Herpes / CMV</strong></td>
-                <td>Thymidine Kinase-Dependent</td>
-                <td>Acyclovir, Valacyclovir</td>
-                <td>Activated by TK; stops DNA polymerase</td>
-                <td>Genital HSV, VZV Shingles</td>
-                <td>Crystalline nephropathy (hydrate IV!)</td>
-              </tr>
-              <tr>
-                <td><strong>Herpes / CMV</strong></td>
-                <td>UL97 Kinase-Dependent</td>
-                <td>Ganciclovir, Valganciclovir</td>
-                <td>Activated by UL97; stops CMV DNA poly</td>
-                <td>Severe CMV Retinitis</td>
-                <td>Severe bone marrow suppression</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ================= CLASSIFICATION TREE MODAL ================= -->
-  <div class="modal-overlay" id="treeModal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3>🌳 Antiviral Classification Tree</h3>
-        <button class="close-btn" onclick="toggleModal('treeModal')">&times;</button>
-      </div>
-      <div class="modal-body">
-        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Interactive visual tree hierarchy breakdown of all classes and drugs.</p>
-        <div class="tree-container">
-          <div class="tree-node">
-            <div class="tree-title">🫁 1. Respiratory Viruses</div>
-            <div class="tree-sublist">
-              <span class="drug-class-tag">Neuraminidase: Oseltamivir</span>
-              <span class="drug-class-tag">Endonuclease: Baloxavir</span>
-              <span class="drug-class-tag">M2 Channel: Amantadine</span>
-              <span class="drug-class-tag">RSV F-Protein: Palivizumab</span>
-            </div>
-          </div>
-          <div class="tree-node">
-            <div class="tree-title">🎗️ 2. Human Immunodeficiency Virus (HIV)</div>
-            <div class="tree-sublist">
-              <span class="drug-class-tag">NRTIs: Abacavir, Zidovudine, Emtricitabine</span>
-              <span class="drug-class-tag">NtRTI: Tenofovir (TDF/TAF)</span>
-              <span class="drug-class-tag">NNRTIs: Efavirenz, Rilpivirine</span>
-              <span class="drug-class-tag">INSTIs: Bictegravir, Dolutegravir</span>
-              <span class="drug-class-tag">Protease Inhibitors: Darunavir, Atazanavir</span>
-            </div>
-          </div>
-          <div class="tree-node">
-            <div class="tree-title">🩺 3. Hepatitis B Virus (HBV)</div>
-            <div class="tree-sublist">
-              <span class="drug-class-tag">Polymerase Inhibitors: Entecavir, Tenofovir, Adefovir</span>
-              <span class="drug-class-tag">Cytokine: Peginterferon Alfa-2a</span>
-            </div>
-          </div>
-          <div class="tree-node">
-            <div class="tree-title">🧬 4. Hepatitis C Virus (HCV)</div>
-            <div class="tree-sublist">
-              <span class="drug-class-tag">NS5B Polymerase (-buvir): Sofosbuvir</span>
-              <span class="drug-class-tag">NS5A Complex (-asvir): Ledipasvir, Velpatasvir</span>
-              <span class="drug-class-tag">NS3/4A Protease (-previr): Glecaprevir</span>
-            </div>
-          </div>
-          <div class="tree-node">
-            <div class="tree-title">🔬 5. Herpes (HSV/VZV) &amp; Cytomegalovirus (CMV)</div>
-            <div class="tree-sublist">
-              <span class="drug-class-tag">HSV/VZV Kinase-Dependent: Acyclovir, Valacyclovir</span>
-              <span class="drug-class-tag">CMV Kinase-Dependent: Ganciclovir, Valganciclovir</span>
-              <span class="drug-class-tag">Kinase-Independent: Foscarnet, Cidofovir</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    function toggleModal(modalId) {
-      const modal = document.getElementById(modalId);
-      modal.classList.toggle('active');
-    }
-
-    function showStage(stage) {
-      const title = document.getElementById('stageTitle');
-      const desc = document.getElementById('stageDesc');
-      const drugs = document.getElementById('stageDrugs');
-      
-      const buttons = document.querySelectorAll('.stage-btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-
-      if (stage === 'entry') {
-        title.innerText = '1. Attachment & Entry Blockade';
-        desc.innerText = 'Prevents the virus from docking onto host cell receptors or fusing with the cell membrane.';
-        drugs.innerHTML = '<span class="drug-name-tag">Maraviroc (CCR5)</span><span class="drug-name-tag">Enfuvirtide (gp41)</span><span class="drug-name-tag">Palivizumab (RSV F-protein)</span>';
-      } else if (stage === 'uncoating') {
-        title.innerText = '2. Uncoating Blockade';
-        desc.innerText = 'Blocks M2 proton ion channels to stop viral uncoating inside host cytoplasm.';
-        drugs.innerHTML = '<span class="drug-name-tag">Amantadine</span><span class="drug-name-tag">Rimantadine</span>';
-      } else if (stage === 'rt') {
-        title.innerText = '3. Reverse Transcription / Polymerase Blockade';
-        desc.innerText = 'Incorporates fake nucleosides/nucleotides into viral DNA/RNA chains to cause immediate chain termination.';
-        drugs.innerHTML = '<span class="drug-name-tag">NRTIs (Zidovudine, Abacavir)</span><span class="drug-name-tag">NtRTIs (Tenofovir)</span><span class="drug-name-tag">NNRTIs (Efavirenz)</span><span class="drug-name-tag">Acyclovir</span><span class="drug-name-tag">Sofosbuvir</span>';
-      } else if (stage === 'integration') {
-        title.innerText = '4. Integrase Strand Transfer Blockade';
-        desc.innerText = 'Chelates magnesium ions at the integrase catalytic core to prevent viral DNA from splicing into host chromosomes.';
-        drugs.innerHTML = '<span class="drug-name-tag">Bictegravir</span><span class="drug-name-tag">Dolutegravir</span><span class="drug-name-tag">Raltegravir</span>';
-      } else if (stage === 'assembly') {
-        title.innerText = '5. Protease / Assembly Blockade';
-        desc.innerText = 'Inhibits viral protease from chopping polyproteins into functional units, yielding immature non-infectious particles.';
-        drugs.innerHTML = '<span class="drug-name-tag">Darunavir</span><span class="drug-name-tag">Atazanavir</span><span class="drug-name-tag">Glecaprevir (HCV)</span>';
-      } else if (stage === 'release') {
-        title.innerText = '6. Viral Release Blockade';
-        desc.innerText = 'Inhibits neuraminidase to prevent newly built viruses from cleaving sialic acid anchors and spreading.';
-        drugs.innerHTML = '<span class="drug-name-tag">Oseltamivir</span><span class="drug-name-tag">Zanamivir</span>';
-      }
-    }
-  </script>
 
 </body>
 </html>
