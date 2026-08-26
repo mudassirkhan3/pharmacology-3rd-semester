@@ -166,45 +166,57 @@
         </div>
       </div>
 
-      <!-- Classifications Accordion / Cards -->
-      <div class="space-y-3">
-        <!-- Subclass 1 -->
-        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
-          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
-            <span class="flex items-center gap-2"><i data-lucide="wind" class="w-4 h-4 text-brand-600"></i> Neuraminidase Inhibitors</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
-          </button>
-          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
-            <p><strong>Prototype Drugs:</strong> Oseltamivir (Tamiflu), Zanamivir, Peramivir.</p>
-            <p><strong>MOA:</strong> Competitively inhibits viral neuraminidase enzyme, trapping replicated influenza virions at the host cell surface.</p>
-            <p><strong>Clinical Uses:</strong> Treatment &amp; prophylaxis of Influenza A &amp; B (<mark>must be started within 48 hours</mark> of symptom onset).</p>
-            <p><strong>ADRs:</strong> Nausea, vomiting, psychiatric neuropsychiatric events (delirium), and bronchospasm (avoid inhaled zanamivir in asthma/COPD).</p>
+      <!-- Classifications Accordion / Cards (Everything inside class card) -->
+      <div class="space-y-4">
+        <!-- Subclass Card 1 -->
+        <div class="p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+            <h3 class="text-lg font-black text-brand-900 flex items-center gap-2"><i data-lucide="wind" class="w-5 h-5 text-brand-600"></i> Neuraminidase Inhibitors</h3>
+            <span class="px-2.5 py-1 rounded-md bg-brand-100 text-brand-800 text-xs font-bold">Prototype Class</span>
+          </div>
+
+          <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+            <div><strong>Prototype Drugs:</strong> Oseltamivir (Tamiflu), Zanamivir, Peramivir.</div>
+            <div><strong>Mechanism of Action (MOA):</strong> Competitively inhibits viral neuraminidase enzyme, trapping replicated influenza virions at the host cell surface so they cannot spread.</div>
+            <div><strong>Clinical Uses &amp; Indications:</strong> Treatment &amp; prophylaxis of acute Influenza A &amp; B (<mark>must be started within 48 hours</mark> of symptom onset).</div>
+            <div><strong>Adverse Drug Reactions (ADRs):</strong> Nausea, vomiting, psychiatric neuropsychiatric events (delirium), and bronchospasm (avoid inhaled zanamivir in asthma/COPD).</div>
+
+            <!-- Mnemonics Box Inside Card -->
+            <div class="p-4 bg-gradient-to-br from-brand-50 to-teal-50 border border-brand-200 rounded-xl space-y-2 mt-3">
+              <div class="text-xs font-black text-brand-900 flex items-center gap-1.5">
+                <i data-lucide="lightbulb" class="w-4 h-4 text-brand-600"></i> Mnemonics for Neuraminidase Inhibitors
+              </div>
+              <div class="text-xs text-slate-700 space-y-1">
+                <p>• <strong>Uses Mnemonic ("FLU"):</strong> <strong>F</strong>lu prevention &amp; treatment | <strong>L</strong>ung protection | <strong>U</strong>nlocked within 48h limit</p>
+                <p>• <strong>ADR Mnemonic ("VOMIT"):</strong> <strong>V</strong>omiting / nausea | <strong>O</strong>ut-of-body delirium | <strong>M</strong>ental confusion | <strong>I</strong>nritated airways (Zanamivir) | <strong>T</strong>remors</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Subclass 2 -->
-        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
-          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
-            <span class="flex items-center gap-2"><i data-lucide="cpu" class="w-4 h-4 text-brand-600"></i> Cap-Dependent Endonuclease Inhibitor</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
-          </button>
-          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
-            <p><strong>Prototype Drug:</strong> Baloxavir Marboxil.</p>
-            <p><strong>MOA:</strong> Inhibits cap-dependent endonuclease within the viral polymerase complex, halting transcription.</p>
-            <p><strong>Clinical Uses:</strong> Single-dose oral treatment for acute uncomplicated influenza.</p>
-            <p><strong>ADRs:</strong> Diarrhea, bronchitis, nausea, and headache.</p>
+        <!-- Subclass Card 2 -->
+        <div class="p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+            <h3 class="text-lg font-black text-brand-900 flex items-center gap-2"><i data-lucide="cpu" class="w-5 h-5 text-brand-600"></i> Cap-Dependent Endonuclease Inhibitor</h3>
+            <span class="px-2.5 py-1 rounded-md bg-brand-100 text-brand-800 text-xs font-bold">Novel Oral</span>
           </div>
-        </div>
 
-        <!-- Subclass 3 -->
-        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
-          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
-            <span class="flex items-center gap-2"><i data-lucide="shield-alert" class="w-4 h-4 text-brand-600"></i> M2 Ion Channel Blockers &amp; Others</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
-          </button>
-          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
-            <p><strong>Prototype Drugs:</strong> Amantadine, Rimantadine (M2 blockers); Palivizumab (RSV monoclonal antibody); Remdesivir (COVID-19 RdRp inhibitor).</p>
-            <p><strong>MOA &amp; Uses:</strong> Amantadine blocks viral uncoating (rarely used due to resistance). Palivizumab blocks RSV F-protein in preemies. Remdesivir stops viral RNA replication.</p>
+          <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+            <div><strong>Prototype Drug:</strong> Baloxavir Marboxil.</div>
+            <div><strong>Mechanism of Action (MOA):</strong> Inhibits cap-dependent endonuclease within the viral polymerase complex, halting transcription and viral gene expression.</div>
+            <div><strong>Clinical Uses &amp; Indications:</strong> Single-dose oral treatment for acute uncomplicated influenza in patients ages 12 and older.</div>
+            <div><strong>Adverse Drug Reactions (ADRs):</strong> Diarrhea, bronchitis, nausea, and headache.</div>
+
+            <!-- Mnemonics Box Inside Card -->
+            <div class="p-4 bg-gradient-to-br from-brand-50 to-teal-50 border border-brand-200 rounded-xl space-y-2 mt-3">
+              <div class="text-xs font-black text-brand-900 flex items-center gap-1.5">
+                <i data-lucide="lightbulb" class="w-4 h-4 text-brand-600"></i> Mnemonics for Endonuclease Inhibitors
+              </div>
+              <div class="text-xs text-slate-700 space-y-1">
+                <p>• <strong>Uses Mnemonic ("SINGLE"):</strong> <strong>S</strong>ingle oral pill | <strong>I</strong>nfluenza cure | <strong>N</strong>o prolonged dosing | <strong>G</strong>ene transcription stopped | <strong>L</strong>ast-minute relief | <strong>E</strong>ffective quickly</p>
+                <p>• <strong>ADR Mnemonic ("HEAD"):</strong> <strong>H</strong>eadache | <strong>E</strong>mesis | <strong>A</strong>ilment of GI (diarrhea) | <strong>D</strong>iffuse bronchitis</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -222,17 +234,6 @@
           <p class="text-xs text-slate-700"><strong>Indication:</strong> Hospitalized COVID-19 patients.</p>
           <p class="text-xs text-slate-700"><strong>Key ADR:</strong> Elevated ALT/AST liver enzymes.</p>
           <p class="text-xs text-slate-700"><strong>Nursing Pearl:</strong> Monitor renal and hepatic function.</p>
-        </div>
-      </div>
-
-      <!-- Mnemonics Box -->
-      <div class="p-5 bg-gradient-to-br from-brand-50 to-teal-50 border border-brand-200 rounded-2xl space-y-2 shadow-sm">
-        <div class="text-sm font-black text-brand-900 flex items-center gap-2">
-          <i data-lucide="lightbulb" class="w-4 h-4 text-brand-600"></i> Mnemonics for Respiratory Antivirals
-        </div>
-        <div class="text-xs sm:text-sm text-slate-700 space-y-1">
-          <p>• <strong>Uses Mnemonic ("FLU-DEFEND"):</strong> <strong>F</strong>lue symptoms treated early | <strong>L</strong>ung protection | <strong>U</strong>ncoating blocked | <strong>D</strong>ays shortened (within 48h) | <strong>E</strong>ndonuclease inhibited</p>
-          <p>• <strong>ADR Mnemonic ("NAUSEA"):</strong> <strong>N</strong>europsychiatric risk | <strong>A</strong>bdominal upset | <strong>U</strong>pper airway irritation (Zanamivir) | <strong>S</strong>eizures (rare) | <strong>E</strong>mesis | <strong>A</strong>nxiety</p>
         </div>
       </div>
     </section>
@@ -276,18 +277,30 @@
         </div>
       </div>
 
-      <!-- Classifications Accordion -->
-      <div class="space-y-3">
-        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
-          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
-            <span class="flex items-center gap-2"><i data-lucide="layers" class="w-4 h-4 text-brand-600"></i> Nucleoside/Nucleotide RT Inhibitors (NRTIs &amp; NtRTIs)</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
-          </button>
-          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
-            <p><strong>Prototype Drugs:</strong> Zidovudine (AZT), Lamivudine (3TC), Emtricitabine (FTC), Abacavir (ABC), Tenofovir (TDF / TAF).</p>
-            <p><strong>MOA:</strong> Competitive inhibition of HIV reverse transcriptase and viral DNA chain termination.</p>
-            <p><strong>Clinical Uses:</strong> Cornerstone backbone of combination antiretroviral therapy (cART) for HIV-1 and chronic Hepatitis B.</p>
-            <p><strong>ADRs &amp; Safety:</strong> Lactic acidosis with hepatic steatosis, bone marrow suppression (Zidovudine), and Fanconi syndrome / bone loss (Tenofovir TDF).</p>
+      <!-- Classifications Card -->
+      <div class="space-y-4">
+        <div class="p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+            <h3 class="text-lg font-black text-brand-900 flex items-center gap-2"><i data-lucide="layers" class="w-5 h-5 text-brand-600"></i> Nucleoside &amp; Nucleotide RT Inhibitors (NRTIs &amp; NtRTIs)</h3>
+            <span class="px-2.5 py-1 rounded-md bg-brand-100 text-brand-800 text-xs font-bold">HIV Backbone</span>
+          </div>
+
+          <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+            <div><strong>Prototype Drugs:</strong> Zidovudine (AZT), Lamivudine (3TC), Emtricitabine (FTC), Abacavir (ABC), Tenofovir (TDF / TAF).</div>
+            <div><strong>Mechanism of Action (MOA):</strong> Competitive inhibition of HIV reverse transcriptase and viral DNA chain termination via fake nucleotide incorporation.</div>
+            <div><strong>Clinical Uses &amp; Indications:</strong> Cornerstone backbone of combination antiretroviral therapy (cART) for HIV-1 infection, HIV pre-exposure prophylaxis (PrEP), and chronic Hepatitis B suppression.</div>
+            <div><strong>Adverse Drug Reactions (ADRs):</strong> Lactic acidosis with severe hepatic steatosis, bone marrow suppression (Zidovudine macrocytic anemia), Fanconi syndrome / proximal renal tubular failure, and bone mineral density loss (Tenofovir TDF).</div>
+
+            <!-- Mnemonics Box Inside Card -->
+            <div class="p-4 bg-gradient-to-br from-brand-50 to-teal-50 border border-brand-200 rounded-xl space-y-2 mt-3">
+              <div class="text-xs font-black text-brand-900 flex items-center gap-1.5">
+                <i data-lucide="lightbulb" class="w-4 h-4 text-brand-600"></i> Mnemonics for NRTIs / NtRTIs
+              </div>
+              <div class="text-xs text-slate-700 space-y-1">
+                <p>• <strong>Uses Mnemonic ("BACKBONE"):</strong> <strong>B</strong>uilds cART foundation | <strong>A</strong>ids viral suppression | <strong>C</strong>ombination therapy | <strong>K</strong>ills replication | <strong>B</strong>locks transcriptase | <strong>O</strong>vercomes resistance | <strong>N</strong>ucleoside analogues | <strong>E</strong>ffective immunity</p>
+                <p>• <strong>ADR Mnemonic ("LACTIC"):</strong> <strong>L</strong>actic acidosis | <strong>A</strong>nemia (Zidovudine) | <strong>C</strong>reatinine rise (Tenofovir) | <strong>T</strong>oxicity to mitochondria | <strong>I</strong>nsomnia | <strong>C</strong>ardiac/GI upset</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -305,17 +318,6 @@
           <p class="text-xs text-slate-700"><strong>Indication:</strong> HIV &amp; Hepatitis B suppression.</p>
           <p class="text-xs text-slate-700"><strong>Key ADR:</strong> Nephrotoxicity &amp; osteoporosis.</p>
           <p class="text-xs text-slate-700"><strong>Nursing Pearl:</strong> Monitor serum creatinine and BUN regularly.</p>
-        </div>
-      </div>
-
-      <!-- Mnemonics Box -->
-      <div class="p-5 bg-gradient-to-br from-brand-50 to-teal-50 border border-brand-200 rounded-2xl space-y-2 shadow-sm">
-        <div class="text-sm font-black text-brand-900 flex items-center gap-2">
-          <i data-lucide="lightbulb" class="w-4 h-4 text-brand-600"></i> Mnemonics for NRTIs / NtRTIs
-        </div>
-        <div class="text-xs sm:text-sm text-slate-700 space-y-1">
-          <p>• <strong>Uses Mnemonic ("BACKBONE"):</strong> <strong>B</strong>uilds cART foundation | <strong>A</strong>ids viral suppression | <strong>C</strong>ombination therapy | <strong>K</strong>ills replication | <strong>B</strong>locks transcriptase | <strong>O</strong>vercomes resistance | <strong>N</strong>ucleoside analogues | <strong>E</strong>ffective immunity</p>
-          <p>• <strong>ADR Mnemonic ("LACTIC"):</strong> <strong>L</strong>actic acidosis | <strong>A</strong>nemia (Zidovudine) | <strong>C</strong>reatinine rise (Tenofovir) | <strong>T</strong>oxicity to mitochondria | <strong>I</strong>nsomnia | <strong>C</strong>ardiac/GI upset</p>
         </div>
       </div>
     </section>
@@ -359,18 +361,30 @@
         </div>
       </div>
 
-      <!-- Classifications Accordion -->
-      <div class="space-y-3">
-        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
-          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
-            <span class="flex items-center gap-2"><i data-lucide="activity" class="w-4 h-4 text-brand-600"></i> Hepatitis B &amp; C Regimens</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
-          </button>
-          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
-            <p><strong>Prototype Drugs:</strong> Entecavir, Tenofovir (HBV); Sofosbuvir, Ledipasvir, Glecaprevir (HCV DAAs); Ribavirin.</p>
-            <p><strong>MOA:</strong> Multi-target interruption of viral enzyme synthesis and replication.</p>
-            <p><strong>Clinical Uses:</strong> Chronic Hepatitis B suppression and curative HCV combination therapy.</p>
-            <p><strong>ADRs:</strong> Fatigue, headache, bilirubin spikes, hemolytic anemia (Ribavirin), and severe bradycardia if Sofosbuvir is combined with Amiodarone.</p>
+      <!-- Classifications Card -->
+      <div class="space-y-4">
+        <div class="p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+            <h3 class="text-lg font-black text-brand-900 flex items-center gap-2"><i data-lucide="activity" class="w-5 h-5 text-brand-600"></i> Hepatitis B &amp; C Antiviral Agents</h3>
+            <span class="px-2.5 py-1 rounded-md bg-brand-100 text-brand-800 text-xs font-bold">HCV Cure / HBV Control</span>
+          </div>
+
+          <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+            <div><strong>Prototype Drugs:</strong> Entecavir, Tenofovir (HBV); Sofosbuvir, Ledipasvir, Glecaprevir (HCV DAAs); Ribavirin.</div>
+            <div><strong>Mechanism of Action (MOA):</strong> Multi-target interruption of viral enzyme synthesis, replication, and protein cleavage across hepatitis viral strains.</div>
+            <div><strong>Clinical Uses &amp; Indications:</strong> Chronic Hepatitis B viral suppression and curative combination therapy for chronic Hepatitis C across all genotypes (SVR &gt; 95%).</div>
+            <div><strong>Adverse Drug Reactions (ADRs):</strong> Fatigue, headache, mild nausea, serum bilirubin spikes, hemolytic anemia (Ribavirin), and severe symptomatic bradycardia if Sofosbuvir is co-administered with Amiodarone.</div>
+
+            <!-- Mnemonics Box Inside Card -->
+            <div class="p-4 bg-gradient-to-br from-brand-50 to-teal-50 border border-brand-200 rounded-xl space-y-2 mt-3">
+              <div class="text-xs font-black text-brand-900 flex items-center gap-1.5">
+                <i data-lucide="lightbulb" class="w-4 h-4 text-brand-600"></i> Mnemonics for Hepatitis DAAs
+              </div>
+              <div class="text-xs text-slate-700 space-y-1">
+                <p>• <strong>Suffix Mnemonic ("P-A-B"):</strong> <strong>P</strong>revir = Protease | <strong>A</strong>svir = Assembly (NS5A) | <strong>B</strong>uvir = Building block (NS5B Polymerase)</p>
+                <p>• <strong>ADR Mnemonic ("HEPA"):</strong> <strong>H</strong>emolytic anemia (Ribavirin) | <strong>E</strong>nzymes elevated | <strong>P</strong>ain/fatigue | <strong>A</strong>miodarone cardiac hazard</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -388,17 +402,6 @@
           <p class="text-xs text-slate-700"><strong>Indication:</strong> HCV adjunct &amp; viral infections.</p>
           <p class="text-xs text-slate-700"><strong>Key ADR:</strong> Severe hemolytic anemia &amp; teratogenicity.</p>
           <p class="text-xs text-slate-700"><strong>Nursing Pearl:</strong> Pregnancy Category X (requires 2 forms of birth control).</p>
-        </div>
-      </div>
-
-      <!-- Mnemonics Box -->
-      <div class="p-5 bg-gradient-to-br from-brand-50 to-teal-50 border border-brand-200 rounded-2xl space-y-2 shadow-sm">
-        <div class="text-sm font-black text-brand-900 flex items-center gap-2">
-          <i data-lucide="lightbulb" class="w-4 h-4 text-brand-600"></i> Mnemonics for Hepatitis DAAs
-        </div>
-        <div class="text-xs sm:text-sm text-slate-700 space-y-1">
-          <p>• <strong>Suffix Mnemonic ("P-A-B"):</strong> <strong>P</strong>revir = Protease | <strong>A</strong>svir = Assembly (NS5A) | <strong>B</strong>uvir = Building block (NS5B Polymerase)</p>
-          <p>• <strong>ADR Mnemonic ("HEPA"):</strong> <strong>H</strong>emolytic anemia (Ribavirin) | <strong>E</strong>nzymes elevated | <strong>P</strong>ain/fatigue | <strong>A</strong>miodarone cardiac hazard</p>
         </div>
       </div>
     </section>
@@ -442,18 +445,30 @@
         </div>
       </div>
 
-      <!-- Classifications Accordion -->
-      <div class="space-y-3">
-        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
-          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
-            <span class="flex items-center gap-2"><i data-lucide="shield" class="w-4 h-4 text-brand-600"></i> HSV/VZV &amp; CMV Polymerase Inhibitors</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
-          </button>
-          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
-            <p><strong>Prototype Drugs:</strong> Acyclovir, Valacyclovir (HSV/VZV); Ganciclovir, Valganciclovir (CMV); Foscarnet, Cidofovir (Kinase-independent).</p>
-            <p><strong>MOA:</strong> Selective viral DNA chain termination.</p>
-            <p><strong>Clinical Uses:</strong> Genital herpes, shingles, chickenpox, HSV encephalitis, and CMV retinitis in immunocompromised patients.</p>
-            <p><strong>ADRs &amp; Safety:</strong> Crystalline nephropathy with IV Acyclovir (<mark>requires aggressive IV hydration</mark>) and severe bone marrow suppression with Ganciclovir.</p>
+      <!-- Classifications Card -->
+      <div class="space-y-4">
+        <div class="p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+            <h3 class="text-lg font-black text-brand-900 flex items-center gap-2"><i data-lucide="shield" class="w-5 h-5 text-brand-600"></i> HSV/VZV &amp; CMV Polymerase Inhibitors</h3>
+            <span class="px-2.5 py-1 rounded-md bg-brand-100 text-brand-800 text-xs font-bold">Anti-Herpetic</span>
+          </div>
+
+          <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+            <div><strong>Prototype Drugs:</strong> Acyclovir, Valacyclovir (HSV/VZV); Ganciclovir, Valganciclovir (CMV); Foscarnet, Cidofovir (Kinase-independent).</div>
+            <div><strong>Mechanism of Action (MOA):</strong> Selective viral DNA chain termination via kinase-dependent phosphorylation and competitive viral DNA polymerase inhibition.</div>
+            <div><strong>Clinical Uses &amp; Indications:</strong> Management of genital herpes simplex outbreaks, herpes zoster (shingles), chickenpox, HSV encephalitis, mucocutaneous herpes in immunocompromised hosts, and severe CMV retinitis.</div>
+            <div><strong>Adverse Drug Reactions (ADRs):</strong> Crystalline nephropathy and acute kidney injury with IV Acyclovir (<mark>requires aggressive IV saline hydration</mark>), severe bone marrow suppression (neutropenia/thrombocytopenia) with Ganciclovir, and electrolyte wasting with Foscarnet.</div>
+
+            <!-- Mnemonics Box Inside Card -->
+            <div class="p-4 bg-gradient-to-br from-brand-50 to-teal-50 border border-brand-200 rounded-xl space-y-2 mt-3">
+              <div class="text-xs font-black text-brand-900 flex items-center gap-1.5">
+                <i data-lucide="lightbulb" class="w-4 h-4 text-brand-600"></i> Mnemonics for Herpes/CMV Agents
+              </div>
+              <div class="text-xs text-slate-700 space-y-1">
+                <p>• <strong>Uses Mnemonic ("HERPES"):</strong> <strong>H</strong>erpes labialis/genitalis | <strong>E</strong>ncephalitis | <strong>R</strong>etinitis (CMV) | <strong>P</strong>ox (chickenpox/shingles) | <strong>E</strong>pstein-barr adjunct | <strong>S</strong>uppression of outbreaks</p>
+                <p>• <strong>ADR Mnemonic ("CRYSTAL"):</strong> <strong>C</strong>rystals in renal tubules (Acyclovir) | <strong>R</strong>educed blood counts (Ganciclovir) | <strong>Y</strong>ields electrolyte waste (Foscarnet) | <strong>S</strong>eizures | <strong>T</strong>oxicity to kidneys | <strong>A</strong>nuria risk | <strong>L</strong>ethargy</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -471,17 +486,6 @@
           <p class="text-xs text-slate-700"><strong>Indication:</strong> CMV retinitis &amp; prophylaxis.</p>
           <p class="text-xs text-slate-700"><strong>Key ADR:</strong> Severe bone marrow suppression (leukopenia/thrombocytopenia).</p>
           <p class="text-xs text-slate-700"><strong>Nursing Pearl:</strong> Monitor CBC with differential weekly.</p>
-        </div>
-      </div>
-
-      <!-- Mnemonics Box -->
-      <div class="p-5 bg-gradient-to-br from-brand-50 to-teal-50 border border-brand-200 rounded-2xl space-y-2 shadow-sm">
-        <div class="text-sm font-black text-brand-900 flex items-center gap-2">
-          <i data-lucide="lightbulb" class="w-4 h-4 text-brand-600"></i> Mnemonics for Herpes/CMV Agents
-        </div>
-        <div class="text-xs sm:text-sm text-slate-700 space-y-1">
-          <p>• <strong>Uses Mnemonic ("HERPES"):</strong> <strong>H</strong>erpes labialis/genitalis | <strong>E</strong>ncephalitis | <strong>R</strong>etinitis (CMV) | <strong>P</strong>ox (chickenpox/shingles) | <strong>E</strong>pstein-barr adjunct | <strong>S</strong>uppression of outbreaks</p>
-          <p>• <strong>ADR Mnemonic ("CRYSTAL"):</strong> <strong>C</strong>rystals in renal tubules (Acyclovir) | <strong>R</strong>educed blood counts (Ganciclovir) | <strong>Y</strong>ields electrolyte waste (Foscarnet) | <strong>S</strong>eizures | <strong>T</strong>oxicity to kidneys | <strong>A</strong>nuria risk | <strong>L</strong>ethargy</p>
         </div>
       </div>
     </section>
@@ -525,18 +529,30 @@
         </div>
       </div>
 
-      <!-- Classifications Accordion -->
-      <div class="space-y-3">
-        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
-          <button onclick="toggleCard(this)" class="w-full p-4 text-left font-bold text-sm sm:text-base text-slate-900 flex items-center justify-between bg-white hover:bg-slate-50 transition active:scale-[0.99]">
-            <span class="flex items-center gap-2"><i data-lucide="git-branch" class="w-4 h-4 text-brand-600"></i> INSTIs, PIs &amp; NNRTIs</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
-          </button>
-          <div class="hidden p-4 border-t border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-700 space-y-2">
-            <p><strong>Prototype Drugs:</strong> Dolutegravir, Bictegravir (INSTIs); Darunavir, Atazanavir (PIs); Efavirenz, Rilpivirine (NNRTIs); Ritonavir / Cobicistat (Boosters).</p>
-            <p><strong>MOA:</strong> INSTIs stop strand transfer; PIs stop polyprotein cleavage yielding non-infectious virions; NNRTIs bind allosterically to RT.</p>
-            <p><strong>Clinical Uses:</strong> Frontline and salvage combination antiretroviral therapy (cART).</p>
-            <p><strong>ADRs:</strong> Vivid dreams/insomnia (Efavirenz), hyperglycemia, lipodystrophy ("buffalo hump"), and dyslipidemia (PIs).</p>
+      <!-- Classifications Card -->
+      <div class="space-y-4">
+        <div class="p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+            <h3 class="text-lg font-black text-brand-900 flex items-center gap-2"><i data-lucide="git-branch" class="w-5 h-5 text-brand-600"></i> INSTIs, Protease Inhibitors &amp; NNRTIs</h3>
+            <span class="px-2.5 py-1 rounded-md bg-brand-100 text-brand-800 text-xs font-bold">Combination Regimens</span>
+          </div>
+
+          <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+            <div><strong>Prototype Drugs:</strong> Dolutegravir, Bictegravir (INSTIs); Darunavir, Atazanavir (PIs); Efavirenz, Rilpivirine (NNRTIs); Ritonavir / Cobicistat (Boosters).</div>
+            <div><strong>Mechanism of Action (MOA):</strong> INSTIs chelate magnesium ions to stop strand transfer; PIs block viral protease from cleaving polyproteins into mature units; NNRTIs bind allosterically to reverse transcriptase.</div>
+            <div><strong>Clinical Uses &amp; Indications:</strong> Frontline anchor regimens (INSTIs) and salvage combination antiretroviral therapy (cART) for treatment-experienced HIV-1 patients.</div>
+            <div><strong>Adverse Drug Reactions (ADRs):</strong> Vivid dreams, insomnia, rash (Efavirenz / NNRTIs), hyperglycemia, dyslipidemia, and lipodystrophy / "buffalo hump" (Protease Inhibitors).</div>
+
+            <!-- Mnemonics Box Inside Card -->
+            <div class="p-4 bg-gradient-to-br from-brand-50 to-teal-50 border border-brand-200 rounded-xl space-y-2 mt-3">
+              <div class="text-xs font-black text-brand-900 flex items-center gap-1.5">
+                <i data-lucide="lightbulb" class="w-4 h-4 text-brand-600"></i> Mnemonics for Advanced HIV Classes
+              </div>
+              <div class="text-xs text-slate-700 space-y-1">
+                <p>• <strong>Suffix Mnemonic ("T-N-P"):</strong> <strong>T</strong>egravir = Integrase (-tegravir) | <strong>N</strong>avir = Protease (-navir) | <strong>V</strong>irenz = NNRTI (-virenz)</p>
+                <p>• <strong>ADR Mnemonic ("SUGAR"):</strong> <strong>S</strong>ugar elevated (hyperglycemia from PIs) | <strong>U</strong>sual lipid increase | <strong>G</strong>ain of fat (buffalo hump) | <strong>A</strong>nomaly in dreams (Efavirenz) | <strong>R</strong>ash (SJS)</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -554,17 +570,6 @@
           <p class="text-xs text-slate-700"><strong>Indication:</strong> Treatment-experienced HIV.</p>
           <p class="text-xs text-slate-700"><strong>Key ADR:</strong> Hyperglycemia &amp; fat redistribution.</p>
           <p class="text-xs text-slate-700"><strong>Nursing Pearl:</strong> Co-administered with Ritonavir or Cobicistat booster.</p>
-        </div>
-      </div>
-
-      <!-- Mnemonics Box -->
-      <div class="p-5 bg-gradient-to-br from-brand-50 to-teal-50 border border-brand-200 rounded-2xl space-y-2 shadow-sm">
-        <div class="text-sm font-black text-brand-900 flex items-center gap-2">
-          <i data-lucide="lightbulb" class="w-4 h-4 text-brand-600"></i> Mnemonics for Advanced HIV Classes
-        </div>
-        <div class="text-xs sm:text-sm text-slate-700 space-y-1">
-          <p>• <strong>Suffix Mnemonic ("T-N-P"):</strong> <strong>T</strong>egravir = Integrase (-tegravir) | <strong>N</strong>avir = Protease (-navir) | <strong>V</strong>irenz = NNRTI (-virenz)</p>
-          <p>• <strong>ADR Mnemonic ("SUGAR"):</strong> <strong>S</strong>ugar elevated (hyperglycemia from PIs) | <strong>U</strong>sual lipid increase | <strong>G</strong>ain of fat (buffalo hump) | <strong>A</strong>nomaly in dreams (Efavirenz) | <strong>R</strong>ash (SJS)</p>
         </div>
       </div>
     </section>
