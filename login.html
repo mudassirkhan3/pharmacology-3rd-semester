@@ -107,16 +107,12 @@
       <p id="headerSubtitle">Sign in with your email &amp; password</p>
     </div>
 
-    <!-- Switch Tabs for Login / Register -->
     <div class="tab-switcher">
       <button type="button" id="loginTabBtn" class="tab-btn active" onclick="switchMode('login')">Log In</button>
       <button type="button" id="registerTabBtn" class="tab-btn" onclick="switchMode('register')">Register</button>
     </div>
 
-    <!-- Auth Form -->
     <form id="authForm" onsubmit="handleAuth(event)">
-      
-      <!-- Extra fields shown only during Register -->
       <div id="registerFields" class="hidden">
         <div class="form-group">
           <label>Full Name</label>
@@ -140,7 +136,6 @@
         </div>
       </div>
 
-      <!-- Common Field: Email -->
       <div class="form-group">
         <label>Student Email</label>
         <input type="email" id="studentEmail" class="form-input" placeholder="e.g. student@nursing.edu" required>
@@ -151,7 +146,6 @@
         <input type="password" id="studentPassword" class="form-input" placeholder="Enter your password" required>
       </div>
 
-      <!-- Forgot Password Link (Only visible in Login mode) -->
       <div id="forgotPasswordRow" class="forgot-row">
         <a class="forgot-link" onclick="openForgotModal()">Forgot Password?</a>
       </div>
@@ -159,7 +153,6 @@
       <button type="submit" id="submitBtn" class="auth-btn">Log In to Dashboard →</button>
     </form>
 
-    <!-- Need Help? Ask Admin WhatsApp Pop Button -->
     <a href="https://wa.me/923241064487?text=Hello%20Mudassir,%20I%20need%20help%20with%20my%20Pharmacology-I%20portal%20account." target="_blank" class="help-admin-btn">
       <span class="whatsapp-icon">💬</span> Need Help? Ask Admin
     </a>
@@ -169,7 +162,6 @@
     </div>
   </div>
 
-  <!-- Secure Cloud Forgot Password Modal -->
   <div id="forgotModal" class="modal-backdrop">
     <div class="modal-box">
       <h3>Reset Password</h3>
@@ -199,8 +191,6 @@
 
   <script>
     let currentMode = 'login';
-    
-    // GOOGLE APPS SCRIPT WEB APP URL INTEGRATED
     const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycby_9qujjFnAovZHwnKQML2t9nGjKZkMnI9Wd5574oedSLAxkEH_2LMBM5rvH-u62B3Mow/exec';
 
     window.onload = function() {
@@ -357,6 +347,5 @@
       }
     }
   </script>
-
 </body>
 </html>
