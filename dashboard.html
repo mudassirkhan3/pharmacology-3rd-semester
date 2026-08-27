@@ -543,7 +543,7 @@
         
         <div class="progress-container">
           <div class="progress-header">
-            <span id="progressText">Tasks &amp; Units Completed: 0 percent</span>
+            <span id="progressText">Total Academic Progress: 0 percent</span>
             <span id="progressPercentNum">0%</span>
           </div>
           <div class="progress-bar-bg">
@@ -551,16 +551,16 @@
           </div>
           <div class="progress-stats-grid">
             <div class="stat-box">
-              <div class="stat-num" id="completedCountNum">0 / 3</div>
-              <div class="stat-label">Tasks Done</div>
-            </div>
-            <div class="stat-box">
               <div class="stat-num" id="unitsReadNum">0 / 7</div>
               <div class="stat-label">Units Read</div>
             </div>
             <div class="stat-box">
               <div class="stat-num" id="quizScoreNum">0 / 5</div>
               <div class="stat-label">Daily MCQs Mastered</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num" id="completedCountNum">0%</div>
+              <div class="stat-label">Overall Completion</div>
             </div>
           </div>
         </div>
@@ -627,12 +627,10 @@
     document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
     
     document.addEventListener('keydown', function(e) {
-      // Block F12
       if (e.key === 'F12') {
         e.preventDefault();
         return false;
       }
-      // Block Ctrl+U (View Source) and Ctrl+Shift+I / J / C (DevTools)
       if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S')) {
         e.preventDefault();
         return false;
@@ -643,7 +641,6 @@
       }
     });
 
-    // Active debugger trap to deter console inspection
     setInterval(function() {
       var before = new Date().getTime();
       debugger;
@@ -788,12 +785,18 @@
       ]
     ];
 
+    // Expanded High-Yield Nursing Pharmacology MCQ Bank (Guarantees robust daily 5 questions)
     var fullMCQBank = [
-      { q: "Which medication is classified as an opioid receptor agonist used specifically for acute diarrhea?", opts: ["Loperamide", "Bisacodyl", "Omeprazole", "Fluconazole"], correct: 0, reason: "Loperamide acts on gut opioid receptors to inhibit peristalsis and prolong transit time without central nervous system opioid effects." },
+      { q: "Which medication is classified as an opioid receptor agonist used specifically for acute non-specific diarrhea?", opts: ["Loperamide", "Bisacodyl", "Omeprazole", "Fluconazole"], correct: 0, reason: "Loperamide acts on gut opioid receptors to inhibit peristalsis and prolong transit time without central nervous system opioid effects." },
       { q: "Acyclovir exerts its antiviral mechanism of action primarily by:", opts: ["Inhibiting viral neuraminidase", "Inhibiting viral DNA polymerase after phosphorylation", "Neutralizing stomach acid", "Chelating iron"], correct: 1, reason: "Acyclovir is phosphorylated by viral thymidine kinase and then selectively inhibits viral DNA polymerase." },
       { q: "What is the primary pharmacological class and clinical use of Fluconazole?", opts: ["Antibiotic for sepsis", "Antiviral for influenza", "Antifungal (Triazole) for candidiasis", "Laxative for constipation"], correct: 2, reason: "Fluconazole is a triazole antifungal that inhibits CYP450 sterol demethylation to treat fungal infections." },
       { q: "Which of the following chemotherapeutic agents requires concurrent administration of Mesna to prevent hemorrhagic cystitis?", opts: ["Cisplatin", "Cyclophosphamide", "Doxorubicin", "Vincristine"], correct: 1, reason: "Cyclophosphamide metabolizes into acrolein, which causes hemorrhagic cystitis; Mesna binds and neutralizes acrolein in the bladder." },
-      { q: "What is the primary antidote for acute Heparin-induced severe hemorrhage?", opts: ["Vitamin K", "Protamine Sulfate", "Leucovorin", "Mesna"], correct: 1, reason: "Protamine Sulfate binds directly to heparin to form a stable salt complex, instantly neutralizing its anticoagulant activity." }
+      { q: "What is the primary antidote for acute Heparin-induced severe hemorrhage?", opts: ["Vitamin K", "Protamine Sulfate", "Leucovorin", "Mesna"], correct: 1, reason: "Protamine Sulfate binds directly to heparin to form a stable salt complex, instantly neutralizing its anticoagulant activity." },
+      { q: "Vancomycin administration requires careful monitoring because rapid infusion can cause which characteristic condition?", opts: ["Red Man Syndrome", "Black Hairy Tongue", "Grey Baby Syndrome", "Cushingoid appearance"], correct: 0, reason: "Rapid infusion of Vancomycin causes histamine release resulting in flushing and pruritus known as Red Man Syndrome." },
+      { q: "Proton Pump Inhibitors (PPIs) such as Omeprazole reduce gastric acid secretion by inhibiting which cellular mechanism?", opts: ["Histamine H2 receptors", "Gastric H+/K+ ATPase pump", "Acetylcholine M3 receptors", "Prostaglandin synthesis"], correct: 1, reason: "PPIs block the hydrogen/potassium adenosine triphosphatase enzyme system in gastric parietal cells." },
+      { q: "Which nursing assessment is most critical when administering Gentamicin (Aminoglycoside) to a patient?", opts: ["Monitoring serum creatinine and urine output", "Checking blood glucose levels", "Assessing for peripheral edema", "Measuring liver enzymes"], correct: 0, reason: "Aminoglycosides carry a high risk of nephrotoxicity and ototoxicity, making renal function monitoring vital." },
+      { q: "Warfarin therapy is monitored most accurately using which laboratory diagnostic test?", opts: ["Partial Thromboplastin Time (PTT)", "Prothrombin Time / International Normalized Ratio (PT/INR)", "Complete Blood Count (CBC)", "Bleeding Time"], correct: 1, reason: "Warfarin affects vitamin K-dependent clotting factors, monitored via PT/INR." },
+      { q: "Which symptom is a classic adverse effect of Digoxin toxicity that nurses must monitor for?", opts: ["Yellow-green visual halos", "Severe hair loss", "Persistent dry cough", "Muscle twitching"], correct: 0, reason: "Visual disturbances such as blurred vision or yellow-green halos are classic signs of digoxin toxicity." }
     ];
 
     var todaysMCQList = [];
@@ -955,13 +958,17 @@
 
     function saveAndUpdateProgress() {
       var unitsReadSet = JSON.parse(localStorage.getItem('pharmacologyUnitsReadSet')) || [];
-      var percent = Math.round((unitsReadSet.length / 7) * 100);
-      document.getElementById('progressText').innerText = "Units Completed: " + percent + " percent";
-      document.getElementById('progressPercentNum').innerText = percent + "%";
-      document.getElementById('progressBarFill').style.width = percent + "%";
+      // Calculate dual progress: 70% weight from units read (out of 7) + 30% weight from daily MCQs mastered (out of 5)
+      var unitWeight = (unitsReadSet.length / 7) * 70;
+      var mcqWeight = (dailyQuizScore / 5) * 30;
+      var totalPercent = Math.round(unitWeight + mcqWeight);
+
+      document.getElementById('progressText').innerText = "Total Academic Progress: " + totalPercent + " percent";
+      document.getElementById('progressPercentNum').innerText = totalPercent + "%";
+      document.getElementById('progressBarFill').style.width = totalPercent + "%";
       document.getElementById('unitsReadNum').innerText = unitsReadSet.length + " / 7";
       document.getElementById('quizScoreNum').innerText = dailyQuizScore + " / 5";
-      document.getElementById('completedCountNum').innerText = dailyQuizScore + " / 5";
+      document.getElementById('completedCountNum').innerText = totalPercent + "%";
     }
 
     function loadSavedProgress() { saveAndUpdateProgress(); }
