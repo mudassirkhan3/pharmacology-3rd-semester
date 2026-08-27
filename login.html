@@ -112,44 +112,38 @@
       <button type="button" id="registerTabBtn" class="tab-btn" onclick="switchMode('register')">Register</button>
     </div>
 
-    <!-- Hidden iframe to handle silent background server responses -->
-    <iframe name="hidden_iframe" id="hidden_iframe" class="hidden"></iframe>
-
-    <form id="authForm" action="https://script.google.com/macros/s/AKfycby_9qujjFnAovZHwnKQML2t9nGjKZkMnI9Wd5574oedSLAxkEH_2LMBM5rvH-u62B3Mow/exec" method="POST" target="hidden_iframe" onsubmit="handleFormSubmit(event)">
-      
-      <input type="hidden" name="action" id="formActionField" value="login">
-
+    <form id="authForm" onsubmit="handleAuth(event)">
       <div id="registerFields" class="hidden">
         <div class="form-group">
           <label>Full Name</label>
-          <input type="text" id="studentName" name="fullName" class="form-input" placeholder="e.g. Mudassir Khan">
+          <input type="text" id="studentName" class="form-input" placeholder="e.g. Mudassir Khan">
         </div>
 
         <div class="form-group">
           <label>Institute Name</label>
-          <input type="text" id="studentInstitute" name="institute" class="form-input" value="New Life Institute of Nursing">
+          <input type="text" id="studentInstitute" class="form-input" value="New Life Institute of Nursing">
         </div>
 
         <div class="form-group">
           <label>Semester</label>
-          <input type="text" id="studentSemester" name="semester" class="form-input" value="3rd Semester">
+          <input type="text" id="studentSemester" class="form-input" value="3rd Semester">
         </div>
 
         <div class="form-group">
           <label>🔐 Security Question: What is your favorite city name?</label>
-          <input type="text" id="studentSecurityAnswer" name="securityAnswer" class="form-input" placeholder="e.g. Multan">
+          <input type="text" id="studentSecurityAnswer" class="form-input" placeholder="e.g. Multan">
           <p style="font-size: 0.72rem; color: #64748b; margin-top: 4px;">Remember this answer! It matches your cloud profile if you forget your password.</p>
         </div>
       </div>
 
       <div class="form-group">
         <label>Student Email</label>
-        <input type="email" id="studentEmail" name="email" class="form-input" placeholder="e.g. student@nursing.edu" required>
+        <input type="email" id="studentEmail" class="form-input" placeholder="e.g. student@nursing.edu" required>
       </div>
 
       <div class="form-group">
         <label>Password</label>
-        <input type="password" id="studentPassword" name="password" class="form-input" placeholder="Enter your password" required>
+        <input type="password" id="studentPassword" class="form-input" placeholder="Enter your password" required>
       </div>
 
       <div id="forgotPasswordRow" class="forgot-row">
@@ -213,9 +207,6 @@
       const loginTab = document.getElementById('loginTabBtn');
       const regTab = document.getElementById('registerTabBtn');
       const forgotRow = document.getElementById('forgotPasswordRow');
-      const formActionField = document.getElementById('formActionField');
-
-      formActionField.value = mode; // sets hidden field to 'login' or 'register'
 
       if (mode === 'register') {
         regFields.classList.remove('hidden');
@@ -252,58 +243,78 @@
       document.getElementById('forgotModal').style.display = 'none';
     }
 
-    // Direct AJAX verification handle to prevent freeze and ensure instant validation
-    async function handleFormSubmit(event) {
+    async function handleAuth(event) {
       event.preventDefault();
-      const submitBtn = document.getElementById('submitBtn');
-      submitBtn.disabled = true;
-      submitBtn.innerText = "Processing...";
 
       const email = document.getElementById('studentEmail').value.trim().toLowerCase();
       const password = document.getElementById('studentPassword').value.trim();
+      const submitBtn = document.getElementById('submitBtn');
 
-      const payload = {
-        action: currentMode,
-        email: email,
-        password: password
-      };
-
-      if (currentMode === 'register') {
-        payload.fullName = document.getElementById('studentName').value.trim();
-        payload.institute = document.getElementById('studentInstitute').value.trim();
-        payload.semester = document.getElementById('studentSemester').value.trim();
-        payload.securityAnswer = document.getElementById('studentSecurityAnswer').value.trim();
-      }
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Processing...";
 
       try {
-        // Use standard JSON text posting via no-cors workaround or direct JSON fetch fallback
-        const response = await fetch(GOOGLE_SHEET_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        // Since no-cors hides response bodies, we evaluate based on action logic
         if (currentMode === 'register') {
+          const name = document.getElementById('studentName').value.trim();
+          const institute = document.getElementById('studentInstitute').value.trim();
+          const semester = document.getElementById('studentSemester').value.trim();
+          const securityAnswer = document.getElementById('studentSecurityAnswer').value.trim();
+
+          // Send data to Google Sheet for Registration (background save)
+          fetch(GOOGLE_SHEET_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'register',
+              fullName: name,
+              institute: institute,
+              email: email,
+              password: password,
+              semester: semester,
+              securityAnswer: securityAnswer
+            })
+          });
+
+          // Save locally as well so login works instantly
+          const localUser = { name: name, institute: institute, email: email, semester: semester, password: password, securityAnswer: securityAnswer };
+          let registeredUsers = JSON.parse(localStorage.getItem('pharmacologyAllUsers')) || [];
+          registeredUsers.push(localUser);
+          localStorage.setItem('pharmacologyAllUsers', JSON.stringify(registeredUsers));
+
           alert('🎉 Registration successful! You can now log in with your email and password.');
           switchMode('login');
           document.getElementById('authForm').reset();
+
         } else {
-          // Store session data and transition directly for fast user experience
-          const userName = email.split('@')[0];
-          localStorage.setItem('pharmacologyUser', JSON.stringify({
-            name: userName.charAt(0).toUpperCase() + userName.slice(1),
-            institute: "New Life Institute of Nursing",
-            email: email,
-            semester: "4th Semester"
-          }));
-          localStorage.setItem('pharmacologyLoggedIn', 'true');
-          window.location.href = 'dashboard.html';
+          // Login Mode: Check against registered local backup database or simulated cloud check
+          let registeredUsers = JSON.parse(localStorage.getItem('pharmacologyAllUsers')) || [];
+          
+          // Fallback default admin/student account if list is empty
+          if(registeredUsers.length === 0) {
+            registeredUsers.push({
+              email: "student@nursing.edu",
+              password: "password123",
+              name: "Mudassir Hussain Khan",
+              institute: "New Life Institute of Nursing",
+              semester: "4th Semester"
+            });
+          }
+
+          let matchedUser = registeredUsers.find(u => u.email.toLowerCase() === email && u.password === password);
+
+          if (matchedUser) {
+            localStorage.setItem('pharmacologyUser', JSON.stringify(matchedUser));
+            localStorage.setItem('pharmacologyLoggedIn', 'true');
+            window.location.href = 'dashboard.html';
+          } else {
+            // STRICT BLOCK: Wrong details will show this error and stay on page
+            alert('❌ Invalid email or password! Please check your credentials or register first.');
+          }
         }
       } catch (err) {
         console.error('Auth Error:', err);
-        alert('⚠️ Connection error. Please check your internet connection.');
+        alert('⚠️ Connection error. Please check your network connection.');
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerText = currentMode === 'register' ? 'Create Account & Register →' : 'Log In to Dashboard →';
@@ -320,26 +331,26 @@
         return;
       }
 
-      try {
-        await fetch(GOOGLE_SHEET_URL, {
+      let registeredUsers = JSON.parse(localStorage.getItem('pharmacologyAllUsers')) || [];
+      let userIndex = registeredUsers.findIndex(u => u.email.toLowerCase() === email);
+
+      if (userIndex !== -1 && registeredUsers[userIndex].securityAnswer && registeredUsers[userIndex].securityAnswer.toLowerCase() === answer.toLowerCase()) {
+        registeredUsers[userIndex].password = newPassword;
+        localStorage.setItem('pharmacologyAllUsers', JSON.stringify(registeredUsers));
+        
+        // Also send reset signal to Google Sheet backend
+        fetch(GOOGLE_SHEET_URL, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            action: 'reset',
-            email: email,
-            securityAnswer: answer,
-            newPassword: newPassword
-          })
+          body: JSON.stringify({ action: 'reset', email: email, securityAnswer: answer, newPassword: newPassword })
         });
 
-        alert('🎉 Password reset command sent successfully! You can now log in.');
+        alert('🎉 Password reset successfully! You can now log in with your new password.');
         closeForgotModal();
         document.getElementById('studentEmail').value = email;
-        document.getElementById('studentPassword').value = '';
-      } catch (err) {
-        console.error('Reset Error:', err);
-        alert('⚠️ Network error connecting to cloud server.');
+      } else {
+        alert('❌ Password reset failed. Incorrect email or security answer for favorite city.');
       }
     }
   </script>
