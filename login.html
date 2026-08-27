@@ -274,7 +274,7 @@
           });
 
           const result = await response.json();
-          if (result.status === 'success') {
+          if (result && result.status === 'success') {
             alert('🎉 Registration successful! You can now log in with your email and password.');
             switchMode('login');
             document.getElementById('authForm').reset();
@@ -283,7 +283,7 @@
           }
 
         } else {
-          // Login Mode with explicit strict checking
+          // Login Mode
           const response = await fetch(GOOGLE_SHEET_URL, {
             method: 'POST',
             body: JSON.stringify({
@@ -295,19 +295,17 @@
 
           const result = await response.json();
           
-          // STRICT VALIDATION: Only let user in if status is strictly 'success' and user data exists
           if (result && result.status === 'success' && result.user) {
             localStorage.setItem('pharmacologyUser', JSON.stringify(result.user));
             localStorage.setItem('pharmacologyLoggedIn', 'true');
             window.location.href = 'dashboard.html';
           } else {
-            // Explicitly block and show exact backend or fallback error message
-            alert('❌ ' + (result.message || 'Invalid email or password. Access denied.'));
+            alert('❌ ' + (result.message || 'Invalid email or password.'));
           }
         }
       } catch (err) {
         console.error('Auth Error:', err);
-        alert('⚠️ Login failed. Please check your email and password or check your internet connection.');
+        alert('⚠️ Connection error. Please check your internet connection or Google Script deployment URL.');
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerText = currentMode === 'register' ? 'Create Account & Register →' : 'Log In to Dashboard →';
@@ -336,7 +334,7 @@
         });
 
         const result = await response.json();
-        if (result.status === 'success') {
+        if (result && result.status === 'success') {
           alert('🎉 Password reset successfully! You can now log in with your new password.');
           closeForgotModal();
           document.getElementById('studentEmail').value = email;
