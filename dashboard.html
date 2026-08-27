@@ -623,13 +623,35 @@
   </footer>
 
   <script>
+    // --- ADVANCED SECURITY: DISABLE F12, VIEW SOURCE, AND INSPECT ELEMENT ---
     document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'U')) {
+      // Block F12
+      if (e.key === 'F12') {
+        e.preventDefault();
+        return false;
+      }
+      // Block Ctrl+U (View Source) and Ctrl+Shift+I / J / C (DevTools)
+      if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S')) {
+        e.preventDefault();
+        return false;
+      }
+      if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
         e.preventDefault();
         return false;
       }
     });
+
+    // Active debugger trap to deter console inspection
+    setInterval(function() {
+      var before = new Date().getTime();
+      debugger;
+      var after = new Date().getTime();
+      if (after - before > 100) {
+        document.body.innerHTML = "<h2 style='text-align:center; margin-top:20vh; color:#dc2626;'>Developer tools detected. Access restricted.</h2>";
+      }
+    }, 1000);
 
     var idleTimer;
     function resetIdleTimer() {
@@ -642,7 +664,7 @@
 
     window.onload = function() {
       if (localStorage.getItem('pharmacologyLoggedIn') !== 'true') {
-        window.location.replace('login.html');
+        window.location.replace('index.html');
         return;
       }
 
@@ -995,7 +1017,7 @@
       localStorage.removeItem('pharmacologyLoggedIn');
       localStorage.removeItem('pharmacologyUnlocked');
       localStorage.removeItem('pharmacologyUser');
-      window.location.href = 'login.html';
+      window.location.href = 'index.html';
     }
 
     function filterDrugs() {
