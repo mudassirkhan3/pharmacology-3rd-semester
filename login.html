@@ -283,7 +283,7 @@
           }
 
         } else {
-          // Login Mode
+          // Login Mode with explicit strict checking
           const response = await fetch(GOOGLE_SHEET_URL, {
             method: 'POST',
             body: JSON.stringify({
@@ -294,17 +294,20 @@
           });
 
           const result = await response.json();
-          if (result.status === 'success') {
+          
+          // STRICT VALIDATION: Only let user in if status is strictly 'success' and user data exists
+          if (result && result.status === 'success' && result.user) {
             localStorage.setItem('pharmacologyUser', JSON.stringify(result.user));
             localStorage.setItem('pharmacologyLoggedIn', 'true');
             window.location.href = 'dashboard.html';
           } else {
-            alert('❌ ' + (result.message || 'Invalid email or password.'));
+            // Explicitly block and show exact backend or fallback error message
+            alert('❌ ' + (result.message || 'Invalid email or password. Access denied.'));
           }
         }
       } catch (err) {
         console.error('Auth Error:', err);
-        alert('⚠️ Network error connecting to cloud server. Please check your internet connection.');
+        alert('⚠️ Login failed. Please check your email and password or check your internet connection.');
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerText = currentMode === 'register' ? 'Create Account & Register →' : 'Log In to Dashboard →';
