@@ -121,12 +121,12 @@
 
         <div class="form-group">
           <label>Institute Name</label>
-          <input type="text" id="studentInstitute" class="form-input" value="New Life, mmdc,dhq etc">
+          <input type="text" id="studentInstitute" class="form-input" value="New Life Institute of Nursing">
         </div>
 
         <div class="form-group">
           <label>Semester</label>
-          <input type="text" id="studentSemester" class="form-input" value="3rd Semester">
+          <input type="text" id="studentSemester" class="form-input" value="4th Semester">
         </div>
 
         <div class="form-group">
@@ -178,8 +178,8 @@
       </div>
 
       <div class="form-group">
-        <label> Password</label>
-        <input type="password" id="recoveryPassword" class="form-input" placeholder="Enter  password">
+        <label>New Password</label>
+        <input type="password" id="recoveryNewPassword" class="form-input" placeholder="Enter new password">
       </div>
 
       <div class="modal-actions">
@@ -235,7 +235,7 @@
         document.getElementById('recoveryEmail').value = typedEmail;
       }
       document.getElementById('recoveryAnswer').value = '';
-      document.getElementById('recoveryPassword').value = '';
+      document.getElementById('recoveryNewPassword').value = '';
       document.getElementById('forgotModal').style.display = 'flex';
     }
 
@@ -277,7 +277,7 @@
           });
 
           // Save locally as well so login works instantly
-          const localUser = { name: name, institute: institute, email: email, semester: semester, password: password, securityAnswer: securityAnswer };
+          const localUser = { name: name, institute: institute, email: email, password: password, securityAnswer: securityAnswer };
           let registeredUsers = JSON.parse(localStorage.getItem('pharmacologyAllUsers')) || [];
           registeredUsers.push(localUser);
           localStorage.setItem('pharmacologyAllUsers', JSON.stringify(registeredUsers));
@@ -296,8 +296,9 @@
               email: "student@nursing.edu",
               password: "password123",
               name: "Mudassir Hussain Khan",
-              institute: " Life Institute of Nursing",
-              semester: "4th Semester"
+              institute: "New Life Institute of Nursing",
+              semester: "4th Semester",
+              securityAnswer: "Multan"
             });
           }
 
@@ -308,7 +309,6 @@
             localStorage.setItem('pharmacologyLoggedIn', 'true');
             window.location.href = 'dashboard.html';
           } else {
-            // STRICT BLOCK: Wrong details will show this error and stay on page
             alert('❌ Invalid email or password! Please check your credentials or register first.');
           }
         }
@@ -324,7 +324,7 @@
     async function executePasswordReset() {
       const email = document.getElementById('recoveryEmail').value.trim().toLowerCase();
       const answer = document.getElementById('recoveryAnswer').value.trim();
-      const Password = document.getElementById('recoveryNewPassword').value.trim();
+      const newPassword = document.getElementById('recoveryNewPassword').value.trim();
 
       if (!email || !answer || !newPassword) {
         alert('❌ Please fill in all fields to verify your identity.');
@@ -332,6 +332,19 @@
       }
 
       let registeredUsers = JSON.parse(localStorage.getItem('pharmacologyAllUsers')) || [];
+      
+      // Fallback default user check if local storage is empty
+      if(registeredUsers.length === 0) {
+        registeredUsers.push({
+          email: "student@nursing.edu",
+          password: "password123",
+          name: "Mudassir Hussain Khan",
+          institute: "New Life Institute of Nursing",
+          semester: "4th Semester",
+          securityAnswer: "Multan"
+        });
+      }
+
       let userIndex = registeredUsers.findIndex(u => u.email.toLowerCase() === email);
 
       if (userIndex !== -1 && registeredUsers[userIndex].securityAnswer && registeredUsers[userIndex].securityAnswer.toLowerCase() === answer.toLowerCase()) {
