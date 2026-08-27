@@ -783,6 +783,7 @@
     ];
     for (var c = 1; c <= 200; c++) {
       var formattedNum = c < 10 ? "0" + c : "" + c;
+      validAccessCodesList.push("MK-PK-" + formattedNum);
       validAccessCodesList.push("MK-IND-" + formattedNum);
     }
 
@@ -798,7 +799,7 @@
       var usedCodes = JSON.parse(localStorage.getItem('pharmacologyUsedCodes')) || [];
 
       if (usedCodes.includes(enteredCode)) {
-        alert('🚫 Access Denied: This access code has ALREADY been used and spent!');
+        alert('🚫 Access Denied: This access code has ALREADY been used and spent! Single-use codes cannot be reused.');
         return;
       }
 
