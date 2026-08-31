@@ -144,18 +144,6 @@
                             3rd Semester BSN • MK Study Hub
                         </div>
 
-                        <!-- LIVE COHORT & EXAM COUNTDOWN BANNER -->
-                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
-                            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold">
-                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                                <span id="cohortCount">142</span> BSN Peers Active Now
-                            </div>
-                            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold">
-                                <i data-lucide="timer" class="w-3.5 h-3.5 text-amber-600"></i>
-                                <span id="examCountdown">Loading Exam Countdown...</span>
-                            </div>
-                        </div>
-
                         <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.15]">
                             PHARMACOLOGY
                             <span class="block text-lg sm:text-2xl lg:text-3xl font-extrabold text-brand-600 mt-2 leading-snug">
@@ -970,33 +958,8 @@
             setTimeout(playTypewriter, speed);
         }
 
-        // Live Cohort & Exam Countdown Timer Script
-        function updateCohortStats() {
-            // Randomly fluctuate active cohort students slightly for realism (e.g. between 138 and 147)
-            const randomPeers = Math.floor(Math.random() * 10) + 138;
-            const cohortEl = document.getElementById("cohortCount");
-            if (cohortEl) cohortEl.textContent = randomPeers;
-
-            // Target Exam Date (Set for end of semester / exam window)
-            const examDate = new Date("2026-10-15T09:00:00").getTime();
-            const now = new Date().getTime();
-            const distance = examDate - now;
-
-            const countdownEl = document.getElementById("examCountdown");
-            if (countdownEl && distance > 0) {
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                countdownEl.textContent = `${days}d ${hours}h to UHS Exams`;
-            } else if (countdownEl) {
-                countdownEl.textContent = "UHS Exam Season Active!";
-            }
-        }
-
         document.addEventListener("DOMContentLoaded", () => {
             if (typewriterEl) playTypewriter();
-            updateCohortStats();
-            // Update cohort active count every 10 seconds for dynamic feel
-            setInterval(updateCohortStats, 10000);
         });
     </script>
 </body>
